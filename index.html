@@ -188,7 +188,6 @@
 
       
           <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/contrib/mhchem.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="Task01-Harris特征点检测器-兴趣点检测"><a href="#Task01-Harris特征点检测器-兴趣点检测" class="headerlink" title="Task01 Harris特征点检测器-兴趣点检测"></a>Task01 Harris特征点检测器-兴趣点检测</h1><p><strong>特则点</strong>又称为兴趣点或角点，通常具有旋转不变性和光照不变性和视角不变性等优点，是图像的重要特征之一，常被应用到目标匹配、目标跟踪、三维重建等应用中。</p>
 <p><strong>点特征</strong>主要是指图像中的明显点，如突出的角点、边缘端点、权值点等等。</p>
 <p><strong>兴趣点提取(检测)算子</strong>是用于点特征提取的算子，常用的有</p>
@@ -223,9 +222,32 @@
 <p>窗口移动引起的灰度值的变化量为$I(x+u,y+v)-I(x,y)$。</p>
 <p>$(x,y)$位置的窗口函数为$w(x,y)$。即为窗口内各像素的权重。</p>
 <p><img src="/images/cv/pictures/image1-2.png" alt="image-20200623143300133"></p>
-<p><strong>窗口移动(u,v)引起的灰度值的加权变化量</strong>：<br>$$<br>E(u,v) = \sum_{x,y}{w(x,y){[I(x+u,y+v)-I(x,y)]}^{2}}<br>$$<br>根据二维泰勒公式展开：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>E(u,v) &amp;\approx \sum_{x,y \in W}{w(x,y){[I(x,y)+uI_x+vI_y-I(x,y)]}^{2}} \<br>  &amp;= \sum_{x,y\in W}{w(x,y){(uI_x+vI_y)}^{2}} \<br>  &amp;= \sum_{x,y\in W}{w(x,y){(u^2I_x^2+vI_y^2+2uvI_xI_y)}^{2}} \<br>  &amp;= \sum_{x,y\in W}{w(x,y)\begin{bmatrix}u&amp;v\end{bmatrix}\begin{bmatrix}I_x^2 &amp; I_xI_y\<br>                                       I_xI_y &amp; I_y^2\end{bmatrix} \begin{bmatrix}u\v\end{bmatrix}} \<br>  &amp;= \begin{bmatrix}u&amp;v\end{bmatrix}(\sum_{x,y\in W}{w(x,y) \begin{bmatrix}I_x^2 &amp; I_xI_y\                                     I_xI_y &amp; I_y^2\end{bmatrix} })\begin{bmatrix}u\v\end{bmatrix}                                      \<br>  &amp;= \begin{bmatrix}u&amp;v\end{bmatrix}M\begin{bmatrix}u\v\end{bmatrix}<br>\end{aligned}<br>\end{equation}<br>$$<br>其中$I_x,I_y$分别为窗口内像素点$(x,y)$在$x$方向上和$y$方向上的梯度值。矩阵$M$为：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>M &amp;= \sum_{(x,y)\in W}{w(x,y) \begin{bmatrix}I_x^2 &amp; I_xI_y\<br>                                       I_xI_y &amp; I_y^2\end{bmatrix}}\<br>  &amp;=R^{-1}\begin{bmatrix}\lambda_1 &amp; 0\0 &amp; \lambda_2\end{bmatrix}R<br>\end{aligned}<br>\end{equation}<br>$$<br>最后使用实对称矩阵对角化处理后得到我们想要的结果。</p>
+<p><strong>窗口移动(u,v)引起的灰度值的加权变化量</strong>：</p>
+<script type="math/tex; mode=display">
+E(u,v) = \sum_{x,y}{w(x,y){[I(x+u,y+v)-I(x,y)]}^{2}}</script><p>根据二维泰勒公式展开：</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+E(u,v) &\approx \sum_{x,y \in W}{w(x,y){[I(x,y)+uI_x+vI_y-I(x,y)]}^{2}} \\
+  &= \sum_{x,y\in W}{w(x,y){(uI_x+vI_y)}^{2}} \\
+  &= \sum_{x,y\in W}{w(x,y){(u^2I_x^2+vI_y^2+2uvI_xI_y)}^{2}} \\
+  &= \sum_{x,y\in W}{w(x,y)\begin{bmatrix}u&v\end{bmatrix}\begin{bmatrix}I_x^2 & I_xI_y\\
+                                       I_xI_y & I_y^2\end{bmatrix} \begin{bmatrix}u\\v\end{bmatrix}} \\
+  &= \begin{bmatrix}u&v\end{bmatrix}(\sum_{x,y\in W}{w(x,y) \begin{bmatrix}I_x^2 & I_xI_y\\                                     I_xI_y & I_y^2\end{bmatrix} })\begin{bmatrix}u\\v\end{bmatrix}                                      \\
+  &= \begin{bmatrix}u&v\end{bmatrix}M\begin{bmatrix}u\\v\end{bmatrix}
+\end{aligned}
+\end{equation}</script><p>其中$I_x,I_y$分别为窗口内像素点$(x,y)$在$x$方向上和$y$方向上的梯度值。矩阵$M$为：</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+M &= \sum_{(x,y)\in W}{w(x,y) \begin{bmatrix}I_x^2 & I_xI_y\\
+                                       I_xI_y & I_y^2\end{bmatrix}}\\
+  &=R^{-1}\begin{bmatrix}\lambda_1 & 0\\0 & \lambda_2\end{bmatrix}R
+\end{aligned}
+\end{equation}</script><p>最后使用实对称矩阵对角化处理后得到我们想要的结果。</p>
 <h3 id="1-2-2-计算对应的角点响应函数-R"><a href="#1-2-2-计算对应的角点响应函数-R" class="headerlink" title="1.2.2 计算对应的角点响应函数$R$"></a>1.2.2 计算对应的角点响应函数$R$</h3><p>通过矩阵的梯度变化可以得到协方差矩阵M，协方差矩阵M决定了灰度值的加权变化量。因此通过计算<strong>角点响应函数R</strong>得到每个窗口对应的得分:</p>
-<p>$$<br>R = det(M)-k(trace(M))^2<br>$$<br>其中$det(M)=\lambda_1\lambda_2$为矩阵的行列式，$trace(M)=\lambda_1+\lambda_2$为矩阵的迹。</p>
+<script type="math/tex; mode=display">
+R = det(M)-k(trace(M))^2</script><p>其中$det(M)=\lambda_1\lambda_2$为矩阵的行列式，$trace(M)=\lambda_1+\lambda_2$为矩阵的迹。</p>
 <p>$k$是一个经验常数，需要经验确定它的合适大小，通常在(0.04,0.06)之间取值。</p>
 <h3 id="1-2-3-角点判定"><a href="#1-2-3-角点判定" class="headerlink" title="1.2.3 角点判定"></a>1.2.3 角点判定</h3><p>根据R值判断窗口是平面、边缘还是角点：</p>
 <ul>
@@ -237,7 +259,7 @@
 <p><img src="https://camo.githubusercontent.com/c6eef9fa98b4f1e099bc722b21536c73c6b9bf9f/68747470733a2f2f696d67636f6e766572742e6373646e696d672e636e2f6148523063484d364c7939706257466e5a584d794d4445314c6d4e75596d78765a334d75593239744c324a73623263764e4455784e6a59774c7a49774d5459774e4338304e5445324e6a41744d6a41784e6a41304d6a45784d5441314e4455354f5445744e4451304e6a6b314e5445344c6e42755a773f782d6f73732d70726f636573733d696d6167652f666f726d61742c706e67237069635f63656e746572" alt="在这里插入图片描述"></p>
 <p>Harris角点检测：设定一个阈值，高于阈值的像素对应角点。</p>
 <ul>
-<li>补充：角点的非极大值原理–在一个窗口内，如果有很多角点则用值最大的那个角点，其他的角点都删除。</li>
+<li>补充：角点的非极大值原理—在一个窗口内，如果有很多角点则用值最大的那个角点，其他的角点都删除。</li>
 </ul>
 <h2 id="1-3-Shi-Tomasi角点检测器"><a href="#1-3-Shi-Tomasi角点检测器" class="headerlink" title="1.3 Shi-Tomasi角点检测器"></a>1.3 Shi-Tomasi角点检测器</h2><p><strong>Shi-Tomasi 角点检测</strong>：《Good_Features_to_Track》论文提出的Harris改进版。</p>
 <p>Harris角点检测中每个窗口的分数公式：$R=\lambda_1\lambda_2 - k(\lambda_1+\lambda_2)^2$</p>
@@ -258,19 +280,14 @@
 <p>待检测的图片：</p>
 <p><img src="/images/cv/pictures/image1.jpg" alt="image1"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检测参数</span></span><br><span class="line">block_size = <span class="number">3</span></span><br><span class="line">sobel_size = <span class="number">3</span></span><br><span class="line">k = <span class="number">0.06</span></span><br><span class="line"></span><br><span class="line">image = cv.imread(<span class="string">'image1.jpg'</span>)</span><br><span class="line">print(image.shape)</span><br><span class="line">height = image.shape[<span class="number">0</span>]</span><br><span class="line">width = image.shape[<span class="number">1</span>]</span><br><span class="line">channels = image.shape[<span class="number">2</span>]</span><br><span class="line">print(<span class="string">"width: %s height: %s channel: %s"</span>%(width, height, channels))</span><br><span class="line"><span class="comment"># 将图像转换为灰度图</span></span><br><span class="line">gray_img = cv.cvtColor(image, cv.COLOR_BGR2GRAY)</span><br><span class="line"><span class="comment"># 将数据格式转换为32位浮点数</span></span><br><span class="line">gray_img = np.float32(gray_img)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用合适值作为输入参数检测角点，得到的结果图用来标出角点</span></span><br><span class="line">corners_img = cv.cornerHarris(gray_img, block_size, sobel_size, k)</span><br></pre></td></tr></table></figure>
-
 <p>输出：</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(225, 225, 3)</span><br><span class="line">width: 225 height: 225 channel: 3</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">kernel = cv.getStructuringElement(cv.MORPH_RECT,(<span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line">dst = cv.dilate(corners_img, kernel)</span><br><span class="line"><span class="comment"># dst = cv.dilate(corners_img,None)</span></span><br><span class="line"><span class="comment"># image[dst&gt;0.05*dst.max()] = [255,0,0]</span></span><br><span class="line"><span class="comment"># num = dst &gt; 0.05 * dst.max()</span></span><br><span class="line"><span class="comment"># count = np.sum(num)</span></span><br><span class="line"><span class="comment"># print(count)</span></span><br><span class="line">count = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> r <span class="keyword">in</span> range(height):</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> range(width):</span><br><span class="line">        pix = dst[r,c]</span><br><span class="line">        <span class="comment"># 阈值，蓝色标记角点</span></span><br><span class="line">        <span class="keyword">if</span> pix &gt; <span class="number">0.05</span> * dst.max():</span><br><span class="line">            cv.circle(image,(c,r),<span class="number">2</span>,(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>),<span class="number">-1</span>)</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">print(count)</span><br><span class="line">cv.imwrite(<span class="string">'harris_img1.jpg'</span>,image)</span><br></pre></td></tr></table></figure>
-
 <p>输出：</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">741</span><br></pre></td></tr></table></figure>
-
 <p>处理后图片如下：</p>
 <p><img src="/images/cv/pictures/harris_img1.jpg" alt="harris_img1"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用点画图，点小一点，好看一丢丢把。。。</span></span><br><span class="line">image[dst&gt;<span class="number">0.05</span>*dst.max()] = [<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-
 <p><img src="/images/cv/pictures/harris_img2.jpg" alt="harris_img1"></p>
 <h2 id="2-2-Shi-Tomasi角点检测"><a href="#2-2-Shi-Tomasi角点检测" class="headerlink" title="2.2 Shi-Tomasi角点检测"></a>2.2 Shi-Tomasi角点检测</h2><p>opencv提供了实现Shi-Tomasi 角点检测函数：<strong>cv2.goodFeaturesToTrack()</strong>，下面调用该接口进行Harris特征点检测。</p>
 <p>函数：<strong>goodFeaturesToTrack(image, maxCorners, qualityLevel, minDistance[, corners[, mask[, blockSize[, useHarrisDetector[, k]]]]])</strong></p>
@@ -288,7 +305,6 @@
 <li><strong>k</strong>：默认为0.04，Harris角点检测时使用。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">maxCorners = <span class="number">600</span></span><br><span class="line">qualityLevel = <span class="number">0.01</span></span><br><span class="line">minDistance = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">'image1.jpg'</span>)</span><br><span class="line">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line">corners = cv2.goodFeaturesToTrack(gray, maxCorners, qualityLevel, minDistance)</span><br><span class="line">corners = np.int0(corners)</span><br><span class="line">count = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> corners:</span><br><span class="line">    x,y = i.ravel()</span><br><span class="line">    cv2.circle(img,(x,y), <span class="number">2</span>, (<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>),<span class="number">-1</span>)</span><br><span class="line">    <span class="comment"># img[y,x] = [255,0,0]</span></span><br><span class="line">    count += <span class="number">1</span></span><br><span class="line">cv.imwrite(<span class="string">'Shi-Tomasi.jpg'</span>,img)</span><br><span class="line">img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line">print(count)</span><br></pre></td></tr></table></figure>
-
 <p><img src="/images/cv/pictures/Tomasi.jpg" alt=""></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Harris和Shi-Tomasi都是基于梯度计算的角点检测方式。</p>
 <p>Harris角点检测的性质：</p>
@@ -371,16 +387,12 @@
       
           <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
       
