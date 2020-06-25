@@ -205,6 +205,17 @@ g_2 = \frac{n(n+1)}{(n-1)(n-2)(n-3)s^4}\sum_{i=1}^{n}{(x_i-\overline{x})}^4-3\fr
 ]]></content>
   </entry>
   <entry>
+    <title>Task02-LBP特征描述算子-人脸检测</title>
+    <url>/article/50afbda.html</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>图像处理下</category>
+      </categories>
+      <tags>
+        <tag>图像处理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Task01 Harris特征点检测器-兴趣点检测</title>
     <url>/article/8b3bd9dd.html</url>
     <content><![CDATA[<h1 id="Harris特征点检测器-兴趣点检测"><a href="#Harris特征点检测器-兴趣点检测" class="headerlink" title="Harris特征点检测器-兴趣点检测"></a>Harris特征点检测器-兴趣点检测</h1><p><strong>特则点</strong>又称为兴趣点或角点，通常具有旋转不变性和光照不变性和视角不变性等优点，是图像的重要特征之一，常被应用到目标匹配、目标跟踪、三维重建等应用中。</p>
@@ -348,17 +359,6 @@ R = det(M)-k(trace(M))^2</script><p>其中$det(M)=\lambda_1\lambda_2$为矩阵�
 <p><a href="https://zhuanlan.zhihu.com/p/83064609" target="_blank" rel="noopener">角点检测：Harris 与 Shi-Tomasi</a></p>
 <p><a href="https://www.cnblogs.com/zyly/p/9508131.html" target="_blank" rel="noopener">Harris角点检测原理(赋源码)</a></p>
 ]]></content>
-      <categories>
-        <category>图像处理下</category>
-      </categories>
-      <tags>
-        <tag>图像处理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Task02-LBP特征描述算子-人脸检测</title>
-    <url>/article/50afbda.html</url>
-    <content><![CDATA[]]></content>
       <categories>
         <category>图像处理下</category>
       </categories>
