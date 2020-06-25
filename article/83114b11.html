@@ -647,8 +647,6 @@ g_2 = \frac{n(n+1)}{(n-1)(n-2)(n-3)s^4}\sum_{i=1}^{n}{(x_i-\overline{x})}^4-3\fr
 <script src="/js/next-boot.js"></script>
 
 
-  <script defer src="/lib/three/three.min.js"></script>
-    <script defer src="/lib/three/three-waves.min.js"></script>
 
 
   
@@ -751,7 +749,16 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
       recordIP   : false,
       serverURLs : ''
     });
+//新增	
+	var infoEle = document.querySelector('#comments .info');
+if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+  infoEle.childNodes.forEach(function(item) {
+    item.parentNode.removeChild(item);
+  });
+}
+
   }, window.Valine);
+  
 });
 </script>
 

@@ -181,6 +181,26 @@
 
       <div class="post-meta">
         <time itemprop="dateCreated"
+              datetime="2020-06-25T19:44:27+08:00"
+              content="2020-06-25">
+          06-25
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/article/50afbda.html" itemprop="url">
+            <span itemprop="name">Task02-LBP特征描述算子-人脸检测</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
               datetime="2020-06-24T23:53:33+08:00"
               content="2020-06-24">
           06-24
@@ -373,8 +393,6 @@
 <script src="/js/next-boot.js"></script>
 
 
-  <script defer src="/lib/three/three.min.js"></script>
-    <script defer src="/lib/three/three-waves.min.js"></script>
 
 
   
@@ -424,7 +442,16 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
       recordIP   : false,
       serverURLs : ''
     });
+//新增	
+	var infoEle = document.querySelector('#comments .info');
+if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+  infoEle.childNodes.forEach(function(item) {
+    item.parentNode.removeChild(item);
+  });
+}
+
   }, window.Valine);
+  
 });
 </script>
 
