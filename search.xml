@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Introduction_and_Word_Vectors</title>
+    <url>/article/fd8e5887.html</url>
+    <content><![CDATA[<h1 id="Task1-Introduction-and-Word-Vectors"><a href="#Task1-Introduction-and-Word-Vectors" class="headerlink" title="Task1: Introduction and Word Vectors"></a>Task1: Introduction and Word Vectors</h1><p>理论部分</p>
+<ul>
+<li>介绍NLP研究的对象</li>
+<li>如何表示单词的含义</li>
+<li>Word2Vec方法的基本原理</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>2数理统计与描述性统计</title>
     <url>/article/83114b11.html</url>
     <content><![CDATA[<h1 id="一、数理统计概念"><a href="#一、数理统计概念" class="headerlink" title="一、数理统计概念"></a>一、数理统计概念</h1><h2 id="1-基本概念释义"><a href="#1-基本概念释义" class="headerlink" title="1.基本概念释义"></a>1.基本概念释义</h2><font color="blue">总体</font>：
@@ -337,16 +348,5 @@ R = det(M)-k(trace(M))^2</script><p>其中$det(M)=\lambda_1\lambda_2$为矩阵�
       <tags>
         <tag>图像处理下</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Introduction_and_Word_Vectors</title>
-    <url>/article/fd8e5887.html</url>
-    <content><![CDATA[<h1 id="Task1-Introduction-and-Word-Vectors"><a href="#Task1-Introduction-and-Word-Vectors" class="headerlink" title="Task1: Introduction and Word Vectors"></a>Task1: Introduction and Word Vectors</h1><p>理论部分</p>
-<ul>
-<li>介绍NLP研究的对象</li>
-<li>如何表示单词的含义</li>
-<li>Word2Vec方法的基本原理</li>
-</ul>
-]]></content>
   </entry>
 </search>
