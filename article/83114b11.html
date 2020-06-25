@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一、数理统计概念1.基本概念释义总体：研究对象的全体，通常用一个随机变量表示。  个体：组成总体的每个基本单元。">
+  <meta name="description" content="数理统计与描述性统计概念与python简单实现">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2数理统计与描述性统计">
 <meta property="og:url" content="http://yoursite.com/article/83114b11.html">
 <meta property="og:site_name" content="susu冲鸭">
-<meta property="og:description" content="一、数理统计概念1.基本概念释义总体：研究对象的全体，通常用一个随机变量表示。  个体：组成总体的每个基本单元。">
+<meta property="og:description" content="数理统计与描述性统计概念与python简单实现">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/article/83114b11/%E7%99%BE%E5%88%86%E4%BD%8D%E6%95%B0%E5%9B%BE.png">
 <meta property="og:image" content="http://yoursite.com/article/83114b11/image1">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://yoursite.com/article/83114b11/%E5%81%8F%E6%80%81%E4%B8%8E%E5%B3%B0%E5%BA%A6.png">
 <meta property="og:image" content="http://yoursite.com/article/83114b11/image3.PNG">
 <meta property="article:published_time" content="2020-06-24T03:47:17.000Z">
-<meta property="article:modified_time" content="2020-06-25T07:01:30.126Z">
+<meta property="article:modified_time" content="2020-06-25T07:07:44.806Z">
 <meta property="article:author" content="小苏">
 <meta property="article:tag" content="概率统计">
 <meta name="twitter:card" content="summary">
@@ -190,7 +190,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-25 15:01:30" itemprop="dateModified" datetime="2020-06-25T15:01:30+08:00">2020-06-25</time>
+                <time title="修改时间：2020-06-25 15:07:44" itemprop="dateModified" datetime="2020-06-25T15:07:44+08:00">2020-06-25</time>
               </span>
 
           
@@ -208,6 +208,7 @@
   </span>
   
   
+            <div class="post-description">数理统计与描述性统计概念与python简单实现</div>
 
         </div>
       </header>
@@ -218,9 +219,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="一、数理统计概念"><a href="#一、数理统计概念" class="headerlink" title="一、数理统计概念"></a>一、数理统计概念</h1><h2 id="1-基本概念释义"><a href="#1-基本概念释义" class="headerlink" title="1.基本概念释义"></a>1.基本概念释义</h2><font color="blue">总体</font>：研究对象的全体，通常用一个随机变量表示。
+        <h1 id="一、数理统计概念"><a href="#一、数理统计概念" class="headerlink" title="一、数理统计概念"></a>一、数理统计概念</h1><h2 id="1-基本概念释义"><a href="#1-基本概念释义" class="headerlink" title="1.基本概念释义"></a>1.基本概念释义</h2><font color="blue">总体</font>：
 
-<font color="blue">个体</font>：组成总体的每个基本单元。<a id="more"></a>
+研究对象的全体，通常用一个随机变量表示。
+
+<font color="blue">个体</font>：
+
+组成总体的每个基本单元。<a id="more"></a>
 
 从总体$X$中随机抽取一部分个体$X_1,X_2,...,X_n$，称$X_1,X_2,...,X_n$为取自$X$的容量为$n$的样本。实际上，数理统计学中的总体是指与总体相联系的某个(某几个)数量指标$X$取值的全体。
 
