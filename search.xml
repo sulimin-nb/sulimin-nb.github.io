@@ -186,6 +186,9 @@ g_1 = \frac{n}{(n-1)(n-2)s^3}\sum_{i=1}^{n}{(x_i-\overline{x})}^3=\frac{n^2 u_3}
 <script type="math/tex; mode=display">
 g_2 = \frac{n(n+1)}{(n-1)(n-2)(n-3)s^4}\sum_{i=1}^{n}{(x_i-\overline{x})}^4-3\frac{(n-1)^2}{(n-2)(n-3)}</script><p><img src="/article/83114b11/image3.PNG" style="zoom:80%;"></p>
 ]]></content>
+      <categories>
+        <category>概率统计</category>
+      </categories>
       <tags>
         <tag>概率统计</tag>
       </tags>
@@ -345,8 +348,16 @@ R = det(M)-k(trace(M))^2</script><p>其中$det(M)=\lambda_1\lambda_2$为矩阵�
 <p><a href="https://zhuanlan.zhihu.com/p/83064609" target="_blank" rel="noopener">角点检测：Harris 与 Shi-Tomasi</a></p>
 <p><a href="https://www.cnblogs.com/zyly/p/9508131.html" target="_blank" rel="noopener">Harris角点检测原理(赋源码)</a></p>
 ]]></content>
+      <categories>
+        <category>图像处理下</category>
+      </categories>
       <tags>
-        <tag>图像处理下</tag>
+        <tag>图像处理</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Task02-LBP特征描述算子-人脸检测</title>
+    <url>/article/50afbda.html</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
