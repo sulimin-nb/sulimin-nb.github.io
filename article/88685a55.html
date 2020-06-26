@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta name="description" content="六、问题与练习1.问题【问题一】 str对象方法和df&#x2F;Series对象方法有什么区别?  str对象方法有很多针对字符串的方法  在replace方法上，二者有较大差异： 1）str.replace针对object类型或string类型，默认操作：正则表达式 ​      replace针对任意类型的序列或数据框，正则表达式替换：regex&#x3D;True。使用字典可以支持      多列替换。 2">
+  <meta name="description" content="pandas中Series的str方法：对文本数据的处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第7章 文本数据">
 <meta property="og:url" content="http://yoursite.com/article/88685a55.html">
 <meta property="og:site_name" content="susu冲鸭">
-<meta property="og:description" content="六、问题与练习1.问题【问题一】 str对象方法和df&#x2F;Series对象方法有什么区别?  str对象方法有很多针对字符串的方法  在replace方法上，二者有较大差异： 1）str.replace针对object类型或string类型，默认操作：正则表达式 ​      replace针对任意类型的序列或数据框，正则表达式替换：regex&#x3D;True。使用字典可以支持      多列替换。 2">
+<meta property="og:description" content="pandas中Series的str方法：对文本数据的处理">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/article/88685a55/%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE.png">
 <meta property="og:image" content="http://yoursite.com/article/88685a55/image-1.png">
 <meta property="og:image" content="http://yoursite.com/article/88685a55/image-2.png">
 <meta property="article:published_time" content="2020-06-26T14:20:12.000Z">
-<meta property="article:modified_time" content="2020-06-26T15:46:23.710Z">
+<meta property="article:modified_time" content="2020-06-26T15:49:33.601Z">
 <meta property="article:author" content="小苏">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="pandas">
@@ -224,7 +224,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-06-26 22:20:12 / 修改时间：23:46:23" itemprop="dateCreated datePublished" datetime="2020-06-26T22:20:12+08:00">2020-06-26</time>
+              <time title="创建时间：2020-06-26 22:20:12 / 修改时间：23:49:33" itemprop="dateCreated datePublished" datetime="2020-06-26T22:20:12+08:00">2020-06-26</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -279,6 +279,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>1 分钟</span>
             </span>
+            <div class="post-description">pandas中Series的str方法：对文本数据的处理</div>
 
         </div>
       </header>
