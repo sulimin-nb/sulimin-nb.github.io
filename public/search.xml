@@ -194,6 +194,22 @@ g_2 = \frac{n(n+1)}{(n-1)(n-2)(n-3)s^4}\sum_{i=1}^{n}{(x_i-\overline{x})}^4-3\fr
       </tags>
   </entry>
   <entry>
+    <title>Task02-LBP特征描述算子-人脸检测</title>
+    <url>/article/50afbda.html</url>
+    <content><![CDATA[<p>学习任务：</p>
+<ul>
+<li><strong>理论部分</strong>：掌握LBP特征描述算子原理</li>
+<li><strong>练习部分</strong>：使用OpenCV的LBP检测器完成人脸检测任务</li>
+</ul>
+]]></content>
+      <categories>
+        <category>图像处理下</category>
+      </categories>
+      <tags>
+        <tag>图像处理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Introduction_and_Word_Vectors</title>
     <url>/article/fd8e5887.html</url>
     <content><![CDATA[<h1 id="Task1-Introduction-and-Word-Vectors"><a href="#Task1-Introduction-and-Word-Vectors" class="headerlink" title="Task1: Introduction and Word Vectors"></a>Task1: Introduction and Word Vectors</h1><p>理论部分</p>
@@ -358,7 +374,7 @@ R = det(M)-k(trace(M))^2</script><p>其中$det(M)=\lambda_1\lambda_2$为矩阵�
   <entry>
     <title>第7章 文本数据</title>
     <url>/article/88685a55.html</url>
-    <content><![CDATA[<p><img src="/article/88685a55/文本数据-1593186208627.png" alt></p>
+    <content><![CDATA[<p><img src="/article/88685a55/文本数据.png" alt></p>
 <h1 id="六、问题与练习"><a href="#六、问题与练习" class="headerlink" title="六、问题与练习"></a>六、问题与练习</h1><h2 id="1-问题"><a href="#1-问题" class="headerlink" title="1.问题"></a>1.问题</h2><p>【问题一】 str对象方法和df/Series对象方法有什么区别?</p>
 <ul>
 <li><p>str对象方法有很多针对字符串的方法</p>
@@ -409,22 +425,6 @@ R = det(M)-k(trace(M))^2</script><p>其中$det(M)=\lambda_1\lambda_2$为矩阵�
       <tags>
         <tag>python</tag>
         <tag>pandas</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Task02-LBP特征描述算子-人脸检测</title>
-    <url>/article/50afbda.html</url>
-    <content><![CDATA[<p>学习任务：</p>
-<ul>
-<li><strong>理论部分</strong>：掌握LBP特征描述算子原理</li>
-<li><strong>练习部分</strong>：使用OpenCV的LBP检测器完成人脸检测任务</li>
-</ul>
-]]></content>
-      <categories>
-        <category>图像处理下</category>
-      </categories>
-      <tags>
-        <tag>图像处理</tag>
       </tags>
   </entry>
 </search>
