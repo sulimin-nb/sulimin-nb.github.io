@@ -20,18 +20,23 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta name="description" content="今年也要努力鸭ε&#x3D;( o｀ω′)ノ">
+  <meta name="description" content="六、问题与练习1.问题【问题一】 str对象方法和df&#x2F;Series对象方法有什么区别?  str对象方法有很多针对字符串的方法  在replace方法上，二者有较大差异： 1）str.replace针对object类型或string类型，默认操作：正则表达式 ​      replace针对任意类型的序列或数据框，正则表达式替换：regex&#x3D;True。使用字典可以支持      多列替换。 2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第7章 文本数据">
 <meta property="og:url" content="http://yoursite.com/article/88685a55.html">
 <meta property="og:site_name" content="susu冲鸭">
-<meta property="og:description" content="今年也要努力鸭ε&#x3D;( o｀ω′)ノ">
+<meta property="og:description" content="六、问题与练习1.问题【问题一】 str对象方法和df&#x2F;Series对象方法有什么区别?  str对象方法有很多针对字符串的方法  在replace方法上，二者有较大差异： 1）str.replace针对object类型或string类型，默认操作：正则表达式 ​      replace针对任意类型的序列或数据框，正则表达式替换：regex&#x3D;True。使用字典可以支持      多列替换。 2">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/article/88685a55/%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE-1593186208627.png">
+<meta property="og:image" content="http://yoursite.com/article/88685a55/image-1.png">
+<meta property="og:image" content="http://yoursite.com/article/88685a55/image-2.png">
 <meta property="article:published_time" content="2020-06-26T14:20:12.000Z">
-<meta property="article:modified_time" content="2020-06-26T15:39:37.541Z">
+<meta property="article:modified_time" content="2020-06-26T15:45:17.854Z">
 <meta property="article:author" content="小苏">
-<meta property="article:tag" content="机器学习，数据挖掘，计算机视觉">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="pandas">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/article/88685a55/%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE-1593186208627.png">
 
 <link rel="canonical" href="http://yoursite.com/article/88685a55.html">
 
@@ -219,7 +224,16 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-06-26 22:20:12 / 修改时间：23:39:37" itemprop="dateCreated datePublished" datetime="2020-06-26T22:20:12+08:00">2020-06-26</time>
+              <time title="创建时间：2020-06-26 22:20:12 / 修改时间：23:45:17" itemprop="dateCreated datePublished" datetime="2020-06-26T22:20:12+08:00">2020-06-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pandas%E4%B8%8B/" itemprop="url" rel="index"><span itemprop="name">pandas下</span></a>
+                </span>
             </span>
 
           
@@ -256,7 +270,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -275,7 +289,51 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <p><img src="/article/88685a55/文本数据-1593186208627.png" alt></p>
+<h1 id="六、问题与练习"><a href="#六、问题与练习" class="headerlink" title="六、问题与练习"></a>六、问题与练习</h1><h2 id="1-问题"><a href="#1-问题" class="headerlink" title="1.问题"></a>1.问题</h2><p>【问题一】 str对象方法和df/Series对象方法有什么区别?</p>
+<ul>
+<li><p>str对象方法有很多针对字符串的方法</p>
+</li>
+<li><p>在replace方法上，二者有较大差异：</p>
+<p>1）str.replace针对object类型或string类型，默认操作：正则表达式</p>
+<p>​      replace针对任意类型的序列或数据框，正则表达式替换：regex=True。使用字典可以支持      多列替换。</p>
+<p>2）str.replace类型赋值参数不能是pd.NA。</p>
+<p>3）对于string类型Series，使用replace函数不能使用正则表达式替换。</p>
+</li>
+</ul>
+<p>【问题二】 给出一列string类型，如何判断单元格是否是数值型数据？</p>
+<ul>
+<li>正则表达式进行匹配。</li>
+<li>str.isnumeric有一定的局限性。</li>
+</ul>
+<p>【问题三】str.split方法的作用是什么？在什么场合下使用？</p>
+<ul>
+<li>使用分隔符对每个字符串进行分割并返回列表。</li>
+<li>可以使用str方法进行元素选择。</li>
+</ul>
+<p>【问题四】在本章的第二到第四节分别介绍了字符串类型的5类操作，请思考这些操作的应用场景？</p>
+<ul>
+<li>拆分：</li>
+<li>拼接</li>
+<li>替换</li>
+<li>字符匹配</li>
+<li>字符提取</li>
+</ul>
+<h2 id="2-练习"><a href="#2-练习" class="headerlink" title="2.练习"></a>2.练习</h2><p>【练习一】现有一份关于字符串的数据集，请解决以下问题：</p>
+<p>（a）先对字符串编码存储人员信息（在编号后添加ID列），使用如下格式：”xxx(名字)：x国人，性别x，生于x年x月x日“</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">'data/String_data_one.csv'</span>,index_col=<span class="string">'人员编号'</span>, dtype=<span class="string">'string'</span>)</span><br><span class="line">df[<span class="string">'ID'</span>] = df[<span class="string">'姓名'</span>].str.cat([<span class="string">': '</span>+df[<span class="string">'国籍'</span>]+<span class="string">'国人,'</span>,<span class="string">'性别'</span>+df[<span class="string">'性别'</span>]+<span class="string">','</span>,<span class="string">'生于'</span>+df[<span class="string">'出生年'</span>]+<span class="string">'年'</span>],na_rep=<span class="string">'*'</span>)</span><br><span class="line">df[<span class="string">'ID'</span>].head()</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<p><img src="/article/88685a55/image-1.png" alt="image-20200626233534845"></p>
+<p>（b）将（a）中的人员生日信息部分修改为用中文表示（如一九七四年十月二十三日），其余返回格式不变。</p>
+<p>（c）将（b）中的ID列结果拆分为原列表相应的5列，并使用equals检验是否一致。</p>
+<p>【练习二】现有一份半虚拟的数据集，第一列包含了新型冠状病毒的一些新闻标题，请解决以下问题：</p>
+<p>（a）选出所有关于北京市和上海市新闻标题的所在行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">'data/String_data_two.csv'</span>)</span><br><span class="line">df[<span class="string">'col1'</span>].str.extract(<span class="string">r'(?P&lt;name_1&gt;北京|上海)'</span>).dropna().index</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<p><img src="/article/88685a55/image-2.png" alt="image-20200626233841173"></p>
+<p>（b）求col2的均值。</p>
+<p>（c）求col3的均值。</p>
+
     </div>
 
     
@@ -294,6 +352,10 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+              <a href="/tags/pandas/" rel="tag"># pandas</a>
+          </div>
 
         
 
@@ -301,8 +363,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/article/8eab7353.html" rel="prev" title="文本数据">
-      <i class="fa fa-chevron-left"></i> 文本数据
+    <a href="/article/50afbda.html" rel="prev" title="Task02-LBP特征描述算子-人脸检测">
+      <i class="fa fa-chevron-left"></i> Task02-LBP特征描述算子-人脸检测
     </a></div>
       <div class="post-nav-item"></div>
     </div>
@@ -364,6 +426,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#六、问题与练习"><span class="nav-text">六、问题与练习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-问题"><span class="nav-text">1.问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-练习"><span class="nav-text">2.练习</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -377,7 +440,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
