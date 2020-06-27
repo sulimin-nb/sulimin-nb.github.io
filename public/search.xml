@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Introduction_and_Word_Vectors</title>
+    <url>/article/fd8e5887.html</url>
+    <content><![CDATA[<h1 id="Task1-Introduction-and-Word-Vectors"><a href="#Task1-Introduction-and-Word-Vectors" class="headerlink" title="Task1: Introduction and Word Vectors"></a>Task1: Introduction and Word Vectors</h1><p>理论部分</p>
+<ul>
+<li>介绍NLP研究的对象</li>
+<li>如何表示单词的含义</li>
+<li>Word2Vec方法的基本原理</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>2数理统计与描述性统计</title>
     <url>/article/83114b11.html</url>
     <content><![CDATA[<h1 id="一、数理统计概念"><a href="#一、数理统计概念" class="headerlink" title="一、数理统计概念"></a>一、数理统计概念</h1><h2 id="1-基本概念释义"><a href="#1-基本概念释义" class="headerlink" title="1.基本概念释义"></a>1.基本概念释义</h2><font color="blue">总体</font>：
@@ -194,33 +205,6 @@ g_2 = \frac{n(n+1)}{(n-1)(n-2)(n-3)s^4}\sum_{i=1}^{n}{(x_i-\overline{x})}^4-3\fr
       </tags>
   </entry>
   <entry>
-    <title>Introduction_and_Word_Vectors</title>
-    <url>/article/fd8e5887.html</url>
-    <content><![CDATA[<h1 id="Task1-Introduction-and-Word-Vectors"><a href="#Task1-Introduction-and-Word-Vectors" class="headerlink" title="Task1: Introduction and Word Vectors"></a>Task1: Introduction and Word Vectors</h1><p>理论部分</p>
-<ul>
-<li>介绍NLP研究的对象</li>
-<li>如何表示单词的含义</li>
-<li>Word2Vec方法的基本原理</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>Task02-LBP特征描述算子-人脸检测</title>
-    <url>/article/50afbda.html</url>
-    <content><![CDATA[<p>学习任务：</p>
-<ul>
-<li><strong>理论部分</strong>：掌握LBP特征描述算子原理</li>
-<li><strong>练习部分</strong>：使用OpenCV的LBP检测器完成人脸检测任务</li>
-</ul>
-]]></content>
-      <categories>
-        <category>图像处理下</category>
-      </categories>
-      <tags>
-        <tag>图像处理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Task01 Harris特征点检测器-兴趣点检测</title>
     <url>/article/8b3bd9dd.html</url>
     <content><![CDATA[<h1 id="Harris特征点检测器-兴趣点检测"><a href="#Harris特征点检测器-兴趣点检测" class="headerlink" title="Harris特征点检测器-兴趣点检测"></a>Harris特征点检测器-兴趣点检测</h1><p><strong>特则点</strong>又称为兴趣点或角点，通常具有旋转不变性和光照不变性和视角不变性等优点，是图像的重要特征之一，常被应用到目标匹配、目标跟踪、三维重建等应用中。</p>
@@ -372,9 +356,26 @@ R = det(M)-k(trace(M))^2</script><p>其中$det(M)=\lambda_1\lambda_2$为矩阵�
       </tags>
   </entry>
   <entry>
+    <title>Task02-LBP特征描述算子-人脸检测</title>
+    <url>/article/50afbda.html</url>
+    <content><![CDATA[<p>学习任务：</p>
+<ul>
+<li><strong>理论部分</strong>：掌握LBP特征描述算子原理</li>
+<li><strong>练习部分</strong>：使用OpenCV的LBP检测器完成人脸检测任务</li>
+</ul>
+]]></content>
+      <categories>
+        <category>图像处理下</category>
+      </categories>
+      <tags>
+        <tag>图像处理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>第八章-分类数据</title>
     <url>/article/28c12c7e.html</url>
     <content><![CDATA[<p><img src="/article/28c12c7e/分类数据.png" alt></p>
+<a id="more"></a>
 <h1 id="问题与练习"><a href="#问题与练习" class="headerlink" title="问题与练习"></a>问题与练习</h1><p>【问题一】如何使用union_categoricals方法，它的作用是什么？</p>
 <ul>
 <li>如果要组合不一定具有相同类别的类别，union_categoricals函数将组合类似列表的类别。新类别将是合并的类别的并集。如下所示：</li>
