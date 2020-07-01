@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://yoursite.com/article/2ad44fb9/3-2.png">
 <meta property="og:image" content="http://yoursite.com/article/2ad44fb9/3-3.png">
 <meta property="article:published_time" content="2020-06-30T15:17:02.000Z">
-<meta property="article:modified_time" content="2020-06-30T16:10:01.431Z">
+<meta property="article:modified_time" content="2020-07-01T06:23:42.271Z">
 <meta property="article:author" content="sulimin">
 <meta property="article:tag" content="概率统计">
 <meta name="twitter:card" content="summary">
@@ -232,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-01 00:10:01" itemprop="dateModified" datetime="2020-07-01T00:10:01+08:00">2020-07-01</time>
+                <time title="修改时间：2020-07-01 14:23:42" itemprop="dateModified" datetime="2020-07-01T14:23:42+08:00">2020-07-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -518,10 +518,10 @@ SS_e=\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \qquad (2
 SS_A &= SS-SS_e \\ 
 &=\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y} \right )^2-\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \\
 &=\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( (Y_{ij}-\bar{Y_i})-(\bar{Y}-\bar{Y_i}) \right )^2-\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \\
-&=\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( (Y_{ij}-\bar{Y_i})^2-2(Y_{ij}-\bar{Y_i})(\bar{Y}-\bar{Y_i})+(\bar{Y_i}-\bar{Y})^2 \right )-\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \\
-&=\sum_{i=1}^{k}\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y_i})^2 - 2\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( (Y_{ij}-\bar{Y_i})(\bar{Y_i}-\bar{Y}) \right )
-+ \sum_{i=1}^{k}\sum_{j=1}^{n_i}(\bar{Y_i}-\bar{Y})^2 - \sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \\
-&= \sum_{i=1}^{k}\sum_{j=1}^{n_i}(\bar{Y_i}-\bar{Y})^2 - 2\sum_{i=1}^{k}\left ( (\bar{Y_i}-\bar{Y})\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y_i}) \right ) \quad (ps:\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y_i})=0) \\
+&=\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( (Y_{ij}-\bar{Y_i})^2-2(Y_{ij}-\bar{Y_i})(\bar{Y}-\bar{Y_i})+(\bar{Y}-\bar{Y_i})^2 \right )-\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \\
+&=\sum_{i=1}^{k}\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y_i})^2 - 2\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( (Y_{ij}-\bar{Y_i})(\bar{Y}-\bar{Y_i}) \right )
++ \sum_{i=1}^{k}\sum_{j=1}^{n_i}(\bar{Y}-\bar{Y_i})^2 - \sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \\
+&= \sum_{i=1}^{k}\sum_{j=1}^{n_i}(\bar{Y_i}-\bar{Y})^2 - 2\sum_{i=1}^{k}\left ( (\bar{Y}-\bar{Y_i})\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y_i}) \right ) \quad (ps:\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y_i})=0) \\
 &= \sum_{i=1}^{k}n_i(\bar{Y_i}-\bar{Y})^2 \qquad (2.7)
 \end{align}</script><p>因为$\bar{Y_i}$可以视为对$a_i$的估计，$a_i$的差异越大，$\bar{Y_i}$之间的差异也越大，所以$SS_A$可以用来衡量不同水平之间的差异程度。</p>
 <p>在统计学上，通常称$SS$为<strong>总平方和</strong>，$SS_A$为<strong>因素$A$的平方和</strong>，$SS_e$为<strong>误差平方和</strong>，分解式$SS=SS_A+SS_e$为该模型的<strong>方差分析</strong>。</p>
@@ -635,9 +635,11 @@ H_{0B}:b_1=\cdots=b_k=0 \qquad(3.11)</script><p>$H_0A$成立表示因素$A$对�
 <script type="math/tex; mode=display">
 Y_{ij}-\bar{Y}=(\bar{Y_i}-\bar{Y}) + (\bar{Y_j}-\bar{Y})+(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y})</script><p>两边平方，对$i,j$求和，结合约束条件(3.3)，注意到</p>
 <script type="math/tex; mode=display">
-\sum_{i=1}^{k}(\bar{Y_{i}}-\bar{Y})=0， 
-\sum_{j=1}^{l}(\bar{Y_{j}}-\bar{Y})=0，</script><script type="math/tex; mode=display">
-\sum_{i=1}^{k}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y})=\sum_{j=1}^{l}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y})=0</script><p>即知所有交叉积之和皆为0，而得到</p>
+\sum_{i=1}^{l}(\bar{Y_{i}}-\bar{Y})=0， 
+\sum_{j=1}^{k}(\bar{Y_{j}}-\bar{Y})=0，</script><script type="math/tex; mode=display">
+\sum_{i=1}^{k}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y})=\sum_{j=1}^{l}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y})=0</script><script type="math/tex; mode=display">
+\sum_{i=1}^{k}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y}) = k\bar{Y_j}\\
+=\sum_{j=1}^{l}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y}) = l\bar{Y_i}</script><p>即知所有交叉积之和皆为0，而得到</p>
 <script type="math/tex; mode=display">
 \begin{align}
 SS&=l\sum_{i=1}^{k}(\bar{Y_{i}}-\bar{Y})^2+k\sum_{j=1}^{l}(\bar{Y_{j}}-\bar{Y})^2+\sum_{i=1}^{k}\sum_{j=1}^{l}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y})^2 \\
@@ -751,7 +753,10 @@ Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y} &= (\mu + a_i + b_j + e_{ij}) - (\mu + a_i + 
     <a href="/article/32af8df.html" rel="prev" title="第九章-时序数据">
       <i class="fa fa-chevron-left"></i> 第九章-时序数据
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/article/67aeaf8.html" rel="next" title="pandas下综合练习">
+      pandas下综合练习 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -825,7 +830,7 @@ Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y} &= (\mu + a_i + b_j + e_{ij}) - (\mu + a_i + 
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -882,12 +887,12 @@ Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y} &= (\mu + a_i + b_j + e_{ij}) - (\mu + a_i + 
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">站点共32k字</span>
+    <span title="站点总字数">站点共37k字</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">阅读需29 分钟</span>
+    <span title="站点阅读时长">阅读需34 分钟</span>
 </div>
 
         
