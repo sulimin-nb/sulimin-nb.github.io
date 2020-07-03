@@ -215,10 +215,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-07-02 16:42:19 / 修改时间：23:46:41" itemprop="dateCreated datePublished" datetime="2020-07-02T16:42:19+08:00">2020-07-02</time>
+              <time title="创建时间：2020-07-02 16:42:19" itemprop="dateCreated datePublished" datetime="2020-07-02T16:42:19+08:00">2020-07-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-03 12:41:40" itemprop="dateModified" datetime="2020-07-03T12:41:40+08:00">2020-07-03</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -256,14 +262,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.4k</span>
+              <span>4.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -292,7 +298,7 @@
 <p>（1）如何快速计算那么多的特征？—-积分图大显神通；<br>（2）哪些矩形特征才是对分类器分类最有效的？—-如通过AdaBoost算法来训练。</p>
 <h2 id="二、Haar-like特征计算-积分图"><a href="#二、Haar-like特征计算-积分图" class="headerlink" title="二、Haar-like特征计算-积分图"></a>二、Haar-like特征计算-积分图</h2><p><font color="blue">积分图是只遍历一次图像就可求出图像中所有区域像素和的快速算法</font>，大大提高了图像特征值计算的效率。<br>积分图的主要思想是将图像从起点开始到各个点形成的矩形区域像素之和作为一个数组的元素提前保存在数组中。当要计算某个区域的像素和时，直接索引数组的元素进行线性计算即可，从而加快了计算速度。<br>积分图是一种能够描述全局信息的举证表示方法。积分图的构造方式是位置位置（𝑖,𝑗）处的值𝑖𝑖(𝑖,𝑗)是原图像(𝑖,𝑗)左上角方向所有像素𝑓(𝑘,𝑙)的和：</p>
 <script type="math/tex; mode=display">
-𝑖𝑖(𝑖,𝑗)=∑𝑘≤𝑖,𝑙≤𝑗𝑓(𝑘,𝑙)ii(i,j)=∑k≤i,l≤jf(k,l)</script><p>积分图构建算法：<br>1、用𝑠(𝑖,𝑗)表示行方向的累加和，初始化𝑠(𝑖,−1)=0；<br>2、使用𝑖𝑖(𝑖,𝑗)表示一个积分图像，初始化𝑖𝑖(−1,𝑖)=0；<br>3、逐行扫描图像，递归计算每个像素(𝑖,𝑗)行方向的累加和𝑠(𝑖,𝑗)和积分图像𝑖𝑖(𝑖,𝑗)的值：</p>
+𝑖𝑖(𝑖,𝑗)=\sum_{𝑘≤𝑖,𝑙≤𝑗}{𝑓(𝑘,𝑙)}</script><p>积分图构建算法：<br>1、用𝑠(𝑖,𝑗)表示行方向的累加和，初始化𝑠(𝑖,−1)=0；<br>2、使用𝑖𝑖(𝑖,𝑗)表示一个积分图像，初始化𝑖𝑖(−1,𝑖)=0；<br>3、逐行扫描图像，递归计算每个像素(𝑖,𝑗)行方向的累加和𝑠(𝑖,𝑗)和积分图像𝑖𝑖(𝑖,𝑗)的值：</p>
 <script type="math/tex; mode=display">
 𝑠(𝑖,𝑗)=𝑠(𝑖,𝑗−1)+𝑓(𝑖,𝑗) \\
 𝑖𝑖(𝑖,𝑗)=𝑖𝑖(𝑖−1,𝑗)+𝑠(𝑖,𝑗)</script><p>4、扫描图像一遍，当到达图像右下角像素时，积分图像𝑖𝑖就构建好了。</p>
@@ -311,9 +317,22 @@ D_{sum} = ii(\alpha)+ii(\beta)-(ii(\gamma)+ii(\delta))</script><p>Haar-like特�
 =[𝑖𝑖(5)−𝑖𝑖(4)]+[𝑖𝑖(3)−𝑖𝑖(2)]−[𝑖𝑖(2)−𝑖𝑖(1)]−[𝑖𝑖(6)−𝑖𝑖(5)]</script><p>所以，矩形特征的特征值，只与特征矩形的端点的积分图有关。利用矩形特征的端点的积分图，再进行简单的加减运算，即可得到特征值，如此一来，特征的计算速度大大提高，也提高了目标的检测速度。<br>了解特征值计算后，接下来展示不同特征值的含义。选取MIT人脸库中2706个大小为20*20的人脸正样本图像，统计下图所示的Haar特征：<br><img src="/article/ad28cab2/1328274-20180816091740279-1386968107.png" alt="img"><br>左边对应人眼区域，右边无具体意义。<br><img src="/article/ad28cab2/1328274-20180816091816844-1182177188.png" alt="img"><br>图中2个不同的Haar特征在同一组正样本中具有不同的特征值分布，左边特征计算出的特征值基本都大于0(对样本的区分度大，当然这里还需要和负样本组进行对比能更好地证明)，而右边特征的特征值即使都在正样本组，仍然均匀分布于0两侧(对样本区分度小)。样本中Haar特征值分布不均匀，导致了不同Haar特征分类效果不同。显而易见，对正负样本区分度越大的特征分类效果越好，即红色曲线对应图中的的左边Haar特征分类效果好于右边Haar特征。<br>上述总结如下：<br>（1）在检测窗口通过平移+缩放可以产生一系列Haar特征，这些特征由于位置和大小不同，分类效果也不同；<br>（2）通过计算Haar特征的特征值，可以有将图像矩阵映射为1维特征值，有效实现了降维。</p>
 <h2 id="Haar特征值归一化-也可以采取标准归一化"><a href="#Haar特征值归一化-也可以采取标准归一化" class="headerlink" title="Haar特征值归一化(也可以采取标准归一化)"></a>Haar特征值归一化(也可以采取标准归一化)</h2><p>从上图中可发现，仅仅在正样本组中12<em>8大小的Haar特征计算出的特征值变化范围就达到了-2000~+6000，跨度非常大。这种跨度大的特征不利于量化评定特征值，这时候归一化就排上用场了。<font color="blue">对特征值进行归一化，压缩特征值范围。</font><br>假设当前检测窗口中的图像像素为$i(x,y)$，当前检测窗口为$w </em> h$大小(例如上图中20*20大小)，OpenCV采用如下方式归一化：<br>1、计算检测窗口中图像的灰度值和灰度值平方和：</p>
 <script type="math/tex; mode=display">
-sum=\sum i(x,y)\\
-sq_{sum}=\sum i^2(x,y)</script><h2 id="Adaboost级联分类器"><a href="#Adaboost级联分类器" class="headerlink" title="Adaboost级联分类器"></a>Adaboost级联分类器</h2><p>（1）OpenCV中的Adaboost级联分类器的结构，包括强分类器和弱分类器的形式；<br>（2）OpenCV自带的XML分类器中各项参数，如internalNodes和leafValues标签里面的一大推数字的意义。</p>
-<h3 id="1-级联分类器"><a href="#1-级联分类器" class="headerlink" title="1.级联分类器"></a>1.级联分类器</h3>
+sum=\sum{i(x,y)} \\
+sq_{sum}=\sum{i^2(x,y)}</script><p>2、计算平均值：</p>
+<script type="math/tex; mode=display">
+mean = \frac{sum}{w*h}\\
+sq_{mean}=\frac{sq_{sum}}{w*h}</script><p>3、计算归一化因子：</p>
+<script type="math/tex; mode=display">
+varNormFactor=\sqrt{sq_{mean}-mean^2}</script><p>4、归一化特征值：</p>
+<script type="math/tex; mode=display">
+normValue=\frac{featureValue}{varNormFactor}</script><p>之后使用归一化的特征值𝑛𝑜𝑟𝑚𝑉𝑎𝑙𝑢𝑒与阈值对比。</p>
+<h2 id="Adaboost级联分类器"><a href="#Adaboost级联分类器" class="headerlink" title="Adaboost级联分类器"></a>Adaboost级联分类器</h2><p>（1）OpenCV中的Adaboost级联分类器的结构，弱分类器-&gt;强分类器-&gt;级联分类器；</p>
+<p>（2）OpenCV自带的XML分类器中各项参数，如internalNodes和leafValues标签里面的一大堆数字的意义。</p>
+<h3 id="1-级联分类器"><a href="#1-级联分类器" class="headerlink" title="1.级联分类器"></a>1.级联分类器</h3><p>Adaboost级联分类器：<br>级联分类模型是树状结构，每一层—强分类器是树状结构，强分类器中的每一个弱分类器也是树状结构。如下图所示，每一个stage都代表一级强分类器：<br><img src="/article/ad28cab2/1328274-20180816100358784-868305710.png" alt="img"><br>当检测窗口通过所有的强分类器时被认为是正样本。每一个强分类器对负样本的判别准确率高，任一级强分类器检测为负样本，就不再继续调用下面的强分类器，直接丢弃，减少了很多的检测时间。<br>一副图像中待检测的区域中很多是负样本，级联分类器在初期就会抛弃很多负样本的复杂检测，所以级联分类器的速度是非常快的，只有正样本才会送到下一个强分类器再次进行检验，这样就保证了最后输出的正样本的伪正(false positive)的可能性非常低。</p>
+<h3 id="2-级联分类器的训练"><a href="#2-级联分类器的训练" class="headerlink" title="2.级联分类器的训练"></a>2.级联分类器的训练</h3><p>1)首先需要训练出m个弱分类器，然后把m个弱分类器按照一定的组合策略，得到一个强分类器，如下图所示：<br>2)重复1步骤n次得到n个强分类器，按照级联的方式组合起来，得到最终的Haar分类器。<br><img src="/article/ad28cab2/1328274-20180816150118683-1847072909.png" alt="img"></p>
+<p>一个弱分类器是和上图类似的决策树，最基本的弱分类器只包含一个Haar-like特征，即只包含一层决策树(树桩)。<br>以20*20图像为例，78,460个特征，若直接利用AdaBoost训练，78,460个弱分类器组合成强分类器，工作量是极其巨大的。所以必须要个筛选过程。</p>
+<p><font color="blue">首先筛选出T个优秀的最优弱分类器(特征值)，然后把T个最优弱分类器传给AdaBoost进行训练。</font><br>人脸样本</p>
+
       
     </div>
 
@@ -1516,7 +1535,7 @@ P(X=X_n) \geq 0</script><script type="math/tex; mode=display">
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">站点共40k字</span>
+    <span title="站点总字数">站点共41k字</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
