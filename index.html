@@ -192,6 +192,120 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/article/3b406ffc.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="sulimin">
+      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="苏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/article/3b406ffc.html" class="post-title-link" itemprop="url">LSTM_Elmo</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-03 23:31:48 / 修改时间：23:32:53" itemprop="dateCreated datePublished" datetime="2020-07-03T23:31:48+08:00">2020-07-03</time>
+            </span>
+
+          
+            <span id="/article/3b406ffc.html" class="post-meta-item leancloud_visitors" data-flag-title="LSTM_Elmo" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/article/3b406ffc.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/article/3b406ffc.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一、词的表示<br>one-hot编码：稀疏，向量之间均是正交关系，不能表示语义。<br>word class：将相同属性的词归为一类，但分类标准过意单一、片面。如cat、dag、bird都属于动物，但是dog、cat属于爬行动物，而bird属于飞行动物，难以区分。<br>word embedding：使用词向量表示词特征，相似的词、向量接近，在空间较近。但无法解决一词多义问题，即每个word只有一个词向量。<br>contextualized word embedding：同一个词在不同的上下文中有不同的表示。</p>
+<p>二、LSTM概述<br>  长短记忆神经网络——通常称作LSTM，是一种特殊的RNN，能够学习长的依赖关系。是为了避免长依赖问题而精心设计的。记住较长的历史信息实际上是他们的默认行为，而不是他们努力学习的东西。<br>1<br>2.1 标准RNN结构如下(单个tanh层)</p>
+<p>2.2 lstm 结构图如下</p>
+<p>2.3 lstm的4层交互结构说明:<br>LSTM 的4大交互模块    结构片段    说明<br>遗忘门<br>遗忘门：由sigmoid决定丢弃那些信息，输出01序列，序列作用在单元格Ct-1上，1表示全保留，0全丢弃.<br>输入门<br>分为2步：①输入门：sigmoid决定更新哪些值<br>② tanh：创建候选向量Ct<br>旧值更新操作<br>将Ct-1更新成Ct, 对应实际删除旧主题信息，并添加新信息<br>输出门<br>决定输出什么，sigmoid决定输出哪些部分。然后tanh+输出哪些部分 得到输出.<br>三、ELMO模型概述<br>基于RNN的语言模型，直接从句子学习，无需标注。<br>1<br>3.1 问题引入<br>给定句子：“潮水 退了 就 知道 谁 没穿 裤子”</p>
+<p>问题①：红框ELMO内部究竟是啥玩意?<br>问题②：是直接将词输入到ELMO模型吗？<br>问题③：ELMO输出的h1、h2、蓝柱是什么?<br>3.2 ELMO的内部构造图<br>elmo模型是一个多层(2层)双向的LSTM组成的LM(底层lstm捕获到句法、语义方面信息，如POS，高层捕获到词义的上下文信息，如语义消歧)<br>1</p>
+<p>3.3 如何得到输入词的词向量<br>词向量的构建是动态的过程，会随着模型参数更新而更新。对于中文，原始输入的是词语；而对于类似英文，每个单词又是由多个字母构成，中文的词语等同于英文中的单词，词语中的词等同于单词中的字母(同一粒度)，本文中是针对英文而言的，中文类似</p>
+<p>即input→词向量表示：对每个词进行字符卷积操作，从而得到词向量。(w2c系列是通过look_up_table得到词向量)</p>
+<p>格式(batch, n_token, max_char, char_dim)，batch表示同时有多少个句子(样本)并行卷积，n_token表示句子在未去重条件下的单词数，char_dim表示每个字符的特征长度，max_char表示句子中词的最大字符数量。<br>使用大小”高为1，宽为n_width, 通道数为char_dim”(即维度[1, n_width, char_dim])的卷积核进行卷积, 得到[n_token, max_char-n_width+1]的特征图(备注：词字符少的感觉有个填充对齐操作以达到max_char大小)<br>最终再对图的每行进行一个max_pooling操作，得到batch个[n_token]。如输入(8, 16, 12, 64)，卷积核(1, 5, 64)， 即并行计算8个句子样本，样本最多有16单词，词中最大的字符数量是12个，每个字符用64个特征表示，最终获取8个(16, 12-5+1)特征图。<br>即为词向量<br>词向量卷积过程示例<br>示例：假设batch为1，句子 “I like China very much” , 如何卷积的?<br>即初始维度：(1, n_token, max_char, char_dim)，卷积核为(1, 2, char_dim), 卷积过程如下：</p>
+<p>3.4 loss函数以及最终输出<br>3.4.1 loss函数<br>    训练是使用负对数似然作为损失函数。<br>1</p>
+<p>3.4.2 输出向量表示<br>elmo在train过程中，每个词都由 正反向LSTM中间向量、正反向结果向量和静态向量(init时向量，也会同步更细)表示，故每个词都会有2L+1个表示向量：</p>
+<p>3.4.3 最终结果计算<br>    ELMO考虑既考虑最后一层lstm的输出，同时兼顾静态词向量、中间词向量, 最终的结果与w2c类似，是预测位置上的可能概率分布。故输出结果表示如下：<br>1</p>
+<p>3.5 ELMO事项说明<br>在实际任务中使用ELMO向量：<br> 结合监督任务训练时，可冻结(如设置权重标为0不更新该参数)EMLO模型中LSTM层的参数(静态词向量、正反向lstm中的参数[指的是权重，不是api的参数项])，只训练最后一层E函数中的权重值。此时可加入dropout(随机丢掉某些层的影响)或L2正则化(使E结果更接近lstm层输出的平均值)。<br> 结合方式有：</p>
+<ol>
+<li>直接在输入层的词向量拼上elmo表示</li>
+<li>将elmo直接作用在RNN的输出上<br>改进：</li>
+<li>ELMO对输出结果采用拼接方式融合特征，‘可能’ 弱于Bert一体化的融合方式</li>
+<li>ELMO使用了LSTM作为特征抽取器，而非Transformer(研究表明Transformer特征提取能力远强于LSTM)</li>
+<li>由RNN导致训练时间</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+	
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/article/ad28cab2.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1260,113 +1374,6 @@ P(X=X_n) \geq 0</script><script type="math/tex; mode=display">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/article/fd8e5887.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/fd8e5887.html" class="post-title-link" itemprop="url">Introduction_and_Word_Vectors</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-24 17:48:44" itemprop="dateCreated datePublished" datetime="2020-06-24T17:48:44+08:00">2020-06-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-25 00:13:05" itemprop="dateModified" datetime="2020-06-25T00:13:05+08:00">2020-06-25</time>
-              </span>
-
-          
-            <span id="/article/fd8e5887.html" class="post-meta-item leancloud_visitors" data-flag-title="Introduction_and_Word_Vectors" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/fd8e5887.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/fd8e5887.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>70</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Task1-Introduction-and-Word-Vectors"><a href="#Task1-Introduction-and-Word-Vectors" class="headerlink" title="Task1: Introduction and Word Vectors"></a>Task1: Introduction and Word Vectors</h1><p>理论部分</p>
-<ul>
-<li>介绍NLP研究的对象</li>
-<li>如何表示单词的含义</li>
-<li>Word2Vec方法的基本原理</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1436,7 +1443,7 @@ P(X=X_n) \geq 0</script><script type="math/tex; mode=display">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1493,12 +1500,12 @@ P(X=X_n) \geq 0</script><script type="math/tex; mode=display">
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">站点共41k字</span>
+    <span title="站点总字数">站点共44k字</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">阅读需38 分钟</span>
+    <span title="站点阅读时长">阅读需40 分钟</span>
 </div>
 
         
