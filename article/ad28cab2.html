@@ -35,8 +35,9 @@
 <meta property="og:image" content="http://yoursite.com/article/ad28cab2/1328274-20180816091816844-1182177188.png">
 <meta property="og:image" content="http://yoursite.com/article/ad28cab2/1328274-20180816100358784-868305710.png">
 <meta property="og:image" content="http://yoursite.com/article/ad28cab2/1328274-20180816150118683-1847072909.png">
+<meta property="og:image" content="http://yoursite.com/article/ad28cab2/20160921003914442">
 <meta property="article:published_time" content="2020-07-02T08:42:19.000Z">
-<meta property="article:modified_time" content="2020-07-03T04:41:40.344Z">
+<meta property="article:modified_time" content="2020-07-03T07:59:44.999Z">
 <meta property="article:author" content="sulimin">
 <meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary">
@@ -234,7 +235,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-03 12:41:40" itemprop="dateModified" datetime="2020-07-03T12:41:40+08:00">2020-07-03</time>
+                <time title="修改时间：2020-07-03 15:59:44" itemprop="dateModified" datetime="2020-07-03T15:59:44+08:00">2020-07-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -280,7 +281,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.1k</span>
+              <span>4.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -333,7 +334,7 @@ D_{sum} = ii(\alpha)+ii(\beta)-(ii(\gamma)+ii(\delta))</script><p>Haar-like特�
 <script type="math/tex; mode=display">
 𝑖𝑖(5)+𝑖𝑖(1)−𝑖𝑖(2)−𝑖𝑖(4)−[𝑖𝑖(6)+𝑖𝑖(2)−𝑖𝑖(5)−𝑖𝑖(3)] \\
 =[𝑖𝑖(5)−𝑖𝑖(4)]+[𝑖𝑖(3)−𝑖𝑖(2)]−[𝑖𝑖(2)−𝑖𝑖(1)]−[𝑖𝑖(6)−𝑖𝑖(5)]</script><p>所以，矩形特征的特征值，只与特征矩形的端点的积分图有关。利用矩形特征的端点的积分图，再进行简单的加减运算，即可得到特征值，如此一来，特征的计算速度大大提高，也提高了目标的检测速度。<br>了解特征值计算后，接下来展示不同特征值的含义。选取MIT人脸库中2706个大小为20*20的人脸正样本图像，统计下图所示的Haar特征：<br><img src="/article/ad28cab2/1328274-20180816091740279-1386968107.png" alt="img"><br>左边对应人眼区域，右边无具体意义。<br><img src="/article/ad28cab2/1328274-20180816091816844-1182177188.png" alt="img"><br>图中2个不同的Haar特征在同一组正样本中具有不同的特征值分布，左边特征计算出的特征值基本都大于0(对样本的区分度大，当然这里还需要和负样本组进行对比能更好地证明)，而右边特征的特征值即使都在正样本组，仍然均匀分布于0两侧(对样本区分度小)。样本中Haar特征值分布不均匀，导致了不同Haar特征分类效果不同。显而易见，对正负样本区分度越大的特征分类效果越好，即红色曲线对应图中的的左边Haar特征分类效果好于右边Haar特征。<br>上述总结如下：<br>（1）在检测窗口通过平移+缩放可以产生一系列Haar特征，这些特征由于位置和大小不同，分类效果也不同；<br>（2）通过计算Haar特征的特征值，可以有将图像矩阵映射为1维特征值，有效实现了降维。</p>
-<h2 id="Haar特征值归一化-也可以采取标准归一化"><a href="#Haar特征值归一化-也可以采取标准归一化" class="headerlink" title="Haar特征值归一化(也可以采取标准归一化)"></a>Haar特征值归一化(也可以采取标准归一化)</h2><p>从上图中可发现，仅仅在正样本组中12<em>8大小的Haar特征计算出的特征值变化范围就达到了-2000~+6000，跨度非常大。这种跨度大的特征不利于量化评定特征值，这时候归一化就排上用场了。<font color="blue">对特征值进行归一化，压缩特征值范围。</font><br>假设当前检测窗口中的图像像素为$i(x,y)$，当前检测窗口为$w </em> h$大小(例如上图中20*20大小)，OpenCV采用如下方式归一化：<br>1、计算检测窗口中图像的灰度值和灰度值平方和：</p>
+<h2 id="Haar特征值归一化-也可以采取标准归一化"><a href="#Haar特征值归一化-也可以采取标准归一化" class="headerlink" title="Haar特征值归一化(也可以采取标准归一化)"></a>Haar特征值归一化(也可以采取标准归一化)</h2><p>从上图中可发现，仅仅在正样本组中12<em>8大小的Haar特征计算出的特征值变化范围就达到了-2000~+6000，跨度非常大。这种跨度大的特征不利于量化评定特征值，这时候归一化就排上用场了。<font color="blue">对特征值进行归一化，压缩特征值范围。</font><br>假设当前检测窗口中的图像像素为$i(x,y)$，当前检测窗口为$w </em> h$大小(例如上图中20*20大小)，OpenCV采用如下方式归一化：<br>1、计算检测窗口中图像的灰度值和灰度值平方和：<font color="red">(这里的$i^2$怎么用积分图表示？？)</font></p>
 <script type="math/tex; mode=display">
 sum=\sum{i(x,y)} \\
 sq_{sum}=\sum{i^2(x,y)}</script><p>2、计算平均值：</p>
@@ -348,8 +349,19 @@ normValue=\frac{featureValue}{varNormFactor}</script><p>之后使用归一化的
 <p>（2）OpenCV自带的XML分类器中各项参数，如internalNodes和leafValues标签里面的一大堆数字的意义。</p>
 <h3 id="1-级联分类器"><a href="#1-级联分类器" class="headerlink" title="1.级联分类器"></a>1.级联分类器</h3><p>Adaboost级联分类器：<br>级联分类模型是树状结构，每一层—强分类器是树状结构，强分类器中的每一个弱分类器也是树状结构。如下图所示，每一个stage都代表一级强分类器：<br><img src="/article/ad28cab2/1328274-20180816100358784-868305710.png" alt="img"><br>当检测窗口通过所有的强分类器时被认为是正样本。每一个强分类器对负样本的判别准确率高，任一级强分类器检测为负样本，就不再继续调用下面的强分类器，直接丢弃，减少了很多的检测时间。<br>一副图像中待检测的区域中很多是负样本，级联分类器在初期就会抛弃很多负样本的复杂检测，所以级联分类器的速度是非常快的，只有正样本才会送到下一个强分类器再次进行检验，这样就保证了最后输出的正样本的伪正(false positive)的可能性非常低。</p>
 <h3 id="2-级联分类器的训练"><a href="#2-级联分类器的训练" class="headerlink" title="2.级联分类器的训练"></a>2.级联分类器的训练</h3><p>1)首先需要训练出m个弱分类器，然后把m个弱分类器按照一定的组合策略，得到一个强分类器，如下图所示：<br>2)重复1步骤n次得到n个强分类器，按照级联的方式组合起来，得到最终的Haar分类器。<br><img src="/article/ad28cab2/1328274-20180816150118683-1847072909.png" alt="img"></p>
-<p>一个弱分类器是和上图类似的决策树，最基本的弱分类器只包含一个Haar-like特征，即只包含一层决策树(树桩)。<br>以20*20图像为例，78,460个特征，若直接利用AdaBoost训练，78,460个弱分类器组合成强分类器，工作量是极其巨大的。所以必须要个筛选过程。</p>
-<p><font color="blue">首先筛选出T个优秀的最优弱分类器(特征值)，然后把T个最优弱分类器传给AdaBoost进行训练。</font><br>人脸样本</p>
+<p>一个弱分类器是和上图类似的决策树，最基本的弱分类器只包含一个Haar-like特征，即只包含一层决策树(树桩stump)。<br>以20*20图像为例，78,460个特征，若直接利用AdaBoost训练，78,460个弱分类器组合成强分类器，工作量是极其巨大的。所以必须要有个筛选过程。</p>
+<p><font color="blue">首先筛选出T个优秀的最优弱分类器(特征值)，然后把T个最优弱分类器传给AdaBoost进行训练。</font><br><strong>训练最优弱分类器</strong><br>人脸样本2000张，非人脸样本4000张，这些样本都经过了归一化，大小都是20X20的图像。那么，对于78,460中的任一特征$f_i$，我们计算该特征在这2000人脸样本，4000非人脸样本上的值，得到6000个特征值。将这些特征值排序，然后选取一个最佳的特征值。在该特征值下，对于特征$f_i$而言，样本的加权错误率最低。<br>在确定了训练子窗口(20x20的图像)的矩形特征数量(78,460)和特征值后，需要对每一个特征$f$，训练一个弱分类器$h(x,f,\rho,\Theta)$</p>
+<script type="math/tex; mode=display">
+h(x,f,ρ,Θ)=\begin{cases}1,   {ρf(x)<ρΘ}\\0,  {other}\end{cases}</script><p>其中$𝑥$代表一个检测子窗口，$𝑓$为矩形特征，$Θ$为阈值，$ρ$指示不等号的方向。对每个特征$𝑓$，训练一个弱分类器$ℎ(𝑥,𝑓,ρ,Θ)$，就是确定$𝑓$的最优阈值，使得这个弱分类器对所有的训练样本分类误差最低。<font color="red">阈值的分类误差为什么这样计算</font>。<br><strong>弱分类器训练的具体步骤：</strong>1、对于每个特征 𝑓，计算所有训练样本的特征值，并将其排序：</p>
+<p>2、扫描一遍排好序的特征值，对排好序的表中的每个元素，计算下面四个值：</p>
+<p>计算全部正例的权重和$𝑇^+$；</p>
+<p>计算全部负例的权重和$T^-$；</p>
+<p>计算该元素前之前的正例的权重和$𝑆^+$；</p>
+<p>计算该元素前之前的负例的权重和$𝑆^−$；</p>
+<p><img src="/article/ad28cab2/20160921003914442" alt="这里写图片描述"></p>
+<p>3、选取当前元素的特征值$F_{k,j}$和它前面的一个特征值$F_{k,j-1}$之间的<font color="blue">数</font>作为阈值，所得到的弱分类器就在当前元素处把样本分开 —— 也就是说这个阈值对应的弱分类器将当前元素前的所有元素分为非人脸（或人脸），而把当前元素后（含）的所有元素分为人脸（或非人脸）。该阈值的分类误差为：</p>
+<script type="math/tex; mode=display">
+e=\min{(S^+ + (T^- - S^-), S^- + ( T^+ - S^+))}</script><p>公式说明：前一个分类误差是阈值前为非人脸，后一个分类误差是阈值前为人脸。<br>把排序表从头到尾扫描一遍就可以为弱分类器选择使分类误差最小的阈值（最优阈值），即选取了一个最佳弱分类器。<br>一共有78,460个特征，因此会得到78,460个最优分类器，在78,460个特征中，选取错误率最低的特征，用于判断人脸，同时用此分类器对样本进行分类，并更新样本的权重。<br><strong>强分类器的训练步骤：</strong></p>
 
     </div>
 
@@ -519,7 +531,7 @@ normValue=\frac{featureValue}{varNormFactor}</script><p>之后使用归一化的
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">阅读需37 分钟</span>
+    <span title="站点阅读时长">阅读需38 分钟</span>
 </div>
 
         
