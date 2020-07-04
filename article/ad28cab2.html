@@ -20,17 +20,17 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta name="description" content="3.1 算法由来Haar-like特&#x3D;&#x3D;征最早是由Papageorgiou等应用于人脸表示，2001年，Viola和Jones两位大牛发表了今典的《Rapid Object Detection using a Boosted Cascade of Si&#x3D;&#x3D;mple Features》和《Robust Real-Time Face Detection》，在AdaBoost算法基础上，使用Haar-l">
+  <meta name="description" content="3.1 算法由来Haar-like特征最早是由Papageorgiou等应用于人脸表示，2001年，Viola和Jones两位大牛发表了今典的《Rapid Object Detection using a Boosted Cascade of Simple Features》和《Robust Real-Time Face Detection》，在AdaBoost算法基础上，使用Haar-like小">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Task03-Haar特征描述算子-人脸监测">
 <meta property="og:url" content="http://yoursite.com/article/ad28cab2.html">
 <meta property="og:site_name" content="苏">
-<meta property="og:description" content="3.1 算法由来Haar-like特&#x3D;&#x3D;征最早是由Papageorgiou等应用于人脸表示，2001年，Viola和Jones两位大牛发表了今典的《Rapid Object Detection using a Boosted Cascade of Si&#x3D;&#x3D;mple Features》和《Robust Real-Time Face Detection》，在AdaBoost算法基础上，使用Haar-l">
+<meta property="og:description" content="3.1 算法由来Haar-like特征最早是由Papageorgiou等应用于人脸表示，2001年，Viola和Jones两位大牛发表了今典的《Rapid Object Detection using a Boosted Cascade of Simple Features》和《Robust Real-Time Face Detection》，在AdaBoost算法基础上，使用Haar-like小">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/article/ad28cab2/1328274-20180802215641326-115308739.png">
 <meta property="og:image" content="http://yoursite.com/article/ad28cab2/1328274-20180815213149483-1209887019.png">
 <meta property="article:published_time" content="2020-07-02T08:42:19.000Z">
-<meta property="article:modified_time" content="2020-07-04T16:13:31.051Z">
+<meta property="article:modified_time" content="2020-07-04T16:24:27.602Z">
 <meta property="article:author" content="sulimin">
 <meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-05 00:13:31" itemprop="dateModified" datetime="2020-07-05T00:13:31+08:00">2020-07-05</time>
+                <time title="修改时间：2020-07-05 00:24:27" itemprop="dateModified" datetime="2020-07-05T00:24:27+08:00">2020-07-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -286,7 +286,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="3-1-算法由来"><a href="#3-1-算法由来" class="headerlink" title="3.1 算法由来"></a>3.1 算法由来</h1><p>Haar-like特==征最早是由Papageorgiou等应用于人脸表示，2001年，Viola和Jones两位大牛发表了今典的《Rapid Object Detection using a Boosted Cascade of Si==mple Features》和《Robust Real-Time Face Detection》，在AdaBoost算法基础上，使用Haar-like小波特征和积分图方法进行人脸监测，并对AdaBoost训练出的强分类器进行级联。<br>这两个大咖不是最早提出使用小波特征的，单他们设计了针对人脸监测更有效的特征，可以说是人脸检测史上里程碑式的一笔了，当时这个算法被称为Viola-Jones检测器。又过了一段时间，Rainer Liehart和Jochen Maydt两位大咖把这个检测器进行扩展，最终形成了OpenCV现在的Haar分类器。</p>
+        <h1 id="3-1-算法由来"><a href="#3-1-算法由来" class="headerlink" title="3.1 算法由来"></a>3.1 算法由来</h1><p>Haar-like特征最早是由Papageorgiou等应用于人脸表示，2001年，Viola和Jones两位大牛发表了今典的《Rapid Object Detection using a Boosted Cascade of Simple Features》和《Robust Real-Time Face Detection》，在AdaBoost算法基础上，使用Haar-like小波特征和积分图方法进行人脸监测，并对AdaBoost训练出的强分类器进行级联。<br>这两个大咖不是最早提出使用小波特征的，单他们设计了针对人脸监测更有效的特征，可以说是人脸检测史上里程碑式的一笔了，当时这个算法被称为Viola-Jones检测器。又过了一段时间，Rainer Liehart和Jochen Maydt两位大咖把这个检测器进行扩展，最终形成了OpenCV现在的Haar分类器。</p>
 <p>AdaBoost是Freund和Schapire在1995年提出的算法，是对传统Boosting算法的一大提升。Boosting算法的核心思想，是将弱学习方法提升成强学习算法，也就是“三个臭皮匠顶一个诸葛亮”。<a id="more"></a></p>
 <font color="blue">Haar分类器 = Haar-like特征 + 积分图方法 + AdaBoost + 级联</font>
 
@@ -422,14 +422,7 @@ Adaboost级联分类器：
 人脸样本2000张，非人脸样本4000张，这些样本都经过了归一化，大小都是20X20的图像。那么，对于78,460中的任一特征$f_i$，我们计算该特征在这2000人脸样本，4000非人脸样本上的值，得到6000个特征值。将这些特征值排序，然后选取一个最佳的特征值。在该特征值下，对于特征$f_i$而言，样本的加权错误率最低。
 在确定了训练子窗口(20x20的图像)的矩形特征数量(78,460)和特征值后，需要对每一个特征$f$，训练一个弱分类器$h(x,f,\rho,\theta)$：
 $$
-h(x,f,\rho,\theta)=\begin{cases}1,   {ρf(x)<ρ\theta}\\0, {other}\end{cases} $$ 其中$𝑥$代表一个检测子窗口，$𝑓$为矩形特征，$\theta$为阈值，$\rho$指示不等号的方向。对每个特征$𝑓$，训练一个弱分类器$ℎ(𝑥,𝑓,\rho,\theta)$，就是确定$𝑓$的最优阈值，使得这个弱分类器对所有的训练样本分类误差最小。 这里的最优不是指强分类器，只是一个误差相对较低的弱分类器。 **弱分类器训练的具体步骤：** 1、对于每个特征$f$，计算所有训练样本的特征值，并将其排序： 2、扫描一遍排好序的特征值，对排好序的表中的每个元素，计算下面四个值： 计算全部正例的权重和$𝑇^+$； 计算全部负例的权重和$t^-$； 计算该元素前之前的正例的权重和$𝑆^+$； 计算该元素前之前的负例的权重和$𝑆^−$； ![这里写图片描述](task03-haar特征描述算子-人脸监测 20160921003914442) 3、选取当前元素的特征值$f_{k,j}$和它前面的一个特征值$f_{k,j-1}$之间的<font color="blue">数作为阈值，所得到的弱分类器就在当前元素处把样本分开 —— 也就是说这个阈值对应的弱分类器将当前元素前的所有元素分为非人脸（或人脸），而把当前元素后（含）的所有元素分为人脸（或非人脸）。该阈值的分类误差为：
-$$
-e=\min{(S^+ + (T^- - S^-), S^- + ( T^+ - S^+))}
-$$
-**公式说明：前一个分类误差计算前提为阈值前为非人脸，后一个分类误差计算前提为阈值前为人脸。**
-把排序表从头到尾扫描一遍就可以为弱分类器选择使分类误差最小的阈值（最优阈值），即选取了一个最优弱分类器。在本例中，一共有78,460个特征，因此会得到78,460个最优分类器。
-结合三，可得出以下分析：
-        阈值$\theta$的含义就清晰可见了。方向指示符$p$ 用以改变不等号的方向。一个弱学习器（一个特征）的要求仅仅是：它能够以稍低于50%的错误率来区分人脸和非人脸图像，因此上面提到只能在某个概率范围内准确地进行区分就已经完全足够。按照这个要求，可以把所有错误率低于50% 的矩形特征都找到（适当地选择阈值，对于固定的训练集，几乎所有的矩形特征都可以满足上述要求）。每轮训练，将选取当轮中的最佳弱分类器（在算法中，迭代$T$次即是选择$T$个最佳弱分类器），最后将每轮得到的最佳弱分类器按照一定方法提升（Boosting）为强分类器。<!--什么意思？？？是先把弱分类器选出来，再Adaboost，那为啥要迭代，直接选前T个不就好了？？？黑人问号脸，啊啊啊啊，是我太蠢，还是讲话太糊,懂了一部分是最惨的-->
+h(x,f,\rho,\theta)=\begin{cases}1,   {ρf(x)<ρ\theta}\\0, {other}\end{cases} $$ 其中$𝑥$代表一个检测子窗口，$𝑓$为矩形特征，$\theta$为阈值，$\rho$指示不等号的方向。对每个特征$𝑓$，训练一个弱分类器$ℎ(𝑥,𝑓,\rho,\theta)$，就是确定$𝑓$的最优阈值，使得这个弱分类器对所有的训练样本分类误差最小。 这里的最优不是指强分类器，只是一个误差相对较低的弱分类器。 **弱分类器训练的具体步骤：** 1、对于每个特征$f$，计算所有训练样本的特征值，并将其排序： 2、扫描一遍排好序的特征值，对排好序的表中的每个元素，计算下面四个值： 计算全部正例的权重和$𝑇^+$； 计算全部负例的权重和$t^-$； 计算该元素前之前的正例的权重和$𝑆^+$； 计算该元素前之前的负例的权重和$𝑆^−$； ![这里写图片描述](task03-haar特征描述算子-人脸监测 20160921003914442) 3、选取当前元素的特征值$f_{k,j}$和它前面的一个特征值$f_{k,j-1}$之间的数作为阈值，所得到的弱分类器就在当前元素处把样本分开 —— 也就是说这个阈值对应的弱分类器将当前元素前的所有元素分为非人脸（或人脸），而把当前元素后（含）的所有元素分为人脸（或非人脸）。该阈值的分类误差为： e="\min{(S^+" + (t^- - s^-), s^- ( t^+ s^+))} **公式说明：前一个分类误差计算前提为阈值前为非人脸，后一个分类误差计算前提为阈值前为人脸。** 把排序表从头到尾扫描一遍就可以为弱分类器选择使分类误差最小的阈值（最优阈值），即选取了一个最优弱分类器。在本例中，一共有78,460个特征，因此会得到78,460个最优分类器。 结合三，可得出以下分析： 阈值$\theta$的含义就清晰可见了。方向指示符$p$ 用以改变不等号的方向。一个弱学习器（一个特征）的要求仅仅是：它能够以稍低于50%的错误率来区分人脸和非人脸图像，因此上面提到只能在某个概率范围内准确地进行区分就已经完全足够。按照这个要求，可以把所有错误率低于50% 的矩形特征都找到（适当地选择阈值，对于固定的训练集，几乎所有的矩形特征都可以满足上述要求）。每轮训练，将选取当轮中的最佳弱分类器（在算法中，迭代$t$次即是选择$t$个最佳弱分类器），最后将每轮得到的最佳弱分类器按照一定方法提升（boosting）为强分类器。<!--什么意思？？？是先把弱分类器选出来，再adaboost，那为啥要迭代，直接选前t个不就好了？？？黑人问号脸，啊啊啊啊，是我太蠢，还是讲话太糊,懂了一部分是最惨的-->
 AdaBoost算法的目的是从训练数据中学习一系列弱分类器，然后把这些弱分类器组合成一个强分类器。
 **AdaBoost强分类器的训练步骤：**参考[AdaBoost人脸监测(3)](https://blog.csdn.net/nk_wavelet/article/details/52601567)
 <font color="red">这里的公式还没有仔细厘清，先无脑抄了，看懂了再把这里删掉</font>
