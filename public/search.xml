@@ -1298,7 +1298,7 @@ R = det(M)-k(trace(M))^2</script><p>其中$det(M)=\lambda_1\lambda_2$为矩阵�
   <entry>
     <title>Task03-Haar特征描述算子-人脸监测</title>
     <url>/article/ad28cab2.html</url>
-    <content><![CDATA[<h1 id="3-1-算法由来"><a href="#3-1-算法由来" class="headerlink" title="3.1 算法由来"></a>3.1 算法由来</h1><p>Haar-like特征最早是由Papageorgiou等应用于人脸表示，2001年，Viola和Jones两位大牛发表了今典的《Rapid Object Detection using a Boosted Cascade of Simple Features》和《Robust Real-Time Face Detection》，在AdaBoost算法基础上，使用Haar-like小波特征和积分图方法进行人脸监测，并对AdaBoost训练出的强分类器进行级联。<br>这两个大咖不是最早提出使用小波特征的，单他们设计了针对人脸监测更有效的特征，可以说是人脸检测史上里程碑式的一笔了，当时这个算法被称为Viola-Jones检测器。又过了一段时间，Rainer Liehart和Jochen Maydt两位大咖把这个检测器进行扩展，最终形成了OpenCV现在的Haar分类器。</p>
+    <content><![CDATA[<h1 id="3-1-算法由来"><a href="#3-1-算法由来" class="headerlink" title="3.1 算法由来"></a>3.1 算法由来</h1><p>Haar-like特==征最早是由Papageorgiou等应用于人脸表示，2001年，Viola和Jones两位大牛发表了今典的《Rapid Object Detection using a Boosted Cascade of Si==mple Features》和《Robust Real-Time Face Detection》，在AdaBoost算法基础上，使用Haar-like小波特征和积分图方法进行人脸监测，并对AdaBoost训练出的强分类器进行级联。<br>这两个大咖不是最早提出使用小波特征的，单他们设计了针对人脸监测更有效的特征，可以说是人脸检测史上里程碑式的一笔了，当时这个算法被称为Viola-Jones检测器。又过了一段时间，Rainer Liehart和Jochen Maydt两位大咖把这个检测器进行扩展，最终形成了OpenCV现在的Haar分类器。</p>
 <p>AdaBoost是Freund和Schapire在1995年提出的算法，是对传统Boosting算法的一大提升。Boosting算法的核心思想，是将弱学习方法提升成强学习算法，也就是“三个臭皮匠顶一个诸葛亮”。<a id="more"></a></p>
 <font color="blue">Haar分类器 = Haar-like特征 + 积分图方法 + AdaBoost + 级联</font>
 
