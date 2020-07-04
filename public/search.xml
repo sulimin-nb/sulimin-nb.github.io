@@ -194,6 +194,17 @@ g_2 = \frac{n(n+1)}{(n-1)(n-2)(n-3)s^4}\sum_{i=1}^{n}{(x_i-\overline{x})}^4-3\fr
       </tags>
   </entry>
   <entry>
+    <title>Introduction_and_Word_Vectors</title>
+    <url>/article/fd8e5887.html</url>
+    <content><![CDATA[<h1 id="Task1-Introduction-and-Word-Vectors"><a href="#Task1-Introduction-and-Word-Vectors" class="headerlink" title="Task1: Introduction and Word Vectors"></a>Task1: Introduction and Word Vectors</h1><p>理论部分</p>
+<ul>
+<li>介绍NLP研究的对象</li>
+<li>如何表示单词的含义</li>
+<li>Word2Vec方法的基本原理</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>3常见分布与假设检验</title>
     <url>/article/7c20a36d.html</url>
     <content><![CDATA[<h2 id="1-一般随机变量"><a href="#1-一般随机变量" class="headerlink" title="1 一般随机变量"></a>1 一般随机变量</h2><h3 id="1-1-随机变量的两种类型"><a href="#1-1-随机变量的两种类型" class="headerlink" title="1.1 随机变量的两种类型"></a>1.1 随机变量的两种类型</h3><p>根据随机变量可能取值的个数分为离散型（取值有限）和连续型（取值无限）两类。</p>
@@ -981,17 +992,6 @@ Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y} &= (\mu + a_i + b_j + e_{ij}) - (\mu + a_i + 
 ]]></content>
   </entry>
   <entry>
-    <title>Introduction_and_Word_Vectors</title>
-    <url>/article/fd8e5887.html</url>
-    <content><![CDATA[<h1 id="Task1-Introduction-and-Word-Vectors"><a href="#Task1-Introduction-and-Word-Vectors" class="headerlink" title="Task1: Introduction and Word Vectors"></a>Task1: Introduction and Word Vectors</h1><p>理论部分</p>
-<ul>
-<li>介绍NLP研究的对象</li>
-<li>如何表示单词的含义</li>
-<li>Word2Vec方法的基本原理</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>Task01 Harris特征点检测器-兴趣点检测</title>
     <url>/article/8b3bd9dd.html</url>
     <content><![CDATA[<h1 id="Harris特征点检测器-兴趣点检测"><a href="#Harris特征点检测器-兴趣点检测" class="headerlink" title="Harris特征点检测器-兴趣点检测"></a>Harris特征点检测器-兴趣点检测</h1><p><strong>特则点</strong>又称为兴趣点或角点，通常具有旋转不变性和光照不变性和视角不变性等优点，是图像的重要特征之一，常被应用到目标匹配、目标跟踪、三维重建等应用中。</p>
@@ -1354,6 +1354,29 @@ U\left(G_{p}\right)=\left|s\left(g_{p_{-1}}-g_{c}\right)-s\left(g_{0}-g_{c}\righ
       </tags>
   </entry>
   <entry>
+    <title>第九章-时序数据</title>
+    <url>/article/32af8df.html</url>
+    <content><![CDATA[<p><img src="/article/32af8df/时序数据.png" alt="时序数据"></p>
+<a id="more"></a>明天要考试了--明后天再补全了~回答有些过于简陋了
+
+问题1
+(a) 
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">df &#x3D; pd.read_csv(&#39;data&#x2F;time_series_one.csv&#39;, parse_dates&#x3D;[&#39;日期&#39;])</span><br><span class="line">df[&#39;日期&#39;].dt.dayofweek[df[&#39;销售额&#39;].idxmax()]</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<p>6<br>（b）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">holiday &#x3D; pd.date_range(start&#x3D;&#39;20170501&#39;, end&#x3D;&#39;20170503&#39;).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20171001&#39;, end&#x3D;&#39;20171007&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20180215&#39;, end&#x3D;&#39;20180221&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20180501&#39;, end&#x3D;&#39;20180503&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20181001&#39;, end&#x3D;&#39;20181007&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20190204&#39;, end&#x3D;&#39;20190224&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20190501&#39;, end&#x3D;&#39;20190503&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20191001&#39;, end&#x3D;&#39;20191007&#39;))</span><br><span class="line">result &#x3D; df[~df[&#39;日期&#39;].isin(holiday)].set_index(&#39;日期&#39;).resample(&#39;MS&#39;).sum()</span><br><span class="line">result.head()</span><br></pre></td></tr></table></figure>
+<p>(c)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">result &#x3D; df[df[&#39;日期&#39;].dt.dayofweek.isin([5,6])].set_index(&#39;日期&#39;).resample(&#39;QS&#39;).sum()</span><br><span class="line">result.head()</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>pandas下</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>pandas</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Task03-Haar特征描述算子-人脸监测</title>
     <url>/article/ad28cab2.html</url>
     <content><![CDATA[<h1 id="3-1-算法由来"><a href="#3-1-算法由来" class="headerlink" title="3.1 算法由来"></a>3.1 算法由来</h1><p>Haar-like特征最早是由Papageorgiou等应用于人脸表示，2001年，Viola和Jones两位大牛发表了今典的《Rapid Object Detection using a Boosted Cascade of Simple Features》和《Robust Real-Time Face Detection》，在AdaBoost算法基础上，使用Haar-like小波特征和积分图方法进行人脸监测，并对AdaBoost训练出的强分类器进行级联。<br>这两个大咖不是最早提出使用小波特征的，单他们设计了针对人脸监测更有效的特征，可以说是人脸检测史上里程碑式的一笔了，当时这个算法被称为Viola-Jones检测器。又过了一段时间，Rainer Liehart和Jochen Maydt两位大咖把这个检测器进行扩展，最终形成了OpenCV现在的Haar分类器。</p>
@@ -1474,29 +1497,6 @@ e=\min{(S^+ + (T^- - S^-), S^- + ( T^+ - S^+))}</script><p>公式说明：前一
 <p>（b）求col2的均值。</p>
 <p>（c）求col3的均值。</p>
 ]]></content>
-      <categories>
-        <category>pandas下</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>pandas</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第九章-时序数据</title>
-    <url>/article/32af8df.html</url>
-    <content><![CDATA[<p><img src="/article/32af8df/时序数据.png" alt="时序数据"></p>
-<a id="more"></a>明天要考试了--明后天再补全了~回答有些过于简陋了
-
-问题1
-(a) 
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">df &#x3D; pd.read_csv(&#39;data&#x2F;time_series_one.csv&#39;, parse_dates&#x3D;[&#39;日期&#39;])</span><br><span class="line">df[&#39;日期&#39;].dt.dayofweek[df[&#39;销售额&#39;].idxmax()]</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<p>6<br>（b）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">holiday &#x3D; pd.date_range(start&#x3D;&#39;20170501&#39;, end&#x3D;&#39;20170503&#39;).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20171001&#39;, end&#x3D;&#39;20171007&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20180215&#39;, end&#x3D;&#39;20180221&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20180501&#39;, end&#x3D;&#39;20180503&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20181001&#39;, end&#x3D;&#39;20181007&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20190204&#39;, end&#x3D;&#39;20190224&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20190501&#39;, end&#x3D;&#39;20190503&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20191001&#39;, end&#x3D;&#39;20191007&#39;))</span><br><span class="line">result &#x3D; df[~df[&#39;日期&#39;].isin(holiday)].set_index(&#39;日期&#39;).resample(&#39;MS&#39;).sum()</span><br><span class="line">result.head()</span><br></pre></td></tr></table></figure>
-<p>(c)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">result &#x3D; df[df[&#39;日期&#39;].dt.dayofweek.isin([5,6])].set_index(&#39;日期&#39;).resample(&#39;QS&#39;).sum()</span><br><span class="line">result.head()</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>pandas下</category>
       </categories>
