@@ -981,157 +981,6 @@ Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y} &= (\mu + a_i + b_j + e_{ij}) - (\mu + a_i + 
       </tags>
   </entry>
   <entry>
-    <title>Task01 Harris特征点检测器-兴趣点检测</title>
-    <url>/article/8b3bd9dd.html</url>
-    <content><![CDATA[<h1 id="Harris特征点检测器-兴趣点检测"><a href="#Harris特征点检测器-兴趣点检测" class="headerlink" title="Harris特征点检测器-兴趣点检测"></a>Harris特征点检测器-兴趣点检测</h1><p><strong>特则点</strong>又称为兴趣点或角点，通常具有旋转不变性和光照不变性和视角不变性等优点，是图像的重要特征之一，常被应用到目标匹配、目标跟踪、三维重建等应用中。</p>
-<p><strong>点特征</strong>主要是指图像中的明显点，如突出的角点、边缘端点、权值点等等。</p>
-<p><strong>兴趣点提取(检测)算子</strong>是用于点特征提取的算子<a id="more"></a>，常用的有</p>
-<ul>
-<li>Harris角点检测：用于检测角点</li>
-<li>FAST特征检测：用于检测角点</li>
-<li>SIFT特征检测：用于检测斑点</li>
-<li>SURF特征检测：用于检测角点</li>
-<li>BRIEF特征检测：用于检测斑点</li>
-<li>ORB：该算法代表带方向的FAST算法和具有旋转不变性的BRIEF算法</li>
-</ul>
-<p><strong>特征匹配</strong>：</p>
-<ul>
-<li>暴力(Brute-Force)匹配法</li>
-<li>基于FLANN匹配法</li>
-</ul>
-<h2 id="一、Harris特征点检测算法的思想和数学原理"><a href="#一、Harris特征点检测算法的思想和数学原理" class="headerlink" title="一、Harris特征点检测算法的思想和数学原理"></a>一、Harris特征点检测算法的思想和数学原理</h2><h2 id="1-1-基础知识"><a href="#1-1-基础知识" class="headerlink" title="1.1 基础知识"></a>1.1 基础知识</h2><ul>
-<li><p><strong>角点</strong></p>
-<p>左图表示一个平坦区域，在各个方向移动，窗口内像素值均没有太大变化；</p>
-<p>中图表示一个边缘特征(Edges)，若沿着水平方向移动(梯度方向)，像素值会发生跳变；若沿着边缘移动(平行于边缘)，像素值不变发生变化；</p>
-<p>右图表示一个角(Corners)，它朝哪个方向移动，像素值都会发生很大变化。即为<font color="red">角点</font>。</p>
-</li>
-</ul>
-<p><img src="https://camo.githubusercontent.com/460ac04994bec25117ee2724563058da99e5bf1e/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303230303630393230343234393231392e706e673f782d6f73732d70726f636573733d696d6167652f77617465726d61726b2c747970655f5a6d46755a33706f5a57356e6147567064476b2c736861646f775f31302c746578745f6148523063484d364c7939696247396e4c6d4e7a5a473475626d56304c33646c61586870626c38304d4459304e7a67784f513d3d2c73697a655f312c636f6c6f725f4646464646462c745f3730237069635f63656e746572" alt="在这里插入图片描述"></p>
-<ul>
-<li><strong>图像梯度</strong>:图像局部内，图像梯度越大表示该局部内像素值变化越大。图形梯度在数学上可用微分或者积分表示,使用差分来近似导数：$G_x(x,y)=H(x+1,y)-H(x-1,y)$,</li>
-<li><strong>补充</strong>：对图像求梯度通常是考虑图像的每个像素的某个领域内的灰度变化，因此通常对原始图像中像素某个领域设置梯度算子，然后采用小区域模板进行卷积计算，常用的有Prewitt算子、Sobel算子、Robinson算子、Laplace算子等。</li>
-</ul>
-<h2 id="1-2-Harris角点检测算法原理"><a href="#1-2-Harris角点检测算法原理" class="headerlink" title="1.2 Harris角点检测算法原理"></a>1.2 Harris角点检测算法原理</h2><h3 id="1-2-1-计算窗口内部的像素值变化量-E-x-y"><a href="#1-2-1-计算窗口内部的像素值变化量-E-x-y" class="headerlink" title="1.2.1 计算窗口内部的像素值变化量$E(x,y)$"></a>1.2.1 计算窗口内部的像素值变化量$E(x,y)$</h3><p><strong>建立数学模型，确定哪些窗口会引起较大的灰度值变化</strong></p>
-<p>窗口$W$对应的像素坐标位置$(x,y)$，窗口的大小决定了有多少位置。</p>
-<p>像素位置坐标$(x,y)$对应的像素灰度值为$I(x,y)$，窗口分别向$x$和$y$方向上移动$(u,v)$，到达$(x+u,y+v)$上，对应的像素灰度值$I(x+u,y+v)$。</p>
-<p>窗口移动引起的灰度值的变化量为$I(x+u,y+v)-I(x,y)$。</p>
-<p>$(x,y)$位置的窗口函数为$w(x,y)$。即为窗口内各像素的权重。</p>
-<p><img src="/article/8b3bd9dd/image1-2.png" alt="image-20200623143300133"></p>
-<p><strong>窗口移动(u,v)引起的灰度值的加权变化量</strong>：</p>
-<script type="math/tex; mode=display">
-E(u,v) = \sum_{x,y}{w(x,y){[I(x+u,y+v)-I(x,y)]}^{2}}</script><p>根据二维泰勒公式展开：</p>
-<script type="math/tex; mode=display">
-\begin{equation}
-\begin{aligned}
-E(u,v) &\approx \sum_{x,y \in W}{w(x,y){[I(x,y)+uI_x+vI_y-I(x,y)]}^{2}} \\
-  &= \sum_{x,y\in W}{w(x,y){(uI_x+vI_y)}^{2}} \\
-  &= \sum_{x,y\in W}{w(x,y){(u^2I_x^2+vI_y^2+2uvI_xI_y)}^{2}} \\
-  &= \sum_{x,y\in W}{w(x,y)\begin{bmatrix}u&v\end{bmatrix}\begin{bmatrix}I_x^2 & I_xI_y\\
-                                       I_xI_y & I_y^2\end{bmatrix} \begin{bmatrix}u\\v\end{bmatrix}} \\
-  &= \begin{bmatrix}u&v\end{bmatrix}(\sum_{x,y\in W}{w(x,y) \begin{bmatrix}I_x^2 & I_xI_y\\                                     I_xI_y & I_y^2\end{bmatrix} })\begin{bmatrix}u\\v\end{bmatrix}                                      \\
-  &= \begin{bmatrix}u&v\end{bmatrix}M\begin{bmatrix}u\\v\end{bmatrix}
-\end{aligned}
-\end{equation}</script><p>其中$I_x,I_y$分别为窗口内像素点$(x,y)$在$x$方向上和$y$方向上的梯度值。矩阵$M$为：</p>
-<script type="math/tex; mode=display">
-\begin{equation}
-\begin{aligned}
-M &= \sum_{(x,y)\in W}{w(x,y) \begin{bmatrix}I_x^2 & I_xI_y\\
-                                       I_xI_y & I_y^2\end{bmatrix}}\\
-  &=R^{-1}\begin{bmatrix}\lambda_1 & 0\\0 & \lambda_2\end{bmatrix}R
-\end{aligned}
-\end{equation}</script><p>最后使用实对称矩阵对角化处理后得到我们想要的结果。</p>
-<h3 id="1-2-2-计算对应的角点响应函数-R"><a href="#1-2-2-计算对应的角点响应函数-R" class="headerlink" title="1.2.2 计算对应的角点响应函数$R$"></a>1.2.2 计算对应的角点响应函数$R$</h3><p>通过矩阵的梯度变化可以得到协方差矩阵M，协方差矩阵M决定了灰度值的加权变化量。因此通过计算<strong>角点响应函数R</strong>得到每个窗口对应的得分:</p>
-<script type="math/tex; mode=display">
-R = det(M)-k(trace(M))^2</script><p>其中$det(M)=\lambda_1\lambda_2$为矩阵的行列式，$trace(M)=\lambda_1+\lambda_2$为矩阵的迹。</p>
-<p>$k$是一个经验常数，需要经验确定它的合适大小，通常在(0.04,0.06)之间取值。</p>
-<h3 id="1-2-3-角点判定"><a href="#1-2-3-角点判定" class="headerlink" title="1.2.3 角点判定"></a>1.2.3 角点判定</h3><p>根据R值判断窗口是平面、边缘还是角点：</p>
-<ul>
-<li>平面：$|R|$值非常小，$\lambda_1$和$\lambda_2$都较小，窗口区域的像素点的梯度变化小。</li>
-<li>边缘：$|R|$值为负数，$\lambda_1 \gg \lambda_2$或$\lambda_2 \gg \lambda_1$，像素点的某个方向的梯度幅值变化比较明显，另一个方向上的梯度变化比较弱。</li>
-<li>角点：$|R|$值很大，$(I_x,I_y)$对应的$\lambda_1$和$\lambda_2$都很大。像素点的梯度分布比较散，梯度变化程度比较大。</li>
-</ul>
-<p>如下图所示：</p>
-<p><img src="https://camo.githubusercontent.com/c6eef9fa98b4f1e099bc722b21536c73c6b9bf9f/68747470733a2f2f696d67636f6e766572742e6373646e696d672e636e2f6148523063484d364c7939706257466e5a584d794d4445314c6d4e75596d78765a334d75593239744c324a73623263764e4455784e6a59774c7a49774d5459774e4338304e5445324e6a41744d6a41784e6a41304d6a45784d5441314e4455354f5445744e4451304e6a6b314e5445344c6e42755a773f782d6f73732d70726f636573733d696d6167652f666f726d61742c706e67237069635f63656e746572" alt="在这里插入图片描述"></p>
-<p>Harris角点检测：设定一个阈值，高于阈值的像素对应角点。</p>
-<ul>
-<li>补充：角点的非极大值原理—在一个窗口内，如果有很多角点则用值最大的那个角点，其他的角点都删除。</li>
-</ul>
-<h2 id="1-3-Shi-Tomasi角点检测器"><a href="#1-3-Shi-Tomasi角点检测器" class="headerlink" title="1.3 Shi-Tomasi角点检测器"></a>1.3 Shi-Tomasi角点检测器</h2><p><strong>Shi-Tomasi 角点检测</strong>：《Good_Features_to_Track》论文提出的Harris改进版。</p>
-<p>Harris角点检测中每个窗口的分数公式：$R=\lambda_1\lambda_2 - k(\lambda_1+\lambda_2)^2$</p>
-<p>缺陷：Harris角点检测算法的稳定性和k值有关，但k是经验值，不好设定最佳值。</p>
-<p>改进：角点稳定性与矩阵$M$的较小特征值有关，Shi-Tomasi 直接采用较小的特征值作为分数。(如此一来就不用调整k值啦)</p>
-<p>Shi-Tomasi角点检测中每个窗口的分数公式：$R=min(\lambda_1,\lambda_2)$</p>
-<p>判定角点的方式不变：分数大于设定的阈值，即为角点。</p>
-<h2 id="二、OpenCV的Harris算子进行兴趣点检测"><a href="#二、OpenCV的Harris算子进行兴趣点检测" class="headerlink" title="二、OpenCV的Harris算子进行兴趣点检测"></a>二、OpenCV的Harris算子进行兴趣点检测</h2><h2 id="2-1-Harris角点检测"><a href="#2-1-Harris角点检测" class="headerlink" title="2.1 Harris角点检测"></a>2.1 Harris角点检测</h2><p><strong>opencv</strong>提供了实现<strong>Harris</strong>角点检测函数：<a href="https://link.zhihu.com/?target=https%3A//docs.opencv.org/master/dd/d1a/group__imgproc__feature.html%23gac1fc3598018010880e370e2f709b4345">cv2.cornerHarris</a>，下面调用该接口进行<strong>Harris</strong>特征点检测。</p>
-<p>函数：<strong>cv2.cornerHarris(src, blockSize, ksize, k[, dst[, borderType]])​</strong></p>
-<p>函数功能：对于每一个像素 $(x,y)$，在 ($blockSize$ x $blockSize$) 邻域内，计算梯度图的协方差矩阵$M(x,y)$，通过计算角点响应函数得到结果图。该结果图的局部最大值即图像中的角点。</p>
-<p>函数参数：</p>
-<ul>
-<li><strong>src</strong>:待检测的灰度图像(float32类型)</li>
-<li><strong>blockSize</strong>:用于角点检测的领域大小，即窗口尺寸</li>
-<li><strong>ksize</strong>:用于计算梯度图的Sobel算子的尺寸</li>
-<li><strong>k</strong>:用于计算角点响应函数的参数k，取值范围在0.04~0.06之间</li>
-</ul>
-<p>待检测的图片：</p>
-<p><img src="/article/8b3bd9dd/image1.jpg" alt="image1"></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检测参数</span></span><br><span class="line">block_size = <span class="number">3</span></span><br><span class="line">sobel_size = <span class="number">3</span></span><br><span class="line">k = <span class="number">0.06</span></span><br><span class="line"></span><br><span class="line">image = cv.imread(<span class="string">'image1.jpg'</span>)</span><br><span class="line">print(image.shape)</span><br><span class="line">height = image.shape[<span class="number">0</span>]</span><br><span class="line">width = image.shape[<span class="number">1</span>]</span><br><span class="line">channels = image.shape[<span class="number">2</span>]</span><br><span class="line">print(<span class="string">"width: %s height: %s channel: %s"</span>%(width, height, channels))</span><br><span class="line"><span class="comment"># 将图像转换为灰度图</span></span><br><span class="line">gray_img = cv.cvtColor(image, cv.COLOR_BGR2GRAY)</span><br><span class="line"><span class="comment"># 将数据格式转换为32位浮点数</span></span><br><span class="line">gray_img = np.float32(gray_img)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用合适值作为输入参数检测角点，得到的结果图用来标出角点</span></span><br><span class="line">corners_img = cv.cornerHarris(gray_img, block_size, sobel_size, k)</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">(225, 225, 3)</span><br><span class="line">width: 225 height: 225 channel: 3</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">kernel = cv.getStructuringElement(cv.MORPH_RECT,(<span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line">dst = cv.dilate(corners_img, kernel)</span><br><span class="line"><span class="comment"># dst = cv.dilate(corners_img,None)</span></span><br><span class="line"><span class="comment"># image[dst&gt;0.05*dst.max()] = [255,0,0]</span></span><br><span class="line"><span class="comment"># num = dst &gt; 0.05 * dst.max()</span></span><br><span class="line"><span class="comment"># count = np.sum(num)</span></span><br><span class="line"><span class="comment"># print(count)</span></span><br><span class="line">count = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> r <span class="keyword">in</span> range(height):</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> range(width):</span><br><span class="line">        pix = dst[r,c]</span><br><span class="line">        <span class="comment"># 阈值，蓝色标记角点</span></span><br><span class="line">        <span class="keyword">if</span> pix &gt; <span class="number">0.05</span> * dst.max():</span><br><span class="line">            cv.circle(image,(c,r),<span class="number">2</span>,(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>),<span class="number">-1</span>)</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">print(count)</span><br><span class="line">cv.imwrite(<span class="string">'harris_img1.jpg'</span>,image)</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">741</span><br></pre></td></tr></table></figure>
-<p>处理后图片如下：</p>
-<p><img src="/article/8b3bd9dd/harris_img1.jpg" alt="harris_img1"></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用点画图，点小一点，好看一丢丢把。。。</span></span><br><span class="line">image[dst&gt;<span class="number">0.05</span>*dst.max()] = [<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-<p><img src="/article/8b3bd9dd/harris_img2.jpg" alt="harris_img1"></p>
-<h2 id="2-2-Shi-Tomasi角点检测"><a href="#2-2-Shi-Tomasi角点检测" class="headerlink" title="2.2 Shi-Tomasi角点检测"></a>2.2 Shi-Tomasi角点检测</h2><p>opencv提供了实现Shi-Tomasi 角点检测函数：<strong>cv2.goodFeaturesToTrack()</strong>，下面调用该接口进行Harris特征点检测。</p>
-<p>函数：<strong>goodFeaturesToTrack(image, maxCorners, qualityLevel, minDistance[, corners[, mask[, blockSize[, useHarrisDetector[, k]]]]])</strong></p>
-<p>函数功能：流程大体与Harris相似。不同之处在于窗口分数计算公式不同。在检测到的角点中，所有低于质量水平的角点都会被忽略，合格角点按角点质量进行降序排列，保留质量最高的一个角点，将它附近（最小距离之内）的角点都删掉（类似于非极大值抑制），按这样的方式最后得到 N 个最佳角点。</p>
-<p>函数参数：</p>
-<ul>
-<li><strong>image</strong>：输入灰度图像，float32类型</li>
-<li><strong>maxCorners</strong>：返回角点的最大数目，值为0表表示不设置最大值限制，返回所有检测到的角点。</li>
-<li><strong>qualityLevel</strong>：质量系数（小于1.0的正数，一般在0.01-0.1之间），表示可接受角点的最低质量水平。该系数乘以最好的角点分数（也就是上面较小的那个特征值），作为可接受的最小分数；例如，如果最好的角点分数值为1500且质量系数为0.01，那么所有质量分数小于15的角都将被忽略。</li>
-<li><strong>minDistance</strong>：角之间最小欧式距离，忽略小于此距离的点。</li>
-<li><strong>corners</strong>：输出角点坐标</li>
-<li><strong>mask</strong>：可选的感兴趣区域，指定想要检测角点的区域。</li>
-<li><strong>blockSize</strong>：默认为3，角点检测的邻域大小（窗口尺寸）</li>
-<li><strong>useHarrisDetector</strong>：用于指定角点检测的方法，如果是true则使用Harris角点检测，false则使用Shi Tomasi算法。默认为False。</li>
-<li><strong>k</strong>：默认为0.04，Harris角点检测时使用。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">maxCorners = <span class="number">600</span></span><br><span class="line">qualityLevel = <span class="number">0.01</span></span><br><span class="line">minDistance = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">'image1.jpg'</span>)</span><br><span class="line">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line">corners = cv2.goodFeaturesToTrack(gray, maxCorners, qualityLevel, minDistance)</span><br><span class="line">corners = np.int0(corners)</span><br><span class="line">count = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> corners:</span><br><span class="line">    x,y = i.ravel()</span><br><span class="line">    cv2.circle(img,(x,y), <span class="number">2</span>, (<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>),<span class="number">-1</span>)</span><br><span class="line">    <span class="comment"># img[y,x] = [255,0,0]</span></span><br><span class="line">    count += <span class="number">1</span></span><br><span class="line">cv.imwrite(<span class="string">'Shi-Tomasi.jpg'</span>,img)</span><br><span class="line">img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line">print(count)</span><br></pre></td></tr></table></figure>
-<p><img src="Task01-Harris特征点检测器-兴趣点检测//Tomasi.jpg" alt></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Harris和Shi-Tomasi都是基于梯度计算的角点检测方式。</p>
-<p>Harris角点检测的性质：</p>
-<ul>
-<li><p>阈值界定角点数量</p>
-</li>
-<li><p>Harris角点算子对亮度和对比度的变化不敏感</p>
-<p>因为在进行Harris角点检测时，使用了微分算子对图像进行微分运算，而微分运算对图像密度的拉升或收缩和对亮度的抬高或下降不敏感。换言之，对亮度和对比度的仿射变换并不改变Harris响应的极值点出现的位置，但是，由于阈值的选择，可能会影响角点检测的数量。</p>
-<p><img src="/article/8b3bd9dd/image1-3.png" alt="image-20200623145505861"></p>
-<p>左图表示亮度变化，右图表示对比度变化。</p>
-</li>
-<li><p>Harris角点检测算子具有旋转不变性</p>
-<p>Harris角点检测算子使用的是角点附近的区域灰度二阶矩矩阵。而二阶矩矩阵可以表示成一个椭圆，椭圆的长短轴正是二阶矩矩阵特征值平方根的倒数。当特征椭圆转动时，特征值并不发生变化，所以判断角点响应值RR也不发生变化，由此说明Harris角点检测算子具有旋转不变性。</p>
-</li>
-<li><p>Harris角点检测算子不具有尺度不变性</p>
-<p><img src="/article/8b3bd9dd/image1-1.png" alt="image-20200623003833148"></p>
-<p>如上图所示，当图像被缩小时，在检测窗口尺寸不变的前提下，在窗口内所包含图像的内容是完全不同的。左侧的图像可能被检测为边缘或曲线，而右侧的图像则可能被检测为一个角点。</p>
-</li>
-</ul>
-<p>基于梯度的角点检测器的缺点：计算复杂度高、图像中的噪声阻碍梯度计算。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/datawhalechina/team-learning/blob/master/03%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/Task01%20Harris%E7%89%B9%E5%BE%81%E7%82%B9%E6%A3%80%E6%B5%8B.md" target="_blank" rel="noopener">Task01 Harris特征点检测器-兴趣点检测</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/83064609" target="_blank" rel="noopener">角点检测：Harris 与 Shi-Tomasi</a></p>
-<p><a href="https://www.cnblogs.com/zyly/p/9508131.html" target="_blank" rel="noopener">Harris角点检测原理(赋源码)</a></p>
-]]></content>
-      <categories>
-        <category>图像处理下</category>
-      </categories>
-      <tags>
-        <tag>图像处理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Introduction_and_Word_Vectors</title>
     <url>/article/fd8e5887.html</url>
     <content><![CDATA[<h1 id="Task1-Introduction-and-Word-Vectors"><a href="#Task1-Introduction-and-Word-Vectors" class="headerlink" title="Task1: Introduction and Word Vectors"></a>Task1: Introduction and Word Vectors</h1><p>理论部分</p>
@@ -1296,6 +1145,215 @@ U\left(G_{p}\right)=\left|s\left(g_{p_{-1}}-g_{c}\right)-s\left(g_{0}-g_{c}\righ
       </tags>
   </entry>
   <entry>
+    <title>pandas下综合练习</title>
+    <url>/article/67aeaf8.html</url>
+    <content><![CDATA[<h1 id="一、端午节的淘宝粽子交易"><a href="#一、端午节的淘宝粽子交易" class="headerlink" title="一、端午节的淘宝粽子交易"></a>一、端午节的淘宝粽子交易</h1><h2 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h2><p>（1）请删除最后一列为缺失值的行，并求所有在杭州发货的商品单价均值。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">'端午粽子数据.csv'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
+<p><img src="/article/67aeaf8/image-20200701220417701.png" alt="image-20200701220417701">列名中有些包含了空格，先去除。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.columns = df.columns.str.strip()</span><br><span class="line">df.columns</span><br></pre></td></tr></table></figure>
+<p><img src="/article/67aeaf8/image-20200701220535004.png" alt="image-20200701220535004"><br>然后将最后一列为空的行去除，使用dropna方法。再查看最后一列为空的行。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_clean = df.dropna(axis=<span class="number">0</span>,subset=[df.columns[<span class="number">-1</span>]])</span><br><span class="line">df_clean[df_clean[df_clean.columns[<span class="number">-1</span>]].isna()]</span><br></pre></td></tr></table></figure>
+<p><img src="/article/67aeaf8/image-20200701220754043.png" alt="image-20200701220754043"><br>确认已删除完毕。<br>将所有在杭州交易的记录取出。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_h = df_clean[df_clean[<span class="string">'发货地址'</span>].str.contains(<span class="string">'杭州'</span>)]</span><br></pre></td></tr></table></figure>
+<p>查看其中价格列不能转换为float的行。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_number</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        float(x)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">except</span> (SyntaxError, ValueError) <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">df_h[~df_h[<span class="string">'价格'</span>].map(is_number)]</span><br></pre></td></tr></table></figure>
+<p><img src="/article/67aeaf8/image-20200701221103969.png" alt="image-20200701221103969"></p>
+<p>将其价格改为45。计算价格转换为float类型并计算均值。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_h.loc[<span class="number">4376</span>][<span class="string">'价格'</span>] = <span class="number">45</span></span><br><span class="line">df_h[<span class="string">'价格'</span>].astype(<span class="string">'float'</span>).mean()</span><br></pre></td></tr></table></figure>
+<p><img src="/article/67aeaf8/image-20200701221222671.png" alt="image-20200701221222671"></p>
+<p>（2）商品标题带有”嘉兴”但发货地却不在嘉兴的商品有多少条记录？<br>直接使用contain方法求取即可。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_bj = df_clean[df_clean[<span class="string">'标题'</span>].str.contains(<span class="string">'嘉兴'</span>)]</span><br><span class="line">df_bj_nj =df_bj[~(df_bj[<span class="string">'发货地址'</span>].str.contains(<span class="string">'嘉兴'</span>))]</span><br><span class="line">df_bj_nj.shape</span><br></pre></td></tr></table></figure>
+<p>（3）请按照分位数将价格分为“高、较高、中、较低、低” 5个类别，再将类别结果插入到标题一列之后，最后对类别列进行降序排序。<br>查看价格列中异常值。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_clean[~df_clean[<span class="string">'价格'</span>].map(is_number)]</span><br></pre></td></tr></table></figure>
+<p><img src="/article/67aeaf8/image-20200701221526292.png" alt="image-20200701221526292"><br>修改为对应的正常值。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_clean.loc[<span class="number">538</span>][<span class="string">'价格'</span>] = <span class="number">45.9</span></span><br><span class="line">df_clean.loc[<span class="number">4376</span>][<span class="string">'价格'</span>] = <span class="number">45</span></span><br></pre></td></tr></table></figure>
+<p>使用qcut方法将价格按数量等分为5类。并重命名为“高、较高、中、较低、低” 5个类别。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">q_cut = pd.qcut(df_clean[<span class="string">'价格'</span>].astype(<span class="string">'float'</span>),<span class="number">5</span>)</span><br><span class="line">df_clean.loc[:,<span class="string">'类别'</span>] = q_cut.cat.rename_categories([<span class="string">'低'</span>,<span class="string">'较低'</span>,<span class="string">'中'</span>,<span class="string">'较高'</span>,<span class="string">'高'</span>])</span><br></pre></td></tr></table></figure>
+<p>将列顺序按要求排列。并将表格按照类别进行降序排列。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_clean = df_clean[[<span class="string">'标题'</span>,<span class="string">'类别'</span>,<span class="string">'价格'</span>,<span class="string">'付款人数'</span>,<span class="string">'店铺'</span>,<span class="string">'发货地址'</span>]]</span><br><span class="line">df_clean = df_clean.sort_values(<span class="string">'类别'</span>, ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/article/67aeaf8/image-20200701221901144.png" alt="image-20200701221901144"><br>（4）付款人数一栏有缺失值吗？若有则请利用上一问的分类结果对这些缺失值进行合理估计并填充。<br>查看付款人数一栏有缺失值的行。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_clean[df_clean[<span class="string">'付款人数'</span>].isna()]</span><br></pre></td></tr></table></figure>
+<p><img src="/article/67aeaf8/image-20200701221950329.png" alt="image-20200701221950329"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_clean[<span class="string">'价格'</span>] = df_clean[<span class="string">'价格'</span>].astype(<span class="string">'float'</span>)</span><br><span class="line">df_clean.sort_values(<span class="string">'价格'</span>, ascending=<span class="literal">False</span>)</span><br><span class="line">df_clean[<span class="string">'发货地址'</span>].value_counts()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def replace(x):</span><br><span class="line">    try:</span><br><span class="line">        x &#x3D; str(x)</span><br><span class="line">        if &#39;万&#39; in x:</span><br><span class="line">            i &#x3D; x.index(&#39;万&#39;)</span><br><span class="line">            return float(x[:i]) * 10000</span><br><span class="line">        if &#39;+&#39; in x:</span><br><span class="line">            i &#x3D; x.index(&#39;+&#39;)</span><br><span class="line">        elif &#39;人&#39; in x:</span><br><span class="line">            i &#x3D; x.index(&#39;人&#39;)</span><br><span class="line">        else:</span><br><span class="line">            # print(x)</span><br><span class="line">            return None</span><br><span class="line">        return int(x[:i])</span><br><span class="line">    except:</span><br><span class="line">        print(x)</span><br><span class="line">        return None</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_clean[<span class="string">'付款人数'</span>] = df_clean[<span class="string">'付款人数'</span>].map(replace)</span><br><span class="line">df_clean = df_clean.set_index(<span class="string">'价格'</span>)</span><br><span class="line">df_clean[<span class="string">'付款人数'</span>] = df_clean[<span class="string">'付款人数'</span>].interpolate(method=<span class="string">'index'</span>)</span><br><span class="line">df_clean = df_clean.reset_index()</span><br><span class="line">df_clean = df_clean[[<span class="string">'标题'</span>,<span class="string">'类别'</span>,<span class="string">'价格'</span>,<span class="string">'付款人数'</span>,<span class="string">'店铺'</span>,<span class="string">'发货地址'</span>]]</span><br></pre></td></tr></table></figure>
+<p>（5）请将数据后四列合并为如下格式的Series:商品发货地为xx，店铺为xx，共计xx人付款，单价为xx。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">result &#x3D; &#39;商品发货地为&#39;+df_clean[&#39;发货地址&#39;]+&#39;,店铺为&#39;+df_clean[&#39;店铺&#39;] \</span><br><span class="line">                    +&#39;,共计&#39;+df_clean[&#39;付款人数&#39;].astype(&#39;str&#39;)+&#39;,单价为&#39;\</span><br><span class="line">                   + df_clean[&#39;价格&#39;].astype(&#39;str&#39;)+&#39;元&#39;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">result.str.extract(r&#39;商品发货地为(?P&lt;发货地址&gt;[\w]+),店铺为(?P&lt;店铺&gt;[\w]+) \</span><br><span class="line">                    ,共计(?P&lt;付款人数&gt;[\w]+),单价为(?P&lt;价格&gt;[?\d.\dh]+)元&#39;)</span><br></pre></td></tr></table></figure>
+<p>提取的时候失败了。。</p>
+<h2 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">df3 &#x3D; pd.read_csv(&#39;摩拜单车数据.csv&#39;)</span><br><span class="line">df3[&#39;start_time&#39;] &#x3D; pd.to_datetime(df3[&#39;start_time&#39;].values)</span><br><span class="line">df3[&#39;end_time&#39;] &#x3D; pd.to_datetime(df3[&#39;end_time&#39;].values)</span><br><span class="line">df3[&#39;run&#39;] &#x3D; df3[&#39;end_time&#39;]-df3[&#39;start_time&#39;]</span><br><span class="line">result1 &#x3D; df3[df3[&#39;start_time&#39;].dt.dayofweek.isin([5,6])]</span><br><span class="line">result2 &#x3D; df3[df3[&#39;start_time&#39;].dt.dayofweek.isin([0,1,2,3,4])]</span><br><span class="line">result1.index &#x3D; result1[&#39;start_time&#39;].dt.strftime(&#39;%Y-%m-%d&#39;)</span><br><span class="line">result2.index &#x3D; result2[&#39;start_time&#39;].dt.strftime(&#39;%Y-%m-%d&#39;)</span><br><span class="line">result1.index.name &#x3D; &#39;day&#39;</span><br><span class="line">result2.index.name &#x3D; &#39;day&#39;</span><br><span class="line">result2.head()</span><br><span class="line">group1 &#x3D; result1.groupby([&#39;day&#39;])</span><br><span class="line">num1 &#x3D; 0</span><br><span class="line">num2 &#x3D; 0</span><br><span class="line">group1.size()</span><br><span class="line"># for name, group in group1:</span><br><span class="line">for name, group in group1:</span><br><span class="line">    print(name)</span><br><span class="line">    num1 +&#x3D; 1</span><br><span class="line">    if num1 &#x3D;&#x3D;1:</span><br><span class="line">        result_1 &#x3D; group[&#39;run&#39;].sum()</span><br><span class="line">    else:</span><br><span class="line">        result_1 +&#x3D; group[&#39;run&#39;].sum()</span><br><span class="line">result_1 &#x3D; result_1 &#x2F; num1</span><br><span class="line">print(result_1)</span><br><span class="line">group2 &#x3D; result2.groupby(&#39;day&#39;)</span><br><span class="line">for name, group in group2:</span><br><span class="line">    num2 +&#x3D; 1</span><br><span class="line">    if num2 &#x3D;&#x3D;1:</span><br><span class="line">        result_2 &#x3D; group[&#39;run&#39;].sum()</span><br><span class="line">    else:</span><br><span class="line">        result_2 +&#x3D; group[&#39;run&#39;].sum()</span><br><span class="line">result_2 &#x3D; result_2 &#x2F; num2</span><br><span class="line">print(result_2)</span><br></pre></td></tr></table></figure>
+<p><img src="/article/67aeaf8/image-20200701222344893.png" alt="image-20200701222344893"></p>
+<p><img src="/article/67aeaf8/image-20200701222354535.png" alt="image-20200701222354535"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">result_1 &gt; result_2</span><br></pre></td></tr></table></figure>
+<p><img src="/article/67aeaf8/image-20200701222414991.png" alt="image-20200701222414991"></p>
+<p>周末的工作量是比工作日当天用车量更大</p>
+<p>（2）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">result2[<span class="string">"start_hour"</span>] = result2[<span class="string">'start_time'</span>].astype(<span class="string">'str'</span>).apply(<span class="keyword">lambda</span> x: int(x.split()[<span class="number">1</span>].split\</span><br><span class="line">                                          (<span class="string">":"</span>)[<span class="number">0</span>]))</span><br><span class="line">result2[<span class="string">"end_hour"</span>] = result2[<span class="string">'end_time'</span>].astype(<span class="string">'str'</span>).apply(<span class="keyword">lambda</span> x: int(x.split()[<span class="number">1</span>].split\</span><br><span class="line">                                          (<span class="string">":"</span>)[<span class="number">0</span>]))</span><br><span class="line">result2[<span class="string">"start_min"</span>] = result2[<span class="string">'start_time'</span>].astype(<span class="string">'str'</span>).apply(<span class="keyword">lambda</span> x: int(x.split()[<span class="number">1</span>].split\</span><br><span class="line">                                          (<span class="string">":"</span>)[<span class="number">1</span>]))</span><br><span class="line">result2[<span class="string">'end_min'</span>] = result2[<span class="string">'end_time'</span>].astype(<span class="string">'str'</span>).apply(<span class="keyword">lambda</span> x: int(x.split()[<span class="number">1</span>].split\</span><br><span class="line">                                                            (<span class="string">":"</span>)[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">result2_e = result2[(result2[<span class="string">'start_hour'</span>]&lt;<span class="number">9</span>) | ((result2[<span class="string">'start_hour'</span>]==<span class="number">9</span>) &amp; (result2[<span class="string">'start_min'</span>] &lt; <span class="number">30</span>))]</span><br><span class="line">result2_e = result2_e[(result2_e[<span class="string">'end_hour'</span>]&gt;<span class="number">7</span>) | ((result2_e[<span class="string">'end_hour'</span>]==<span class="number">7</span>) &amp; (result2_e[<span class="string">'end_min'</span>] &gt; <span class="number">30</span>))]</span><br><span class="line">result2_a = result2[(result2[<span class="string">'start_hour'</span>]&lt;<span class="number">19</span>) &amp; (result2[<span class="string">'end_hour'</span>]&gt;<span class="number">17</span>)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">result2_e.shape[<span class="number">0</span>]</span><br><span class="line">group2_e = result2_e.groupby(<span class="string">'day'</span>)</span><br><span class="line">list_e = []</span><br><span class="line">list_n = []</span><br><span class="line"><span class="keyword">for</span> name, group <span class="keyword">in</span> group2_e:</span><br><span class="line">    list_n.append(name)</span><br><span class="line">    list_e.append(group[<span class="string">'run'</span>].sum())</span><br><span class="line">group2_a = result2_a.groupby(<span class="string">'day'</span>)</span><br><span class="line">list_a = []</span><br><span class="line">list_n2 = []</span><br><span class="line"><span class="keyword">for</span> name, group <span class="keyword">in</span> group2_a:</span><br><span class="line">    list_n2.append(name)</span><br><span class="line">    list_a.append(group[<span class="string">'run'</span>].sum())</span><br><span class="line">result_day = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(list_a)):</span><br><span class="line">    <span class="keyword">if</span> list_e[i] &gt; list_a[i]:</span><br><span class="line">        result_day.append(list_n[i])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">result_day</span><br></pre></td></tr></table></figure>
+<p><img src="/article/67aeaf8/image-20200701223448673.png" alt="image-20200701223448673"></p>
+]]></content>
+      <categories>
+        <category>pandas下</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>pandas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Task01 Harris特征点检测器-兴趣点检测</title>
+    <url>/article/8b3bd9dd.html</url>
+    <content><![CDATA[<h1 id="Harris特征点检测器-兴趣点检测"><a href="#Harris特征点检测器-兴趣点检测" class="headerlink" title="Harris特征点检测器-兴趣点检测"></a>Harris特征点检测器-兴趣点检测</h1><p><strong>特则点</strong>又称为兴趣点或角点，通常具有旋转不变性和光照不变性和视角不变性等优点，是图像的重要特征之一，常被应用到目标匹配、目标跟踪、三维重建等应用中。</p>
+<p><strong>点特征</strong>主要是指图像中的明显点，如突出的角点、边缘端点、权值点等等。</p>
+<p><strong>兴趣点提取(检测)算子</strong>是用于点特征提取的算子<a id="more"></a>，常用的有</p>
+<ul>
+<li>Harris角点检测：用于检测角点</li>
+<li>FAST特征检测：用于检测角点</li>
+<li>SIFT特征检测：用于检测斑点</li>
+<li>SURF特征检测：用于检测角点</li>
+<li>BRIEF特征检测：用于检测斑点</li>
+<li>ORB：该算法代表带方向的FAST算法和具有旋转不变性的BRIEF算法</li>
+</ul>
+<p><strong>特征匹配</strong>：</p>
+<ul>
+<li>暴力(Brute-Force)匹配法</li>
+<li>基于FLANN匹配法</li>
+</ul>
+<h2 id="一、Harris特征点检测算法的思想和数学原理"><a href="#一、Harris特征点检测算法的思想和数学原理" class="headerlink" title="一、Harris特征点检测算法的思想和数学原理"></a>一、Harris特征点检测算法的思想和数学原理</h2><h2 id="1-1-基础知识"><a href="#1-1-基础知识" class="headerlink" title="1.1 基础知识"></a>1.1 基础知识</h2><ul>
+<li><p><strong>角点</strong></p>
+<p>左图表示一个平坦区域，在各个方向移动，窗口内像素值均没有太大变化；</p>
+<p>中图表示一个边缘特征(Edges)，若沿着水平方向移动(梯度方向)，像素值会发生跳变；若沿着边缘移动(平行于边缘)，像素值不变发生变化；</p>
+<p>右图表示一个角(Corners)，它朝哪个方向移动，像素值都会发生很大变化。即为<font color="red">角点</font>。</p>
+</li>
+</ul>
+<p><img src="https://camo.githubusercontent.com/460ac04994bec25117ee2724563058da99e5bf1e/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303230303630393230343234393231392e706e673f782d6f73732d70726f636573733d696d6167652f77617465726d61726b2c747970655f5a6d46755a33706f5a57356e6147567064476b2c736861646f775f31302c746578745f6148523063484d364c7939696247396e4c6d4e7a5a473475626d56304c33646c61586870626c38304d4459304e7a67784f513d3d2c73697a655f312c636f6c6f725f4646464646462c745f3730237069635f63656e746572" alt="在这里插入图片描述"></p>
+<ul>
+<li><strong>图像梯度</strong>:图像局部内，图像梯度越大表示该局部内像素值变化越大。图形梯度在数学上可用微分或者积分表示,使用差分来近似导数：$G_x(x,y)=H(x+1,y)-H(x-1,y)$,</li>
+<li><strong>补充</strong>：对图像求梯度通常是考虑图像的每个像素的某个领域内的灰度变化，因此通常对原始图像中像素某个领域设置梯度算子，然后采用小区域模板进行卷积计算，常用的有Prewitt算子、Sobel算子、Robinson算子、Laplace算子等。</li>
+</ul>
+<h2 id="1-2-Harris角点检测算法原理"><a href="#1-2-Harris角点检测算法原理" class="headerlink" title="1.2 Harris角点检测算法原理"></a>1.2 Harris角点检测算法原理</h2><h3 id="1-2-1-计算窗口内部的像素值变化量-E-x-y"><a href="#1-2-1-计算窗口内部的像素值变化量-E-x-y" class="headerlink" title="1.2.1 计算窗口内部的像素值变化量$E(x,y)$"></a>1.2.1 计算窗口内部的像素值变化量$E(x,y)$</h3><p><strong>建立数学模型，确定哪些窗口会引起较大的灰度值变化</strong></p>
+<p>窗口$W$对应的像素坐标位置$(x,y)$，窗口的大小决定了有多少位置。</p>
+<p>像素位置坐标$(x,y)$对应的像素灰度值为$I(x,y)$，窗口分别向$x$和$y$方向上移动$(u,v)$，到达$(x+u,y+v)$上，对应的像素灰度值$I(x+u,y+v)$。</p>
+<p>窗口移动引起的灰度值的变化量为$I(x+u,y+v)-I(x,y)$。</p>
+<p>$(x,y)$位置的窗口函数为$w(x,y)$。即为窗口内各像素的权重。</p>
+<p><img src="/article/8b3bd9dd/image1-2.png" alt="image-20200623143300133"></p>
+<p><strong>窗口移动(u,v)引起的灰度值的加权变化量</strong>：</p>
+<script type="math/tex; mode=display">
+E(u,v) = \sum_{x,y}{w(x,y){[I(x+u,y+v)-I(x,y)]}^{2}}</script><p>根据二维泰勒公式展开：</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+E(u,v) &\approx \sum_{x,y \in W}{w(x,y){[I(x,y)+uI_x+vI_y-I(x,y)]}^{2}} \\
+  &= \sum_{x,y\in W}{w(x,y){(uI_x+vI_y)}^{2}} \\
+  &= \sum_{x,y\in W}{w(x,y){(u^2I_x^2+vI_y^2+2uvI_xI_y)}^{2}} \\
+  &= \sum_{x,y\in W}{w(x,y)\begin{bmatrix}u&v\end{bmatrix}\begin{bmatrix}I_x^2 & I_xI_y\\
+                                       I_xI_y & I_y^2\end{bmatrix} \begin{bmatrix}u\\v\end{bmatrix}} \\
+  &= \begin{bmatrix}u&v\end{bmatrix}(\sum_{x,y\in W}{w(x,y) \begin{bmatrix}I_x^2 & I_xI_y\\                                     I_xI_y & I_y^2\end{bmatrix} })\begin{bmatrix}u\\v\end{bmatrix}                                      \\
+  &= \begin{bmatrix}u&v\end{bmatrix}M\begin{bmatrix}u\\v\end{bmatrix}
+\end{aligned}
+\end{equation}</script><p>其中$I_x,I_y$分别为窗口内像素点$(x,y)$在$x$方向上和$y$方向上的梯度值。矩阵$M$为：</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+M &= \sum_{(x,y)\in W}{w(x,y) \begin{bmatrix}I_x^2 & I_xI_y\\
+                                       I_xI_y & I_y^2\end{bmatrix}}\\
+  &=R^{-1}\begin{bmatrix}\lambda_1 & 0\\0 & \lambda_2\end{bmatrix}R
+\end{aligned}
+\end{equation}</script><p>最后使用实对称矩阵对角化处理后得到我们想要的结果。</p>
+<h3 id="1-2-2-计算对应的角点响应函数-R"><a href="#1-2-2-计算对应的角点响应函数-R" class="headerlink" title="1.2.2 计算对应的角点响应函数$R$"></a>1.2.2 计算对应的角点响应函数$R$</h3><p>通过矩阵的梯度变化可以得到协方差矩阵M，协方差矩阵M决定了灰度值的加权变化量。因此通过计算<strong>角点响应函数R</strong>得到每个窗口对应的得分:</p>
+<script type="math/tex; mode=display">
+R = det(M)-k(trace(M))^2</script><p>其中$det(M)=\lambda_1\lambda_2$为矩阵的行列式，$trace(M)=\lambda_1+\lambda_2$为矩阵的迹。</p>
+<p>$k$是一个经验常数，需要经验确定它的合适大小，通常在(0.04,0.06)之间取值。</p>
+<h3 id="1-2-3-角点判定"><a href="#1-2-3-角点判定" class="headerlink" title="1.2.3 角点判定"></a>1.2.3 角点判定</h3><p>根据R值判断窗口是平面、边缘还是角点：</p>
+<ul>
+<li>平面：$|R|$值非常小，$\lambda_1$和$\lambda_2$都较小，窗口区域的像素点的梯度变化小。</li>
+<li>边缘：$|R|$值为负数，$\lambda_1 \gg \lambda_2$或$\lambda_2 \gg \lambda_1$，像素点的某个方向的梯度幅值变化比较明显，另一个方向上的梯度变化比较弱。</li>
+<li>角点：$|R|$值很大，$(I_x,I_y)$对应的$\lambda_1$和$\lambda_2$都很大。像素点的梯度分布比较散，梯度变化程度比较大。</li>
+</ul>
+<p>如下图所示：</p>
+<p><img src="https://camo.githubusercontent.com/c6eef9fa98b4f1e099bc722b21536c73c6b9bf9f/68747470733a2f2f696d67636f6e766572742e6373646e696d672e636e2f6148523063484d364c7939706257466e5a584d794d4445314c6d4e75596d78765a334d75593239744c324a73623263764e4455784e6a59774c7a49774d5459774e4338304e5445324e6a41744d6a41784e6a41304d6a45784d5441314e4455354f5445744e4451304e6a6b314e5445344c6e42755a773f782d6f73732d70726f636573733d696d6167652f666f726d61742c706e67237069635f63656e746572" alt="在这里插入图片描述"></p>
+<p>Harris角点检测：设定一个阈值，高于阈值的像素对应角点。</p>
+<ul>
+<li>补充：角点的非极大值原理—在一个窗口内，如果有很多角点则用值最大的那个角点，其他的角点都删除。</li>
+</ul>
+<h2 id="1-3-Shi-Tomasi角点检测器"><a href="#1-3-Shi-Tomasi角点检测器" class="headerlink" title="1.3 Shi-Tomasi角点检测器"></a>1.3 Shi-Tomasi角点检测器</h2><p><strong>Shi-Tomasi 角点检测</strong>：《Good_Features_to_Track》论文提出的Harris改进版。</p>
+<p>Harris角点检测中每个窗口的分数公式：$R=\lambda_1\lambda_2 - k(\lambda_1+\lambda_2)^2$</p>
+<p>缺陷：Harris角点检测算法的稳定性和k值有关，但k是经验值，不好设定最佳值。</p>
+<p>改进：角点稳定性与矩阵$M$的较小特征值有关，Shi-Tomasi 直接采用较小的特征值作为分数。(如此一来就不用调整k值啦)</p>
+<p>Shi-Tomasi角点检测中每个窗口的分数公式：$R=min(\lambda_1,\lambda_2)$</p>
+<p>判定角点的方式不变：分数大于设定的阈值，即为角点。</p>
+<h2 id="二、OpenCV的Harris算子进行兴趣点检测"><a href="#二、OpenCV的Harris算子进行兴趣点检测" class="headerlink" title="二、OpenCV的Harris算子进行兴趣点检测"></a>二、OpenCV的Harris算子进行兴趣点检测</h2><h2 id="2-1-Harris角点检测"><a href="#2-1-Harris角点检测" class="headerlink" title="2.1 Harris角点检测"></a>2.1 Harris角点检测</h2><p><strong>opencv</strong>提供了实现<strong>Harris</strong>角点检测函数：<a href="https://link.zhihu.com/?target=https%3A//docs.opencv.org/master/dd/d1a/group__imgproc__feature.html%23gac1fc3598018010880e370e2f709b4345">cv2.cornerHarris</a>，下面调用该接口进行<strong>Harris</strong>特征点检测。</p>
+<p>函数：<strong>cv2.cornerHarris(src, blockSize, ksize, k[, dst[, borderType]])​</strong></p>
+<p>函数功能：对于每一个像素 $(x,y)$，在 ($blockSize$ x $blockSize$) 邻域内，计算梯度图的协方差矩阵$M(x,y)$，通过计算角点响应函数得到结果图。该结果图的局部最大值即图像中的角点。</p>
+<p>函数参数：</p>
+<ul>
+<li><strong>src</strong>:待检测的灰度图像(float32类型)</li>
+<li><strong>blockSize</strong>:用于角点检测的领域大小，即窗口尺寸</li>
+<li><strong>ksize</strong>:用于计算梯度图的Sobel算子的尺寸</li>
+<li><strong>k</strong>:用于计算角点响应函数的参数k，取值范围在0.04~0.06之间</li>
+</ul>
+<p>待检测的图片：</p>
+<p><img src="/article/8b3bd9dd/image1.jpg" alt="image1"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检测参数</span></span><br><span class="line">block_size = <span class="number">3</span></span><br><span class="line">sobel_size = <span class="number">3</span></span><br><span class="line">k = <span class="number">0.06</span></span><br><span class="line"></span><br><span class="line">image = cv.imread(<span class="string">'image1.jpg'</span>)</span><br><span class="line">print(image.shape)</span><br><span class="line">height = image.shape[<span class="number">0</span>]</span><br><span class="line">width = image.shape[<span class="number">1</span>]</span><br><span class="line">channels = image.shape[<span class="number">2</span>]</span><br><span class="line">print(<span class="string">"width: %s height: %s channel: %s"</span>%(width, height, channels))</span><br><span class="line"><span class="comment"># 将图像转换为灰度图</span></span><br><span class="line">gray_img = cv.cvtColor(image, cv.COLOR_BGR2GRAY)</span><br><span class="line"><span class="comment"># 将数据格式转换为32位浮点数</span></span><br><span class="line">gray_img = np.float32(gray_img)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用合适值作为输入参数检测角点，得到的结果图用来标出角点</span></span><br><span class="line">corners_img = cv.cornerHarris(gray_img, block_size, sobel_size, k)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">(225, 225, 3)</span><br><span class="line">width: 225 height: 225 channel: 3</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">kernel = cv.getStructuringElement(cv.MORPH_RECT,(<span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line">dst = cv.dilate(corners_img, kernel)</span><br><span class="line"><span class="comment"># dst = cv.dilate(corners_img,None)</span></span><br><span class="line"><span class="comment"># image[dst&gt;0.05*dst.max()] = [255,0,0]</span></span><br><span class="line"><span class="comment"># num = dst &gt; 0.05 * dst.max()</span></span><br><span class="line"><span class="comment"># count = np.sum(num)</span></span><br><span class="line"><span class="comment"># print(count)</span></span><br><span class="line">count = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> r <span class="keyword">in</span> range(height):</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> range(width):</span><br><span class="line">        pix = dst[r,c]</span><br><span class="line">        <span class="comment"># 阈值，蓝色标记角点</span></span><br><span class="line">        <span class="keyword">if</span> pix &gt; <span class="number">0.05</span> * dst.max():</span><br><span class="line">            cv.circle(image,(c,r),<span class="number">2</span>,(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>),<span class="number">-1</span>)</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">print(count)</span><br><span class="line">cv.imwrite(<span class="string">'harris_img1.jpg'</span>,image)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">741</span><br></pre></td></tr></table></figure>
+<p>处理后图片如下：</p>
+<p><img src="/article/8b3bd9dd/harris_img1.jpg" alt="harris_img1"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用点画图，点小一点，好看一丢丢把。。。</span></span><br><span class="line">image[dst&gt;<span class="number">0.05</span>*dst.max()] = [<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<p><img src="/article/8b3bd9dd/harris_img2.jpg" alt="harris_img1"></p>
+<h2 id="2-2-Shi-Tomasi角点检测"><a href="#2-2-Shi-Tomasi角点检测" class="headerlink" title="2.2 Shi-Tomasi角点检测"></a>2.2 Shi-Tomasi角点检测</h2><p>opencv提供了实现Shi-Tomasi 角点检测函数：<strong>cv2.goodFeaturesToTrack()</strong>，下面调用该接口进行Harris特征点检测。</p>
+<p>函数：<strong>goodFeaturesToTrack(image, maxCorners, qualityLevel, minDistance[, corners[, mask[, blockSize[, useHarrisDetector[, k]]]]])</strong></p>
+<p>函数功能：流程大体与Harris相似。不同之处在于窗口分数计算公式不同。在检测到的角点中，所有低于质量水平的角点都会被忽略，合格角点按角点质量进行降序排列，保留质量最高的一个角点，将它附近（最小距离之内）的角点都删掉（类似于非极大值抑制），按这样的方式最后得到 N 个最佳角点。</p>
+<p>函数参数：</p>
+<ul>
+<li><strong>image</strong>：输入灰度图像，float32类型</li>
+<li><strong>maxCorners</strong>：返回角点的最大数目，值为0表表示不设置最大值限制，返回所有检测到的角点。</li>
+<li><strong>qualityLevel</strong>：质量系数（小于1.0的正数，一般在0.01-0.1之间），表示可接受角点的最低质量水平。该系数乘以最好的角点分数（也就是上面较小的那个特征值），作为可接受的最小分数；例如，如果最好的角点分数值为1500且质量系数为0.01，那么所有质量分数小于15的角都将被忽略。</li>
+<li><strong>minDistance</strong>：角之间最小欧式距离，忽略小于此距离的点。</li>
+<li><strong>corners</strong>：输出角点坐标</li>
+<li><strong>mask</strong>：可选的感兴趣区域，指定想要检测角点的区域。</li>
+<li><strong>blockSize</strong>：默认为3，角点检测的邻域大小（窗口尺寸）</li>
+<li><strong>useHarrisDetector</strong>：用于指定角点检测的方法，如果是true则使用Harris角点检测，false则使用Shi Tomasi算法。默认为False。</li>
+<li><strong>k</strong>：默认为0.04，Harris角点检测时使用。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">maxCorners = <span class="number">600</span></span><br><span class="line">qualityLevel = <span class="number">0.01</span></span><br><span class="line">minDistance = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">'image1.jpg'</span>)</span><br><span class="line">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line">corners = cv2.goodFeaturesToTrack(gray, maxCorners, qualityLevel, minDistance)</span><br><span class="line">corners = np.int0(corners)</span><br><span class="line">count = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> corners:</span><br><span class="line">    x,y = i.ravel()</span><br><span class="line">    cv2.circle(img,(x,y), <span class="number">2</span>, (<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>),<span class="number">-1</span>)</span><br><span class="line">    <span class="comment"># img[y,x] = [255,0,0]</span></span><br><span class="line">    count += <span class="number">1</span></span><br><span class="line">cv.imwrite(<span class="string">'Shi-Tomasi.jpg'</span>,img)</span><br><span class="line">img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line">print(count)</span><br></pre></td></tr></table></figure>
+<p><img src="Task01-Harris特征点检测器-兴趣点检测//Tomasi.jpg" alt></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Harris和Shi-Tomasi都是基于梯度计算的角点检测方式。</p>
+<p>Harris角点检测的性质：</p>
+<ul>
+<li><p>阈值界定角点数量</p>
+</li>
+<li><p>Harris角点算子对亮度和对比度的变化不敏感</p>
+<p>因为在进行Harris角点检测时，使用了微分算子对图像进行微分运算，而微分运算对图像密度的拉升或收缩和对亮度的抬高或下降不敏感。换言之，对亮度和对比度的仿射变换并不改变Harris响应的极值点出现的位置，但是，由于阈值的选择，可能会影响角点检测的数量。</p>
+<p><img src="/article/8b3bd9dd/image1-3.png" alt="image-20200623145505861"></p>
+<p>左图表示亮度变化，右图表示对比度变化。</p>
+</li>
+<li><p>Harris角点检测算子具有旋转不变性</p>
+<p>Harris角点检测算子使用的是角点附近的区域灰度二阶矩矩阵。而二阶矩矩阵可以表示成一个椭圆，椭圆的长短轴正是二阶矩矩阵特征值平方根的倒数。当特征椭圆转动时，特征值并不发生变化，所以判断角点响应值RR也不发生变化，由此说明Harris角点检测算子具有旋转不变性。</p>
+</li>
+<li><p>Harris角点检测算子不具有尺度不变性</p>
+<p><img src="/article/8b3bd9dd/image1-1.png" alt="image-20200623003833148"></p>
+<p>如上图所示，当图像被缩小时，在检测窗口尺寸不变的前提下，在窗口内所包含图像的内容是完全不同的。左侧的图像可能被检测为边缘或曲线，而右侧的图像则可能被检测为一个角点。</p>
+</li>
+</ul>
+<p>基于梯度的角点检测器的缺点：计算复杂度高、图像中的噪声阻碍梯度计算。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/datawhalechina/team-learning/blob/master/03%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/Task01%20Harris%E7%89%B9%E5%BE%81%E7%82%B9%E6%A3%80%E6%B5%8B.md" target="_blank" rel="noopener">Task01 Harris特征点检测器-兴趣点检测</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/83064609" target="_blank" rel="noopener">角点检测：Harris 与 Shi-Tomasi</a></p>
+<p><a href="https://www.cnblogs.com/zyly/p/9508131.html" target="_blank" rel="noopener">Harris角点检测原理(赋源码)</a></p>
+]]></content>
+      <categories>
+        <category>图像处理下</category>
+      </categories>
+      <tags>
+        <tag>图像处理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Task03-Haar特征描述算子-人脸监测</title>
     <url>/article/ad28cab2.html</url>
     <content><![CDATA[<h1 id="3-1-算法由来"><a href="#3-1-算法由来" class="headerlink" title="3.1 算法由来"></a>3.1 算法由来</h1><p>Haar-like特征最早是由Papageorgiou等应用于人脸表示，2001年，Viola和Jones两位大牛发表了今典的《Rapid Object Detection using a Boosted Cascade of Simple Features》和《Robust Real-Time Face Detection》，在AdaBoost算法基础上，使用Haar-like小波特征和积分图方法进行人脸监测，并对AdaBoost训练出的强分类器进行级联。<br>这两个大咖不是最早提出使用小波特征的，单他们设计了针对人脸监测更有效的特征，可以说是人脸检测史上里程碑式的一笔了，当时这个算法被称为Viola-Jones检测器。又过了一段时间，Rainer Liehart和Jochen Maydt两位大咖把这个检测器进行扩展，最终形成了OpenCV现在的Haar分类器。</p>
@@ -1369,77 +1427,56 @@ e=\min{(S^+ + (T^- - S^-), S^- + ( T^+ - S^+))}</script><p>公式说明：前一
       </tags>
   </entry>
   <entry>
-    <title>第九章-时序数据</title>
-    <url>/article/32af8df.html</url>
-    <content><![CDATA[<p><img src="/article/32af8df/时序数据.png" alt="时序数据"></p>
-<a id="more"></a>明天要考试了--明后天再补全了~回答有些过于简陋了
-
-问题1
-(a) 
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">df &#x3D; pd.read_csv(&#39;data&#x2F;time_series_one.csv&#39;, parse_dates&#x3D;[&#39;日期&#39;])</span><br><span class="line">df[&#39;日期&#39;].dt.dayofweek[df[&#39;销售额&#39;].idxmax()]</span><br></pre></td></tr></table></figure>
+    <title>第八章-分类数据</title>
+    <url>/article/28c12c7e.html</url>
+    <content><![CDATA[<p><img src="/article/28c12c7e/分类数据.png" alt></p>
+<a id="more"></a>
+<h1 id="问题与练习"><a href="#问题与练习" class="headerlink" title="问题与练习"></a>问题与练习</h1><p>【问题一】如何使用union_categoricals方法，它的作用是什么？</p>
+<ul>
+<li>如果要组合不一定具有相同类别的类别，union_categoricals函数将组合类似列表的类别。新类别将是合并的类别的并集。如下所示：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas.api.types <span class="keyword">import</span> union_categoricals</span><br><span class="line">a = pd.Categorical([<span class="string">'b'</span>,<span class="string">'c'</span>])</span><br><span class="line">b = pd.Categorical([<span class="string">'a'</span>,<span class="string">'b'</span>])</span><br><span class="line">union_categoricals([a,b])</span><br></pre></td></tr></table></figure>
 <p>输出：</p>
-<p>6<br>（b）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">holiday &#x3D; pd.date_range(start&#x3D;&#39;20170501&#39;, end&#x3D;&#39;20170503&#39;).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20171001&#39;, end&#x3D;&#39;20171007&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20180215&#39;, end&#x3D;&#39;20180221&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20180501&#39;, end&#x3D;&#39;20180503&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20181001&#39;, end&#x3D;&#39;20181007&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20190204&#39;, end&#x3D;&#39;20190224&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20190501&#39;, end&#x3D;&#39;20190503&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20191001&#39;, end&#x3D;&#39;20191007&#39;))</span><br><span class="line">result &#x3D; df[~df[&#39;日期&#39;].isin(holiday)].set_index(&#39;日期&#39;).resample(&#39;MS&#39;).sum()</span><br><span class="line">result.head()</span><br></pre></td></tr></table></figure>
-<p>(c)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">result &#x3D; df[df[&#39;日期&#39;].dt.dayofweek.isin([5,6])].set_index(&#39;日期&#39;).resample(&#39;QS&#39;).sum()</span><br><span class="line">result.head()</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>pandas下</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>pandas</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>pandas下综合练习</title>
-    <url>/article/67aeaf8.html</url>
-    <content><![CDATA[<h1 id="一、端午节的淘宝粽子交易"><a href="#一、端午节的淘宝粽子交易" class="headerlink" title="一、端午节的淘宝粽子交易"></a>一、端午节的淘宝粽子交易</h1><h2 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h2><p>（1）请删除最后一列为缺失值的行，并求所有在杭州发货的商品单价均值。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">'端午粽子数据.csv'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
-<p><img src="/article/67aeaf8/image-20200701220417701.png" alt="image-20200701220417701">列名中有些包含了空格，先去除。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.columns = df.columns.str.strip()</span><br><span class="line">df.columns</span><br></pre></td></tr></table></figure>
-<p><img src="/article/67aeaf8/image-20200701220535004.png" alt="image-20200701220535004"><br>然后将最后一列为空的行去除，使用dropna方法。再查看最后一列为空的行。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_clean = df.dropna(axis=<span class="number">0</span>,subset=[df.columns[<span class="number">-1</span>]])</span><br><span class="line">df_clean[df_clean[df_clean.columns[<span class="number">-1</span>]].isna()]</span><br></pre></td></tr></table></figure>
-<p><img src="/article/67aeaf8/image-20200701220754043.png" alt="image-20200701220754043"><br>确认已删除完毕。<br>将所有在杭州交易的记录取出。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_h = df_clean[df_clean[<span class="string">'发货地址'</span>].str.contains(<span class="string">'杭州'</span>)]</span><br></pre></td></tr></table></figure>
-<p>查看其中价格列不能转换为float的行。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_number</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        float(x)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">except</span> (SyntaxError, ValueError) <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">df_h[~df_h[<span class="string">'价格'</span>].map(is_number)]</span><br></pre></td></tr></table></figure>
-<p><img src="/article/67aeaf8/image-20200701221103969.png" alt="image-20200701221103969"></p>
-<p>将其价格改为45。计算价格转换为float类型并计算均值。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_h.loc[<span class="number">4376</span>][<span class="string">'价格'</span>] = <span class="number">45</span></span><br><span class="line">df_h[<span class="string">'价格'</span>].astype(<span class="string">'float'</span>).mean()</span><br></pre></td></tr></table></figure>
-<p><img src="/article/67aeaf8/image-20200701221222671.png" alt="image-20200701221222671"></p>
-<p>（2）商品标题带有”嘉兴”但发货地却不在嘉兴的商品有多少条记录？<br>直接使用contain方法求取即可。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_bj = df_clean[df_clean[<span class="string">'标题'</span>].str.contains(<span class="string">'嘉兴'</span>)]</span><br><span class="line">df_bj_nj =df_bj[~(df_bj[<span class="string">'发货地址'</span>].str.contains(<span class="string">'嘉兴'</span>))]</span><br><span class="line">df_bj_nj.shape</span><br></pre></td></tr></table></figure>
-<p>（3）请按照分位数将价格分为“高、较高、中、较低、低” 5个类别，再将类别结果插入到标题一列之后，最后对类别列进行降序排序。<br>查看价格列中异常值。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_clean[~df_clean[<span class="string">'价格'</span>].map(is_number)]</span><br></pre></td></tr></table></figure>
-<p><img src="/article/67aeaf8/image-20200701221526292.png" alt="image-20200701221526292"><br>修改为对应的正常值。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_clean.loc[<span class="number">538</span>][<span class="string">'价格'</span>] = <span class="number">45.9</span></span><br><span class="line">df_clean.loc[<span class="number">4376</span>][<span class="string">'价格'</span>] = <span class="number">45</span></span><br></pre></td></tr></table></figure>
-<p>使用qcut方法将价格按数量等分为5类。并重命名为“高、较高、中、较低、低” 5个类别。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">q_cut = pd.qcut(df_clean[<span class="string">'价格'</span>].astype(<span class="string">'float'</span>),<span class="number">5</span>)</span><br><span class="line">df_clean.loc[:,<span class="string">'类别'</span>] = q_cut.cat.rename_categories([<span class="string">'低'</span>,<span class="string">'较低'</span>,<span class="string">'中'</span>,<span class="string">'较高'</span>,<span class="string">'高'</span>])</span><br></pre></td></tr></table></figure>
-<p>将列顺序按要求排列。并将表格按照类别进行降序排列。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_clean = df_clean[[<span class="string">'标题'</span>,<span class="string">'类别'</span>,<span class="string">'价格'</span>,<span class="string">'付款人数'</span>,<span class="string">'店铺'</span>,<span class="string">'发货地址'</span>]]</span><br><span class="line">df_clean = df_clean.sort_values(<span class="string">'类别'</span>, ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/article/67aeaf8/image-20200701221901144.png" alt="image-20200701221901144"><br>（4）付款人数一栏有缺失值吗？若有则请利用上一问的分类结果对这些缺失值进行合理估计并填充。<br>查看付款人数一栏有缺失值的行。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_clean[df_clean[<span class="string">'付款人数'</span>].isna()]</span><br></pre></td></tr></table></figure>
-<p><img src="/article/67aeaf8/image-20200701221950329.png" alt="image-20200701221950329"></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_clean[<span class="string">'价格'</span>] = df_clean[<span class="string">'价格'</span>].astype(<span class="string">'float'</span>)</span><br><span class="line">df_clean.sort_values(<span class="string">'价格'</span>, ascending=<span class="literal">False</span>)</span><br><span class="line">df_clean[<span class="string">'发货地址'</span>].value_counts()</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def replace(x):</span><br><span class="line">    try:</span><br><span class="line">        x &#x3D; str(x)</span><br><span class="line">        if &#39;万&#39; in x:</span><br><span class="line">            i &#x3D; x.index(&#39;万&#39;)</span><br><span class="line">            return float(x[:i]) * 10000</span><br><span class="line">        if &#39;+&#39; in x:</span><br><span class="line">            i &#x3D; x.index(&#39;+&#39;)</span><br><span class="line">        elif &#39;人&#39; in x:</span><br><span class="line">            i &#x3D; x.index(&#39;人&#39;)</span><br><span class="line">        else:</span><br><span class="line">            # print(x)</span><br><span class="line">            return None</span><br><span class="line">        return int(x[:i])</span><br><span class="line">    except:</span><br><span class="line">        print(x)</span><br><span class="line">        return None</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_clean[<span class="string">'付款人数'</span>] = df_clean[<span class="string">'付款人数'</span>].map(replace)</span><br><span class="line">df_clean = df_clean.set_index(<span class="string">'价格'</span>)</span><br><span class="line">df_clean[<span class="string">'付款人数'</span>] = df_clean[<span class="string">'付款人数'</span>].interpolate(method=<span class="string">'index'</span>)</span><br><span class="line">df_clean = df_clean.reset_index()</span><br><span class="line">df_clean = df_clean[[<span class="string">'标题'</span>,<span class="string">'类别'</span>,<span class="string">'价格'</span>,<span class="string">'付款人数'</span>,<span class="string">'店铺'</span>,<span class="string">'发货地址'</span>]]</span><br></pre></td></tr></table></figure>
-<p>（5）请将数据后四列合并为如下格式的Series:商品发货地为xx，店铺为xx，共计xx人付款，单价为xx。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">result &#x3D; &#39;商品发货地为&#39;+df_clean[&#39;发货地址&#39;]+&#39;,店铺为&#39;+df_clean[&#39;店铺&#39;] \</span><br><span class="line">                    +&#39;,共计&#39;+df_clean[&#39;付款人数&#39;].astype(&#39;str&#39;)+&#39;,单价为&#39;\</span><br><span class="line">                   + df_clean[&#39;价格&#39;].astype(&#39;str&#39;)+&#39;元&#39;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">result.str.extract(r&#39;商品发货地为(?P&lt;发货地址&gt;[\w]+),店铺为(?P&lt;店铺&gt;[\w]+) \</span><br><span class="line">                    ,共计(?P&lt;付款人数&gt;[\w]+),单价为(?P&lt;价格&gt;[?\d.\dh]+)元&#39;)</span><br></pre></td></tr></table></figure>
-<p>提取的时候失败了。。</p>
-<h2 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">df3 &#x3D; pd.read_csv(&#39;摩拜单车数据.csv&#39;)</span><br><span class="line">df3[&#39;start_time&#39;] &#x3D; pd.to_datetime(df3[&#39;start_time&#39;].values)</span><br><span class="line">df3[&#39;end_time&#39;] &#x3D; pd.to_datetime(df3[&#39;end_time&#39;].values)</span><br><span class="line">df3[&#39;run&#39;] &#x3D; df3[&#39;end_time&#39;]-df3[&#39;start_time&#39;]</span><br><span class="line">result1 &#x3D; df3[df3[&#39;start_time&#39;].dt.dayofweek.isin([5,6])]</span><br><span class="line">result2 &#x3D; df3[df3[&#39;start_time&#39;].dt.dayofweek.isin([0,1,2,3,4])]</span><br><span class="line">result1.index &#x3D; result1[&#39;start_time&#39;].dt.strftime(&#39;%Y-%m-%d&#39;)</span><br><span class="line">result2.index &#x3D; result2[&#39;start_time&#39;].dt.strftime(&#39;%Y-%m-%d&#39;)</span><br><span class="line">result1.index.name &#x3D; &#39;day&#39;</span><br><span class="line">result2.index.name &#x3D; &#39;day&#39;</span><br><span class="line">result2.head()</span><br><span class="line">group1 &#x3D; result1.groupby([&#39;day&#39;])</span><br><span class="line">num1 &#x3D; 0</span><br><span class="line">num2 &#x3D; 0</span><br><span class="line">group1.size()</span><br><span class="line"># for name, group in group1:</span><br><span class="line">for name, group in group1:</span><br><span class="line">    print(name)</span><br><span class="line">    num1 +&#x3D; 1</span><br><span class="line">    if num1 &#x3D;&#x3D;1:</span><br><span class="line">        result_1 &#x3D; group[&#39;run&#39;].sum()</span><br><span class="line">    else:</span><br><span class="line">        result_1 +&#x3D; group[&#39;run&#39;].sum()</span><br><span class="line">result_1 &#x3D; result_1 &#x2F; num1</span><br><span class="line">print(result_1)</span><br><span class="line">group2 &#x3D; result2.groupby(&#39;day&#39;)</span><br><span class="line">for name, group in group2:</span><br><span class="line">    num2 +&#x3D; 1</span><br><span class="line">    if num2 &#x3D;&#x3D;1:</span><br><span class="line">        result_2 &#x3D; group[&#39;run&#39;].sum()</span><br><span class="line">    else:</span><br><span class="line">        result_2 +&#x3D; group[&#39;run&#39;].sum()</span><br><span class="line">result_2 &#x3D; result_2 &#x2F; num2</span><br><span class="line">print(result_2)</span><br></pre></td></tr></table></figure>
-<p><img src="/article/67aeaf8/image-20200701222344893.png" alt="image-20200701222344893"></p>
-<p><img src="/article/67aeaf8/image-20200701222354535.png" alt="image-20200701222354535"></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">result_1 &gt; result_2</span><br></pre></td></tr></table></figure>
-<p><img src="/article/67aeaf8/image-20200701222414991.png" alt="image-20200701222414991"></p>
-<p>周末的工作量是比工作日当天用车量更大</p>
-<p>（2）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">result2[<span class="string">"start_hour"</span>] = result2[<span class="string">'start_time'</span>].astype(<span class="string">'str'</span>).apply(<span class="keyword">lambda</span> x: int(x.split()[<span class="number">1</span>].split\</span><br><span class="line">                                          (<span class="string">":"</span>)[<span class="number">0</span>]))</span><br><span class="line">result2[<span class="string">"end_hour"</span>] = result2[<span class="string">'end_time'</span>].astype(<span class="string">'str'</span>).apply(<span class="keyword">lambda</span> x: int(x.split()[<span class="number">1</span>].split\</span><br><span class="line">                                          (<span class="string">":"</span>)[<span class="number">0</span>]))</span><br><span class="line">result2[<span class="string">"start_min"</span>] = result2[<span class="string">'start_time'</span>].astype(<span class="string">'str'</span>).apply(<span class="keyword">lambda</span> x: int(x.split()[<span class="number">1</span>].split\</span><br><span class="line">                                          (<span class="string">":"</span>)[<span class="number">1</span>]))</span><br><span class="line">result2[<span class="string">'end_min'</span>] = result2[<span class="string">'end_time'</span>].astype(<span class="string">'str'</span>).apply(<span class="keyword">lambda</span> x: int(x.split()[<span class="number">1</span>].split\</span><br><span class="line">                                                            (<span class="string">":"</span>)[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">result2_e = result2[(result2[<span class="string">'start_hour'</span>]&lt;<span class="number">9</span>) | ((result2[<span class="string">'start_hour'</span>]==<span class="number">9</span>) &amp; (result2[<span class="string">'start_min'</span>] &lt; <span class="number">30</span>))]</span><br><span class="line">result2_e = result2_e[(result2_e[<span class="string">'end_hour'</span>]&gt;<span class="number">7</span>) | ((result2_e[<span class="string">'end_hour'</span>]==<span class="number">7</span>) &amp; (result2_e[<span class="string">'end_min'</span>] &gt; <span class="number">30</span>))]</span><br><span class="line">result2_a = result2[(result2[<span class="string">'start_hour'</span>]&lt;<span class="number">19</span>) &amp; (result2[<span class="string">'end_hour'</span>]&gt;<span class="number">17</span>)]</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">result2_e.shape[<span class="number">0</span>]</span><br><span class="line">group2_e = result2_e.groupby(<span class="string">'day'</span>)</span><br><span class="line">list_e = []</span><br><span class="line">list_n = []</span><br><span class="line"><span class="keyword">for</span> name, group <span class="keyword">in</span> group2_e:</span><br><span class="line">    list_n.append(name)</span><br><span class="line">    list_e.append(group[<span class="string">'run'</span>].sum())</span><br><span class="line">group2_a = result2_a.groupby(<span class="string">'day'</span>)</span><br><span class="line">list_a = []</span><br><span class="line">list_n2 = []</span><br><span class="line"><span class="keyword">for</span> name, group <span class="keyword">in</span> group2_a:</span><br><span class="line">    list_n2.append(name)</span><br><span class="line">    list_a.append(group[<span class="string">'run'</span>].sum())</span><br><span class="line">result_day = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(list_a)):</span><br><span class="line">    <span class="keyword">if</span> list_e[i] &gt; list_a[i]:</span><br><span class="line">        result_day.append(list_n[i])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">result_day</span><br></pre></td></tr></table></figure>
-<p><img src="/article/67aeaf8/image-20200701223448673.png" alt="image-20200701223448673"></p>
+<p><img src="/article/28c12c7e/image-1.png" alt="image-20200627224024855"></p>
+<ul>
+<li>默认情况下，生成的类别将按照在数据中显示的顺序排列。如果要对类别进行排序，可使用sort_categories=True参数。</li>
+<li>union_categoricals也适用于组合相同类别和顺序信息的两个分类。</li>
+<li>union_categoricals可以在合并分类时重新编码类别的整数代码。</li>
+</ul>
+<p>【问题二】利用concat方法将两个序列纵向拼接，它的结果一定是分类变量吗？什么情况下不是？</p>
+<ul>
+<li>pd.concat对象只能是pd.Series或pd.DataFrame，所以结果是object。</li>
+<li>使用union_categoricals拼接两个分类变量可得到分类变量。</li>
+</ul>
+<p>【问题三】当使用groupby方法或者value_counts方法时，分类变量的统计结果和普通变量有什么区别？</p>
+<ul>
+<li>分类变量的groupby方法/value_counts方法，统计对象是类别。</li>
+<li>普通变量groupby方法/value_counts方法，统计对象是唯一值(不包含NA)。</li>
+</ul>
+<p>【问题四】下面的代码说明了Series创建分类变量的什么”缺陷”？如何避免？（提示使用Series的copy参数）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cat = pd.Categorical([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">10</span>], categories=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">10</span>])</span><br><span class="line">s = pd.Series(cat, name=<span class="string">"cat"</span>)</span><br><span class="line">cat</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">[1, 2, 3, 10]</span><br><span class="line">Categories (5, int64): [1, 2, 3, 4, 10]</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s.iloc[<span class="number">0</span>:<span class="number">2</span>] = <span class="number">10</span></span><br><span class="line">cat</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">[10, 10, 3, 10]</span><br><span class="line">Categories (5, int64): [1, 2, 3, 4, 10]</span><br></pre></td></tr></table></figure>
+<p>分类变量在Series改动时也被改动了。<br><strong>使用copy参数避免分类变量被修改。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cat = pd.Categorical([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">10</span>],categories=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">10</span>])</span><br><span class="line">s = pd.Series(cat, name=<span class="string">'cat'</span>, copy=<span class="literal">True</span>)</span><br><span class="line">print(cat)</span><br><span class="line">s.iloc[<span class="number">0</span>:<span class="number">2</span>] = <span class="number">10</span></span><br><span class="line">print(cat)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<p><img src="/article/28c12c7e/image-2.png" alt="image-20200627230102057"></p>
+<p>【练习一】现继续使用第四章中的地震数据集，请解决以下问题：<br>（a）现在将深度分为七个等级：[0.5,10,15,20,30,50,np.inf]，请以深度Ⅰ,Ⅱ,Ⅲ,Ⅳ,Ⅴ,Ⅵ,Ⅶ为索引并按照由浅到深的顺序进行排序。</p>
+<p>使用cut方法对列表中的深度划分，并将该列作为索引值。然后按索引排序即可。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">'data/Earthquake.csv'</span>)</span><br><span class="line">df_result = df.copy()</span><br><span class="line">df_result[<span class="string">'深度'</span>] = pd.cut(df[<span class="string">'深度'</span>],[<span class="number">0</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">50</span>,np.inf], right=<span class="literal">False</span>, labels=[<span class="string">'Ⅰ'</span>,<span class="string">'Ⅱ'</span>,<span class="string">'Ⅲ'</span>,<span class="string">'Ⅳ'</span>,<span class="string">'Ⅴ'</span>,<span class="string">'Ⅵ'</span>,<span class="string">'Ⅶ'</span>])</span><br><span class="line">df_result = df_result.set_index(<span class="string">'深度'</span>).sort_index()</span><br><span class="line">df_result.head()</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<p><img src="/article/28c12c7e/image-3.png" alt="image-20200627231333013"></p>
+<p>（b）在(a)的基础上，将烈度分为4个等级：[0,3,4,5,np.inf]，依次对南部地区的深度和烈度等级建立多级索引排序。</p>
+<p>跟(a)很相似，cut方法对深度，烈度进行切分，把index设为[‘深度’，‘烈度’]，然后进行索引排序即可。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">'烈度'</span>] = pd.cut(df[<span class="string">'烈度'</span>],[<span class="number">0</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,np.inf], right=<span class="literal">False</span>, labels=[<span class="string">'Ⅰ'</span>,<span class="string">'Ⅱ'</span>,<span class="string">'Ⅲ'</span>,<span class="string">'Ⅳ'</span>])</span><br><span class="line">df[<span class="string">'深度'</span>] = pd.cut(df[<span class="string">'深度'</span>],[<span class="number">0</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">50</span>,np.inf], right=<span class="literal">False</span>, labels=[<span class="string">'Ⅰ'</span>,<span class="string">'Ⅱ'</span>,<span class="string">'Ⅲ'</span>,<span class="string">'Ⅳ'</span>,<span class="string">'Ⅴ'</span>,<span class="string">'Ⅵ'</span>,<span class="string">'Ⅶ'</span>])</span><br><span class="line">df_ds = df.set_index([<span class="string">'深度'</span>,<span class="string">'烈度'</span>])</span><br><span class="line">df_ds.sort_index()</span><br></pre></td></tr></table></figure>
+<p>【练习二】 对于分类变量而言，调用第4章中的变形函数会出现一个BUG（目前的版本下还未修复）：例如对于crosstab函数，按照<a href="https://pandas.pydata.org/pandas-docs/version/1.0.0/user_guide/reshaping.html#cross-tabulations" target="_blank" rel="noopener">官方文档的说法</a>，即使没有出现的变量也会在变形后的汇总结果中出现，但事实上并不是这样，比如下面的例子就缺少了原本应该出现的行’c’和列’f’。基于这一问题，请尝试设计my_crosstab函数，在功能上能够返回正确的结果。<br>因为Categories中肯定包含出现的变量。所以将第一个参数作为index，第二个参数作为columns，建立一个DataFrame，然后把出现的变量组合起来，对应位置填入1即可。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">foo = pd.Categorical([<span class="string">'b'</span>,<span class="string">'a'</span>], categories=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>])</span><br><span class="line">bar = pd.Categorical([<span class="string">'d'</span>, <span class="string">'e'</span>], categories=[<span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>])</span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_crosstab</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    s1 = pd.Series(list(foo.categories), name=<span class="string">'row'</span>)</span><br><span class="line">    s2 = list(bar.categories)</span><br><span class="line">    df = pd.DataFrame(np.zeros((len(s1), len(s2)),int),index=s1, columns=s2)</span><br><span class="line">    index_1 = list(foo)</span><br><span class="line">    index_2 = list(bar)</span><br><span class="line">    <span class="keyword">for</span> loc <span class="keyword">in</span> zip(index_1, index_2):</span><br><span class="line">        df.loc[loc] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> df</span><br><span class="line">my_crosstab(foo, bar)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<p><img src="/article/28c12c7e/image-4.png" alt="image-20200627232221247"></p>
 ]]></content>
       <categories>
         <category>pandas下</category>
@@ -1506,57 +1543,20 @@ e=\min{(S^+ + (T^- - S^-), S^- + ( T^+ - S^+))}</script><p>公式说明：前一
       </tags>
   </entry>
   <entry>
-    <title>第八章-分类数据</title>
-    <url>/article/28c12c7e.html</url>
-    <content><![CDATA[<p><img src="/article/28c12c7e/分类数据.png" alt></p>
-<a id="more"></a>
-<h1 id="问题与练习"><a href="#问题与练习" class="headerlink" title="问题与练习"></a>问题与练习</h1><p>【问题一】如何使用union_categoricals方法，它的作用是什么？</p>
-<ul>
-<li>如果要组合不一定具有相同类别的类别，union_categoricals函数将组合类似列表的类别。新类别将是合并的类别的并集。如下所示：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas.api.types <span class="keyword">import</span> union_categoricals</span><br><span class="line">a = pd.Categorical([<span class="string">'b'</span>,<span class="string">'c'</span>])</span><br><span class="line">b = pd.Categorical([<span class="string">'a'</span>,<span class="string">'b'</span>])</span><br><span class="line">union_categoricals([a,b])</span><br></pre></td></tr></table></figure>
+    <title>第九章-时序数据</title>
+    <url>/article/32af8df.html</url>
+    <content><![CDATA[<p><img src="/article/32af8df/时序数据.png" alt="时序数据"></p>
+<a id="more"></a>明天要考试了--明后天再补全了~回答有些过于简陋了
+
+问题1
+(a) 
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">df &#x3D; pd.read_csv(&#39;data&#x2F;time_series_one.csv&#39;, parse_dates&#x3D;[&#39;日期&#39;])</span><br><span class="line">df[&#39;日期&#39;].dt.dayofweek[df[&#39;销售额&#39;].idxmax()]</span><br></pre></td></tr></table></figure>
 <p>输出：</p>
-<p><img src="/article/28c12c7e/image-1.png" alt="image-20200627224024855"></p>
-<ul>
-<li>默认情况下，生成的类别将按照在数据中显示的顺序排列。如果要对类别进行排序，可使用sort_categories=True参数。</li>
-<li>union_categoricals也适用于组合相同类别和顺序信息的两个分类。</li>
-<li>union_categoricals可以在合并分类时重新编码类别的整数代码。</li>
-</ul>
-<p>【问题二】利用concat方法将两个序列纵向拼接，它的结果一定是分类变量吗？什么情况下不是？</p>
-<ul>
-<li>pd.concat对象只能是pd.Series或pd.DataFrame，所以结果是object。</li>
-<li>使用union_categoricals拼接两个分类变量可得到分类变量。</li>
-</ul>
-<p>【问题三】当使用groupby方法或者value_counts方法时，分类变量的统计结果和普通变量有什么区别？</p>
-<ul>
-<li>分类变量的groupby方法/value_counts方法，统计对象是类别。</li>
-<li>普通变量groupby方法/value_counts方法，统计对象是唯一值(不包含NA)。</li>
-</ul>
-<p>【问题四】下面的代码说明了Series创建分类变量的什么”缺陷”？如何避免？（提示使用Series的copy参数）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cat = pd.Categorical([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">10</span>], categories=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">10</span>])</span><br><span class="line">s = pd.Series(cat, name=<span class="string">"cat"</span>)</span><br><span class="line">cat</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">[1, 2, 3, 10]</span><br><span class="line">Categories (5, int64): [1, 2, 3, 4, 10]</span><br></pre></td></tr></table></figure>
-<hr>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s.iloc[<span class="number">0</span>:<span class="number">2</span>] = <span class="number">10</span></span><br><span class="line">cat</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">[10, 10, 3, 10]</span><br><span class="line">Categories (5, int64): [1, 2, 3, 4, 10]</span><br></pre></td></tr></table></figure>
-<p>分类变量在Series改动时也被改动了。<br><strong>使用copy参数避免分类变量被修改。</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cat = pd.Categorical([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">10</span>],categories=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">10</span>])</span><br><span class="line">s = pd.Series(cat, name=<span class="string">'cat'</span>, copy=<span class="literal">True</span>)</span><br><span class="line">print(cat)</span><br><span class="line">s.iloc[<span class="number">0</span>:<span class="number">2</span>] = <span class="number">10</span></span><br><span class="line">print(cat)</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<p><img src="/article/28c12c7e/image-2.png" alt="image-20200627230102057"></p>
-<p>【练习一】现继续使用第四章中的地震数据集，请解决以下问题：<br>（a）现在将深度分为七个等级：[0.5,10,15,20,30,50,np.inf]，请以深度Ⅰ,Ⅱ,Ⅲ,Ⅳ,Ⅴ,Ⅵ,Ⅶ为索引并按照由浅到深的顺序进行排序。</p>
-<p>使用cut方法对列表中的深度划分，并将该列作为索引值。然后按索引排序即可。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">'data/Earthquake.csv'</span>)</span><br><span class="line">df_result = df.copy()</span><br><span class="line">df_result[<span class="string">'深度'</span>] = pd.cut(df[<span class="string">'深度'</span>],[<span class="number">0</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">50</span>,np.inf], right=<span class="literal">False</span>, labels=[<span class="string">'Ⅰ'</span>,<span class="string">'Ⅱ'</span>,<span class="string">'Ⅲ'</span>,<span class="string">'Ⅳ'</span>,<span class="string">'Ⅴ'</span>,<span class="string">'Ⅵ'</span>,<span class="string">'Ⅶ'</span>])</span><br><span class="line">df_result = df_result.set_index(<span class="string">'深度'</span>).sort_index()</span><br><span class="line">df_result.head()</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<p><img src="/article/28c12c7e/image-3.png" alt="image-20200627231333013"></p>
-<p>（b）在(a)的基础上，将烈度分为4个等级：[0,3,4,5,np.inf]，依次对南部地区的深度和烈度等级建立多级索引排序。</p>
-<p>跟(a)很相似，cut方法对深度，烈度进行切分，把index设为[‘深度’，‘烈度’]，然后进行索引排序即可。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">'烈度'</span>] = pd.cut(df[<span class="string">'烈度'</span>],[<span class="number">0</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,np.inf], right=<span class="literal">False</span>, labels=[<span class="string">'Ⅰ'</span>,<span class="string">'Ⅱ'</span>,<span class="string">'Ⅲ'</span>,<span class="string">'Ⅳ'</span>])</span><br><span class="line">df[<span class="string">'深度'</span>] = pd.cut(df[<span class="string">'深度'</span>],[<span class="number">0</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">50</span>,np.inf], right=<span class="literal">False</span>, labels=[<span class="string">'Ⅰ'</span>,<span class="string">'Ⅱ'</span>,<span class="string">'Ⅲ'</span>,<span class="string">'Ⅳ'</span>,<span class="string">'Ⅴ'</span>,<span class="string">'Ⅵ'</span>,<span class="string">'Ⅶ'</span>])</span><br><span class="line">df_ds = df.set_index([<span class="string">'深度'</span>,<span class="string">'烈度'</span>])</span><br><span class="line">df_ds.sort_index()</span><br></pre></td></tr></table></figure>
-<p>【练习二】 对于分类变量而言，调用第4章中的变形函数会出现一个BUG（目前的版本下还未修复）：例如对于crosstab函数，按照<a href="https://pandas.pydata.org/pandas-docs/version/1.0.0/user_guide/reshaping.html#cross-tabulations" target="_blank" rel="noopener">官方文档的说法</a>，即使没有出现的变量也会在变形后的汇总结果中出现，但事实上并不是这样，比如下面的例子就缺少了原本应该出现的行’c’和列’f’。基于这一问题，请尝试设计my_crosstab函数，在功能上能够返回正确的结果。<br>因为Categories中肯定包含出现的变量。所以将第一个参数作为index，第二个参数作为columns，建立一个DataFrame，然后把出现的变量组合起来，对应位置填入1即可。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">foo = pd.Categorical([<span class="string">'b'</span>,<span class="string">'a'</span>], categories=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>])</span><br><span class="line">bar = pd.Categorical([<span class="string">'d'</span>, <span class="string">'e'</span>], categories=[<span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>])</span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_crosstab</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    s1 = pd.Series(list(foo.categories), name=<span class="string">'row'</span>)</span><br><span class="line">    s2 = list(bar.categories)</span><br><span class="line">    df = pd.DataFrame(np.zeros((len(s1), len(s2)),int),index=s1, columns=s2)</span><br><span class="line">    index_1 = list(foo)</span><br><span class="line">    index_2 = list(bar)</span><br><span class="line">    <span class="keyword">for</span> loc <span class="keyword">in</span> zip(index_1, index_2):</span><br><span class="line">        df.loc[loc] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> df</span><br><span class="line">my_crosstab(foo, bar)</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<p><img src="/article/28c12c7e/image-4.png" alt="image-20200627232221247"></p>
-]]></content>
+<p>6<br>（b）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">holiday &#x3D; pd.date_range(start&#x3D;&#39;20170501&#39;, end&#x3D;&#39;20170503&#39;).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20171001&#39;, end&#x3D;&#39;20171007&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20180215&#39;, end&#x3D;&#39;20180221&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20180501&#39;, end&#x3D;&#39;20180503&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20181001&#39;, end&#x3D;&#39;20181007&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20190204&#39;, end&#x3D;&#39;20190224&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20190501&#39;, end&#x3D;&#39;20190503&#39;)).append(</span><br><span class="line">          pd.date_range(start&#x3D;&#39;20191001&#39;, end&#x3D;&#39;20191007&#39;))</span><br><span class="line">result &#x3D; df[~df[&#39;日期&#39;].isin(holiday)].set_index(&#39;日期&#39;).resample(&#39;MS&#39;).sum()</span><br><span class="line">result.head()</span><br></pre></td></tr></table></figure>
+<p>(c)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">result &#x3D; df[df[&#39;日期&#39;].dt.dayofweek.isin([5,6])].set_index(&#39;日期&#39;).resample(&#39;QS&#39;).sum()</span><br><span class="line">result.head()</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>pandas下</category>
       </categories>
