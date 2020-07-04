@@ -1,300 +1,211 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
+
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="向前向前向前ε=( o｀ω′)ノ">
+  <meta name="author" content="sulimin">
+  <meta name="keywords" content="机器学习，数据挖掘，计算机视觉">
+  <title>3常见分布与假设检验 - 苏</title>
 
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=EB Garamond:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
-  </script>
-
-  <meta name="description" content="1 一般随机变量1.1 随机变量的两种类型根据随机变量可能取值的个数分为离散型（取值有限）和连续型（取值无限）两类。 1.2 离散型随机变量对于离散型随机变量，使用概率质量函数（probability mass function），简称PMF，来描述其分布律。 假定离散型随机变量X，共有n个取值，$X_1$, $X_2$, ……, $X_n$, 那么  P(X&#x3D;X_n) \geq 0 \Sigma">
-<meta property="og:type" content="article">
-<meta property="og:title" content="3常见分布与假设检验">
-<meta property="og:url" content="http://yoursite.com/article/7c20a36d.html">
-<meta property="og:site_name" content="苏">
-<meta property="og:description" content="1 一般随机变量1.1 随机变量的两种类型根据随机变量可能取值的个数分为离散型（取值有限）和连续型（取值无限）两类。 1.2 离散型随机变量对于离散型随机变量，使用概率质量函数（probability mass function），简称PMF，来描述其分布律。 假定离散型随机变量X，共有n个取值，$X_1$, $X_2$, ……, $X_n$, 那么  P(X&#x3D;X_n) \geq 0 \Sigma">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/article/7c20a36d/discreteoverall.PNG">
-<meta property="og:image" content="http://yoursite.com/article/7c20a36d/continuousoverall.PNG">
-<meta property="og:image" content="http://yoursite.com/article/7c20a36d/binomial.png">
-<meta property="og:image" content="http://yoursite.com/article/7c20a36d/poisson.png">
-<meta property="og:image" content="http://yoursite.com/article/7c20a36d/poisson2.png">
-<meta property="og:image" content="http://yoursite.com/article/7c20a36d/uniform.png">
-<meta property="og:image" content="http://yoursite.com/article/7c20a36d/normal.png">
-<meta property="og:image" content="http://yoursite.com/article/7c20a36d/uniform2.png">
-<meta property="og:image" content="http://yoursite.com/article/7c20a36d/expo.png">
-<meta property="og:image" content="http://yoursite.com/article/7c20a36d/expo2.png">
-<meta property="article:published_time" content="2020-06-27T15:40:36.000Z">
-<meta property="article:modified_time" content="2020-07-01T06:23:48.145Z">
-<meta property="article:author" content="sulimin">
-<meta property="article:tag" content="概率统计">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/article/7c20a36d/discreteoverall.PNG">
-
-<link rel="canonical" href="http://yoursite.com/article/7c20a36d.html">
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  <title>3常见分布与假设检验 | 苏</title>
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
   
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
 
 
 
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+<link  rel="stylesheet" href="/css/main.css" />
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+<!-- 自定义样式保持在最底部 -->
 
-<link rel="alternate" href="/atom.xml" title="苏" type="application/atom+xml">
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="苏" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">苏</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
 </nav>
 
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
 
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
             
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-06-27 23:40">
+      2020年6月27日 晚上
+    </time>
+  </div>
 
+
+<div class="mt-1">
+  
     
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      72
+       分钟
+    </span>
+  
+
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/article/7c20a36d.html">
+</div>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          3常见分布与假设检验
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-27 23:40:36" itemprop="dateCreated datePublished" datetime="2020-06-27T23:40:36+08:00">2020-06-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-01 14:23:48" itemprop="dateModified" datetime="2020-07-01T14:23:48+08:00">2020-07-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">概率统计</span></a>
-                </span>
-            </span>
+            
+          </div>
 
           
-            <span id="/article/7c20a36d.html" class="post-meta-item leancloud_visitors" data-flag-title="3常见分布与假设检验" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/7c20a36d.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/7c20a36d.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>12k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>11 分钟</span>
-            </span>
-
         </div>
-      </header>
+      </div>
+    </div>
+  </header>
 
+  <main>
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
       
-        <h2 id="1-一般随机变量"><a href="#1-一般随机变量" class="headerlink" title="1 一般随机变量"></a>1 一般随机变量</h2><h3 id="1-1-随机变量的两种类型"><a href="#1-1-随机变量的两种类型" class="headerlink" title="1.1 随机变量的两种类型"></a>1.1 随机变量的两种类型</h3><p>根据随机变量可能取值的个数分为离散型（取值有限）和连续型（取值无限）两类。</p>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="1-一般随机变量"><a href="#1-一般随机变量" class="headerlink" title="1 一般随机变量"></a>1 一般随机变量</h2><h3 id="1-1-随机变量的两种类型"><a href="#1-1-随机变量的两种类型" class="headerlink" title="1.1 随机变量的两种类型"></a>1.1 随机变量的两种类型</h3><p>根据随机变量可能取值的个数分为离散型（取值有限）和连续型（取值无限）两类。</p>
 <h3 id="1-2-离散型随机变量"><a href="#1-2-离散型随机变量" class="headerlink" title="1.2 离散型随机变量"></a>1.2 离散型随机变量</h3><p>对于离散型随机变量，使用概率质量函数（probability mass function），简称PMF，来描述其分布律。</p>
 <p>假定离散型随机变量X，共有n个取值，$X_1$, $X_2$, ……, $X_n$, 那么</p>
 <script type="math/tex; mode=display">
@@ -409,42 +320,164 @@ P\{X>s+t | X> t\} =P\{X>s\}</script><h4 id="2-2-4-其他连续分布"><a href="#
 <p><strong>威布尔分布 （Weibull distribution）</strong></p>
 <p>常用来描述在工程领域中某类具有“最弱链”对象的寿命</p>
 <h3 id="2-3-常见分布的均值和方差汇总"><a href="#2-3-常见分布的均值和方差汇总" class="headerlink" title="2.3 常见分布的均值和方差汇总"></a>2.3 常见分布的均值和方差汇总</h3><p>离散型分布</p>
-<p><img src="/article/7c20a36d/discreteoverall.PNG" alt="discreteoverall"></p>
+<p><img src="/article/7c20a36d/discreteoverall.PNG" srcset="/img/loading.gif" alt="discreteoverall"></p>
 <p>连续型分布</p>
-<p><img src="/article/7c20a36d/continuousoverall.PNG" alt="continuousoverall"></p>
+<p><img src="/article/7c20a36d/continuousoverall.PNG" srcset="/img/loading.gif" alt="continuousoverall"></p>
 <p>图片来自于 [Statistical Inference by Casella and Berger]</p>
 <h3 id="2-4-Python-代码实战"><a href="#2-4-Python-代码实战" class="headerlink" title="2.4 Python 代码实战"></a>2.4 Python 代码实战</h3><h4 id="2-4-1-生成一组符合特定分布的随机数"><a href="#2-4-1-生成一组符合特定分布的随机数" class="headerlink" title="2.4.1 生成一组符合特定分布的随机数"></a>2.4.1 生成一组符合特定分布的随机数</h4><p>在Numpy库中，提供了一组random类可以生成特定分布的随机数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成大小为1000的符合b(10,0.5)二项分布的样本集</span></span><br><span class="line">s = numpy.random.binomial(n=<span class="number">10</span>,p=<span class="number">0.5</span>,size=<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成大小为1000的符合P(1)的泊松分布的样本集</span></span><br><span class="line">s = numpy.random.poisson(lam=<span class="number">1</span>,size=<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成大小为1000的符合U(0,1)均匀分布的样本集，注意在此方法中边界值为左闭右开区间</span></span><br><span class="line">s = numpy.random.uniform(low=<span class="number">0</span>,high=<span class="number">1</span>,size=<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成大小为1000的符合N(0,1)正态分布的样本集，可以用normal函数自定义均值，标准差，也可以直接使用standard_normal函数</span></span><br><span class="line">s = numpy.random.normal(loc=<span class="number">0</span>,scale=<span class="number">1</span>,size=<span class="number">1000</span>)</span><br><span class="line">s = numpy.random.standard_normal(size=<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成大小为1000的符合E(1/2)指数分布的样本集，注意该方法中的参数为指数分布参数λ的倒数</span></span><br><span class="line">s = numpy.random.exponential(scale=<span class="number">2</span>,size=<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy
+
+<span class="hljs-comment"># 生成大小为1000的符合b(10,0.5)二项分布的样本集</span>
+s = numpy.random.binomial(n=<span class="hljs-number">10</span>,p=<span class="hljs-number">0.5</span>,size=<span class="hljs-number">1000</span>)
+
+<span class="hljs-comment"># 生成大小为1000的符合P(1)的泊松分布的样本集</span>
+s = numpy.random.poisson(lam=<span class="hljs-number">1</span>,size=<span class="hljs-number">1000</span>)
+
+<span class="hljs-comment"># 生成大小为1000的符合U(0,1)均匀分布的样本集，注意在此方法中边界值为左闭右开区间</span>
+s = numpy.random.uniform(low=<span class="hljs-number">0</span>,high=<span class="hljs-number">1</span>,size=<span class="hljs-number">1000</span>)
+
+<span class="hljs-comment"># 生成大小为1000的符合N(0,1)正态分布的样本集，可以用normal函数自定义均值，标准差，也可以直接使用standard_normal函数</span>
+s = numpy.random.normal(loc=<span class="hljs-number">0</span>,scale=<span class="hljs-number">1</span>,size=<span class="hljs-number">1000</span>)
+s = numpy.random.standard_normal(size=<span class="hljs-number">1000</span>)
+
+<span class="hljs-comment"># 生成大小为1000的符合E(1/2)指数分布的样本集，注意该方法中的参数为指数分布参数λ的倒数</span>
+s = numpy.random.exponential(scale=<span class="hljs-number">2</span>,size=<span class="hljs-number">1000</span>)</code></pre>
 <p>除了Numpy，Scipy也提供了一组生成特定分布随机数的方法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以均匀分布为例，rvs可用来生成一组随机变量的值</span></span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line">stats.uniform.rvs(size=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment"># 以均匀分布为例，rvs可用来生成一组随机变量的值</span>
+<span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
+stats.uniform.rvs(size=<span class="hljs-number">10</span>)</code></pre>
 <h4 id="2-4-2-计算统计分布的PMF和PDF"><a href="#2-4-2-计算统计分布的PMF和PDF" class="headerlink" title="2.4.2 计算统计分布的PMF和PDF"></a>2.4.2 计算统计分布的PMF和PDF</h4><p>Scipy库提供了一组用于计算离散型随机变量PMF和连续型随机变量PDF的方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算二项分布B(10,0.5)的PMF</span></span><br><span class="line">x=range(<span class="number">11</span>)</span><br><span class="line">p=stats.binom.pmf(x, n=<span class="number">10</span>, p=<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算泊松分布P(1)的PMF</span></span><br><span class="line">x=range(<span class="number">11</span>)</span><br><span class="line">p=stats.poisson.pmf(x, mu=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算均匀分布U(0,1)的PDF</span></span><br><span class="line">x = numpy.linspace(<span class="number">0</span>,<span class="number">1</span>,<span class="number">100</span>)</span><br><span class="line">p= stats.uniform.pdf(x,loc=<span class="number">0</span>, scale=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算正态分布N(0,1)的PDF</span></span><br><span class="line">x = numpy.linspace(<span class="number">-3</span>,<span class="number">3</span>,<span class="number">1000</span>)</span><br><span class="line">p= stats.norm.pdf(x,loc=<span class="number">0</span>, scale=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算指数分布E(1)的PDF</span></span><br><span class="line">x = numpy.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">1000</span>)</span><br><span class="line">p= stats.expon.pdf(x,loc=<span class="number">0</span>,scale=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
+
+<span class="hljs-comment"># 计算二项分布B(10,0.5)的PMF</span>
+x=range(<span class="hljs-number">11</span>)
+p=stats.binom.pmf(x, n=<span class="hljs-number">10</span>, p=<span class="hljs-number">0.5</span>)
+
+<span class="hljs-comment"># 计算泊松分布P(1)的PMF</span>
+x=range(<span class="hljs-number">11</span>)
+p=stats.poisson.pmf(x, mu=<span class="hljs-number">1</span>)
+
+<span class="hljs-comment"># 计算均匀分布U(0,1)的PDF</span>
+x = numpy.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">100</span>)
+p= stats.uniform.pdf(x,loc=<span class="hljs-number">0</span>, scale=<span class="hljs-number">1</span>)
+
+<span class="hljs-comment"># 计算正态分布N(0,1)的PDF</span>
+x = numpy.linspace(<span class="hljs-number">-3</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1000</span>)
+p= stats.norm.pdf(x,loc=<span class="hljs-number">0</span>, scale=<span class="hljs-number">1</span>)
+
+<span class="hljs-comment"># 计算指数分布E(1)的PDF</span>
+x = numpy.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">1000</span>)
+p= stats.expon.pdf(x,loc=<span class="hljs-number">0</span>,scale=<span class="hljs-number">1</span>)</code></pre>
 <h4 id="2-4-3-计算统计分布的CDF"><a href="#2-4-3-计算统计分布的CDF" class="headerlink" title="2.4.3 计算统计分布的CDF"></a>2.4.3 计算统计分布的CDF</h4><p>类似计算概率质量/密度函数的方法，只需将上节中的pmf或pdf替换为cdf，即可得到分布函数的值</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以正态分布为例，计算正态分布N(0,1)的CDF</span></span><br><span class="line">x = numpy.linspace(<span class="number">-3</span>,<span class="number">3</span>,<span class="number">1000</span>)</span><br><span class="line">p = stats.norm.cdf(x,loc=<span class="number">0</span>, scale=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment"># 以正态分布为例，计算正态分布N(0,1)的CDF</span>
+x = numpy.linspace(<span class="hljs-number">-3</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1000</span>)
+p = stats.norm.cdf(x,loc=<span class="hljs-number">0</span>, scale=<span class="hljs-number">1</span>)</code></pre>
 <h4 id="2-4-4-统计分布可视化"><a href="#2-4-4-统计分布可视化" class="headerlink" title="2.4.4 统计分布可视化"></a>2.4.4 统计分布可视化</h4><h5 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a><strong>二项分布</strong></h5><p>比较n=10，p=0.5的二项分布的真实概率质量和10000次随机抽样的结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line">x = range(<span class="number">11</span>)  <span class="comment"># 二项分布成功的次数（X轴）</span></span><br><span class="line">t = stats.binom.rvs(<span class="number">10</span>,<span class="number">0.5</span>,size=<span class="number">10000</span>) <span class="comment"># B(10,0.5)随机抽样10000次</span></span><br><span class="line">p = stats.binom.pmf(x, <span class="number">10</span>, <span class="number">0.5</span>) <span class="comment"># B(10,0.5)真实概率质量</span></span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">sns.distplot(t,bins=<span class="number">10</span>,hist_kws=&#123;<span class="string">'density'</span>:<span class="literal">True</span>&#125;, kde=<span class="literal">False</span>,label = <span class="string">'Distplot from 10000 samples'</span>)</span><br><span class="line">sns.scatterplot(x,p,color=<span class="string">'purple'</span>)</span><br><span class="line">sns.lineplot(x,p,color=<span class="string">'purple'</span>,label=<span class="string">'True mass density'</span>)</span><br><span class="line">plt.title(<span class="string">'Binomial distribution'</span>)</span><br><span class="line">plt.legend(bbox_to_anchor=(<span class="number">1.05</span>, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-<p><img src="/article/7c20a36d/binomial.png" alt="binomial"></p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
+
+x = range(<span class="hljs-number">11</span>)  <span class="hljs-comment"># 二项分布成功的次数（X轴）</span>
+t = stats.binom.rvs(<span class="hljs-number">10</span>,<span class="hljs-number">0.5</span>,size=<span class="hljs-number">10000</span>) <span class="hljs-comment"># B(10,0.5)随机抽样10000次</span>
+p = stats.binom.pmf(x, <span class="hljs-number">10</span>, <span class="hljs-number">0.5</span>) <span class="hljs-comment"># B(10,0.5)真实概率质量</span>
+
+fig, ax = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)
+sns.distplot(t,bins=<span class="hljs-number">10</span>,hist_kws=&#123;<span class="hljs-string">'density'</span>:<span class="hljs-literal">True</span>&#125;, kde=<span class="hljs-literal">False</span>,label = <span class="hljs-string">'Distplot from 10000 samples'</span>)
+sns.scatterplot(x,p,color=<span class="hljs-string">'purple'</span>)
+sns.lineplot(x,p,color=<span class="hljs-string">'purple'</span>,label=<span class="hljs-string">'True mass density'</span>)
+plt.title(<span class="hljs-string">'Binomial distribution'</span>)
+plt.legend(bbox_to_anchor=(<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>))</code></pre>
+<p><img src="/article/7c20a36d/binomial.png" srcset="/img/loading.gif" alt="binomial"></p>
 <h5 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a><strong>泊松分布</strong></h5><p>比较λ=2的泊松分布的真实概率质量和10000次随机抽样的结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">x=range(<span class="number">11</span>)</span><br><span class="line">t= stats.poisson.rvs(<span class="number">2</span>,size=<span class="number">10000</span>)</span><br><span class="line">p=stats.poisson.pmf(x, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">sns.distplot(t,bins=<span class="number">10</span>,hist_kws=&#123;<span class="string">'density'</span>:<span class="literal">True</span>&#125;, kde=<span class="literal">False</span>,label = <span class="string">'Distplot from 10000 samples'</span>)</span><br><span class="line">sns.scatterplot(x,p,color=<span class="string">'purple'</span>)</span><br><span class="line">sns.lineplot(x,p,color=<span class="string">'purple'</span>,label=<span class="string">'True mass density'</span>)</span><br><span class="line">plt.title(<span class="string">'Poisson distribution'</span>)</span><br><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
-<p><img src="/article/7c20a36d/poisson.png" alt="poisson"></p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
+x=range(<span class="hljs-number">11</span>)
+t= stats.poisson.rvs(<span class="hljs-number">2</span>,size=<span class="hljs-number">10000</span>)
+p=stats.poisson.pmf(x, <span class="hljs-number">2</span>)
+
+fig, ax = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)
+sns.distplot(t,bins=<span class="hljs-number">10</span>,hist_kws=&#123;<span class="hljs-string">'density'</span>:<span class="hljs-literal">True</span>&#125;, kde=<span class="hljs-literal">False</span>,label = <span class="hljs-string">'Distplot from 10000 samples'</span>)
+sns.scatterplot(x,p,color=<span class="hljs-string">'purple'</span>)
+sns.lineplot(x,p,color=<span class="hljs-string">'purple'</span>,label=<span class="hljs-string">'True mass density'</span>)
+plt.title(<span class="hljs-string">'Poisson distribution'</span>)
+plt.legend()</code></pre>
+<p><img src="/article/7c20a36d/poisson.png" srcset="/img/loading.gif" alt="poisson"></p>
 <p>比较不同参数λ对应的概率质量函数，可以验证随着参数增大，泊松分布开始逐渐变得对称，分布也越来越均匀，趋近于正态分布</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x=range(<span class="number">50</span>)</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line"><span class="keyword">for</span>  lam <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">20</span>] :</span><br><span class="line">        p=stats.poisson.pmf(x, lam)</span><br><span class="line">        sns.lineplot(x,p,label=<span class="string">'lamda= '</span>+ str(lam))</span><br><span class="line">plt.title(<span class="string">'Poisson distribution'</span>)</span><br><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
-<p><img src="/article/7c20a36d/poisson2.png" alt="poisson2"></p>
+<pre><code class="hljs python">x=range(<span class="hljs-number">50</span>)
+fig, ax = plt.subplots()
+<span class="hljs-keyword">for</span>  lam <span class="hljs-keyword">in</span> [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-number">10</span>,<span class="hljs-number">20</span>] :
+        p=stats.poisson.pmf(x, lam)
+        sns.lineplot(x,p,label=<span class="hljs-string">'lamda= '</span>+ str(lam))
+plt.title(<span class="hljs-string">'Poisson distribution'</span>)
+plt.legend()</code></pre>
+<p><img src="/article/7c20a36d/poisson2.png" srcset="/img/loading.gif" alt="poisson2"></p>
 <h5 id="均匀分布"><a href="#均匀分布" class="headerlink" title="均匀分布"></a><strong>均匀分布</strong></h5><p>比较U(0,1)的均匀分布的真实概率密度和10000次随机抽样的结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">x=numpy.linspace(<span class="number">0</span>,<span class="number">1</span>,<span class="number">100</span>)</span><br><span class="line">t= stats.uniform.rvs(<span class="number">0</span>,<span class="number">1</span>,size=<span class="number">10000</span>)</span><br><span class="line">p=stats.uniform.pdf(x, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">sns.distplot(t,bins=<span class="number">10</span>,hist_kws=&#123;<span class="string">'density'</span>:<span class="literal">True</span>&#125;, kde=<span class="literal">False</span>,label = <span class="string">'Distplot from 10000 samples'</span>)</span><br><span class="line"></span><br><span class="line">sns.lineplot(x,p,color=<span class="string">'purple'</span>,label=<span class="string">'True mass density'</span>)</span><br><span class="line">plt.title(<span class="string">'Uniforml distribution'</span>)</span><br><span class="line">plt.legend(bbox_to_anchor=(<span class="number">1.05</span>, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-<p><img src="/article/7c20a36d/uniform.png" alt="uniform"></p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
+x=numpy.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">100</span>)
+t= stats.uniform.rvs(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,size=<span class="hljs-number">10000</span>)
+p=stats.uniform.pdf(x, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+
+fig, ax = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)
+sns.distplot(t,bins=<span class="hljs-number">10</span>,hist_kws=&#123;<span class="hljs-string">'density'</span>:<span class="hljs-literal">True</span>&#125;, kde=<span class="hljs-literal">False</span>,label = <span class="hljs-string">'Distplot from 10000 samples'</span>)
+
+sns.lineplot(x,p,color=<span class="hljs-string">'purple'</span>,label=<span class="hljs-string">'True mass density'</span>)
+plt.title(<span class="hljs-string">'Uniforml distribution'</span>)
+plt.legend(bbox_to_anchor=(<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>))</code></pre>
+<p><img src="/article/7c20a36d/uniform.png" srcset="/img/loading.gif" alt="uniform"></p>
 <h5 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a><strong>正态分布</strong></h5><p>比较N(0,1)的正态分布的真实概率密度和10000次随机抽样的结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">x=numpy.linspace(<span class="number">-3</span>,<span class="number">3</span>,<span class="number">100</span>)</span><br><span class="line">t= stats.norm.rvs(<span class="number">0</span>,<span class="number">1</span>,size=<span class="number">10000</span>)</span><br><span class="line">p=stats.norm.pdf(x, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">sns.distplot(t,bins=<span class="number">100</span>,hist_kws=&#123;<span class="string">'density'</span>:<span class="literal">True</span>&#125;, kde=<span class="literal">False</span>,label = <span class="string">'Distplot from 10000 samples'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sns.lineplot(x,p,color=<span class="string">'purple'</span>,label=<span class="string">'True mass density'</span>)</span><br><span class="line">plt.title(<span class="string">'Normal distribution'</span>)</span><br><span class="line">plt.legend(bbox_to_anchor=(<span class="number">1.05</span>, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-<p><img src="/article/7c20a36d/normal.png" alt="normal"></p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
+x=numpy.linspace(<span class="hljs-number">-3</span>,<span class="hljs-number">3</span>,<span class="hljs-number">100</span>)
+t= stats.norm.rvs(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,size=<span class="hljs-number">10000</span>)
+p=stats.norm.pdf(x, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+
+fig, ax = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)
+sns.distplot(t,bins=<span class="hljs-number">100</span>,hist_kws=&#123;<span class="hljs-string">'density'</span>:<span class="hljs-literal">True</span>&#125;, kde=<span class="hljs-literal">False</span>,label = <span class="hljs-string">'Distplot from 10000 samples'</span>)
+
+
+sns.lineplot(x,p,color=<span class="hljs-string">'purple'</span>,label=<span class="hljs-string">'True mass density'</span>)
+plt.title(<span class="hljs-string">'Normal distribution'</span>)
+plt.legend(bbox_to_anchor=(<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>))</code></pre>
+<p><img src="/article/7c20a36d/normal.png" srcset="/img/loading.gif" alt="normal"></p>
 <p>比较不同均值和标准差组合的正态分布的概率密度函数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x=numpy.linspace(<span class="number">-6</span>,<span class="number">6</span>,<span class="number">100</span>)</span><br><span class="line">p=stats.norm.pdf(x, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line"><span class="keyword">for</span>  mean, std <span class="keyword">in</span> [(<span class="number">0</span>,<span class="number">1</span>),(<span class="number">0</span>,<span class="number">2</span>),(<span class="number">3</span>,<span class="number">1</span>)]: </span><br><span class="line">        p=stats.norm.pdf(x, mean, std)</span><br><span class="line">        sns.lineplot(x,p,label=<span class="string">'Mean: '</span>+ str(mean) + <span class="string">', std: '</span>+ str(std))</span><br><span class="line">plt.title(<span class="string">'Normal distribution'</span>)</span><br><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
-<p><img src="/article/7c20a36d/uniform2.png" alt="uniform2"></p>
+<pre><code class="hljs python">x=numpy.linspace(<span class="hljs-number">-6</span>,<span class="hljs-number">6</span>,<span class="hljs-number">100</span>)
+p=stats.norm.pdf(x, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+fig, ax = plt.subplots()
+<span class="hljs-keyword">for</span>  mean, std <span class="hljs-keyword">in</span> [(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>),(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>),(<span class="hljs-number">3</span>,<span class="hljs-number">1</span>)]: 
+        p=stats.norm.pdf(x, mean, std)
+        sns.lineplot(x,p,label=<span class="hljs-string">'Mean: '</span>+ str(mean) + <span class="hljs-string">', std: '</span>+ str(std))
+plt.title(<span class="hljs-string">'Normal distribution'</span>)
+plt.legend()</code></pre>
+<p><img src="/article/7c20a36d/uniform2.png" srcset="/img/loading.gif" alt="uniform2"></p>
 <h5 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a><strong>指数分布</strong></h5><p>比较E(1)的指数分布的真实概率密度和10000次随机抽样的结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">x=numpy.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">100</span>)</span><br><span class="line">t= stats.expon.rvs(<span class="number">0</span>,<span class="number">1</span>,size=<span class="number">10000</span>)</span><br><span class="line">p=stats.expon.pdf(x, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">sns.distplot(t,bins=<span class="number">100</span>,hist_kws=&#123;<span class="string">'density'</span>:<span class="literal">True</span>&#125;, kde=<span class="literal">False</span>,label = <span class="string">'Distplot from 10000 samples'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sns.lineplot(x,p,color=<span class="string">'purple'</span>,label=<span class="string">'True mass density'</span>)</span><br><span class="line">plt.title(<span class="string">'Exponential distribution'</span>)</span><br><span class="line">plt.legend(bbox_to_anchor=(<span class="number">1</span>, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-<p><img src="/article/7c20a36d/expo.png" alt="expo"></p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
+x=numpy.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">100</span>)
+t= stats.expon.rvs(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,size=<span class="hljs-number">10000</span>)
+p=stats.expon.pdf(x, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+
+fig, ax = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)
+sns.distplot(t,bins=<span class="hljs-number">100</span>,hist_kws=&#123;<span class="hljs-string">'density'</span>:<span class="hljs-literal">True</span>&#125;, kde=<span class="hljs-literal">False</span>,label = <span class="hljs-string">'Distplot from 10000 samples'</span>)
+
+
+sns.lineplot(x,p,color=<span class="hljs-string">'purple'</span>,label=<span class="hljs-string">'True mass density'</span>)
+plt.title(<span class="hljs-string">'Exponential distribution'</span>)
+plt.legend(bbox_to_anchor=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))</code></pre>
+<p><img src="/article/7c20a36d/expo.png" srcset="/img/loading.gif" alt="expo"></p>
 <p>比较不同参数的指数分布的概率密度函数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x=numpy.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">100</span>)</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line"><span class="keyword">for</span>  scale <span class="keyword">in</span> [<span class="number">0.2</span>,<span class="number">0.5</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>] :</span><br><span class="line">        p=stats.expon.pdf(x, scale=scale)</span><br><span class="line">        sns.lineplot(x,p,label=<span class="string">'lamda= '</span>+ str(<span class="number">1</span>/scale))</span><br><span class="line">plt.title(<span class="string">'Exponential distribution'</span>)</span><br><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
-<p><img src="/article/7c20a36d/expo2.png" alt="expo2"></p>
+<pre><code class="hljs python">x=numpy.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">100</span>)
+fig, ax = plt.subplots()
+<span class="hljs-keyword">for</span>  scale <span class="hljs-keyword">in</span> [<span class="hljs-number">0.2</span>,<span class="hljs-number">0.5</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>] :
+        p=stats.expon.pdf(x, scale=scale)
+        sns.lineplot(x,p,label=<span class="hljs-string">'lamda= '</span>+ str(<span class="hljs-number">1</span>/scale))
+plt.title(<span class="hljs-string">'Exponential distribution'</span>)
+plt.legend()</code></pre>
+<p><img src="/article/7c20a36d/expo2.png" srcset="/img/loading.gif" alt="expo2"></p>
 <h2 id="3-假设检验"><a href="#3-假设检验" class="headerlink" title="3 假设检验"></a>3 假设检验</h2><h3 id="3-1-基本概念"><a href="#3-1-基本概念" class="headerlink" title="3.1 基本概念"></a>3.1 基本概念</h3><p>假设检验问题是统计推断中的一类重要问题，在总体的分布函数完全未知或只知其形式，不知其参数的情况，为了推断总体的某些未知特性，提出某些关于总体的假设，这类问题被称为假设检验。</p>
 <h3 id="3-2-基本步骤"><a href="#3-2-基本步骤" class="headerlink" title="3.2 基本步骤"></a>3.2 基本步骤</h3><p>一个假设检验问题可以分为5步，无论细节如果变化，都一定会遵循这5个步骤。</p>
 <ol>
@@ -588,23 +621,89 @@ P\{X>s+t | X> t\} =P\{X>s\}</script><h4 id="2-2-4-其他连续分布"><a href="#
 <h4 id="3-5-1-正态检验"><a href="#3-5-1-正态检验" class="headerlink" title="3.5.1 正态检验"></a>3.5.1 正态检验</h4><p>Shapiro-Wilk Test是一种经典的正态检验方法。</p>
 <p>H0: 样本总体服从正态分布</p>
 <p>H1: 样本总体不服从正态分布 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> shapiro</span><br><span class="line">data_nonnormal = np.random.exponential(size=<span class="number">100</span>)</span><br><span class="line">data_normal = np.random.normal(size=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">normal_judge</span><span class="params">(data)</span>:</span></span><br><span class="line">	stat, p = shapiro(data)</span><br><span class="line">	<span class="keyword">if</span> p &gt; <span class="number">0.05</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">'stat=&#123;:.3f&#125;, p = &#123;:.3f&#125;, probably gaussian'</span>.format(stat,p)</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">'stat=&#123;:.3f&#125;, p = &#123;:.3f&#125;, probably not gaussian'</span>.format(stat,p)</span><br><span class="line"></span><br><span class="line"><span class="comment"># output</span></span><br><span class="line">normal_judge(data_nonnormal)</span><br><span class="line"><span class="comment"># 'stat=0.850, p = 0.000, probably not gaussian'</span></span><br><span class="line">normal_judge(data_normal)</span><br><span class="line"><span class="comment"># 'stat=0.987, p = 0.415, probably gaussian'</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> shapiro
+data_nonnormal = np.random.exponential(size=<span class="hljs-number">100</span>)
+data_normal = np.random.normal(size=<span class="hljs-number">100</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">normal_judge</span><span class="hljs-params">(data)</span>:</span>
+	stat, p = shapiro(data)
+	<span class="hljs-keyword">if</span> p &gt; <span class="hljs-number">0.05</span>:
+		<span class="hljs-keyword">return</span> <span class="hljs-string">'stat=&#123;:.3f&#125;, p = &#123;:.3f&#125;, probably gaussian'</span>.format(stat,p)
+	<span class="hljs-keyword">else</span>:
+		<span class="hljs-keyword">return</span> <span class="hljs-string">'stat=&#123;:.3f&#125;, p = &#123;:.3f&#125;, probably not gaussian'</span>.format(stat,p)
+
+<span class="hljs-comment"># output</span>
+normal_judge(data_nonnormal)
+<span class="hljs-comment"># 'stat=0.850, p = 0.000, probably not gaussian'</span>
+normal_judge(data_normal)
+<span class="hljs-comment"># 'stat=0.987, p = 0.415, probably gaussian'</span></code></pre>
 <h4 id="3-5-2-卡方检验"><a href="#3-5-2-卡方检验" class="headerlink" title="3.5.2 卡方检验"></a>3.5.2 卡方检验</h4><p>目的：检验两组类别变量是相关的还是独立的</p>
 <p>H0: 两个样本是独立的</p>
 <p>H1: 两组样本不是独立的</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> chi2_contingency</span><br><span class="line">table = [[<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>],[<span class="number">6</span>,  <span class="number">9</span>,  <span class="number">17</span>]]</span><br><span class="line">stat, p, dof, expected = chi2_contingency(table)</span><br><span class="line">print(<span class="string">'stat=%.3f, p=%.3f'</span> % (stat, p))</span><br><span class="line"><span class="keyword">if</span> p &gt; <span class="number">0.05</span>:</span><br><span class="line">	print(<span class="string">'Probably independent'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	print(<span class="string">'Probably dependent'</span>)</span><br><span class="line"></span><br><span class="line"> <span class="comment"># output</span></span><br><span class="line"><span class="comment">#stat=0.272, p=0.873</span></span><br><span class="line"><span class="comment">#Probably independent</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> chi2_contingency
+table = [[<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>],[<span class="hljs-number">6</span>,  <span class="hljs-number">9</span>,  <span class="hljs-number">17</span>]]
+stat, p, dof, expected = chi2_contingency(table)
+print(<span class="hljs-string">'stat=%.3f, p=%.3f'</span> % (stat, p))
+<span class="hljs-keyword">if</span> p &gt; <span class="hljs-number">0.05</span>:
+	print(<span class="hljs-string">'Probably independent'</span>)
+<span class="hljs-keyword">else</span>:
+	print(<span class="hljs-string">'Probably dependent'</span>)
+
+ <span class="hljs-comment"># output</span>
+<span class="hljs-comment">#stat=0.272, p=0.873</span>
+<span class="hljs-comment">#Probably independent</span></code></pre>
 <h4 id="3-5-3-T-test"><a href="#3-5-3-T-test" class="headerlink" title="3.5.3 T-test"></a>3.5.3 T-test</h4><p>目的：检验两个独立样本集的均值是否具有显著差异</p>
 <p>H0: 均值是相等的</p>
 <p>H1: 均值是不等的</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> ttest_ind</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data1 = np.random.normal(size=<span class="number">10</span>)</span><br><span class="line">data2 = np.random.normal(size=<span class="number">10</span>)</span><br><span class="line">stat, p = ttest_ind(data1, data2)</span><br><span class="line">print(<span class="string">'stat=%.3f, p=%.3f'</span> % (stat, p))</span><br><span class="line"><span class="keyword">if</span> p &gt; <span class="number">0.05</span>:</span><br><span class="line">	print(<span class="string">'Probably the same distribution'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	print(<span class="string">'Probably different distributions'</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># output</span></span><br><span class="line"><span class="comment"># stat=-1.382, p=0.184</span></span><br><span class="line"><span class="comment"># Probably the same distribution</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> ttest_ind
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+data1 = np.random.normal(size=<span class="hljs-number">10</span>)
+data2 = np.random.normal(size=<span class="hljs-number">10</span>)
+stat, p = ttest_ind(data1, data2)
+print(<span class="hljs-string">'stat=%.3f, p=%.3f'</span> % (stat, p))
+<span class="hljs-keyword">if</span> p &gt; <span class="hljs-number">0.05</span>:
+	print(<span class="hljs-string">'Probably the same distribution'</span>)
+<span class="hljs-keyword">else</span>:
+	print(<span class="hljs-string">'Probably different distributions'</span>)
+    
+<span class="hljs-comment"># output</span>
+<span class="hljs-comment"># stat=-1.382, p=0.184</span>
+<span class="hljs-comment"># Probably the same distribution</span></code></pre>
 <h4 id="3-5-4-ANOVA"><a href="#3-5-4-ANOVA" class="headerlink" title="3.5.4 ANOVA"></a>3.5.4 ANOVA</h4><p>目的：与t-test类似，ANOVA可以检验两组及以上独立样本集的均值是否具有显著差异</p>
 <p>H0: 均值是相等的</p>
 <p>H1: 均值是不等的</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> f_oneway</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data1 = np.random.normal(size=<span class="number">10</span>)</span><br><span class="line">data2 = np.random.normal(size=<span class="number">10</span>)</span><br><span class="line">data3 = np.random.normal(size=<span class="number">10</span>)</span><br><span class="line">stat, p = f_oneway(data1, data2, data3)</span><br><span class="line">print(<span class="string">'stat=%.3f, p=%.3f'</span> % (stat, p))</span><br><span class="line"><span class="keyword">if</span> p &gt; <span class="number">0.05</span>:</span><br><span class="line">	print(<span class="string">'Probably the same distribution'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	print(<span class="string">'Probably different distributions'</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># output</span></span><br><span class="line"><span class="comment"># stat=0.189, p=0.829</span></span><br><span class="line"><span class="comment"># Probably the same distribution</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> f_oneway
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+data1 = np.random.normal(size=<span class="hljs-number">10</span>)
+data2 = np.random.normal(size=<span class="hljs-number">10</span>)
+data3 = np.random.normal(size=<span class="hljs-number">10</span>)
+stat, p = f_oneway(data1, data2, data3)
+print(<span class="hljs-string">'stat=%.3f, p=%.3f'</span> % (stat, p))
+<span class="hljs-keyword">if</span> p &gt; <span class="hljs-number">0.05</span>:
+	print(<span class="hljs-string">'Probably the same distribution'</span>)
+<span class="hljs-keyword">else</span>:
+	print(<span class="hljs-string">'Probably different distributions'</span>)
+ 
+<span class="hljs-comment"># output</span>
+<span class="hljs-comment"># stat=0.189, p=0.829</span>
+<span class="hljs-comment"># Probably the same distribution</span></code></pre>
 <h4 id="3-5-5-Mann-Whitney-U-Test"><a href="#3-5-5-Mann-Whitney-U-Test" class="headerlink" title="3.5.5 Mann-Whitney U Test"></a>3.5.5 Mann-Whitney U Test</h4><p>目的：检验两个样本集的分布是否相同</p>
 <p>H0: 两个样本集的分布相同</p>
 <p>H1: 两个样本集的分布不同</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> mannwhitneyu</span><br><span class="line">data1 = [<span class="number">0.873</span>, <span class="number">2.817</span>, <span class="number">0.121</span>, <span class="number">-0.945</span>, <span class="number">-0.055</span>, <span class="number">-1.436</span>, <span class="number">0.360</span>, <span class="number">-1.478</span>, <span class="number">-1.637</span>, <span class="number">-1.869</span>]</span><br><span class="line">data2 = [<span class="number">1.142</span>, <span class="number">-0.432</span>, <span class="number">-0.938</span>, <span class="number">-0.729</span>, <span class="number">-0.846</span>, <span class="number">-0.157</span>, <span class="number">0.500</span>, <span class="number">1.183</span>, <span class="number">-1.075</span>, <span class="number">-0.169</span>]</span><br><span class="line">stat, p = mannwhitneyu(data1, data2)</span><br><span class="line">print(<span class="string">'stat=%.3f, p=%.3f'</span> % (stat, p))</span><br><span class="line"><span class="keyword">if</span> p &gt; <span class="number">0.05</span>:</span><br><span class="line">	print(<span class="string">'Probably the same distribution'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	print(<span class="string">'Probably different distributions'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># output</span></span><br><span class="line"><span class="comment"># stat=40.000, p=0.236</span></span><br><span class="line"><span class="comment"># Probably the same distribution</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> mannwhitneyu
+data1 = [<span class="hljs-number">0.873</span>, <span class="hljs-number">2.817</span>, <span class="hljs-number">0.121</span>, <span class="hljs-number">-0.945</span>, <span class="hljs-number">-0.055</span>, <span class="hljs-number">-1.436</span>, <span class="hljs-number">0.360</span>, <span class="hljs-number">-1.478</span>, <span class="hljs-number">-1.637</span>, <span class="hljs-number">-1.869</span>]
+data2 = [<span class="hljs-number">1.142</span>, <span class="hljs-number">-0.432</span>, <span class="hljs-number">-0.938</span>, <span class="hljs-number">-0.729</span>, <span class="hljs-number">-0.846</span>, <span class="hljs-number">-0.157</span>, <span class="hljs-number">0.500</span>, <span class="hljs-number">1.183</span>, <span class="hljs-number">-1.075</span>, <span class="hljs-number">-0.169</span>]
+stat, p = mannwhitneyu(data1, data2)
+print(<span class="hljs-string">'stat=%.3f, p=%.3f'</span> % (stat, p))
+<span class="hljs-keyword">if</span> p &gt; <span class="hljs-number">0.05</span>:
+	print(<span class="hljs-string">'Probably the same distribution'</span>)
+<span class="hljs-keyword">else</span>:
+	print(<span class="hljs-string">'Probably different distributions'</span>)
+
+<span class="hljs-comment"># output</span>
+<span class="hljs-comment"># stat=40.000, p=0.236</span>
+<span class="hljs-comment"># Probably the same distribution</span></code></pre>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
 <li>Ross S . 概率论基础教程[M]. 人民邮电出版社, 2007.</li>
 <li>盛骤, 谢式千, 潘承毅, 等. 概率论与数理统计 (第四版)[J]. 2008.</li>
@@ -613,271 +712,261 @@ P\{X>s+t | X> t\} =P\{X>s\}</script><h4 id="2-2-4-其他连续分布"><a href="#
 <li><a href="https://www.thoughtco.com/difference-between-type-i-and-type-ii-errors-3126414" target="_blank" rel="noopener">https://www.thoughtco.com/difference-between-type-i-and-type-ii-errors-3126414</a></li>
 </ol>
 
-    </div>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/">概率统计</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/">概率统计</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/article/32af8df.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">第九章-时序数据</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/article/28c12c7e.html">
+                        <span class="hidden-mobile">第八章-分类数据</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
 
-    
-    
-    
-	
-    
-      <div>
-        <div>
-    
-        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
-    
-</div>
-
-      </div>
-    
-
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/" rel="tag"><i class="fa fa-tag"></i> 概率统计</a>
+            
           </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/article/28c12c7e.html" rel="prev" title="第八章-分类数据">
-      <i class="fa fa-chevron-left"></i> 第八章-分类数据
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/article/32af8df.html" rel="next" title="第九章-时序数据">
-      第九章-时序数据 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="valine-comments"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-一般随机变量"><span class="nav-text">1 一般随机变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-随机变量的两种类型"><span class="nav-text">1.1 随机变量的两种类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-离散型随机变量"><span class="nav-text">1.2 离散型随机变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-连续型随机变量"><span class="nav-text">1.3 连续型随机变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-常见分布"><span class="nav-text">2 常见分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-离散型分布"><span class="nav-text">2.1 离散型分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-二项分布（Binomial-distribution）"><span class="nav-text">2.1.1 二项分布（Binomial distribution）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-泊松分布（Poisson-distribution）"><span class="nav-text">2.1.2 泊松分布（Poisson distribution）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-二项分布，泊松分布，正态分布的关系"><span class="nav-text">2.1.3 二项分布，泊松分布，正态分布的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-4-其他离散型随机分布"><span class="nav-text">2.1.4 其他离散型随机分布</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#几何分布（Geometric-distribution）"><span class="nav-text">几何分布（Geometric distribution）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#负二项分布（Negative-binomial-distribution）"><span class="nav-text">负二项分布（Negative binomial distribution）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#超几何分布（Hypergeometric-Distribution）"><span class="nav-text">超几何分布（Hypergeometric Distribution）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-连续型分布"><span class="nav-text">2.2 连续型分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-均匀分布-（Uniform-distribution）"><span class="nav-text">2.2.1 均匀分布 （Uniform distribution）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-正态分布-（Normal-distribution）"><span class="nav-text">2.2.2 正态分布 （Normal distribution）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-指数分布-（Exponential-distribution）"><span class="nav-text">2.2.3 指数分布 （Exponential distribution）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4-其他连续分布"><span class="nav-text">2.2.4 其他连续分布</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-常见分布的均值和方差汇总"><span class="nav-text">2.3 常见分布的均值和方差汇总</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Python-代码实战"><span class="nav-text">2.4 Python 代码实战</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-生成一组符合特定分布的随机数"><span class="nav-text">2.4.1 生成一组符合特定分布的随机数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-计算统计分布的PMF和PDF"><span class="nav-text">2.4.2 计算统计分布的PMF和PDF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-3-计算统计分布的CDF"><span class="nav-text">2.4.3 计算统计分布的CDF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-4-统计分布可视化"><span class="nav-text">2.4.4 统计分布可视化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#二项分布"><span class="nav-text">二项分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#泊松分布"><span class="nav-text">泊松分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#均匀分布"><span class="nav-text">均匀分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正态分布"><span class="nav-text">正态分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#指数分布"><span class="nav-text">指数分布</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-假设检验"><span class="nav-text">3 假设检验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-基本概念"><span class="nav-text">3.1 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-基本步骤"><span class="nav-text">3.2 基本步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-统计量的选择"><span class="nav-text">3.3 统计量的选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-两类错误"><span class="nav-text">3.4 两类错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-Python代码实战"><span class="nav-text">3.5 Python代码实战</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-1-正态检验"><span class="nav-text">3.5.1 正态检验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-2-卡方检验"><span class="nav-text">3.5.2 卡方检验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-3-T-test"><span class="nav-text">3.5.3 T-test</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-4-ANOVA"><span class="nav-text">3.5.4 ANOVA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-5-Mann-Whitney-U-Test"><span class="nav-text">3.5.5 Mann-Whitney U Test</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
       </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="sulimin"
-      src="/images/su1.JPG">
-  <p class="site-author-name" itemprop="name">sulimin</p>
-  <div class="site-description" itemprop="description">向前向前向前ε=( o｀ω′)ノ</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">12</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/sulimin-nb" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sulimin-nb" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:15210376096@163.com" title="E-Mail → mailto:15210376096@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">sulimin</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
-    </span>
-    <span title="站点总字数">站点共45k字</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    <span title="站点阅读时长">阅读需41 分钟</span>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
 </div>
 
-        
-
-
-
-
-
-
-
-
       </div>
-    </footer>
+    
   </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
 
   
-  
-  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
   
 
-
-
-
   
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
   
 
   
 
   
 
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
 
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
     });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : true,
-      appId      : 'gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz',
-      appKey     : 'Xwqmsb7cDIWaQB2GG2fCnSHf',
-      placeholder: "ヾﾉ≧∀≦)o 来呀！吐槽一番吧！",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : true,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
-    });
+  </script>
 
-  }, window.Valine);
-});
-</script>
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "3常见分布与假设检验&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
 </html>
-<script type="text/javascript" src="/js/love-click.js"></script>
