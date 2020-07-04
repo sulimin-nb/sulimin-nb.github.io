@@ -447,6 +447,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="sulimin"
+      src="/images/su1.jpg">
   <p class="site-author-name" itemprop="name">sulimin</p>
   <div class="site-description" itemprop="description">向前向前向前ε=( o｀ω′)ノ</div>
 </div>
@@ -519,6 +521,18 @@
     </span>
     <span title="站点阅读时长">阅读需40 分钟</span>
 </div>
+
+<% if (theme.busuanzi && theme.busuanzi.enable){ %>
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_site_pv">
+                本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider">|</span>
+        <span id="busuanzi_container_site_uv" style='display:none'>
+                本站访客数<span id="busuanzi_value_site_uv"></span>人
+        </span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <% } %>
 
         
 <div class="busuanzi-count">
