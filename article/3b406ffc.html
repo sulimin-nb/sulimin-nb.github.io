@@ -204,6 +204,12 @@
         <div class="py-5" id="board">
           <div class="post-content mx-auto" id="post">
             
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年7月3日 晚上
+                
+              </p>
+            
             <article class="markdown-body">
               <p>一、词的表示<br>one-hot编码：稀疏，向量之间均是正交关系，不能表示语义。<br>word class：将相同属性的词归为一类，但分类标准过意单一、片面。如cat、dag、bird都属于动物，但是dog、cat属于爬行动物，而bird属于飞行动物，难以区分。<br>word embedding：使用词向量表示词特征，相似的词、向量接近，在空间较近。但无法解决一词多义问题，即每个word只有一个词向量。<br>contextualized word embedding：同一个词在不同的上下文中有不同的表示。</p>
 <p>二、LSTM概述<br>  长短记忆神经网络——通常称作LSTM，是一种特殊的RNN，能够学习长的依赖关系。是为了避免长依赖问题而精心设计的。记住较长的历史信息实际上是他们的默认行为，而不是他们努力学习的东西。<br>1<br>2.1 标准RNN结构如下(单个tanh层)</p>
@@ -321,6 +327,30 @@
         <span>Fluid</span></a>
     </div>
     
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
 
     
 
@@ -347,6 +377,8 @@
   <script  src="/js/clipboard-use.js" ></script>
 
 
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
@@ -387,7 +419,7 @@
         "LSTM_Elmo&nbsp;",
       ],
       cursorChar: "_",
-      typeSpeed: 70,
+      typeSpeed: 50,
       loop: false,
     });
     typed.stop();
@@ -445,6 +477,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 
