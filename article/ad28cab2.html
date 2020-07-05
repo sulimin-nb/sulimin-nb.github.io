@@ -164,7 +164,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2k 字
+      2.5k 字
     </span>
   
 
@@ -174,7 +174,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      22
+      27
        分钟
     </span>
   
@@ -258,10 +258,10 @@ D_{sum} = ii(\alpha)+ii(\beta)-(ii(\gamma)+ii(\delta))</script><p>Haar-like特�
 <p>&emsp;&emsp;为了更好地说明部分特征对于人脸和非人脸的区分作用，从78,460个矩形特征中随机抽取了两个特征A和B，这两个特征遍历2,706 个人脸样本和4,381 个非人脸样本，计算了每张图像对应的特征值，最后将特征值进行了从小到大的排序，并按照这个新的顺序表绘制了分布图如下所示：</p>
 <center class="half">    <img src="/article/ad28cab2/20160921003959958" srcset="/img/loading.gif" width="400"><img src="/article/ad28cab2/20160921004018287" srcset="/img/loading.gif" width="400"></center>
 
-<div class="hljs"><pre><code class="hljs html">&#123;% gi total 2 %&#125;
-  ![img1](Task03-Haar特征描述算子-人脸监测/20160921003959958)
-  ![img2](Task03-Haar特征描述算子-人脸监测/20160921004018287)
-&#123;% endgi %&#125;</code></pre></div>
+<p>&emsp;&emsp;可以看出，矩形特征A在人脸样本和非人脸样本中的特征值分布相似，所以区分人脸和非人脸的能力很差。下面看矩形特征B在人脸样本和非人脸样本中特征值的分布：</p>
+<center class="half">    <img src="/article/ad28cab2/20160921004748821" srcset="/img/loading.gif" width="400"><img src="/article/ad28cab2/20160921004808352" srcset="/img/loading.gif" width="400"></center>
+
+<p>&emsp;&emsp;可以看出，矩形特征B的特征值分布，尤其是0点的位置，在人脸样本和非人脸样本中差别比较大，所以可以更好地实现对人脸分类。<br>&emsp;&emsp;特征 A 和特征 B 的表现大相径庭。<br>&emsp;&emsp;特征 A 对人脸和非人脸样本的特征值为0的点几乎处于相同位置（46.5%，51.5%），且都在所有特征的中间范围 (-5%)。这说明矩形特征 A对于人脸和非人脸几乎没有分辨能力。<br>&emsp;&emsp;特征 B 对非人脸样本的分布，符合我们的预想，特征值为 0的点处于所有特征的中间范围(59.4%)，这说明特征 B也“ 看不到” 非人脸的特点。但是对于人脸样本，特征 B 表现了很一致的倾向性，93.4%的特征在 0 点的一侧，与非人脸样本的相差 34%。这说明特征 B 能够相当可靠地分辨人脸和非人脸。<br>&emsp;&emsp;上述的分析说明，确实存在优势的矩形特征，能够在一定的置信范围内区分人脸和非人脸。由于是使用统计的方法计算人脸图像和非人脸图像的差别，因此最后得到的区分阈值，是在某个概率范围内准确地进行区分。<br>上述总结如下：<br>（1）在检测窗口通过平移+缩放可以产生一系列Haar特征，这些特征由于位置和大小不同，分类效果也不同；<br>（2）通过计算Haar特征的特征值，可以有将图像矩阵映射为1维特征值，有效实现了降维。</p>
 
             </article>
             <hr>
