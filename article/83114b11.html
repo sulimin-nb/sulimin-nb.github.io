@@ -214,7 +214,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年6月25日 晚上
+                  本文最后更新于：2020年7月5日 上午
                 
               </p>
             
@@ -234,13 +234,13 @@
 <p>一般地，用$X_1,X_2,…,X_n$，表示随机样本，取到的值记为$x_1,x_2,…,x_n$称为样本观测值。$n$为样本容量。</p>
 <font color="blue">样本分布</font>：样本作为随机变量的概率分布。显然，样本分布取决于总体的性质和样本的性质。
 
-## 2.统计量与抽样
+2.统计量与抽样
 
 数理统计的任务是采集和处理带有随机影响的数据，或者说收集样本并对之进行加工，在此基础上对研究的问题进行分析并作出一定的结论，这一过程称为<font color="blue">统计推断</font>。在统计推断过程中，对样本进行加工整理，实际上就是根据样本计算出一些量，把研究问题相关的信息集中起来。这种根据样本计算出的量就是<font color="blue">统计量</font>。因此，统计量是样本的某种函数。
 
 定义：设 $X_1,X_2,...,X_n $ 是总体 $X$ 的一个简单随机样本， $T(X_1, X_2,...,X_n)$ 为一个 $n$ 元连续函数，且 $T$ 中不包含任何关于总体的未知参数，则称 $T(X_1, X_2,...,X_n)$ 是一个统计量，称统计量的分布为抽样分布。
 
-### 常用的统计量
+常用的统计量
 
 <font color="blue">样本均值</font>
 
@@ -704,6 +704,56 @@ g_2 = \frac{n(n+1)}{(n-1)(n-2)(n-3)s^4}\sum_{i=1}^{n}{(x_i-\overline{x})}^4-3\fr
   
 
 
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
 
 
 
