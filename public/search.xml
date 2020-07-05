@@ -1697,8 +1697,11 @@ print(count)</code></pre>
 𝑖𝑖(𝑖,𝑗)=\sum_{𝑘≤𝑖,𝑙≤𝑗}{𝑓(𝑘,𝑙)}</script><p>积分图构建算法：<br>1、用𝑠(𝑖,𝑗)表示行方向的累加和，初始化𝑠(𝑖,−1)=0；<br>2、使用𝑖𝑖(𝑖,𝑗)表示一个积分图像，初始化𝑖𝑖(−1,𝑖)=0；<br>3、逐行扫描图像，递归计算每个像素(𝑖,𝑗)行方向的累加和𝑠(𝑖,𝑗)和积分图像𝑖𝑖(𝑖,𝑗)的值：</p>
 <script type="math/tex; mode=display">
 𝑠(𝑖,𝑗)=𝑠(𝑖,𝑗−1)+𝑓(𝑖,𝑗) \\
-𝑖𝑖(𝑖,𝑗)=𝑖𝑖(𝑖−1,𝑗)+𝑠(𝑖,𝑗)</script><p>4、扫描图像一遍，当到达图像右下角像素时，积分图像𝑖𝑖就构建好了。<br>&emsp;&emsp;积分图构造好之后，图像中任何矩阵区域像素累加和都可以通过简单运算得到如图所示：</p>
+𝑖𝑖(𝑖,𝑗)=𝑖𝑖(𝑖−1,𝑗)+𝑠(𝑖,𝑗)</script><p>4、扫描图像一遍，当到达图像右下角像素时，积分图像𝑖𝑖就构建好了。<br>积分图构造好之后，图像中任何矩阵区域像素累加和都可以通过简单运算得到如图所示：</p>
 <p><img src="/article/ad28cab2/1328274-20180815205201934-1228753116.png" srcset="/img/loading.gif" alt="img"></p>
+<p>设D的四个顶点分别为$\alpha,\beta,\gamma,\delta$，则D的像素和可以表示为：</p>
+<script type="math/tex; mode=display">
+D_{sum} = ii(\alpha)+ii(\beta)-(ii(\gamma)+ii(\delta))</script><p>Haar-like特征值是两个矩阵像素和的差，同样可以在常数时间内完成。</p>
 ]]></content>
       <categories>
         <category>图像处理下</category>
