@@ -164,7 +164,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      1.9k 字
     </span>
   
 
@@ -174,7 +174,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      16
+      20
        分钟
     </span>
   
@@ -247,10 +247,14 @@
 <script type="math/tex; mode=display">
 D_{sum} = ii(\alpha)+ii(\beta)-(ii(\gamma)+ii(\delta))</script><p>Haar-like特征值是两个矩阵像素和的差，同样可以在常数时间内完成。</p>
 <h2 id="三、计算Haar特征值"><a href="#三、计算Haar特征值" class="headerlink" title="三、计算Haar特征值"></a>三、计算Haar特征值</h2><p>&emsp;&emsp;由二已知，一个区域的像素值的和，可以由该区域的端点的积分图计算。由前面特征模板的特征值的定义可推出，<font color="blue">矩形特征的特征值由特征端点的积分图计算得到</font>。以A矩形特征为例，如下图，使用积分图计算该特征值：</p>
-<p><img src="/article/ad28cab2/Users/susu/Desktop/machine_learning_one/blogtest/source/_posts/Task03-Haar特征描述算子-人脸监测/1328274-20180816090314814-408684664.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="/article/ad28cab2/1328274-20180816090314814-408684664.png" srcset="/img/loading.gif" alt="img"></p>
 <p>区域A的像素值：$𝑖𝑖(5)+𝑖𝑖(1)−𝑖𝑖(2)−𝑖𝑖(4)$</p>
 <p>区域B的像素值：$𝑖𝑖(6)+𝑖𝑖(2)−𝑖𝑖(5)−𝑖𝑖(3)$</p>
 <p>所以：该矩形特征的特征值为：</p>
+<script type="math/tex; mode=display">
+𝑖𝑖(5)+𝑖𝑖(1)−𝑖𝑖(2)−𝑖𝑖(4)−[𝑖𝑖(6)+𝑖𝑖(2)−𝑖𝑖(5)−𝑖𝑖(3)] \\
+=[𝑖𝑖(5)−𝑖𝑖(4)]+[𝑖𝑖(3)−𝑖𝑖(2)]−[𝑖𝑖(2)−𝑖𝑖(1)]−[𝑖𝑖(6)−𝑖𝑖(5)]</script><p>&emsp;&emsp;所以，矩形特征的特征值，只与特征矩形的端点的积分图有关。利用矩形特征的端点的积分图，再进行简单的加减运算，即可得到特征值，如此一来，特征的计算速度大大提高，也提高了目标的检测速度。<br>了解特征值计算后，接下来展示不同特征值的含义。</p>
+<p>&emsp;&emsp;下图展示了20X20子窗口里面全部78,460个矩形特征对在全部2,706个人脸样本和4,381个非人脸样本的特征值平均值的分布图。由分布看出，特征的绝大部分的特征值平均值都是分布在0前后的范围内。<br>&emsp;&emsp;出乎意料的是，人脸样本与非人脸样本的分布曲线差别并不大，不过注意到特征值大于或小于某个值后，分布曲线出现了一致性的差别。说明了绝大部分特征对于识别人脸和非人脸的能力是很微小的，但是存在一些特征及相应的阈值，可以有效第区别人脸样本和非人脸样本。</p>
 
             </article>
             <hr>
