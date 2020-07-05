@@ -1,6 +1,552 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>4方差分析</title>
+    <url>/article/2ad44fb9.html</url>
+    <content><![CDATA[<h1 id="方差分析"><a href="#方差分析" class="headerlink" title="方差分析"></a>方差分析</h1><h2 id="1-概要"><a href="#1-概要" class="headerlink" title="1 概要"></a>1 概要</h2><p><strong>方差分析</strong>(<strong>Analysis of variance, ANOVA</strong>) 主要研究分类变量作为自变量时，对因变量的影响是否是显著的。</p>
+<p>方差分析的方法是由20世纪的统计学家Ronald Aylmer Fisher在1918年到1925年之间提出并陆续完善起来的，该方法刚开始是用于解决田间实验的数据分析问题，因此，方差分析的学习是和实验设计、实验数据的分析密不可分的。</p>
+<p>实验设计和方差分析都有自己相应的语言。因此，在这里我们通过一个焦虑症治疗的实例，先了解一些术语，并且思考一下，方差分析主要用于解决什么样的问题。<a id="more"></a></p>
+<p>以焦虑症治疗为例，现有两种治疗方案：认知行为疗法（CBT）和眼动脱敏再加工法（EMDR）。我们招募10位焦虑症患者作为志愿者，随机分配一半的人接受为期五周的CBT，另外一半接受为期五周的EMDR，设计方案如表1-1所示。在治疗结束时，要求每位患者都填写状态特质焦虑问卷（STAI），也就是一份焦虑度测量的自我评测报告。</p>
+<p><strong>表1-1 单因素组间方差分析</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">CBT</th>
+<th style="text-align:center">EMDR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">s1</td>
+<td style="text-align:center">s6</td>
+</tr>
+<tr>
+<td style="text-align:center">s2</td>
+<td style="text-align:center">s7</td>
+</tr>
+<tr>
+<td style="text-align:center">s3</td>
+<td style="text-align:center">s8</td>
+</tr>
+<tr>
+<td style="text-align:center">s4</td>
+<td style="text-align:center">s9</td>
+</tr>
+<tr>
+<td style="text-align:center">s5</td>
+<td style="text-align:center">s10</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>在这个实验设计中，治疗方案是两水平（CBT、EMDR）的<strong>组间因子</strong>。之所以称其为<strong>组间因子</strong>，是因为每位患者都仅被分配到一个组别中，没有患者同时接受CBT和EMDR。表中字母s代表受试者（患者）。STAI是<strong>因变量</strong>，治疗方案是<strong>自变量</strong>。由于在每种治疗方案下观测数相等，因此这种设计也称为<strong>均衡设计</strong>（balanced design）；若观测数不同，则称作<strong>非均衡设计</strong>（unbalanced design）。</p>
+<p>因为仅有一个类别型变量，表1的统计设计又称为<strong>单因素方差分析（one-way ANOVA）</strong>，或进一步称为<strong>单因素组间方差分析</strong>。方差分析主要通过F检验来进行效果评测，若治疗方案的F检验显著，则说明五周后两种疗法的STAI得分均值不同。</p>
+<p>假设你只对CBT的效果感兴趣，则需将10个患者都放在CBT组中，然后在治疗五周和六个月后分别评价疗效，设计方案如表1-2所示。</p>
+<p><strong>表1-2 单因素组内方差分析</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>时间</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>患者</strong></td>
+<td>5周</td>
+<td>6个月</td>
+</tr>
+<tr>
+<td>s1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s6</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s7</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s8</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s9</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s10</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>此时，时间（time）是两水平（五周、六个月）的<strong>组内因子</strong>。因为每位患者在所有水平下都进行了测量，所以这种统计设计称<strong>单因素组内方差分析</strong>；又由于每个受试者都不止一次被测量，也称作<strong>重复测量方差分析</strong>。当时间的F检验显著时，说明患者的STAI得分均值在五周和六个月间发生了改变。</p>
+<p>现假设你对治疗方案差异和它随时间的改变都感兴趣，则将两个设计结合起来即可：随机分配五位患者到CBT，另外五位到EMDR，在五周和六个月后分别评价他们的STAI结果（见表1-3）。</p>
+<p><strong>表1-3 含组间和组内因子的双因素方差分析</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>时间</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>疗法</strong></td>
+<td><strong>患者</strong></td>
+<td>5周</td>
+<td>6个月</td>
+</tr>
+<tr>
+<td>CBT</td>
+<td>s1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>s2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>s3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>s4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>s5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>EMDR</td>
+<td>s6</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>s7</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>s8</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>s9</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>s10</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>疗法（therapy）和时间（time）都作为因子时，我们既可分析疗法的影响（时间跨度上的平均）和时间的影响（疗法类型跨度上的平均），又可分析疗法和时间的交互影响。前两个称作<strong>主效应</strong>，交互部分称作<strong>交互效应</strong>。</p>
+<p>当设计包含两个甚至更多的因子时，便是<strong>因素方差分析设计</strong>，比如两因子时称作<strong>双因素方差分析</strong>，三因子时称作三因素方差分析，以此类推。若因子设计包括组内和组间因子，又称作<strong>混合模型方差分析</strong>，当前的例子就是典型的双因素混合模型方差分析。</p>
+<p>本例中，你将做三次F检验：疗法因素一次，时间因素一次，两者交。</p>
+<p>15214互因素一次。若疗法结果显著，说明CBT和EMDR对焦虑症的治疗效果不同；若时间结果显著，说明焦虑度从五周到六个月发生了变化；若两者交互效应显著，说明两种疗法随着时间变化对焦虑症治疗影响不同（也就是说，焦虑度从五周到六个月的改变程度在两种疗法间是不同的）。</p>
+<p>现在，我们对上面的实验设计稍微做些扩展。众所周知，抑郁症对病症治疗有影响，而且抑郁症和焦虑症常常同时出现。即使受试者被随机分配到不同的治疗方案中，在研究开始时，两组疗法中的患者抑郁水平就可能不同，任何治疗后的差异都有可能是最初的抑郁水平不同导致的，而不是由于实验的操作问题。抑郁症也可以解释因变量的组间差异，因此它常称为<strong>混淆因素</strong>（confounding factor）。由于你对抑郁症不感兴趣，它也被称作<strong>干扰变数</strong>（nuisance variable）。</p>
+<p>假设招募患者时使用抑郁症的自我评测报告，比如白氏抑郁症量表（BDI），记录了他们的抑郁水平，那么你可以在评测疗法类型的影响前，对任何抑郁水平的组间差异进行统计性调整。本案例中，BDI为<strong>协变量</strong>，该设计为<strong>协方差分析</strong>（ANCOVA）。</p>
+<p>以上设计只记录了单个因变量情况（STAI），为增强研究的有效性，可以对焦虑症进行其他的测量（比如家庭评分、医师评分，以及焦虑症对日常行为的影响评价）。当因变量不止一个时，设计被称作<strong>多元方差分析</strong>（MANOVA）， 若协变量也存在， 那么就叫<strong>多元协方差分析</strong>（MANCOVA）。</p>
+<p>下面我们主要介绍单因素方差分析与双因素方差分析的原理与实现。</p>
+<h2 id="2-单因素方差分析"><a href="#2-单因素方差分析" class="headerlink" title="2 单因素方差分析"></a>2 单因素方差分析</h2><h3 id="2-1-推导过程"><a href="#2-1-推导过程" class="headerlink" title="2.1 推导过程"></a>2.1 推导过程</h3><p>接下来我们使用种小麦的例子，去帮助理解方差分析里涉及的一些变量。</p>
+<p>假设我们现在有若干品种的小麦，要在某一地区播种，我们想知道这些品种的产量有没有显著区别，为此我们先设计了一个田间实验，取一大块地将其分成形状大小都相同的$n$小块．设供选择的品种有$k$个，我们打算其中的$n_1$小块种植品种1, $n_2$小块种植品种2，等等，$n_1 + n_2 + … n_k = n$.</p>
+<p>接下来，我们使用方差分析的方法去看不同小麦品种的产量是否有显著差异。</p>
+<p>设问题中涉及一个因素$A$，有$k$个水平，如上例的$k$个种子品种，以$Y_{ij}$记第$i$个水平的第$j$个观察值，如上例$Y_{ij}$是种植品种$i$的第$j$小块地上的亩产量。模型为</p>
+<script type="math/tex; mode=display">
+Y_{ij} = a_i + e_{ij},  j = 1,...,n_i, i = 1,...,k\qquad(2.1)</script><p>$a_i$表示水平$i$的理论平均值，称为水平$i$的效应。在小麦例子中，$a_i$就是品种$i$的平均亩产量，$e_{ij}$就是随机误差。并且我们假定：</p>
+<script type="math/tex; mode=display">
+E(e_{ij})=0, 0<Var(e_{ij})={\sigma}^2<\infty,一切e_{ij}独立同分布\qquad(2.2)</script><p>因素$A$的各水平的高低优劣，取决于其理论平均$a_{i}$的大小。故对模型(2.1)，我们头一个关心的事情，就是诸$a_{i}$是否全相同。 如果是，则表示因素$A$对所考察的指标$Y$其实无影响．这时我们就说因素A的效应不显著，否则就说它显著。当然，在实际应用中，所谓“显著”，是指诸$a_{i}$之间的差异要大到一定的程度．这个 “一定的程度”，是从其实用上的意义着眼，而“统计显著性”，则是与随机误差相比而言．这点在下文的讨论中会有所体现．我们把所要检验的假设写为：</p>
+<script type="math/tex; mode=display">
+H_0:a_1=a_2=\cdots=a_k \qquad (2.3)</script><p>为检验该假设，我们需要分析，为什么各个$Y_{ij}$会有差异？从模型(2.1)来看，无非两个原因：一是各$a_{i}$可能有差异．例如，若 $a_1&gt;a_2$, 这就使$Y_{1j}$倾向于大于$Y_{2j}$；二是随机误差的存在。这一分析启发了如下的想法：找一个衡量全部$y_{ij}$的变异的量：</p>
+<script type="math/tex; mode=display">
+SS= \sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y} \right )^2, \qquad \bar{Y}=\sum_{i=1}^{k}\sum_{j=1}^{n_i}Y_{ij}/n \qquad (2.4)</script><p>$SS$愈大，表示$Y_{ij}$之间的差异越大。</p>
+<p>接下来，把$SS$分为两部分，一部分表示随机误差的影响，记为$SS_e$；另一部分表示因素$A$的各水平理论平均值$a_i$不同带来的影响，记为$SS_A$。</p>
+<p>关于$SS_e$，先固定一个$i$，此时对应的所有观测值$Y_{i1},Y_{i2},\cdots,Y_{in}$，他们之间的差异与每个水平的理论平均值不等无关，而是取决于随机误差，反映这些观察值差异程度的量是$\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2$，其中</p>
+<script type="math/tex; mode=display">
+\bar{Y_i}=(Y_{i1}+Y_{i2}+\cdots+Y_{in})/n_i,\quad i=1, 2,\cdots,n \qquad (2.5)</script><p>$\bar{Y_i}$可以视为对$a_i$的估计。把上述平方和做累加得：</p>
+<script type="math/tex; mode=display">
+SS_e=\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \qquad (2.6)</script><p>可求得$SS_A$:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+SS_A &= SS-SS_e \\ 
+&=\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y} \right )^2-\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \\
+&=\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( (Y_{ij}-\bar{Y_i})-(\bar{Y}-\bar{Y_i}) \right )^2-\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \\
+&=\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( (Y_{ij}-\bar{Y_i})^2-2(Y_{ij}-\bar{Y_i})(\bar{Y}-\bar{Y_i})+(\bar{Y}-\bar{Y_i})^2 \right )-\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \\
+&=\sum_{i=1}^{k}\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y_i})^2 - 2\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( (Y_{ij}-\bar{Y_i})(\bar{Y}-\bar{Y_i}) \right )
++ \sum_{i=1}^{k}\sum_{j=1}^{n_i}(\bar{Y}-\bar{Y_i})^2 - \sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \\
+&= \sum_{i=1}^{k}\sum_{j=1}^{n_i}(\bar{Y_i}-\bar{Y})^2 - 2\sum_{i=1}^{k}\left ( (\bar{Y}-\bar{Y_i})\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y_i}) \right ) \quad (ps:\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y_i})=0) \\
+&= \sum_{i=1}^{k}n_i(\bar{Y_i}-\bar{Y})^2 \qquad (2.7)
+\end{align}</script><p>因为$\bar{Y_i}$可以视为对$a_i$的估计，$a_i$的差异越大，$\bar{Y_i}$之间的差异也越大，所以$SS_A$可以用来衡量不同水平之间的差异程度。</p>
+<p>在统计学上，通常称$SS$为<strong>总平方和</strong>，$SS_A$为<strong>因素$A$的平方和</strong>，$SS_e$为<strong>误差平方和</strong>，分解式$SS=SS_A+SS_e$为该模型的<strong>方差分析</strong>。</p>
+<p>基于上面的分析，我们可以得到假设（5.3）的一个检验方法：当比值$SS_A/SS_e$大于某一给定界限时，否定$H_0$，不然就接受$H_0$。为了构造$F$分布的检验统计量，我们假定随机误差$e_{ij}$满足正态分布$N(0, \sigma^2)$，同时我们也假定观察值$Y_{ij}$符合正态分布，此时，记</p>
+<script type="math/tex; mode=display">
+MS_A = SS_A/(k-1), \quad MS_e = SS_e/(n-k) \qquad (2.8)</script><p>当$H_0$成立时，有：</p>
+<script type="math/tex; mode=display">
+MS_A / MS_e \sim F_{k-1, n-k} \qquad (2.9)</script><p>据（5.9），在给定显著性水平$\alpha$时，即得（5.3）的假设$H_0$的检验如下：</p>
+<script type="math/tex; mode=display">
+当MS_A / MS_e \leqslant  F_{k-1, n-k}(\alpha)时，接受H_0，不然就拒绝H_0 \qquad (2.10)</script><p>$MS_A$和$MS_e$分别被称为<strong>因素$A$和随机误差的平均平方和</strong>。被除数$k-1$和$n-k$，分别称为这两个平方和的<strong>自由度</strong>。$MS_e$的自由度为什么是$n-k$呢？因为平方和$\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2$的自由度为$n_i-1$，故对$i$求和，$SS_e$的自由度就是$n-k$。那么，$MS_A$的自由度为什么是$k-1$呢？因为一共有$k$个平均值$a_1,\cdots,a_k$等$k-1$个，故自由度为$k-1$，两者自由度之和为$n-1$，恰好是总平方和的自由度。</p>
+<p>到这里，我们可以做出方差分析表如表2-1</p>
+<p><strong>2-1 单因素方差分析的方差分析表</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>$SS$</th>
+<th>自由度</th>
+<th>$MS$</th>
+<th>$F$比</th>
+<th>显著性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$A$</td>
+<td>$SS_A$</td>
+<td>$k-1$</td>
+<td>$MS_A$</td>
+<td>$MS_A / MS_e$</td>
+<td><em>, *</em>, 或无</td>
+</tr>
+<tr>
+<td>误差</td>
+<td>$SS_e$</td>
+<td>$n-k$</td>
+<td>$MS_e$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>总和</td>
+<td>$SS$</td>
+<td>$n-1$</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>在上表中，对于显著性一栏，一般来说，我们把算出的$F$比，即$MS_A / MS_e$，与$F_{k-1, n-k}(0.05)=c_1$和$F_{k-1, n-k}(0.01)=c_2$比较。若$MS_A / MS_e&gt;c_2$，用**表示，表明A因素的效应是高度显著的，即在$\alpha=0.01$的显著性水平下，拒绝原假设（5.3）。同理，$c_2<MS_A ms_e<c_1$用$\ast $表示，$ms_a ms_e>c_1$时不显著。</MS_A></p>
+<h3 id="2-2-代码实例"><a href="#2-2-代码实例" class="headerlink" title="2.2 代码实例"></a>2.2 代码实例</h3><h4 id="单因素方差分析的R语言实现"><a href="#单因素方差分析的R语言实现" class="headerlink" title="单因素方差分析的R语言实现"></a>单因素方差分析的R语言实现</h4><p>单因素方差分析中，你感兴趣的是比较分类因子定义的两个或多个组别中的因变量均值。以multcomp包中的cholesterol数据集为例，50个患者均接受降低胆固醇药物治疗（trt）五种疗法中的一种疗法。其中三种治疗条件使用药物相同，分别是20mg一天一次（1time）、10mg一天两次（2times）和5mg一天四次（4times）。剩下的两种方式（drugD和drugE）代表候选药物。</p>
+<pre><code class="hljs angelscript">&gt; library(multcomp)
+&gt; attach(cholesterol)
+&gt; 
+&gt; # 统计各组样本大小
+&gt; table(trt) 
+trt
+ <span class="hljs-number">1</span>time <span class="hljs-number">2</span>times <span class="hljs-number">4</span>times  drugD  drugE 
+    <span class="hljs-number">10</span>     <span class="hljs-number">10</span>     <span class="hljs-number">10</span>     <span class="hljs-number">10</span>     <span class="hljs-number">10</span> 
+&gt; 
+&gt; # 各组均值
+&gt; aggregate(response, by=list(trt), FUN=mean)
+  Group<span class="hljs-number">.1</span>        x
+<span class="hljs-number">1</span>   <span class="hljs-number">1</span>time  <span class="hljs-number">5.78197</span>
+<span class="hljs-number">2</span>  <span class="hljs-number">2</span>times  <span class="hljs-number">9.22497</span>
+<span class="hljs-number">3</span>  <span class="hljs-number">4</span>times <span class="hljs-number">12.37478</span>
+<span class="hljs-number">4</span>   drugD <span class="hljs-number">15.36117</span>
+<span class="hljs-number">5</span>   drugE <span class="hljs-number">20.94752</span>
+&gt; 
+&gt; # 各组标准差
+&gt; aggregate(response, by=list(trt), FUN=sd)
+  Group<span class="hljs-number">.1</span>        x
+<span class="hljs-number">1</span>   <span class="hljs-number">1</span>time <span class="hljs-number">2.878113</span>
+<span class="hljs-number">2</span>  <span class="hljs-number">2</span>times <span class="hljs-number">3.483054</span>
+<span class="hljs-number">3</span>  <span class="hljs-number">4</span>times <span class="hljs-number">2.923119</span>
+<span class="hljs-number">4</span>   drugD <span class="hljs-number">3.454636</span>
+<span class="hljs-number">5</span>   drugE <span class="hljs-number">3.345003</span>
+&gt; 
+&gt; # 进行方差分析
+&gt; fit &lt;- aov(response ~ trt)
+&gt; summary(fit)
+            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+trt          <span class="hljs-number">4</span> <span class="hljs-number">1351.4</span>   <span class="hljs-number">337.8</span>   <span class="hljs-number">32.43</span> <span class="hljs-number">9.82e-13</span> ***
+Residuals   <span class="hljs-number">45</span>  <span class="hljs-number">468.8</span>    <span class="hljs-number">10.4</span>                     
+---
+Signif. codes:  <span class="hljs-number">0</span> ‘***’ <span class="hljs-number">0.001</span> ‘**’ <span class="hljs-number">0.01</span> ‘*’ <span class="hljs-number">0.05</span> ‘.’ <span class="hljs-number">0.1</span> ‘ ’ <span class="hljs-number">1</span></code></pre>
+<p>方差分析的结果中，各项数字的含义可以参照表2-1。</p>
+<h4 id="查看各水平对应的组均值的差异"><a href="#查看各水平对应的组均值的差异" class="headerlink" title="查看各水平对应的组均值的差异"></a>查看各水平对应的组均值的差异</h4><p>gplots包中的plotmeans()可以用来绘制带有置信区间的组均值图形。如图9-1所示，图形展示了带有95%的置信区间的各疗法均值，可以清楚看到它们之间的差异。</p>
+<pre><code class="hljs lisp">library(<span class="hljs-name">gplots</span>)
+plotmeans(<span class="hljs-name">response</span> ~ trt, xlab=<span class="hljs-string">"Treatment"</span>, ylab=<span class="hljs-string">"Response"</span>,
+          main=<span class="hljs-string">"Mean Plot\nwith 95% CI"</span>)
+detach(<span class="hljs-name">cholesterol</span>)</code></pre>
+<p><img src="/article/2ad44fb9/2-1.png" srcset="/img/loading.gif" alt="2-1"></p>
+<p><strong>2-1 五种降低胆固醇药物疗法的均值，含95%的置信区间</strong></p>
+<h4 id="多重比较"><a href="#多重比较" class="headerlink" title="多重比较"></a>多重比较</h4><p>虽然ANOVA对各疗法的F检验表明五种药物疗法效果不同，但是并没有告诉你哪种疗法与其他疗法不同。多重比较可以解决这个问题。例如，TukeyHSD()函数提供了对各组均值差异的成对检验。</p>
+<pre><code class="hljs angelscript">&gt; TukeyHSD(fit)
+  Tukey multiple comparisons of means
+    <span class="hljs-number">95</span>% family-wise confidence level
+
+Fit: aov(formula = response ~ trt)
+
+$trt
+                  diff        lwr       upr     p adj
+<span class="hljs-number">2</span>times<span class="hljs-number">-1</span>time   <span class="hljs-number">3.44300</span> <span class="hljs-number">-0.6582817</span>  <span class="hljs-number">7.544282</span> <span class="hljs-number">0.1380949</span>
+<span class="hljs-number">4</span>times<span class="hljs-number">-1</span>time   <span class="hljs-number">6.59281</span>  <span class="hljs-number">2.4915283</span> <span class="hljs-number">10.694092</span> <span class="hljs-number">0.0003542</span>
+drugD<span class="hljs-number">-1</span>time    <span class="hljs-number">9.57920</span>  <span class="hljs-number">5.4779183</span> <span class="hljs-number">13.680482</span> <span class="hljs-number">0.0000003</span>
+drugE<span class="hljs-number">-1</span>time   <span class="hljs-number">15.16555</span> <span class="hljs-number">11.0642683</span> <span class="hljs-number">19.266832</span> <span class="hljs-number">0.0000000</span>
+<span class="hljs-number">4</span>times<span class="hljs-number">-2</span>times  <span class="hljs-number">3.14981</span> <span class="hljs-number">-0.9514717</span>  <span class="hljs-number">7.251092</span> <span class="hljs-number">0.2050382</span>
+drugD<span class="hljs-number">-2</span>times   <span class="hljs-number">6.13620</span>  <span class="hljs-number">2.0349183</span> <span class="hljs-number">10.237482</span> <span class="hljs-number">0.0009611</span>
+drugE<span class="hljs-number">-2</span>times  <span class="hljs-number">11.72255</span>  <span class="hljs-number">7.6212683</span> <span class="hljs-number">15.823832</span> <span class="hljs-number">0.0000000</span>
+drugD<span class="hljs-number">-4</span>times   <span class="hljs-number">2.98639</span> <span class="hljs-number">-1.1148917</span>  <span class="hljs-number">7.087672</span> <span class="hljs-number">0.2512446</span>
+drugE<span class="hljs-number">-4</span>times   <span class="hljs-number">8.57274</span>  <span class="hljs-number">4.4714583</span> <span class="hljs-number">12.674022</span> <span class="hljs-number">0.0000037</span>
+drugE-drugD    <span class="hljs-number">5.58635</span>  <span class="hljs-number">1.4850683</span>  <span class="hljs-number">9.687632</span> <span class="hljs-number">0.0030633</span>
+
+&gt; par(las=<span class="hljs-number">2</span>)
+&gt; par(mar=c(<span class="hljs-number">5</span>,<span class="hljs-number">8</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>))
+&gt; plot(TukeyHSD(fit))</code></pre>
+<p>成对比较图形如图2-2所示。图形中置信区间包含0的疗法说明差异不显著（p&gt;0.05）。</p>
+<p><img src="/article/2ad44fb9/2-2.png" srcset="/img/loading.gif" alt="2-2"></p>
+<p><strong>图2-2 Tukey HSD均值成对比较图</strong></p>
+<h4 id="评估检验的假设条件"><a href="#评估检验的假设条件" class="headerlink" title="评估检验的假设条件"></a>评估检验的假设条件</h4><p>根据2.1中我们讲的关于方差分析的推导中，我们知道，方差分析结果的有效性是建立在一系列假设条件之上的，因此，在我们使用方差分析模型时，需要评估进行方差分析的数据，是否符合模型使用的假设条件。</p>
+<h5 id="正态性检验"><a href="#正态性检验" class="headerlink" title="正态性检验"></a>正态性检验</h5><p>第一，在建立模型时，我们假设因变量是服从正态分布的，需要进行正态性检验。</p>
+<p>正态性检验的方法有两种，一是通过QQ图进行检验。</p>
+<pre><code class="hljs routeros"><span class="hljs-comment"># QQ plot</span>
+library(car)
+qqPlot(lm(response ~ trt, <span class="hljs-attribute">data</span>=cholesterol),
+       <span class="hljs-attribute">simulate</span>=<span class="hljs-literal">TRUE</span>, <span class="hljs-attribute">main</span>=<span class="hljs-string">"Q-Q Plot"</span>, <span class="hljs-attribute">labels</span>=<span class="hljs-literal">FALSE</span>)</code></pre>
+<p><img src="/article/2ad44fb9/2-3.png" srcset="/img/loading.gif" alt="2-3"></p>
+<p>除此之外，R里面也提供了一些package来进行正态性检验。</p>
+<h6 id="K-S-test"><a href="#K-S-test" class="headerlink" title="K-S test"></a>K-S test</h6><p>统计学里, Kolmogorov–Smirnov 检验(亦称：K–S 检验)是用来检验数据是否符合某种分布的一种非参数检验。其原假设$H_0$:两个数据分布一致或者数据符合理论分布。在R语言里，我们可以使用<code>ks.test(x, pnorm)</code>进行正态性检验，若结果中的p值大于0.05，则数据符合正态分布。</p>
+<h6 id="Anderson–Darling-test"><a href="#Anderson–Darling-test" class="headerlink" title="Anderson–Darling test"></a><strong>Anderson–Darling test</strong></h6><p>Anderson–Darling检验是一种用来检验给定的样本是否来自于某个确定的概率分布的统计检验方法。在R语言中，我们可以从<strong>nortest包</strong>中的<code>ad.test()</code>进行检验。若结果中的p值大于0.05，则数据符合正态分布。</p>
+<h6 id="Shapiro-Wilk-test"><a href="#Shapiro-Wilk-test" class="headerlink" title="Shapiro-Wilk test"></a><strong>Shapiro-Wilk test</strong></h6><p>Shapiro-Wilk检验在小样本情况下，是很普通的正态性检验方法，<code>Shapiro.test()</code>在默认安装的<strong>stats</strong>包中。原假设$H_0$: 数据符合正态分布。</p>
+<h6 id="Lilliefor-test"><a href="#Lilliefor-test" class="headerlink" title="Lilliefor test"></a><strong>Lilliefor test</strong></h6><p>Lilliefor test是基于Kolmogorov–Smirnov test的一种正态性检验。原假设$H_0$: 数据符合正态分布，<code>lillie.test()</code>也在<strong>nortest包</strong>中。</p>
+<h5 id="方差齐性检验"><a href="#方差齐性检验" class="headerlink" title="方差齐性检验"></a>方差齐性检验</h5><p>因为方差分析的实质是检验多个水平的均值是否有显著差异，如果各个水平的观察值方差差异太大，只检验均值之间的差异就没有意义了，所以要进行方差齐性检验。</p>
+<p>Bartlett test可以用来检验数据的方差齐性。</p>
+<pre><code class="hljs armasm">&gt; <span class="hljs-keyword">bartlett.test(response </span>~ trt, <span class="hljs-meta">data</span><span class="hljs-symbol">=cholesterol</span>)
+
+	<span class="hljs-keyword">Bartlett </span>test of homogeneity of variances
+
+<span class="hljs-symbol">data</span>:  response <span class="hljs-keyword">by </span>trt
+<span class="hljs-keyword">Bartlett's </span>K-squared = <span class="hljs-number">0</span>.<span class="hljs-number">57975</span>, df = <span class="hljs-number">4</span>, p-value = <span class="hljs-number">0</span>.<span class="hljs-number">9653</span></code></pre>
+<p>Bartlett检验表明五组的方差并没有显著不同（p=0.97）。其他检验如Fligner-Killeen检验<br>（<code>fligner.test()</code>函数）和Brown-Forsythe检验（<strong>HH包</strong>中的<code>hov()</code>函数）此处没有做演示，但它们获得的结果与Bartlett检验相同。</p>
+<p>不过，方差齐性分析对离群点非常敏感。可利用<strong>car包</strong>中的<code>outlierTest()</code>函数来检测离群点：</p>
+<pre><code class="hljs yaml"><span class="hljs-string">outlierTest(fit)</span>
+<span class="hljs-literal">No</span> <span class="hljs-string">Studentized</span> <span class="hljs-string">residuals</span> <span class="hljs-string">with</span> <span class="hljs-string">Bonferroni</span> <span class="hljs-string">p</span> <span class="hljs-string">&lt;</span> <span class="hljs-number">0.05</span>
+<span class="hljs-string">Largest</span> <span class="hljs-string">|rstudent|:</span>
+   <span class="hljs-string">rstudent</span> <span class="hljs-string">unadjusted</span> <span class="hljs-string">p-value</span> <span class="hljs-string">Bonferroni</span> <span class="hljs-string">p</span>
+<span class="hljs-number">19</span> <span class="hljs-number">2.251149</span>           <span class="hljs-number">0.029422</span>           <span class="hljs-string">NA</span></code></pre>
+<p>从输出结果来看，并没有证据说明胆固醇数据中含有离群点（当p&gt;1时将产生NA）。因此根据正态性检验、方差齐性检验和离群点检验，该数据似乎可以用ANOVA模型拟合得很好。<strong>这些方法反过来增强了我们对于所得结果的信心。</strong></p>
+<h2 id="3-双因素方差分析"><a href="#3-双因素方差分析" class="headerlink" title="3 双因素方差分析"></a>3 双因素方差分析</h2><h3 id="3-1-推导过程"><a href="#3-1-推导过程" class="headerlink" title="3.1 推导过程"></a>3.1 推导过程</h3><p>在很多种情况下，只考虑一个指标对观察值的影响，显然是不够的，这时就会用到多因素方差分析。双因素方差分析和多因素方差分析在原理上是相似的，这里为了书写简便，我们只以双因素方差分析为例进行推导。</p>
+<p>还是以田间实验的例子帮助理解推导过程，我们设有两个因素$A, B$，分别有$k, l$个水平（例如$A$为品种，有$k$个；$B$为播种量，考虑$l$种不同的数值，如20斤／亩，25斤／亩，……）．$A$的水平$i$与$B$的水平$j$的组合记为$(i,j)$，其试验结果记为 $Y_{ij}, i = 1, · · ·, k,j = 1,…, l$．统计模型定为</p>
+<script type="math/tex; mode=display">
+Y_{ij} = \mu + a_i + b_j + e_{ij}，i= 1, · · ·, k,j = 1,· · ·, l\qquad (3.1)</script><p>为解释这模型，首先把右边分成两部分：$e_{ij}$为随机误差，它包含了未加控制的因素($A,B$以外的因素）及大量随机因素的影响．假定</p>
+<script type="math/tex; mode=display">
+E(e_{ij})=0, 0<Var(e_{ij})={\sigma}^2<\infty,一切e_{ij}独立同分布\qquad(3.2)</script><p>另一部分$\mu + a_i + b_j$，它显示水平组合$(i,j)$的平均效应．它可以又分解为三部分：$\mu$是总平均（一切水平组合效应的平均），是一个基准．$a_i$表示由$A$的水平$i$带来的增加部分，称为因素$A$的水平$i$的效应．$b_j$有类似的解释．调整$\mu$的值，我们可以补充要求：</p>
+<script type="math/tex; mode=display">
+a_1+···+a_k=0,b_1+···+b_l=0 \qquad (3.3)</script><p>如果$(3.3)$式不成立，则分别把$\mu$换为 $\mu + \bar{a}+\bar{b}$，$a_i$换为$a_i-\bar{a}$，$b_j$换为$b_j-\bar{b}$，则$(3.1)$式不变，而$(3.3)$式成立。</p>
+<p>约束条件$(3.3)$给了$a_i，b_j$的意义一种更清晰的解释：$a_i&gt;0$ 表示A的水平$i$的效应在$A$的全部水平的平均效应之上，$a_i&lt;0$ 则相反。另外，这个约束条件也给了$\mu，a_i,b_j$的 一个适当的估计法：把$Y_{ij}$对一切$i,j$相加．注意到$(3.3)$，有</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{k}\sum_{j=1}^{l}Y_{ij}= kl\mu+\sum_{i=1}^{k}\sum_{j=1}^{l}e_{ij} \qquad (3.4)</script><p>由$(3.2)$得，</p>
+<script type="math/tex; mode=display">
+\bar{Y}=\sum_{i=1}^{k}\sum_{j=1}^{l}Y_{ij}/kl \qquad (3.5)</script><p>是$\mu$的一个无偏估计。其次，有</p>
+<script type="math/tex; mode=display">
+\sum_{j=1}^{l}Y_{ij}=l\mu+la+\sum_{j=1}^{l}e_{ij} \qquad (3.6)</script><p>于是，记</p>
+<script type="math/tex; mode=display">
+\bar{Y_i}=\sum_{j=1}^{l}Y_{ij}/l, \quad \bar{Y_j}=\sum_{i=1}^{k}Y_{ij}/k \qquad (3.7)</script><p>由$(3.7)$知，$\bar{Y_j}$为$\mu+a_i$的一个无偏估计。于是得到$a_i$的一个无偏估计为</p>
+<script type="math/tex; mode=display">
+\hat{a_i}=\bar{Y_i}-\bar{Y}, i=1,\cdots,k \qquad(3.8)</script><p>同理，</p>
+<script type="math/tex; mode=display">
+\hat{b_j}=\bar{Y_j}-\bar{Y}, j=1,\cdots,l \qquad(3.9)</script><p>$\hat{a_i},\hat{b_j}$适合约束条件$(3.3)$。</p>
+<p>下面进行方差分析，要设法把总平方和</p>
+<script type="math/tex; mode=display">
+SS=\sum_{i=1}^{k}\sum_{j=1}^{l}(Y_{ij}-\bar{Y})^2</script><p>分解为三部分：$SS_A,SS_B,SS_e$，分别表示因素$A,B$和随机误差的影响。这种分解的主要目的是假设检验：</p>
+<script type="math/tex; mode=display">
+H_{0A}:a_1=\cdots=a_k=0 \qquad(3.10)</script><p>和</p>
+<script type="math/tex; mode=display">
+H_{0B}:b_1=\cdots=b_k=0 \qquad(3.11)</script><p>$H_0A$成立表示因素$A$对指标其实无影响。在实际问题中，绝对无影响的场合少见，但如影响甚小以致被随机误差所掩盖时，这种影响事实上等于没有。因此，拿$SS_A$和$SS_e$的比作为检验统计量正符合这一想法．</p>
+<p>接下来讲一下方差分解的小技巧：</p>
+<script type="math/tex; mode=display">
+Y_{ij}-\bar{Y}=(\bar{Y_i}-\bar{Y}) + (\bar{Y_j}-\bar{Y})+(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y})</script><p>两边平方，对$i,j$求和，结合约束条件(3.3)，注意到</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{l}(\bar{Y_{i}}-\bar{Y})=0， 
+\sum_{j=1}^{k}(\bar{Y_{j}}-\bar{Y})=0，</script><script type="math/tex; mode=display">
+\sum_{i=1}^{k}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y})=\sum_{j=1}^{l}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y})=0</script><script type="math/tex; mode=display">
+\sum_{i=1}^{k}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y}) = k\bar{Y_j}\\
+=\sum_{j=1}^{l}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y}) = l\bar{Y_i}</script><p>即知所有交叉积之和皆为0，而得到</p>
+<script type="math/tex; mode=display">
+\begin{align}
+SS&=l\sum_{i=1}^{k}(\bar{Y_{i}}-\bar{Y})^2+k\sum_{j=1}^{l}(\bar{Y_{j}}-\bar{Y})^2+\sum_{i=1}^{k}\sum_{j=1}^{l}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y})^2 \\
+&=SS_A + SS_B + SS_e \qquad(3.12)
+
+\end{align}</script><p>第一个平方和可以作为因素$A$的影响的衡量，从前述$\bar{Y_{i}}-\bar{Y}$作为 $a_i$的估计可以理解第二个平方和同理。至于第三个平方和可作为随机误差的影响这一点， 直接看不甚明显。可以从两个角度去理解：在$SS$中去掉$SS_A$ 和$SS_B$后，剩余下的再没有其他系统性因素的影响，故只能作为$SS_e$。另外，由模型$(3.1)$及约束条件$(3.3)$，易知</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y} &= (\mu + a_i + b_j + e_{ij}) - (\mu + a_i + \bar{e_{i}}) - (\mu + b_j + \bar{e_{j}} ) + (\mu + \bar{e})  \\
+&=e_{ij}-\bar{e_i}-\bar{e_j}+\bar{e} \qquad(3.13)
+
+\end{align}</script><p>这里面已经毫无$\mu,a_i,b_j$的影响，而只含随机误差。</p>
+<p>得到分解式$(3.12)$后，我们就可以像单囚素情况那样，写出下面的方差分析表：<br>$SS_A , SS_B$ 自由度分别为其水平数减去1，这一点与单因素情况相同．总和自由度为全部观察值数目$kl$减去1．剩下的就是误差平方和自由度：</p>
+<script type="math/tex; mode=display">
+(kl - 1) - (k - 1) - (l - 1) = (k - 1) (l - 1)</script><p><strong>表3.1 双因素方差分析表</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>$SS$</th>
+<th>自由度</th>
+<th>$MS$</th>
+<th>$F$比</th>
+<th>显著性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$A$</td>
+<td>$SS_A$</td>
+<td>$k-1$</td>
+<td>$MS_A$</td>
+<td>$MS_A / MS_e$</td>
+<td><em>, *</em>, 或无</td>
+</tr>
+<tr>
+<td>$B$</td>
+<td>$SS_B$</td>
+<td>$l-1$</td>
+<td>$MS_B$</td>
+<td>$MS_B / MS_e$</td>
+<td></td>
+</tr>
+<tr>
+<td>误差</td>
+<td>$SS_e$</td>
+<td>$(k - 1) (l - 1)$</td>
+<td>$MS_e$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>总和</td>
+<td>$SS$</td>
+<td>$kl-1$</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>还有一点要注意：在采纳模型$(3.1)$时，我们事实上引进了 一 种假定，即两因素$A,B$对指标的效应是可以叠加的．换一种方式说：因素$A$的各水平的优劣比较，与因素$B$处在哪个水平无关，反之亦然．更一般的情况是：$A,B$两因子有“交互作用 ＂ 。这时在模型(5.13)中，还要加上表示交互作用的项$c_{ij}$．这时不仅统计分析复杂化了，尤其是分析结果的解释也复杂化了．本文档暂不讨论这种情况。在一个特定的问题中，交互作用是否需要考虑，在很大程度上取决于问题的实际背景和经验．有时，通过试验数据的分析也可以看出一些问题。例如，若误差方差$\sigma^2$的估计$MS_e $反常地大，则有可能是由于交互作用所致．因为可以证明：若交互作用确实存在而未加考虑，则它的影响进入随机误差而增大了$MS_e$。</p>
+<h3 id="3-2-代码实例"><a href="#3-2-代码实例" class="headerlink" title="3.2 代码实例"></a>3.2 代码实例</h3><p>在双因素方差分析中，受试者被分配到两因子的交叉类别组中。以基础安装中的ToothGrowth数据集为例，随机分配60只豚鼠，分别采用两种喂食方法（橙汁或维生素C），各喂食方法中抗坏血酸含量有三种水平（0.5mg、1mg或2mg），每种处理方式组合都被分配10只豚鼠，牙齿长度为因变量。</p>
+<pre><code class="hljs angelscript">&gt; attach(ToothGrowth)
+&gt; table(supp, dose)
+    dose
+supp <span class="hljs-number">0.5</span>  <span class="hljs-number">1</span>  <span class="hljs-number">2</span>
+  OJ  <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span>
+  VC  <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span>
+&gt; 
+&gt; aggregate(len, by=list(supp, dose), FUN=mean)
+  Group<span class="hljs-number">.1</span> Group<span class="hljs-number">.2</span>     x
+<span class="hljs-number">1</span>      OJ     <span class="hljs-number">0.5</span> <span class="hljs-number">13.23</span>
+<span class="hljs-number">2</span>      VC     <span class="hljs-number">0.5</span>  <span class="hljs-number">7.98</span>
+<span class="hljs-number">3</span>      OJ     <span class="hljs-number">1.0</span> <span class="hljs-number">22.70</span>
+<span class="hljs-number">4</span>      VC     <span class="hljs-number">1.0</span> <span class="hljs-number">16.77</span>
+<span class="hljs-number">5</span>      OJ     <span class="hljs-number">2.0</span> <span class="hljs-number">26.06</span>
+<span class="hljs-number">6</span>      VC     <span class="hljs-number">2.0</span> <span class="hljs-number">26.14</span>
+&gt; 
+&gt; aggregate(len, by=list(supp, dose), FUN=sd)
+  Group<span class="hljs-number">.1</span> Group<span class="hljs-number">.2</span>        x
+<span class="hljs-number">1</span>      OJ     <span class="hljs-number">0.5</span> <span class="hljs-number">4.459709</span>
+<span class="hljs-number">2</span>      VC     <span class="hljs-number">0.5</span> <span class="hljs-number">2.746634</span>
+<span class="hljs-number">3</span>      OJ     <span class="hljs-number">1.0</span> <span class="hljs-number">3.910953</span>
+<span class="hljs-number">4</span>      VC     <span class="hljs-number">1.0</span> <span class="hljs-number">2.515309</span>
+<span class="hljs-number">5</span>      OJ     <span class="hljs-number">2.0</span> <span class="hljs-number">2.655058</span>
+<span class="hljs-number">6</span>      VC     <span class="hljs-number">2.0</span> <span class="hljs-number">4.797731</span>
+&gt; 
+&gt; dose &lt;- factor(dose)
+#dose变量被转换为因子变量，这样aov()函数就会将它当做一个分组变量，而不是一个数值型协变量
+&gt; # condider <span class="hljs-built_in">int</span>eractive factor
+&gt; fit &lt;- aov(len ~ supp*dose)
+&gt; summary(fit)
+            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+supp         <span class="hljs-number">1</span>  <span class="hljs-number">205.4</span>   <span class="hljs-number">205.4</span>  <span class="hljs-number">15.572</span> <span class="hljs-number">0.000231</span> ***
+dose         <span class="hljs-number">2</span> <span class="hljs-number">2426.4</span>  <span class="hljs-number">1213.2</span>  <span class="hljs-number">92.000</span>  &lt; <span class="hljs-number">2e-16</span> ***
+supp:dose    <span class="hljs-number">2</span>  <span class="hljs-number">108.3</span>    <span class="hljs-number">54.2</span>   <span class="hljs-number">4.107</span> <span class="hljs-number">0.021860</span> *  
+Residuals   <span class="hljs-number">54</span>  <span class="hljs-number">712.1</span>    <span class="hljs-number">13.2</span>                     
+---
+Signif. codes:  <span class="hljs-number">0</span> ‘***’ <span class="hljs-number">0.001</span> ‘**’ <span class="hljs-number">0.01</span> ‘*’ <span class="hljs-number">0.05</span> ‘.’ <span class="hljs-number">0.1</span> ‘ ’ <span class="hljs-number">1</span></code></pre>
+<p>计算结果表明，主效应和交互效应都是显著的。</p>
+<p>有多种方式对结果进行可视化处理。此处可用interaction.plot()函数来展示双因素方<br>差分析的交互效应。</p>
+<pre><code class="hljs routeros"><span class="hljs-comment"># interactive effect</span>
+interaction.plot(dose, supp, len, <span class="hljs-attribute">type</span>=<span class="hljs-string">"b"</span>,
+                 <span class="hljs-attribute">col</span>=c("red","blue"), <span class="hljs-attribute">pch</span>=c(16, 18),
+                 main = <span class="hljs-string">"Interaction between Dose and Supplement Type"</span>)</code></pre>
+<p><img src="/article/2ad44fb9/3-1.png" srcset="/img/loading.gif" alt="3-1"></p>
+<p><strong>图3-1 各种剂量喂食下豚鼠牙齿长度的均值（interaction.plot()函数绘制）</strong></p>
+<p>还可以用gplots包中的plotmeans()函数来展示交互效应。<img src="/article/2ad44fb9/3-2.png" srcset="/img/loading.gif" alt="3-2"><strong>图3-2 喂食方法和剂量对牙齿生长的交互作用。用plotmeans()函数绘制的95%的置</strong><br><strong>信区间的牙齿长度均值</strong></p>
+<p>图形展示了均值、误差棒（95%的置信区间）和样本大小。<br>最后，你还能用HH包中的interaction2wt()函数来可视化结果，图形对任意顺序的因子设计的主效应和交互效应都会进行展示（图3-3）。</p>
+<pre><code class="hljs lisp">library(<span class="hljs-name">HH</span>)
+interaction2wt(<span class="hljs-name">len</span>~supp*dose)
+&gt; 
+&gt; detach(<span class="hljs-name">ToothGrowth</span>)</code></pre>
+<p><img src="/article/2ad44fb9/3-3.png" srcset="/img/loading.gif" alt="3-3"></p>
+<p><strong>图3-3 ToothGrowth数据集的主效应和交互效应。图形由interaction2wt()函数创建</strong></p>
+<p>以上三幅图形都表明随着橙汁和维生素C中的抗坏血酸剂量的增加，牙齿长度变长。对于0.5mg和1mg剂量，橙汁比维生素C更能促进牙齿生长；对于2mg剂量的抗坏血酸，两种喂食方法下牙齿长度增长相同。</p>
+<h4 id="参考书目："><a href="#参考书目：" class="headerlink" title="参考书目："></a>参考书目：</h4><ol>
+<li>陈希孺，概率论与数理统计</li>
+<li>Robert I. Kabacoff, R in Action.</li>
+</ol>
+]]></content>
+      <categories>
+        <category>概率统计</category>
+      </categories>
+      <tags>
+        <tag>概率统计</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2数理统计与描述性统计</title>
     <url>/article/83114b11.html</url>
     <content><![CDATA[<h1 id="一、数理统计概念"><a href="#一、数理统计概念" class="headerlink" title="一、数理统计概念"></a>一、数理统计概念</h1><h2 id="1-基本概念释义"><a href="#1-基本概念释义" class="headerlink" title="1.基本概念释义"></a>1.基本概念释义</h2><font color="blue">总体</font>：
@@ -711,552 +1257,6 @@ print(<span class="hljs-string">'stat=%.3f, p=%.3f'</span> % (stat, p))
       </tags>
   </entry>
   <entry>
-    <title>4方差分析</title>
-    <url>/article/2ad44fb9.html</url>
-    <content><![CDATA[<h1 id="方差分析"><a href="#方差分析" class="headerlink" title="方差分析"></a>方差分析</h1><h2 id="1-概要"><a href="#1-概要" class="headerlink" title="1 概要"></a>1 概要</h2><p><strong>方差分析</strong>(<strong>Analysis of variance, ANOVA</strong>) 主要研究分类变量作为自变量时，对因变量的影响是否是显著的。</p>
-<p>方差分析的方法是由20世纪的统计学家Ronald Aylmer Fisher在1918年到1925年之间提出并陆续完善起来的，该方法刚开始是用于解决田间实验的数据分析问题，因此，方差分析的学习是和实验设计、实验数据的分析密不可分的。</p>
-<p>实验设计和方差分析都有自己相应的语言。因此，在这里我们通过一个焦虑症治疗的实例，先了解一些术语，并且思考一下，方差分析主要用于解决什么样的问题。<a id="more"></a></p>
-<p>以焦虑症治疗为例，现有两种治疗方案：认知行为疗法（CBT）和眼动脱敏再加工法（EMDR）。我们招募10位焦虑症患者作为志愿者，随机分配一半的人接受为期五周的CBT，另外一半接受为期五周的EMDR，设计方案如表1-1所示。在治疗结束时，要求每位患者都填写状态特质焦虑问卷（STAI），也就是一份焦虑度测量的自我评测报告。</p>
-<p><strong>表1-1 单因素组间方差分析</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">CBT</th>
-<th style="text-align:center">EMDR</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">s1</td>
-<td style="text-align:center">s6</td>
-</tr>
-<tr>
-<td style="text-align:center">s2</td>
-<td style="text-align:center">s7</td>
-</tr>
-<tr>
-<td style="text-align:center">s3</td>
-<td style="text-align:center">s8</td>
-</tr>
-<tr>
-<td style="text-align:center">s4</td>
-<td style="text-align:center">s9</td>
-</tr>
-<tr>
-<td style="text-align:center">s5</td>
-<td style="text-align:center">s10</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>在这个实验设计中，治疗方案是两水平（CBT、EMDR）的<strong>组间因子</strong>。之所以称其为<strong>组间因子</strong>，是因为每位患者都仅被分配到一个组别中，没有患者同时接受CBT和EMDR。表中字母s代表受试者（患者）。STAI是<strong>因变量</strong>，治疗方案是<strong>自变量</strong>。由于在每种治疗方案下观测数相等，因此这种设计也称为<strong>均衡设计</strong>（balanced design）；若观测数不同，则称作<strong>非均衡设计</strong>（unbalanced design）。</p>
-<p>因为仅有一个类别型变量，表1的统计设计又称为<strong>单因素方差分析（one-way ANOVA）</strong>，或进一步称为<strong>单因素组间方差分析</strong>。方差分析主要通过F检验来进行效果评测，若治疗方案的F检验显著，则说明五周后两种疗法的STAI得分均值不同。</p>
-<p>假设你只对CBT的效果感兴趣，则需将10个患者都放在CBT组中，然后在治疗五周和六个月后分别评价疗效，设计方案如表1-2所示。</p>
-<p><strong>表1-2 单因素组内方差分析</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>时间</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>患者</strong></td>
-<td>5周</td>
-<td>6个月</td>
-</tr>
-<tr>
-<td>s1</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>s2</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>s3</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>s4</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>s5</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>s6</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>s7</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>s8</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>s9</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>s10</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>此时，时间（time）是两水平（五周、六个月）的<strong>组内因子</strong>。因为每位患者在所有水平下都进行了测量，所以这种统计设计称<strong>单因素组内方差分析</strong>；又由于每个受试者都不止一次被测量，也称作<strong>重复测量方差分析</strong>。当时间的F检验显著时，说明患者的STAI得分均值在五周和六个月间发生了改变。</p>
-<p>现假设你对治疗方案差异和它随时间的改变都感兴趣，则将两个设计结合起来即可：随机分配五位患者到CBT，另外五位到EMDR，在五周和六个月后分别评价他们的STAI结果（见表1-3）。</p>
-<p><strong>表1-3 含组间和组内因子的双因素方差分析</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th>时间</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>疗法</strong></td>
-<td><strong>患者</strong></td>
-<td>5周</td>
-<td>6个月</td>
-</tr>
-<tr>
-<td>CBT</td>
-<td>s1</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>s2</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>s3</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>s4</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>s5</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>EMDR</td>
-<td>s6</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>s7</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>s8</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>s9</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>s10</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>疗法（therapy）和时间（time）都作为因子时，我们既可分析疗法的影响（时间跨度上的平均）和时间的影响（疗法类型跨度上的平均），又可分析疗法和时间的交互影响。前两个称作<strong>主效应</strong>，交互部分称作<strong>交互效应</strong>。</p>
-<p>当设计包含两个甚至更多的因子时，便是<strong>因素方差分析设计</strong>，比如两因子时称作<strong>双因素方差分析</strong>，三因子时称作三因素方差分析，以此类推。若因子设计包括组内和组间因子，又称作<strong>混合模型方差分析</strong>，当前的例子就是典型的双因素混合模型方差分析。</p>
-<p>本例中，你将做三次F检验：疗法因素一次，时间因素一次，两者交。</p>
-<p>15214互因素一次。若疗法结果显著，说明CBT和EMDR对焦虑症的治疗效果不同；若时间结果显著，说明焦虑度从五周到六个月发生了变化；若两者交互效应显著，说明两种疗法随着时间变化对焦虑症治疗影响不同（也就是说，焦虑度从五周到六个月的改变程度在两种疗法间是不同的）。</p>
-<p>现在，我们对上面的实验设计稍微做些扩展。众所周知，抑郁症对病症治疗有影响，而且抑郁症和焦虑症常常同时出现。即使受试者被随机分配到不同的治疗方案中，在研究开始时，两组疗法中的患者抑郁水平就可能不同，任何治疗后的差异都有可能是最初的抑郁水平不同导致的，而不是由于实验的操作问题。抑郁症也可以解释因变量的组间差异，因此它常称为<strong>混淆因素</strong>（confounding factor）。由于你对抑郁症不感兴趣，它也被称作<strong>干扰变数</strong>（nuisance variable）。</p>
-<p>假设招募患者时使用抑郁症的自我评测报告，比如白氏抑郁症量表（BDI），记录了他们的抑郁水平，那么你可以在评测疗法类型的影响前，对任何抑郁水平的组间差异进行统计性调整。本案例中，BDI为<strong>协变量</strong>，该设计为<strong>协方差分析</strong>（ANCOVA）。</p>
-<p>以上设计只记录了单个因变量情况（STAI），为增强研究的有效性，可以对焦虑症进行其他的测量（比如家庭评分、医师评分，以及焦虑症对日常行为的影响评价）。当因变量不止一个时，设计被称作<strong>多元方差分析</strong>（MANOVA）， 若协变量也存在， 那么就叫<strong>多元协方差分析</strong>（MANCOVA）。</p>
-<p>下面我们主要介绍单因素方差分析与双因素方差分析的原理与实现。</p>
-<h2 id="2-单因素方差分析"><a href="#2-单因素方差分析" class="headerlink" title="2 单因素方差分析"></a>2 单因素方差分析</h2><h3 id="2-1-推导过程"><a href="#2-1-推导过程" class="headerlink" title="2.1 推导过程"></a>2.1 推导过程</h3><p>接下来我们使用种小麦的例子，去帮助理解方差分析里涉及的一些变量。</p>
-<p>假设我们现在有若干品种的小麦，要在某一地区播种，我们想知道这些品种的产量有没有显著区别，为此我们先设计了一个田间实验，取一大块地将其分成形状大小都相同的$n$小块．设供选择的品种有$k$个，我们打算其中的$n_1$小块种植品种1, $n_2$小块种植品种2，等等，$n_1 + n_2 + … n_k = n$.</p>
-<p>接下来，我们使用方差分析的方法去看不同小麦品种的产量是否有显著差异。</p>
-<p>设问题中涉及一个因素$A$，有$k$个水平，如上例的$k$个种子品种，以$Y_{ij}$记第$i$个水平的第$j$个观察值，如上例$Y_{ij}$是种植品种$i$的第$j$小块地上的亩产量。模型为</p>
-<script type="math/tex; mode=display">
-Y_{ij} = a_i + e_{ij},  j = 1,...,n_i, i = 1,...,k\qquad(2.1)</script><p>$a_i$表示水平$i$的理论平均值，称为水平$i$的效应。在小麦例子中，$a_i$就是品种$i$的平均亩产量，$e_{ij}$就是随机误差。并且我们假定：</p>
-<script type="math/tex; mode=display">
-E(e_{ij})=0, 0<Var(e_{ij})={\sigma}^2<\infty,一切e_{ij}独立同分布\qquad(2.2)</script><p>因素$A$的各水平的高低优劣，取决于其理论平均$a_{i}$的大小。故对模型(2.1)，我们头一个关心的事情，就是诸$a_{i}$是否全相同。 如果是，则表示因素$A$对所考察的指标$Y$其实无影响．这时我们就说因素A的效应不显著，否则就说它显著。当然，在实际应用中，所谓“显著”，是指诸$a_{i}$之间的差异要大到一定的程度．这个 “一定的程度”，是从其实用上的意义着眼，而“统计显著性”，则是与随机误差相比而言．这点在下文的讨论中会有所体现．我们把所要检验的假设写为：</p>
-<script type="math/tex; mode=display">
-H_0:a_1=a_2=\cdots=a_k \qquad (2.3)</script><p>为检验该假设，我们需要分析，为什么各个$Y_{ij}$会有差异？从模型(2.1)来看，无非两个原因：一是各$a_{i}$可能有差异．例如，若 $a_1&gt;a_2$, 这就使$Y_{1j}$倾向于大于$Y_{2j}$；二是随机误差的存在。这一分析启发了如下的想法：找一个衡量全部$y_{ij}$的变异的量：</p>
-<script type="math/tex; mode=display">
-SS= \sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y} \right )^2, \qquad \bar{Y}=\sum_{i=1}^{k}\sum_{j=1}^{n_i}Y_{ij}/n \qquad (2.4)</script><p>$SS$愈大，表示$Y_{ij}$之间的差异越大。</p>
-<p>接下来，把$SS$分为两部分，一部分表示随机误差的影响，记为$SS_e$；另一部分表示因素$A$的各水平理论平均值$a_i$不同带来的影响，记为$SS_A$。</p>
-<p>关于$SS_e$，先固定一个$i$，此时对应的所有观测值$Y_{i1},Y_{i2},\cdots,Y_{in}$，他们之间的差异与每个水平的理论平均值不等无关，而是取决于随机误差，反映这些观察值差异程度的量是$\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2$，其中</p>
-<script type="math/tex; mode=display">
-\bar{Y_i}=(Y_{i1}+Y_{i2}+\cdots+Y_{in})/n_i,\quad i=1, 2,\cdots,n \qquad (2.5)</script><p>$\bar{Y_i}$可以视为对$a_i$的估计。把上述平方和做累加得：</p>
-<script type="math/tex; mode=display">
-SS_e=\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \qquad (2.6)</script><p>可求得$SS_A$:</p>
-<script type="math/tex; mode=display">
-\begin{align}
-SS_A &= SS-SS_e \\ 
-&=\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y} \right )^2-\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \\
-&=\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( (Y_{ij}-\bar{Y_i})-(\bar{Y}-\bar{Y_i}) \right )^2-\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \\
-&=\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( (Y_{ij}-\bar{Y_i})^2-2(Y_{ij}-\bar{Y_i})(\bar{Y}-\bar{Y_i})+(\bar{Y}-\bar{Y_i})^2 \right )-\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \\
-&=\sum_{i=1}^{k}\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y_i})^2 - 2\sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( (Y_{ij}-\bar{Y_i})(\bar{Y}-\bar{Y_i}) \right )
-+ \sum_{i=1}^{k}\sum_{j=1}^{n_i}(\bar{Y}-\bar{Y_i})^2 - \sum_{i=1}^{k}\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2 \\
-&= \sum_{i=1}^{k}\sum_{j=1}^{n_i}(\bar{Y_i}-\bar{Y})^2 - 2\sum_{i=1}^{k}\left ( (\bar{Y}-\bar{Y_i})\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y_i}) \right ) \quad (ps:\sum_{j=1}^{n_i}(Y_{ij}-\bar{Y_i})=0) \\
-&= \sum_{i=1}^{k}n_i(\bar{Y_i}-\bar{Y})^2 \qquad (2.7)
-\end{align}</script><p>因为$\bar{Y_i}$可以视为对$a_i$的估计，$a_i$的差异越大，$\bar{Y_i}$之间的差异也越大，所以$SS_A$可以用来衡量不同水平之间的差异程度。</p>
-<p>在统计学上，通常称$SS$为<strong>总平方和</strong>，$SS_A$为<strong>因素$A$的平方和</strong>，$SS_e$为<strong>误差平方和</strong>，分解式$SS=SS_A+SS_e$为该模型的<strong>方差分析</strong>。</p>
-<p>基于上面的分析，我们可以得到假设（5.3）的一个检验方法：当比值$SS_A/SS_e$大于某一给定界限时，否定$H_0$，不然就接受$H_0$。为了构造$F$分布的检验统计量，我们假定随机误差$e_{ij}$满足正态分布$N(0, \sigma^2)$，同时我们也假定观察值$Y_{ij}$符合正态分布，此时，记</p>
-<script type="math/tex; mode=display">
-MS_A = SS_A/(k-1), \quad MS_e = SS_e/(n-k) \qquad (2.8)</script><p>当$H_0$成立时，有：</p>
-<script type="math/tex; mode=display">
-MS_A / MS_e \sim F_{k-1, n-k} \qquad (2.9)</script><p>据（5.9），在给定显著性水平$\alpha$时，即得（5.3）的假设$H_0$的检验如下：</p>
-<script type="math/tex; mode=display">
-当MS_A / MS_e \leqslant  F_{k-1, n-k}(\alpha)时，接受H_0，不然就拒绝H_0 \qquad (2.10)</script><p>$MS_A$和$MS_e$分别被称为<strong>因素$A$和随机误差的平均平方和</strong>。被除数$k-1$和$n-k$，分别称为这两个平方和的<strong>自由度</strong>。$MS_e$的自由度为什么是$n-k$呢？因为平方和$\sum_{j=1}^{n_i}\left ( Y_{ij}-\bar{Y_i} \right )^2$的自由度为$n_i-1$，故对$i$求和，$SS_e$的自由度就是$n-k$。那么，$MS_A$的自由度为什么是$k-1$呢？因为一共有$k$个平均值$a_1,\cdots,a_k$等$k-1$个，故自由度为$k-1$，两者自由度之和为$n-1$，恰好是总平方和的自由度。</p>
-<p>到这里，我们可以做出方差分析表如表2-1</p>
-<p><strong>2-1 单因素方差分析的方差分析表</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>项目</th>
-<th>$SS$</th>
-<th>自由度</th>
-<th>$MS$</th>
-<th>$F$比</th>
-<th>显著性</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>$A$</td>
-<td>$SS_A$</td>
-<td>$k-1$</td>
-<td>$MS_A$</td>
-<td>$MS_A / MS_e$</td>
-<td><em>, *</em>, 或无</td>
-</tr>
-<tr>
-<td>误差</td>
-<td>$SS_e$</td>
-<td>$n-k$</td>
-<td>$MS_e$</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>总和</td>
-<td>$SS$</td>
-<td>$n-1$</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>在上表中，对于显著性一栏，一般来说，我们把算出的$F$比，即$MS_A / MS_e$，与$F_{k-1, n-k}(0.05)=c_1$和$F_{k-1, n-k}(0.01)=c_2$比较。若$MS_A / MS_e&gt;c_2$，用**表示，表明A因素的效应是高度显著的，即在$\alpha=0.01$的显著性水平下，拒绝原假设（5.3）。同理，$c_2<MS_A ms_e<c_1$用$\ast $表示，$ms_a ms_e>c_1$时不显著。</MS_A></p>
-<h3 id="2-2-代码实例"><a href="#2-2-代码实例" class="headerlink" title="2.2 代码实例"></a>2.2 代码实例</h3><h4 id="单因素方差分析的R语言实现"><a href="#单因素方差分析的R语言实现" class="headerlink" title="单因素方差分析的R语言实现"></a>单因素方差分析的R语言实现</h4><p>单因素方差分析中，你感兴趣的是比较分类因子定义的两个或多个组别中的因变量均值。以multcomp包中的cholesterol数据集为例，50个患者均接受降低胆固醇药物治疗（trt）五种疗法中的一种疗法。其中三种治疗条件使用药物相同，分别是20mg一天一次（1time）、10mg一天两次（2times）和5mg一天四次（4times）。剩下的两种方式（drugD和drugE）代表候选药物。</p>
-<pre><code class="hljs angelscript">&gt; library(multcomp)
-&gt; attach(cholesterol)
-&gt; 
-&gt; # 统计各组样本大小
-&gt; table(trt) 
-trt
- <span class="hljs-number">1</span>time <span class="hljs-number">2</span>times <span class="hljs-number">4</span>times  drugD  drugE 
-    <span class="hljs-number">10</span>     <span class="hljs-number">10</span>     <span class="hljs-number">10</span>     <span class="hljs-number">10</span>     <span class="hljs-number">10</span> 
-&gt; 
-&gt; # 各组均值
-&gt; aggregate(response, by=list(trt), FUN=mean)
-  Group<span class="hljs-number">.1</span>        x
-<span class="hljs-number">1</span>   <span class="hljs-number">1</span>time  <span class="hljs-number">5.78197</span>
-<span class="hljs-number">2</span>  <span class="hljs-number">2</span>times  <span class="hljs-number">9.22497</span>
-<span class="hljs-number">3</span>  <span class="hljs-number">4</span>times <span class="hljs-number">12.37478</span>
-<span class="hljs-number">4</span>   drugD <span class="hljs-number">15.36117</span>
-<span class="hljs-number">5</span>   drugE <span class="hljs-number">20.94752</span>
-&gt; 
-&gt; # 各组标准差
-&gt; aggregate(response, by=list(trt), FUN=sd)
-  Group<span class="hljs-number">.1</span>        x
-<span class="hljs-number">1</span>   <span class="hljs-number">1</span>time <span class="hljs-number">2.878113</span>
-<span class="hljs-number">2</span>  <span class="hljs-number">2</span>times <span class="hljs-number">3.483054</span>
-<span class="hljs-number">3</span>  <span class="hljs-number">4</span>times <span class="hljs-number">2.923119</span>
-<span class="hljs-number">4</span>   drugD <span class="hljs-number">3.454636</span>
-<span class="hljs-number">5</span>   drugE <span class="hljs-number">3.345003</span>
-&gt; 
-&gt; # 进行方差分析
-&gt; fit &lt;- aov(response ~ trt)
-&gt; summary(fit)
-            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-trt          <span class="hljs-number">4</span> <span class="hljs-number">1351.4</span>   <span class="hljs-number">337.8</span>   <span class="hljs-number">32.43</span> <span class="hljs-number">9.82e-13</span> ***
-Residuals   <span class="hljs-number">45</span>  <span class="hljs-number">468.8</span>    <span class="hljs-number">10.4</span>                     
----
-Signif. codes:  <span class="hljs-number">0</span> ‘***’ <span class="hljs-number">0.001</span> ‘**’ <span class="hljs-number">0.01</span> ‘*’ <span class="hljs-number">0.05</span> ‘.’ <span class="hljs-number">0.1</span> ‘ ’ <span class="hljs-number">1</span></code></pre>
-<p>方差分析的结果中，各项数字的含义可以参照表2-1。</p>
-<h4 id="查看各水平对应的组均值的差异"><a href="#查看各水平对应的组均值的差异" class="headerlink" title="查看各水平对应的组均值的差异"></a>查看各水平对应的组均值的差异</h4><p>gplots包中的plotmeans()可以用来绘制带有置信区间的组均值图形。如图9-1所示，图形展示了带有95%的置信区间的各疗法均值，可以清楚看到它们之间的差异。</p>
-<pre><code class="hljs lisp">library(<span class="hljs-name">gplots</span>)
-plotmeans(<span class="hljs-name">response</span> ~ trt, xlab=<span class="hljs-string">"Treatment"</span>, ylab=<span class="hljs-string">"Response"</span>,
-          main=<span class="hljs-string">"Mean Plot\nwith 95% CI"</span>)
-detach(<span class="hljs-name">cholesterol</span>)</code></pre>
-<p><img src="/article/2ad44fb9/2-1.png" srcset="/img/loading.gif" alt="2-1"></p>
-<p><strong>2-1 五种降低胆固醇药物疗法的均值，含95%的置信区间</strong></p>
-<h4 id="多重比较"><a href="#多重比较" class="headerlink" title="多重比较"></a>多重比较</h4><p>虽然ANOVA对各疗法的F检验表明五种药物疗法效果不同，但是并没有告诉你哪种疗法与其他疗法不同。多重比较可以解决这个问题。例如，TukeyHSD()函数提供了对各组均值差异的成对检验。</p>
-<pre><code class="hljs angelscript">&gt; TukeyHSD(fit)
-  Tukey multiple comparisons of means
-    <span class="hljs-number">95</span>% family-wise confidence level
-
-Fit: aov(formula = response ~ trt)
-
-$trt
-                  diff        lwr       upr     p adj
-<span class="hljs-number">2</span>times<span class="hljs-number">-1</span>time   <span class="hljs-number">3.44300</span> <span class="hljs-number">-0.6582817</span>  <span class="hljs-number">7.544282</span> <span class="hljs-number">0.1380949</span>
-<span class="hljs-number">4</span>times<span class="hljs-number">-1</span>time   <span class="hljs-number">6.59281</span>  <span class="hljs-number">2.4915283</span> <span class="hljs-number">10.694092</span> <span class="hljs-number">0.0003542</span>
-drugD<span class="hljs-number">-1</span>time    <span class="hljs-number">9.57920</span>  <span class="hljs-number">5.4779183</span> <span class="hljs-number">13.680482</span> <span class="hljs-number">0.0000003</span>
-drugE<span class="hljs-number">-1</span>time   <span class="hljs-number">15.16555</span> <span class="hljs-number">11.0642683</span> <span class="hljs-number">19.266832</span> <span class="hljs-number">0.0000000</span>
-<span class="hljs-number">4</span>times<span class="hljs-number">-2</span>times  <span class="hljs-number">3.14981</span> <span class="hljs-number">-0.9514717</span>  <span class="hljs-number">7.251092</span> <span class="hljs-number">0.2050382</span>
-drugD<span class="hljs-number">-2</span>times   <span class="hljs-number">6.13620</span>  <span class="hljs-number">2.0349183</span> <span class="hljs-number">10.237482</span> <span class="hljs-number">0.0009611</span>
-drugE<span class="hljs-number">-2</span>times  <span class="hljs-number">11.72255</span>  <span class="hljs-number">7.6212683</span> <span class="hljs-number">15.823832</span> <span class="hljs-number">0.0000000</span>
-drugD<span class="hljs-number">-4</span>times   <span class="hljs-number">2.98639</span> <span class="hljs-number">-1.1148917</span>  <span class="hljs-number">7.087672</span> <span class="hljs-number">0.2512446</span>
-drugE<span class="hljs-number">-4</span>times   <span class="hljs-number">8.57274</span>  <span class="hljs-number">4.4714583</span> <span class="hljs-number">12.674022</span> <span class="hljs-number">0.0000037</span>
-drugE-drugD    <span class="hljs-number">5.58635</span>  <span class="hljs-number">1.4850683</span>  <span class="hljs-number">9.687632</span> <span class="hljs-number">0.0030633</span>
-
-&gt; par(las=<span class="hljs-number">2</span>)
-&gt; par(mar=c(<span class="hljs-number">5</span>,<span class="hljs-number">8</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>))
-&gt; plot(TukeyHSD(fit))</code></pre>
-<p>成对比较图形如图2-2所示。图形中置信区间包含0的疗法说明差异不显著（p&gt;0.05）。</p>
-<p><img src="/article/2ad44fb9/2-2.png" srcset="/img/loading.gif" alt="2-2"></p>
-<p><strong>图2-2 Tukey HSD均值成对比较图</strong></p>
-<h4 id="评估检验的假设条件"><a href="#评估检验的假设条件" class="headerlink" title="评估检验的假设条件"></a>评估检验的假设条件</h4><p>根据2.1中我们讲的关于方差分析的推导中，我们知道，方差分析结果的有效性是建立在一系列假设条件之上的，因此，在我们使用方差分析模型时，需要评估进行方差分析的数据，是否符合模型使用的假设条件。</p>
-<h5 id="正态性检验"><a href="#正态性检验" class="headerlink" title="正态性检验"></a>正态性检验</h5><p>第一，在建立模型时，我们假设因变量是服从正态分布的，需要进行正态性检验。</p>
-<p>正态性检验的方法有两种，一是通过QQ图进行检验。</p>
-<pre><code class="hljs routeros"><span class="hljs-comment"># QQ plot</span>
-library(car)
-qqPlot(lm(response ~ trt, <span class="hljs-attribute">data</span>=cholesterol),
-       <span class="hljs-attribute">simulate</span>=<span class="hljs-literal">TRUE</span>, <span class="hljs-attribute">main</span>=<span class="hljs-string">"Q-Q Plot"</span>, <span class="hljs-attribute">labels</span>=<span class="hljs-literal">FALSE</span>)</code></pre>
-<p><img src="/article/2ad44fb9/2-3.png" srcset="/img/loading.gif" alt="2-3"></p>
-<p>除此之外，R里面也提供了一些package来进行正态性检验。</p>
-<h6 id="K-S-test"><a href="#K-S-test" class="headerlink" title="K-S test"></a>K-S test</h6><p>统计学里, Kolmogorov–Smirnov 检验(亦称：K–S 检验)是用来检验数据是否符合某种分布的一种非参数检验。其原假设$H_0$:两个数据分布一致或者数据符合理论分布。在R语言里，我们可以使用<code>ks.test(x, pnorm)</code>进行正态性检验，若结果中的p值大于0.05，则数据符合正态分布。</p>
-<h6 id="Anderson–Darling-test"><a href="#Anderson–Darling-test" class="headerlink" title="Anderson–Darling test"></a><strong>Anderson–Darling test</strong></h6><p>Anderson–Darling检验是一种用来检验给定的样本是否来自于某个确定的概率分布的统计检验方法。在R语言中，我们可以从<strong>nortest包</strong>中的<code>ad.test()</code>进行检验。若结果中的p值大于0.05，则数据符合正态分布。</p>
-<h6 id="Shapiro-Wilk-test"><a href="#Shapiro-Wilk-test" class="headerlink" title="Shapiro-Wilk test"></a><strong>Shapiro-Wilk test</strong></h6><p>Shapiro-Wilk检验在小样本情况下，是很普通的正态性检验方法，<code>Shapiro.test()</code>在默认安装的<strong>stats</strong>包中。原假设$H_0$: 数据符合正态分布。</p>
-<h6 id="Lilliefor-test"><a href="#Lilliefor-test" class="headerlink" title="Lilliefor test"></a><strong>Lilliefor test</strong></h6><p>Lilliefor test是基于Kolmogorov–Smirnov test的一种正态性检验。原假设$H_0$: 数据符合正态分布，<code>lillie.test()</code>也在<strong>nortest包</strong>中。</p>
-<h5 id="方差齐性检验"><a href="#方差齐性检验" class="headerlink" title="方差齐性检验"></a>方差齐性检验</h5><p>因为方差分析的实质是检验多个水平的均值是否有显著差异，如果各个水平的观察值方差差异太大，只检验均值之间的差异就没有意义了，所以要进行方差齐性检验。</p>
-<p>Bartlett test可以用来检验数据的方差齐性。</p>
-<pre><code class="hljs armasm">&gt; <span class="hljs-keyword">bartlett.test(response </span>~ trt, <span class="hljs-meta">data</span><span class="hljs-symbol">=cholesterol</span>)
-
-	<span class="hljs-keyword">Bartlett </span>test of homogeneity of variances
-
-<span class="hljs-symbol">data</span>:  response <span class="hljs-keyword">by </span>trt
-<span class="hljs-keyword">Bartlett's </span>K-squared = <span class="hljs-number">0</span>.<span class="hljs-number">57975</span>, df = <span class="hljs-number">4</span>, p-value = <span class="hljs-number">0</span>.<span class="hljs-number">9653</span></code></pre>
-<p>Bartlett检验表明五组的方差并没有显著不同（p=0.97）。其他检验如Fligner-Killeen检验<br>（<code>fligner.test()</code>函数）和Brown-Forsythe检验（<strong>HH包</strong>中的<code>hov()</code>函数）此处没有做演示，但它们获得的结果与Bartlett检验相同。</p>
-<p>不过，方差齐性分析对离群点非常敏感。可利用<strong>car包</strong>中的<code>outlierTest()</code>函数来检测离群点：</p>
-<pre><code class="hljs yaml"><span class="hljs-string">outlierTest(fit)</span>
-<span class="hljs-literal">No</span> <span class="hljs-string">Studentized</span> <span class="hljs-string">residuals</span> <span class="hljs-string">with</span> <span class="hljs-string">Bonferroni</span> <span class="hljs-string">p</span> <span class="hljs-string">&lt;</span> <span class="hljs-number">0.05</span>
-<span class="hljs-string">Largest</span> <span class="hljs-string">|rstudent|:</span>
-   <span class="hljs-string">rstudent</span> <span class="hljs-string">unadjusted</span> <span class="hljs-string">p-value</span> <span class="hljs-string">Bonferroni</span> <span class="hljs-string">p</span>
-<span class="hljs-number">19</span> <span class="hljs-number">2.251149</span>           <span class="hljs-number">0.029422</span>           <span class="hljs-string">NA</span></code></pre>
-<p>从输出结果来看，并没有证据说明胆固醇数据中含有离群点（当p&gt;1时将产生NA）。因此根据正态性检验、方差齐性检验和离群点检验，该数据似乎可以用ANOVA模型拟合得很好。<strong>这些方法反过来增强了我们对于所得结果的信心。</strong></p>
-<h2 id="3-双因素方差分析"><a href="#3-双因素方差分析" class="headerlink" title="3 双因素方差分析"></a>3 双因素方差分析</h2><h3 id="3-1-推导过程"><a href="#3-1-推导过程" class="headerlink" title="3.1 推导过程"></a>3.1 推导过程</h3><p>在很多种情况下，只考虑一个指标对观察值的影响，显然是不够的，这时就会用到多因素方差分析。双因素方差分析和多因素方差分析在原理上是相似的，这里为了书写简便，我们只以双因素方差分析为例进行推导。</p>
-<p>还是以田间实验的例子帮助理解推导过程，我们设有两个因素$A, B$，分别有$k, l$个水平（例如$A$为品种，有$k$个；$B$为播种量，考虑$l$种不同的数值，如20斤／亩，25斤／亩，……）．$A$的水平$i$与$B$的水平$j$的组合记为$(i,j)$，其试验结果记为 $Y_{ij}, i = 1, · · ·, k,j = 1,…, l$．统计模型定为</p>
-<script type="math/tex; mode=display">
-Y_{ij} = \mu + a_i + b_j + e_{ij}，i= 1, · · ·, k,j = 1,· · ·, l\qquad (3.1)</script><p>为解释这模型，首先把右边分成两部分：$e_{ij}$为随机误差，它包含了未加控制的因素($A,B$以外的因素）及大量随机因素的影响．假定</p>
-<script type="math/tex; mode=display">
-E(e_{ij})=0, 0<Var(e_{ij})={\sigma}^2<\infty,一切e_{ij}独立同分布\qquad(3.2)</script><p>另一部分$\mu + a_i + b_j$，它显示水平组合$(i,j)$的平均效应．它可以又分解为三部分：$\mu$是总平均（一切水平组合效应的平均），是一个基准．$a_i$表示由$A$的水平$i$带来的增加部分，称为因素$A$的水平$i$的效应．$b_j$有类似的解释．调整$\mu$的值，我们可以补充要求：</p>
-<script type="math/tex; mode=display">
-a_1+···+a_k=0,b_1+···+b_l=0 \qquad (3.3)</script><p>如果$(3.3)$式不成立，则分别把$\mu$换为 $\mu + \bar{a}+\bar{b}$，$a_i$换为$a_i-\bar{a}$，$b_j$换为$b_j-\bar{b}$，则$(3.1)$式不变，而$(3.3)$式成立。</p>
-<p>约束条件$(3.3)$给了$a_i，b_j$的意义一种更清晰的解释：$a_i&gt;0$ 表示A的水平$i$的效应在$A$的全部水平的平均效应之上，$a_i&lt;0$ 则相反。另外，这个约束条件也给了$\mu，a_i,b_j$的 一个适当的估计法：把$Y_{ij}$对一切$i,j$相加．注意到$(3.3)$，有</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^{k}\sum_{j=1}^{l}Y_{ij}= kl\mu+\sum_{i=1}^{k}\sum_{j=1}^{l}e_{ij} \qquad (3.4)</script><p>由$(3.2)$得，</p>
-<script type="math/tex; mode=display">
-\bar{Y}=\sum_{i=1}^{k}\sum_{j=1}^{l}Y_{ij}/kl \qquad (3.5)</script><p>是$\mu$的一个无偏估计。其次，有</p>
-<script type="math/tex; mode=display">
-\sum_{j=1}^{l}Y_{ij}=l\mu+la+\sum_{j=1}^{l}e_{ij} \qquad (3.6)</script><p>于是，记</p>
-<script type="math/tex; mode=display">
-\bar{Y_i}=\sum_{j=1}^{l}Y_{ij}/l, \quad \bar{Y_j}=\sum_{i=1}^{k}Y_{ij}/k \qquad (3.7)</script><p>由$(3.7)$知，$\bar{Y_j}$为$\mu+a_i$的一个无偏估计。于是得到$a_i$的一个无偏估计为</p>
-<script type="math/tex; mode=display">
-\hat{a_i}=\bar{Y_i}-\bar{Y}, i=1,\cdots,k \qquad(3.8)</script><p>同理，</p>
-<script type="math/tex; mode=display">
-\hat{b_j}=\bar{Y_j}-\bar{Y}, j=1,\cdots,l \qquad(3.9)</script><p>$\hat{a_i},\hat{b_j}$适合约束条件$(3.3)$。</p>
-<p>下面进行方差分析，要设法把总平方和</p>
-<script type="math/tex; mode=display">
-SS=\sum_{i=1}^{k}\sum_{j=1}^{l}(Y_{ij}-\bar{Y})^2</script><p>分解为三部分：$SS_A,SS_B,SS_e$，分别表示因素$A,B$和随机误差的影响。这种分解的主要目的是假设检验：</p>
-<script type="math/tex; mode=display">
-H_{0A}:a_1=\cdots=a_k=0 \qquad(3.10)</script><p>和</p>
-<script type="math/tex; mode=display">
-H_{0B}:b_1=\cdots=b_k=0 \qquad(3.11)</script><p>$H_0A$成立表示因素$A$对指标其实无影响。在实际问题中，绝对无影响的场合少见，但如影响甚小以致被随机误差所掩盖时，这种影响事实上等于没有。因此，拿$SS_A$和$SS_e$的比作为检验统计量正符合这一想法．</p>
-<p>接下来讲一下方差分解的小技巧：</p>
-<script type="math/tex; mode=display">
-Y_{ij}-\bar{Y}=(\bar{Y_i}-\bar{Y}) + (\bar{Y_j}-\bar{Y})+(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y})</script><p>两边平方，对$i,j$求和，结合约束条件(3.3)，注意到</p>
-<script type="math/tex; mode=display">
-\sum_{i=1}^{l}(\bar{Y_{i}}-\bar{Y})=0， 
-\sum_{j=1}^{k}(\bar{Y_{j}}-\bar{Y})=0，</script><script type="math/tex; mode=display">
-\sum_{i=1}^{k}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y})=\sum_{j=1}^{l}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y})=0</script><script type="math/tex; mode=display">
-\sum_{i=1}^{k}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y}) = k\bar{Y_j}\\
-=\sum_{j=1}^{l}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y}) = l\bar{Y_i}</script><p>即知所有交叉积之和皆为0，而得到</p>
-<script type="math/tex; mode=display">
-\begin{align}
-SS&=l\sum_{i=1}^{k}(\bar{Y_{i}}-\bar{Y})^2+k\sum_{j=1}^{l}(\bar{Y_{j}}-\bar{Y})^2+\sum_{i=1}^{k}\sum_{j=1}^{l}(Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y})^2 \\
-&=SS_A + SS_B + SS_e \qquad(3.12)
-
-\end{align}</script><p>第一个平方和可以作为因素$A$的影响的衡量，从前述$\bar{Y_{i}}-\bar{Y}$作为 $a_i$的估计可以理解第二个平方和同理。至于第三个平方和可作为随机误差的影响这一点， 直接看不甚明显。可以从两个角度去理解：在$SS$中去掉$SS_A$ 和$SS_B$后，剩余下的再没有其他系统性因素的影响，故只能作为$SS_e$。另外，由模型$(3.1)$及约束条件$(3.3)$，易知</p>
-<script type="math/tex; mode=display">
-\begin{align}
-Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y} &= (\mu + a_i + b_j + e_{ij}) - (\mu + a_i + \bar{e_{i}}) - (\mu + b_j + \bar{e_{j}} ) + (\mu + \bar{e})  \\
-&=e_{ij}-\bar{e_i}-\bar{e_j}+\bar{e} \qquad(3.13)
-
-\end{align}</script><p>这里面已经毫无$\mu,a_i,b_j$的影响，而只含随机误差。</p>
-<p>得到分解式$(3.12)$后，我们就可以像单囚素情况那样，写出下面的方差分析表：<br>$SS_A , SS_B$ 自由度分别为其水平数减去1，这一点与单因素情况相同．总和自由度为全部观察值数目$kl$减去1．剩下的就是误差平方和自由度：</p>
-<script type="math/tex; mode=display">
-(kl - 1) - (k - 1) - (l - 1) = (k - 1) (l - 1)</script><p><strong>表3.1 双因素方差分析表</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>项目</th>
-<th>$SS$</th>
-<th>自由度</th>
-<th>$MS$</th>
-<th>$F$比</th>
-<th>显著性</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>$A$</td>
-<td>$SS_A$</td>
-<td>$k-1$</td>
-<td>$MS_A$</td>
-<td>$MS_A / MS_e$</td>
-<td><em>, *</em>, 或无</td>
-</tr>
-<tr>
-<td>$B$</td>
-<td>$SS_B$</td>
-<td>$l-1$</td>
-<td>$MS_B$</td>
-<td>$MS_B / MS_e$</td>
-<td></td>
-</tr>
-<tr>
-<td>误差</td>
-<td>$SS_e$</td>
-<td>$(k - 1) (l - 1)$</td>
-<td>$MS_e$</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>总和</td>
-<td>$SS$</td>
-<td>$kl-1$</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>还有一点要注意：在采纳模型$(3.1)$时，我们事实上引进了 一 种假定，即两因素$A,B$对指标的效应是可以叠加的．换一种方式说：因素$A$的各水平的优劣比较，与因素$B$处在哪个水平无关，反之亦然．更一般的情况是：$A,B$两因子有“交互作用 ＂ 。这时在模型(5.13)中，还要加上表示交互作用的项$c_{ij}$．这时不仅统计分析复杂化了，尤其是分析结果的解释也复杂化了．本文档暂不讨论这种情况。在一个特定的问题中，交互作用是否需要考虑，在很大程度上取决于问题的实际背景和经验．有时，通过试验数据的分析也可以看出一些问题。例如，若误差方差$\sigma^2$的估计$MS_e $反常地大，则有可能是由于交互作用所致．因为可以证明：若交互作用确实存在而未加考虑，则它的影响进入随机误差而增大了$MS_e$。</p>
-<h3 id="3-2-代码实例"><a href="#3-2-代码实例" class="headerlink" title="3.2 代码实例"></a>3.2 代码实例</h3><p>在双因素方差分析中，受试者被分配到两因子的交叉类别组中。以基础安装中的ToothGrowth数据集为例，随机分配60只豚鼠，分别采用两种喂食方法（橙汁或维生素C），各喂食方法中抗坏血酸含量有三种水平（0.5mg、1mg或2mg），每种处理方式组合都被分配10只豚鼠，牙齿长度为因变量。</p>
-<pre><code class="hljs angelscript">&gt; attach(ToothGrowth)
-&gt; table(supp, dose)
-    dose
-supp <span class="hljs-number">0.5</span>  <span class="hljs-number">1</span>  <span class="hljs-number">2</span>
-  OJ  <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span>
-  VC  <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span>
-&gt; 
-&gt; aggregate(len, by=list(supp, dose), FUN=mean)
-  Group<span class="hljs-number">.1</span> Group<span class="hljs-number">.2</span>     x
-<span class="hljs-number">1</span>      OJ     <span class="hljs-number">0.5</span> <span class="hljs-number">13.23</span>
-<span class="hljs-number">2</span>      VC     <span class="hljs-number">0.5</span>  <span class="hljs-number">7.98</span>
-<span class="hljs-number">3</span>      OJ     <span class="hljs-number">1.0</span> <span class="hljs-number">22.70</span>
-<span class="hljs-number">4</span>      VC     <span class="hljs-number">1.0</span> <span class="hljs-number">16.77</span>
-<span class="hljs-number">5</span>      OJ     <span class="hljs-number">2.0</span> <span class="hljs-number">26.06</span>
-<span class="hljs-number">6</span>      VC     <span class="hljs-number">2.0</span> <span class="hljs-number">26.14</span>
-&gt; 
-&gt; aggregate(len, by=list(supp, dose), FUN=sd)
-  Group<span class="hljs-number">.1</span> Group<span class="hljs-number">.2</span>        x
-<span class="hljs-number">1</span>      OJ     <span class="hljs-number">0.5</span> <span class="hljs-number">4.459709</span>
-<span class="hljs-number">2</span>      VC     <span class="hljs-number">0.5</span> <span class="hljs-number">2.746634</span>
-<span class="hljs-number">3</span>      OJ     <span class="hljs-number">1.0</span> <span class="hljs-number">3.910953</span>
-<span class="hljs-number">4</span>      VC     <span class="hljs-number">1.0</span> <span class="hljs-number">2.515309</span>
-<span class="hljs-number">5</span>      OJ     <span class="hljs-number">2.0</span> <span class="hljs-number">2.655058</span>
-<span class="hljs-number">6</span>      VC     <span class="hljs-number">2.0</span> <span class="hljs-number">4.797731</span>
-&gt; 
-&gt; dose &lt;- factor(dose)
-#dose变量被转换为因子变量，这样aov()函数就会将它当做一个分组变量，而不是一个数值型协变量
-&gt; # condider <span class="hljs-built_in">int</span>eractive factor
-&gt; fit &lt;- aov(len ~ supp*dose)
-&gt; summary(fit)
-            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-supp         <span class="hljs-number">1</span>  <span class="hljs-number">205.4</span>   <span class="hljs-number">205.4</span>  <span class="hljs-number">15.572</span> <span class="hljs-number">0.000231</span> ***
-dose         <span class="hljs-number">2</span> <span class="hljs-number">2426.4</span>  <span class="hljs-number">1213.2</span>  <span class="hljs-number">92.000</span>  &lt; <span class="hljs-number">2e-16</span> ***
-supp:dose    <span class="hljs-number">2</span>  <span class="hljs-number">108.3</span>    <span class="hljs-number">54.2</span>   <span class="hljs-number">4.107</span> <span class="hljs-number">0.021860</span> *  
-Residuals   <span class="hljs-number">54</span>  <span class="hljs-number">712.1</span>    <span class="hljs-number">13.2</span>                     
----
-Signif. codes:  <span class="hljs-number">0</span> ‘***’ <span class="hljs-number">0.001</span> ‘**’ <span class="hljs-number">0.01</span> ‘*’ <span class="hljs-number">0.05</span> ‘.’ <span class="hljs-number">0.1</span> ‘ ’ <span class="hljs-number">1</span></code></pre>
-<p>计算结果表明，主效应和交互效应都是显著的。</p>
-<p>有多种方式对结果进行可视化处理。此处可用interaction.plot()函数来展示双因素方<br>差分析的交互效应。</p>
-<pre><code class="hljs routeros"><span class="hljs-comment"># interactive effect</span>
-interaction.plot(dose, supp, len, <span class="hljs-attribute">type</span>=<span class="hljs-string">"b"</span>,
-                 <span class="hljs-attribute">col</span>=c("red","blue"), <span class="hljs-attribute">pch</span>=c(16, 18),
-                 main = <span class="hljs-string">"Interaction between Dose and Supplement Type"</span>)</code></pre>
-<p><img src="/article/2ad44fb9/3-1.png" srcset="/img/loading.gif" alt="3-1"></p>
-<p><strong>图3-1 各种剂量喂食下豚鼠牙齿长度的均值（interaction.plot()函数绘制）</strong></p>
-<p>还可以用gplots包中的plotmeans()函数来展示交互效应。<img src="/article/2ad44fb9/3-2.png" srcset="/img/loading.gif" alt="3-2"><strong>图3-2 喂食方法和剂量对牙齿生长的交互作用。用plotmeans()函数绘制的95%的置</strong><br><strong>信区间的牙齿长度均值</strong></p>
-<p>图形展示了均值、误差棒（95%的置信区间）和样本大小。<br>最后，你还能用HH包中的interaction2wt()函数来可视化结果，图形对任意顺序的因子设计的主效应和交互效应都会进行展示（图3-3）。</p>
-<pre><code class="hljs lisp">library(<span class="hljs-name">HH</span>)
-interaction2wt(<span class="hljs-name">len</span>~supp*dose)
-&gt; 
-&gt; detach(<span class="hljs-name">ToothGrowth</span>)</code></pre>
-<p><img src="/article/2ad44fb9/3-3.png" srcset="/img/loading.gif" alt="3-3"></p>
-<p><strong>图3-3 ToothGrowth数据集的主效应和交互效应。图形由interaction2wt()函数创建</strong></p>
-<p>以上三幅图形都表明随着橙汁和维生素C中的抗坏血酸剂量的增加，牙齿长度变长。对于0.5mg和1mg剂量，橙汁比维生素C更能促进牙齿生长；对于2mg剂量的抗坏血酸，两种喂食方法下牙齿长度增长相同。</p>
-<h4 id="参考书目："><a href="#参考书目：" class="headerlink" title="参考书目："></a>参考书目：</h4><ol>
-<li>陈希孺，概率论与数理统计</li>
-<li>Robert I. Kabacoff, R in Action.</li>
-</ol>
-]]></content>
-      <categories>
-        <category>概率统计</category>
-      </categories>
-      <tags>
-        <tag>概率统计</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Introduction_and_Word_Vectors</title>
     <url>/article/fd8e5887.html</url>
     <content><![CDATA[<h1 id="Task1-Introduction-and-Word-Vectors"><a href="#Task1-Introduction-and-Word-Vectors" class="headerlink" title="Task1: Introduction and Word Vectors"></a>Task1: Introduction and Word Vectors</h1><p>理论部分</p>
@@ -1266,179 +1266,6 @@ interaction2wt(<span class="hljs-name">len</span>~supp*dose)
 <li>Word2Vec方法的基本原理</li>
 </ul>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Task02-LBP特征描述算子-人脸检测</title>
-    <url>/article/50afbda.html</url>
-    <content><![CDATA[<p>学习任务：</p>
-<p><strong>本文主要包含以下两部分</strong>：</p>
-<ul>
-<li><strong>理论部分</strong>：掌握LBP特征描述算子原理</li>
-<li><strong>练习部分</strong>：使用OpenCV的LBP检测器完成人脸检测任务</li>
-</ul>
-<p>LBP是指局部二值模式(Local Binary Pattern)，是一种用来描述图像局部特征的算子，具有灰<br>度不变性和旋转不变性等显著优点。<a id="more"></a></p>
-<h1 id="2-1-算法理论"><a href="#2-1-算法理论" class="headerlink" title="2.1 算法理论"></a>2.1 算法理论</h1><h2 id="LBP概念"><a href="#LBP概念" class="headerlink" title="LBP概念"></a>LBP概念</h2><p>LBP指的是局部二值模式，英文全称：Local Binary Pattern，是一种用来描述图像局部特征的算子。<br>LBP特征比较出名的应用是人脸识别和目标检测中。<br>计算机视觉开源库OpenCV：</p>
-<ul>
-<li>使用LBP特征实现人脸识别的接口。</li>
-<li>使用LBP特征实现目标检测分类器的接口。</li>
-</ul>
-<p>本文将会对上述第一点做简单实现。</p>
-<h2 id="基本LBP-纹理特征"><a href="#基本LBP-纹理特征" class="headerlink" title="基本LBP:纹理特征"></a>基本LBP:纹理特征</h2><p>基本LBP特征描述</p>
-<ol>
-<li>基本的LBP算子定义在像素3*3的领域内；</li>
-<li>以领域中文像素为阈值，相邻8个像素的灰度值与中心像素的灰度值比较，若周围像素大于中心像素，标记为1，否则标记为0；</li>
-<li>3*3领域内的8个点经过第二步后产生8个二进制数，依次排列为一个二进制序列。</li>
-<li>8位二进制序列共有$2^8$即256种LBP值。中心像素的LBP值反映了该像素周围区域的纹理信息。中心像素的灰度值决定了局部区域的整体亮度。</li>
-</ol>
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://img-blog.csdnimg.cn/20200605193831589.png#pic_center" srcset="/img/loading.gif">
-    <br>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 2px;">图 2.3.1 LBP计算示意图</div>
-</center>
-
-<p>​        中心像素坐标$(x_0,y_0)$局部领域中像素个数为$P(P&gt;1)$，$g_c$表示中心像素的灰度值，$g_p$ 表示领域像素的灰度值。</p>
-<p>​        基本LBP表示为：$LBP(x_0,y_0)=\sum_{p=0}^{P-1} s(g_{p}-g_{c}) 2^{p}$<br>​        s是示性函数：$s(x)=\left\{\begin{array}{l}1, x \geq 0 \\<br>0, x&lt;0<br>\end{array}\right.$</p>
-<p>&emsp;&emsp; <font color="blue">基本LBP具有灰度不变性。</font>对光照变化是鲁棒的。</p>
-<h2 id="圆形LBP算子"><a href="#圆形LBP算子" class="headerlink" title="圆形LBP算子"></a>圆形LBP算子</h2><p>&emsp;基本LBP算子的缺陷：只覆盖了固定半径范围的小区域，不能适应不同尺度和频率纹理的变化。<br>&emsp;圆形LBP(Circular LBP or Extended LBP)：<strong>将局部领域扩展到任意领域，用圆形领域代替正方形领域。</strong><br>&emsp;改进后的LBP算子允许半径为R的圆形领域有任意多个像素点。<br>    使用可变半径的圆对近邻像素进行编码，可得到如下近邻：</p>
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/article/50afbda/20190527221543821.png" srcset="/img/loading.gif">
-    <br>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 2px;">图 2.3.2 五种编码对应的LBP</div>
-</center>
-
-<p>​    半径为R的圆形区域内含有P个采样点的LBP算子，表示为$LBP^{R}_P$；</p>
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://img-blog.csdnimg.cn/20200605202407325.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTk0MDUxMg==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif">
-    <br>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 2px;">图 2.3.2 圆形LBP示意图</div>
-</center>
-
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/article/50afbda/20190527221655965.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTk0MDUxMg==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif">
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 2px;">图 2.3.2 LBP扩展与多尺度表达</div>
-</center>
-
-<p>​        对于给定中心点$(x_c,y_c)$,其邻域像素位置为$(x_p,y_p)$，$p∈P$，其采样点$(x_p,y_p)$用如下公式计算：</p>
-<script type="math/tex; mode=display">
-{x}_{p}=x_{c}+\operatorname{Rcos}\left(\frac{2 \pi p}{P}\right) \\
-y_{p}=y_{c}+\operatorname{Rsin}\left(\frac{2 \pi p}{P}\right)</script><p>​    &emsp;R是采样半径，p是第p个采样点，P是采样数目。如果近邻点不在整数位置上，就需要进行插值运算，然后使用计算出的插值点。OpenCV使用的是双线性插值。</p>
-<h2 id="旋转不变性LBP"><a href="#旋转不变性LBP" class="headerlink" title="旋转不变性LBP"></a>旋转不变性LBP</h2><p>实现：<strong>不断旋转圆形邻域得到一系列初始定义的LPB值，取最小值作为中心像素点的LBP特征。</strong></p>
-<script type="math/tex; mode=display">L B P_{P R}^{ri}=\min \left(R O R\left(L B P_{P, R}, i\right) | i=0,1, \ldots, P-1\right)\tag{2-7}</script><p>&emsp;其中$L B P_{P R}^{ri}$表示具有旋转不变性的LBP特征。$ROR(x, i)$为旋转函数，表示将P-bit​数右循环i位。</p>
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://img-blog.csdnimg.cn/20200606135438907.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTk0MDUxMg==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif">
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 2px;">图 2.3.3 求取旋转不变的LBP特征示意图
-</div>
-</center>
-
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/article/50afbda/v55RgEh.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTk0MDUxMg==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif">
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 2px;">图 2.3.3 36种不同的旋转不变性LBP特征(P=8)
-</div>
-</center>
-
-<h2 id="Uniform-Pattern-LBP特征"><a href="#Uniform-Pattern-LBP特征" class="headerlink" title="Uniform Pattern LBP特征"></a>Uniform Pattern LBP特征</h2><p>Uniform Pattern，也被称为等价模式或均匀模式。<br>        将LBP算子用于纹理分类或人脸识别时，常用于LBP模式的统计直方图来表达图像的信息，较多的模式种类将使得数据量过大，且直方图过于稀疏。因此，需要对原始的LBP进行降维，使得数据量减少的情况下更好地表达图像信息。<br>        为了解决二进制模式过多的问题，提高统计性，Ojala提出了采用一种“<strong>等价模式</strong>”(Uniform Pattern)来对LBP算子的模式种类<strong>进行降维</strong>。<br>        <strong>在实际图像中，绝大多数LBP模式最多只包含两次从1到0或从0到1的跳变。</strong></p>
-<ul>
-<li>将<strong>等价模式</strong>定义为：当某个LBP所对应的循环二进制数从0到1或从1到0最多有两次跳变时，该LBP所对应的二进制就称为一个等价模式类。<strong>如00000000(0次跳变)，00000111(只含一次从0到1的跳变)，10001111(先由1跳到0，再由0跳到1，共两次跳变)</strong>,都是等价模式类。</li>
-<li>除等价模式类以外的模式都归为另一类，称为<strong>混合模式类</strong>。<strong>例如10010111(共四次跳变)</strong>。</li>
-</ul>
-<p>&emsp;&emsp;<strong>检查某种模式是否是等价模式</strong>：将当前位置和移动一位后的二进制模式按位相减。并绝对值求和。若U$\left(G_{p}\right)$ 小于等于2，则为等价模式。</p>
-<script type="math/tex; mode=display">
-U\left(G_{p}\right)=\left|s\left(g_{p_{-1}}-g_{c}\right)-s\left(g_{0}-g_{c}\right)\right|+\sum_{p=1}^{P_{-1}}\left|s\left(g_{p}-g_{c}\right)-s\left(g_{P-1}-g_{c}\right)\right|</script><p>&emsp;&emsp;二进制模式数量由原来的$2^P$种减少为了$P(P-1)+2+1$种。其中等价模式类为$P(P-1)+2$种，在LBP特征图的灰度值为$1-[P(P-1)+2]$，混合模式类为1种，灰度值为0。因此等价模式LBP特征图像整体偏暗。</p>
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/article/50afbda/image-20200628174535833.png" srcset="/img/loading.gif">
-    <br>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 2px;">图 2.3.3 LBP等价模式类(P=8)
-</div>
-</center>
-
-
-
-<h2 id="LBPH特征"><a href="#LBPH特征" class="headerlink" title="LBPH特征"></a>LBPH特征</h2><p>LBPH特征：全称为Local Binary Patterns Histograms，即LBP特征的统计直方图。LBPH将LBP特征与图像的空间信息结合在一起。</p>
-<p>一幅图具体的计算LBPH过程如下：</p>
-<p>1.计算图像的LBP特征图像；</p>
-<p>2.将LBP特征图像进行分块，OpenCV中将LBP特征图像分成8行8列64块区域；</p>
-<p>3.计算每块区域特征图像的直方图cell_LBPH，并将直方图进行归一化，直方图大小为 1*numPatterns；</p>
-<p>4.将上面计算的每块区域特征图像的直方图按分块的空间顺序依次排列成一列，形成LBP特征分量，其大小为 1<em>(numPatterns</em>64)；</p>
-<p>5.用机器学习的方式对LBP特征向量进行训练，用来检测和识别目标。</p>
-<h1 id="2-2-基于OpenCV的LBP人脸检测"><a href="#2-2-基于OpenCV的LBP人脸检测" class="headerlink" title="2.2 基于OpenCV的LBP人脸检测"></a>2.2 基于OpenCV的LBP人脸检测</h1><h2 id="多级级联对人脸图像进行检测："><a href="#多级级联对人脸图像进行检测：" class="headerlink" title="多级级联对人脸图像进行检测："></a>多级级联对人脸图像进行检测：</h2><center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://img-blog.csdnimg.cn/20200606145525679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTk0MDUxMg==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif">
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 2px;">图 2.3.5 人脸检测流程图
-</div>
-</center>
-
-<h2 id="基于OpenCV的实现"><a href="#基于OpenCV的实现" class="headerlink" title="基于OpenCV的实现"></a>基于OpenCV的实现</h2><ul>
-<li>使用OpenCV预训练模型</li>
-<li>将haarcascade_frontalface_default.xml下载至本地以方便调用，下载链接：<a href="https://github.com/opencv/opencv/blob/master/data/lbpcascades/lbpcascade_frontalface_improved.xml" target="_blank" rel="noopener">https://github.com/opencv/opencv/blob/master/data/lbpcascades/lbpcascade_frontalface_improved.xml</a>   </li>
-</ul>
-<p>函数：<br>detectMultiScale(self, image, scaleFactor=None, minNeighbors=None, flags=None, minSize=None, maxSize=None)<br>参数:<br>1）scaleFactor: 图像缩放比例<br>2）minNeighbors: 每个候选矩形保留的邻居个数，值越大-&gt;精度越大<br>3）minSize：检测到的最小矩形大小<br>4）maxSize: 检测到的最大矩形大小</p>
-<p>待测人脸图像(网上随意摘取一张)：</p>
-<p><img src="/article/50afbda/image2.jpg" srcset="/img/loading.gif" alt="image2"></p>
-<pre><code class="hljs python"><span class="hljs-comment"># 利用LBP进行人脸检测</span>
-<span class="hljs-keyword">import</span> cv2
-img = cv2.imread(<span class="hljs-string">'image2.jpg'</span>)
-<span class="hljs-comment"># cv2.imshow('test', img)</span>
-face_detect = cv2.CascadeClassifier(<span class="hljs-string">'lbpcascade_frontalface_improved.xml'</span>)
-<span class="hljs-comment"># ======================检测人脸==============================</span>
-<span class="hljs-comment"># 灰度处理</span>
-gray = cv2.cvtColor(img, code=cv2.COLOR_BGR2GRAY)
-<span class="hljs-comment"># 检测人脸 按照1.1倍放到 周围最小像素为5</span>
-face_zone = face_detect.detectMultiScale(gray, scaleFactor=<span class="hljs-number">1.1</span>, minNeighbors=<span class="hljs-number">2</span>)
-print(face_zone)
-<span class="hljs-comment"># 绘制矩形检测人脸</span>
-<span class="hljs-keyword">for</span> (x, y, w, h) <span class="hljs-keyword">in</span> face_zone:
-    <span class="hljs-comment"># 绘制矩形人脸区域</span>
-    print(x,y,w,h)
-    cv2.rectangle(img, pt1=(x, y), pt2=(x+w, y+h), color=[<span class="hljs-number">255</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>], thickness=<span class="hljs-number">2</span>)
-<span class="hljs-comment"># 显示图片</span>
-cv2.imshow(<span class="hljs-string">"output"</span>, img)
-<span class="hljs-comment"># 等待显示，设置任意键退出程序</span>
-cv2.waitKey(<span class="hljs-number">0</span>)
-cv2.destroyAllWindows()</code></pre>
-<p>检测结果：</p>
-<p><img src="/article/50afbda/output.jpg" srcset="/img/loading.gif" alt="output"></p>
-<p>简单示意例子：<a href="https://sharky93.github.io/docs/gallery/auto_examples/plot_local_binary_pattern.html" target="_blank" rel="noopener">https://sharky93.github.io/docs/gallery/auto_examples/plot_local_binary_pattern.html</a></p>
-<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><p><a href="https://blog.csdn.net/qq_34246778/article/details/90613779?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">LBP(Local Binary Patterns特征)</a></p>
-<p><a href="https://blog.csdn.net/YhL_Leo/article/details/52120195" target="_blank" rel="noopener">局部二值模式（Local Binary Patterns）纹理灰度与旋转不变性</a></p>
-<p><a href="https://github.com/datawhalechina/team-learning/blob/master/03 计算机视觉/计算机视觉基础：图像处理（下）/Task02 LBP特征描述算子.md" target="_blank" rel="noopener">Task02 LBP特征描述算子</a></p>
-]]></content>
-      <categories>
-        <category>图像处理下</category>
-      </categories>
-      <tags>
-        <tag>图像处理</tag>
-      </tags>
   </entry>
   <entry>
     <title>LSTM_Elmo</title>
@@ -1673,6 +1500,36 @@ print(count)</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Task03-Haar特征描述算子-人脸监测</title>
+    <url>/article/ad28cab2.html</url>
+    <content><![CDATA[<h1 id="3-1-算法由来"><a href="#3-1-算法由来" class="headerlink" title="3.1 算法由来"></a>3.1 算法由来</h1><p>​        Haar-like特征最早是由Papageorgiou等应用于人脸表示，2001年，Viola和Jones两位大牛发表了今典的《Rapid Object Detection using a Boosted Cascade of Simple Features》和《Robust Real-Time Face Detection》，在AdaBoost算法基础上，使用Haar-like小波特征和积分图方法进行人脸监测，并对AdaBoost训练出的强分类器进行级联。<br>​        这两个大咖不是最早提出使用小波特征的，单他们设计了针对人脸监测更有效的特征，可以说是人脸检测史上里程碑式的一笔了，当时这个算法被称为Viola-Jones检测器。又过了一段时间，Rainer Liehart和Jochen Maydt两位大咖把这个检测器进行扩展，最终形成了OpenCV现在的Haar分类器。</p>
+<p>​        AdaBoost是Freund和Schapire在1995年提出的算法，是对传统Boosting算法的一大提升。Boosting算法的核心思想，是将弱学习方法提升成强学习算法，也就是“三个臭皮匠顶一个诸葛亮”。<a id="more"></a></p>
+<font color="blue">Haar分类器 = Haar-like特征 + 积分图方法 + AdaBoost + 级联</font>
+
+<p>Haar分类器算法的要点如下：</p>
+<ol>
+<li>使用Haar-like特征特征做监测</li>
+<li>使用积分图(Integral Image)对Haar-like特征求值进行加速。</li>
+<li>使用AdaBoost算法训练区分人脸和非人脸的强分类器。</li>
+<li>使用筛选式级联把强分类器级联到一起，提高准确率。</li>
+</ol>
+<h1 id="3-2-算法理解"><a href="#3-2-算法理解" class="headerlink" title="3.2 算法理解"></a>3.2 算法理解</h1><h2 id="一、Haar-like特征"><a href="#一、Haar-like特征" class="headerlink" title="一、Haar-like特征"></a>一、Haar-like特征</h2><p>​        Haar特征分为四类：边缘特征、线性特征、中心特征和对角线特征，组合成特征模板。特征模板内有白色和黑色两种矩形。<font color="blue">并定义该模板的特征值为白色矩形像素和减去黑色矩形像素和</font>。Haar特征值反映了图形的灰度变化情况。例如：脸部的一些特征能由矩形特征简单的描述，单矩形特征只对一些简单的图形结构，如边缘、线段较敏感，所以只能描述特定走向(水平、垂直、对角)的结构。</p>
+<p><img src="/article/ad28cab2/1328274-20180802215641326-115308739.png" srcset="/img/loading.gif" alt="img"></p>
+<p>​        图中的A, B和D这类特征，特征数值计算公式为：v=Σ白-Σ黑。图C中，计算公式：v=Σ白-2*Σ黑。将黑色区域像素和乘以2，是为了使两种矩形区域中像素数目一致。我们希望当把矩形放到人脸区域计算出来的特征值和放到非人脸区域计算出来的特征值差别越大越好，这样就可以用来区分人脸和非人脸。<br>​        通过改变特征模板的大小和位置，可在图像子窗口中穷举出大量的特征。上图的特征模板称为“特征原型”；特征原型在图像子窗口中扩展（平移伸缩）得到的特征称为“矩形特征”；矩形特征的值称为“特征值”。</p>
+<p><img src="/article/ad28cab2/1328274-20180815213149483-1209887019.png" srcset="/img/loading.gif" alt="img"></p>
+<p>​        上图中两个矩形特征，表示出人脸的某些特征。比如中间一幅表示眼睛区域的颜色比脸颊区域的颜色深，右边一幅表示鼻梁两侧比鼻梁的颜色要深。同样，其他目标，如眼睛等，也可以用一些矩形特征来表示。<font color="blue">使用矩形特征比单纯地使用像素点具有很大的优越性，并且速度更快。</font><br>​        矩形特征可位于图像任意位置，大小也可以任意改变，所以矩形特征值是矩形模版类别、矩形位置和矩形大小这三个因素的函数。故类别、大小和位置的变化，使得很小的检测窗口含有非常多的矩形特征，如：在24*24像素大小的检测窗口内矩形特征数量可以达到16万个。这样就有两个问题需要解决了：</p>
+<p>（1）如何快速计算那么多的特征？—-积分图大显神通；<br>（2）哪些矩形特征才是对分类器分类最有效的？—-如通过AdaBoost算法来训练。</p>
+<h2 id="二、Haar-like特征计算-积分图"><a href="#二、Haar-like特征计算-积分图" class="headerlink" title="二、Haar-like特征计算-积分图"></a>二、Haar-like特征计算-积分图</h2><p>​        <font color="blue">积分图是只遍历一次图像就可求出图像中所有区域像素和的快速算法</font>，大大提高了图像特征值计算的效率。<br>​        积分图的主要思想是将图像从起点开始到各个点形成的矩形区域像素之和作为一个数组的元素提前保存在数组中。当要计算某个区域的像素和时，直接索引数组的元素进行线性计算即可，从而加快了计算速度。<br>​        积分图是一种能够描述全局信息的举证表示方法。积分图的构造方式是位置位置（𝑖,𝑗）处的值𝑖𝑖(𝑖,𝑗)是原图像(𝑖,𝑗)左上角方向所有像素𝑓(𝑘,𝑙)的和：</p>
+<script type="math/tex; mode=display">
+𝑖𝑖(𝑖,𝑗)=\sum_{𝑘≤𝑖,𝑙≤𝑗}{𝑓(𝑘,𝑙)}</script>]]></content>
+      <categories>
+        <category>图像处理下</category>
+      </categories>
+      <tags>
+        <tag>图像处理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>pandas下综合练习</title>
     <url>/article/67aeaf8.html</url>
     <content><![CDATA[<h1 id="一、端午节的淘宝粽子交易"><a href="#一、端午节的淘宝粽子交易" class="headerlink" title="一、端午节的淘宝粽子交易"></a>一、端午节的淘宝粽子交易</h1><h2 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h2><p>（1）请删除最后一列为缺失值的行，并求所有在杭州发货的商品单价均值。</p>
@@ -1831,28 +1688,171 @@ result_day = []
       </tags>
   </entry>
   <entry>
-    <title>Task03-Haar特征描述算子-人脸监测</title>
-    <url>/article/ad28cab2.html</url>
-    <content><![CDATA[<h1 id="3-1-算法由来"><a href="#3-1-算法由来" class="headerlink" title="3.1 算法由来"></a>3.1 算法由来</h1><p>Haar-like特征最早是由Papageorgiou等应用于人脸表示，2001年，Viola和Jones两位大牛发表了今典的《Rapid Object Detection using a Boosted Cascade of Simple Features》和《Robust Real-Time Face Detection》，在AdaBoost算法基础上，使用Haar-like小波特征和积分图方法进行人脸监测，并对AdaBoost训练出的强分类器进行级联。<br>这两个大咖不是最早提出使用小波特征的，单他们设计了针对人脸监测更有效的特征，可以说是人脸检测史上里程碑式的一笔了，当时这个算法被称为Viola-Jones检测器。又过了一段时间，Rainer Liehart和Jochen Maydt两位大咖把这个检测器进行扩展，最终形成了OpenCV现在的Haar分类器。</p>
-<p>AdaBoost是Freund和Schapire在1995年提出的算法，是对传统Boosting算法的一大提升。Boosting算法的核心思想，是将弱学习方法提升成强学习算法，也就是“三个臭皮匠顶一个诸葛亮”。<a id="more"></a></p>
-<font color="blue">Haar分类器 = Haar-like特征 + 积分图方法 + AdaBoost + 级联</font>
-
-<p>Haar分类器算法的要点如下：</p>
+    <title>Task02-LBP特征描述算子-人脸检测</title>
+    <url>/article/50afbda.html</url>
+    <content><![CDATA[<p>学习任务：</p>
+<p><strong>本文主要包含以下两部分</strong>：</p>
+<ul>
+<li><strong>理论部分</strong>：掌握LBP特征描述算子原理</li>
+<li><strong>练习部分</strong>：使用OpenCV的LBP检测器完成人脸检测任务</li>
+</ul>
+<p>LBP是指局部二值模式(Local Binary Pattern)，是一种用来描述图像局部特征的算子，具有灰<br>度不变性和旋转不变性等显著优点。<a id="more"></a></p>
+<h1 id="2-1-算法理论"><a href="#2-1-算法理论" class="headerlink" title="2.1 算法理论"></a>2.1 算法理论</h1><h2 id="LBP概念"><a href="#LBP概念" class="headerlink" title="LBP概念"></a>LBP概念</h2><p>LBP指的是局部二值模式，英文全称：Local Binary Pattern，是一种用来描述图像局部特征的算子。<br>LBP特征比较出名的应用是人脸识别和目标检测中。<br>计算机视觉开源库OpenCV：</p>
+<ul>
+<li>使用LBP特征实现人脸识别的接口。</li>
+<li>使用LBP特征实现目标检测分类器的接口。</li>
+</ul>
+<p>本文将会对上述第一点做简单实现。</p>
+<h2 id="基本LBP-纹理特征"><a href="#基本LBP-纹理特征" class="headerlink" title="基本LBP:纹理特征"></a>基本LBP:纹理特征</h2><p>基本LBP特征描述</p>
 <ol>
-<li>使用Haar-like特征特征做监测</li>
-<li>使用积分图(Integral Image)对Haar-like特征求值进行加速。</li>
-<li>使用AdaBoost算法训练区分人脸和非人脸的强分类器。</li>
-<li>使用筛选式级联把强分类器级联到一起，提高准确率。</li>
+<li>基本的LBP算子定义在像素3*3的领域内；</li>
+<li>以领域中文像素为阈值，相邻8个像素的灰度值与中心像素的灰度值比较，若周围像素大于中心像素，标记为1，否则标记为0；</li>
+<li>3*3领域内的8个点经过第二步后产生8个二进制数，依次排列为一个二进制序列。</li>
+<li>8位二进制序列共有$2^8$即256种LBP值。中心像素的LBP值反映了该像素周围区域的纹理信息。中心像素的灰度值决定了局部区域的整体亮度。</li>
 </ol>
-<h1 id="3-2-算法理解"><a href="#3-2-算法理解" class="headerlink" title="3.2 算法理解"></a>3.2 算法理解</h1><h2 id="一、Haar-like特征"><a href="#一、Haar-like特征" class="headerlink" title="一、Haar-like特征"></a>一、Haar-like特征</h2><p>Haar特征分为四类：边缘特征、线性特征、中心特征和对角线特征，组合成特征模板。特征模板内有白色和黑色两种矩形。<font color="blue">并定义该模板的特征值为白色矩形像素和减去黑色矩形像素和</font>。Haar特征值反映了图形的灰度变化情况。例如：脸部的一些特征能由矩形特征简单的描述，单矩形特征只对一些简单的图形结构，如边缘、线段较敏感，所以只能描述特定走向(水平、垂直、对角)的结构。</p>
-<p><img src="/article/ad28cab2/1328274-20180802215641326-115308739.png" srcset="/img/loading.gif" alt="img"></p>
-<p>图中的A, B和D这类特征，特征数值计算公式为：v=Σ白-Σ黑。图C中，计算公式：v=Σ白-2*Σ黑。将黑色区域像素和乘以2，是为了使两种矩形区域中像素数目一致。我们希望当把矩形放到人脸区域计算出来的特征值和放到非人脸区域计算出来的特征值差别越大越好，这样就可以用来区分人脸和非人脸。<br>通过改变特征模板的大小和位置，可在图像子窗口中穷举出大量的特征。上图的特征模板称为“特征原型”；特征原型在图像子窗口中扩展（平移伸缩）得到的特征称为“矩形特征”；矩形特征的值称为“特征值”。</p>
-<p><img src="/article/ad28cab2/1328274-20180815213149483-1209887019.png" srcset="/img/loading.gif" alt="img"></p>
-<p>上图中两个矩形特征，表示出人脸的某些特征。比如中间一幅表示眼睛区域的颜色比脸颊区域的颜色深，右边一幅表示鼻梁两侧比鼻梁的颜色要深。同样，其他目标，如眼睛等，也可以用一些矩形特征来表示。<font color="blue">使用矩形特征比单纯地使用像素点具有很大的优越性，并且速度更快。</font><br>矩形特征可位于图像任意位置，大小也可以任意改变，所以矩形特征值是矩形模版类别、矩形位置和矩形大小这三个因素的函数。故类别、大小和位置的变化，使得很小的检测窗口含有非常多的矩形特征，如：在24*24像素大小的检测窗口内矩形特征数量可以达到16万个。这样就有两个问题需要解决了：</p>
-<p>（1）如何快速计算那么多的特征？—-积分图大显神通；<br>（2）哪些矩形特征才是对分类器分类最有效的？—-如通过AdaBoost算法来训练。</p>
-<h2 id="二、Haar-like特征计算-积分图"><a href="#二、Haar-like特征计算-积分图" class="headerlink" title="二、Haar-like特征计算-积分图"></a>二、Haar-like特征计算-积分图</h2><p><font color="blue">积分图是只遍历一次图像就可求出图像中所有区域像素和的快速算法</font>，大大提高了图像特征值计算的效率。<br>积分图的主要思想是将图像从起点开始到各个点形成的矩形区域像素之和作为一个数组的元素提前保存在数组中。当要计算某个区域的像素和时，直接索引数组的元素进行线性计算即可，从而加快了计算速度。<br>积分图是一种能够描述全局信息的举证表示方法。积分图的构造方式是位置位置（𝑖,𝑗）处的值𝑖𝑖(𝑖,𝑗)是原图像(𝑖,𝑗)左上角方向所有像素𝑓(𝑘,𝑙)的和：</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://img-blog.csdnimg.cn/20200605193831589.png#pic_center" srcset="/img/loading.gif">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">图 2.3.1 LBP计算示意图</div>
+</center>
+
+<p>​        中心像素坐标$(x_0,y_0)$局部领域中像素个数为$P(P&gt;1)$，$g_c$表示中心像素的灰度值，$g_p$ 表示领域像素的灰度值。</p>
+<p>​        基本LBP表示为：$LBP(x_0,y_0)=\sum_{p=0}^{P-1} s(g_{p}-g_{c}) 2^{p}$<br>​        s是示性函数：$s(x)=\left\{\begin{array}{l}1, x \geq 0 \\<br>0, x&lt;0<br>\end{array}\right.$</p>
+<p>&emsp;&emsp; <font color="blue">基本LBP具有灰度不变性。</font>对光照变化是鲁棒的。</p>
+<h2 id="圆形LBP算子"><a href="#圆形LBP算子" class="headerlink" title="圆形LBP算子"></a>圆形LBP算子</h2><p>&emsp;基本LBP算子的缺陷：只覆盖了固定半径范围的小区域，不能适应不同尺度和频率纹理的变化。<br>&emsp;圆形LBP(Circular LBP or Extended LBP)：<strong>将局部领域扩展到任意领域，用圆形领域代替正方形领域。</strong><br>&emsp;改进后的LBP算子允许半径为R的圆形领域有任意多个像素点。<br>    使用可变半径的圆对近邻像素进行编码，可得到如下近邻：</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/article/50afbda/20190527221543821.png" srcset="/img/loading.gif">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">图 2.3.2 五种编码对应的LBP</div>
+</center>
+
+<p>​    半径为R的圆形区域内含有P个采样点的LBP算子，表示为$LBP^{R}_P$；</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://img-blog.csdnimg.cn/20200605202407325.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTk0MDUxMg==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">图 2.3.2 圆形LBP示意图</div>
+</center>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/article/50afbda/20190527221655965.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTk0MDUxMg==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif">
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">图 2.3.2 LBP扩展与多尺度表达</div>
+</center>
+
+<p>​        对于给定中心点$(x_c,y_c)$,其邻域像素位置为$(x_p,y_p)$，$p∈P$，其采样点$(x_p,y_p)$用如下公式计算：</p>
 <script type="math/tex; mode=display">
-𝑖𝑖(𝑖,𝑗)=\sum_{𝑘≤𝑖,𝑙≤𝑗}{𝑓(𝑘,𝑙)}</script>]]></content>
+{x}_{p}=x_{c}+\operatorname{Rcos}\left(\frac{2 \pi p}{P}\right) \\
+y_{p}=y_{c}+\operatorname{Rsin}\left(\frac{2 \pi p}{P}\right)</script><p>​    &emsp;R是采样半径，p是第p个采样点，P是采样数目。如果近邻点不在整数位置上，就需要进行插值运算，然后使用计算出的插值点。OpenCV使用的是双线性插值。</p>
+<h2 id="旋转不变性LBP"><a href="#旋转不变性LBP" class="headerlink" title="旋转不变性LBP"></a>旋转不变性LBP</h2><p>实现：<strong>不断旋转圆形邻域得到一系列初始定义的LPB值，取最小值作为中心像素点的LBP特征。</strong></p>
+<script type="math/tex; mode=display">L B P_{P R}^{ri}=\min \left(R O R\left(L B P_{P, R}, i\right) | i=0,1, \ldots, P-1\right)\tag{2-7}</script><p>&emsp;其中$L B P_{P R}^{ri}$表示具有旋转不变性的LBP特征。$ROR(x, i)$为旋转函数，表示将P-bit​数右循环i位。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://img-blog.csdnimg.cn/20200606135438907.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTk0MDUxMg==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif">
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">图 2.3.3 求取旋转不变的LBP特征示意图
+</div>
+</center>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/article/50afbda/v55RgEh.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTk0MDUxMg==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif">
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">图 2.3.3 36种不同的旋转不变性LBP特征(P=8)
+</div>
+</center>
+
+<h2 id="Uniform-Pattern-LBP特征"><a href="#Uniform-Pattern-LBP特征" class="headerlink" title="Uniform Pattern LBP特征"></a>Uniform Pattern LBP特征</h2><p>Uniform Pattern，也被称为等价模式或均匀模式。<br>        将LBP算子用于纹理分类或人脸识别时，常用于LBP模式的统计直方图来表达图像的信息，较多的模式种类将使得数据量过大，且直方图过于稀疏。因此，需要对原始的LBP进行降维，使得数据量减少的情况下更好地表达图像信息。<br>        为了解决二进制模式过多的问题，提高统计性，Ojala提出了采用一种“<strong>等价模式</strong>”(Uniform Pattern)来对LBP算子的模式种类<strong>进行降维</strong>。<br>        <strong>在实际图像中，绝大多数LBP模式最多只包含两次从1到0或从0到1的跳变。</strong></p>
+<ul>
+<li>将<strong>等价模式</strong>定义为：当某个LBP所对应的循环二进制数从0到1或从1到0最多有两次跳变时，该LBP所对应的二进制就称为一个等价模式类。<strong>如00000000(0次跳变)，00000111(只含一次从0到1的跳变)，10001111(先由1跳到0，再由0跳到1，共两次跳变)</strong>,都是等价模式类。</li>
+<li>除等价模式类以外的模式都归为另一类，称为<strong>混合模式类</strong>。<strong>例如10010111(共四次跳变)</strong>。</li>
+</ul>
+<p>&emsp;&emsp;<strong>检查某种模式是否是等价模式</strong>：将当前位置和移动一位后的二进制模式按位相减。并绝对值求和。若U$\left(G_{p}\right)$ 小于等于2，则为等价模式。</p>
+<script type="math/tex; mode=display">
+U\left(G_{p}\right)=\left|s\left(g_{p_{-1}}-g_{c}\right)-s\left(g_{0}-g_{c}\right)\right|+\sum_{p=1}^{P_{-1}}\left|s\left(g_{p}-g_{c}\right)-s\left(g_{P-1}-g_{c}\right)\right|</script><p>&emsp;&emsp;二进制模式数量由原来的$2^P$种减少为了$P(P-1)+2+1$种。其中等价模式类为$P(P-1)+2$种，在LBP特征图的灰度值为$1-[P(P-1)+2]$，混合模式类为1种，灰度值为0。因此等价模式LBP特征图像整体偏暗。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/article/50afbda/image-20200628174535833.png" srcset="/img/loading.gif">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">图 2.3.3 LBP等价模式类(P=8)
+</div>
+</center>
+
+
+
+<h2 id="LBPH特征"><a href="#LBPH特征" class="headerlink" title="LBPH特征"></a>LBPH特征</h2><p>LBPH特征：全称为Local Binary Patterns Histograms，即LBP特征的统计直方图。LBPH将LBP特征与图像的空间信息结合在一起。</p>
+<p>一幅图具体的计算LBPH过程如下：</p>
+<p>1.计算图像的LBP特征图像；</p>
+<p>2.将LBP特征图像进行分块，OpenCV中将LBP特征图像分成8行8列64块区域；</p>
+<p>3.计算每块区域特征图像的直方图cell_LBPH，并将直方图进行归一化，直方图大小为 1*numPatterns；</p>
+<p>4.将上面计算的每块区域特征图像的直方图按分块的空间顺序依次排列成一列，形成LBP特征分量，其大小为 1<em>(numPatterns</em>64)；</p>
+<p>5.用机器学习的方式对LBP特征向量进行训练，用来检测和识别目标。</p>
+<h1 id="2-2-基于OpenCV的LBP人脸检测"><a href="#2-2-基于OpenCV的LBP人脸检测" class="headerlink" title="2.2 基于OpenCV的LBP人脸检测"></a>2.2 基于OpenCV的LBP人脸检测</h1><h2 id="多级级联对人脸图像进行检测："><a href="#多级级联对人脸图像进行检测：" class="headerlink" title="多级级联对人脸图像进行检测："></a>多级级联对人脸图像进行检测：</h2><center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://img-blog.csdnimg.cn/20200606145525679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTk0MDUxMg==,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif">
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">图 2.3.5 人脸检测流程图
+</div>
+</center>
+
+<h2 id="基于OpenCV的实现"><a href="#基于OpenCV的实现" class="headerlink" title="基于OpenCV的实现"></a>基于OpenCV的实现</h2><ul>
+<li>使用OpenCV预训练模型</li>
+<li>将haarcascade_frontalface_default.xml下载至本地以方便调用，下载链接：<a href="https://github.com/opencv/opencv/blob/master/data/lbpcascades/lbpcascade_frontalface_improved.xml" target="_blank" rel="noopener">https://github.com/opencv/opencv/blob/master/data/lbpcascades/lbpcascade_frontalface_improved.xml</a>   </li>
+</ul>
+<p>函数：<br>detectMultiScale(self, image, scaleFactor=None, minNeighbors=None, flags=None, minSize=None, maxSize=None)<br>参数:<br>1）scaleFactor: 图像缩放比例<br>2）minNeighbors: 每个候选矩形保留的邻居个数，值越大-&gt;精度越大<br>3）minSize：检测到的最小矩形大小<br>4）maxSize: 检测到的最大矩形大小</p>
+<p>待测人脸图像(网上随意摘取一张)：</p>
+<p><img src="/article/50afbda/image2.jpg" srcset="/img/loading.gif" alt="image2"></p>
+<pre><code class="hljs python"><span class="hljs-comment"># 利用LBP进行人脸检测</span>
+<span class="hljs-keyword">import</span> cv2
+img = cv2.imread(<span class="hljs-string">'image2.jpg'</span>)
+<span class="hljs-comment"># cv2.imshow('test', img)</span>
+face_detect = cv2.CascadeClassifier(<span class="hljs-string">'lbpcascade_frontalface_improved.xml'</span>)
+<span class="hljs-comment"># ======================检测人脸==============================</span>
+<span class="hljs-comment"># 灰度处理</span>
+gray = cv2.cvtColor(img, code=cv2.COLOR_BGR2GRAY)
+<span class="hljs-comment"># 检测人脸 按照1.1倍放到 周围最小像素为5</span>
+face_zone = face_detect.detectMultiScale(gray, scaleFactor=<span class="hljs-number">1.1</span>, minNeighbors=<span class="hljs-number">2</span>)
+print(face_zone)
+<span class="hljs-comment"># 绘制矩形检测人脸</span>
+<span class="hljs-keyword">for</span> (x, y, w, h) <span class="hljs-keyword">in</span> face_zone:
+    <span class="hljs-comment"># 绘制矩形人脸区域</span>
+    print(x,y,w,h)
+    cv2.rectangle(img, pt1=(x, y), pt2=(x+w, y+h), color=[<span class="hljs-number">255</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>], thickness=<span class="hljs-number">2</span>)
+<span class="hljs-comment"># 显示图片</span>
+cv2.imshow(<span class="hljs-string">"output"</span>, img)
+<span class="hljs-comment"># 等待显示，设置任意键退出程序</span>
+cv2.waitKey(<span class="hljs-number">0</span>)
+cv2.destroyAllWindows()</code></pre>
+<p>检测结果：</p>
+<p><img src="/article/50afbda/output.jpg" srcset="/img/loading.gif" alt="output"></p>
+<p>简单示意例子：<a href="https://sharky93.github.io/docs/gallery/auto_examples/plot_local_binary_pattern.html" target="_blank" rel="noopener">https://sharky93.github.io/docs/gallery/auto_examples/plot_local_binary_pattern.html</a></p>
+<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><p><a href="https://blog.csdn.net/qq_34246778/article/details/90613779?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">LBP(Local Binary Patterns特征)</a></p>
+<p><a href="https://blog.csdn.net/YhL_Leo/article/details/52120195" target="_blank" rel="noopener">局部二值模式（Local Binary Patterns）纹理灰度与旋转不变性</a></p>
+<p><a href="https://github.com/datawhalechina/team-learning/blob/master/03 计算机视觉/计算机视觉基础：图像处理（下）/Task02 LBP特征描述算子.md" target="_blank" rel="noopener">Task02 LBP特征描述算子</a></p>
+]]></content>
       <categories>
         <category>图像处理下</category>
       </categories>
@@ -1911,40 +1911,6 @@ df[<span class="hljs-string">'col1'</span>].str.extract(<span class="hljs-string
 <p>（b）求col2的均值。</p>
 <p>（c）求col3的均值。</p>
 ]]></content>
-      <categories>
-        <category>pandas下</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>pandas</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第九章-时序数据</title>
-    <url>/article/32af8df.html</url>
-    <content><![CDATA[<p><img src="/article/32af8df/时序数据.png" srcset="/img/loading.gif" alt="时序数据"></p>
-<a id="more"></a>明天要考试了--明后天再补全了~回答有些过于简陋了
-
-问题1
-(a) 
-
-<pre><code class="hljs prolog">df = pd.read_csv(<span class="hljs-string">'data/time_series_one.csv'</span>, parse_dates=[<span class="hljs-string">'日期'</span>])
-df[<span class="hljs-string">'日期'</span>].dt.dayofweek[df[<span class="hljs-string">'销售额'</span>].idxmax()]</code></pre>
-<p>输出：</p>
-<p>6<br>（b）</p>
-<pre><code class="hljs routeros">holiday = pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20170501'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20170503'</span>).append(
-          pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20171001'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20171007'</span>)).append(
-          pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20180215'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20180221'</span>)).append(
-          pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20180501'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20180503'</span>)).append(
-          pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20181001'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20181007'</span>)).append(
-          pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20190204'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20190224'</span>)).append(
-          pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20190501'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20190503'</span>)).append(
-          pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20191001'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20191007'</span>))
-result = df[~df[<span class="hljs-string">'日期'</span>].isin(holiday)].set_index(<span class="hljs-string">'日期'</span>).resample(<span class="hljs-string">'MS'</span>).sum()
-result.head()</code></pre>
-<p>(c)</p>
-<pre><code class="hljs sas">result = df[df[<span class="hljs-string">'日期'</span>].dt.dayofweek.<span class="hljs-meta">isin(</span>[5,6])].<span class="hljs-meta">set</span><span class="hljs-meta">_index(</span><span class="hljs-string">'日期'</span>).resample(<span class="hljs-string">'QS'</span>)<span class="hljs-meta">.sum(</span>)
-result.head()</code></pre>]]></content>
       <categories>
         <category>pandas下</category>
       </categories>
@@ -2036,6 +2002,40 @@ my_crosstab(foo, bar)</code></pre>
 <p>输出：</p>
 <p><img src="/article/28c12c7e/image-4.png" srcset="/img/loading.gif" alt="image-20200627232221247"></p>
 ]]></content>
+      <categories>
+        <category>pandas下</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>pandas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第九章-时序数据</title>
+    <url>/article/32af8df.html</url>
+    <content><![CDATA[<p><img src="/article/32af8df/时序数据.png" srcset="/img/loading.gif" alt="时序数据"></p>
+<a id="more"></a>明天要考试了--明后天再补全了~回答有些过于简陋了
+
+问题1
+(a) 
+
+<pre><code class="hljs prolog">df = pd.read_csv(<span class="hljs-string">'data/time_series_one.csv'</span>, parse_dates=[<span class="hljs-string">'日期'</span>])
+df[<span class="hljs-string">'日期'</span>].dt.dayofweek[df[<span class="hljs-string">'销售额'</span>].idxmax()]</code></pre>
+<p>输出：</p>
+<p>6<br>（b）</p>
+<pre><code class="hljs routeros">holiday = pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20170501'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20170503'</span>).append(
+          pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20171001'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20171007'</span>)).append(
+          pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20180215'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20180221'</span>)).append(
+          pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20180501'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20180503'</span>)).append(
+          pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20181001'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20181007'</span>)).append(
+          pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20190204'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20190224'</span>)).append(
+          pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20190501'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20190503'</span>)).append(
+          pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20191001'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20191007'</span>))
+result = df[~df[<span class="hljs-string">'日期'</span>].isin(holiday)].set_index(<span class="hljs-string">'日期'</span>).resample(<span class="hljs-string">'MS'</span>).sum()
+result.head()</code></pre>
+<p>(c)</p>
+<pre><code class="hljs sas">result = df[df[<span class="hljs-string">'日期'</span>].dt.dayofweek.<span class="hljs-meta">isin(</span>[5,6])].<span class="hljs-meta">set</span><span class="hljs-meta">_index(</span><span class="hljs-string">'日期'</span>).resample(<span class="hljs-string">'QS'</span>)<span class="hljs-meta">.sum(</span>)
+result.head()</code></pre>]]></content>
       <categories>
         <category>pandas下</category>
       </categories>
