@@ -164,7 +164,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      809 字
+      898 字
     </span>
   
 
@@ -174,7 +174,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      11
        分钟
     </span>
   
@@ -237,8 +237,8 @@
 <p><strong>快速幂算法</strong>：递归和迭代两个版本。<br>当指数$n$为负数时，可以通过计算$x^{-n}$取倒数得到结果，因此只需要考虑$n$为自然数的情况。</p>
 <h2 id="方法一：快速幂-递归-从右到左"><a href="#方法一：快速幂-递归-从右到左" class="headerlink" title="方法一：快速幂+递归(从右到左)"></a>方法一：快速幂+递归(从右到左)</h2><p>快速幂算法的本质是分治算法。<br>例子：</p>
 <script type="math/tex; mode=display">
-x \rightarrow x^2 \rightarrow x^4 \rightarrow x^8 \rightarrow x^{16} \rightarrow x^{32} \rightarrow x^{64}  \\
-x \rightarrow x^2 \rightarrow x^4 \rightarrow x^9 \rightarrow x^{19} \rightarrow x^{38} \rightarrow x^{77}  \\</script><p>第一个直接把上一次的结果平方，第二个把上一个结果平方后，额外乘一个$x$。</p>
+x \rightarrow x^2 \rightarrow x^4 \rightarrow x^8 \rightarrow x^{16} \rightarrow x^{32} \rightarrow x^{64}</script><script type="math/tex; mode=display">
+x \rightarrow x^2 \rightarrow x^4 \rightarrow x^9 \rightarrow x^{19} \rightarrow x^{38} \rightarrow x^{77}</script><p>第一个直接把上一次的结果平方，第二个把上一个结果平方后，额外乘一个$x$。</p>
 <ul>
 <li><p>计算$x^n$时，递归计算出$y=x^{\lfloor n/2 \rfloor}$</p>
 </li>
@@ -247,13 +247,6 @@ x \rightarrow x^2 \rightarrow x^4 \rightarrow x^9 \rightarrow x^{19} \rightarrow
 <li>递归的边界为$n=0$，任意数的0次方均为1。</li>
 </ul>
 <p>由于每次递归都会使得指数减少一半，因此递归的层数为$O(logn)$，算法可以在很快的时间内得到结果。</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">myPow</span><span class="hljs-params">(self, x, n)</span>:</span>
-		<span class="hljs-keyword">if</span> N == <span class="hljs-number">0</span>:
-			<span class="hljs-keyword">return</span> <span class="hljs-number">1.0</span>
-		y = quickMul(N // <span class="hljs-number">2</span>)
-		<span class="hljs-keyword">return</span> y * y <span class="hljs-keyword">if</span> N % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> y * y * x
-	<span class="hljs-keyword">return</span> quickMul(n) <span class="hljs-keyword">if</span> n &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-number">1.0</span> / quickMul(-n)</code></pre>
 <p>复杂度分析：</p>
 <ul>
 <li>时间复杂度：$O(logn)$，即为递归的层数。</li>
@@ -272,7 +265,7 @@ x \rightarrow x^2 \rightarrow x^4 \rightarrow x^9 \rightarrow x^{19} \rightarrow
 <script type="math/tex; mode=display">
 n = 2^{i_0} + 2^{i_1} + \ldots + 2^{i_k}</script><p>那么</p>
 <script type="math/tex; mode=display">
-x^n = x^{2^{i_0}} * x^{2^{i_1}} * \ldots * x^{2^{i_k}}</script><p>上代码：</p>
+x^n = x^{2^{i_0}} * x^{2^{i_1}} * \ldots * x^{2^{i_k}}</script><p>从$x$不断地进行平方，得到$x^2,x^4,x^8,x^{16},\ldots,$如果$n$的第$k$个（从右往左，从0开始计数）二进制位为1，那么我们就将对应的贡献$x^{2^k}$计入答案。<br>上代码：</p>
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">myPow</span><span class="hljs-params">(self, x, n)</span>:</span>
         <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">quickMul</span><span class="hljs-params">(N)</span>:</span>
@@ -290,8 +283,9 @@ x^n = x^{2^{i_0}} * x^{2^{i_1}} * \ldots * x^{2^{i_k}}</script><p>上代码：</
                 N // = <span class="hljs-number">2</span>
             <span class="hljs-keyword">return</span> ans
         <span class="hljs-keyword">return</span> quickMul(n) <span class="hljs-keyword">if</span> n &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-number">1.0</span> / quickMul(-n)</code></pre>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/powx-n/solution/powx-n-by-leetcode-solution/" target="_blank" rel="noopener">官方题解</a><br><a href="https://leetcode-cn.com/problems/powx-n/solution/50-powx-n-kuai-su-mi-qing-xi-tu-jie-by-jyd/" target="_blank" rel="noopener">优秀题解(推荐)</a>看了这个大佬的几个题解了，高手，思路很清晰，个人账号里面有一系列套题，剑指Offer之类的，非常具有参考佳值。</p>
-<font color="blue">下周再做一遍，做完就把这行删掉，为了Offer，冲鸭</font>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/powx-n/solution/50-powx-n-kuai-su-mi-qing-xi-tu-jie-by-jyd/" target="_blank" rel="noopener">优秀题解(推荐)</a>看了这个大佬的几个题解了，高手，思路很清晰，个人账号里面有一系列套题，剑指Offer之类的，非常具有参考价值。</p>
+<p><font color="blue">第一次写，不是很流畅，思路和手都不太行。下周再做一遍，做完就把这行删掉，冲鸭</font><br>如此一来，每天水一篇，居然成为了日更博主，哈哈哈哈哈<br>不足的博文在后期有时间都会进行修改，做一个有质量(没人气)的博主，奥里给O(∩_∩)O。</p>
+
             </article>
             <hr>
             <div>
