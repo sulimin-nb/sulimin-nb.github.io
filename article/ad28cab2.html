@@ -164,7 +164,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.6k 字
     </span>
   
 
@@ -174,7 +174,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      16
        分钟
     </span>
   
@@ -246,6 +246,11 @@
 <p>设D的四个顶点分别为$\alpha,\beta,\gamma,\delta$，则D的像素和可以表示为：</p>
 <script type="math/tex; mode=display">
 D_{sum} = ii(\alpha)+ii(\beta)-(ii(\gamma)+ii(\delta))</script><p>Haar-like特征值是两个矩阵像素和的差，同样可以在常数时间内完成。</p>
+<h2 id="三、计算Haar特征值"><a href="#三、计算Haar特征值" class="headerlink" title="三、计算Haar特征值"></a>三、计算Haar特征值</h2><p>&emsp;&emsp;由二已知，一个区域的像素值的和，可以由该区域的端点的积分图计算。由前面特征模板的特征值的定义可推出，<font color="blue">矩形特征的特征值由特征端点的积分图计算得到</font>。以A矩形特征为例，如下图，使用积分图计算该特征值：</p>
+<p><img src="/article/ad28cab2/Users/susu/Desktop/machine_learning_one/blogtest/source/_posts/Task03-Haar特征描述算子-人脸监测/1328274-20180816090314814-408684664.png" srcset="/img/loading.gif" alt="img"></p>
+<p>区域A的像素值：$𝑖𝑖(5)+𝑖𝑖(1)−𝑖𝑖(2)−𝑖𝑖(4)$</p>
+<p>区域B的像素值：$𝑖𝑖(6)+𝑖𝑖(2)−𝑖𝑖(5)−𝑖𝑖(3)$</p>
+<p>所以：该矩形特征的特征值为：</p>
 
             </article>
             <hr>
