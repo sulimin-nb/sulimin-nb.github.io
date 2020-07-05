@@ -535,7 +535,7 @@ print(<span class="hljs-string">'stat=%.3f, p=%.3f'</span> % (stat, p))
 <p>一般地，用$X_1,X_2,…,X_n$，表示随机样本，取到的值记为$x_1,x_2,…,x_n$称为样本观测值。$n$为样本容量。</p>
 <font color="blue">样本分布</font>：样本作为随机变量的概率分布。显然，样本分布取决于总体的性质和样本的性质。
 
-2.统计量与抽样
+## 2.统计量与抽样
 
 数理统计的任务是采集和处理带有随机影响的数据，或者说收集样本并对之进行加工，在此基础上对研究的问题进行分析并作出一定的结论，这一过程称为<font color="blue">统计推断</font>。在统计推断过程中，对样本进行加工整理，实际上就是根据样本计算出一些量，把研究问题相关的信息集中起来。这种根据样本计算出的量就是<font color="blue">统计量</font>。因此，统计量是样本的某种函数。
 
@@ -670,12 +670,12 @@ R_1 = Q_3 - Q_1</script><p>它也是度量样本分散性的重要数字特征�
 
 <p>设$X$是一个随机变量，对任意的实数$x$，令$F(x)=P(X&lt;=x),x \in (-\infty,+\infty)$，则称$F(x)$是随机变量$X$的分布函数(概率累积函数)。</p>
 <p><img src="/article/83114b11/分布函数与密度函数的关系.png" srcset="/img/loading.gif" alt></p>
-<p><font color="red">密度函数与分布函数关系&lt;/font &gt; </font></p>
-<p><font color="blue">正态分布</font>：也称高斯分布，是一个非常常见的连续概率分布，概率密度函数为</p>
-<script type="math/tex; mode=display">
-f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp{\{- \frac{(x-u)^2}{2\sigma^2} \}}, \qquad -\infty<x<+\infty</script><p>则称$X$服从$N(u,\sigma^2)$分布。</p>
-<p><img src="/article/83114b11/uniform2.png" srcset="/img/loading.gif" alt="uniform2"></p>
-<p><font color="red">正态分布的概率密度函数曲线&lt;/font &gt; </font></p>
+<font color="red">密度函数与分布函数关系</font> 
+
+<font color="blue">正态分布</font>：也称高斯分布，是一个非常常见的连续概率分布，概率密度函数为
+$$
+f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp{\{- \frac{(x-u)^2}{2\sigma^2} \}}, \qquad -\infty<x<+\infty $$ 则称$x$服从$n(u,\sigma^2)$分布。 ![uniform2](2数理统计与描述性统计 uniform2.png) <font color="red">正态分布的概率密度函数曲线 
+
 <p><img src="/article/83114b11/标准正态分布.png" srcset="/img/loading.gif" alt="标准正态分布"></p>
 <p>​              <font color="red">标准正态分布和对应区间上积分（面积）的百分比&lt;/font &gt; </font></p>
 <p>这个概念可以推广到一般正态分布。$[u-3\sigma,u+3\sigma]$的概率密度曲线之下的面积占总面积的99.7%，是著名的$3\sigma$原则。</p>
@@ -702,7 +702,7 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp{\{- \frac{(x-u)^2}{2\sigma^2} \}}, \qquad
 g_1 = \frac{n}{(n-1)(n-2)s^3}\sum_{i=1}^{n}{(x_i-\overline{x})}^3=\frac{n^2 u_3}{(n-1)(n-2)s^3}</script><p><font color="blue">样本峰度系数</font>：</p>
 <script type="math/tex; mode=display">
 g_2 = \frac{n(n+1)}{(n-1)(n-2)(n-3)s^4}\sum_{i=1}^{n}{(x_i-\overline{x})}^4-3\frac{(n-1)^2}{(n-2)(n-3)}</script><p><img src="/article/83114b11/image3.PNG" srcset="/img/loading.gif" style="zoom:80%;"></p>
-]]></content>
+</x<+\infty>]]></content>
       <categories>
         <category>概率统计</category>
       </categories>
