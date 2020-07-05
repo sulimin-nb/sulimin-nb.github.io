@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/dracula.min.css" />
   
 
   
@@ -339,7 +339,7 @@ P\{X>s+t | X> t\} =P\{X>s\}</script><h4 id="2-2-4-其他连续分布"><a href="#
 <p><img src="/article/7c20a36d/continuousoverall.PNG" srcset="/img/loading.gif" alt="continuousoverall"></p>
 <p>图片来自于 [Statistical Inference by Casella and Berger]</p>
 <h3 id="2-4-Python-代码实战"><a href="#2-4-Python-代码实战" class="headerlink" title="2.4 Python 代码实战"></a>2.4 Python 代码实战</h3><h4 id="2-4-1-生成一组符合特定分布的随机数"><a href="#2-4-1-生成一组符合特定分布的随机数" class="headerlink" title="2.4.1 生成一组符合特定分布的随机数"></a>2.4.1 生成一组符合特定分布的随机数</h4><p>在Numpy库中，提供了一组random类可以生成特定分布的随机数</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy
 
 <span class="hljs-comment"># 生成大小为1000的符合b(10,0.5)二项分布的样本集</span>
 s = numpy.random.binomial(n=<span class="hljs-number">10</span>,p=<span class="hljs-number">0.5</span>,size=<span class="hljs-number">1000</span>)
@@ -355,13 +355,13 @@ s = numpy.random.normal(loc=<span class="hljs-number">0</span>,scale=<span class
 s = numpy.random.standard_normal(size=<span class="hljs-number">1000</span>)
 
 <span class="hljs-comment"># 生成大小为1000的符合E(1/2)指数分布的样本集，注意该方法中的参数为指数分布参数λ的倒数</span>
-s = numpy.random.exponential(scale=<span class="hljs-number">2</span>,size=<span class="hljs-number">1000</span>)</code></pre>
+s = numpy.random.exponential(scale=<span class="hljs-number">2</span>,size=<span class="hljs-number">1000</span>)</code></pre></div>
 <p>除了Numpy，Scipy也提供了一组生成特定分布随机数的方法</p>
-<pre><code class="hljs python"><span class="hljs-comment"># 以均匀分布为例，rvs可用来生成一组随机变量的值</span>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment"># 以均匀分布为例，rvs可用来生成一组随机变量的值</span>
 <span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
-stats.uniform.rvs(size=<span class="hljs-number">10</span>)</code></pre>
+stats.uniform.rvs(size=<span class="hljs-number">10</span>)</code></pre></div>
 <h4 id="2-4-2-计算统计分布的PMF和PDF"><a href="#2-4-2-计算统计分布的PMF和PDF" class="headerlink" title="2.4.2 计算统计分布的PMF和PDF"></a>2.4.2 计算统计分布的PMF和PDF</h4><p>Scipy库提供了一组用于计算离散型随机变量PMF和连续型随机变量PDF的方法。</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
 
 <span class="hljs-comment"># 计算二项分布B(10,0.5)的PMF</span>
 x=range(<span class="hljs-number">11</span>)
@@ -381,13 +381,13 @@ p= stats.norm.pdf(x,loc=<span class="hljs-number">0</span>, scale=<span class="h
 
 <span class="hljs-comment"># 计算指数分布E(1)的PDF</span>
 x = numpy.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">1000</span>)
-p= stats.expon.pdf(x,loc=<span class="hljs-number">0</span>,scale=<span class="hljs-number">1</span>)</code></pre>
+p= stats.expon.pdf(x,loc=<span class="hljs-number">0</span>,scale=<span class="hljs-number">1</span>)</code></pre></div>
 <h4 id="2-4-3-计算统计分布的CDF"><a href="#2-4-3-计算统计分布的CDF" class="headerlink" title="2.4.3 计算统计分布的CDF"></a>2.4.3 计算统计分布的CDF</h4><p>类似计算概率质量/密度函数的方法，只需将上节中的pmf或pdf替换为cdf，即可得到分布函数的值</p>
-<pre><code class="hljs python"><span class="hljs-comment"># 以正态分布为例，计算正态分布N(0,1)的CDF</span>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment"># 以正态分布为例，计算正态分布N(0,1)的CDF</span>
 x = numpy.linspace(<span class="hljs-number">-3</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1000</span>)
-p = stats.norm.cdf(x,loc=<span class="hljs-number">0</span>, scale=<span class="hljs-number">1</span>)</code></pre>
+p = stats.norm.cdf(x,loc=<span class="hljs-number">0</span>, scale=<span class="hljs-number">1</span>)</code></pre></div>
 <h4 id="2-4-4-统计分布可视化"><a href="#2-4-4-统计分布可视化" class="headerlink" title="2.4.4 统计分布可视化"></a>2.4.4 统计分布可视化</h4><h5 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a><strong>二项分布</strong></h5><p>比较n=10，p=0.5的二项分布的真实概率质量和10000次随机抽样的结果</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
 <span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
 <span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
 
@@ -400,10 +400,10 @@ sns.distplot(t,bins=<span class="hljs-number">10</span>,hist_kws=&#123;<span cla
 sns.scatterplot(x,p,color=<span class="hljs-string">'purple'</span>)
 sns.lineplot(x,p,color=<span class="hljs-string">'purple'</span>,label=<span class="hljs-string">'True mass density'</span>)
 plt.title(<span class="hljs-string">'Binomial distribution'</span>)
-plt.legend(bbox_to_anchor=(<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>))</code></pre>
+plt.legend(bbox_to_anchor=(<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>))</code></pre></div>
 <p><img src="/article/7c20a36d/binomial.png" srcset="/img/loading.gif" alt="binomial"></p>
 <h5 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a><strong>泊松分布</strong></h5><p>比较λ=2的泊松分布的真实概率质量和10000次随机抽样的结果</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
 <span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
 <span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
 x=range(<span class="hljs-number">11</span>)
@@ -415,19 +415,19 @@ sns.distplot(t,bins=<span class="hljs-number">10</span>,hist_kws=&#123;<span cla
 sns.scatterplot(x,p,color=<span class="hljs-string">'purple'</span>)
 sns.lineplot(x,p,color=<span class="hljs-string">'purple'</span>,label=<span class="hljs-string">'True mass density'</span>)
 plt.title(<span class="hljs-string">'Poisson distribution'</span>)
-plt.legend()</code></pre>
+plt.legend()</code></pre></div>
 <p><img src="/article/7c20a36d/poisson.png" srcset="/img/loading.gif" alt="poisson"></p>
 <p>比较不同参数λ对应的概率质量函数，可以验证随着参数增大，泊松分布开始逐渐变得对称，分布也越来越均匀，趋近于正态分布</p>
-<pre><code class="hljs python">x=range(<span class="hljs-number">50</span>)
+<div class="hljs"><pre><code class="hljs python">x=range(<span class="hljs-number">50</span>)
 fig, ax = plt.subplots()
 <span class="hljs-keyword">for</span>  lam <span class="hljs-keyword">in</span> [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-number">10</span>,<span class="hljs-number">20</span>] :
         p=stats.poisson.pmf(x, lam)
         sns.lineplot(x,p,label=<span class="hljs-string">'lamda= '</span>+ str(lam))
 plt.title(<span class="hljs-string">'Poisson distribution'</span>)
-plt.legend()</code></pre>
+plt.legend()</code></pre></div>
 <p><img src="/article/7c20a36d/poisson2.png" srcset="/img/loading.gif" alt="poisson2"></p>
 <h5 id="均匀分布"><a href="#均匀分布" class="headerlink" title="均匀分布"></a><strong>均匀分布</strong></h5><p>比较U(0,1)的均匀分布的真实概率密度和10000次随机抽样的结果</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
 <span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
 <span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
 x=numpy.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">100</span>)
@@ -439,10 +439,10 @@ sns.distplot(t,bins=<span class="hljs-number">10</span>,hist_kws=&#123;<span cla
 
 sns.lineplot(x,p,color=<span class="hljs-string">'purple'</span>,label=<span class="hljs-string">'True mass density'</span>)
 plt.title(<span class="hljs-string">'Uniforml distribution'</span>)
-plt.legend(bbox_to_anchor=(<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>))</code></pre>
+plt.legend(bbox_to_anchor=(<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>))</code></pre></div>
 <p><img src="/article/7c20a36d/uniform.png" srcset="/img/loading.gif" alt="uniform"></p>
 <h5 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a><strong>正态分布</strong></h5><p>比较N(0,1)的正态分布的真实概率密度和10000次随机抽样的结果</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
 <span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
 <span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
 x=numpy.linspace(<span class="hljs-number">-3</span>,<span class="hljs-number">3</span>,<span class="hljs-number">100</span>)
@@ -455,20 +455,20 @@ sns.distplot(t,bins=<span class="hljs-number">100</span>,hist_kws=&#123;<span cl
 
 sns.lineplot(x,p,color=<span class="hljs-string">'purple'</span>,label=<span class="hljs-string">'True mass density'</span>)
 plt.title(<span class="hljs-string">'Normal distribution'</span>)
-plt.legend(bbox_to_anchor=(<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>))</code></pre>
+plt.legend(bbox_to_anchor=(<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>))</code></pre></div>
 <p><img src="/article/7c20a36d/normal.png" srcset="/img/loading.gif" alt="normal"></p>
 <p>比较不同均值和标准差组合的正态分布的概率密度函数</p>
-<pre><code class="hljs python">x=numpy.linspace(<span class="hljs-number">-6</span>,<span class="hljs-number">6</span>,<span class="hljs-number">100</span>)
+<div class="hljs"><pre><code class="hljs python">x=numpy.linspace(<span class="hljs-number">-6</span>,<span class="hljs-number">6</span>,<span class="hljs-number">100</span>)
 p=stats.norm.pdf(x, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
 fig, ax = plt.subplots()
 <span class="hljs-keyword">for</span>  mean, std <span class="hljs-keyword">in</span> [(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>),(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>),(<span class="hljs-number">3</span>,<span class="hljs-number">1</span>)]: 
         p=stats.norm.pdf(x, mean, std)
         sns.lineplot(x,p,label=<span class="hljs-string">'Mean: '</span>+ str(mean) + <span class="hljs-string">', std: '</span>+ str(std))
 plt.title(<span class="hljs-string">'Normal distribution'</span>)
-plt.legend()</code></pre>
+plt.legend()</code></pre></div>
 <p><img src="/article/7c20a36d/uniform2.png" srcset="/img/loading.gif" alt="uniform2"></p>
 <h5 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a><strong>指数分布</strong></h5><p>比较E(1)的指数分布的真实概率密度和10000次随机抽样的结果</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
 <span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
 <span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
 x=numpy.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">100</span>)
@@ -481,16 +481,16 @@ sns.distplot(t,bins=<span class="hljs-number">100</span>,hist_kws=&#123;<span cl
 
 sns.lineplot(x,p,color=<span class="hljs-string">'purple'</span>,label=<span class="hljs-string">'True mass density'</span>)
 plt.title(<span class="hljs-string">'Exponential distribution'</span>)
-plt.legend(bbox_to_anchor=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))</code></pre>
+plt.legend(bbox_to_anchor=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))</code></pre></div>
 <p><img src="/article/7c20a36d/expo.png" srcset="/img/loading.gif" alt="expo"></p>
 <p>比较不同参数的指数分布的概率密度函数</p>
-<pre><code class="hljs python">x=numpy.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">100</span>)
+<div class="hljs"><pre><code class="hljs python">x=numpy.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">100</span>)
 fig, ax = plt.subplots()
 <span class="hljs-keyword">for</span>  scale <span class="hljs-keyword">in</span> [<span class="hljs-number">0.2</span>,<span class="hljs-number">0.5</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>] :
         p=stats.expon.pdf(x, scale=scale)
         sns.lineplot(x,p,label=<span class="hljs-string">'lamda= '</span>+ str(<span class="hljs-number">1</span>/scale))
 plt.title(<span class="hljs-string">'Exponential distribution'</span>)
-plt.legend()</code></pre>
+plt.legend()</code></pre></div>
 <p><img src="/article/7c20a36d/expo2.png" srcset="/img/loading.gif" alt="expo2"></p>
 <h2 id="3-假设检验"><a href="#3-假设检验" class="headerlink" title="3 假设检验"></a>3 假设检验</h2><h3 id="3-1-基本概念"><a href="#3-1-基本概念" class="headerlink" title="3.1 基本概念"></a>3.1 基本概念</h3><p>假设检验问题是统计推断中的一类重要问题，在总体的分布函数完全未知或只知其形式，不知其参数的情况，为了推断总体的某些未知特性，提出某些关于总体的假设，这类问题被称为假设检验。</p>
 <h3 id="3-2-基本步骤"><a href="#3-2-基本步骤" class="headerlink" title="3.2 基本步骤"></a>3.2 基本步骤</h3><p>一个假设检验问题可以分为5步，无论细节如果变化，都一定会遵循这5个步骤。</p>
@@ -635,7 +635,7 @@ plt.legend()</code></pre>
 <h4 id="3-5-1-正态检验"><a href="#3-5-1-正态检验" class="headerlink" title="3.5.1 正态检验"></a>3.5.1 正态检验</h4><p>Shapiro-Wilk Test是一种经典的正态检验方法。</p>
 <p>H0: 样本总体服从正态分布</p>
 <p>H1: 样本总体不服从正态分布 </p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 <span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> shapiro
 data_nonnormal = np.random.exponential(size=<span class="hljs-number">100</span>)
 data_normal = np.random.normal(size=<span class="hljs-number">100</span>)
@@ -651,11 +651,11 @@ data_normal = np.random.normal(size=<span class="hljs-number">100</span>)
 normal_judge(data_nonnormal)
 <span class="hljs-comment"># 'stat=0.850, p = 0.000, probably not gaussian'</span>
 normal_judge(data_normal)
-<span class="hljs-comment"># 'stat=0.987, p = 0.415, probably gaussian'</span></code></pre>
+<span class="hljs-comment"># 'stat=0.987, p = 0.415, probably gaussian'</span></code></pre></div>
 <h4 id="3-5-2-卡方检验"><a href="#3-5-2-卡方检验" class="headerlink" title="3.5.2 卡方检验"></a>3.5.2 卡方检验</h4><p>目的：检验两组类别变量是相关的还是独立的</p>
 <p>H0: 两个样本是独立的</p>
 <p>H1: 两组样本不是独立的</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> chi2_contingency
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> chi2_contingency
 table = [[<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>],[<span class="hljs-number">6</span>,  <span class="hljs-number">9</span>,  <span class="hljs-number">17</span>]]
 stat, p, dof, expected = chi2_contingency(table)
 print(<span class="hljs-string">'stat=%.3f, p=%.3f'</span> % (stat, p))
@@ -666,11 +666,11 @@ print(<span class="hljs-string">'stat=%.3f, p=%.3f'</span> % (stat, p))
 
  <span class="hljs-comment"># output</span>
 <span class="hljs-comment">#stat=0.272, p=0.873</span>
-<span class="hljs-comment">#Probably independent</span></code></pre>
+<span class="hljs-comment">#Probably independent</span></code></pre></div>
 <h4 id="3-5-3-T-test"><a href="#3-5-3-T-test" class="headerlink" title="3.5.3 T-test"></a>3.5.3 T-test</h4><p>目的：检验两个独立样本集的均值是否具有显著差异</p>
 <p>H0: 均值是相等的</p>
 <p>H1: 均值是不等的</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> ttest_ind
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> ttest_ind
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 data1 = np.random.normal(size=<span class="hljs-number">10</span>)
 data2 = np.random.normal(size=<span class="hljs-number">10</span>)
@@ -683,11 +683,11 @@ print(<span class="hljs-string">'stat=%.3f, p=%.3f'</span> % (stat, p))
     
 <span class="hljs-comment"># output</span>
 <span class="hljs-comment"># stat=-1.382, p=0.184</span>
-<span class="hljs-comment"># Probably the same distribution</span></code></pre>
+<span class="hljs-comment"># Probably the same distribution</span></code></pre></div>
 <h4 id="3-5-4-ANOVA"><a href="#3-5-4-ANOVA" class="headerlink" title="3.5.4 ANOVA"></a>3.5.4 ANOVA</h4><p>目的：与t-test类似，ANOVA可以检验两组及以上独立样本集的均值是否具有显著差异</p>
 <p>H0: 均值是相等的</p>
 <p>H1: 均值是不等的</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> f_oneway
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> f_oneway
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 data1 = np.random.normal(size=<span class="hljs-number">10</span>)
 data2 = np.random.normal(size=<span class="hljs-number">10</span>)
@@ -701,11 +701,11 @@ print(<span class="hljs-string">'stat=%.3f, p=%.3f'</span> % (stat, p))
  
 <span class="hljs-comment"># output</span>
 <span class="hljs-comment"># stat=0.189, p=0.829</span>
-<span class="hljs-comment"># Probably the same distribution</span></code></pre>
+<span class="hljs-comment"># Probably the same distribution</span></code></pre></div>
 <h4 id="3-5-5-Mann-Whitney-U-Test"><a href="#3-5-5-Mann-Whitney-U-Test" class="headerlink" title="3.5.5 Mann-Whitney U Test"></a>3.5.5 Mann-Whitney U Test</h4><p>目的：检验两个样本集的分布是否相同</p>
 <p>H0: 两个样本集的分布相同</p>
 <p>H1: 两个样本集的分布不同</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> mannwhitneyu
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> mannwhitneyu
 data1 = [<span class="hljs-number">0.873</span>, <span class="hljs-number">2.817</span>, <span class="hljs-number">0.121</span>, <span class="hljs-number">-0.945</span>, <span class="hljs-number">-0.055</span>, <span class="hljs-number">-1.436</span>, <span class="hljs-number">0.360</span>, <span class="hljs-number">-1.478</span>, <span class="hljs-number">-1.637</span>, <span class="hljs-number">-1.869</span>]
 data2 = [<span class="hljs-number">1.142</span>, <span class="hljs-number">-0.432</span>, <span class="hljs-number">-0.938</span>, <span class="hljs-number">-0.729</span>, <span class="hljs-number">-0.846</span>, <span class="hljs-number">-0.157</span>, <span class="hljs-number">0.500</span>, <span class="hljs-number">1.183</span>, <span class="hljs-number">-1.075</span>, <span class="hljs-number">-0.169</span>]
 stat, p = mannwhitneyu(data1, data2)
@@ -717,7 +717,7 @@ print(<span class="hljs-string">'stat=%.3f, p=%.3f'</span> % (stat, p))
 
 <span class="hljs-comment"># output</span>
 <span class="hljs-comment"># stat=40.000, p=0.236</span>
-<span class="hljs-comment"># Probably the same distribution</span></code></pre>
+<span class="hljs-comment"># Probably the same distribution</span></code></pre></div>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
 <li>Ross S . 概率论基础教程[M]. 人民邮电出版社, 2007.</li>
 <li>盛骤, 谢式千, 潘承毅, 等. 概率论与数理统计 (第四版)[J]. 2008.</li>

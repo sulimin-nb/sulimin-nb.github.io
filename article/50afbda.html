@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/dracula.min.css" />
   
 
   
@@ -354,7 +354,7 @@ U\left(G_{p}\right)=\left|s\left(g_{p_{-1}}-g_{c}\right)-s\left(g_{0}-g_{c}\righ
 <p>函数：<br>detectMultiScale(self, image, scaleFactor=None, minNeighbors=None, flags=None, minSize=None, maxSize=None)<br>参数:<br>1）scaleFactor: 图像缩放比例<br>2）minNeighbors: 每个候选矩形保留的邻居个数，值越大-&gt;精度越大<br>3）minSize：检测到的最小矩形大小<br>4）maxSize: 检测到的最大矩形大小</p>
 <p>待测人脸图像(网上随意摘取一张)：</p>
 <p><img src="/article/50afbda/image2.jpg" srcset="/img/loading.gif" alt="image2"></p>
-<pre><code class="hljs python"><span class="hljs-comment"># 利用LBP进行人脸检测</span>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment"># 利用LBP进行人脸检测</span>
 <span class="hljs-keyword">import</span> cv2
 img = cv2.imread(<span class="hljs-string">'image2.jpg'</span>)
 <span class="hljs-comment"># cv2.imshow('test', img)</span>
@@ -374,7 +374,7 @@ print(face_zone)
 cv2.imshow(<span class="hljs-string">"output"</span>, img)
 <span class="hljs-comment"># 等待显示，设置任意键退出程序</span>
 cv2.waitKey(<span class="hljs-number">0</span>)
-cv2.destroyAllWindows()</code></pre>
+cv2.destroyAllWindows()</code></pre></div>
 <p>检测结果：</p>
 <p><img src="/article/50afbda/output.jpg" srcset="/img/loading.gif" alt="output"></p>
 <p>简单示意例子：<a href="https://sharky93.github.io/docs/gallery/auto_examples/plot_local_binary_pattern.html" target="_blank" rel="noopener">https://sharky93.github.io/docs/gallery/auto_examples/plot_local_binary_pattern.html</a></p>

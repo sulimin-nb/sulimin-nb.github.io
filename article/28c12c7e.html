@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/dracula.min.css" />
   
 
   
@@ -225,10 +225,10 @@
 <ul>
 <li>如果要组合不一定具有相同类别的类别，union_categoricals函数将组合类似列表的类别。新类别将是合并的类别的并集。如下所示：</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> pandas.api.types <span class="hljs-keyword">import</span> union_categoricals
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pandas.api.types <span class="hljs-keyword">import</span> union_categoricals
 a = pd.Categorical([<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>])
 b = pd.Categorical([<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>])
-union_categoricals([a,b])</code></pre>
+union_categoricals([a,b])</code></pre></div>
 <p>输出：</p>
 <p><img src="/article/28c12c7e/image-1.png" srcset="/img/loading.gif" alt="image-20200627224024855"></p>
 <ul>
@@ -247,43 +247,43 @@ union_categoricals([a,b])</code></pre>
 <li>普通变量groupby方法/value_counts方法，统计对象是唯一值(不包含NA)。</li>
 </ul>
 <p>【问题四】下面的代码说明了Series创建分类变量的什么”缺陷”？如何避免？（提示使用Series的copy参数）</p>
-<pre><code class="hljs python">cat = pd.Categorical([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">10</span>], categories=[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">10</span>])
+<div class="hljs"><pre><code class="hljs python">cat = pd.Categorical([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">10</span>], categories=[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">10</span>])
 s = pd.Series(cat, name=<span class="hljs-string">"cat"</span>)
-cat</code></pre>
+cat</code></pre></div>
 <p>输出：</p>
-<pre><code class="hljs tex">[1, 2, 3, 10]
-Categories (5, int64): [1, 2, 3, 4, 10]</code></pre>
+<div class="hljs"><pre><code class="hljs tex">[1, 2, 3, 10]
+Categories (5, int64): [1, 2, 3, 4, 10]</code></pre></div>
 <hr>
-<pre><code class="hljs python">s.iloc[<span class="hljs-number">0</span>:<span class="hljs-number">2</span>] = <span class="hljs-number">10</span>
-cat</code></pre>
+<div class="hljs"><pre><code class="hljs python">s.iloc[<span class="hljs-number">0</span>:<span class="hljs-number">2</span>] = <span class="hljs-number">10</span>
+cat</code></pre></div>
 <p>输出：</p>
-<pre><code class="hljs tex">[10, 10, 3, 10]
-Categories (5, int64): [1, 2, 3, 4, 10]</code></pre>
+<div class="hljs"><pre><code class="hljs tex">[10, 10, 3, 10]
+Categories (5, int64): [1, 2, 3, 4, 10]</code></pre></div>
 <p>分类变量在Series改动时也被改动了。<br><strong>使用copy参数避免分类变量被修改。</strong></p>
-<pre><code class="hljs python">cat = pd.Categorical([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">10</span>],categories=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">10</span>])
+<div class="hljs"><pre><code class="hljs python">cat = pd.Categorical([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">10</span>],categories=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">10</span>])
 s = pd.Series(cat, name=<span class="hljs-string">'cat'</span>, copy=<span class="hljs-literal">True</span>)
 print(cat)
 s.iloc[<span class="hljs-number">0</span>:<span class="hljs-number">2</span>] = <span class="hljs-number">10</span>
-print(cat)</code></pre>
+print(cat)</code></pre></div>
 <p>输出：</p>
 <p><img src="/article/28c12c7e/image-2.png" srcset="/img/loading.gif" alt="image-20200627230102057"></p>
 <p>【练习一】现继续使用第四章中的地震数据集，请解决以下问题：<br>（a）现在将深度分为七个等级：[0.5,10,15,20,30,50,np.inf]，请以深度Ⅰ,Ⅱ,Ⅲ,Ⅳ,Ⅴ,Ⅵ,Ⅶ为索引并按照由浅到深的顺序进行排序。</p>
 <p>使用cut方法对列表中的深度划分，并将该列作为索引值。然后按索引排序即可。</p>
-<pre><code class="hljs python">df = pd.read_csv(<span class="hljs-string">'data/Earthquake.csv'</span>)
+<div class="hljs"><pre><code class="hljs python">df = pd.read_csv(<span class="hljs-string">'data/Earthquake.csv'</span>)
 df_result = df.copy()
 df_result[<span class="hljs-string">'深度'</span>] = pd.cut(df[<span class="hljs-string">'深度'</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">5</span>,<span class="hljs-number">10</span>,<span class="hljs-number">15</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>,<span class="hljs-number">50</span>,np.inf], right=<span class="hljs-literal">False</span>, labels=[<span class="hljs-string">'Ⅰ'</span>,<span class="hljs-string">'Ⅱ'</span>,<span class="hljs-string">'Ⅲ'</span>,<span class="hljs-string">'Ⅳ'</span>,<span class="hljs-string">'Ⅴ'</span>,<span class="hljs-string">'Ⅵ'</span>,<span class="hljs-string">'Ⅶ'</span>])
 df_result = df_result.set_index(<span class="hljs-string">'深度'</span>).sort_index()
-df_result.head()</code></pre>
+df_result.head()</code></pre></div>
 <p>输出：</p>
 <p><img src="/article/28c12c7e/image-3.png" srcset="/img/loading.gif" alt="image-20200627231333013"></p>
 <p>（b）在(a)的基础上，将烈度分为4个等级：[0,3,4,5,np.inf]，依次对南部地区的深度和烈度等级建立多级索引排序。</p>
 <p>跟(a)很相似，cut方法对深度，烈度进行切分，把index设为[‘深度’，‘烈度’]，然后进行索引排序即可。</p>
-<pre><code class="hljs python">df[<span class="hljs-string">'烈度'</span>] = pd.cut(df[<span class="hljs-string">'烈度'</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,np.inf], right=<span class="hljs-literal">False</span>, labels=[<span class="hljs-string">'Ⅰ'</span>,<span class="hljs-string">'Ⅱ'</span>,<span class="hljs-string">'Ⅲ'</span>,<span class="hljs-string">'Ⅳ'</span>])
+<div class="hljs"><pre><code class="hljs python">df[<span class="hljs-string">'烈度'</span>] = pd.cut(df[<span class="hljs-string">'烈度'</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,np.inf], right=<span class="hljs-literal">False</span>, labels=[<span class="hljs-string">'Ⅰ'</span>,<span class="hljs-string">'Ⅱ'</span>,<span class="hljs-string">'Ⅲ'</span>,<span class="hljs-string">'Ⅳ'</span>])
 df[<span class="hljs-string">'深度'</span>] = pd.cut(df[<span class="hljs-string">'深度'</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">5</span>,<span class="hljs-number">10</span>,<span class="hljs-number">15</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>,<span class="hljs-number">50</span>,np.inf], right=<span class="hljs-literal">False</span>, labels=[<span class="hljs-string">'Ⅰ'</span>,<span class="hljs-string">'Ⅱ'</span>,<span class="hljs-string">'Ⅲ'</span>,<span class="hljs-string">'Ⅳ'</span>,<span class="hljs-string">'Ⅴ'</span>,<span class="hljs-string">'Ⅵ'</span>,<span class="hljs-string">'Ⅶ'</span>])
 df_ds = df.set_index([<span class="hljs-string">'深度'</span>,<span class="hljs-string">'烈度'</span>])
-df_ds.sort_index()</code></pre>
+df_ds.sort_index()</code></pre></div>
 <p>【练习二】 对于分类变量而言，调用第4章中的变形函数会出现一个BUG（目前的版本下还未修复）：例如对于crosstab函数，按照<a href="https://pandas.pydata.org/pandas-docs/version/1.0.0/user_guide/reshaping.html#cross-tabulations" target="_blank" rel="noopener">官方文档的说法</a>，即使没有出现的变量也会在变形后的汇总结果中出现，但事实上并不是这样，比如下面的例子就缺少了原本应该出现的行’c’和列’f’。基于这一问题，请尝试设计my_crosstab函数，在功能上能够返回正确的结果。<br>因为Categories中肯定包含出现的变量。所以将第一个参数作为index，第二个参数作为columns，建立一个DataFrame，然后把出现的变量组合起来，对应位置填入1即可。</p>
-<pre><code class="hljs python">foo = pd.Categorical([<span class="hljs-string">'b'</span>,<span class="hljs-string">'a'</span>], categories=[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>])
+<div class="hljs"><pre><code class="hljs python">foo = pd.Categorical([<span class="hljs-string">'b'</span>,<span class="hljs-string">'a'</span>], categories=[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>])
 bar = pd.Categorical([<span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>], categories=[<span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'f'</span>])
 <span class="hljs-keyword">import</span> numpy
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">my_crosstab</span><span class="hljs-params">(a, b)</span>:</span>
@@ -295,7 +295,7 @@ bar = pd.Categorical([<span class="hljs-string">'d'</span>, <span class="hljs-st
     <span class="hljs-keyword">for</span> loc <span class="hljs-keyword">in</span> zip(index_1, index_2):
         df.loc[loc] = <span class="hljs-number">1</span>
     <span class="hljs-keyword">return</span> df
-my_crosstab(foo, bar)</code></pre>
+my_crosstab(foo, bar)</code></pre></div>
 <p>输出：</p>
 <p><img src="/article/28c12c7e/image-4.png" srcset="/img/loading.gif" alt="image-20200627232221247"></p>
 
