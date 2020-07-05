@@ -283,107 +283,52 @@ normValue=\frac{featureValue}{varNormFactor}</script><p>之后使用归一化的
 <h3 id="1-级联分类器"><a href="#1-级联分类器" class="headerlink" title="1.级联分类器"></a>1.级联分类器</h3><p>Adaboost级联分类器：<br>&emsp;&emsp;级联分类模型是树状结构，每一层—强分类器是树状结构，强分类器中的每一个弱分类器也是树状结构。如下图所示，每一个stage都代表一级强分类器：<br><img src="/article/ad28cab2/1328274-20180816100358784-868305710.png" srcset="/img/loading.gif" alt="img"><br>&emsp;&emsp;当检测窗口通过所有的强分类器时被认为是正样本。每一个强分类器对负样本的判别准确率高，任一级强分类器检测为负样本，就不再继续调用下面的强分类器，直接丢弃，减少了很多的检测时间。<br>&emsp;&emsp;一副图像中待检测的区域中很多是负样本，级联分类器在初期就会抛弃很多负样本的复杂检测，所以级联分类器的速度是非常快的，只有正样本才会送到下一个强分类器再次进行检验，这样就保证了最后输出的正样本的伪正(false positive)的可能性非常低。</p>
 <h3 id="2-级联分类器的训练"><a href="#2-级联分类器的训练" class="headerlink" title="2.级联分类器的训练"></a>2.级联分类器的训练</h3><p>1)首先需要训练出m个弱分类器，然后把m个弱分类器按照一定的组合策略，得到一个强分类器，如下图所示：<br>2)重复1步骤n次得到n个强分类器，按照级联的方式组合起来，得到最终的Haar分类器。<br><img src="/article/ad28cab2/1328274-20180816150118683-1847072909.png" srcset="/img/loading.gif" alt="img"></p>
 <p>&emsp;&emsp;一个弱分类器是和上图类似的决策树，最基本的弱分类器只包含一个Haar-like特征，即只包含一层决策树(树桩stump)。<br>&emsp;&emsp;以20*20图像为例，78,460个特征，若直接利用AdaBoost训练，78,460个弱分类器组合成强分类器，工作量是极其巨大的。所以必须要有个筛选过程。</p>
-<font color="blue">首先筛选出T个优秀的最优弱分类器(特征值)，然后把T个最优弱分类器传给AdaBoost进行训练。</font>
-**训练最优弱分类器**
-&emsp;&emsp;人脸样本2000张，非人脸样本4000张，这些样本都经过了归一化，大小都是20X20的图像。那么，对于78,460中的任一特征$f_i$，我们计算该特征在这2000人脸样本，4000非人脸样本上的值，得到6000个特征值。将这些特征值排序，然后选取一个最佳的特征值。在该特征值下，对于特征$f_i$而言，样本的加权错误率最低。
-&emsp;&emsp;在确定了训练子窗口(20x20的图像)的矩形特征数量(78,460)和特征值后，需要对每一个特征$f$，训练一个弱分类器$h(x,f,\rho,\theta)$：
-$$
-h(x,f,\rho,\theta)=\begin{cases}1,   {\rho f(x)<\rho \theta}\\0, {other}\end{cases} $$ &emsp;&emsp;其中$𝑥$代表一个检测子窗口，$𝑓$为矩形特征，$\theta$为阈值，$\rho$指示不等号的方向。对每个特征$𝑓$，训练一个弱分类器$ℎ(𝑥,𝑓,\rho,\theta)$，就是确定$𝑓$的最优阈值，使得这个弱分类器对所有的训练样本分类误差最小。 这里的最优不是指强分类器，只是一个误差相对较低的弱分类器。 **弱分类器训练的具体步骤：** 1、对于每个特征$f$，计算所有训练样本的特征值，并将其排序： 2、扫描一遍排好序的特征值，对排好序的表中的每个元素，计算下面四个值： 计算全部正例的权重和$𝑇^+$； 计算全部负例的权重和$t^-$； 计算该元素前之前的正例的权重和$𝑆^+$； 计算该元素前之前的负例的权重和$𝑆^−$； ![这里写图片描述](task03-haar特征描述算子-人脸监测 20160921003914442) 3、选取当前元素的特征值$f_{k,j}$和它前面的一个特征值$f_{k,j-1}$之间的数作为阈值，所得到的弱分类器就在当前元素处把样本分开 —— 也就是说这个阈值对应的弱分类器将当前元素前的所有元素分为非人脸（或人脸），而把当前元素后（含）的所有元素分为人脸（或非人脸）。该阈值的分类误差为： e="\min{(S^+" + (t^- - s^-), s^- ( t^+ s^+))} **公式说明：前一个分类误差计算前提为阈值前为非人脸，后一个分类误差计算前提为阈值前为人脸。** &emsp;&emsp;把排序表从头到尾扫描一遍就可以为弱分类器选择使分类误差最小的阈值（最优阈值），即选取了一个最优弱分类器。在本例中，一共有78,460个特征，因此会得到78,460个最优分类器。 结合三，可得出以下分析： &emsp;&emsp;阈值$\theta$的含义就清晰可见了。方向指示符$p$ 用以改变不等号的方向。一个弱学习器（一个特征）的要求仅仅是：它能够以稍低于50%的错误率来区分人脸和非人脸图像，因此上面提到只能在某个概率范围内准确地进行区分就已经完全足够。按照这个要求，可以把所有错误率低于50% 的矩形特征都找到（适当地选择阈值，对于固定的训练集，几乎所有的矩形特征都可以满足上述要求）。每轮训练，将选取当轮中的最佳弱分类器（在算法中，迭代$t$次即是选择$t$个最佳弱分类器），最后将每轮得到的最佳弱分类器按照一定方法提升（boosting）为强分类器。<!--什么意思？？？是先把弱分类器选出来，再adaboost，那为啥要迭代，直接选前t个不就好了？？？黑人问号脸，啊啊啊啊，是我太蠢，还是讲话太糊,懂了一部分是最惨的-->
-AdaBoost算法的目的是从训练数据中学习一系列弱分类器，然后把这些弱分类器组合成一个强分类器。
-**AdaBoost强分类器的训练步骤：**参考[AdaBoost人脸监测(3)](https://blog.csdn.net/nk_wavelet/article/details/52601567) [图](https://www.shuzhiduo.com/A/nAJvK1jx5r/)
-<font color="red">这里的公式还没有仔细厘清，先无脑抄了，整理好了再把这里删掉</font>
-给定训练数据集$T=\left(x_{i}, y_{i}\right), i=1,2,3, \ldots N$，共$N$个样本，其中样本$x \in X$，实例空间$x \in R^n$，$y_i \in Y=\{-1, +1\}$。$T$为迭代次数。
-**步骤1：**初始化训练数据的权值分布。每个训练数据初始都被赋予相同的权值：$\frac{1}{N}$
-$$
-D_1 = (w_{11},w_{12},\ldots,w_{1N}), \quad w_{1i}=\frac{1}{N}, \quad i=1,2,\ldots,N.
-$$
-**步骤2：**进行T轮迭代，用$t=1,2,3, \ldots T$表示迭代的次数。
-①使用具有权值分布$D_m$的训练数据集测试，得到基本分类器(选取分类误差最低的阈值设计基本分类器)：$h_m(x):X \rightarrow \{−1, +1 \}$
-②计算$h_m（x）$在训练数据集上的分类误差率：
-$$
-e_m = P(h_m(x_i)\neq y_i) = \sum_{i=1}^{N}{w_{mi}I(h_m(x_i) \neq y_i)}
-$$
-由上述式子可知，$h_m(x)$在训练数据集上的误差$e_m$就是被$h_m(x)$误分类样本的权值之和。
-$$
-ω_{t,i}=\frac{ω_{t,i}}{\sum\limits_{j=1}^{n}ω_{t,j}}
-$$
-
-
-
-
-②对每个(种)特征$f_j$，训练一个弱分类器$h_j$（如上），每个分类器只使用一种Haar特征进行训练。分类误差为：
-$$
-ε_j=\sum\limits_{i}ω_i|h_j(x_i)-y_i|
-$$
-③从②确定的弱分类器中，找出一个具有最小分类误差的弱分类器$h_t$;
-④更新每个样本对应的权重:
-$$
-\omega_{t+1, i}=\omega_{t, i} \beta_{t}^{1-e_{i}}
-$$
-
-
-这里，如果样本$x_i$被正确分类，则$e_i=0$，否则$e_i=1$，而
-$$
-\beta_t=\frac{ε_t}{1-ε_t}
-$$
-
-
-4、最终形成的强分类器组成为：
-$$
+<p><font color="blue">首先筛选出T个优秀的最优弱分类器(特征值)，然后把T个最优弱分类器传给AdaBoost进行训练。</font><br><strong>训练最优弱分类器</strong><br>&emsp;&emsp;人脸样本2000张，非人脸样本4000张，这些样本都经过了归一化，大小都是20X20的图像。那么，对于78,460中的任一特征$f_i$，我们计算该特征在这2000人脸样本，4000非人脸样本上的值，得到6000个特征值。将这些特征值排序，然后选取一个最佳的特征值。在该特征值下，对于特征$f_i$而言，样本的加权错误率最低。<br>&emsp;&emsp;在确定了训练子窗口(20x20的图像)的矩形特征数量(78,460)和特征值后，需要对每一个特征$f$，训练一个弱分类器$h(x,f,\rho,\theta)$：</p>
+<script type="math/tex; mode=display">
+h(x,f,\rho,\theta)=\begin{cases}1,   {\rho f(x)<\rho \theta}\\0,  {other}\end{cases}</script><p>&emsp;&emsp;其中$𝑥$代表一个检测子窗口，$𝑓$为矩形特征，$\theta$为阈值，$\rho$指示不等号的方向。对每个特征$𝑓$，训练一个弱分类器$ℎ(𝑥,𝑓,\rho,\theta)$，就是确定$𝑓$的最优阈值，使得这个弱分类器对所有的训练样本分类误差最小。<br>这里的最优不是指强分类器，只是一个误差相对较低的弱分类器。<br><strong>弱分类器训练的具体步骤：</strong><br>1、对于每个特征$f$，计算所有训练样本的特征值，并将其排序：<br>2、扫描一遍排好序的特征值，对排好序的表中的每个元素，计算下面四个值：<br>计算全部正例的权重和$𝑇^+$；<br>计算全部负例的权重和$T^-$；<br>计算该元素前之前的正例的权重和$𝑆^+$；<br>计算该元素前之前的负例的权重和$𝑆^−$；</p>
+<p><img src="/article/ad28cab2/20160921003914442" srcset="/img/loading.gif" alt="这里写图片描述"></p>
+<p>3、选取当前元素的特征值$F_{k,j}$和它前面的一个特征值$F_{k,j-1}$之间的数作为阈值，所得到的弱分类器就在当前元素处把样本分开 —— 也就是说这个阈值对应的弱分类器将当前元素前的所有元素分为非人脸（或人脸），而把当前元素后（含）的所有元素分为人脸（或非人脸）。该阈值的分类误差为：</p>
+<script type="math/tex; mode=display">
+e=\min{(S^+ + (T^- - S^-), S^- + ( T^+ - S^+))}</script><p><strong>公式说明：前一个分类误差计算前提为阈值前为非人脸，后一个分类误差计算前提为阈值前为人脸。</strong><br>&emsp;&emsp;把排序表从头到尾扫描一遍就可以为弱分类器选择使分类误差最小的阈值（最优阈值），即选取了一个最优弱分类器。在本例中，一共有78,460个特征，因此会得到78,460个最优分类器。<br>结合三，可得出以下分析：<br>&emsp;&emsp;阈值$\theta$的含义就清晰可见了。方向指示符$p$ 用以改变不等号的方向。一个弱学习器（一个特征）的要求仅仅是：它能够以稍低于50%的错误率来区分人脸和非人脸图像，因此上面提到只能在某个概率范围内准确地进行区分就已经完全足够。按照这个要求，可以把所有错误率低于50% 的矩形特征都找到（适当地选择阈值，对于固定的训练集，几乎所有的矩形特征都可以满足上述要求）。每轮训练，将选取当轮中的最佳弱分类器（在算法中，迭代$T$次即是选择$T$个最佳弱分类器），最后将每轮得到的最佳弱分类器按照一定方法提升（Boosting）为强分类器。<!--什么意思？？？是先把弱分类器选出来，再Adaboost，那为啥要迭代，直接选前T个不就好了？？？黑人问号脸，啊啊啊啊，是我太蠢，还是讲话太糊,懂了一部分是最惨的--><br>AdaBoost算法的目的是从训练数据中学习一系列弱分类器，然后把这些弱分类器组合成一个强分类器。<br><strong>AdaBoost强分类器的训练步骤：</strong>参考<a href="https://blog.csdn.net/nk_wavelet/article/details/52601567" target="_blank" rel="noopener">AdaBoost人脸监测(3)</a> <a href="https://www.shuzhiduo.com/A/nAJvK1jx5r/" target="_blank" rel="noopener">图</a></p>
+<p><font color="red">这里的公式还没有仔细厘清，先无脑抄了，整理好了再把这里删掉</font><br>给定训练数据集$T=\left(x_{i}, y_{i}\right), i=1,2,3, \ldots N$，共$N$个样本，其中样本$x \in X$，实例空间$x \in R^n$，$y_i \in Y=\{-1, +1\}$。$T$为迭代次数。<br><strong>步骤1：</strong>初始化训练数据的权值分布。每个训练数据初始都被赋予相同的权值：$\frac{1}{N}$</p>
+<script type="math/tex; mode=display">
+D_1 = (w_{11},w_{12},\ldots,w_{1N}), \quad w_{1i}=\frac{1}{N}, \quad i=1,2,\ldots,N.</script><p><strong>步骤2：</strong>进行T轮迭代，用$t=1,2,3, \ldots T$表示迭代的次数。<br>①使用具有权值分布$D_m$的训练数据集测试，得到基本分类器(选取分类误差最低的阈值设计基本分类器)：$h_m(x):X \rightarrow \{−1, +1 \}$<br>②计算$h_m（x）$在训练数据集上的分类误差率：</p>
+<script type="math/tex; mode=display">
+e_m = P(h_m(x_i)\neq y_i) = \sum_{i=1}^{N}{w_{mi}I(h_m(x_i) \neq y_i)}</script><p>由上述式子可知，$h_m(x)$在训练数据集上的误差$e_m$就是被$h_m(x)$误分类样本的权值之和。</p>
+<script type="math/tex; mode=display">
+ω_{t,i}=\frac{ω_{t,i}}{\sum\limits_{j=1}^{n}ω_{t,j}}</script><p>②对每个(种)特征$f_j$，训练一个弱分类器$h_j$（如上），每个分类器只使用一种Haar特征进行训练。分类误差为：</p>
+<script type="math/tex; mode=display">
+ε_j=\sum\limits_{i}ω_i|h_j(x_i)-y_i|</script><p>③从②确定的弱分类器中，找出一个具有最小分类误差的弱分类器$h_t$;<br>④更新每个样本对应的权重:</p>
+<script type="math/tex; mode=display">
+\omega_{t+1, i}=\omega_{t, i} \beta_{t}^{1-e_{i}}</script><p>这里，如果样本$x_i$被正确分类，则$e_i=0$，否则$e_i=1$，而</p>
+<script type="math/tex; mode=display">
+\beta_t=\frac{ε_t}{1-ε_t}</script><p>4、最终形成的强分类器组成为：</p>
+<script type="math/tex; mode=display">
 h(x)=\left\{\begin{array}{cc}
 1 & \sum_{t-1}^{T} \alpha_{t} h_{t}(x) \geq 1 / 2 \sum_{t=1}^{T} \alpha_{t} \\
 0 & \text { otherwise }
-\end{array}\right.
-$$
-其中：
-$$
-\alpha_t=log\frac{1}{\beta_t}
-$$
-
-&emsp;&emsp;在使用Adaboost算法训练分类器之前，需要准备好正、负样本，根据样本特点选择和构造特征集。
-&emsp;&emsp;由算法的训练过程可知，当弱分类器对样本分类正确，样本的权重会减小；而分类错误时，样本的权重会增加。这样，后面的分类器会加强对错分样本的训练。最后，组合所有的弱分类器形成强分类器，通过比较这些弱分类器投票的加权和与平均投票结果来检测图像。
-&emsp;&emsp;OpenCV中，强分类器是由多个弱分类器“并列”构成，即强分类器中的弱分类器是两两相互独立的。在检测目标时，每个弱分类器独立运行并输出结果，然后把当前强分类器中每一个弱分类器的输出值相加，与本级强分类器的阈值相比，当且仅当结果大于阈值，认为当前检测窗口通过了该级强分类器。
-
-### 3.级联分类器的检测
-
-&emsp;&emsp;整合好了级联分类器，接下来就是高光时刻：检测！
-&emsp;&emsp;检测是以显示中的一副图片作为输入，然后对图片进行多区域、多尺度的检测。
-
-- 多区域检测是指遍历整张图片。
-- 多尺度检测有两种策略
-  1）搜索窗口的大小不变，不断缩放图片，在这种情况下需要对每个缩放后的图片进行区域特征值的运算，效率较低。
-  2）不断扩大搜索窗口，对图片进行特征值运算，效率较高。**因为1）需要计算大小不同的图片的积分图，而2）只需对原图进行一次积分图即可。不同的搜索窗口的特征值计算在线性时间内即可完成。**
-
-&emsp;&emsp;放大+平移获得的子特征有多少个呢？Rainer Lienhart在其论文中做出了解释，假设检测窗口大小为$W*H$，矩形特征大小为$w*h$，X和Y表示矩形特征在水平和垂直方向上能放大的最大比例系数：
-
-![img](Task03-Haar特征描述算子-人脸监测/20180527174205634)
-
-&emsp;&emsp;如图5，在检测窗口window中，一般矩形特征的数量为：$XY(W+1-w\frac{X+1}{2})(    H+1-h\frac{Y+1}{2})$。对于之前x3特征在24*24大小的检测窗口中（W=H=24,w=3,h=1,X=8,Y=24），一共能产生27600个子特征。具体参考[Haar特征与积分图](https://blog.csdn.net/liulina603/article/details/8617281)。
-&emsp;&emsp;无论哪种搜索方法，都会向级联分类器输入大量的子窗口图像，子窗口图像在筛选式级联分类器中依次被每一个节点筛选，丢弃或通过。最后利用并查集合并检测结果窗口。重叠窗口个数大于阈值时，选取其中之一作为检测结果，其余丢弃。
-
-### 4.总结
-
-总结Haar分类器的五大训练步骤：
-
-1. 准备人脸、非人脸样本集
-2. 计算特征值和积分图
-3. 筛选出T个优秀的最优弱分类器(特征值)
-4. 把T个最优弱分类器传给AdaBoost进行训练，得到一个强分类器
-5. 重复3. 4.，将得到的n个强分类器级联成一个Adaboost级联分类器。
-
-以20*20窗口为例，有78,460个特征，筛选出T个优秀的最优弱分类器，然后把T个最优弱分类器传给AdaBoost进行训练得到一个强分类器，最后将n个强分类器级联成一个Adaboost级联分类器。
-
-## 五、分类器的检测
-
-OpenCV自带了训练器和检测器。如果想从头训练一个分类器检测汽车、飞机等其他物体，可以使用OpenCV构建。细节参考这里：[Cascade Classifier Training](http://docs.opencv.org/2.4/doc/user_guide/ug_traincascade.html)。
-OpenCV自带的检测器在OpenCV库文件\haarcascades文件\xx.xml文件中。在我的电脑里，具体路径为C:\Users\susu\AppData\Roaming\Python\Python37\site-packages\cv2\data\中。这个文件夹下包含了检测人脸、眼睛、鼻子和嘴等部位的检测器。均需要正面、直立的人体图像。
-xml文件包含了检测器的相关信息。具体可以参考[haar+adaboost代码讲解(OpenCV)](https://blog.csdn.net/playezio/article/details/80471000)。
-
-# 3.3 人脸检测(OpenCV简单实现)
-
-## 一、静态图片中的人脸检测
-
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2
+\end{array}\right.</script><p>其中：</p>
+<script type="math/tex; mode=display">
+\alpha_t=log\frac{1}{\beta_t}</script><p>&emsp;&emsp;在使用Adaboost算法训练分类器之前，需要准备好正、负样本，根据样本特点选择和构造特征集。<br>&emsp;&emsp;由算法的训练过程可知，当弱分类器对样本分类正确，样本的权重会减小；而分类错误时，样本的权重会增加。这样，后面的分类器会加强对错分样本的训练。最后，组合所有的弱分类器形成强分类器，通过比较这些弱分类器投票的加权和与平均投票结果来检测图像。<br>&emsp;&emsp;OpenCV中，强分类器是由多个弱分类器“并列”构成，即强分类器中的弱分类器是两两相互独立的。在检测目标时，每个弱分类器独立运行并输出结果，然后把当前强分类器中每一个弱分类器的输出值相加，与本级强分类器的阈值相比，当且仅当结果大于阈值，认为当前检测窗口通过了该级强分类器。</p>
+<h3 id="3-级联分类器的检测"><a href="#3-级联分类器的检测" class="headerlink" title="3.级联分类器的检测"></a>3.级联分类器的检测</h3><p>&emsp;&emsp;整合好了级联分类器，接下来就是高光时刻：检测！<br>&emsp;&emsp;检测是以显示中的一副图片作为输入，然后对图片进行多区域、多尺度的检测。</p>
+<ul>
+<li>多区域检测是指遍历整张图片。</li>
+<li>多尺度检测有两种策略<br>1）搜索窗口的大小不变，不断缩放图片，在这种情况下需要对每个缩放后的图片进行区域特征值的运算，效率较低。<br>2）不断扩大搜索窗口，对图片进行特征值运算，效率较高。<strong>因为1）需要计算大小不同的图片的积分图，而2）只需对原图进行一次积分图即可。不同的搜索窗口的特征值计算在线性时间内即可完成。</strong></li>
+</ul>
+<p>&emsp;&emsp;放大+平移获得的子特征有多少个呢？Rainer Lienhart在其论文中做出了解释，假设检测窗口大小为$W<em>H$，矩形特征大小为$w</em>h$，X和Y表示矩形特征在水平和垂直方向上能放大的最大比例系数：</p>
+<p><img src="/article/ad28cab2/20180527174205634" srcset="/img/loading.gif" alt="img"></p>
+<p>&emsp;&emsp;如图5，在检测窗口window中，一般矩形特征的数量为：$XY(W+1-w\frac{X+1}{2})(    H+1-h\frac{Y+1}{2})$。对于之前x3特征在24*24大小的检测窗口中（W=H=24,w=3,h=1,X=8,Y=24），一共能产生27600个子特征。具体参考<a href="https://blog.csdn.net/liulina603/article/details/8617281" target="_blank" rel="noopener">Haar特征与积分图</a>。<br>&emsp;&emsp;无论哪种搜索方法，都会向级联分类器输入大量的子窗口图像，子窗口图像在筛选式级联分类器中依次被每一个节点筛选，丢弃或通过。最后利用并查集合并检测结果窗口。重叠窗口个数大于阈值时，选取其中之一作为检测结果，其余丢弃。</p>
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>总结Haar分类器的五大训练步骤：</p>
+<ol>
+<li>准备人脸、非人脸样本集</li>
+<li>计算特征值和积分图</li>
+<li>筛选出T个优秀的最优弱分类器(特征值)</li>
+<li>把T个最优弱分类器传给AdaBoost进行训练，得到一个强分类器</li>
+<li>重复3. 4.，将得到的n个强分类器级联成一个Adaboost级联分类器。</li>
+</ol>
+<p>以20*20窗口为例，有78,460个特征，筛选出T个优秀的最优弱分类器，然后把T个最优弱分类器传给AdaBoost进行训练得到一个强分类器，最后将n个强分类器级联成一个Adaboost级联分类器。</p>
+<h2 id="五、分类器的检测"><a href="#五、分类器的检测" class="headerlink" title="五、分类器的检测"></a>五、分类器的检测</h2><p>OpenCV自带了训练器和检测器。如果想从头训练一个分类器检测汽车、飞机等其他物体，可以使用OpenCV构建。细节参考这里：<a href="http://docs.opencv.org/2.4/doc/user_guide/ug_traincascade.html" target="_blank" rel="noopener">Cascade Classifier Training</a>。<br>OpenCV自带的检测器在OpenCV库文件\haarcascades文件\xx.xml文件中。在我的电脑里，具体路径为C:\Users\susu\AppData\Roaming\Python\Python37\site-packages\cv2\data\中。这个文件夹下包含了检测人脸、眼睛、鼻子和嘴等部位的检测器。均需要正面、直立的人体图像。<br>xml文件包含了检测器的相关信息。具体可以参考<a href="https://blog.csdn.net/playezio/article/details/80471000" target="_blank" rel="noopener">haar+adaboost代码讲解(OpenCV)</a>。</p>
+<h1 id="3-3-人脸检测-OpenCV简单实现"><a href="#3-3-人脸检测-OpenCV简单实现" class="headerlink" title="3.3 人脸检测(OpenCV简单实现)"></a>3.3 人脸检测(OpenCV简单实现)</h1><h2 id="一、静态图片中的人脸检测"><a href="#一、静态图片中的人脸检测" class="headerlink" title="一、静态图片中的人脸检测"></a>一、静态图片中的人脸检测</h2><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2
 <span class="hljs-comment"># 加载图像</span>
 img = cv2.imread(<span class="hljs-string">'image2.jpg'</span>, <span class="hljs-number">1</span>)
 <span class="hljs-comment"># 创建人脸和人眼的级联分类器，加载.xml分类器文件，即Haar特征的分类器（上一篇使用LBP特征的分类器）</span>
@@ -404,10 +349,7 @@ cv2.imshow(<span class="hljs-string">'img'</span>, img)
 cv2.waitKey(<span class="hljs-number">0</span>)
 cv2.destroyAllWindows()
 cv2.imwrite(<span class="hljs-string">'output.jpg'</span>, img)</code></pre>
-
-## 二、实时人脸监测
-
-<pre><code class="hljs python"><span class="hljs-comment"># 调用电脑摄像头进行实时人脸+眼睛识别</span>
+<h2 id="二、实时人脸监测"><a href="#二、实时人脸监测" class="headerlink" title="二、实时人脸监测"></a>二、实时人脸监测</h2><pre><code class="hljs python"><span class="hljs-comment"># 调用电脑摄像头进行实时人脸+眼睛识别</span>
 <span class="hljs-keyword">import</span> cv2
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades+<span class="hljs-string">'haarcascade_frontalface_default.xml'</span>)
@@ -441,26 +383,14 @@ cv2.namedWindow(<span class="hljs-string">'Dynamic'</span>)
         <span class="hljs-keyword">break</span>
 cap.release()
 cv2.destroyAllWindows()</code></pre>
-
-简单分析上面的代码:
-&emsp;&emsp;创建一个级联分类器对象，加载xml检测器，进行人脸监测。
-
+<p>简单分析上面的代码:<br>&emsp;&emsp;创建一个级联分类器对象，加载xml检测器，进行人脸监测。</p>
 <pre><code class="hljs python">face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades+<span class="hljs-string">'haarcascade_frontalface_default.xml'</span>)</code></pre>
-
-&emsp;&emsp;将人脸图像放入监测。**不同于LBP检测器，这里彩色的图像也是可以的。**
-
+<p>&emsp;&emsp;将人脸图像放入监测。<strong>不同于LBP检测器，这里彩色的图像也是可以的。</strong></p>
 <pre><code class="hljs python">detectMultiScale(image[,scaleFactor[,minNeighbors[,flags,[minSize,[maxSize]]]]])</code></pre>
-
-1）image：待检测的输入图像
-2）scaleFactor：每一个图像的尺度参数。默认值为1.1。scaleFactor参数控制两个不同大小窗口扫描的间距。参数过大，可能会错过正确的人脸区域。
-3）minNeighbors：每一个级联矩形应该保留的邻近个数，默认为3.minNeighbors控制与检测率。默认值为3，表明至少有3次重叠监测，认为人脸确实存在。
-4）minSize：目标最小尺寸
-5）maxSize：目标最大尺寸
-
-<font color="blue">这次想写得太多了，啥都想加，加到最后好累。。。sad，不知道应该挑几个重点还是都来。awsl</font>
-
+<p>1）image：待检测的输入图像<br>2）scaleFactor：每一个图像的尺度参数。默认值为1.1。scaleFactor参数控制两个不同大小窗口扫描的间距。参数过大，可能会错过正确的人脸区域。<br>3）minNeighbors：每一个级联矩形应该保留的邻近个数，默认为3.minNeighbors控制与检测率。默认值为3，表明至少有3次重叠监测，认为人脸确实存在。<br>4）minSize：目标最小尺寸<br>5）maxSize：目标最大尺寸</p>
+<p>这次想写得太多了，啥都想加，加到最后好累。。。sad，不知道应该挑几个重点还是都来。awsl</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.cnblogs.com/zyly/p/9410563.html" target="_blank" rel="noopener">人脸监测之Haar分类器</a><br><a href="https://blog.csdn.net/liulina603/article/details/8617281" target="_blank" rel="noopener">Haar特征与积分图(推荐)</a><br><a href="https://blog.csdn.net/nk_wavelet/article/details/52601567" target="_blank" rel="noopener">AdaBoost人脸检测介绍(3)</a></p>
-</\rho>
+
             </article>
             <hr>
             <div>
