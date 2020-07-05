@@ -497,7 +497,7 @@ MS_A / MS_e \sim F_{k-1, n-k} \qquad (2.9)</script><p>据（5.9），在给定�
 </div>
 <p>在上表中，对于显著性一栏，一般来说，我们把算出的$F$比，即$MS_A / MS_e$，与$F_{k-1, n-k}(0.05)=c_1$和$F_{k-1, n-k}(0.01)=c_2$比较。若$MS_A / MS_e&gt;c_2$，用**表示，表明A因素的效应是高度显著的，即在$\alpha=0.01$的显著性水平下，拒绝原假设（5.3）。同理，$c_2<MS_A ms_e<c_1$用$\ast $表示，$ms_a ms_e>c_1$时不显著。</MS_A></p>
 <h3 id="2-2-代码实例"><a href="#2-2-代码实例" class="headerlink" title="2.2 代码实例"></a>2.2 代码实例</h3><h4 id="单因素方差分析的R语言实现"><a href="#单因素方差分析的R语言实现" class="headerlink" title="单因素方差分析的R语言实现"></a>单因素方差分析的R语言实现</h4><p>单因素方差分析中，你感兴趣的是比较分类因子定义的两个或多个组别中的因变量均值。以multcomp包中的cholesterol数据集为例，50个患者均接受降低胆固醇药物治疗（trt）五种疗法中的一种疗法。其中三种治疗条件使用药物相同，分别是20mg一天一次（1time）、10mg一天两次（2times）和5mg一天四次（4times）。剩下的两种方式（drugD和drugE）代表候选药物。</p>
-<div class="hljs"><pre><code class="hljs angelscript">&gt; library(multcomp)
+<pre><code class="hljs angelscript">&gt; library(multcomp)
 &gt; attach(cholesterol)
 &gt; 
 &gt; # 统计各组样本大小
@@ -531,17 +531,17 @@ trt
 trt          <span class="hljs-number">4</span> <span class="hljs-number">1351.4</span>   <span class="hljs-number">337.8</span>   <span class="hljs-number">32.43</span> <span class="hljs-number">9.82e-13</span> ***
 Residuals   <span class="hljs-number">45</span>  <span class="hljs-number">468.8</span>    <span class="hljs-number">10.4</span>                     
 ---
-Signif. codes:  <span class="hljs-number">0</span> ‘***’ <span class="hljs-number">0.001</span> ‘**’ <span class="hljs-number">0.01</span> ‘*’ <span class="hljs-number">0.05</span> ‘.’ <span class="hljs-number">0.1</span> ‘ ’ <span class="hljs-number">1</span></code></pre></div>
+Signif. codes:  <span class="hljs-number">0</span> ‘***’ <span class="hljs-number">0.001</span> ‘**’ <span class="hljs-number">0.01</span> ‘*’ <span class="hljs-number">0.05</span> ‘.’ <span class="hljs-number">0.1</span> ‘ ’ <span class="hljs-number">1</span></code></pre>
 <p>方差分析的结果中，各项数字的含义可以参照表2-1。</p>
 <h4 id="查看各水平对应的组均值的差异"><a href="#查看各水平对应的组均值的差异" class="headerlink" title="查看各水平对应的组均值的差异"></a>查看各水平对应的组均值的差异</h4><p>gplots包中的plotmeans()可以用来绘制带有置信区间的组均值图形。如图9-1所示，图形展示了带有95%的置信区间的各疗法均值，可以清楚看到它们之间的差异。</p>
-<div class="hljs"><pre><code class="hljs lisp">library(<span class="hljs-name">gplots</span>)
+<pre><code class="hljs lisp">library(<span class="hljs-name">gplots</span>)
 plotmeans(<span class="hljs-name">response</span> ~ trt, xlab=<span class="hljs-string">"Treatment"</span>, ylab=<span class="hljs-string">"Response"</span>,
           main=<span class="hljs-string">"Mean Plot\nwith 95% CI"</span>)
-detach(<span class="hljs-name">cholesterol</span>)</code></pre></div>
+detach(<span class="hljs-name">cholesterol</span>)</code></pre>
 <p><img src="/article/2ad44fb9/2-1.png" srcset="/img/loading.gif" alt="2-1"></p>
 <p><strong>2-1 五种降低胆固醇药物疗法的均值，含95%的置信区间</strong></p>
 <h4 id="多重比较"><a href="#多重比较" class="headerlink" title="多重比较"></a>多重比较</h4><p>虽然ANOVA对各疗法的F检验表明五种药物疗法效果不同，但是并没有告诉你哪种疗法与其他疗法不同。多重比较可以解决这个问题。例如，TukeyHSD()函数提供了对各组均值差异的成对检验。</p>
-<div class="hljs"><pre><code class="hljs angelscript">&gt; TukeyHSD(fit)
+<pre><code class="hljs angelscript">&gt; TukeyHSD(fit)
   Tukey multiple comparisons of means
     <span class="hljs-number">95</span>% family-wise confidence level
 
@@ -562,17 +562,17 @@ drugE-drugD    <span class="hljs-number">5.58635</span>  <span class="hljs-numbe
 
 &gt; par(las=<span class="hljs-number">2</span>)
 &gt; par(mar=c(<span class="hljs-number">5</span>,<span class="hljs-number">8</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>))
-&gt; plot(TukeyHSD(fit))</code></pre></div>
+&gt; plot(TukeyHSD(fit))</code></pre>
 <p>成对比较图形如图2-2所示。图形中置信区间包含0的疗法说明差异不显著（p&gt;0.05）。</p>
 <p><img src="/article/2ad44fb9/2-2.png" srcset="/img/loading.gif" alt="2-2"></p>
 <p><strong>图2-2 Tukey HSD均值成对比较图</strong></p>
 <h4 id="评估检验的假设条件"><a href="#评估检验的假设条件" class="headerlink" title="评估检验的假设条件"></a>评估检验的假设条件</h4><p>根据2.1中我们讲的关于方差分析的推导中，我们知道，方差分析结果的有效性是建立在一系列假设条件之上的，因此，在我们使用方差分析模型时，需要评估进行方差分析的数据，是否符合模型使用的假设条件。</p>
 <h5 id="正态性检验"><a href="#正态性检验" class="headerlink" title="正态性检验"></a>正态性检验</h5><p>第一，在建立模型时，我们假设因变量是服从正态分布的，需要进行正态性检验。</p>
 <p>正态性检验的方法有两种，一是通过QQ图进行检验。</p>
-<div class="hljs"><pre><code class="hljs routeros"><span class="hljs-comment"># QQ plot</span>
+<pre><code class="hljs routeros"><span class="hljs-comment"># QQ plot</span>
 library(car)
 qqPlot(lm(response ~ trt, <span class="hljs-attribute">data</span>=cholesterol),
-       <span class="hljs-attribute">simulate</span>=<span class="hljs-literal">TRUE</span>, <span class="hljs-attribute">main</span>=<span class="hljs-string">"Q-Q Plot"</span>, <span class="hljs-attribute">labels</span>=<span class="hljs-literal">FALSE</span>)</code></pre></div>
+       <span class="hljs-attribute">simulate</span>=<span class="hljs-literal">TRUE</span>, <span class="hljs-attribute">main</span>=<span class="hljs-string">"Q-Q Plot"</span>, <span class="hljs-attribute">labels</span>=<span class="hljs-literal">FALSE</span>)</code></pre>
 <p><img src="/article/2ad44fb9/2-3.png" srcset="/img/loading.gif" alt="2-3"></p>
 <p>除此之外，R里面也提供了一些package来进行正态性检验。</p>
 <h6 id="K-S-test"><a href="#K-S-test" class="headerlink" title="K-S test"></a>K-S test</h6><p>统计学里, Kolmogorov–Smirnov 检验(亦称：K–S 检验)是用来检验数据是否符合某种分布的一种非参数检验。其原假设$H_0$:两个数据分布一致或者数据符合理论分布。在R语言里，我们可以使用<code>ks.test(x, pnorm)</code>进行正态性检验，若结果中的p值大于0.05，则数据符合正态分布。</p>
@@ -581,19 +581,19 @@ qqPlot(lm(response ~ trt, <span class="hljs-attribute">data</span>=cholesterol),
 <h6 id="Lilliefor-test"><a href="#Lilliefor-test" class="headerlink" title="Lilliefor test"></a><strong>Lilliefor test</strong></h6><p>Lilliefor test是基于Kolmogorov–Smirnov test的一种正态性检验。原假设$H_0$: 数据符合正态分布，<code>lillie.test()</code>也在<strong>nortest包</strong>中。</p>
 <h5 id="方差齐性检验"><a href="#方差齐性检验" class="headerlink" title="方差齐性检验"></a>方差齐性检验</h5><p>因为方差分析的实质是检验多个水平的均值是否有显著差异，如果各个水平的观察值方差差异太大，只检验均值之间的差异就没有意义了，所以要进行方差齐性检验。</p>
 <p>Bartlett test可以用来检验数据的方差齐性。</p>
-<div class="hljs"><pre><code class="hljs armasm">&gt; <span class="hljs-keyword">bartlett.test(response </span>~ trt, <span class="hljs-meta">data</span><span class="hljs-symbol">=cholesterol</span>)
+<pre><code class="hljs armasm">&gt; <span class="hljs-keyword">bartlett.test(response </span>~ trt, <span class="hljs-meta">data</span><span class="hljs-symbol">=cholesterol</span>)
 
 	<span class="hljs-keyword">Bartlett </span>test of homogeneity of variances
 
 <span class="hljs-symbol">data</span>:  response <span class="hljs-keyword">by </span>trt
-<span class="hljs-keyword">Bartlett's </span>K-squared = <span class="hljs-number">0</span>.<span class="hljs-number">57975</span>, df = <span class="hljs-number">4</span>, p-value = <span class="hljs-number">0</span>.<span class="hljs-number">9653</span></code></pre></div>
+<span class="hljs-keyword">Bartlett's </span>K-squared = <span class="hljs-number">0</span>.<span class="hljs-number">57975</span>, df = <span class="hljs-number">4</span>, p-value = <span class="hljs-number">0</span>.<span class="hljs-number">9653</span></code></pre>
 <p>Bartlett检验表明五组的方差并没有显著不同（p=0.97）。其他检验如Fligner-Killeen检验<br>（<code>fligner.test()</code>函数）和Brown-Forsythe检验（<strong>HH包</strong>中的<code>hov()</code>函数）此处没有做演示，但它们获得的结果与Bartlett检验相同。</p>
 <p>不过，方差齐性分析对离群点非常敏感。可利用<strong>car包</strong>中的<code>outlierTest()</code>函数来检测离群点：</p>
-<div class="hljs"><pre><code class="hljs yaml"><span class="hljs-string">outlierTest(fit)</span>
+<pre><code class="hljs yaml"><span class="hljs-string">outlierTest(fit)</span>
 <span class="hljs-literal">No</span> <span class="hljs-string">Studentized</span> <span class="hljs-string">residuals</span> <span class="hljs-string">with</span> <span class="hljs-string">Bonferroni</span> <span class="hljs-string">p</span> <span class="hljs-string">&lt;</span> <span class="hljs-number">0.05</span>
 <span class="hljs-string">Largest</span> <span class="hljs-string">|rstudent|:</span>
    <span class="hljs-string">rstudent</span> <span class="hljs-string">unadjusted</span> <span class="hljs-string">p-value</span> <span class="hljs-string">Bonferroni</span> <span class="hljs-string">p</span>
-<span class="hljs-number">19</span> <span class="hljs-number">2.251149</span>           <span class="hljs-number">0.029422</span>           <span class="hljs-string">NA</span></code></pre></div>
+<span class="hljs-number">19</span> <span class="hljs-number">2.251149</span>           <span class="hljs-number">0.029422</span>           <span class="hljs-string">NA</span></code></pre>
 <p>从输出结果来看，并没有证据说明胆固醇数据中含有离群点（当p&gt;1时将产生NA）。因此根据正态性检验、方差齐性检验和离群点检验，该数据似乎可以用ANOVA模型拟合得很好。<strong>这些方法反过来增强了我们对于所得结果的信心。</strong></p>
 <h2 id="3-双因素方差分析"><a href="#3-双因素方差分析" class="headerlink" title="3 双因素方差分析"></a>3 双因素方差分析</h2><h3 id="3-1-推导过程"><a href="#3-1-推导过程" class="headerlink" title="3.1 推导过程"></a>3.1 推导过程</h3><p>在很多种情况下，只考虑一个指标对观察值的影响，显然是不够的，这时就会用到多因素方差分析。双因素方差分析和多因素方差分析在原理上是相似的，这里为了书写简便，我们只以双因素方差分析为例进行推导。</p>
 <p>还是以田间实验的例子帮助理解推导过程，我们设有两个因素$A, B$，分别有$k, l$个水平（例如$A$为品种，有$k$个；$B$为播种量，考虑$l$种不同的数值，如20斤／亩，25斤／亩，……）．$A$的水平$i$与$B$的水平$j$的组合记为$(i,j)$，其试验结果记为 $Y_{ij}, i = 1, · · ·, k,j = 1,…, l$．统计模型定为</p>
@@ -696,7 +696,7 @@ Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y} &= (\mu + a_i + b_j + e_{ij}) - (\mu + a_i + 
 </div>
 <p>还有一点要注意：在采纳模型$(3.1)$时，我们事实上引进了 一 种假定，即两因素$A,B$对指标的效应是可以叠加的．换一种方式说：因素$A$的各水平的优劣比较，与因素$B$处在哪个水平无关，反之亦然．更一般的情况是：$A,B$两因子有“交互作用 ＂ 。这时在模型(5.13)中，还要加上表示交互作用的项$c_{ij}$．这时不仅统计分析复杂化了，尤其是分析结果的解释也复杂化了．本文档暂不讨论这种情况。在一个特定的问题中，交互作用是否需要考虑，在很大程度上取决于问题的实际背景和经验．有时，通过试验数据的分析也可以看出一些问题。例如，若误差方差$\sigma^2$的估计$MS_e $反常地大，则有可能是由于交互作用所致．因为可以证明：若交互作用确实存在而未加考虑，则它的影响进入随机误差而增大了$MS_e$。</p>
 <h3 id="3-2-代码实例"><a href="#3-2-代码实例" class="headerlink" title="3.2 代码实例"></a>3.2 代码实例</h3><p>在双因素方差分析中，受试者被分配到两因子的交叉类别组中。以基础安装中的ToothGrowth数据集为例，随机分配60只豚鼠，分别采用两种喂食方法（橙汁或维生素C），各喂食方法中抗坏血酸含量有三种水平（0.5mg、1mg或2mg），每种处理方式组合都被分配10只豚鼠，牙齿长度为因变量。</p>
-<div class="hljs"><pre><code class="hljs angelscript">&gt; attach(ToothGrowth)
+<pre><code class="hljs angelscript">&gt; attach(ToothGrowth)
 &gt; table(supp, dose)
     dose
 supp <span class="hljs-number">0.5</span>  <span class="hljs-number">1</span>  <span class="hljs-number">2</span>
@@ -732,21 +732,21 @@ dose         <span class="hljs-number">2</span> <span class="hljs-number">2426.4
 supp:dose    <span class="hljs-number">2</span>  <span class="hljs-number">108.3</span>    <span class="hljs-number">54.2</span>   <span class="hljs-number">4.107</span> <span class="hljs-number">0.021860</span> *  
 Residuals   <span class="hljs-number">54</span>  <span class="hljs-number">712.1</span>    <span class="hljs-number">13.2</span>                     
 ---
-Signif. codes:  <span class="hljs-number">0</span> ‘***’ <span class="hljs-number">0.001</span> ‘**’ <span class="hljs-number">0.01</span> ‘*’ <span class="hljs-number">0.05</span> ‘.’ <span class="hljs-number">0.1</span> ‘ ’ <span class="hljs-number">1</span></code></pre></div>
+Signif. codes:  <span class="hljs-number">0</span> ‘***’ <span class="hljs-number">0.001</span> ‘**’ <span class="hljs-number">0.01</span> ‘*’ <span class="hljs-number">0.05</span> ‘.’ <span class="hljs-number">0.1</span> ‘ ’ <span class="hljs-number">1</span></code></pre>
 <p>计算结果表明，主效应和交互效应都是显著的。</p>
 <p>有多种方式对结果进行可视化处理。此处可用interaction.plot()函数来展示双因素方<br>差分析的交互效应。</p>
-<div class="hljs"><pre><code class="hljs routeros"><span class="hljs-comment"># interactive effect</span>
+<pre><code class="hljs routeros"><span class="hljs-comment"># interactive effect</span>
 interaction.plot(dose, supp, len, <span class="hljs-attribute">type</span>=<span class="hljs-string">"b"</span>,
                  <span class="hljs-attribute">col</span>=c("red","blue"), <span class="hljs-attribute">pch</span>=c(16, 18),
-                 main = <span class="hljs-string">"Interaction between Dose and Supplement Type"</span>)</code></pre></div>
+                 main = <span class="hljs-string">"Interaction between Dose and Supplement Type"</span>)</code></pre>
 <p><img src="/article/2ad44fb9/3-1.png" srcset="/img/loading.gif" alt="3-1"></p>
 <p><strong>图3-1 各种剂量喂食下豚鼠牙齿长度的均值（interaction.plot()函数绘制）</strong></p>
 <p>还可以用gplots包中的plotmeans()函数来展示交互效应。<img src="/article/2ad44fb9/3-2.png" srcset="/img/loading.gif" alt="3-2"><strong>图3-2 喂食方法和剂量对牙齿生长的交互作用。用plotmeans()函数绘制的95%的置</strong><br><strong>信区间的牙齿长度均值</strong></p>
 <p>图形展示了均值、误差棒（95%的置信区间）和样本大小。<br>最后，你还能用HH包中的interaction2wt()函数来可视化结果，图形对任意顺序的因子设计的主效应和交互效应都会进行展示（图3-3）。</p>
-<div class="hljs"><pre><code class="hljs lisp">library(<span class="hljs-name">HH</span>)
+<pre><code class="hljs lisp">library(<span class="hljs-name">HH</span>)
 interaction2wt(<span class="hljs-name">len</span>~supp*dose)
 &gt; 
-&gt; detach(<span class="hljs-name">ToothGrowth</span>)</code></pre></div>
+&gt; detach(<span class="hljs-name">ToothGrowth</span>)</code></pre>
 <p><img src="/article/2ad44fb9/3-3.png" srcset="/img/loading.gif" alt="3-3"></p>
 <p><strong>图3-3 ToothGrowth数据集的主效应和交互效应。图形由interaction2wt()函数创建</strong></p>
 <p>以上三幅图形都表明随着橙汁和维生素C中的抗坏血酸剂量的增加，牙齿长度变长。对于0.5mg和1mg剂量，橙汁比维生素C更能促进牙齿生长；对于2mg剂量的抗坏血酸，两种喂食方法下牙齿长度增长相同。</p>

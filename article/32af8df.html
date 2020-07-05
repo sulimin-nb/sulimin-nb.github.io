@@ -225,11 +225,11 @@
 问题1
 (a) 
 
-<div class="hljs"><pre><code class="hljs prolog">df = pd.read_csv(<span class="hljs-string">'data/time_series_one.csv'</span>, parse_dates=[<span class="hljs-string">'日期'</span>])
-df[<span class="hljs-string">'日期'</span>].dt.dayofweek[df[<span class="hljs-string">'销售额'</span>].idxmax()]</code></pre></div>
+<pre><code class="hljs prolog">df = pd.read_csv(<span class="hljs-string">'data/time_series_one.csv'</span>, parse_dates=[<span class="hljs-string">'日期'</span>])
+df[<span class="hljs-string">'日期'</span>].dt.dayofweek[df[<span class="hljs-string">'销售额'</span>].idxmax()]</code></pre>
 <p>输出：</p>
 <p>6<br>（b）</p>
-<div class="hljs"><pre><code class="hljs routeros">holiday = pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20170501'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20170503'</span>).append(
+<pre><code class="hljs routeros">holiday = pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20170501'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20170503'</span>).append(
           pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20171001'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20171007'</span>)).append(
           pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20180215'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20180221'</span>)).append(
           pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20180501'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20180503'</span>)).append(
@@ -238,10 +238,10 @@ df[<span class="hljs-string">'日期'</span>].dt.dayofweek[df[<span class="hljs-
           pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20190501'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20190503'</span>)).append(
           pd.date_range(<span class="hljs-attribute">start</span>=<span class="hljs-string">'20191001'</span>, <span class="hljs-attribute">end</span>=<span class="hljs-string">'20191007'</span>))
 result = df[~df[<span class="hljs-string">'日期'</span>].isin(holiday)].set_index(<span class="hljs-string">'日期'</span>).resample(<span class="hljs-string">'MS'</span>).sum()
-result.head()</code></pre></div>
+result.head()</code></pre>
 <p>(c)</p>
-<div class="hljs"><pre><code class="hljs sas">result = df[df[<span class="hljs-string">'日期'</span>].dt.dayofweek.<span class="hljs-meta">isin(</span>[5,6])].<span class="hljs-meta">set</span><span class="hljs-meta">_index(</span><span class="hljs-string">'日期'</span>).resample(<span class="hljs-string">'QS'</span>)<span class="hljs-meta">.sum(</span>)
-result.head()</code></pre></div>
+<pre><code class="hljs sas">result = df[df[<span class="hljs-string">'日期'</span>].dt.dayofweek.<span class="hljs-meta">isin(</span>[5,6])].<span class="hljs-meta">set</span><span class="hljs-meta">_index(</span><span class="hljs-string">'日期'</span>).resample(<span class="hljs-string">'QS'</span>)<span class="hljs-meta">.sum(</span>)
+result.head()</code></pre>
             </article>
             <hr>
             <div>

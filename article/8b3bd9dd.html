@@ -310,7 +310,7 @@ R = det(M)-k(trace(M))^2</script><p>其中$det(M)=\lambda_1\lambda_2$为矩阵�
 </ul>
 <p>待检测的图片：</p>
 <p><img src="/article/8b3bd9dd/image1.jpg" srcset="/img/loading.gif" alt="image1"></p>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2 <span class="hljs-keyword">as</span> cv
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2 <span class="hljs-keyword">as</span> cv
 <span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 
@@ -331,11 +331,11 @@ gray_img = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
 gray_img = np.float32(gray_img)
 
 <span class="hljs-comment"># 使用合适值作为输入参数检测角点，得到的结果图用来标出角点</span>
-corners_img = cv.cornerHarris(gray_img, block_size, sobel_size, k)</code></pre></div>
+corners_img = cv.cornerHarris(gray_img, block_size, sobel_size, k)</code></pre>
 <p>输出：</p>
-<div class="hljs"><pre><code class="hljs tex">(225, 225, 3)
-width: 225 height: 225 channel: 3</code></pre></div>
-<div class="hljs"><pre><code class="hljs python">kernel = cv.getStructuringElement(cv.MORPH_RECT,(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>))
+<pre><code class="hljs tex">(225, 225, 3)
+width: 225 height: 225 channel: 3</code></pre>
+<pre><code class="hljs python">kernel = cv.getStructuringElement(cv.MORPH_RECT,(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>))
 dst = cv.dilate(corners_img, kernel)
 <span class="hljs-comment"># dst = cv.dilate(corners_img,None)</span>
 <span class="hljs-comment"># image[dst&gt;0.05*dst.max()] = [255,0,0]</span>
@@ -351,13 +351,13 @@ count = <span class="hljs-number">0</span>
             cv.circle(image,(c,r),<span class="hljs-number">2</span>,(<span class="hljs-number">255</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>),<span class="hljs-number">-1</span>)
             count += <span class="hljs-number">1</span>
 print(count)
-cv.imwrite(<span class="hljs-string">'harris_img1.jpg'</span>,image)</code></pre></div>
+cv.imwrite(<span class="hljs-string">'harris_img1.jpg'</span>,image)</code></pre>
 <p>输出：</p>
-<div class="hljs"><pre><code class="hljs tex">741</code></pre></div>
+<pre><code class="hljs tex">741</code></pre>
 <p>处理后图片如下：</p>
 <p><img src="/article/8b3bd9dd/harris_img1.jpg" srcset="/img/loading.gif" alt="harris_img1"></p>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment"># 使用点画图，点小一点，好看一丢丢把。。。</span>
-image[dst&gt;<span class="hljs-number">0.05</span>*dst.max()] = [<span class="hljs-number">255</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]</code></pre></div>
+<pre><code class="hljs python"><span class="hljs-comment"># 使用点画图，点小一点，好看一丢丢把。。。</span>
+image[dst&gt;<span class="hljs-number">0.05</span>*dst.max()] = [<span class="hljs-number">255</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]</code></pre>
 <p><img src="/article/8b3bd9dd/harris_img2.jpg" srcset="/img/loading.gif" alt="harris_img1"></p>
 <h2 id="2-2-Shi-Tomasi角点检测"><a href="#2-2-Shi-Tomasi角点检测" class="headerlink" title="2.2 Shi-Tomasi角点检测"></a>2.2 Shi-Tomasi角点检测</h2><p>opencv提供了实现Shi-Tomasi 角点检测函数：<strong>cv2.goodFeaturesToTrack()</strong>，下面调用该接口进行Harris特征点检测。</p>
 <p>函数：<strong>goodFeaturesToTrack(image, maxCorners, qualityLevel, minDistance[, corners[, mask[, blockSize[, useHarrisDetector[, k]]]]])</strong></p>
@@ -374,7 +374,7 @@ image[dst&gt;<span class="hljs-number">0.05</span>*dst.max()] = [<span class="hl
 <li><strong>useHarrisDetector</strong>：用于指定角点检测的方法，如果是true则使用Harris角点检测，false则使用Shi Tomasi算法。默认为False。</li>
 <li><strong>k</strong>：默认为0.04，Harris角点检测时使用。</li>
 </ul>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 <span class="hljs-keyword">import</span> cv2
 maxCorners = <span class="hljs-number">600</span>
 qualityLevel = <span class="hljs-number">0.01</span>
@@ -392,7 +392,7 @@ count = <span class="hljs-number">0</span>
     count += <span class="hljs-number">1</span>
 cv.imwrite(<span class="hljs-string">'Shi-Tomasi.jpg'</span>,img)
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-print(count)</code></pre></div>
+print(count)</code></pre>
 <p><img src="Task01-Harris特征点检测器-兴趣点检测//Tomasi.jpg" srcset="/img/loading.gif" alt></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Harris和Shi-Tomasi都是基于梯度计算的角点检测方式。</p>
 <p>Harris角点检测的性质：</p>

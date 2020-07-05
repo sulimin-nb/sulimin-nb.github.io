@@ -320,7 +320,7 @@ h(x)=\left\{\begin{array}{cc}
 </ol>
 <p>以20*20窗口为例，有78,460个特征，筛选出T个优秀的最优弱分类器，然后把T个最优弱分类器传给AdaBoost进行训练得到一个强分类器，最后将n个强分类器级联成一个Adaboost级联分类器。</p>
 <h2 id="五、分类器的检测"><a href="#五、分类器的检测" class="headerlink" title="五、分类器的检测"></a>五、分类器的检测</h2><p>OpenCV自带了训练器和检测器。如果想从头训练一个分类器检测汽车、飞机等其他物体，可以使用OpenCV构建。细节参考这里：<a href="http://docs.opencv.org/2.4/doc/user_guide/ug_traincascade.html" target="_blank" rel="noopener">Cascade Classifier Training</a>。<br>OpenCV自带的检测器在OpenCV库文件\haarcascades文件\xx.xml文件中。在我的电脑里，具体路径为C:\Users\susu\AppData\Roaming\Python\Python37\site-packages\cv2\data\中。这个文件夹下包含了检测人脸、眼睛、鼻子和嘴等部位的检测器。均需要正面、直立的人体图像。<br>xml文件包含了检测器的相关信息。具体可以参考<a href="https://blog.csdn.net/playezio/article/details/80471000" target="_blank" rel="noopener">haar+adaboost代码讲解(OpenCV)</a>。</p>
-<h1 id="3-3-人脸检测-OpenCV简单实现"><a href="#3-3-人脸检测-OpenCV简单实现" class="headerlink" title="3.3 人脸检测(OpenCV简单实现)"></a>3.3 人脸检测(OpenCV简单实现)</h1><h2 id="一、静态图片中的人脸检测"><a href="#一、静态图片中的人脸检测" class="headerlink" title="一、静态图片中的人脸检测"></a>一、静态图片中的人脸检测</h2><div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2
+<h1 id="3-3-人脸检测-OpenCV简单实现"><a href="#3-3-人脸检测-OpenCV简单实现" class="headerlink" title="3.3 人脸检测(OpenCV简单实现)"></a>3.3 人脸检测(OpenCV简单实现)</h1><h2 id="一、静态图片中的人脸检测"><a href="#一、静态图片中的人脸检测" class="headerlink" title="一、静态图片中的人脸检测"></a>一、静态图片中的人脸检测</h2><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2
 <span class="hljs-comment"># 加载图像</span>
 img = cv2.imread(<span class="hljs-string">'image2.jpg'</span>, <span class="hljs-number">1</span>)
 <span class="hljs-comment"># 创建人脸和人眼的级联分类器，加载.xml分类器文件，即Haar特征的分类器（上一篇使用LBP特征的分类器）</span>
@@ -340,8 +340,8 @@ faces = face_cascade.detectMultiScale(img, scaleFactor=<span class="hljs-number"
 cv2.imshow(<span class="hljs-string">'img'</span>, img)
 cv2.waitKey(<span class="hljs-number">0</span>)
 cv2.destroyAllWindows()
-cv2.imwrite(<span class="hljs-string">'output.jpg'</span>, img)</code></pre></div>
-<h2 id="二、实时人脸监测"><a href="#二、实时人脸监测" class="headerlink" title="二、实时人脸监测"></a>二、实时人脸监测</h2><div class="hljs"><pre><code class="hljs python"><span class="hljs-comment"># 调用电脑摄像头进行实时人脸+眼睛识别</span>
+cv2.imwrite(<span class="hljs-string">'output.jpg'</span>, img)</code></pre>
+<h2 id="二、实时人脸监测"><a href="#二、实时人脸监测" class="headerlink" title="二、实时人脸监测"></a>二、实时人脸监测</h2><pre><code class="hljs python"><span class="hljs-comment"># 调用电脑摄像头进行实时人脸+眼睛识别</span>
 <span class="hljs-keyword">import</span> cv2
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades+<span class="hljs-string">'haarcascade_frontalface_default.xml'</span>)
@@ -374,11 +374,11 @@ cv2.namedWindow(<span class="hljs-string">'Dynamic'</span>)
     <span class="hljs-keyword">if</span> cv2.waitKey(<span class="hljs-number">5</span>) &amp; <span class="hljs-number">0xFF</span> == ord(<span class="hljs-string">'q'</span>):
         <span class="hljs-keyword">break</span>
 cap.release()
-cv2.destroyAllWindows()</code></pre></div>
+cv2.destroyAllWindows()</code></pre>
 <p>简单分析上面的代码:<br>&emsp;&emsp;创建一个级联分类器对象，加载xml检测器，进行人脸监测。</p>
-<div class="hljs"><pre><code class="hljs python">face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades+<span class="hljs-string">'haarcascade_frontalface_default.xml'</span>)</code></pre></div>
+<pre><code class="hljs python">face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades+<span class="hljs-string">'haarcascade_frontalface_default.xml'</span>)</code></pre>
 <p>&emsp;&emsp;将人脸图像放入监测。<strong>不同于LBP检测器，这里彩色的图像也是可以的。</strong></p>
-<div class="hljs"><pre><code class="hljs python">detectMultiScale(image[,scaleFactor[,minNeighbors[,flags,[minSize,[maxSize]]]]])</code></pre></div>
+<pre><code class="hljs python">detectMultiScale(image[,scaleFactor[,minNeighbors[,flags,[minSize,[maxSize]]]]])</code></pre>
 <p>1）image：待检测的输入图像<br>2）scaleFactor：每一个图像的尺度参数。默认值为1.1。scaleFactor参数控制两个不同大小窗口扫描的间距。参数过大，可能会错过正确的人脸区域。<br>3）minNeighbors：每一个级联矩形应该保留的邻近个数，默认为3.minNeighbors控制与检测率。默认值为3，表明至少有3次重叠监测，认为人脸确实存在。<br>4）minSize：目标最小尺寸<br>5）maxSize：目标最大尺寸</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.cnblogs.com/zyly/p/9410563.html" target="_blank" rel="noopener">人脸监测之Haar分类器</a><br><a href="https://blog.csdn.net/liulina603/article/details/8617281" target="_blank" rel="noopener">Haar特征与积分图(推荐)</a><br><a href="https://blog.csdn.net/nk_wavelet/article/details/52601567" target="_blank" rel="noopener">AdaBoost人脸检测介绍(3)</a></p>
 

@@ -251,17 +251,17 @@
 </ul>
 <h2 id="2-练习"><a href="#2-练习" class="headerlink" title="2.练习"></a>2.练习</h2><p>【练习一】现有一份关于字符串的数据集，请解决以下问题：</p>
 <p>（a）先对字符串编码存储人员信息（在编号后添加ID列），使用如下格式：”xxx(名字)：x国人，性别x，生于x年x月x日“</p>
-<div class="hljs"><pre><code class="hljs python">df = pd.read_csv(<span class="hljs-string">'data/String_data_one.csv'</span>,index_col=<span class="hljs-string">'人员编号'</span>, dtype=<span class="hljs-string">'string'</span>)
+<pre><code class="hljs python">df = pd.read_csv(<span class="hljs-string">'data/String_data_one.csv'</span>,index_col=<span class="hljs-string">'人员编号'</span>, dtype=<span class="hljs-string">'string'</span>)
 df[<span class="hljs-string">'ID'</span>] = df[<span class="hljs-string">'姓名'</span>].str.cat([<span class="hljs-string">': '</span>+df[<span class="hljs-string">'国籍'</span>]+<span class="hljs-string">'国人,'</span>,<span class="hljs-string">'性别'</span>+df[<span class="hljs-string">'性别'</span>]+<span class="hljs-string">','</span>,<span class="hljs-string">'生于'</span>+df[<span class="hljs-string">'出生年'</span>]+<span class="hljs-string">'年'</span>,df[<span class="hljs-string">'出生月'</span>]+<span class="hljs-string">'月'</span>, df[<span class="hljs-string">'出生日'</span>] +<span class="hljs-string">'日'</span>],na_rep=<span class="hljs-string">'*'</span>)
-df[<span class="hljs-string">'ID'</span>].head()</code></pre></div>
+df[<span class="hljs-string">'ID'</span>].head()</code></pre>
 <p>输出：</p>
 <p><img src="/article/88685a55/image-1.png" srcset="/img/loading.gif" alt="image-20200627003713531"></p>
 <p>（b）将（a）中的人员生日信息部分修改为用中文表示（如一九七四年十月二十三日），其余返回格式不变。</p>
 <p>（c）将（b）中的ID列结果拆分为原列表相应的5列，并使用equals检验是否一致。</p>
 <p>【练习二】现有一份半虚拟的数据集，第一列包含了新型冠状病毒的一些新闻标题，请解决以下问题：</p>
 <p>（a）选出所有关于北京市和上海市新闻标题的所在行。</p>
-<div class="hljs"><pre><code class="hljs python">df = pd.read_csv(<span class="hljs-string">'data/String_data_two.csv'</span>)
-df[<span class="hljs-string">'col1'</span>].str.extract(<span class="hljs-string">r'(?P&lt;name_1&gt;北京|上海)'</span>).dropna().index</code></pre></div>
+<pre><code class="hljs python">df = pd.read_csv(<span class="hljs-string">'data/String_data_two.csv'</span>)
+df[<span class="hljs-string">'col1'</span>].str.extract(<span class="hljs-string">r'(?P&lt;name_1&gt;北京|上海)'</span>).dropna().index</code></pre>
 <p>输出：</p>
 <p><img src="/article/88685a55/image-2.png" srcset="/img/loading.gif" alt="image-20200626233841173"></p>
 <p>（b）求col2的均值。</p>
