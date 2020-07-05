@@ -1,199 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>2数理统计与描述性统计</title>
-    <url>/article/83114b11.html</url>
-    <content><![CDATA[<h1 id="一、数理统计概念"><a href="#一、数理统计概念" class="headerlink" title="一、数理统计概念"></a>一、数理统计概念</h1><h2 id="1-基本概念释义"><a href="#1-基本概念释义" class="headerlink" title="1.基本概念释义"></a>1.基本概念释义</h2><font color="blue">总体</font>：
-
-研究对象的全体，通常用一个随机变量表示。
-
-<font color="blue">个体</font>：
-
-组成总体的每个基本单元。<a id="more"></a>
-
-从总体$X$中随机抽取一部分个体$X_1,X_2,...,X_n$，称$X_1,X_2,...,X_n$为取自$X$的容量为$n$的样本。实际上，数理统计学中的总体是指与总体相联系的某个(某几个)数量指标$X$取值的全体。
-
-<font color="red">样本具有两重性，在一次具体抽样后是一组确定的数值。一般叙述中由于采取随机抽样，样本是一组随机变量(结果未知)。</font>
-
-<p>一般地，用$X_1,X_2,…,X_n$，表示随机样本，取到的值记为$x_1,x_2,…,x_n$称为样本观测值。$n$为样本容量。</p>
-<font color="blue">样本分布</font>：样本作为随机变量的概率分布。显然，样本分布取决于总体的性质和样本的性质。
-
-## 2.统计量与抽样
-
-数理统计的任务是采集和处理带有随机影响的数据，或者说收集样本并对之进行加工，在此基础上对研究的问题进行分析并作出一定的结论，这一过程称为<font color="blue">统计推断</font>。在统计推断过程中，对样本进行加工整理，实际上就是根据样本计算出一些量，把研究问题相关的信息集中起来。这种根据样本计算出的量就是<font color="blue">统计量</font>。因此，统计量是样本的某种函数。
-
-定义：设 $X_1,X_2,...,X_n $ 是总体 $X$ 的一个简单随机样本， $T(X_1, X_2,...,X_n)$ 为一个 $n$ 元连续函数，且 $T$ 中不包含任何关于总体的未知参数，则称 $T(X_1, X_2,...,X_n)$ 是一个统计量，称统计量的分布为抽样分布。
-
-常用的统计量
-
-<font color="blue">样本均值</font>
-
-<p>设 $X_1,X_2,…,X_n $ 是总体 $X$ 的一个简单随机样本，称$\overline X =  \frac{1} {n} {\sum_{i=1}^{n}X_i}$为样本均值。通常用样本均值来估计总体分布的均值和对有关总体分布均值的假设作检验。</p>
-<font color="blue">样本方差</font>
-
-<p>设 $X_1,X_2,…,X_n $ 是总体 $X$ 的一个简单随机样本，$\overline X$ 为样本均值，称$S^2 =  \frac{1} {n-1} {\sum_{i=1}^{n}(X_i-\overline X)^2}$为样本方差。</p>
-<p>通常用样本方差来估计总体分布的方差和对有关总体分布均值或方差的假设作检验。</p>
-<font color="blue">k阶样本原点矩</font>
-
-<p>设 $X_1,X_2,…,X_n $ 是总体 $X$ 的一个简单随机样本，称$A_k =  \frac{1} {n} {\sum_{i=1}^{n}X_i^k}$</p>
-<p>为样本的 $k$ 阶原点矩（可以看到 $k=1$ 时，相当于样本均值），通常用样本的无阶原点矩来估计总体分布的 $k$ 阶原点矩。（可以看到 $k=1$ 时，相当于样本均值）</p>
-<p>通常用样本的无阶原点矩来估计总体分布的 $k$ 阶原点矩。</p>
-<font color="blue">k阶样本中心矩</font>
-
-<p>设 $X_1,X_2,…,X_n $ 是总体 $X$ 的一个简单随机样本，$\overline X$ 为样本均值，称$M_k =  \frac{1} {n} {\sum_{i=1}^{n}(X_i-\overline X)^k}$为样本的 $k$ 阶中心矩。</p>
-<p>通常用样本的 $k$ 阶中心矩来估计总体分布的 $k$ 阶中心矩。</p>
-<font color="blue">顺序统计量</font>
-
-<p>设 $X_1,X_2,…,X_n $ 是抽自总体 $X$ 的样本，$x_1,x_2,…，x_n$  为样本观测值。将 $x_1,x_2,…，x_n$  按照从小到大的顺序排列为$x_{(1)}&lt;=x_{(2)}&lt;=…&lt;=x_{(n)}$。</p>
-<p>当样本 $X_1,X_2,…,X_n $ 取值 $x_1,x_2,…，x_n$  时，定义 $X_{(k)}$ 取值 $X_{(k)}(k=1,2，…,n)$，称  $X_{(1)},X_{(2)},…,X_{(n)} $ 为 $X_1,X_2,…,X_n $ 的顺序统计量。</p>
-<p>显然，$X_{(1)} =min {X_i}$ 是样本观察中最小的一个，称为最小顺序统计量。$X_{(n)} =max {X_i}$ 是样本观测值中取值最大的一个，成为最大顺序统计量。称$X_{（r）}$ 为第 $r$ 个顺序统计量。</p>
-<h1 id="二、描述性统计"><a href="#二、描述性统计" class="headerlink" title="二、描述性统计"></a>二、描述性统计</h1><h2 id="1-数据集中趋势的度量"><a href="#1-数据集中趋势的度量" class="headerlink" title="1.数据集中趋势的度量"></a>1.数据集中趋势的度量</h2><font color="blue">平均数</font>
-
-<p>是表示一组数据集中趋势的量数，是指在一组数据中所有数据之和再除以这组数据的个数。</p>
-<script type="math/tex; mode=display">
-\overline X =  \frac{1} {n} {\sum_{i=1}^{n}X_i}</script><font color="blue">中位数</font>
-
-<p>是指在一组数据，按顺序排列后，居于中间位置的数。中位数描述数据中心位置的数字特征。</p>
-<p>对于对称分布的数据，均值与中位数比较接近；对于偏态分布的数据，均值与中位数不同。中位数不受异常值的影响，具有稳健性。</p>
-<script type="math/tex; mode=display">
-m_p=\left\{
-\begin{array}{lcl}
-x_{[np]+1},       &      & {当np不是整数}\\
-\frac{1}{2}(x_{(np)}+x_{(np+1)})     &      & {当np是整数时}\\
-\end{array} \right.</script><font color="blue">频数</font>
-
-<p>同一观测值在一组数据中出现的次数（掷骰子中，一共掷了20次，出现数字5的次数）。</p>
-<font color="blue">众数</font>
-
-<p>就是一组数据中，出现次数最多的那个数（几个数）。</p>
-<font color="blue">均值 vs 中位数 vs 众数</font>
-
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">优点</th>
-<th style="text-align:center">缺点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">均值</td>
-<td style="text-align:center">充分利用所有数据，适用性强</td>
-<td style="text-align:center">容易受极端值影响</td>
-</tr>
-<tr>
-<td style="text-align:center">中位数</td>
-<td style="text-align:center">不受极端值影响</td>
-<td style="text-align:center">缺乏敏感性</td>
-</tr>
-<tr>
-<td style="text-align:center">众数</td>
-<td style="text-align:center">不受极端值影响；当数据具有明显的集中趋势时，代表性好</td>
-<td style="text-align:center">缺乏唯一性</td>
-</tr>
-</tbody>
-</table>
-</div>
-<font color="blue">百分位数</font>
-
-<p>百分位数是中位数的推广，将数据按从小到大排列后，对于$0 \leq p &lt; 1$，它的p分位点定义为</p>
-<script type="math/tex; mode=display">
-m_p=\left\{
-\begin{array}{lcl}
-x_{[np]+1},       &      & {当np不是整数}\\
-\frac{1}{2}(x_{(np)}+x_{(np+1)})     &      & {当np是整数时}\\
-\end{array} \right.</script><p>其中，<strong>[np]</strong>表示<strong>np</strong>的整数部分。所以，0.5分位数（第50百分位数）就是中位数。</p>
-<p><img src="/article/83114b11/百分位数图.png" srcset="/img/loading.gif" alt></p>
-<h3 id="python实现"><a href="#python实现" class="headerlink" title="python实现"></a>python实现</h3><p><img src="/article/83114b11/image1" srcset="/img/loading.gif" alt="image-20200624144415651"></p>
-<h2 id="2-数据离散趋势的度量"><a href="#2-数据离散趋势的度量" class="headerlink" title="2.数据离散趋势的度量"></a>2.数据离散趋势的度量</h2><p>表示数据分散（离散，差异）程度的特征量有方差，标准差，极差以及变异系数等。</p>
-<font color="blue">方差</font>
-
-<p>用来计算每一个变量（观察值）与总体均数之间的差异。实际工作中，总体均数难以得到时，应用样本统计量代替总体参数，经校正后，样本方差计算公式:</p>
-<script type="math/tex; mode=display">
-s^2 = \frac{1}{n-1}\sum_{i=1}^{n}{(x_i-\overline{x})}^2</script><font color="blue">标准差</font>
-
-<p>样本方差的开平方成为样本标准差。</p>
-<script type="math/tex; mode=display">
-s=\sqrt{s^2}=\sqrt{\frac{1}{n-1}\sum_{1}^{n-1}{(x_i-\overline{x})}^2}</script><font color="blue">极差</font>
-$$
-R=X_{(n)}-x_{(1)}=\max(x)-\min(x)
-$$
-数据越分散，极差越大。
-
-<font color="blue">变异系数</font>
-
-<ul>
-<li>是刻画数据相对分散性的一种度量。变异系数只在平均值不为零时有定义，而且一般适用于平均值大于零的情况。变异系数也被称为<strong>标准离差率</strong>或<strong>单位风险</strong>。</li>
-<li>当需要比较两组数据离散程度大小的时候，如果两组数据的测量尺度相差太大，或者数据量纲的不同，变异系数可以消除测量尺度和量纲的影响。</li>
-</ul>
-<script type="math/tex; mode=display">
-CV=100\times\frac{s}{x}(\%)</script><font color="blue">四分位差</font>
-
-<p>样本上、下四分位数之差称为四分位差(或半极差)。</p>
-<script type="math/tex; mode=display">
-R_1 = Q_3 - Q_1</script><p>它也是度量样本分散性的重要数字特征，特别对于具有异常值的数据，它作为分散性具有稳健性<font color="red">  <strong>（见百分位数示意图）</strong></font>。</p>
-<h3 id="python实现-1"><a href="#python实现-1" class="headerlink" title="python实现"></a>python实现</h3><p><img src="/article/83114b11/image2.PNG" srcset="/img/loading.gif" alt="image2" style="zoom:80%;"></p>
-<h2 id="3-分布特征"><a href="#3-分布特征" class="headerlink" title="3.分布特征"></a>3.分布特征</h2><p> <strong>引言：</strong>描述一个随机变量，不仅要说明它能够取那些值，而且还要关心它取这些值的概率（可能性）。</p>
-<font color="blue">离散变量和连续变量</font>
-
-<ul>
-<li><font color="blue">离散型随机变量</font>：其数值只能用<strong>自然数或整数</strong>单位表示。例如，<font color="red">  班级人数，电脑台数等，</font>只能按计量单位数计数，这种变量的数值一般用计数方法取得。</li>
-<li><font color="blue">连续变量</font>：在一定区间内可以任意取值的变量。例如，<font color="red">人体测量的身高，体重等。</font>
-
-</li>
-</ul>
-<font color="blue">概率函数</font>：用函数的形式来表达概率。
-
-- **连续型随机变量**的概率函数就叫做**概率密度函数**。
-- **离散型随机变量**的概率函数就叫做**概率质量函数**。
-
-<font color="blue">分布函数</font>
-
-<p>设$X$是一个随机变量，对任意的实数$x$，令$F(x)=P(X&lt;=x),x \in (-\infty,+\infty)$，则称$F(x)$是随机变量$X$的分布函数(概率累积函数)。</p>
-<p><img src="/article/83114b11/分布函数与密度函数的关系.png" srcset="/img/loading.gif" alt></p>
-<font color="red">密度函数与分布函数关系</font> 
-
-<font color="blue">正态分布</font>：也称高斯分布，是一个非常常见的连续概率分布，概率密度函数为
-$$
-f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp{\{- \frac{(x-u)^2}{2\sigma^2} \}}, \qquad -\infty<x<+\infty $$ 则称$x$服从$n(u,\sigma^2)$分布。 ![uniform2](2数理统计与描述性统计 uniform2.png) <font color="red">正态分布的概率密度函数曲线 
-
-<p><img src="/article/83114b11/标准正态分布.png" srcset="/img/loading.gif" alt="标准正态分布"></p>
-<p>​              <font color="red">标准正态分布和对应区间上积分（面积）的百分比</font> </p>
-<p>这个概念可以推广到一般正态分布。$[u-3\sigma,u+3\sigma]$的概率密度曲线之下的面积占总面积的99.7%，是著名的$3\sigma$原则。</p>
-<h2 id="4-偏度与峰度"><a href="#4-偏度与峰度" class="headerlink" title="4. 偏度与峰度"></a>4. 偏度与峰度</h2><p><font color="blue">偏度（skewness）</font>：也称为偏态，是统计数据分布偏斜方向和程度的度量，是统计数据分布非对称程度的数字特征。直观看来就是密度函数曲线尾部的相对长度。<strong>偏度刻画的是分布函数（数据）的对称性。</strong></p>
-<p>关于均值对称的数据其偏度系数为0，右侧更分散的数据偏度系数为正，左侧更分散的数据偏度系数为负.</p>
-<ul>
-<li><p><strong>正态分布的偏度为0，两侧尾部长度对称。</strong></p>
-</li>
-<li><p><strong>左偏:</strong>   </p>
-<p>1）若以$b_s$表示偏度。$b_s&lt;0$称分布具有<strong>负偏离</strong>，也称左偏态；</p>
-<p>2）此时数据位于均值左边的比位于右边的少，直观表现为左边的尾部相对于与右边的尾部要长；</p>
-<p>3）<strong>因为有少数变量值很小，使曲线左侧尾部拖得很长；</strong></p>
-</li>
-<li><p><strong>右偏：</strong></p>
-<p>1）$b_s&gt;0$称分布具有<strong>正偏离</strong>，也称右偏态；</p>
-<p>2）此时数据位于均值右边的比位于左边的少，直观表现为右边的尾部相对于与左边的尾部要长；</p>
-<p>3）<strong>因为有少数变量值很大，使曲线右侧尾部拖得很长；</strong></p>
-</li>
-</ul>
-<p><font color="blue">峰度(peakedness;kurtosis)</font>：说明的是分布曲线在平均值处峰值高低的特征数。直观看来，峰度反映了峰部的尖度。样本的峰度是和正态分布相比较而言统计量，如果峰度大于正态分布峰度，峰的形状比较尖，比正态分布峰要陡峭。反之亦然。<strong>峰度刻画的是分布函数的集中和分散程度。</strong></p>
-<p><img src="/article/83114b11/偏态与峰度.png" srcset="/img/loading.gif" alt></p>
-<h3 id="公式与python实现"><a href="#公式与python实现" class="headerlink" title="公式与python实现"></a>公式与python实现</h3><p><font color="blue">样本偏度系数</font>：</p>
-<script type="math/tex; mode=display">
-g_1 = \frac{n}{(n-1)(n-2)s^3}\sum_{i=1}^{n}{(x_i-\overline{x})}^3=\frac{n^2 u_3}{(n-1)(n-2)s^3}</script><p><font color="blue">样本峰度系数</font>：</p>
-<script type="math/tex; mode=display">
-g_2 = \frac{n(n+1)}{(n-1)(n-2)(n-3)s^4}\sum_{i=1}^{n}{(x_i-\overline{x})}^4-3\frac{(n-1)^2}{(n-2)(n-3)}</script><p><img src="/article/83114b11/image3.PNG" srcset="/img/loading.gif" style="zoom:80%;"></p>
-</x<+\infty>]]></content>
-      <categories>
-        <category>概率统计</category>
-      </categories>
-      <tags>
-        <tag>概率统计</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>3常见分布与假设检验</title>
     <url>/article/7c20a36d.html</url>
     <content><![CDATA[<h2 id="1-一般随机变量"><a href="#1-一般随机变量" class="headerlink" title="1 一般随机变量"></a>1 一般随机变量</h2><h3 id="1-1-随机变量的两种类型"><a href="#1-1-随机变量的两种类型" class="headerlink" title="1.1 随机变量的两种类型"></a>1.1 随机变量的两种类型</h3><p>根据随机变量可能取值的个数分为离散型（取值有限）和连续型（取值无限）两类。</p>
@@ -709,17 +516,6 @@ print(<span class="hljs-string">'stat=%.3f, p=%.3f'</span> % (stat, p))
       <tags>
         <tag>概率统计</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Introduction_and_Word_Vectors</title>
-    <url>/article/fd8e5887.html</url>
-    <content><![CDATA[<h1 id="Task1-Introduction-and-Word-Vectors"><a href="#Task1-Introduction-and-Word-Vectors" class="headerlink" title="Task1: Introduction and Word Vectors"></a>Task1: Introduction and Word Vectors</h1><p>理论部分</p>
-<ul>
-<li>介绍NLP研究的对象</li>
-<li>如何表示单词的含义</li>
-<li>Word2Vec方法的基本原理</li>
-</ul>
-]]></content>
   </entry>
   <entry>
     <title>4方差分析</title>
@@ -1268,6 +1064,210 @@ interaction2wt(<span class="hljs-name">len</span>~supp*dose)
       </tags>
   </entry>
   <entry>
+    <title>2数理统计与描述性统计</title>
+    <url>/article/83114b11.html</url>
+    <content><![CDATA[<h1 id="一、数理统计概念"><a href="#一、数理统计概念" class="headerlink" title="一、数理统计概念"></a>一、数理统计概念</h1><h2 id="1-基本概念释义"><a href="#1-基本概念释义" class="headerlink" title="1.基本概念释义"></a>1.基本概念释义</h2><font color="blue">总体</font>：
+
+研究对象的全体，通常用一个随机变量表示。
+
+<font color="blue">个体</font>：
+
+组成总体的每个基本单元。<a id="more"></a>
+
+从总体$X$中随机抽取一部分个体$X_1,X_2,...,X_n$，称$X_1,X_2,...,X_n$为取自$X$的容量为$n$的样本。实际上，数理统计学中的总体是指与总体相联系的某个(某几个)数量指标$X$取值的全体。
+
+<font color="red">样本具有两重性，在一次具体抽样后是一组确定的数值。一般叙述中由于采取随机抽样，样本是一组随机变量(结果未知)。</font>
+
+<p>一般地，用$X_1,X_2,…,X_n$，表示随机样本，取到的值记为$x_1,x_2,…,x_n$称为样本观测值。$n$为样本容量。</p>
+<font color="blue">样本分布</font>：样本作为随机变量的概率分布。显然，样本分布取决于总体的性质和样本的性质。
+
+## 2.统计量与抽样
+
+数理统计的任务是采集和处理带有随机影响的数据，或者说收集样本并对之进行加工，在此基础上对研究的问题进行分析并作出一定的结论，这一过程称为<font color="blue">统计推断</font>。在统计推断过程中，对样本进行加工整理，实际上就是根据样本计算出一些量，把研究问题相关的信息集中起来。这种根据样本计算出的量就是<font color="blue">统计量</font>。因此，统计量是样本的某种函数。
+
+定义：设 $X_1,X_2,...,X_n $ 是总体 $X$ 的一个简单随机样本， $T(X_1, X_2,...,X_n)$ 为一个 $n$ 元连续函数，且 $T$ 中不包含任何关于总体的未知参数，则称 $T(X_1, X_2,...,X_n)$ 是一个统计量，称统计量的分布为抽样分布。
+
+常用的统计量
+
+<font color="blue">样本均值</font>
+
+<p>设 $X_1,X_2,…,X_n $ 是总体 $X$ 的一个简单随机样本，称$\overline X =  \frac{1} {n} {\sum_{i=1}^{n}X_i}$为样本均值。通常用样本均值来估计总体分布的均值和对有关总体分布均值的假设作检验。</p>
+<font color="blue">样本方差</font>
+
+<p>设 $X_1,X_2,…,X_n $ 是总体 $X$ 的一个简单随机样本，$\overline X$ 为样本均值，称$S^2 =  \frac{1} {n-1} {\sum_{i=1}^{n}(X_i-\overline X)^2}$为样本方差。</p>
+<p>通常用样本方差来估计总体分布的方差和对有关总体分布均值或方差的假设作检验。</p>
+<font color="blue">k阶样本原点矩</font>
+
+<p>设 $X_1,X_2,…,X_n $ 是总体 $X$ 的一个简单随机样本，称$A_k =  \frac{1} {n} {\sum_{i=1}^{n}X_i^k}$</p>
+<p>为样本的 $k$ 阶原点矩（可以看到 $k=1$ 时，相当于样本均值），通常用样本的无阶原点矩来估计总体分布的 $k$ 阶原点矩。（可以看到 $k=1$ 时，相当于样本均值）</p>
+<p>通常用样本的无阶原点矩来估计总体分布的 $k$ 阶原点矩。</p>
+<font color="blue">k阶样本中心矩</font>
+
+<p>设 $X_1,X_2,…,X_n $ 是总体 $X$ 的一个简单随机样本，$\overline X$ 为样本均值，称$M_k =  \frac{1} {n} {\sum_{i=1}^{n}(X_i-\overline X)^k}$为样本的 $k$ 阶中心矩。</p>
+<p>通常用样本的 $k$ 阶中心矩来估计总体分布的 $k$ 阶中心矩。</p>
+<font color="blue">顺序统计量</font>
+
+<p>设 $X_1,X_2,…,X_n $ 是抽自总体 $X$ 的样本，$x_1,x_2,…，x_n$  为样本观测值。将 $x_1,x_2,…，x_n$  按照从小到大的顺序排列为$x_{(1)}&lt;=x_{(2)}&lt;=…&lt;=x_{(n)}$。</p>
+<p>当样本 $X_1,X_2,…,X_n $ 取值 $x_1,x_2,…，x_n$  时，定义 $X_{(k)}$ 取值 $X_{(k)}(k=1,2，…,n)$，称  $X_{(1)},X_{(2)},…,X_{(n)} $ 为 $X_1,X_2,…,X_n $ 的顺序统计量。</p>
+<p>显然，$X_{(1)} =min {X_i}$ 是样本观察中最小的一个，称为最小顺序统计量。$X_{(n)} =max {X_i}$ 是样本观测值中取值最大的一个，成为最大顺序统计量。称$X_{（r）}$ 为第 $r$ 个顺序统计量。</p>
+<h1 id="二、描述性统计"><a href="#二、描述性统计" class="headerlink" title="二、描述性统计"></a>二、描述性统计</h1><h2 id="1-数据集中趋势的度量"><a href="#1-数据集中趋势的度量" class="headerlink" title="1.数据集中趋势的度量"></a>1.数据集中趋势的度量</h2><font color="blue">平均数</font>
+
+<p>是表示一组数据集中趋势的量数，是指在一组数据中所有数据之和再除以这组数据的个数。</p>
+<script type="math/tex; mode=display">
+\overline X =  \frac{1} {n} {\sum_{i=1}^{n}X_i}</script><font color="blue">中位数</font>
+
+<p>是指在一组数据，按顺序排列后，居于中间位置的数。中位数描述数据中心位置的数字特征。</p>
+<p>对于对称分布的数据，均值与中位数比较接近；对于偏态分布的数据，均值与中位数不同。中位数不受异常值的影响，具有稳健性。</p>
+<script type="math/tex; mode=display">
+m_p=\left\{
+\begin{array}{lcl}
+x_{[np]+1},       &      & {当np不是整数}\\
+\frac{1}{2}(x_{(np)}+x_{(np+1)})     &      & {当np是整数时}\\
+\end{array} \right.</script><font color="blue">频数</font>
+
+<p>同一观测值在一组数据中出现的次数（掷骰子中，一共掷了20次，出现数字5的次数）。</p>
+<font color="blue">众数</font>
+
+<p>就是一组数据中，出现次数最多的那个数（几个数）。</p>
+<font color="blue">均值 vs 中位数 vs 众数</font>
+
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">优点</th>
+<th style="text-align:center">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">均值</td>
+<td style="text-align:center">充分利用所有数据，适用性强</td>
+<td style="text-align:center">容易受极端值影响</td>
+</tr>
+<tr>
+<td style="text-align:center">中位数</td>
+<td style="text-align:center">不受极端值影响</td>
+<td style="text-align:center">缺乏敏感性</td>
+</tr>
+<tr>
+<td style="text-align:center">众数</td>
+<td style="text-align:center">不受极端值影响；当数据具有明显的集中趋势时，代表性好</td>
+<td style="text-align:center">缺乏唯一性</td>
+</tr>
+</tbody>
+</table>
+</div>
+<font color="blue">百分位数</font>
+
+<p>百分位数是中位数的推广，将数据按从小到大排列后，对于$0 \leq p &lt; 1$，它的p分位点定义为</p>
+<script type="math/tex; mode=display">
+m_p=\left\{
+\begin{array}{lcl}
+x_{[np]+1},       &      & {当np不是整数}\\
+\frac{1}{2}(x_{(np)}+x_{(np+1)})     &      & {当np是整数时}\\
+\end{array} \right.</script><p>其中，<strong>[np]</strong>表示<strong>np</strong>的整数部分。所以，0.5分位数（第50百分位数）就是中位数。</p>
+<p><img src="/article/83114b11/百分位数图.png" srcset="/img/loading.gif" alt></p>
+<h3 id="python实现"><a href="#python实现" class="headerlink" title="python实现"></a>python实现</h3><p><img src="/article/83114b11/image1" srcset="/img/loading.gif" alt="image-20200624144415651"></p>
+<h2 id="2-数据离散趋势的度量"><a href="#2-数据离散趋势的度量" class="headerlink" title="2.数据离散趋势的度量"></a>2.数据离散趋势的度量</h2><p>表示数据分散（离散，差异）程度的特征量有方差，标准差，极差以及变异系数等。</p>
+<font color="blue">方差</font>
+
+<p>用来计算每一个变量（观察值）与总体均数之间的差异。实际工作中，总体均数难以得到时，应用样本统计量代替总体参数，经校正后，样本方差计算公式:</p>
+<script type="math/tex; mode=display">
+s^2 = \frac{1}{n-1}\sum_{i=1}^{n}{(x_i-\overline{x})}^2</script><font color="blue">标准差</font>
+
+<p>样本方差的开平方成为样本标准差。</p>
+<script type="math/tex; mode=display">
+s=\sqrt{s^2}=\sqrt{\frac{1}{n-1}\sum_{1}^{n-1}{(x_i-\overline{x})}^2}</script><font color="blue">极差</font>
+$$
+R=X_{(n)}-x_{(1)}=\max(x)-\min(x)
+$$
+数据越分散，极差越大。
+
+<font color="blue">变异系数</font>
+
+<ul>
+<li>是刻画数据相对分散性的一种度量。变异系数只在平均值不为零时有定义，而且一般适用于平均值大于零的情况。变异系数也被称为<strong>标准离差率</strong>或<strong>单位风险</strong>。</li>
+<li>当需要比较两组数据离散程度大小的时候，如果两组数据的测量尺度相差太大，或者数据量纲的不同，变异系数可以消除测量尺度和量纲的影响。</li>
+</ul>
+<script type="math/tex; mode=display">
+CV=100\times\frac{s}{x}(\%)</script><font color="blue">四分位差</font>
+
+<p>样本上、下四分位数之差称为四分位差(或半极差)。</p>
+<script type="math/tex; mode=display">
+R_1 = Q_3 - Q_1</script><p>它也是度量样本分散性的重要数字特征，特别对于具有异常值的数据，它作为分散性具有稳健性<font color="red">  <strong>（见百分位数示意图）</strong></font>。</p>
+<h3 id="python实现-1"><a href="#python实现-1" class="headerlink" title="python实现"></a>python实现</h3><p><img src="/article/83114b11/image2.PNG" srcset="/img/loading.gif" alt="image2" style="zoom:80%;"></p>
+<h2 id="3-分布特征"><a href="#3-分布特征" class="headerlink" title="3.分布特征"></a>3.分布特征</h2><p> <strong>引言：</strong>描述一个随机变量，不仅要说明它能够取那些值，而且还要关心它取这些值的概率（可能性）。</p>
+<font color="blue">离散变量和连续变量</font>
+
+<ul>
+<li><font color="blue">离散型随机变量</font>：其数值只能用<strong>自然数或整数</strong>单位表示。例如，<font color="red">  班级人数，电脑台数等，</font>只能按计量单位数计数，这种变量的数值一般用计数方法取得。</li>
+<li><font color="blue">连续变量</font>：在一定区间内可以任意取值的变量。例如，<font color="red">人体测量的身高，体重等。</font>
+
+</li>
+</ul>
+<font color="blue">概率函数</font>：用函数的形式来表达概率。
+
+- **连续型随机变量**的概率函数就叫做**概率密度函数**。
+- **离散型随机变量**的概率函数就叫做**概率质量函数**。
+
+<font color="blue">分布函数</font>
+
+<p>设$X$是一个随机变量，对任意的实数$x$，令$F(x)=P(X&lt;=x),x \in (-\infty,+\infty)$，则称$F(x)$是随机变量$X$的分布函数(概率累积函数)。</p>
+<p><img src="/article/83114b11/分布函数与密度函数的关系.png" srcset="/img/loading.gif" alt></p>
+<font color="red">密度函数与分布函数关系</font> 
+
+<font color="blue">正态分布</font>：也称高斯分布，是一个非常常见的连续概率分布，概率密度函数为
+$$
+f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp{\{- \frac{(x-u)^2}{2\sigma^2} \}}, \qquad -\infty<x<+\infty $$ 则称$x$服从$n(u,\sigma^2)$分布。 ![uniform2](2数理统计与描述性统计 uniform2.png) <font color="red">正态分布的概率密度函数曲线 
+
+<p><img src="/article/83114b11/标准正态分布.png" srcset="/img/loading.gif" alt="标准正态分布"></p>
+<p>​              <font color="red">标准正态分布和对应区间上积分（面积）的百分比</font> </p>
+<p>这个概念可以推广到一般正态分布。$[u-3\sigma,u+3\sigma]$的概率密度曲线之下的面积占总面积的99.7%，是著名的$3\sigma$原则。</p>
+<h2 id="4-偏度与峰度"><a href="#4-偏度与峰度" class="headerlink" title="4. 偏度与峰度"></a>4. 偏度与峰度</h2><p><font color="blue">偏度（skewness）</font>：也称为偏态，是统计数据分布偏斜方向和程度的度量，是统计数据分布非对称程度的数字特征。直观看来就是密度函数曲线尾部的相对长度。<strong>偏度刻画的是分布函数（数据）的对称性。</strong></p>
+<p>关于均值对称的数据其偏度系数为0，右侧更分散的数据偏度系数为正，左侧更分散的数据偏度系数为负.</p>
+<ul>
+<li><p><strong>正态分布的偏度为0，两侧尾部长度对称。</strong></p>
+</li>
+<li><p><strong>左偏:</strong>   </p>
+<p>1）若以$b_s$表示偏度。$b_s&lt;0$称分布具有<strong>负偏离</strong>，也称左偏态；</p>
+<p>2）此时数据位于均值左边的比位于右边的少，直观表现为左边的尾部相对于与右边的尾部要长；</p>
+<p>3）<strong>因为有少数变量值很小，使曲线左侧尾部拖得很长；</strong></p>
+</li>
+<li><p><strong>右偏：</strong></p>
+<p>1）$b_s&gt;0$称分布具有<strong>正偏离</strong>，也称右偏态；</p>
+<p>2）此时数据位于均值右边的比位于左边的少，直观表现为右边的尾部相对于与左边的尾部要长；</p>
+<p>3）<strong>因为有少数变量值很大，使曲线右侧尾部拖得很长；</strong></p>
+</li>
+</ul>
+<p><font color="blue">峰度(peakedness;kurtosis)</font>：说明的是分布曲线在平均值处峰值高低的特征数。直观看来，峰度反映了峰部的尖度。样本的峰度是和正态分布相比较而言统计量，如果峰度大于正态分布峰度，峰的形状比较尖，比正态分布峰要陡峭。反之亦然。<strong>峰度刻画的是分布函数的集中和分散程度。</strong></p>
+<p><img src="/article/83114b11/偏态与峰度.png" srcset="/img/loading.gif" alt></p>
+<h3 id="公式与python实现"><a href="#公式与python实现" class="headerlink" title="公式与python实现"></a>公式与python实现</h3><p><font color="blue">样本偏度系数</font>：</p>
+<script type="math/tex; mode=display">
+g_1 = \frac{n}{(n-1)(n-2)s^3}\sum_{i=1}^{n}{(x_i-\overline{x})}^3=\frac{n^2 u_3}{(n-1)(n-2)s^3}</script><p><font color="blue">样本峰度系数</font>：</p>
+<script type="math/tex; mode=display">
+g_2 = \frac{n(n+1)}{(n-1)(n-2)(n-3)s^4}\sum_{i=1}^{n}{(x_i-\overline{x})}^4-3\frac{(n-1)^2}{(n-2)(n-3)}</script><p><img src="/article/83114b11/image3.PNG" srcset="/img/loading.gif" style="zoom:80%;"></p>
+</x<+\infty>]]></content>
+      <categories>
+        <category>概率统计</category>
+      </categories>
+      <tags>
+        <tag>概率统计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Introduction_and_Word_Vectors</title>
+    <url>/article/fd8e5887.html</url>
+    <content><![CDATA[<h1 id="Task1-Introduction-and-Word-Vectors"><a href="#Task1-Introduction-and-Word-Vectors" class="headerlink" title="Task1: Introduction and Word Vectors"></a>Task1: Introduction and Word Vectors</h1><p>理论部分</p>
+<ul>
+<li>介绍NLP研究的对象</li>
+<li>如何表示单词的含义</li>
+<li>Word2Vec方法的基本原理</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>LSTM_Elmo</title>
     <url>/article/3b406ffc.html</url>
     <content><![CDATA[<p>一、词的表示<br>one-hot编码：稀疏，向量之间均是正交关系，不能表示语义。<br>word class：将相同属性的词归为一类，但分类标准过意单一、片面。如cat、dag、bird都属于动物，但是dog、cat属于爬行动物，而bird属于飞行动物，难以区分。<br>word embedding：使用词向量表示词特征，相似的词、向量接近，在空间较近。但无法解决一词多义问题，即每个word只有一个词向量。<br>contextualized word embedding：同一个词在不同的上下文中有不同的表示。</p>
@@ -1500,36 +1500,6 @@ print(count)</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Task03-Haar特征描述算子-人脸监测</title>
-    <url>/article/ad28cab2.html</url>
-    <content><![CDATA[<h1 id="3-1-算法由来"><a href="#3-1-算法由来" class="headerlink" title="3.1 算法由来"></a>3.1 算法由来</h1><p>​        Haar-like特征最早是由Papageorgiou等应用于人脸表示，2001年，Viola和Jones两位大牛发表了今典的《Rapid Object Detection using a Boosted Cascade of Simple Features》和《Robust Real-Time Face Detection》，在AdaBoost算法基础上，使用Haar-like小波特征和积分图方法进行人脸监测，并对AdaBoost训练出的强分类器进行级联。<br>​        这两个大咖不是最早提出使用小波特征的，单他们设计了针对人脸监测更有效的特征，可以说是人脸检测史上里程碑式的一笔了，当时这个算法被称为Viola-Jones检测器。又过了一段时间，Rainer Liehart和Jochen Maydt两位大咖把这个检测器进行扩展，最终形成了OpenCV现在的Haar分类器。</p>
-<p>​        AdaBoost是Freund和Schapire在1995年提出的算法，是对传统Boosting算法的一大提升。Boosting算法的核心思想，是将弱学习方法提升成强学习算法，也就是“三个臭皮匠顶一个诸葛亮”。<a id="more"></a></p>
-<font color="blue">Haar分类器 = Haar-like特征 + 积分图方法 + AdaBoost + 级联</font>
-
-<p>Haar分类器算法的要点如下：</p>
-<ol>
-<li>使用Haar-like特征特征做监测</li>
-<li>使用积分图(Integral Image)对Haar-like特征求值进行加速。</li>
-<li>使用AdaBoost算法训练区分人脸和非人脸的强分类器。</li>
-<li>使用筛选式级联把强分类器级联到一起，提高准确率。</li>
-</ol>
-<h1 id="3-2-算法理解"><a href="#3-2-算法理解" class="headerlink" title="3.2 算法理解"></a>3.2 算法理解</h1><h2 id="一、Haar-like特征"><a href="#一、Haar-like特征" class="headerlink" title="一、Haar-like特征"></a>一、Haar-like特征</h2><p>​        Haar特征分为四类：边缘特征、线性特征、中心特征和对角线特征，组合成特征模板。特征模板内有白色和黑色两种矩形。<font color="blue">并定义该模板的特征值为白色矩形像素和减去黑色矩形像素和</font>。Haar特征值反映了图形的灰度变化情况。例如：脸部的一些特征能由矩形特征简单的描述，单矩形特征只对一些简单的图形结构，如边缘、线段较敏感，所以只能描述特定走向(水平、垂直、对角)的结构。</p>
-<p><img src="/article/ad28cab2/1328274-20180802215641326-115308739.png" srcset="/img/loading.gif" alt="img"></p>
-<p>​        图中的A, B和D这类特征，特征数值计算公式为：v=Σ白-Σ黑。图C中，计算公式：v=Σ白-2*Σ黑。将黑色区域像素和乘以2，是为了使两种矩形区域中像素数目一致。我们希望当把矩形放到人脸区域计算出来的特征值和放到非人脸区域计算出来的特征值差别越大越好，这样就可以用来区分人脸和非人脸。<br>​        通过改变特征模板的大小和位置，可在图像子窗口中穷举出大量的特征。上图的特征模板称为“特征原型”；特征原型在图像子窗口中扩展（平移伸缩）得到的特征称为“矩形特征”；矩形特征的值称为“特征值”。</p>
-<p><img src="/article/ad28cab2/1328274-20180815213149483-1209887019.png" srcset="/img/loading.gif" alt="img"></p>
-<p>​        上图中两个矩形特征，表示出人脸的某些特征。比如中间一幅表示眼睛区域的颜色比脸颊区域的颜色深，右边一幅表示鼻梁两侧比鼻梁的颜色要深。同样，其他目标，如眼睛等，也可以用一些矩形特征来表示。<font color="blue">使用矩形特征比单纯地使用像素点具有很大的优越性，并且速度更快。</font><br>​        矩形特征可位于图像任意位置，大小也可以任意改变，所以矩形特征值是矩形模版类别、矩形位置和矩形大小这三个因素的函数。故类别、大小和位置的变化，使得很小的检测窗口含有非常多的矩形特征，如：在24*24像素大小的检测窗口内矩形特征数量可以达到16万个。这样就有两个问题需要解决了：</p>
-<p>（1）如何快速计算那么多的特征？—-积分图大显神通；<br>（2）哪些矩形特征才是对分类器分类最有效的？—-如通过AdaBoost算法来训练。</p>
-<h2 id="二、Haar-like特征计算-积分图"><a href="#二、Haar-like特征计算-积分图" class="headerlink" title="二、Haar-like特征计算-积分图"></a>二、Haar-like特征计算-积分图</h2><p>​        <font color="blue">积分图是只遍历一次图像就可求出图像中所有区域像素和的快速算法</font>，大大提高了图像特征值计算的效率。<br>​        积分图的主要思想是将图像从起点开始到各个点形成的矩形区域像素之和作为一个数组的元素提前保存在数组中。当要计算某个区域的像素和时，直接索引数组的元素进行线性计算即可，从而加快了计算速度。<br>​        积分图是一种能够描述全局信息的举证表示方法。积分图的构造方式是位置位置（𝑖,𝑗）处的值𝑖𝑖(𝑖,𝑗)是原图像(𝑖,𝑗)左上角方向所有像素𝑓(𝑘,𝑙)的和：</p>
-<script type="math/tex; mode=display">
-𝑖𝑖(𝑖,𝑗)=\sum_{𝑘≤𝑖,𝑙≤𝑗}{𝑓(𝑘,𝑙)}</script>]]></content>
-      <categories>
-        <category>图像处理下</category>
-      </categories>
-      <tags>
-        <tag>图像处理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Task02-LBP特征描述算子-人脸检测</title>
     <url>/article/50afbda.html</url>
     <content><![CDATA[<p>学习任务：</p>
@@ -1703,6 +1673,95 @@ cv2.destroyAllWindows()</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Task03-Haar特征描述算子-人脸监测</title>
+    <url>/article/ad28cab2.html</url>
+    <content><![CDATA[<h1 id="3-1-算法由来"><a href="#3-1-算法由来" class="headerlink" title="3.1 算法由来"></a>3.1 算法由来</h1><p>&emsp;&emsp;Haar-like特征最早是由Papageorgiou等应用于人脸表示，2001年，Viola和Jones两位大牛发表了今典的《Rapid Object Detection using a Boosted Cascade of Simple Features》和《Robust Real-Time Face Detection》，在AdaBoost算法基础上，使用Haar-like小波特征和积分图方法进行人脸监测，并对AdaBoost训练出的强分类器进行级联。<br>        这两个大咖不是最早提出使用小波特征的，单他们设计了针对人脸监测更有效的特征，可以说是人脸检测史上里程碑式的一笔了，当时这个算法被称为Viola-Jones检测器。又过了一段时间，Rainer Liehart和Jochen Maydt两位大咖把这个检测器进行扩展，最终形成了OpenCV现在的Haar分类器。</p>
+<p>​        AdaBoost是Freund和Schapire在1995年提出的算法，是对传统Boosting算法的一大提升。Boosting算法的核心思想，是将弱学习方法提升成强学习算法，也就是“三个臭皮匠顶一个诸葛亮”。<a id="more"></a></p>
+<font color="blue">Haar分类器 = Haar-like特征 + 积分图方法 + AdaBoost + 级联</font>
+
+<p>Haar分类器算法的要点如下：</p>
+<ol>
+<li>使用Haar-like特征特征做监测</li>
+<li>使用积分图(Integral Image)对Haar-like特征求值进行加速。</li>
+<li>使用AdaBoost算法训练区分人脸和非人脸的强分类器。</li>
+<li>使用筛选式级联把强分类器级联到一起，提高准确率。</li>
+</ol>
+<h1 id="3-2-算法理解"><a href="#3-2-算法理解" class="headerlink" title="3.2 算法理解"></a>3.2 算法理解</h1><h2 id="一、Haar-like特征"><a href="#一、Haar-like特征" class="headerlink" title="一、Haar-like特征"></a>一、Haar-like特征</h2><p>​        Haar特征分为四类：边缘特征、线性特征、中心特征和对角线特征，组合成特征模板。特征模板内有白色和黑色两种矩形。<font color="blue">并定义该模板的特征值为白色矩形像素和减去黑色矩形像素和</font>。Haar特征值反映了图形的灰度变化情况。例如：脸部的一些特征能由矩形特征简单的描述，单矩形特征只对一些简单的图形结构，如边缘、线段较敏感，所以只能描述特定走向(水平、垂直、对角)的结构。</p>
+<p><img src="/article/ad28cab2/1328274-20180802215641326-115308739.png" srcset="/img/loading.gif" alt="img"></p>
+<p>​        图中的A, B和D这类特征，特征数值计算公式为：v=Σ白-Σ黑。图C中，计算公式：v=Σ白-2*Σ黑。将黑色区域像素和乘以2，是为了使两种矩形区域中像素数目一致。我们希望当把矩形放到人脸区域计算出来的特征值和放到非人脸区域计算出来的特征值差别越大越好，这样就可以用来区分人脸和非人脸。<br>​        通过改变特征模板的大小和位置，可在图像子窗口中穷举出大量的特征。上图的特征模板称为“特征原型”；特征原型在图像子窗口中扩展（平移伸缩）得到的特征称为“矩形特征”；矩形特征的值称为“特征值”。</p>
+<p><img src="/article/ad28cab2/1328274-20180815213149483-1209887019.png" srcset="/img/loading.gif" alt="img"></p>
+<p>​        上图中两个矩形特征，表示出人脸的某些特征。比如中间一幅表示眼睛区域的颜色比脸颊区域的颜色深，右边一幅表示鼻梁两侧比鼻梁的颜色要深。同样，其他目标，如眼睛等，也可以用一些矩形特征来表示。<font color="blue">使用矩形特征比单纯地使用像素点具有很大的优越性，并且速度更快。</font><br>​        矩形特征可位于图像任意位置，大小也可以任意改变，所以矩形特征值是矩形模版类别、矩形位置和矩形大小这三个因素的函数。故类别、大小和位置的变化，使得很小的检测窗口含有非常多的矩形特征，如：在24*24像素大小的检测窗口内矩形特征数量可以达到16万个。这样就有两个问题需要解决了：</p>
+<p>（1）如何快速计算那么多的特征？—-积分图大显神通；<br>（2）哪些矩形特征才是对分类器分类最有效的？—-如通过AdaBoost算法来训练。</p>
+<h2 id="二、Haar-like特征计算-积分图"><a href="#二、Haar-like特征计算-积分图" class="headerlink" title="二、Haar-like特征计算-积分图"></a>二、Haar-like特征计算-积分图</h2><p>​        <font color="blue">积分图是只遍历一次图像就可求出图像中所有区域像素和的快速算法</font>，大大提高了图像特征值计算的效率。<br>​        积分图的主要思想是将图像从起点开始到各个点形成的矩形区域像素之和作为一个数组的元素提前保存在数组中。当要计算某个区域的像素和时，直接索引数组的元素进行线性计算即可，从而加快了计算速度。<br>​        积分图是一种能够描述全局信息的举证表示方法。积分图的构造方式是位置位置（𝑖,𝑗）处的值𝑖𝑖(𝑖,𝑗)是原图像(𝑖,𝑗)左上角方向所有像素𝑓(𝑘,𝑙)的和：</p>
+<script type="math/tex; mode=display">
+𝑖𝑖(𝑖,𝑗)=\sum_{𝑘≤𝑖,𝑙≤𝑗}{𝑓(𝑘,𝑙)}</script>]]></content>
+      <categories>
+        <category>图像处理下</category>
+      </categories>
+      <tags>
+        <tag>图像处理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第7章 文本数据</title>
+    <url>/article/88685a55.html</url>
+    <content><![CDATA[<p><img src="/article/88685a55/文本数据.png" srcset="/img/loading.gif" alt></p>
+<h1 id="六、问题与练习"><a href="#六、问题与练习" class="headerlink" title="六、问题与练习"></a>六、问题与练习</h1><h2 id="1-问题"><a href="#1-问题" class="headerlink" title="1.问题"></a>1.问题</h2><p>【问题一】 str对象方法和df/Series对象方法有什么区别?</p>
+<ul>
+<li><p>str对象方法有很多针对字符串的方法</p>
+</li>
+<li><p>在replace方法上，二者有较大差异：</p>
+<p>1）str.replace针对object类型或string类型，默认操作：正则表达式</p>
+<p>​      replace针对任意类型的序列或数据框，正则表达式替换：regex=True。使用字典可以支持      多列替换。</p>
+<p>2）str.replace类型赋值参数不能是pd.NA。</p>
+<p>3）对于string类型Series，使用replace函数不能使用正则表达式替换。</p>
+</li>
+</ul>
+<p>【问题二】 给出一列string类型，如何判断单元格是否是数值型数据？</p>
+<ul>
+<li>正则表达式进行匹配。</li>
+<li>str.isnumeric有一定的局限性。</li>
+</ul>
+<p>【问题三】str.split方法的作用是什么？在什么场合下使用？</p>
+<ul>
+<li>使用分隔符对每个字符串进行分割并返回列表。</li>
+<li>可以使用str方法进行元素选择。</li>
+</ul>
+<p>【问题四】在本章的第二到第四节分别介绍了字符串类型的5类操作，请思考这些操作的应用场景？</p>
+<ul>
+<li>拆分：</li>
+<li>拼接</li>
+<li>替换</li>
+<li>字符匹配</li>
+<li>字符提取</li>
+</ul>
+<h2 id="2-练习"><a href="#2-练习" class="headerlink" title="2.练习"></a>2.练习</h2><p>【练习一】现有一份关于字符串的数据集，请解决以下问题：</p>
+<p>（a）先对字符串编码存储人员信息（在编号后添加ID列），使用如下格式：”xxx(名字)：x国人，性别x，生于x年x月x日“</p>
+<pre><code class="hljs python">df = pd.read_csv(<span class="hljs-string">'data/String_data_one.csv'</span>,index_col=<span class="hljs-string">'人员编号'</span>, dtype=<span class="hljs-string">'string'</span>)
+df[<span class="hljs-string">'ID'</span>] = df[<span class="hljs-string">'姓名'</span>].str.cat([<span class="hljs-string">': '</span>+df[<span class="hljs-string">'国籍'</span>]+<span class="hljs-string">'国人,'</span>,<span class="hljs-string">'性别'</span>+df[<span class="hljs-string">'性别'</span>]+<span class="hljs-string">','</span>,<span class="hljs-string">'生于'</span>+df[<span class="hljs-string">'出生年'</span>]+<span class="hljs-string">'年'</span>,df[<span class="hljs-string">'出生月'</span>]+<span class="hljs-string">'月'</span>, df[<span class="hljs-string">'出生日'</span>] +<span class="hljs-string">'日'</span>],na_rep=<span class="hljs-string">'*'</span>)
+df[<span class="hljs-string">'ID'</span>].head()</code></pre>
+<p>输出：</p>
+<p><img src="/article/88685a55/image-1.png" srcset="/img/loading.gif" alt="image-20200627003713531"></p>
+<p>（b）将（a）中的人员生日信息部分修改为用中文表示（如一九七四年十月二十三日），其余返回格式不变。</p>
+<p>（c）将（b）中的ID列结果拆分为原列表相应的5列，并使用equals检验是否一致。</p>
+<p>【练习二】现有一份半虚拟的数据集，第一列包含了新型冠状病毒的一些新闻标题，请解决以下问题：</p>
+<p>（a）选出所有关于北京市和上海市新闻标题的所在行。</p>
+<pre><code class="hljs python">df = pd.read_csv(<span class="hljs-string">'data/String_data_two.csv'</span>)
+df[<span class="hljs-string">'col1'</span>].str.extract(<span class="hljs-string">r'(?P&lt;name_1&gt;北京|上海)'</span>).dropna().index</code></pre>
+<p>输出：</p>
+<p><img src="/article/88685a55/image-2.png" srcset="/img/loading.gif" alt="image-20200626233841173"></p>
+<p>（b）求col2的均值。</p>
+<p>（c）求col3的均值。</p>
+]]></content>
+      <categories>
+        <category>pandas下</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>pandas</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>pandas下综合练习</title>
     <url>/article/67aeaf8.html</url>
     <content><![CDATA[<h1 id="一、端午节的淘宝粽子交易"><a href="#一、端午节的淘宝粽子交易" class="headerlink" title="一、端午节的淘宝粽子交易"></a>一、端午节的淘宝粽子交易</h1><h2 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h2><p>（1）请删除最后一列为缺失值的行，并求所有在杭州发货的商品单价均值。</p>
@@ -1851,65 +1910,6 @@ result_day = []
         <span class="hljs-keyword">pass</span></code></pre>
 <pre><code class="hljs python">result_day</code></pre>
 <p><img src="/article/67aeaf8/image-20200701223448673.png" srcset="/img/loading.gif" alt="image-20200701223448673"></p>
-]]></content>
-      <categories>
-        <category>pandas下</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>pandas</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第7章 文本数据</title>
-    <url>/article/88685a55.html</url>
-    <content><![CDATA[<p><img src="/article/88685a55/文本数据.png" srcset="/img/loading.gif" alt></p>
-<h1 id="六、问题与练习"><a href="#六、问题与练习" class="headerlink" title="六、问题与练习"></a>六、问题与练习</h1><h2 id="1-问题"><a href="#1-问题" class="headerlink" title="1.问题"></a>1.问题</h2><p>【问题一】 str对象方法和df/Series对象方法有什么区别?</p>
-<ul>
-<li><p>str对象方法有很多针对字符串的方法</p>
-</li>
-<li><p>在replace方法上，二者有较大差异：</p>
-<p>1）str.replace针对object类型或string类型，默认操作：正则表达式</p>
-<p>​      replace针对任意类型的序列或数据框，正则表达式替换：regex=True。使用字典可以支持      多列替换。</p>
-<p>2）str.replace类型赋值参数不能是pd.NA。</p>
-<p>3）对于string类型Series，使用replace函数不能使用正则表达式替换。</p>
-</li>
-</ul>
-<p>【问题二】 给出一列string类型，如何判断单元格是否是数值型数据？</p>
-<ul>
-<li>正则表达式进行匹配。</li>
-<li>str.isnumeric有一定的局限性。</li>
-</ul>
-<p>【问题三】str.split方法的作用是什么？在什么场合下使用？</p>
-<ul>
-<li>使用分隔符对每个字符串进行分割并返回列表。</li>
-<li>可以使用str方法进行元素选择。</li>
-</ul>
-<p>【问题四】在本章的第二到第四节分别介绍了字符串类型的5类操作，请思考这些操作的应用场景？</p>
-<ul>
-<li>拆分：</li>
-<li>拼接</li>
-<li>替换</li>
-<li>字符匹配</li>
-<li>字符提取</li>
-</ul>
-<h2 id="2-练习"><a href="#2-练习" class="headerlink" title="2.练习"></a>2.练习</h2><p>【练习一】现有一份关于字符串的数据集，请解决以下问题：</p>
-<p>（a）先对字符串编码存储人员信息（在编号后添加ID列），使用如下格式：”xxx(名字)：x国人，性别x，生于x年x月x日“</p>
-<pre><code class="hljs python">df = pd.read_csv(<span class="hljs-string">'data/String_data_one.csv'</span>,index_col=<span class="hljs-string">'人员编号'</span>, dtype=<span class="hljs-string">'string'</span>)
-df[<span class="hljs-string">'ID'</span>] = df[<span class="hljs-string">'姓名'</span>].str.cat([<span class="hljs-string">': '</span>+df[<span class="hljs-string">'国籍'</span>]+<span class="hljs-string">'国人,'</span>,<span class="hljs-string">'性别'</span>+df[<span class="hljs-string">'性别'</span>]+<span class="hljs-string">','</span>,<span class="hljs-string">'生于'</span>+df[<span class="hljs-string">'出生年'</span>]+<span class="hljs-string">'年'</span>,df[<span class="hljs-string">'出生月'</span>]+<span class="hljs-string">'月'</span>, df[<span class="hljs-string">'出生日'</span>] +<span class="hljs-string">'日'</span>],na_rep=<span class="hljs-string">'*'</span>)
-df[<span class="hljs-string">'ID'</span>].head()</code></pre>
-<p>输出：</p>
-<p><img src="/article/88685a55/image-1.png" srcset="/img/loading.gif" alt="image-20200627003713531"></p>
-<p>（b）将（a）中的人员生日信息部分修改为用中文表示（如一九七四年十月二十三日），其余返回格式不变。</p>
-<p>（c）将（b）中的ID列结果拆分为原列表相应的5列，并使用equals检验是否一致。</p>
-<p>【练习二】现有一份半虚拟的数据集，第一列包含了新型冠状病毒的一些新闻标题，请解决以下问题：</p>
-<p>（a）选出所有关于北京市和上海市新闻标题的所在行。</p>
-<pre><code class="hljs python">df = pd.read_csv(<span class="hljs-string">'data/String_data_two.csv'</span>)
-df[<span class="hljs-string">'col1'</span>].str.extract(<span class="hljs-string">r'(?P&lt;name_1&gt;北京|上海)'</span>).dropna().index</code></pre>
-<p>输出：</p>
-<p><img src="/article/88685a55/image-2.png" srcset="/img/loading.gif" alt="image-20200626233841173"></p>
-<p>（b）求col2的均值。</p>
-<p>（c）求col3的均值。</p>
 ]]></content>
       <categories>
         <category>pandas下</category>
