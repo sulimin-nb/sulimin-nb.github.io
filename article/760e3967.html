@@ -164,7 +164,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.7k 字
+      7.1k 字
     </span>
   
 
@@ -174,7 +174,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      54
+      86
        分钟
     </span>
   
@@ -309,7 +309,7 @@ gy = cv2.Sobel(img, cv2.CV_32F, <span class="hljs-number">0</span>, <span class=
 <span class="hljs-comment"># 计算合梯度的幅值和方向（角度）</span>
 mag, angle = cv2.cartToPolar(gx, gy, angleInDegrees=<span class="hljs-literal">True</span>)</code></pre>
 <p>下图展示了梯度：</p>
-<center class="half">    <img src="/article/760e3967/x_hog.jpg" srcset="/img/loading.gif" width="200" hight="400"><img src="/article/760e3967/y_hog.jpg" srcset="/img/loading.gif" width="200" hight="400"><img src="/article/760e3967/mag_hog.jpg" srcset="/img/loading.gif" width="200" hight="400"><img src="/article/760e3967/angle_hog.jpg" srcset="/img/loading.gif" width="200" hight="400"></center>
+<center class="half">    <img src="/article/760e3967/x_hog.jpg" srcset="/img/loading.gif" width="150" hight="300"><img src="/article/760e3967/y_hog.jpg" srcset="/img/loading.gif" width="150" hight="300"><img src="/article/760e3967/mag_hog.jpg" srcset="/img/loading.gif" width="150" hight="300"><img src="/article/760e3967/angle_hog.jpg" srcset="/img/loading.gif" width="150" hight="300"></center>
 
 <p>第一个图：x-梯度的绝对值，第二个图：y梯度的绝对值 ，第三个图：梯度的幅值，第四个图：角度。<br>注意到，x-梯度在垂直线触发，y-梯度在水平线触发。梯度的幅值在有密集的剧烈改变时触发。当区域很平缓时，梯度没有明显变化。梯度图除去了很多不必要的信息（例如有颜色的背景），强调凸显线条。当你看到梯度图像，很容易想到这张图片有一个人。<br>在每个像素点，梯度有一个幅值和方向。对于有颜色的图像，计算三通道的梯度（如上图所示）。一个像素点的梯度的幅值是三通道中梯度幅值最大的值，角度也是最大梯度对应的角度。</p>
 <h2 id="计算梯度直方图"><a href="#计算梯度直方图" class="headerlink" title="计算梯度直方图"></a>计算梯度直方图</h2><p>&emsp;&emsp; 此时，每一个像素点具有两个值：梯度幅值和梯度方向。<br>&emsp;&emsp; 在这一步中，图像被分成若干个8×8的cell，如下图所示，例如我们将图像resize至64x128的大小，那么这幅图像就被划分为8x16个8x8的cell单元，并为每个8×8的cell计算梯度直方图。当然，cell的划分也可以是其他值：16x16，8x16等，根据具体的场景确定。</p>
@@ -321,7 +321,7 @@ mag, angle = cv2.cartToPolar(gx, gy, angleInDegrees=<span class="hljs-literal">T
 <p><img src="/article/760e3967/hog-histogram-1.png" srcset="/img/loading.gif" alt="Histogram computation in HOG"></p>
 <p>&emsp;&emsp;这里采用加权投票统计，比如上面方向图中蓝圈包围的像素，角度为80度，这个像素对应的幅值为2，所以在直方图80度对应的bin加上2。红圈包围的像素，角度为10度，介于0度和20度之间，其幅值为4，那么这个梯度值就被按比例分给0度和20度对应的bin，也就是各加上2。</p>
 <p><img src="/article/760e3967/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xMzA1NjcxMy1mMDgzNzBkZGVmMmVhYzE1LnBuZw" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<p>&emsp;&emsp;再比如：（如上图所示）某像素的梯度幅值为13.6，方向为36，36度两侧的角度bin分别为20度和40度，那么按一定加权比例分别在20度和40度对应的bin加上梯度值，加权公式为：<br>20度对应的bin：(（40-36）/20) <em> 13.6，<strong>分母的20表示20等份，其中4份给20度对应的bin</strong>；<br>40度对应的bin：(（36-20）/20) </em> 13.6，<strong>分母的20表示20等份,其中16份给20度对应的bin</strong>；<br>&emsp;&emsp;还有一个细节需要注意，如果某个像素的梯度角度大于160度，也就是在160度到180度之间，那么把这个像素对应的梯度值按比例分给0度和160度对应的bin。如左下图绿色圆圈中的角度为165度，幅值为85，则按照同样的加权方式将85分别加到0度和160度对应的bin中。</p>
+<p>&emsp;&emsp;再比如：（如上图所示）某像素的梯度幅值为13.6，方向为36，36度两侧的角度bin分别为20度和40度，那么按一定加权比例分别在20度和40度对应的bin加上梯度值，加权公式为：<br>20度对应的bin：(（40-36）/20) x13.6，<strong>分母的20表示20等份，其中4份给20度对应的bin</strong>；<br>40度对应的bin：(（36-20）/20) x13.6，<strong>分母的20表示20等份,其中16份给20度对应的bin</strong>；<br>&emsp;&emsp;还有一个细节需要注意，如果某个像素的梯度角度大于160度，也就是在160度到180度之间，那么把这个像素对应的梯度值按比例分给0度和160度对应的bin。如左下图绿色圆圈中的角度为165度，幅值为85，则按照同样的加权方式将85分别加到0度和160度对应的bin中。</p>
 <p><img src="/article/760e3967/20200613160337781.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
 <p>&emsp;&emsp;对整个cell进行投票统计，最终得到9-bin直方图：</p>
 <p><img src="/article/760e3967/20200613161947892.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
@@ -329,10 +329,21 @@ mag, angle = cv2.cartToPolar(gx, gy, angleInDegrees=<span class="hljs-literal">T
 <h2 id="Block归一化"><a href="#Block归一化" class="headerlink" title="Block归一化"></a>Block归一化</h2><p>&emsp;&emsp;HOG特征将8×8的一个局部区域作为一个cell，再以2×2个cell作为一组，称为一个block，也就是说一个block表示16x16的区域。<br>&emsp;&emsp;由于每个cell有9个值，一个block（2×2个cell）则有36个值，HOG是通过滑动窗口的方式来得到block的，如下图所示：</p>
 <p><img src="/article/760e3967/aHR0cHM6Ly9waWM0LnpoaW1nLmNvbS92Mi0yMzI0MTc3NDIwYzBhNzlkNDhkODQ0YjVlMTI0ZjFmM19iLndlYnA" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
 <p>为什么需要分Block呢？<br>我们已经为图像的8×8单元构造了基于梯度的直方图，但是图像的梯度对整体光照很敏感。这意味着对于特定的图像，图像的某些部分与其他部分相比会非常明亮。虽然不能从图像中完全消除，但是可以通过使用16×16个块来对梯度进行归一化来减少这种光照变化的影响。比如通过将所有像素值除以2来使图像变暗，那么梯度幅值将减小一半，因此直方图中的值也将减小一半。 </p>
-<p>&emsp;&emsp;接下来对Block进行归一化。（再再再一次强调，归一化的目的是为了降低光照/迁移的影响）：<br>&emsp;&emsp;归一化的方法有很多：L1-norm、L2-norm、max/min等等，一般选择L2-norm。<br><img src="/article/760e3967/image1.png" srcset="/img/loading.gif" alt="image1"></p>
-<p>&emsp;&emsp;例如对于一个[128，64，32]的三维向量来说，模长是$\sqrt{128^2+64^2+32^2}=146.64$，这叫做向量的L2范数。将这个向量的每个元素除以146.64就得到了归一化向量 [0.87, 0.43, 0.22]。<br>&emsp;&emsp;现在有一个新向量，是第一个向量的2倍 [128x2, 64x2, 32x2]，也就是 <code>[256, 128, 64]</code>，我们将这个向量进行归一化，你可以看到归一化后的结果与第一个向量归一化后的结果相同。所以，对向量进行归一化可以消除整体光照的影响。<br>&emsp;&emsp;知道了如何归一化，现在来对block的梯度直方图进行归一化（注意不是cell），一个block有4个直方图，将这4个直方图拼接成长度为36的向量，然后对这个向量进行归一化。<br>&emsp;&amp;e因为使用的是滑动窗口，滑动步长为8个像素，一个Cell大小，每滑动一次，就在这个窗口上进行归一化计算得到长度为36的向量，并重复这个过程。如上图所示。</p>
+<p>&emsp;&emsp;接下来对Block进行归一化。（再再再一次强调，归一化的目的是为了降低光照/迁移的影响）：<br>&emsp;&emsp;归一化的方法有很多：L1-norm、L2-norm、max/min等等，一般选择L2-norm。</p>
+<script type="math/tex; mode=display">
+v←\frac{v}{\sqrt{\|v\|_2^2+\xi^2}}(\xi是一个很小的数，主要是为了防止分母为0)；</script><p>&emsp;&emsp;例如对于一个[128，64，32]的三维向量来说，模长是$\sqrt{128^2+64^2+32^2}=146.64$，这叫做向量的L2范数。将这个向量的每个元素除以146.64就得到了归一化向量 [0.87, 0.43, 0.22]。<br>&emsp;&emsp;现在有一个新向量，是第一个向量的2倍 [128x2, 64x2, 32x2]，也就是 <code>[256, 128, 64]</code>，我们将这个向量进行归一化，你可以看到归一化后的结果与第一个向量归一化后的结果相同。所以，对向量进行归一化可以消除整体光照的影响。<br>&emsp;&emsp;知道了如何归一化，现在来对block的梯度直方图进行归一化（注意不是cell），一个block有4个直方图，将这4个直方图拼接成长度为36的向量，然后对这个向量进行归一化。<br>&emsp;&amp;e因为使用的是滑动窗口，滑动步长为8个像素，一个Cell大小，每滑动一次，就在这个窗口上进行归一化计算得到长度为36的向量，并重复这个过程。如上图所示。</p>
 <h2 id="获得HOG描述子"><a href="#获得HOG描述子" class="headerlink" title="获得HOG描述子"></a>获得HOG描述子</h2><p>每一个16x16大小的block将会得到一个长度为36x1的特征向量，并进行归一化。 那会得到多大的特征向量呢？<br>对于上图被划分8 x16个cell ，每个block有2x2个cell的话，那么cell的个数为：(8-1)x(16-1)=105。<br>每个16x16 block由36x1维向量，合并所有105个block的特征，最终得到由36 x105=3780维向量表示的特征描述符。<br>获得HOG特征向量，就可以用来可视化和分类了。对于多维的HOG特征，SVM就可以排上用场了。</p>
-<h2 id="使用HOG特征数据"><a href="#使用HOG特征数据" class="headerlink" title="使用HOG特征数据"></a>使用HOG特征数据</h2><p>HOG特征本身是不支持旋转不变性与多尺度检测的，但是通过构建高斯金字塔实现多尺度的开窗检测就会得到不同分辨率的多尺度检测支持。OpenCV中HOG多尺度对象检测API如下：</p>
+<p>介绍以下Dalal等人的训练方法：</p>
+<ol>
+<li>提取正负样本的HOG特征；</li>
+<li>用正负样本训练一个初始的分类器，然后由分类器生产检测器；</li>
+<li>然后用初始分类器在负样本原图上进行行人检测，检测出来的矩形区域自然都是分类错误的负样本，这就是所谓的难例(hard examples)；</li>
+<li>提取难例的HOG特征并结合第一步中的特征，重新训练，生成最终的检测器 ；</li>
+</ol>
+<p>这种二次训练的处理过程显著提高了每个检测器的表现，一般可以使得每个窗口的误报率(FPPW False Positives Per Window)下降5%。</p>
+<h2 id="使用HOG特征数据"><a href="#使用HOG特征数据" class="headerlink" title="使用HOG特征数据"></a>使用HOG特征数据</h2><p>HOG特征本身是不支持旋转不变性与多尺度检测的，但是通过构建高斯金字塔实现多尺度的开窗检测就会得到不同分辨率的多尺度检测支持，如下图所示。详细内容可参考<a href="https://www.cnblogs.com/ronny/p/3886013.html" target="_blank" rel="noopener">尺度空间理论</a></p>
+<p><img src="/article/760e3967/1328274-20180924221334307-1701938273.png" srcset="/img/loading.gif" alt="img"></p>
+<p>OpenCV中HOG多尺度对象检测API如下：</p>
 <pre><code class="hljs python">virtual void cv::HOGDescriptor::detectMultiScale(
     InputArray  img,
     std::vector&lt; Rect &gt; &amp;   foundLocations,
@@ -351,6 +362,7 @@ padding-表示填充
 scale-表示尺度空间
 finalThreshold-最终阈值，默认为<span class="hljs-number">2.0</span>
 useMeanshiftGrouping-不建议使用，速度太慢拉</code></pre>
+<p>在<a href>人脸检测之Haar分类器</a>这一节我们利用haar特征和级联分类器Adaboost检测人脸时我们使用过detectMultiScale()函数，级联分类器对象尝试在输入图像的不同尺度下检测对象，该函数有一个比较重要的参数scaleFactor(一般设置为1.3)，表示一个比率：即在每层金字塔中所获得的图像与上一层图像的比率，scaleFactor越小，金字塔的层数就越多，计算就越慢，计算量也会更大，但是计算结果相对更精确。</p>
 <h1 id="基于OpenCV的简单实现"><a href="#基于OpenCV的简单实现" class="headerlink" title="基于OpenCV的简单实现"></a>基于OpenCV的简单实现</h1><p>代码：</p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2 <span class="hljs-keyword">as</span> cv
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
@@ -377,9 +389,10 @@ useMeanshiftGrouping-不建议使用，速度太慢拉</code></pre>
     cv.destroyAllWindows()</code></pre>
 <p>带检测图片：</p>
 <p><img src="/article/760e3967/v2-2ccc671e60031942dca8a129410a0383_720w.jpg" srcset="/img/loading.gif" alt="v2-2ccc671e60031942dca8a129410a0383_720w"></p>
-<p>检测图片：</p>
+<p>检测图片(有点不完美，调参调不动了，先酱~)：</p>
 <p><img src="/article/760e3967/hog-detector.jpg" srcset="/img/loading.gif" alt="hog-detector"></p>
-<h3 id="可视化："><a href="#可视化：" class="headerlink" title="可视化："></a>可视化：</h3><h3 id="feature-log函数："><a href="#feature-log函数：" class="headerlink" title="feature.log函数："></a>feature.log函数：</h3><ul>
+<h3 id="可视化："><a href="#可视化：" class="headerlink" title="可视化："></a>可视化：</h3><p><strong>feature.log函数：</strong></p>
+<ul>
 <li><code>image</code>：可以是灰度图或者彩色图；</li>
 <li><code>orientations</code>：就是把180度分成几份，也就是bin的数量；</li>
 <li><code>pixels_per_cell</code>：一个cell里包含的像素个数；</li>
@@ -400,21 +413,234 @@ hog_image_rescaled = <span class="hljs-number">255.0</span> * hog_image_rescaled
 cv2.imwrite(<span class="hljs-string">'edge_hog.jpg'</span>, hog_image_rescaled)
 cv2.waitKey(<span class="hljs-number">0</span>)==ord(<span class="hljs-string">'q'</span>)</code></pre>
 <p><img src="/article/760e3967/edge_hog.jpg" srcset="/img/loading.gif" alt="edge_hog"></p>
+<h1 id="手动实现HOG特征"><a href="#手动实现HOG特征" class="headerlink" title="手动实现HOG特征"></a>手动实现HOG特征</h1><p>虽然opencv已经实现了HOG算法，但是手动实现的目的是为了加深我们对HOG的理解。参考了博客<a href="https://www.cnblogs.com/zyly/p/9651261.html" target="_blank" rel="noopener">基于传统图像处理的目标检测与识别</a><br>代码主要包括以下步骤：</p>
+<ol>
+<li>图像灰度化，归一化处理；</li>
+<li>首先计算图像每一个像素点的梯度幅值和角度；</li>
+<li>计算输入图像的每个cell单元的梯度直方图(注意，我们在实现梯度直方图的时候，使用到的是双线性插值，这和上面介绍的理论略微有区别)，形成每个cell的descriptor，比如输入图像为128×64 可以得到16×8个cell，每个cell由9个bin组成；</li>
+<li>将2×2个cell组成一个block，一个block内所有cell的特征串联起来得到该block的HOG特征descriptor，并进行归一化处理，将图像内所有block的HOG特征descriptor串联起来得到该图像的HOG特征descriptor，这就是最终分类的特征向量；</li>
+</ol>
+<pre><code class="hljs python"><span class="hljs-comment">#代码来源GitHub:https://github.com/PENGZhaoqing/Hog-feature</span>
+<span class="hljs-comment">#https://blog.csdn.net/ppp8300885/article/details/71078555</span>
+<span class="hljs-comment">#https://www.leiphone.com/news/201708/ZKsGd2JRKr766wEd.html</span>
+
+<span class="hljs-keyword">import</span> cv2
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> math
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hog_descriptor</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">'''</span>
+<span class="hljs-string">    HOG描述符的实现</span>
+<span class="hljs-string">    '''</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, img, cell_size=<span class="hljs-number">8</span>, bin_size=<span class="hljs-number">9</span>)</span>:</span>
+        <span class="hljs-string">'''</span>
+<span class="hljs-string">        构造函数</span>
+<span class="hljs-string">            默认参数，一个block由2x2个cell组成，步长为1个cell大小 </span>
+<span class="hljs-string">        args:</span>
+<span class="hljs-string">            img：输入图像(更准确的说是检测窗口)，这里要求为灰度图像  对于行人检测图像大小一般为128x64 即是输入图像上的一小块裁切区域</span>
+<span class="hljs-string">            cell_size：细胞单元的大小 如8，表示8x8个像素</span>
+<span class="hljs-string">            bin_size：直方图的bin个数</span>
+<span class="hljs-string">        '''</span>
+        self.img = img
+        <span class="hljs-string">'''</span>
+<span class="hljs-string">        采用Gamma校正法对输入图像进行颜色空间的标准化（归一化），目的是调节图像的对比度，降低图像局部</span>
+<span class="hljs-string">        的阴影和光照变化所造成的影响，同时可以抑制噪音。采用的gamma值为0.5。 f(I)=I^γ</span>
+<span class="hljs-string">        '''</span>
+        self.img = np.sqrt(img*<span class="hljs-number">1.0</span> / float(np.max(img)))
+        self.img = self.img * <span class="hljs-number">255</span>
+        <span class="hljs-comment">#print('img',self.img.dtype)   #float64</span>
+        <span class="hljs-comment">#参数初始化</span>
+        self.cell_size = cell_size
+        self.bin_size = bin_size
+        self.angle_unit = <span class="hljs-number">180</span> / self.bin_size  <span class="hljs-comment">#这里采用180°</span>
+        <span class="hljs-keyword">assert</span> type(self.bin_size) == int, <span class="hljs-string">"bin_size should be integer,"</span>
+        <span class="hljs-keyword">assert</span> type(self.cell_size) == int, <span class="hljs-string">"cell_size should be integer,"</span>
+        <span class="hljs-keyword">assert</span> <span class="hljs-number">180</span> % self.bin_size == <span class="hljs-number">0</span>, <span class="hljs-string">"bin_size should be divisible by 180"</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">extract</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-string">'''</span>
+<span class="hljs-string">        计算图像的HOG描述符，以及HOG-image特征图</span>
+<span class="hljs-string">        '''</span>
+        height, width = self.img.shape
+        <span class="hljs-string">'''</span>
+<span class="hljs-string">        1、计算图像每一个像素点的梯度幅值和角度</span>
+<span class="hljs-string">        '''</span>
+        gradient_magnitude, gradient_angle = self.global_gradient()
+        gradient_magnitude = abs(gradient_magnitude)
+        <span class="hljs-string">'''</span>
+<span class="hljs-string">        2、计算输入图像的每个cell单元的梯度直方图，形成每个cell的descriptor 比如输入图像为128x64 可以得到16x8个cell，每个cell由9个bin组成</span>
+<span class="hljs-string">        '''</span>
+        cell_gradient_vector = np.zeros((int(height / self.cell_size), int(width / self.cell_size), self.bin_size))
+        <span class="hljs-comment">#遍历每一行、每一列</span>
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(cell_gradient_vector.shape[<span class="hljs-number">0</span>]):
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(cell_gradient_vector.shape[<span class="hljs-number">1</span>]):
+                <span class="hljs-comment">#计算第[i][j]个cell的特征向量</span>
+                cell_magnitude = gradient_magnitude[i * self.cell_size:(i + <span class="hljs-number">1</span>) * self.cell_size,
+                                 j * self.cell_size:(j + <span class="hljs-number">1</span>) * self.cell_size]
+                cell_angle = gradient_angle[i * self.cell_size:(i + <span class="hljs-number">1</span>) * self.cell_size,
+                             j * self.cell_size:(j + <span class="hljs-number">1</span>) * self.cell_size]
+                cell_gradient_vector[i][j] = self.cell_gradient(cell_magnitude, cell_angle)
+
+        <span class="hljs-comment">#将得到的每个cell的梯度方向直方图绘出，得到特征图</span>
+        hog_image = self.render_gradient(np.zeros([height, width]), cell_gradient_vector)
+        
+        <span class="hljs-string">'''</span>
+<span class="hljs-string">        3、将2x2个cell组成一个block，一个block内所有cell的特征串联起来得到该block的HOG特征descriptor</span>
+<span class="hljs-string">           将图像image内所有block的HOG特征descriptor串联起来得到该image（检测目标）的HOG特征descriptor，</span>
+<span class="hljs-string">           这就是最终分类的特征向量</span>
+<span class="hljs-string">        '''</span>
+        hog_vector = []
+        <span class="hljs-comment">#默认步长为一个cell大小，一个block由2x2个cell组成，遍历每一个block</span>
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(cell_gradient_vector.shape[<span class="hljs-number">0</span>] - <span class="hljs-number">1</span>):
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(cell_gradient_vector.shape[<span class="hljs-number">1</span>] - <span class="hljs-number">1</span>):
+                <span class="hljs-comment">#提取第[i][j]个block的特征向量</span>
+                block_vector = []
+                block_vector.extend(cell_gradient_vector[i][j])
+                block_vector.extend(cell_gradient_vector[i][j + <span class="hljs-number">1</span>])
+                block_vector.extend(cell_gradient_vector[i + <span class="hljs-number">1</span>][j])
+                block_vector.extend(cell_gradient_vector[i + <span class="hljs-number">1</span>][j + <span class="hljs-number">1</span>])
+                <span class="hljs-string">'''块内归一化梯度直方图，去除光照、阴影等变化，增加鲁棒性'''</span>
+                <span class="hljs-comment">#计算l2范数</span>
+                mag = <span class="hljs-keyword">lambda</span> vector: math.sqrt(sum(i ** <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> vector))   
+                magnitude = mag(block_vector) + <span class="hljs-number">1e-5</span>
+                <span class="hljs-comment">#归一化</span>
+                <span class="hljs-keyword">if</span> magnitude != <span class="hljs-number">0</span>:
+                    normalize = <span class="hljs-keyword">lambda</span> block_vector, magnitude: [element / magnitude <span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> block_vector]
+                    block_vector = normalize(block_vector, magnitude)
+                hog_vector.append(block_vector)           
+        <span class="hljs-keyword">return</span> np.asarray(hog_vector), hog_image
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">global_gradient</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-string">'''</span>
+<span class="hljs-string">        分别计算图像沿x轴和y轴的梯度</span>
+<span class="hljs-string">        '''</span>
+        gradient_values_x = cv2.Sobel(self.img, cv2.CV_64F, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, ksize=<span class="hljs-number">5</span>)
+        gradient_values_y = cv2.Sobel(self.img, cv2.CV_64F, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, ksize=<span class="hljs-number">5</span>)
+        <span class="hljs-comment">#计算梯度幅值 这个计算的是0.5*gradient_values_x + 0.5*gradient_values_y</span>
+        <span class="hljs-comment">#gradient_magnitude = cv2.addWeighted(gradient_values_x, 0.5, gradient_values_y, 0.5, 0)</span>
+        <span class="hljs-comment">#计算梯度方向</span>
+        <span class="hljs-comment">#gradient_angle = cv2.phase(gradient_values_x, gradient_values_y, angleInDegrees=True)</span>
+        gradient_magnitude, gradient_angle = cv2.cartToPolar(gradient_values_x,gradient_values_y,angleInDegrees=<span class="hljs-literal">True</span>)        
+        <span class="hljs-comment">#角度大于180°的，减去180度</span>
+        gradient_angle[gradient_angle&gt;<span class="hljs-number">180.0</span>] -= <span class="hljs-number">180</span> 
+        <span class="hljs-comment">#print('gradient',gradient_magnitude.shape,gradient_angle.shape,np.min(gradient_angle),np.max(gradient_angle))</span>
+        <span class="hljs-keyword">return</span> gradient_magnitude, gradient_angle
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">cell_gradient</span><span class="hljs-params">(self, cell_magnitude, cell_angle)</span>:</span>
+        <span class="hljs-string">'''</span>
+<span class="hljs-string">        为每个细胞单元构建梯度方向直方图</span>
+<span class="hljs-string">        </span>
+<span class="hljs-string">        args:</span>
+<span class="hljs-string">            cell_magnitude：cell中每个像素点的梯度幅值</span>
+<span class="hljs-string">            cell_angle：cell中每个像素点的梯度方向</span>
+<span class="hljs-string">        return：</span>
+<span class="hljs-string">            返回该cell对应的梯度直方图，长度为bin_size</span>
+<span class="hljs-string">        '''</span>
+        orientation_centers = [<span class="hljs-number">0</span>] * self.bin_size
+        <span class="hljs-comment">#遍历cell中的每一个像素点</span>
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(cell_magnitude.shape[<span class="hljs-number">0</span>]):
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(cell_magnitude.shape[<span class="hljs-number">1</span>]):
+                <span class="hljs-comment">#梯度幅值</span>
+                gradient_strength = cell_magnitude[i][j]
+                <span class="hljs-comment">#梯度方向</span>
+                gradient_angle = cell_angle[i][j]
+                <span class="hljs-comment">#双线性插值</span>
+                min_angle, max_angle, weight = self.get_closest_bins(gradient_angle)
+                orientation_centers[min_angle] += (gradient_strength * (<span class="hljs-number">1</span> - weight))
+                orientation_centers[max_angle] += (gradient_strength *weight)
+        <span class="hljs-keyword">return</span> orientation_centers
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_closest_bins</span><span class="hljs-params">(self, gradient_angle)</span>:</span>
+        <span class="hljs-string">'''</span>
+<span class="hljs-string">        计算梯度方向gradient_angle位于哪一个bin中，这里采用的计算方式为双线性插值</span>
+<span class="hljs-string">        具体参考：https://www.leiphone.com/news/201708/ZKsGd2JRKr766wEd.html</span>
+<span class="hljs-string">        例如：当我们把180°划分为9个bin的时候，分别对应对应0,20,40,...160这些角度。</span>
+<span class="hljs-string">              角度是10，副值是4，因为角度10介于0-20度的中间(正好一半)，所以把幅值</span>
+<span class="hljs-string">              一分为二地放到0和20两个bin里面去。</span>
+<span class="hljs-string">        args:</span>
+<span class="hljs-string">            gradient_angle:角度</span>
+<span class="hljs-string">        return：</span>
+<span class="hljs-string">            start,end,weight：起始bin索引，终止bin的索引，end索引对应bin所占权重</span>
+<span class="hljs-string">        '''</span>
+        idx = int(gradient_angle / self.angle_unit)
+        mod = gradient_angle % self.angle_unit
+        <span class="hljs-keyword">return</span> idx % self.bin_size, (idx + <span class="hljs-number">1</span>) % self.bin_size, mod / self.angle_unit
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">render_gradient</span><span class="hljs-params">(self, image, cell_gradient)</span>:</span>
+        <span class="hljs-string">'''</span>
+<span class="hljs-string">        将得到的每个cell的梯度方向直方图绘出，得到特征图</span>
+<span class="hljs-string">        args：</span>
+<span class="hljs-string">            image：画布,和输入图像一样大 [h,w]</span>
+<span class="hljs-string">            cell_gradient：输入图像的每个cell单元的梯度直方图,形状为[h/cell_size,w/cell_size,bin_size]</span>
+<span class="hljs-string">        return：</span>
+<span class="hljs-string">            image：特征图</span>
+<span class="hljs-string">        '''</span>
+        cell_width = self.cell_size / <span class="hljs-number">2</span>
+        max_mag = np.array(cell_gradient).max()
+        <span class="hljs-comment">#遍历每一个cell</span>
+        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(cell_gradient.shape[<span class="hljs-number">0</span>]):
+            <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> range(cell_gradient.shape[<span class="hljs-number">1</span>]):
+                <span class="hljs-comment">#获取第[i][j]个cell的梯度直方图</span>
+                cell_grad = cell_gradient[x][y]
+                <span class="hljs-comment">#归一化</span>
+                cell_grad /= max_mag
+                angle = <span class="hljs-number">0</span>
+                angle_gap = self.angle_unit
+                <span class="hljs-comment">#遍历每一个bin区间</span>
+                <span class="hljs-keyword">for</span> magnitude <span class="hljs-keyword">in</span> cell_grad:
+                    <span class="hljs-comment">#转换为弧度</span>
+                    angle_radian = math.radians(angle)
+                    <span class="hljs-comment">#计算起始坐标和终点坐标，长度为幅值(归一化),幅值越大、绘制的线条越长、越亮</span>
+                    x1 = int(x * self.cell_size + cell_width + magnitude * cell_width * math.cos(angle_radian))
+                    y1 = int(y * self.cell_size + cell_width + magnitude * cell_width * math.sin(angle_radian))
+                    x2 = int(x * self.cell_size + cell_width - magnitude * cell_width * math.cos(angle_radian))
+                    y2 = int(y * self.cell_size + cell_width - magnitude * cell_width * math.sin(angle_radian))
+                    cv2.line(image, (y1, x1), (y2, x2), int(<span class="hljs-number">255</span> * math.sqrt(magnitude)))
+                    angle += angle_gap
+        <span class="hljs-keyword">return</span> image
+
+        
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
+    <span class="hljs-comment">#加载图像</span>
+    img = cv2.imread(<span class="hljs-string">'./image/person.jpg'</span>)        
+    width = <span class="hljs-number">64</span>
+    height = <span class="hljs-number">128</span>
+    img_copy = img[<span class="hljs-number">320</span>:<span class="hljs-number">320</span>+height,<span class="hljs-number">570</span>:<span class="hljs-number">570</span>+width][:,:,::<span class="hljs-number">-1</span>]    
+    gray_copy = cv2.cvtColor(img_copy,cv2.COLOR_BGR2GRAY)
+    
+    <span class="hljs-comment">#显示原图像</span>
+    plt.figure(figsize=(<span class="hljs-number">6.4</span>,<span class="hljs-number">2.0</span>*<span class="hljs-number">3.2</span>))
+    plt.subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)
+    plt.imshow(img_copy)
+    
+    <span class="hljs-comment">#HOG特征提取</span>
+    hog = Hog_descriptor(gray_copy, cell_size=<span class="hljs-number">8</span>, bin_size=<span class="hljs-number">9</span>)    
+    hog_vector, hog_image = hog.extract()
+    print(<span class="hljs-string">'hog_vector'</span>,hog_vector.shape)
+    print(<span class="hljs-string">'hog_image'</span>,hog_image.shape)
+    
+    <span class="hljs-comment">#绘制特征图</span>
+    plt.subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)
+    plt.imshow(hog_image, cmap=plt.cm.gray)    
+    plt.show()</code></pre>
 <h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>HOG算法具有以下优点：                            </p>
 <ul>
-<li>HOG描述的是边缘结构特征，可以描述物体的结构信息                </li>
-<li>对光照影响不敏感                   </li>
-<li>分块的处理可以使特征得到更为紧凑的表示               </li>
+<li>核心思想是所检测的局部物体外形能够被梯度或边缘方向的分布所描述，HOG能较好地捕捉局部形状信息，对几何和光学变化都有很好的不变性；             </li>
+<li>HOG是在密集采样的图像块中求取的，在计算得到的HOG特征向量中隐含了该块与检测窗口之间的空间位置关系。                           </li>
 </ul>
 <p>HOG算法具有以下缺点：                 </p>
 <ul>
-<li>特征描述子获取过程复杂，维数较高，导致实时性差                </li>
-<li>遮挡问题很难处理                    </li>
-<li>对噪声比较敏感               </li>
+<li>特征描述子获取过程复杂，维数较高，导致实时性差；                </li>
+<li>很难处理遮挡问题，人体姿势动作幅度过大或物体方向改变也不易检测（这个问题后来在<a href="http://blog.csdn.net/masibuaa/article/details/17924671" target="_blank" rel="noopener">DPM</a>中采用可变形部件模型的方法得到了改善）；                  </li>
+<li>跟SIFT相比，HOG没有选取主方向，也没有旋转梯度方向直方图，因而本身不具有旋转不变性（较大的方向变化），其旋转不变性是通过采用不同旋转方向的训练样本来实现的；</li>
+<li>跟SIFT相比，HOG本身不具有尺度不变性，其尺度不变性是通过缩放检测窗口图像的大小来实现的；</li>
+<li>此外，由于梯度的性质，HOG对噪点相当敏感，在实际应用中，在block和cell划分之后，对于得到各个区域，有时候还会做一次高斯平滑去除噪点。               </li>
 </ul>
 <p><em>Q : How do you eat an elephant ?</em><br><em>A : One bite at a time!</em></p>
 <p>参考链接：</p>
-<p><a href="https://www.learnopencv.com/histogram-of-oriented-gradients/" target="_blank" rel="noopener">Histogram of Oriented Gradients(强烈推荐)</a><br><a href="https://cloud.tencent.com/developer/article/1419615" target="_blank" rel="noopener">HOG特征详解与行人检测</a></p>
+<p><a href="https://www.learnopencv.com/histogram-of-oriented-gradients/" target="_blank" rel="noopener">Histogram of Oriented Gradients(强烈推荐)</a><br><a href="https://cloud.tencent.com/developer/article/1419615" target="_blank" rel="noopener">HOG特征详解与行人检测</a><br><a href="https://www.cnblogs.com/zyly/p/9651261.html" target="_blank" rel="noopener">基于传统图像处理的目标检测与识别(很全面)</a></p>
 
             </article>
             <hr>
