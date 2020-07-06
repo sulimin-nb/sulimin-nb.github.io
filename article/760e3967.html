@@ -355,7 +355,7 @@ padding-表示填充
 scale-表示尺度空间
 finalThreshold-最终阈值，默认为<span class="hljs-number">2.0</span>
 useMeanshiftGrouping-不建议使用，速度太慢拉</code></pre>
-<p>在<a href="https://sulimin-nb.github.io/article/ad28cab2.html" target="_blank" rel="noopener">人脸检测之Haar分类器</a>这一节我们利用haar特征和级联分类器Adaboost检测人脸时我们使用过detectMultiScale()函数，级联分类器对象尝试在输入图像的不同尺度下检测对象，该函数有一个比较重要的参数scaleFactor(一般设置为1.3)，表示一个比率：即在每层金字塔中所获得的图像与上一层图像的比率，scaleFactor越小，金字塔的层数就越多，计算就越慢，计算量也会更大，但是计算结果相对更精确。</p>
+<p>在<a href="https://sulimin-nb.github.io/article/ad28cab2.html">人脸检测之Haar分类器</a>这一节我们利用haar特征和级联分类器Adaboost检测人脸时我们使用过detectMultiScale()函数，级联分类器对象尝试在输入图像的不同尺度下检测对象，该函数有一个比较重要的参数scaleFactor(一般设置为1.3)，表示一个比率：即在每层金字塔中所获得的图像与上一层图像的比率，scaleFactor越小，金字塔的层数就越多，计算就越慢，计算量也会更大，但是计算结果相对更精确。</p>
 <h1 id="基于OpenCV的简单实现"><a href="#基于OpenCV的简单实现" class="headerlink" title="基于OpenCV的简单实现"></a>基于OpenCV的简单实现</h1><p>代码：</p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2 <span class="hljs-keyword">as</span> cv
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
