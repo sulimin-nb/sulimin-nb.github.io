@@ -164,7 +164,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.7k 字
     </span>
   
 
@@ -174,7 +174,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      16
+      20
        分钟
     </span>
   
@@ -310,6 +310,32 @@
 <li>时间复杂度：$O(N \times 2^N)$，生成所有子集，并复制到输出集合中。</li>
 <li>空间复杂度：$O(N \times 2^N)$，存储所有子集，共n个元素，每个元素都有可能存在或者不存在。</li>
 </ul>
+<p>晚上又看到了一种回溯算法：</p>
+<p>简化了上面的写法，不用k，也是bfs类似思想，每层的结果都放入output中。</p>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">subsets</span><span class="hljs-params">(self, nums)</span>:</span>
+        res = []
+        n = len(nums)
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(i, tmp)</span>:</span>
+            res.append(tmp)
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(i, n):
+                backtrack(j+<span class="hljs-number">1</span>, tmp + [num[j]])
+       	backtrack(<span class="hljs-number">0</span>, [])
+        <span class="hljs-keyword">return</span> res</code></pre>
+<ul>
+<li><p>append操作是在原List上的修改，不会返回一个新的值。</p>
+</li>
+<li><p>+运算是对于两个类型相同的变量之间的运算，不改变原有的变量，并返回一个新的值，是内容之间的拼接。</p>
+</li>
+<li>extend 也是在原有List上进行修改，没有返回值，可以扩展不同类型的变量，并将其内容以List变量的形式加入到原List中。<br>例子：从输出中可见如果extend的是字符串，则字符串会被拆分成字符数组，如果extend的是字典，则字典的key会被加入到List中。</li>
+</ul>
+<p><strong>所以这里的tmp+[]不能用tmp.append()替换！</strong></p>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：$O(2^N)$，生成所有子集，并复制到输出集合中。</li>
+<li>空间复杂度：$O(2^N)$，存储所有子集，共n个元素，每个元素都有可能存在或者不存在。</li>
+</ul>
+<p><strong>本次回溯类似于bfs，当然用dfs也是可以做的。</strong></p>
 <h1 id="方法三：字典排序（二进制排序）子集"><a href="#方法三：字典排序（二进制排序）子集" class="headerlink" title="方法三：字典排序（二进制排序）子集"></a>方法三：字典排序（二进制排序）子集</h1><p><strong>思路</strong></p>
 <p>该方法思路来自于Donald E. Knuth。</p>
 <blockquote>
