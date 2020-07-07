@@ -221,7 +221,7 @@
             <article class="markdown-body">
               <p>HOG（Histogram of Oriented Gradients）HOG特征在对象检测与模式匹配中是一种常见的特征提取技术（深度学习之前），是基于本地像素块进行特征直方图提取的一种算法，对象局部的变形与光照影响有很好的稳定性，最初是用HOG特征来来识别人像，通过HOG特征提取+SVM训练，可以得到很好的效果，OpenCV已经有相应的接口。</p>
 <p>HOG特征实在2005年CVPR的会议发表，在图像手工特征提取方面具有里程碑式的意义，当时在行人检测领域获得了极大成功。</p>
-<h1 id="4-4-算法实现"><a href="#4-4-算法实现" class="headerlink" title="4.4 算法实现"></a>4.4 算法实现</h1><h2 id="1-HOG特征描述符"><a href="#1-HOG特征描述符" class="headerlink" title="1. HOG特征描述符"></a>1. HOG特征描述符</h2><h3 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h3><p>&emsp;&emsp;局部目标的外表和形状可以被局部梯度的分布很好的描述，即使我们不知道对应的梯度和边缘的位置。(本质：梯度的统计信息，梯度主要存在于边缘edge或角落corner的地方)<!--局部目标的外表和形状可以被局部梯度或边缘方向的分布很好的描述，即使我们不知道对应的梯度和边缘的位置。(本质：梯度的统计信息，梯度主要存在于边缘edge或角落corner的地方)--></p>
+<h1 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h1><h2 id="1-HOG特征描述符"><a href="#1-HOG特征描述符" class="headerlink" title="1. HOG特征描述符"></a>1. HOG特征描述符</h2><h3 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h3><p>&emsp;&emsp;局部目标的外表和形状可以被局部梯度的分布很好的描述，即使我们不知道对应的梯度和边缘的位置。(本质：梯度的统计信息，梯度主要存在于边缘edge或角落corner的地方)<!--局部目标的外表和形状可以被局部梯度或边缘方向的分布很好的描述，即使我们不知道对应的梯度和边缘的位置。(本质：梯度的统计信息，梯度主要存在于边缘edge或角落corner的地方)--></p>
 <h3 id="宏观"><a href="#宏观" class="headerlink" title="宏观"></a>宏观</h3><p>&emsp;&emsp;特征描述符就是通过提取图像的有用信息，并且丢弃无关信息来简化图像的表示。</p>
 <p>&emsp;&emsp;HOG特征描述符可以将3通道的彩色图像转换成一定长度的特征向量。</p>
 <p>&emsp;&emsp;那么我们就需要定义什么是“有用的”，什么是“无关的”。这里的“有用”，是指对于什么目的有用，显然特征向量对于观察图像是没有用的，但是它对于像图像识别和目标检测这样的任务非常有用。当将这些特征向量输入到类似支持向量机（SVM）这样的图像分类算法中时，会得到较好的结果。</p>
@@ -255,7 +255,7 @@ plt.show()</code></pre>
 <center class="half">    <img src="/article/760e3967/0_5_hog.jpg" srcset="/img/loading.gif" width="200" hight="400"><img src="/article/760e3967/1_hog.jpg" srcset="/img/loading.gif" width="200" hight="400"><img src="/article/760e3967/1_5_hog.jpg" srcset="/img/loading.gif" width="200" hight="400"></center>
 
 <p>作者在他的博士论文里有提到，对于涉及大量的类内颜色变化，如猫，狗和马等动物，没标准化的RGB图效果更好，而牛，羊的图做gamma颜色校正后效果更好。是否用gamma校正分情况把。(●ˇ∀ˇ●)</p>
-<h1 id="计算图像梯度"><a href="#计算图像梯度" class="headerlink" title="计算图像梯度"></a>计算图像梯度</h1><p>为了得到梯度直方图，那么首先需要计算图像水平方向和垂直方向梯度。可以通过使用以下内核过滤图像实现，分别用于计算水平梯度和垂直梯度。</p>
+<h3 id="计算图像梯度"><a href="#计算图像梯度" class="headerlink" title="计算图像梯度"></a>计算图像梯度</h3><p>为了得到梯度直方图，那么首先需要计算图像水平方向和垂直方向梯度。可以通过使用以下内核过滤图像实现，分别用于计算水平梯度和垂直梯度。</p>
 <script type="math/tex; mode=display">
 \begin{equation}
 \begin{aligned}
@@ -305,7 +305,7 @@ mag, angle = cv2.cartToPolar(gx, gy, angleInDegrees=<span class="hljs-literal">T
 <center class="half">    <img src="/article/760e3967/x_hog.jpg" srcset="/img/loading.gif" width="150" hight="300"><img src="/article/760e3967/y_hog.jpg" srcset="/img/loading.gif" width="150" hight="300"><img src="/article/760e3967/mag_hog.jpg" srcset="/img/loading.gif" width="150" hight="300"><img src="/article/760e3967/angle_hog.jpg" srcset="/img/loading.gif" width="150" hight="300"></center>
 
 <p>第一个图：x-梯度的绝对值，第二个图：y梯度的绝对值 ，第三个图：梯度的幅值，第四个图：角度。<br>注意到，x-梯度在垂直线触发，y-梯度在水平线触发。梯度的幅值在有密集的剧烈改变时触发。当区域很平缓时，梯度没有明显变化。梯度图除去了很多不必要的信息（例如有颜色的背景），强调凸显线条。当你看到梯度图像，很容易想到这张图片有一个人。<br>在每个像素点，梯度有一个幅值和方向。对于有颜色的图像，计算三通道的梯度（如上图所示）。一个像素点的梯度的幅值是三通道中梯度幅值最大的值，角度也是最大梯度对应的角度。</p>
-<h2 id="计算梯度直方图"><a href="#计算梯度直方图" class="headerlink" title="计算梯度直方图"></a>计算梯度直方图</h2><p>&emsp;&emsp; 此时，每一个像素点具有两个值：梯度幅值和梯度方向。<br>&emsp;&emsp; 在这一步中，图像被分成若干个8×8的Cell，如下图所示，例如我们将图像resize至64x128的大小，那么这幅图像就被划分为8x16个8x8的Cell单元，并为每个8×8的Cell计算梯度直方图。当然，Cell的划分也可以是其他值：16x16，8x16等，根据具体的场景确定。</p>
+<h3 id="计算梯度直方图"><a href="#计算梯度直方图" class="headerlink" title="计算梯度直方图"></a>计算梯度直方图</h3><p>&emsp;&emsp; 此时，每一个像素点具有两个值：梯度幅值和梯度方向。<br>&emsp;&emsp; 在这一步中，图像被分成若干个8×8的Cell，如下图所示，例如我们将图像resize至64x128的大小，那么这幅图像就被划分为8x16个8x8的Cell单元，并为每个8×8的Cell计算梯度直方图。当然，Cell的划分也可以是其他值：16x16，8x16等，根据具体的场景确定。</p>
 <p><img src="/article/760e3967/hog-cells.png" srcset="/img/loading.gif" alt="8x8 Cells of HOG"></p>
 <p>计算梯度直方图之前，先了解一下为什么要把图像分为若干个Cell?<br>这是因为如果对一整张梯度图逐像素计算，其中的有效特征是非常稀疏的，不但运算量大，而且会受到一些噪声干扰。使用特征描述符便提供了紧凑的表示。一个8x8的图像块包含8x8x3=192个像素值。一个8x8的Cell包含了8x8x2 = 128个值（每个像素包括梯度的大小和方向）。128个值将由9-bin的直方图（存储9个值的向量，想想坐标应该就明白了）。同时，计算Cell上的梯度直方图更具鲁棒性。逐像素计算梯度会产生噪音，直方图表示对噪音更不敏感。</p>
 <p>&emsp;&emsp; 好，回到主题。<br>&emsp;&emsp; 在HOG中，每个8x8的Cell的梯度直方图本质是一个由9个数值组成的向量， 对应于0、20、40、60…160的梯度方向(角度)。那么原本Cell中8x8x2 = 128个值就由长度为9的向量来表示，用这种梯度直方图的表示方法，大大降低了计算量，同时又对光照等环境变化更加地鲁棒。<br>如下图所示，左图是衣服64x128的图像，被划分为8x16个8x8的Cell；中间的图像表示一个Cell中的梯度矢量，箭头朝向代表梯度方向，箭头长度代表梯度大小。<br>右图是 8×8 的Cell中表示梯度的原始数值，注意角度的范围介于0到180度之间，而不是0到360度， 这被称为“无符号”梯度，因为两个完全相反的方向被认为是相同的。0$^\circ$和180$^\circ$是相同的。（经验表明这样处理对于行人检测效果更好。）</p>
@@ -319,13 +319,13 @@ mag, angle = cv2.cartToPolar(gx, gy, angleInDegrees=<span class="hljs-literal">T
 <p>&emsp;&emsp;对整个Cell进行投票统计，最终得到9-bin直方图：</p>
 <p><img src="/article/760e3967/20200613161947892.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
 <p>&emsp;&emsp;可以看到直方图中，0度和160附近有很大的权重，说明了大多数像素的梯度向上或者向下，也就是这个Cell是个横向边缘。</p>
-<h2 id="Block归一化"><a href="#Block归一化" class="headerlink" title="Block归一化"></a>Block归一化</h2><p>&emsp;&emsp;HOG特征将8×8的一个局部区域作为一个Cell，再以2×2个Cell作为一组，称为一个block，也就是说一个block表示16x16的区域。<br>&emsp;&emsp;由于每个Cell有9个值，一个block（2×2个Cell）则有36个值，HOG是通过滑动窗口的方式来得到block的，如下图所示：</p>
+<h3 id="Block归一化"><a href="#Block归一化" class="headerlink" title="Block归一化"></a>Block归一化</h3><p>&emsp;&emsp;HOG特征将8×8的一个局部区域作为一个Cell，再以2×2个Cell作为一组，称为一个block，也就是说一个block表示16x16的区域。<br>&emsp;&emsp;由于每个Cell有9个值，一个block（2×2个Cell）则有36个值，HOG是通过滑动窗口的方式来得到block的，如下图所示：</p>
 <p><img src="/article/760e3967/aHR0cHM6Ly9waWM0LnpoaW1nLmNvbS92Mi0yMzI0MTc3NDIwYzBhNzlkNDhkODQ0YjVlMTI0ZjFmM19iLndlYnA" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
 <p>为什么需要分Block呢？<br>我们已经为图像的8×8单元构造了基于梯度的直方图，但是图像的梯度对整体光照很敏感。这意味着对于特定的图像，图像的某些部分与其他部分相比会非常明亮。虽然不能从图像中完全消除，但是可以通过使用16×16个块来对梯度进行归一化来减少这种光照变化的影响。比如通过将所有像素值除以2来使图像变暗，那么梯度幅值将减小一半，因此直方图中的值也将减小一半。 </p>
 <p>&emsp;&emsp;接下来对Block进行归一化。（再再再一次强调，归一化的目的是为了降低光照/迁移的影响）：<br>&emsp;&emsp;归一化的方法有很多：L1-norm、L2-norm、max/min等等，一般选择L2-norm。</p>
 <script type="math/tex; mode=display">
 v←\frac{v}{\sqrt{\|v\|_2^2+\xi^2}} \quad (\xi是一个很小的数，主要是为了防止分母为0)；</script><p>&emsp;&emsp;例如对于一个[128，64，32]的三维向量来说，模长是$\sqrt{128^2+64^2+32^2}=146.64$，这叫做向量的L2范数。将这个向量的每个元素除以146.64就得到了归一化向量 [0.87, 0.43, 0.22]。<br>&emsp;&emsp;现在有一个新向量，是第一个向量的2倍 [128x2, 64x2, 32x2]，也就是 <code>[256, 128, 64]</code>，我们将这个向量进行归一化，你可以看到归一化后的结果与第一个向量归一化后的结果相同。所以，对向量进行归一化可以消除整体光照的影响。<br>&emsp;&emsp;知道了如何归一化，现在来对block的梯度直方图进行归一化（注意不是Cell），一个block有4个直方图，将这4个直方图拼接成长度为36的向量，然后对这个向量进行归一化。<br>&emsp;&emsp;因为使用的是滑动窗口，滑动步长为8个像素，一个Cell大小，每滑动一次，就在这个窗口上进行归一化计算得到长度为36的向量，并重复这个过程。如上图所示。</p>
-<h2 id="获得HOG描述子"><a href="#获得HOG描述子" class="headerlink" title="获得HOG描述子"></a>获得HOG描述子</h2><p>每一个16x16大小的block将会得到一个长度为36x1的特征向量，并进行归一化。 那会得到多大的特征向量呢？<br>对于上图被划分8 x16个Cell ，每个block有2x2个Cell的话，那么Cell的个数为：(8-1)x(16-1)=105。<br>每个16x16 block由36x1维向量，合并所有105个block的特征，最终得到由36 x105=3780维向量表示的特征描述符。<br>获得HOG特征向量，就可以用来可视化和分类了。对于多维的HOG特征，SVM就可以排上用场了。</p>
+<h3 id="获得HOG描述子"><a href="#获得HOG描述子" class="headerlink" title="获得HOG描述子"></a>获得HOG描述子</h3><p>每一个16x16大小的block将会得到一个长度为36x1的特征向量，并进行归一化。 那会得到多大的特征向量呢？<br>对于上图被划分8 x16个Cell ，每个block有2x2个Cell的话，那么Cell的个数为：(8-1)x(16-1)=105。<br>每个16x16 block由36x1维向量，合并所有105个block的特征，最终得到由36 x105=3780维向量表示的特征描述符。<br>获得HOG特征向量，就可以用来可视化和分类了。对于多维的HOG特征，SVM就可以排上用场了。</p>
 <p>介绍以下Dalal等人的训练方法：</p>
 <ol>
 <li>提取正负样本的HOG特征；</li>
@@ -334,7 +334,7 @@ v←\frac{v}{\sqrt{\|v\|_2^2+\xi^2}} \quad (\xi是一个很小的数，主要是
 <li>提取难例的HOG特征并结合第一步中的特征，重新训练，生成最终的检测器 ；</li>
 </ol>
 <p>这种二次训练的处理过程显著提高了每个检测器的表现，一般可以使得每个窗口的误报率(FPPW False Positives Per Window)下降5%。</p>
-<h2 id="使用HOG特征数据"><a href="#使用HOG特征数据" class="headerlink" title="使用HOG特征数据"></a>使用HOG特征数据</h2><p>HOG特征本身是不支持旋转不变性与多尺度检测的，但是通过构建高斯金字塔实现多尺度的开窗检测就会得到不同分辨率的多尺度检测支持，如下图所示。详细内容可参考<a href="https://www.cnblogs.com/ronny/p/3886013.html" target="_blank" rel="noopener">尺度空间理论</a></p>
+<h3 id="使用HOG特征数据"><a href="#使用HOG特征数据" class="headerlink" title="使用HOG特征数据"></a>使用HOG特征数据</h3><p>HOG特征本身是不支持旋转不变性与多尺度检测的，但是通过构建高斯金字塔实现多尺度的开窗检测就会得到不同分辨率的多尺度检测支持，如下图所示。详细内容可参考<a href="https://www.cnblogs.com/ronny/p/3886013.html" target="_blank" rel="noopener">尺度空间理论</a></p>
 <p><img src="/article/760e3967/1328274-20180924221334307-1701938273.png" srcset="/img/loading.gif" alt="img"></p>
 <p>OpenCV中HOG多尺度对象检测API如下：</p>
 <pre><code class="hljs python">virtual void cv::HOGDescriptor::detectMultiScale(
@@ -356,7 +356,7 @@ scale-表示尺度空间
 finalThreshold-最终阈值，默认为<span class="hljs-number">2.0</span>
 useMeanshiftGrouping-不建议使用，速度太慢拉</code></pre>
 <p>在<a href="https://sulimin-nb.github.io/article/ad28cab2.html">人脸检测之Haar分类器</a>这一节我们利用haar特征和级联分类器Adaboost检测人脸时我们使用过detectMultiScale()函数，级联分类器对象尝试在输入图像的不同尺度下检测对象，该函数有一个比较重要的参数scaleFactor(一般设置为1.3)，表示一个比率：即在每层金字塔中所获得的图像与上一层图像的比率，scaleFactor越小，金字塔的层数就越多，计算就越慢，计算量也会更大，但是计算结果相对更精确。</p>
-<h1 id="基于OpenCV的简单实现"><a href="#基于OpenCV的简单实现" class="headerlink" title="基于OpenCV的简单实现"></a>基于OpenCV的简单实现</h1><p>代码：</p>
+<h1 id="基于OpenCV的简单实现"><a href="#基于OpenCV的简单实现" class="headerlink" title="基于OpenCV的简单实现"></a>基于OpenCV的简单实现</h1><h2 id="行人检测"><a href="#行人检测" class="headerlink" title="行人检测"></a>行人检测</h2><p>代码：</p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2 <span class="hljs-keyword">as</span> cv
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 <span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt
@@ -384,7 +384,7 @@ useMeanshiftGrouping-不建议使用，速度太慢拉</code></pre>
 <p><img src="/article/760e3967/v2-2ccc671e60031942dca8a129410a0383_720w.jpg" srcset="/img/loading.gif" alt="v2-2ccc671e60031942dca8a129410a0383_720w"></p>
 <p>检测图片(有点不完美，调参调不动了，先酱~)：</p>
 <p><img src="/article/760e3967/hog-detector.jpg" srcset="/img/loading.gif" alt="hog-detector"></p>
-<h3 id="可视化："><a href="#可视化：" class="headerlink" title="可视化："></a>可视化：</h3><p><strong>feature.log函数：</strong></p>
+<h2 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h2><p><strong>feature.log函数：</strong></p>
 <ul>
 <li><code>image</code>：可以是灰度图或者彩色图；</li>
 <li><code>orientations</code>：就是把180度分成几份，也就是bin的数量；</li>
@@ -406,7 +406,7 @@ hog_image_rescaled = <span class="hljs-number">255.0</span> * hog_image_rescaled
 cv2.imwrite(<span class="hljs-string">'edge_hog.jpg'</span>, hog_image_rescaled)
 cv2.waitKey(<span class="hljs-number">0</span>)==ord(<span class="hljs-string">'q'</span>)</code></pre>
 <p><img src="/article/760e3967/edge_hog.jpg" srcset="/img/loading.gif" alt="edge_hog"></p>
-<h1 id="手动实现HOG特征"><a href="#手动实现HOG特征" class="headerlink" title="手动实现HOG特征"></a>手动实现HOG特征</h1><p>虽然opencv已经实现了HOG算法，但是手动实现的目的是为了加深我们对HOG的理解。参考了博客<a href="https://www.cnblogs.com/zyly/p/9651261.html" target="_blank" rel="noopener">基于传统图像处理的目标检测与识别</a><br>代码主要包括以下步骤：</p>
+<h2 id="手动实现HOG特征"><a href="#手动实现HOG特征" class="headerlink" title="手动实现HOG特征"></a>手动实现HOG特征</h2><p>虽然opencv已经实现了HOG算法，但是手动实现的目的是为了加深我们对HOG的理解。参考了博客<a href="https://www.cnblogs.com/zyly/p/9651261.html" target="_blank" rel="noopener">基于传统图像处理的目标检测与识别</a><br>代码主要包括以下步骤：</p>
 <ol>
 <li>图像灰度化，归一化处理；</li>
 <li>首先计算图像每一个像素点的梯度幅值和角度；</li>
@@ -618,7 +618,7 @@ cv2.waitKey(<span class="hljs-number">0</span>)==ord(<span class="hljs-string">'
     plt.subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)
     plt.imshow(hog_image, cmap=plt.cm.gray)    
     plt.show()</code></pre>
-<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>HOG算法具有以下优点：                            </p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>HOG算法具有以下优点：                            </p>
 <ul>
 <li>核心思想是所检测的局部物体外形能够被梯度或边缘方向的分布所描述，HOG能较好地捕捉局部形状信息，对几何和光学变化都有很好的不变性；             </li>
 <li>HOG是在密集采样的图像块中求取的，在计算得到的HOG特征向量中隐含了该块与检测窗口之间的空间位置关系。                           </li>
