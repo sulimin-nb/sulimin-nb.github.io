@@ -17,7 +17,7 @@
   <meta name="description" content="向前向前向前ε=( o｀ω′)ノ">
   <meta name="author" content="sulimin">
   <meta name="keywords" content="机器学习，数据挖掘，计算机视觉">
-  <title>leetcode50 - 苏</title>
+  <title>leetcode169 - 苏</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -153,8 +153,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-05 15:31">
-      2020年7月5日 下午
+    <time datetime="2020-07-08 11:16">
+      2020年7月8日 上午
     </time>
   </div>
 
@@ -164,7 +164,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      970 字
+      2.8k 字
     </span>
   
 
@@ -174,7 +174,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      33
        分钟
     </span>
   
@@ -214,80 +214,138 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月8日 凌晨
+                  本文最后更新于：2020年7月8日 下午
                 
               </p>
             
             <article class="markdown-body">
-              <h1 id="实现power-x-n-，即计算x的n次幂函数。"><a href="#实现power-x-n-，即计算x的n次幂函数。" class="headerlink" title="实现power(x,n)，即计算x的n次幂函数。"></a>实现power(x,n)，即计算x的n次幂函数。</h1><p>示例1：</p>
-<pre><code class="hljs python">输入: <span class="hljs-number">2.00000</span>, <span class="hljs-number">10</span>
-输出: <span class="hljs-number">1024.00000</span></code></pre>
-<p>示例2：</p>
-<pre><code class="hljs python">输入: <span class="hljs-number">2.10000</span>, <span class="hljs-number">3</span>
-输出: <span class="hljs-number">9.26100</span></code></pre>
-<p>示例3：</p>
-<pre><code class="hljs python">输入: <span class="hljs-number">2.00000</span>, <span class="hljs-number">-2</span>
-输出: <span class="hljs-number">0.25000</span>
-解释: <span class="hljs-number">2</span><span class="hljs-number">-2</span> = <span class="hljs-number">1</span>/<span class="hljs-number">22</span> = <span class="hljs-number">1</span>/<span class="hljs-number">4</span> = <span class="hljs-number">0.25</span></code></pre>
-<p>说明：</p>
-<ul>
-<li>-100.0 &lt; x &lt; 100.0</li>
-<li>$n$是32位有符号整数，其数值范围是$[-2^{31},2^{31}-1]$。</li>
-</ul>
-<p><strong>快速幂算法</strong>：递归和迭代两个版本。<br>当指数$n$为负数时，可以通过计算$x^{-n}$取倒数得到结果，因此只需要考虑$n$为自然数的情况。</p>
-<h2 id="方法一：快速幂-递归-从右到左"><a href="#方法一：快速幂-递归-从右到左" class="headerlink" title="方法一：快速幂+递归(从右到左)"></a>方法一：快速幂+递归(从右到左)</h2><p>快速幂算法的本质是分治算法。<br>例子：</p>
-<script type="math/tex; mode=display">
-x \rightarrow x^2 \rightarrow x^4 \rightarrow x^8 \rightarrow x^{16} \rightarrow x^{32} \rightarrow x^{64}</script><script type="math/tex; mode=display">
-x \rightarrow x^2 \rightarrow x^4 \rightarrow x^9 \rightarrow x^{19} \rightarrow x^{38} \rightarrow x^{77}</script><p>第一个直接把上一次的结果平方，第二个把上一个结果平方后，额外乘一个$x$。</p>
-<ul>
-<li><p>计算$x^n$时，递归计算出$y=x^{\lfloor n/2 \rfloor}$</p>
-</li>
-<li><p>根据递归计算的结果，如果$n$为偶数，那么$x^n=y^2$；如果$n$为奇数，那么$x^n=y^2*x$；</p>
-</li>
-<li>递归的边界为$n=0$，任意数的0次方均为1。</li>
-</ul>
-<p>由于每次递归都会使得指数减少一半，因此递归的层数为$O(logn)$，算法可以在很快的时间内得到结果。</p>
-<p>复杂度分析：</p>
-<ul>
-<li>时间复杂度：$O(logn)$，即为递归的层数。</li>
-<li>空间复杂度：$O(logn)$，即为递归的层数，这是由于递归的函数调用会使用栈空间。</li>
-</ul>
-<p>上代码，目前只会python（猛男落泪，等以后会了别的再加上）：</p>
+              <h1 id="169-多数元素"><a href="#169-多数元素" class="headerlink" title="169.多数元素"></a>169.多数元素</h1><p>给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数大于$\lfloor \dfrac{n}{2} \rfloor$的元素。<br>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
+<p><strong>示例 1:</strong></p>
+<pre><code class="hljs python">输入: [<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]
+输出: <span class="hljs-number">3</span></code></pre>
+<p><strong>示例 2:</strong></p>
+<pre><code class="hljs python">输入: [<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]
+输出: <span class="hljs-number">2</span></code></pre>
+<p><strong>说明</strong><br>本题题目没有给出数据范围，最简单的暴力方法(枚举数据中的每个元素，再遍历一遍数组统计其出现次数，时间复杂度为$O(N^2)$的算法)，会超出时间限制。<br>我首先想到的就是哈希表。</p>
+<h2 id="方法一：哈希表"><a href="#方法一：哈希表" class="headerlink" title="方法一：哈希表"></a>方法一：哈希表</h2><p><strong>思路</strong><br>已知出现次数最多的元素大于$\lfloor \dfrac{n}{2} \rfloor$次，可以用哈希表来快速统计每个元素出现的次数。<br><strong>算法</strong><br>使用哈希映射(HashMap)来存储每个元素以及出现的次数。对于哈希映射中的每个键值对，键表示一个元素，值表示该元素出现的次数。<br>用一个循环遍历数组<code>nums</code>并将数组中的每个元素加入哈希映射中。在这之后，遍历哈希映射中的所有键值对，返回值最大的键。同样也可以在遍历数组<code>nums</code>时候使用打擂台的方法，维护最大的值，这样省去了最后对哈希映射的遍历。</p>
+<p><strong>代码</strong></p>
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">myPow</span><span class="hljs-params">(self, x, n)</span>:</span>
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">quickMul</span><span class="hljs-params">(N)</span>:</span>
-            <span class="hljs-keyword">if</span> N == <span class="hljs-number">0</span>:
-                <span class="hljs-keyword">return</span> <span class="hljs-number">1.0</span>
-            y = quickMul(N // <span class="hljs-number">2</span>)
-            <span class="hljs-keyword">return</span> y * y <span class="hljs-keyword">if</span> N % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> y * y * x
-        <span class="hljs-keyword">return</span> quickMul(n) <span class="hljs-keyword">if</span> n &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-number">1.0</span> / quickMul(-n)</code></pre>
-<h2 id="方法二：快速幂-迭代-从左到右"><a href="#方法二：快速幂-迭代-从左到右" class="headerlink" title="方法二：快速幂 + 迭代(从左到右)"></a>方法二：快速幂 + 迭代(从左到右)</h2><p>递归需要使用额外的栈空间。递归-&gt;迭代。<br>如果整数$n$的二进制拆分为 $n = 2^{i_0} + 2^{i_1} + \ldots + 2^{i_k}$<br>借助整数的二进制拆分，得到迭代计算的方法，一般地，如果整数$n$的二进制拆分为：</p>
-<script type="math/tex; mode=display">
-n = 2^{i_0} + 2^{i_1} + \ldots + 2^{i_k}</script><p>那么</p>
-<script type="math/tex; mode=display">
-x^n = x^{2^{i_0}} * x^{2^{i_1}} * \ldots * x^{2^{i_k}}</script><p>从$x$不断地进行平方，得到$x^2,x^4,x^8,x^{16},\ldots,$如果$n$的第$k$个（从右往左，从0开始计数）二进制位为1，那么我们就将对应的贡献$x^{2^k}$计入答案。<br>上代码：</p>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(self, nums)</span>:</span>
+        counts = collections.Counter(nums)
+        <span class="hljs-keyword">return</span> max(counts.keys(), key=counts.get)</code></pre>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：$O(n)$，其中 $n$是数组<code>nums</code> 的长度。我们遍历数组 <code>nums</code> 一次，对于<code>nums</code>中的每一个元素，将其插入哈希表都只需要常数时间。如果在遍历时没有维护最大值，在遍历结束后还需要对哈希表进行遍历，因为哈希表中占用的空间为$O(n)$（可参考下文的空间复杂度分析），那么遍历的时间不会超过$O(n)$。因此总时间复杂度为$O(n)$。</li>
+</ul>
+<ul>
+<li>空间复杂度：$O(n)$。哈希表最多包含$n - \lfloor \dfrac{n}{2} \rfloor$个键值对，所以占用的空间为$O(n)$。这是因为任意一个长度为$n$的数组最多只能包含$n$个不同的值，但题中保证<code>nums</code>一定有一个众数，会占用（最少）$\lfloor \dfrac{n}{2} \rfloor + 1$个数字。因此最多有$n - (\lfloor \dfrac{n}{2} \rfloor + 1)$个不同的其他数字，所以最多有$n - \lfloor \dfrac{n}{2} \rfloor$个不同的元素。</li>
+</ul>
+<h2 id="方法二：排序"><a href="#方法二：排序" class="headerlink" title="方法二：排序"></a>方法二：排序</h2><p><strong>思路</strong><br>如果将数组如果将数组<code>nums</code>中的所有元素按照单调递增或单调递减的顺序排序，那么下标为 $\lfloor \dfrac{n}{2} \rfloor$的元素（下标从 0 开始）一定是众数。</p>
+<p><strong>算法</strong><br>先将<code>nums</code>数组排序，返回$\lfloor \dfrac{n}{2} \rfloor$下标对应的元素。下图解释了这种策略有效的原因，第一个例子是$n$为奇数的情况，第二个例子是$n$为偶数的情况。</p>
+<p><img src="/article/e86f8a37/a70cb9316157ecd7eeffe7900d3ca83849079824964e8a0aaefbcffd4040f175-image.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>对于每种情况，数组下划线表示众数是数组最小值时覆盖的下标，数组上划线表示众数时数组最大值时覆盖的下标。其他情况，这条线会在这两种极端情况的中间，即下划线右移，上划线左移。两个极端情况会在下标为$\lfloor \dfrac{n}{2} \rfloor$的地方重叠。因此，无论众数时多少，返回$\lfloor \dfrac{n}{2} \rfloor$下标对应的值都是正确的。</p>
+<p><strong>代码</strong></p>
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">myPow</span><span class="hljs-params">(self, x, n)</span>:</span>
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">quickMul</span><span class="hljs-params">(N)</span>:</span>
-            ans = <span class="hljs-number">1.0</span>
-            <span class="hljs-comment"># 贡献的初始值为x</span>
-            x_contribute = x
-            <span class="hljs-comment"># 在对N进行二进制拆分的同时计算答案</span>
-            <span class="hljs-keyword">while</span> N &gt; <span class="hljs-number">0</span>:
-                <span class="hljs-keyword">if</span> N % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>:
-                    <span class="hljs-comment"># 如果N二进制表示的最低位为1，那么需要计入贡献</span>
-                    ans *= x_contribute
-                <span class="hljs-comment"># 将贡献不断地平方</span>
-                x_contribute *= x_contribute
-                <span class="hljs-comment"># 舍弃N二进制表示的最低位，这样每次只要判断最低位即可</span>
-                N // = <span class="hljs-number">2</span>
-            <span class="hljs-keyword">return</span> ans
-        <span class="hljs-keyword">return</span> quickMul(n) <span class="hljs-keyword">if</span> n &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-number">1.0</span> / quickMul(-n)</code></pre>
-<h2 id="牛顿迭代法"><a href="#牛顿迭代法" class="headerlink" title="牛顿迭代法"></a>牛顿迭代法</h2><p>思路参考链接<a href="http://www.matrix67.com/blog/archives/361" target="_blank" rel="noopener">牛顿迭代法快速寻找平方根</a><br>代码参考链接<a href="http://www.voidcn.com/article/p-eudisdmk-zm.html" target="_blank" rel="noopener">leetcode sqrt(x):牛顿迭代法和Quake-III中的神奇方法</a></p>
-<p><img src="/article/553b1469/200711241.gif" srcset="/img/loading.gif" alt="img"></p>
-<p>具体求解：<a href="https://leetcode-cn.com/problems/powx-n/solution/niu-dun-die-dai-fa-by-cuo-mie-zong/" target="_blank" rel="noopener">牛顿迭代法求解</a><br>看了思路，数学真是一个全新的角度~</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/powx-n/solution/50-powx-n-kuai-su-mi-qing-xi-tu-jie-by-jyd/" target="_blank" rel="noopener">优秀题解(推荐)</a>看了这个大佬的几个题解了，高手，思路很清晰，个人账号里面有一系列套题，剑指Offer之类的，非常具有参考价值。</p>
-<p><font color="blue">第一次写，不是很流畅，思路和手都不太行。下周再做一遍，做完就把这行删掉，冲鸭</font><br>如此一来，每天水一篇，居然成为了日更博主，哈哈哈哈哈<br>不足的博文在后期有时间都会进行修改，做一个有质量(没人气)的博主，奥里给O(∩_∩)O。</p>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(self, nums)</span>:</span>
+        nums.sort()
+        <span class="hljs-keyword">return</span> nums[len(nums)//<span class="hljs-number">2</span>]</code></pre>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：$O(nlogn)$。将数组排序的时间复杂度为$O(nlogn)$。</li>
+<li>空间复杂度：$O(nlogn)$。雨果使用语言自带的排序算法，需要使用$O(nlogn)$的栈空间，如果自己编写堆排序，则只需要$O(1)$的额外空间。</li>
+</ul>
+<h2 id="方法三：随机化"><a href="#方法三：随机化" class="headerlink" title="方法三：随机化"></a>方法三：随机化</h2><p><strong>思路</strong><br>因为超过$\lfloor \dfrac{n}{2} \rfloor$的数组下标被众数占据了，这样我们随机挑选一个下标对应的元素并验证，有很大的概率能找到众数。</p>
+<p><strong>算法</strong><br>由于一个给定的下标对应的数字很有可能是众数，随机挑选一个下标，检查它是否是众数，如果是就返回，否则继续随机挑选。</p>
+<p><strong>代码</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> random
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(self, nums)</span>:</span>
+        majority_count = len(nums)//<span class="hljs-number">2</span>
+        <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+            candidate = random.choice(nums)
+            <span class="hljs-keyword">if</span> sum(<span class="hljs-number">1</span> <span class="hljs-keyword">for</span> elem <span class="hljs-keyword">in</span> nums <span class="hljs-keyword">if</span> elem == candidate) &gt; majority_count:
+                <span class="hljs-keyword">return</span> candidate</code></pre>
+<p>时间复杂度：理论上最坏情况下的时间复杂度为$O(\infty)$，因为如果我们的运气很差，这个算法会一直找不到众数，随机挑选无穷多次，所以最坏时间复杂度是没有上限的。然而，<strong>运行的期望时间是线性的。</strong><br>为了更简单地分析，先说服你自己：<strong>由于众数占据超过数组一半的位置，期望的随机次数会小于众数占据数组恰好一半的情况。</strong>因此，我们可以计算随机的期望次数（下标为<code>prob</code>为原问题，<code>mod</code>为众数恰好占据数组一半数目的问题）：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    E(\textit{iters}_{prob}) &\leq E(\textit{iters}_{mod}) \\
+                    &= \lim_{n\to\infty} \sum_{i=1}^{n} i \cdot \frac{1}{2^i} \\
+                    &= 2
+\end{aligned}</script><p>计算方法为：当众数恰好占据数组的一半时，第一次随机我们有$\frac{1}{2}$的概率找到众数，如果没有找到，则第二次随机时，也就是第二次找到众数的概率为$\frac{1}{4}$，以此类推。因此期望的次数为$i <em> \frac{1}{2^i}$的和，可以计算出这个和为2，说明<em>*期望的随机次数是常数</em></em>。每一次随机后，我们需要$O(n)$的时间判断这个数是否为众数，因此期望的时间复杂度为$O(n)$。</p>
+<p>计算方法为：当众数恰好占据数组的一半时，第一次随机我们有$\frac{1}{2}$的概率找到众数，如果没有找到，则第二次随机时，也就是第二次找到众数的概率为$\frac{1}{4}$，以此类推。因此期望的次数为$i * \frac{1}{2^i}$的和，可以计算出这个和为2，说明期望的随机次数是常数。每一次随机后，我们需要$O(n)$的时间判断这个数是否为众数，因此期望的时间复杂度为$O(n)$。</p>
+<p>空间复杂度：$O(1)$。随机方法只需要常数级别的额外空间。</p>
+<h2 id="方法四：分治"><a href="#方法四：分治" class="headerlink" title="方法四：分治"></a>方法四：分治</h2><p><strong>思路</strong><br>如果数<code>a</code>是数组<code>nums</code>的众数，如果将<code>nums</code>分为两部分，那么<code>a</code>必定是至少一部分的众数。</p>
+<p>可以用反证法证明这个结论。假设<code>a</code>既不是左半部分的众数，也不是右半部分的众数，那么<code>a</code>出现的次数少于<code>l/2+r/2</code>次，其中<code>l</code>和<code>r</code>分别是左半部分和右半部分的长度。由于<code>l/2+r/2&lt;=(l+r)/2</code>，说明a不是数组<code>nums</code>的众数，因此出现了矛盾。所以这个结论时正确的。</p>
+<p>说明我们可以使用分治法解决这个问题：<strong>将数组分成左右两个部分，分别求出左半部分的众数<code>a1</code>以及右半部分的众数<code>a2</code>，随后在<code>a1</code>和<code>a2</code>中选出正确的众数。</strong></p>
+<p><strong>算法</strong><br>使用经典的分治算法递归求解，知道所有的子问题都是长度为<strong>1</strong>的数组，长度为<strong>1</strong>的子数组中唯一的数显然就是众数，直接返回即可。<br>如果回溯后某区间长度大于<code>1</code>，将左右子区间的值合并。如果众数相同，这一段区间的众数就确定下来。否则，需要比较两个众数在整个区间内出现的次数来确定该区间的众数。</p>
+<p><strong>代码</strong></p>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(self, nums, lo=<span class="hljs-number">0</span>, hi=None)</span>:</span>
+	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majority_element_rec</span><span class="hljs-params">(lo, hi)</span>:</span>
+	<span class="hljs-comment"># basic case;the only element in an array of size 1 is the majority element.</span>
+		<span class="hljs-keyword">if</span> lo == hi:
+		<span class="hljs-keyword">return</span> nums[lo]
+		
+		<span class="hljs-comment"># recurse on left and right halves of this slice.</span>
+		mid = (hi - lo) // <span class="hljs-number">2</span> + lo
+		left = majority_element_rec(lo, mid)
+		right = majority_element_rec(mid+<span class="hljs-number">1</span>， hi)
+		
+		<span class="hljs-comment"># if the two halves agree on the majority element, return it.</span>
+		<span class="hljs-keyword">if</span> left == right:
+			<span class="hljs-keyword">return</span> left
+		<span class="hljs-comment"># otherwise, count each element and return the 'winner'.</span>
+		left_count = sum(<span class="hljs-number">1</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(lo, hi+<span class="hljs-number">1</span>) <span class="hljs-keyword">if</span> nums[i] == left)
+		right_count = sum(<span class="hljs-number">1</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(lo, hi+<span class="hljs-number">1</span>) <span class="hljs-keyword">if</span> nums[i] == right)
+		
+		<span class="hljs-keyword">return</span> left <span class="hljs-keyword">if</span> left_count &gt; right_count <span class="hljs-keyword">else</span> right
+	<span class="hljs-keyword">return</span> majority_element_rec(<span class="hljs-number">0</span>, len(nums)<span class="hljs-number">-1</span>)</code></pre>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：$O(n\log⁡n)$。函数<code>majority_element_rec()</code>会求解 2 个长度为$\dfrac{n}{2}$的子问题，并做两遍长度为$n$的线性扫描。因此，分治算法的时间复杂度可以表示为：</li>
+</ul>
+<script type="math/tex; mode=display">
+T(n) = 2T(\frac{n}{2}) + 2n</script><p>​        根据<a href="https://baike.baidu.com/item/%E4%B8%BB%E5%AE%9A%E7%90%86/3463232?fr=aladdin" target="_blank" rel="noopener">主定理(百度百科，有条件去看wiki)</a>，本题满足第二种情况，所以时间复杂度可以表示为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    T(n) &= \Theta(n^{log_{b}a}\log n) \\
+         &= \Theta(n^{log_{2}2}\log n) \\
+         &= \Theta(n \log n) \\
+\end{aligned}</script><ul>
+<li>空间复杂度：$O(\log n)$。尽管分治算法没有直接分配额外的数组空间，但在递归的过程中使用了额外的栈空间。算法每次将数组从中间分成两部分，所以数组长度变为<code>1</code>之前需要进行$O(\log n)$次递归，即空间复杂度为$O(\log n)$。</li>
+</ul>
+<h2 id="方法五：Boyer-Moore投票算法"><a href="#方法五：Boyer-Moore投票算法" class="headerlink" title="方法五：Boyer-Moore投票算法"></a>方法五：Boyer-Moore投票算法</h2><p><strong>思路</strong><br>如果我们把众数记为$+1$，把其他数记为$−1$，将它们全部加起来，显然和大于<code>0</code>，从结果本身我们可以看出众数比其他数多。</p>
+<p><strong>算法</strong><br>Boyer-Moore 算法的本质和方法四中的分治十分类似。我们首先给出 Boyer-Moore 算法的详细步骤：</p>
+<ul>
+<li><p>我们维护一个候选众数<code>candidate</code>和它出现的次数<code>count</code>。初始时<code>candidate</code>可以为任意值，<code>count</code>为 0；</p>
+</li>
+<li><p>我们遍历数组 <code>nums</code> 中的所有元素，对于每个元素 <code>x</code>，在判断 <code>x</code> 之前，如果 <code>count</code> 的值为 <code>0</code>，我们先将 <code>x</code> 的值赋予 <code>candidate</code>，随后我们判断 <code>x</code>：</p>
+<ul>
+<li>如果 <code>x</code> 与 <code>candidate</code> 相等，那么计数器 <code>count</code> 的值增加 1；</li>
+<li>如果 <code>x</code> 与 <code>candidate</code> 不等，那么计数器 <code>count</code> 的值减少 1。</li>
+</ul>
+</li>
+<li><p>在遍历完成后，<code>candidate</code> 即为整个数组的众数。</p>
+</li>
+</ul>
+<p>我们举一个具体的例子，例如下面的这个数组：</p>
+<p class="note note-info">[7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]</p>
+
+<p>在遍历到数组中的第一个元素以及每个在 <code>|</code> 之后的元素时，<code>`candidate</code> 都会因为 <code>count</code> 的值变为 <code>0</code> 而发生改变。最后一次 <code>candidate</code> 的值从 <code>5</code> 变为 <code>7</code>，也就是这个数组中的众数。<br>简单的证明见官方题解。</p>
+<p><strong>代码</strong></p>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sollution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(self, nums)</span>:</span>
+        count = <span class="hljs-number">0</span>
+        candidate = <span class="hljs-literal">None</span>
+        
+        <span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> nums:
+            <span class="hljs-keyword">if</span> count == <span class="hljs-number">0</span>:
+                candidate = num
+            count += (<span class="hljs-number">1</span> <span class="hljs-keyword">if</span> num == candidate <span class="hljs-keyword">else</span> <span class="hljs-number">-1</span>)
+        <span class="hljs-keyword">return</span> candidate</code></pre>
+<p>大部分借鉴了官方的解题思路，就是会简化一下，加上一点点自己的想法。如果直接扫一遍，就是从脑子里过一遍就没得了。。。记录下来印象会深刻一些。每日一题结束！</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/majority-element/solution/duo-shu-yuan-su-by-leetcode-solution/" target="_blank" rel="noopener">leetcode169官方题解</a></p>
 
             </article>
             <hr>
@@ -304,13 +362,6 @@ x^n = x^{2^{i_0}} * x^{2^{i_1}} * \ldots * x^{2^{i_k}}</script><p>从$x$不断�
                   </div>
                 
                 
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/leetcode/">leetcode</a>
-                    
-                  </div>
-                
               </div>
               
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
@@ -320,18 +371,12 @@ x^n = x^{2^{i_0}} * x^{2^{i_1}} * \ldots * x^{2^{i_k}}</script><p>从$x$不断�
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/article/760e3967.html">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Task04-HOG特征描述算子-行人检测</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/article/3b406ffc.html">
-                        <span class="hidden-mobile">LSTM_Elmo</span>
+                      <a href="/article/a022e3d6.html">
+                        <span class="hidden-mobile">git教程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -613,7 +658,7 @@ x^n = x^{2^{i_0}} * x^{2^{i_1}} * \ldots * x^{2^{i_k}}</script><p>从$x$不断�
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/article/553b1469.html');
+          var target = decodeURI('/article/e86f8a37.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -707,7 +752,7 @@ x^n = x^{2^{i_0}} * x^{2^{i_1}} * \ldots * x^{2^{i_k}}</script><p>从$x$不断�
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "leetcode50&nbsp;",
+        "leetcode169&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 50,
