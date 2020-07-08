@@ -1,225 +1,298 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
-
-
-
-
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=EB Garamond:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sulimin-nb.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
+  </script>
+
+  <meta name="description" content="数理统计与描述性统计概念与python简单实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2数理统计与描述性统计">
+<meta property="og:url" content="https://sulimin-nb.github.io/article/83114b11.html">
+<meta property="og:site_name" content="苏">
+<meta property="og:description" content="数理统计与描述性统计概念与python简单实现">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sulimin-nb.github.io/article/83114b11/%E7%99%BE%E5%88%86%E4%BD%8D%E6%95%B0%E5%9B%BE.png">
+<meta property="og:image" content="https://sulimin-nb.github.io/article/83114b11/image1">
+<meta property="og:image" content="https://sulimin-nb.github.io/article/83114b11/image2.PNG">
+<meta property="og:image" content="https://sulimin-nb.github.io/article/83114b11/%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0%E4%B8%8E%E5%AF%86%E5%BA%A6%E5%87%BD%E6%95%B0%E7%9A%84%E5%85%B3%E7%B3%BB.png">
+<meta property="og:image" content="https://sulimin-nb.github.io/article/83114b11/%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83.png">
+<meta property="og:image" content="https://sulimin-nb.github.io/article/83114b11/%E5%81%8F%E6%80%81%E4%B8%8E%E5%B3%B0%E5%BA%A6.png">
+<meta property="og:image" content="https://sulimin-nb.github.io/article/83114b11/image3.PNG">
+<meta property="article:published_time" content="2020-06-24T03:47:17.000Z">
+<meta property="article:modified_time" content="2020-07-05T03:24:15.810Z">
+<meta property="article:author" content="sulimin">
+<meta property="article:tag" content="概率统计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sulimin-nb.github.io/article/83114b11/%E7%99%BE%E5%88%86%E4%BD%8D%E6%95%B0%E5%9B%BE.png">
+
+<link rel="canonical" href="https://sulimin-nb.github.io/article/83114b11.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>2数理统计与描述性统计 | 苏</title>
   
-  <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="向前向前向前ε=( o｀ω′)ノ">
-  <meta name="author" content="sulimin">
-  <meta name="keywords" content="机器学习，数据挖掘，计算机视觉">
-  <title>2数理统计与描述性统计 - 苏</title>
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-  
-
-  
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-  <script  src="/js/utils.js" ></script>
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="苏" type="application/atom+xml">
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="苏" type="application/atom+xml">
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
 
-<body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>Sulimin</strong>&nbsp;</a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
-          </li>
-        
-      </ul>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
-</nav>
 
-    <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
-              
-            </span>
+  <div class="site-meta">
 
-            
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-24 11:47">
-      2020年6月24日 中午
-    </time>
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">苏</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
   </div>
 
-
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      2.1k 字
-    </span>
-  
-
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      24
-       分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-post-views"></span> 次
-      </span>
-    
-  
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
             
-          </div>
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/83114b11.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/su1.JPG">
+      <meta itemprop="name" content="sulimin">
+      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="苏">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2数理统计与描述性统计
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-24 11:47:17" itemprop="dateCreated datePublished" datetime="2020-06-24T11:47:17+08:00">2020-06-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-05 11:24:15" itemprop="dateModified" datetime="2020-07-05T11:24:15+08:00">2020-07-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">概率统计</span></a>
+                </span>
+            </span>
 
           
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
+            <span id="/article/83114b11.html" class="post-meta-item leancloud_visitors" data-flag-title="2数理统计与描述性统计" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
     
-      
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/article/83114b11.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/article/83114b11.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+            <div class="post-description">数理统计与描述性统计概念与python简单实现</div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <div class="post-content mx-auto" id="post">
-            
-              <p class="note note-info">
-                
-                  本文最后更新于：2020年7月5日 上午
-                
-              </p>
-            
-            <article class="markdown-body">
-              <h1 id="一、数理统计概念"><a href="#一、数理统计概念" class="headerlink" title="一、数理统计概念"></a>一、数理统计概念</h1><h2 id="1-基本概念释义"><a href="#1-基本概念释义" class="headerlink" title="1.基本概念释义"></a>1.基本概念释义</h2><font color="blue">总体</font>：
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="一、数理统计概念"><a href="#一、数理统计概念" class="headerlink" title="一、数理统计概念"></a>一、数理统计概念</h1><h2 id="1-基本概念释义"><a href="#1-基本概念释义" class="headerlink" title="1.基本概念释义"></a>1.基本概念释义</h2><font color="blue">总体</font>：
 
 研究对象的全体，通常用一个随机变量表示。
 
@@ -321,8 +394,8 @@ m_p=\left\{
 x_{[np]+1},       &      & {当np不是整数}\\
 \frac{1}{2}(x_{(np)}+x_{(np+1)})     &      & {当np是整数时}\\
 \end{array} \right.</script><p>其中，<strong>[np]</strong>表示<strong>np</strong>的整数部分。所以，0.5分位数（第50百分位数）就是中位数。</p>
-<p><img src="/article/83114b11/百分位数图.png" srcset="/img/loading.gif" alt></p>
-<h3 id="python实现"><a href="#python实现" class="headerlink" title="python实现"></a>python实现</h3><p><img src="/article/83114b11/image1" srcset="/img/loading.gif" alt="image-20200624144415651"></p>
+<p><img src="/article/83114b11/百分位数图.png" alt></p>
+<h3 id="python实现"><a href="#python实现" class="headerlink" title="python实现"></a>python实现</h3><p><img src="/article/83114b11/image1" alt="image-20200624144415651"></p>
 <h2 id="2-数据离散趋势的度量"><a href="#2-数据离散趋势的度量" class="headerlink" title="2.数据离散趋势的度量"></a>2.数据离散趋势的度量</h2><p>表示数据分散（离散，差异）程度的特征量有方差，标准差，极差以及变异系数等。</p>
 <font color="blue">方差</font>
 
@@ -350,7 +423,7 @@ CV=100\times\frac{s}{x}(\%)</script><font color="blue">四分位差</font>
 <p>样本上、下四分位数之差称为四分位差(或半极差)。</p>
 <script type="math/tex; mode=display">
 R_1 = Q_3 - Q_1</script><p>它也是度量样本分散性的重要数字特征，特别对于具有异常值的数据，它作为分散性具有稳健性<font color="red">  <strong>（见百分位数示意图）</strong></font>。</p>
-<h3 id="python实现-1"><a href="#python实现-1" class="headerlink" title="python实现"></a>python实现</h3><p><img src="/article/83114b11/image2.PNG" srcset="/img/loading.gif" alt="image2" style="zoom:80%;"></p>
+<h3 id="python实现-1"><a href="#python实现-1" class="headerlink" title="python实现"></a>python实现</h3><p><img src="/article/83114b11/image2.PNG" alt="image2" style="zoom:80%;"></p>
 <h2 id="3-分布特征"><a href="#3-分布特征" class="headerlink" title="3.分布特征"></a>3.分布特征</h2><p> <strong>引言：</strong>描述一个随机变量，不仅要说明它能够取那些值，而且还要关心它取这些值的概率（可能性）。</p>
 <font color="blue">离散变量和连续变量</font>
 
@@ -368,14 +441,14 @@ R_1 = Q_3 - Q_1</script><p>它也是度量样本分散性的重要数字特征�
 <font color="blue">分布函数</font>
 
 <p>设$X$是一个随机变量，对任意的实数$x$，令$F(x)=P(X&lt;=x),x \in (-\infty,+\infty)$，则称$F(x)$是随机变量$X$的分布函数(概率累积函数)。</p>
-<p><img src="/article/83114b11/分布函数与密度函数的关系.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/article/83114b11/分布函数与密度函数的关系.png" alt></p>
 <font color="red">密度函数与分布函数关系</font> 
 
 <font color="blue">正态分布</font>：也称高斯分布，是一个非常常见的连续概率分布，概率密度函数为
 $$
 f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp{\{- \frac{(x-u)^2}{2\sigma^2} \}}, \qquad -\infty<x<+\infty $$ 则称$x$服从$n(u,\sigma^2)$分布。 ![uniform2](2数理统计与描述性统计 uniform2.png) <font color="red">正态分布的概率密度函数曲线 
 
-<p><img src="/article/83114b11/标准正态分布.png" srcset="/img/loading.gif" alt="标准正态分布"></p>
+<p><img src="/article/83114b11/标准正态分布.png" alt="标准正态分布"></p>
 <p>​              <font color="red">标准正态分布和对应区间上积分（面积）的百分比</font> </p>
 <p>这个概念可以推广到一般正态分布。$[u-3\sigma,u+3\sigma]$的概率密度曲线之下的面积占总面积的99.7%，是著名的$3\sigma$原则。</p>
 <h2 id="4-偏度与峰度"><a href="#4-偏度与峰度" class="headerlink" title="4. 偏度与峰度"></a>4. 偏度与峰度</h2><p><font color="blue">偏度（skewness）</font>：也称为偏态，是统计数据分布偏斜方向和程度的度量，是统计数据分布非对称程度的数字特征。直观看来就是密度函数曲线尾部的相对长度。<strong>偏度刻画的是分布函数（数据）的对称性。</strong></p>
@@ -395,602 +468,336 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp{\{- \frac{(x-u)^2}{2\sigma^2} \}}, \qquad
 </li>
 </ul>
 <p><font color="blue">峰度(peakedness;kurtosis)</font>：说明的是分布曲线在平均值处峰值高低的特征数。直观看来，峰度反映了峰部的尖度。样本的峰度是和正态分布相比较而言统计量，如果峰度大于正态分布峰度，峰的形状比较尖，比正态分布峰要陡峭。反之亦然。<strong>峰度刻画的是分布函数的集中和分散程度。</strong></p>
-<p><img src="/article/83114b11/偏态与峰度.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/article/83114b11/偏态与峰度.png" alt></p>
 <h3 id="公式与python实现"><a href="#公式与python实现" class="headerlink" title="公式与python实现"></a>公式与python实现</h3><p><font color="blue">样本偏度系数</font>：</p>
 <script type="math/tex; mode=display">
 g_1 = \frac{n}{(n-1)(n-2)s^3}\sum_{i=1}^{n}{(x_i-\overline{x})}^3=\frac{n^2 u_3}{(n-1)(n-2)s^3}</script><p><font color="blue">样本峰度系数</font>：</p>
 <script type="math/tex; mode=display">
-g_2 = \frac{n(n+1)}{(n-1)(n-2)(n-3)s^4}\sum_{i=1}^{n}{(x_i-\overline{x})}^4-3\frac{(n-1)^2}{(n-2)(n-3)}</script><p><img src="/article/83114b11/image3.PNG" srcset="/img/loading.gif" style="zoom:80%;"></p>
+g_2 = \frac{n(n+1)}{(n-1)(n-2)(n-3)s^4}\sum_{i=1}^{n}{(x_i-\overline{x})}^4-3\frac{(n-1)^2}{(n-2)(n-3)}</script><p><img src="/article/83114b11/image3.PNG" style="zoom:80%;"></p>
 </x<+\infty>
-            </article>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/">概率统计</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/">概率统计</a>
-                    
-                  </div>
-                
-              </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <div class="post-prev col-6">
-                    
-                    
-                      <a href="/article/fd8e5887.html">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Introduction_and_Word_Vectors</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </div>
-                  <div class="post-next col-6">
-                    
-                    
-                  </div>
-                </div>
-              
-            </div>
+    </div>
 
-            
-              <!-- Comments -->
-              <div class="comments" id="comments">
-                
-                
-  <div id="vcomments"></div>
-  <script type="text/javascript">
-    function loadValine() {
-      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
-        new Valine({
-          el: "#vcomments",
-          app_id: "gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz",
-          app_key: "Xwqmsb7cDIWaQB2GG2fCnSHf",
-          placeholder: "ヾﾉ≧∀≦)o 来呀！吐槽一番吧！",
-          path: window.location.pathname,
-          avatar: "retro",
-          meta: ["nick","mail","link"],
-          pageSize: "10",
-          lang: "zh-CN",
-          highlight: true,
-          recordIP: true,
-          serverURLs: "",
-        });
-      });
-    }
-    createObserver(loadValine, 'vcomments');
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
-      powered by Valine.</a></noscript>
+    
+    
+    
+	
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
 
+      </div>
+    
 
-              </div>
-            
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/" rel="tag"><i class="fa fa-tag"></i> 概率统计</a>
           </div>
-        </div>
-      </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/article/fd8e5887.html" rel="next" title="Introduction_and_Word_Vectors">
+      Introduction_and_Word_Vectors <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
     
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
-    
-  </main>
-
+  </article>
   
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
   
-
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
-    
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- LeanCloud 统计PV -->
-        <span id="leancloud-site-pv-container" style="display: none">
-            总访问量 
-            <span id="leancloud-site-pv"></span>
-             次
-          </span>
-      
-      
-        <!-- LeanCloud 统计UV -->
-        <span id="leancloud-site-uv-container" style="display: none">
-            总访客数 
-            <span id="leancloud-site-uv"></span>
-             人
-          </span>
-      
-
-    
-  </div>
-
-
-    
-
-    
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
-
-<!-- Plugins -->
-
-
-  
-    <script  src="/js/lazyload.js" ></script>
   
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
 
-
-
-  <script defer>
-  (function () {
-    // 查询存储的记录
-    function getRecord(Counter, target) {
-      return new Promise(function (resolve, reject) {
-        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
-          .then(resp => resp.json())
-          .then(({results, code, error}) => {
-            if (code === 401) {
-              throw error;
-            }
-            if (results && results.length > 0) {
-              var record = results[0];
-              resolve(record);
-            } else {
-              Counter('post', '/classes/Counter', {target, time: 0})
-                .then(resp => resp.json())
-                .then((record, error) => {
-                  if (error) {
-                    throw error;
-                  }
-                  resolve(record);
-                }).catch(error => {
-                console.error('Failed to create', error);
-                reject(error);
-              });
-            }
-          }).catch((error) => {
-          console.error('LeanCloud Counter Error:', error);
-          reject(error);
-        });
-      })
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
     }
-
-    // 发起自增请求
-    function increment(Counter, incrArr) {
-      return new Promise(function (resolve, reject) {
-        Counter('post', '/batch', {
-          "requests": incrArr
-        }).then((res) => {
-          res = res.json();
-          if (res.error) {
-            throw res.error;
-          }
-          resolve(res);
-        }).catch((error) => {
-          console.error('Failed to save visitor count', error);
-          reject(error);
-        });
-      });
-    }
-
-    // 构建自增请求体
-    function buildIncrement(objectId) {
-      return {
-        "method": "PUT",
-        "path": `/1.1/classes/Counter/${ objectId }`,
-        "body": {
-          "time": {
-            '__op': 'Increment',
-            'amount': 1
-          }
-        }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
       }
     }
-
-    // 校验是否为有效的 UV
-    function validUV() {
-      var key = 'LeanCloud_UV_Flag';
-      var flag = localStorage.getItem(key);
-      if (flag) {
-        // 距离标记小于 24 小时则不计为 UV
-        if (new Date().getTime() - parseInt(flag) <= 86400000) {
-          return false;
-        }
-      }
-      localStorage.setItem(key, new Date().getTime().toString());
-      return true;
-    }
-
-    function addCount(Counter) {
-      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
-      var getterArr = [];
-      var incrArr = [];
-
-      // 请求 PV 并自增
-      var pvCtn = document.querySelector('#leancloud-site-pv-container');
-      if (pvCtn || enableIncr) {
-        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
-          incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-pv');
-          if (ele) {
-            ele.innerText = record.time + 1;
-            if (pvCtn) {
-              pvCtn.style.display = 'inline';
-            }
-          }
-        });
-        getterArr.push(pvGetter);
-      }
-
-      // 请求 UV 并自增
-      var uvCtn = document.querySelector('#leancloud-site-uv-container');
-      if (uvCtn || enableIncr) {
-        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
-          var vuv = validUV();
-          vuv && incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-uv');
-          if (ele) {
-            ele.innerText = record.time + (vuv ? 1 : 0);
-            if (uvCtn) {
-              uvCtn.style.display = 'inline';
-            }
-          }
-        });
-        getterArr.push(uvGetter);
-      }
-
-      // 如果是文章，请求文章的浏览数，并自增
-      if ('true' === 'true') {
-        var viewCtn = document.querySelector('#leancloud-post-views-container');
-        if (viewCtn || enableIncr) {
-          var target = decodeURI('/article/83114b11.html');
-          var viewGetter = getRecord(Counter, target).then((record) => {
-            incrArr.push(buildIncrement(record.objectId))
-            if (viewCtn) {
-              var ele = document.querySelector('#leancloud-post-views');
-              if (ele) {
-                ele.innerText = (record.time || 0) + 1;
-                viewCtn.style.display = 'inline';
-              }
-            }
-          });
-          getterArr.push(viewGetter);
-        }
-      }
-
-      // 如果启动计数自增，批量发起自增请求
-      if (enableIncr) {
-        Promise.all(getterArr).then(() => {
-          incrArr.length > 0 && increment(Counter, incrArr);
-        })
-      }
-    }
-
-    var app_id = 'gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz'
-    var app_key = 'Xwqmsb7cDIWaQB2GG2fCnSHf'
-    var server_url = ''
-
-    function fetchData(api_server) {
-      var Counter = (method, url, data) => {
-        return fetch(`${ api_server }/1.1${ url }`, {
-          method,
-          headers: {
-            'X-LC-Id': app_id,
-            'X-LC-Key': app_key,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
-      };
-
-      addCount(Counter);
-    }
-
-    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
-
-    if (api_server) {
-      fetchData(api_server);
-    } else {
-      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
-        .then(resp => resp.json())
-        .then(({api_server}) => {
-          fetchData('https://' + api_server);
-        });
-    }
-  })();
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
 </script>
 
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、数理统计概念"><span class="nav-text">一、数理统计概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-基本概念释义"><span class="nav-text">1.基本概念释义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、描述性统计"><span class="nav-text">二、描述性统计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-数据集中趋势的度量"><span class="nav-text">1.数据集中趋势的度量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python实现"><span class="nav-text">python实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-数据离散趋势的度量"><span class="nav-text">2.数据离散趋势的度量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python实现-1"><span class="nav-text">python实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-分布特征"><span class="nav-text">3.分布特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-偏度与峰度"><span class="nav-text">4. 偏度与峰度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#公式与python实现"><span class="nav-text">公式与python实现</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="sulimin"
+      src="/images/su1.JPG">
+  <p class="site-author-name" itemprop="name">sulimin</p>
+  <div class="site-description" itemprop="description">向前向前向前ε=( o｀ω′)ノ</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sulimin-nb" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sulimin-nb" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:15210376096@163.com" title="E-Mail → mailto:15210376096@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sulimin</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">站点共71k字</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">阅读需1:04</span>
+</div>
+
+        
 
 
 
 
 
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: 'article.markdown-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "2数理统计与描述性统计&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 50,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
 
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
       }
-    );
-  </script>
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
 
-
-
-
-
-  
-
-  
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+    
 
   
 
 
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz',
+      appKey     : 'Xwqmsb7cDIWaQB2GG2fCnSHf',
+      placeholder: "ヾﾉ≧∀≦)o 来呀！吐槽一番吧！",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
 
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
+  }, window.Valine);
+});
+</script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":1},"log":false});</script></body>
 </html>
+<script type="text/javascript" src="/js/love-click.js"></script>

@@ -1,225 +1,296 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
-
-
-
-
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=EB Garamond:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sulimin-nb.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
+  </script>
+
+  <meta name="description" content="方差分析1 概要方差分析(Analysis of variance, ANOVA) 主要研究分类变量作为自变量时，对因变量的影响是否是显著的。 方差分析的方法是由20世纪的统计学家Ronald Aylmer Fisher在1918年到1925年之间提出并陆续完善起来的，该方法刚开始是用于解决田间实验的数据分析问题，因此，方差分析的学习是和实验设计、实验数据的分析密不可分的。 实验设计和方差分析都有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4方差分析">
+<meta property="og:url" content="https://sulimin-nb.github.io/article/2ad44fb9.html">
+<meta property="og:site_name" content="苏">
+<meta property="og:description" content="方差分析1 概要方差分析(Analysis of variance, ANOVA) 主要研究分类变量作为自变量时，对因变量的影响是否是显著的。 方差分析的方法是由20世纪的统计学家Ronald Aylmer Fisher在1918年到1925年之间提出并陆续完善起来的，该方法刚开始是用于解决田间实验的数据分析问题，因此，方差分析的学习是和实验设计、实验数据的分析密不可分的。 实验设计和方差分析都有">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sulimin-nb.github.io/article/2ad44fb9/2-1.png">
+<meta property="og:image" content="https://sulimin-nb.github.io/article/2ad44fb9/2-2.png">
+<meta property="og:image" content="https://sulimin-nb.github.io/article/2ad44fb9/2-3.png">
+<meta property="og:image" content="https://sulimin-nb.github.io/article/2ad44fb9/3-1.png">
+<meta property="og:image" content="https://sulimin-nb.github.io/article/2ad44fb9/3-2.png">
+<meta property="og:image" content="https://sulimin-nb.github.io/article/2ad44fb9/3-3.png">
+<meta property="article:published_time" content="2020-06-30T15:17:02.000Z">
+<meta property="article:modified_time" content="2020-07-01T06:23:42.271Z">
+<meta property="article:author" content="sulimin">
+<meta property="article:tag" content="概率统计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sulimin-nb.github.io/article/2ad44fb9/2-1.png">
+
+<link rel="canonical" href="https://sulimin-nb.github.io/article/2ad44fb9.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>4方差分析 | 苏</title>
   
-  <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="向前向前向前ε=( o｀ω′)ノ">
-  <meta name="author" content="sulimin">
-  <meta name="keywords" content="机器学习，数据挖掘，计算机视觉">
-  <title>4方差分析 - 苏</title>
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-  
-
-  
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-  <script  src="/js/utils.js" ></script>
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="苏" type="application/atom+xml">
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="苏" type="application/atom+xml">
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
 
-<body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>Sulimin</strong>&nbsp;</a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
-          </li>
-        
-      </ul>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
-</nav>
 
-    <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
-              
-            </span>
+  <div class="site-meta">
 
-            
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-30 23:17">
-      2020年6月30日 晚上
-    </time>
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">苏</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
   </div>
 
-
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      1.9k 字
-    </span>
-  
-
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      20
-       分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-post-views"></span> 次
-      </span>
-    
-  
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
 
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
             
-          </div>
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/2ad44fb9.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/su1.JPG">
+      <meta itemprop="name" content="sulimin">
+      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="苏">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          4方差分析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-30 23:17:02" itemprop="dateCreated datePublished" datetime="2020-06-30T23:17:02+08:00">2020-06-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-01 14:23:42" itemprop="dateModified" datetime="2020-07-01T14:23:42+08:00">2020-07-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">概率统计</span></a>
+                </span>
+            </span>
 
           
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
+            <span id="/article/2ad44fb9.html" class="post-meta-item leancloud_visitors" data-flag-title="4方差分析" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
     
-      
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/article/2ad44fb9.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/article/2ad44fb9.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <div class="post-content mx-auto" id="post">
-            
-              <p class="note note-info">
-                
-                  本文最后更新于：2020年7月1日 下午
-                
-              </p>
-            
-            <article class="markdown-body">
-              <h1 id="方差分析"><a href="#方差分析" class="headerlink" title="方差分析"></a>方差分析</h1><h2 id="1-概要"><a href="#1-概要" class="headerlink" title="1 概要"></a>1 概要</h2><p><strong>方差分析</strong>(<strong>Analysis of variance, ANOVA</strong>) 主要研究分类变量作为自变量时，对因变量的影响是否是显著的。</p>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="方差分析"><a href="#方差分析" class="headerlink" title="方差分析"></a>方差分析</h1><h2 id="1-概要"><a href="#1-概要" class="headerlink" title="1 概要"></a>1 概要</h2><p><strong>方差分析</strong>(<strong>Analysis of variance, ANOVA</strong>) 主要研究分类变量作为自变量时，对因变量的影响是否是显著的。</p>
 <p>方差分析的方法是由20世纪的统计学家Ronald Aylmer Fisher在1918年到1925年之间提出并陆续完善起来的，该方法刚开始是用于解决田间实验的数据分析问题，因此，方差分析的学习是和实验设计、实验数据的分析密不可分的。</p>
 <p>实验设计和方差分析都有自己相应的语言。因此，在这里我们通过一个焦虑症治疗的实例，先了解一些术语，并且思考一下，方差分析主要用于解决什么样的问题。<a id="more"></a></p>
 <p>以焦虑症治疗为例，现有两种治疗方案：认知行为疗法（CBT）和眼动脱敏再加工法（EMDR）。我们招募10位焦虑症患者作为志愿者，随机分配一半的人接受为期五周的CBT，另外一半接受为期五周的EMDR，设计方案如表1-1所示。在治疗结束时，要求每位患者都填写状态特质焦虑问卷（STAI），也就是一份焦虑度测量的自我评测报告。</p>
@@ -497,83 +568,22 @@ MS_A / MS_e \sim F_{k-1, n-k} \qquad (2.9)</script><p>据（5.9），在给定�
 </div>
 <p>在上表中，对于显著性一栏，一般来说，我们把算出的$F$比，即$MS_A / MS_e$，与$F_{k-1, n-k}(0.05)=c_1$和$F_{k-1, n-k}(0.01)=c_2$比较。若$MS_A / MS_e&gt;c_2$，用**表示，表明A因素的效应是高度显著的，即在$\alpha=0.01$的显著性水平下，拒绝原假设（5.3）。同理，$c_2<MS_A ms_e<c_1$用$\ast $表示，$ms_a ms_e>c_1$时不显著。</MS_A></p>
 <h3 id="2-2-代码实例"><a href="#2-2-代码实例" class="headerlink" title="2.2 代码实例"></a>2.2 代码实例</h3><h4 id="单因素方差分析的R语言实现"><a href="#单因素方差分析的R语言实现" class="headerlink" title="单因素方差分析的R语言实现"></a>单因素方差分析的R语言实现</h4><p>单因素方差分析中，你感兴趣的是比较分类因子定义的两个或多个组别中的因变量均值。以multcomp包中的cholesterol数据集为例，50个患者均接受降低胆固醇药物治疗（trt）五种疗法中的一种疗法。其中三种治疗条件使用药物相同，分别是20mg一天一次（1time）、10mg一天两次（2times）和5mg一天四次（4times）。剩下的两种方式（drugD和drugE）代表候选药物。</p>
-<pre><code class="hljs angelscript">&gt; library(multcomp)
-&gt; attach(cholesterol)
-&gt; 
-&gt; # 统计各组样本大小
-&gt; table(trt) 
-trt
- <span class="hljs-number">1</span>time <span class="hljs-number">2</span>times <span class="hljs-number">4</span>times  drugD  drugE 
-    <span class="hljs-number">10</span>     <span class="hljs-number">10</span>     <span class="hljs-number">10</span>     <span class="hljs-number">10</span>     <span class="hljs-number">10</span> 
-&gt; 
-&gt; # 各组均值
-&gt; aggregate(response, by=list(trt), FUN=mean)
-  Group<span class="hljs-number">.1</span>        x
-<span class="hljs-number">1</span>   <span class="hljs-number">1</span>time  <span class="hljs-number">5.78197</span>
-<span class="hljs-number">2</span>  <span class="hljs-number">2</span>times  <span class="hljs-number">9.22497</span>
-<span class="hljs-number">3</span>  <span class="hljs-number">4</span>times <span class="hljs-number">12.37478</span>
-<span class="hljs-number">4</span>   drugD <span class="hljs-number">15.36117</span>
-<span class="hljs-number">5</span>   drugE <span class="hljs-number">20.94752</span>
-&gt; 
-&gt; # 各组标准差
-&gt; aggregate(response, by=list(trt), FUN=sd)
-  Group<span class="hljs-number">.1</span>        x
-<span class="hljs-number">1</span>   <span class="hljs-number">1</span>time <span class="hljs-number">2.878113</span>
-<span class="hljs-number">2</span>  <span class="hljs-number">2</span>times <span class="hljs-number">3.483054</span>
-<span class="hljs-number">3</span>  <span class="hljs-number">4</span>times <span class="hljs-number">2.923119</span>
-<span class="hljs-number">4</span>   drugD <span class="hljs-number">3.454636</span>
-<span class="hljs-number">5</span>   drugE <span class="hljs-number">3.345003</span>
-&gt; 
-&gt; # 进行方差分析
-&gt; fit &lt;- aov(response ~ trt)
-&gt; summary(fit)
-            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-trt          <span class="hljs-number">4</span> <span class="hljs-number">1351.4</span>   <span class="hljs-number">337.8</span>   <span class="hljs-number">32.43</span> <span class="hljs-number">9.82e-13</span> ***
-Residuals   <span class="hljs-number">45</span>  <span class="hljs-number">468.8</span>    <span class="hljs-number">10.4</span>                     
----
-Signif. codes:  <span class="hljs-number">0</span> ‘***’ <span class="hljs-number">0.001</span> ‘**’ <span class="hljs-number">0.01</span> ‘*’ <span class="hljs-number">0.05</span> ‘.’ <span class="hljs-number">0.1</span> ‘ ’ <span class="hljs-number">1</span></code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&gt; library(multcomp)</span><br><span class="line">&gt; attach(cholesterol)</span><br><span class="line">&gt; </span><br><span class="line">&gt; # 统计各组样本大小</span><br><span class="line">&gt; table(trt) </span><br><span class="line">trt</span><br><span class="line"> 1time 2times 4times  drugD  drugE </span><br><span class="line">    10     10     10     10     10 </span><br><span class="line">&gt; </span><br><span class="line">&gt; # 各组均值</span><br><span class="line">&gt; aggregate(response, by&#x3D;list(trt), FUN&#x3D;mean)</span><br><span class="line">  Group.1        x</span><br><span class="line">1   1time  5.78197</span><br><span class="line">2  2times  9.22497</span><br><span class="line">3  4times 12.37478</span><br><span class="line">4   drugD 15.36117</span><br><span class="line">5   drugE 20.94752</span><br><span class="line">&gt; </span><br><span class="line">&gt; # 各组标准差</span><br><span class="line">&gt; aggregate(response, by&#x3D;list(trt), FUN&#x3D;sd)</span><br><span class="line">  Group.1        x</span><br><span class="line">1   1time 2.878113</span><br><span class="line">2  2times 3.483054</span><br><span class="line">3  4times 2.923119</span><br><span class="line">4   drugD 3.454636</span><br><span class="line">5   drugE 3.345003</span><br><span class="line">&gt; </span><br><span class="line">&gt; # 进行方差分析</span><br><span class="line">&gt; fit &lt;- aov(response ~ trt)</span><br><span class="line">&gt; summary(fit)</span><br><span class="line">            Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span><br><span class="line">trt          4 1351.4   337.8   32.43 9.82e-13 ***</span><br><span class="line">Residuals   45  468.8    10.4                     </span><br><span class="line">---</span><br><span class="line">Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span><br></pre></td></tr></table></figure>
 <p>方差分析的结果中，各项数字的含义可以参照表2-1。</p>
 <h4 id="查看各水平对应的组均值的差异"><a href="#查看各水平对应的组均值的差异" class="headerlink" title="查看各水平对应的组均值的差异"></a>查看各水平对应的组均值的差异</h4><p>gplots包中的plotmeans()可以用来绘制带有置信区间的组均值图形。如图9-1所示，图形展示了带有95%的置信区间的各疗法均值，可以清楚看到它们之间的差异。</p>
-<pre><code class="hljs lisp">library(<span class="hljs-name">gplots</span>)
-plotmeans(<span class="hljs-name">response</span> ~ trt, xlab=<span class="hljs-string">"Treatment"</span>, ylab=<span class="hljs-string">"Response"</span>,
-          main=<span class="hljs-string">"Mean Plot\nwith 95% CI"</span>)
-detach(<span class="hljs-name">cholesterol</span>)</code></pre>
-<p><img src="/article/2ad44fb9/2-1.png" srcset="/img/loading.gif" alt="2-1"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">library(gplots)</span><br><span class="line">plotmeans(response ~ trt, xlab&#x3D;&quot;Treatment&quot;, ylab&#x3D;&quot;Response&quot;,</span><br><span class="line">          main&#x3D;&quot;Mean Plot\nwith 95% CI&quot;)</span><br><span class="line">detach(cholesterol)</span><br></pre></td></tr></table></figure>
+<p><img src="/article/2ad44fb9/2-1.png" alt="2-1"></p>
 <p><strong>2-1 五种降低胆固醇药物疗法的均值，含95%的置信区间</strong></p>
 <h4 id="多重比较"><a href="#多重比较" class="headerlink" title="多重比较"></a>多重比较</h4><p>虽然ANOVA对各疗法的F检验表明五种药物疗法效果不同，但是并没有告诉你哪种疗法与其他疗法不同。多重比较可以解决这个问题。例如，TukeyHSD()函数提供了对各组均值差异的成对检验。</p>
-<pre><code class="hljs angelscript">&gt; TukeyHSD(fit)
-  Tukey multiple comparisons of means
-    <span class="hljs-number">95</span>% family-wise confidence level
-
-Fit: aov(formula = response ~ trt)
-
-$trt
-                  diff        lwr       upr     p adj
-<span class="hljs-number">2</span>times<span class="hljs-number">-1</span>time   <span class="hljs-number">3.44300</span> <span class="hljs-number">-0.6582817</span>  <span class="hljs-number">7.544282</span> <span class="hljs-number">0.1380949</span>
-<span class="hljs-number">4</span>times<span class="hljs-number">-1</span>time   <span class="hljs-number">6.59281</span>  <span class="hljs-number">2.4915283</span> <span class="hljs-number">10.694092</span> <span class="hljs-number">0.0003542</span>
-drugD<span class="hljs-number">-1</span>time    <span class="hljs-number">9.57920</span>  <span class="hljs-number">5.4779183</span> <span class="hljs-number">13.680482</span> <span class="hljs-number">0.0000003</span>
-drugE<span class="hljs-number">-1</span>time   <span class="hljs-number">15.16555</span> <span class="hljs-number">11.0642683</span> <span class="hljs-number">19.266832</span> <span class="hljs-number">0.0000000</span>
-<span class="hljs-number">4</span>times<span class="hljs-number">-2</span>times  <span class="hljs-number">3.14981</span> <span class="hljs-number">-0.9514717</span>  <span class="hljs-number">7.251092</span> <span class="hljs-number">0.2050382</span>
-drugD<span class="hljs-number">-2</span>times   <span class="hljs-number">6.13620</span>  <span class="hljs-number">2.0349183</span> <span class="hljs-number">10.237482</span> <span class="hljs-number">0.0009611</span>
-drugE<span class="hljs-number">-2</span>times  <span class="hljs-number">11.72255</span>  <span class="hljs-number">7.6212683</span> <span class="hljs-number">15.823832</span> <span class="hljs-number">0.0000000</span>
-drugD<span class="hljs-number">-4</span>times   <span class="hljs-number">2.98639</span> <span class="hljs-number">-1.1148917</span>  <span class="hljs-number">7.087672</span> <span class="hljs-number">0.2512446</span>
-drugE<span class="hljs-number">-4</span>times   <span class="hljs-number">8.57274</span>  <span class="hljs-number">4.4714583</span> <span class="hljs-number">12.674022</span> <span class="hljs-number">0.0000037</span>
-drugE-drugD    <span class="hljs-number">5.58635</span>  <span class="hljs-number">1.4850683</span>  <span class="hljs-number">9.687632</span> <span class="hljs-number">0.0030633</span>
-
-&gt; par(las=<span class="hljs-number">2</span>)
-&gt; par(mar=c(<span class="hljs-number">5</span>,<span class="hljs-number">8</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>))
-&gt; plot(TukeyHSD(fit))</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&gt; TukeyHSD(fit)</span><br><span class="line">  Tukey multiple comparisons of means</span><br><span class="line">    95% family-wise confidence level</span><br><span class="line"></span><br><span class="line">Fit: aov(formula &#x3D; response ~ trt)</span><br><span class="line"></span><br><span class="line">$trt</span><br><span class="line">                  diff        lwr       upr     p adj</span><br><span class="line">2times-1time   3.44300 -0.6582817  7.544282 0.1380949</span><br><span class="line">4times-1time   6.59281  2.4915283 10.694092 0.0003542</span><br><span class="line">drugD-1time    9.57920  5.4779183 13.680482 0.0000003</span><br><span class="line">drugE-1time   15.16555 11.0642683 19.266832 0.0000000</span><br><span class="line">4times-2times  3.14981 -0.9514717  7.251092 0.2050382</span><br><span class="line">drugD-2times   6.13620  2.0349183 10.237482 0.0009611</span><br><span class="line">drugE-2times  11.72255  7.6212683 15.823832 0.0000000</span><br><span class="line">drugD-4times   2.98639 -1.1148917  7.087672 0.2512446</span><br><span class="line">drugE-4times   8.57274  4.4714583 12.674022 0.0000037</span><br><span class="line">drugE-drugD    5.58635  1.4850683  9.687632 0.0030633</span><br><span class="line"></span><br><span class="line">&gt; par(las&#x3D;2)</span><br><span class="line">&gt; par(mar&#x3D;c(5,8,4,2))</span><br><span class="line">&gt; plot(TukeyHSD(fit))</span><br></pre></td></tr></table></figure>
 <p>成对比较图形如图2-2所示。图形中置信区间包含0的疗法说明差异不显著（p&gt;0.05）。</p>
-<p><img src="/article/2ad44fb9/2-2.png" srcset="/img/loading.gif" alt="2-2"></p>
+<p><img src="/article/2ad44fb9/2-2.png" alt="2-2"></p>
 <p><strong>图2-2 Tukey HSD均值成对比较图</strong></p>
 <h4 id="评估检验的假设条件"><a href="#评估检验的假设条件" class="headerlink" title="评估检验的假设条件"></a>评估检验的假设条件</h4><p>根据2.1中我们讲的关于方差分析的推导中，我们知道，方差分析结果的有效性是建立在一系列假设条件之上的，因此，在我们使用方差分析模型时，需要评估进行方差分析的数据，是否符合模型使用的假设条件。</p>
 <h5 id="正态性检验"><a href="#正态性检验" class="headerlink" title="正态性检验"></a>正态性检验</h5><p>第一，在建立模型时，我们假设因变量是服从正态分布的，需要进行正态性检验。</p>
 <p>正态性检验的方法有两种，一是通过QQ图进行检验。</p>
-<pre><code class="hljs routeros"><span class="hljs-comment"># QQ plot</span>
-library(car)
-qqPlot(lm(response ~ trt, <span class="hljs-attribute">data</span>=cholesterol),
-       <span class="hljs-attribute">simulate</span>=<span class="hljs-literal">TRUE</span>, <span class="hljs-attribute">main</span>=<span class="hljs-string">"Q-Q Plot"</span>, <span class="hljs-attribute">labels</span>=<span class="hljs-literal">FALSE</span>)</code></pre>
-<p><img src="/article/2ad44fb9/2-3.png" srcset="/img/loading.gif" alt="2-3"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># QQ plot</span><br><span class="line">library(car)</span><br><span class="line">qqPlot(lm(response ~ trt, data&#x3D;cholesterol),</span><br><span class="line">       simulate&#x3D;TRUE, main&#x3D;&quot;Q-Q Plot&quot;, labels&#x3D;FALSE)</span><br></pre></td></tr></table></figure>
+<p><img src="/article/2ad44fb9/2-3.png" alt="2-3"></p>
 <p>除此之外，R里面也提供了一些package来进行正态性检验。</p>
 <h6 id="K-S-test"><a href="#K-S-test" class="headerlink" title="K-S test"></a>K-S test</h6><p>统计学里, Kolmogorov–Smirnov 检验(亦称：K–S 检验)是用来检验数据是否符合某种分布的一种非参数检验。其原假设$H_0$:两个数据分布一致或者数据符合理论分布。在R语言里，我们可以使用<code>ks.test(x, pnorm)</code>进行正态性检验，若结果中的p值大于0.05，则数据符合正态分布。</p>
 <h6 id="Anderson–Darling-test"><a href="#Anderson–Darling-test" class="headerlink" title="Anderson–Darling test"></a><strong>Anderson–Darling test</strong></h6><p>Anderson–Darling检验是一种用来检验给定的样本是否来自于某个确定的概率分布的统计检验方法。在R语言中，我们可以从<strong>nortest包</strong>中的<code>ad.test()</code>进行检验。若结果中的p值大于0.05，则数据符合正态分布。</p>
@@ -581,19 +591,10 @@ qqPlot(lm(response ~ trt, <span class="hljs-attribute">data</span>=cholesterol),
 <h6 id="Lilliefor-test"><a href="#Lilliefor-test" class="headerlink" title="Lilliefor test"></a><strong>Lilliefor test</strong></h6><p>Lilliefor test是基于Kolmogorov–Smirnov test的一种正态性检验。原假设$H_0$: 数据符合正态分布，<code>lillie.test()</code>也在<strong>nortest包</strong>中。</p>
 <h5 id="方差齐性检验"><a href="#方差齐性检验" class="headerlink" title="方差齐性检验"></a>方差齐性检验</h5><p>因为方差分析的实质是检验多个水平的均值是否有显著差异，如果各个水平的观察值方差差异太大，只检验均值之间的差异就没有意义了，所以要进行方差齐性检验。</p>
 <p>Bartlett test可以用来检验数据的方差齐性。</p>
-<pre><code class="hljs armasm">&gt; <span class="hljs-keyword">bartlett.test(response </span>~ trt, <span class="hljs-meta">data</span><span class="hljs-symbol">=cholesterol</span>)
-
-	<span class="hljs-keyword">Bartlett </span>test of homogeneity of variances
-
-<span class="hljs-symbol">data</span>:  response <span class="hljs-keyword">by </span>trt
-<span class="hljs-keyword">Bartlett's </span>K-squared = <span class="hljs-number">0</span>.<span class="hljs-number">57975</span>, df = <span class="hljs-number">4</span>, p-value = <span class="hljs-number">0</span>.<span class="hljs-number">9653</span></code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; bartlett.test(response ~ trt, data&#x3D;cholesterol)</span><br><span class="line"></span><br><span class="line">	Bartlett test of homogeneity of variances</span><br><span class="line"></span><br><span class="line">data:  response by trt</span><br><span class="line">Bartlett&#39;s K-squared &#x3D; 0.57975, df &#x3D; 4, p-value &#x3D; 0.9653</span><br></pre></td></tr></table></figure>
 <p>Bartlett检验表明五组的方差并没有显著不同（p=0.97）。其他检验如Fligner-Killeen检验<br>（<code>fligner.test()</code>函数）和Brown-Forsythe检验（<strong>HH包</strong>中的<code>hov()</code>函数）此处没有做演示，但它们获得的结果与Bartlett检验相同。</p>
 <p>不过，方差齐性分析对离群点非常敏感。可利用<strong>car包</strong>中的<code>outlierTest()</code>函数来检测离群点：</p>
-<pre><code class="hljs yaml"><span class="hljs-string">outlierTest(fit)</span>
-<span class="hljs-literal">No</span> <span class="hljs-string">Studentized</span> <span class="hljs-string">residuals</span> <span class="hljs-string">with</span> <span class="hljs-string">Bonferroni</span> <span class="hljs-string">p</span> <span class="hljs-string">&lt;</span> <span class="hljs-number">0.05</span>
-<span class="hljs-string">Largest</span> <span class="hljs-string">|rstudent|:</span>
-   <span class="hljs-string">rstudent</span> <span class="hljs-string">unadjusted</span> <span class="hljs-string">p-value</span> <span class="hljs-string">Bonferroni</span> <span class="hljs-string">p</span>
-<span class="hljs-number">19</span> <span class="hljs-number">2.251149</span>           <span class="hljs-number">0.029422</span>           <span class="hljs-string">NA</span></code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">outlierTest(fit)</span><br><span class="line">No Studentized residuals with Bonferroni p &lt; 0.05</span><br><span class="line">Largest |rstudent|:</span><br><span class="line">   rstudent unadjusted p-value Bonferroni p</span><br><span class="line">19 2.251149           0.029422           NA</span><br></pre></td></tr></table></figure>
 <p>从输出结果来看，并没有证据说明胆固醇数据中含有离群点（当p&gt;1时将产生NA）。因此根据正态性检验、方差齐性检验和离群点检验，该数据似乎可以用ANOVA模型拟合得很好。<strong>这些方法反过来增强了我们对于所得结果的信心。</strong></p>
 <h2 id="3-双因素方差分析"><a href="#3-双因素方差分析" class="headerlink" title="3 双因素方差分析"></a>3 双因素方差分析</h2><h3 id="3-1-推导过程"><a href="#3-1-推导过程" class="headerlink" title="3.1 推导过程"></a>3.1 推导过程</h3><p>在很多种情况下，只考虑一个指标对观察值的影响，显然是不够的，这时就会用到多因素方差分析。双因素方差分析和多因素方差分析在原理上是相似的，这里为了书写简便，我们只以双因素方差分析为例进行推导。</p>
 <p>还是以田间实验的例子帮助理解推导过程，我们设有两个因素$A, B$，分别有$k, l$个水平（例如$A$为品种，有$k$个；$B$为播种量，考虑$l$种不同的数值，如20斤／亩，25斤／亩，……）．$A$的水平$i$与$B$的水平$j$的组合记为$(i,j)$，其试验结果记为 $Y_{ij}, i = 1, · · ·, k,j = 1,…, l$．统计模型定为</p>
@@ -696,58 +697,16 @@ Y_{ij}-\bar{Y_i}-\bar{Y_j}+\bar{Y} &= (\mu + a_i + b_j + e_{ij}) - (\mu + a_i + 
 </div>
 <p>还有一点要注意：在采纳模型$(3.1)$时，我们事实上引进了 一 种假定，即两因素$A,B$对指标的效应是可以叠加的．换一种方式说：因素$A$的各水平的优劣比较，与因素$B$处在哪个水平无关，反之亦然．更一般的情况是：$A,B$两因子有“交互作用 ＂ 。这时在模型(5.13)中，还要加上表示交互作用的项$c_{ij}$．这时不仅统计分析复杂化了，尤其是分析结果的解释也复杂化了．本文档暂不讨论这种情况。在一个特定的问题中，交互作用是否需要考虑，在很大程度上取决于问题的实际背景和经验．有时，通过试验数据的分析也可以看出一些问题。例如，若误差方差$\sigma^2$的估计$MS_e $反常地大，则有可能是由于交互作用所致．因为可以证明：若交互作用确实存在而未加考虑，则它的影响进入随机误差而增大了$MS_e$。</p>
 <h3 id="3-2-代码实例"><a href="#3-2-代码实例" class="headerlink" title="3.2 代码实例"></a>3.2 代码实例</h3><p>在双因素方差分析中，受试者被分配到两因子的交叉类别组中。以基础安装中的ToothGrowth数据集为例，随机分配60只豚鼠，分别采用两种喂食方法（橙汁或维生素C），各喂食方法中抗坏血酸含量有三种水平（0.5mg、1mg或2mg），每种处理方式组合都被分配10只豚鼠，牙齿长度为因变量。</p>
-<pre><code class="hljs angelscript">&gt; attach(ToothGrowth)
-&gt; table(supp, dose)
-    dose
-supp <span class="hljs-number">0.5</span>  <span class="hljs-number">1</span>  <span class="hljs-number">2</span>
-  OJ  <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span>
-  VC  <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span>
-&gt; 
-&gt; aggregate(len, by=list(supp, dose), FUN=mean)
-  Group<span class="hljs-number">.1</span> Group<span class="hljs-number">.2</span>     x
-<span class="hljs-number">1</span>      OJ     <span class="hljs-number">0.5</span> <span class="hljs-number">13.23</span>
-<span class="hljs-number">2</span>      VC     <span class="hljs-number">0.5</span>  <span class="hljs-number">7.98</span>
-<span class="hljs-number">3</span>      OJ     <span class="hljs-number">1.0</span> <span class="hljs-number">22.70</span>
-<span class="hljs-number">4</span>      VC     <span class="hljs-number">1.0</span> <span class="hljs-number">16.77</span>
-<span class="hljs-number">5</span>      OJ     <span class="hljs-number">2.0</span> <span class="hljs-number">26.06</span>
-<span class="hljs-number">6</span>      VC     <span class="hljs-number">2.0</span> <span class="hljs-number">26.14</span>
-&gt; 
-&gt; aggregate(len, by=list(supp, dose), FUN=sd)
-  Group<span class="hljs-number">.1</span> Group<span class="hljs-number">.2</span>        x
-<span class="hljs-number">1</span>      OJ     <span class="hljs-number">0.5</span> <span class="hljs-number">4.459709</span>
-<span class="hljs-number">2</span>      VC     <span class="hljs-number">0.5</span> <span class="hljs-number">2.746634</span>
-<span class="hljs-number">3</span>      OJ     <span class="hljs-number">1.0</span> <span class="hljs-number">3.910953</span>
-<span class="hljs-number">4</span>      VC     <span class="hljs-number">1.0</span> <span class="hljs-number">2.515309</span>
-<span class="hljs-number">5</span>      OJ     <span class="hljs-number">2.0</span> <span class="hljs-number">2.655058</span>
-<span class="hljs-number">6</span>      VC     <span class="hljs-number">2.0</span> <span class="hljs-number">4.797731</span>
-&gt; 
-&gt; dose &lt;- factor(dose)
-#dose变量被转换为因子变量，这样aov()函数就会将它当做一个分组变量，而不是一个数值型协变量
-&gt; # condider <span class="hljs-built_in">int</span>eractive factor
-&gt; fit &lt;- aov(len ~ supp*dose)
-&gt; summary(fit)
-            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-supp         <span class="hljs-number">1</span>  <span class="hljs-number">205.4</span>   <span class="hljs-number">205.4</span>  <span class="hljs-number">15.572</span> <span class="hljs-number">0.000231</span> ***
-dose         <span class="hljs-number">2</span> <span class="hljs-number">2426.4</span>  <span class="hljs-number">1213.2</span>  <span class="hljs-number">92.000</span>  &lt; <span class="hljs-number">2e-16</span> ***
-supp:dose    <span class="hljs-number">2</span>  <span class="hljs-number">108.3</span>    <span class="hljs-number">54.2</span>   <span class="hljs-number">4.107</span> <span class="hljs-number">0.021860</span> *  
-Residuals   <span class="hljs-number">54</span>  <span class="hljs-number">712.1</span>    <span class="hljs-number">13.2</span>                     
----
-Signif. codes:  <span class="hljs-number">0</span> ‘***’ <span class="hljs-number">0.001</span> ‘**’ <span class="hljs-number">0.01</span> ‘*’ <span class="hljs-number">0.05</span> ‘.’ <span class="hljs-number">0.1</span> ‘ ’ <span class="hljs-number">1</span></code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&gt; attach(ToothGrowth)</span><br><span class="line">&gt; table(supp, dose)</span><br><span class="line">    dose</span><br><span class="line">supp 0.5  1  2</span><br><span class="line">  OJ  10 10 10</span><br><span class="line">  VC  10 10 10</span><br><span class="line">&gt; </span><br><span class="line">&gt; aggregate(len, by&#x3D;list(supp, dose), FUN&#x3D;mean)</span><br><span class="line">  Group.1 Group.2     x</span><br><span class="line">1      OJ     0.5 13.23</span><br><span class="line">2      VC     0.5  7.98</span><br><span class="line">3      OJ     1.0 22.70</span><br><span class="line">4      VC     1.0 16.77</span><br><span class="line">5      OJ     2.0 26.06</span><br><span class="line">6      VC     2.0 26.14</span><br><span class="line">&gt; </span><br><span class="line">&gt; aggregate(len, by&#x3D;list(supp, dose), FUN&#x3D;sd)</span><br><span class="line">  Group.1 Group.2        x</span><br><span class="line">1      OJ     0.5 4.459709</span><br><span class="line">2      VC     0.5 2.746634</span><br><span class="line">3      OJ     1.0 3.910953</span><br><span class="line">4      VC     1.0 2.515309</span><br><span class="line">5      OJ     2.0 2.655058</span><br><span class="line">6      VC     2.0 4.797731</span><br><span class="line">&gt; </span><br><span class="line">&gt; dose &lt;- factor(dose)</span><br><span class="line">#dose变量被转换为因子变量，这样aov()函数就会将它当做一个分组变量，而不是一个数值型协变量</span><br><span class="line">&gt; # condider interactive factor</span><br><span class="line">&gt; fit &lt;- aov(len ~ supp*dose)</span><br><span class="line">&gt; summary(fit)</span><br><span class="line">            Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span><br><span class="line">supp         1  205.4   205.4  15.572 0.000231 ***</span><br><span class="line">dose         2 2426.4  1213.2  92.000  &lt; 2e-16 ***</span><br><span class="line">supp:dose    2  108.3    54.2   4.107 0.021860 *  </span><br><span class="line">Residuals   54  712.1    13.2                     </span><br><span class="line">---</span><br><span class="line">Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span><br></pre></td></tr></table></figure>
 <p>计算结果表明，主效应和交互效应都是显著的。</p>
 <p>有多种方式对结果进行可视化处理。此处可用interaction.plot()函数来展示双因素方<br>差分析的交互效应。</p>
-<pre><code class="hljs routeros"><span class="hljs-comment"># interactive effect</span>
-interaction.plot(dose, supp, len, <span class="hljs-attribute">type</span>=<span class="hljs-string">"b"</span>,
-                 <span class="hljs-attribute">col</span>=c("red","blue"), <span class="hljs-attribute">pch</span>=c(16, 18),
-                 main = <span class="hljs-string">"Interaction between Dose and Supplement Type"</span>)</code></pre>
-<p><img src="/article/2ad44fb9/3-1.png" srcset="/img/loading.gif" alt="3-1"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># interactive effect</span><br><span class="line">interaction.plot(dose, supp, len, type&#x3D;&quot;b&quot;,</span><br><span class="line">                 col&#x3D;c(&quot;red&quot;,&quot;blue&quot;), pch&#x3D;c(16, 18),</span><br><span class="line">                 main &#x3D; &quot;Interaction between Dose and Supplement Type&quot;)</span><br></pre></td></tr></table></figure>
+<p><img src="/article/2ad44fb9/3-1.png" alt="3-1"></p>
 <p><strong>图3-1 各种剂量喂食下豚鼠牙齿长度的均值（interaction.plot()函数绘制）</strong></p>
-<p>还可以用gplots包中的plotmeans()函数来展示交互效应。<img src="/article/2ad44fb9/3-2.png" srcset="/img/loading.gif" alt="3-2"><strong>图3-2 喂食方法和剂量对牙齿生长的交互作用。用plotmeans()函数绘制的95%的置</strong><br><strong>信区间的牙齿长度均值</strong></p>
+<p>还可以用gplots包中的plotmeans()函数来展示交互效应。<img src="/article/2ad44fb9/3-2.png" alt="3-2"><strong>图3-2 喂食方法和剂量对牙齿生长的交互作用。用plotmeans()函数绘制的95%的置</strong><br><strong>信区间的牙齿长度均值</strong></p>
 <p>图形展示了均值、误差棒（95%的置信区间）和样本大小。<br>最后，你还能用HH包中的interaction2wt()函数来可视化结果，图形对任意顺序的因子设计的主效应和交互效应都会进行展示（图3-3）。</p>
-<pre><code class="hljs lisp">library(<span class="hljs-name">HH</span>)
-interaction2wt(<span class="hljs-name">len</span>~supp*dose)
-&gt; 
-&gt; detach(<span class="hljs-name">ToothGrowth</span>)</code></pre>
-<p><img src="/article/2ad44fb9/3-3.png" srcset="/img/loading.gif" alt="3-3"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">library(HH)</span><br><span class="line">interaction2wt(len~supp*dose)</span><br><span class="line">&gt; </span><br><span class="line">&gt; detach(ToothGrowth)</span><br></pre></td></tr></table></figure>
+<p><img src="/article/2ad44fb9/3-3.png" alt="3-3"></p>
 <p><strong>图3-3 ToothGrowth数据集的主效应和交互效应。图形由interaction2wt()函数创建</strong></p>
 <p>以上三幅图形都表明随着橙汁和维生素C中的抗坏血酸剂量的增加，牙齿长度变长。对于0.5mg和1mg剂量，橙汁比维生素C更能促进牙齿生长；对于2mg剂量的抗坏血酸，两种喂食方法下牙齿长度增长相同。</p>
 <h4 id="参考书目："><a href="#参考书目：" class="headerlink" title="参考书目："></a>参考书目：</h4><ol>
@@ -755,601 +714,332 @@ interaction2wt(<span class="hljs-name">len</span>~supp*dose)
 <li>Robert I. Kabacoff, R in Action.</li>
 </ol>
 
-            </article>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/">概率统计</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/">概率统计</a>
-                    
-                  </div>
-                
-              </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <div class="post-prev col-6">
-                    
-                    
-                      <a href="/article/67aeaf8.html">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">pandas下综合练习</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </div>
-                  <div class="post-next col-6">
-                    
-                    
-                      <a href="/article/32af8df.html">
-                        <span class="hidden-mobile">第九章-时序数据</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </div>
-                </div>
-              
-            </div>
+    </div>
 
-            
-              <!-- Comments -->
-              <div class="comments" id="comments">
-                
-                
-  <div id="vcomments"></div>
-  <script type="text/javascript">
-    function loadValine() {
-      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
-        new Valine({
-          el: "#vcomments",
-          app_id: "gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz",
-          app_key: "Xwqmsb7cDIWaQB2GG2fCnSHf",
-          placeholder: "ヾﾉ≧∀≦)o 来呀！吐槽一番吧！",
-          path: window.location.pathname,
-          avatar: "retro",
-          meta: ["nick","mail","link"],
-          pageSize: "10",
-          lang: "zh-CN",
-          highlight: true,
-          recordIP: true,
-          serverURLs: "",
-        });
-      });
-    }
-    createObserver(loadValine, 'vcomments');
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
-      powered by Valine.</a></noscript>
+    
+    
+    
+	
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
 
+      </div>
+    
 
-              </div>
-            
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/" rel="tag"><i class="fa fa-tag"></i> 概率统计</a>
           </div>
-        </div>
-      </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/32af8df.html" rel="prev" title="第九章-时序数据">
+      <i class="fa fa-chevron-left"></i> 第九章-时序数据
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/article/67aeaf8.html" rel="next" title="pandas下综合练习">
+      pandas下综合练习 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
     
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
-    
-  </main>
-
+  </article>
   
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
   
-
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
-    
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- LeanCloud 统计PV -->
-        <span id="leancloud-site-pv-container" style="display: none">
-            总访问量 
-            <span id="leancloud-site-pv"></span>
-             次
-          </span>
-      
-      
-        <!-- LeanCloud 统计UV -->
-        <span id="leancloud-site-uv-container" style="display: none">
-            总访客数 
-            <span id="leancloud-site-uv"></span>
-             人
-          </span>
-      
-
-    
-  </div>
-
-
-    
-
-    
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
-
-<!-- Plugins -->
-
-
-  
-    <script  src="/js/lazyload.js" ></script>
   
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
 
-
-
-  <script defer>
-  (function () {
-    // 查询存储的记录
-    function getRecord(Counter, target) {
-      return new Promise(function (resolve, reject) {
-        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
-          .then(resp => resp.json())
-          .then(({results, code, error}) => {
-            if (code === 401) {
-              throw error;
-            }
-            if (results && results.length > 0) {
-              var record = results[0];
-              resolve(record);
-            } else {
-              Counter('post', '/classes/Counter', {target, time: 0})
-                .then(resp => resp.json())
-                .then((record, error) => {
-                  if (error) {
-                    throw error;
-                  }
-                  resolve(record);
-                }).catch(error => {
-                console.error('Failed to create', error);
-                reject(error);
-              });
-            }
-          }).catch((error) => {
-          console.error('LeanCloud Counter Error:', error);
-          reject(error);
-        });
-      })
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
     }
-
-    // 发起自增请求
-    function increment(Counter, incrArr) {
-      return new Promise(function (resolve, reject) {
-        Counter('post', '/batch', {
-          "requests": incrArr
-        }).then((res) => {
-          res = res.json();
-          if (res.error) {
-            throw res.error;
-          }
-          resolve(res);
-        }).catch((error) => {
-          console.error('Failed to save visitor count', error);
-          reject(error);
-        });
-      });
-    }
-
-    // 构建自增请求体
-    function buildIncrement(objectId) {
-      return {
-        "method": "PUT",
-        "path": `/1.1/classes/Counter/${ objectId }`,
-        "body": {
-          "time": {
-            '__op': 'Increment',
-            'amount': 1
-          }
-        }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
       }
     }
-
-    // 校验是否为有效的 UV
-    function validUV() {
-      var key = 'LeanCloud_UV_Flag';
-      var flag = localStorage.getItem(key);
-      if (flag) {
-        // 距离标记小于 24 小时则不计为 UV
-        if (new Date().getTime() - parseInt(flag) <= 86400000) {
-          return false;
-        }
-      }
-      localStorage.setItem(key, new Date().getTime().toString());
-      return true;
-    }
-
-    function addCount(Counter) {
-      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
-      var getterArr = [];
-      var incrArr = [];
-
-      // 请求 PV 并自增
-      var pvCtn = document.querySelector('#leancloud-site-pv-container');
-      if (pvCtn || enableIncr) {
-        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
-          incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-pv');
-          if (ele) {
-            ele.innerText = record.time + 1;
-            if (pvCtn) {
-              pvCtn.style.display = 'inline';
-            }
-          }
-        });
-        getterArr.push(pvGetter);
-      }
-
-      // 请求 UV 并自增
-      var uvCtn = document.querySelector('#leancloud-site-uv-container');
-      if (uvCtn || enableIncr) {
-        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
-          var vuv = validUV();
-          vuv && incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-uv');
-          if (ele) {
-            ele.innerText = record.time + (vuv ? 1 : 0);
-            if (uvCtn) {
-              uvCtn.style.display = 'inline';
-            }
-          }
-        });
-        getterArr.push(uvGetter);
-      }
-
-      // 如果是文章，请求文章的浏览数，并自增
-      if ('true' === 'true') {
-        var viewCtn = document.querySelector('#leancloud-post-views-container');
-        if (viewCtn || enableIncr) {
-          var target = decodeURI('/article/2ad44fb9.html');
-          var viewGetter = getRecord(Counter, target).then((record) => {
-            incrArr.push(buildIncrement(record.objectId))
-            if (viewCtn) {
-              var ele = document.querySelector('#leancloud-post-views');
-              if (ele) {
-                ele.innerText = (record.time || 0) + 1;
-                viewCtn.style.display = 'inline';
-              }
-            }
-          });
-          getterArr.push(viewGetter);
-        }
-      }
-
-      // 如果启动计数自增，批量发起自增请求
-      if (enableIncr) {
-        Promise.all(getterArr).then(() => {
-          incrArr.length > 0 && increment(Counter, incrArr);
-        })
-      }
-    }
-
-    var app_id = 'gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz'
-    var app_key = 'Xwqmsb7cDIWaQB2GG2fCnSHf'
-    var server_url = ''
-
-    function fetchData(api_server) {
-      var Counter = (method, url, data) => {
-        return fetch(`${ api_server }/1.1${ url }`, {
-          method,
-          headers: {
-            'X-LC-Id': app_id,
-            'X-LC-Key': app_key,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
-      };
-
-      addCount(Counter);
-    }
-
-    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
-
-    if (api_server) {
-      fetchData(api_server);
-    } else {
-      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
-        .then(resp => resp.json())
-        .then(({api_server}) => {
-          fetchData('https://' + api_server);
-        });
-    }
-  })();
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
 </script>
 
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#方差分析"><span class="nav-text">方差分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概要"><span class="nav-text">1 概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-单因素方差分析"><span class="nav-text">2 单因素方差分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-推导过程"><span class="nav-text">2.1 推导过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-代码实例"><span class="nav-text">2.2 代码实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单因素方差分析的R语言实现"><span class="nav-text">单因素方差分析的R语言实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看各水平对应的组均值的差异"><span class="nav-text">查看各水平对应的组均值的差异</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多重比较"><span class="nav-text">多重比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#评估检验的假设条件"><span class="nav-text">评估检验的假设条件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#正态性检验"><span class="nav-text">正态性检验</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#K-S-test"><span class="nav-text">K-S test</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Anderson–Darling-test"><span class="nav-text">Anderson–Darling test</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Shapiro-Wilk-test"><span class="nav-text">Shapiro-Wilk test</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Lilliefor-test"><span class="nav-text">Lilliefor test</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方差齐性检验"><span class="nav-text">方差齐性检验</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-双因素方差分析"><span class="nav-text">3 双因素方差分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-推导过程"><span class="nav-text">3.1 推导过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-代码实例"><span class="nav-text">3.2 代码实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参考书目："><span class="nav-text">参考书目：</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="sulimin"
+      src="/images/su1.JPG">
+  <p class="site-author-name" itemprop="name">sulimin</p>
+  <div class="site-description" itemprop="description">向前向前向前ε=( o｀ω′)ノ</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sulimin-nb" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sulimin-nb" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:15210376096@163.com" title="E-Mail → mailto:15210376096@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sulimin</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">站点共71k字</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">阅读需1:04</span>
+</div>
+
+        
 
 
 
 
 
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: 'article.markdown-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "4方差分析&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 50,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
 
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
       }
-    );
-  </script>
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
 
-
-
-
-
-  
-
-  
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+    
 
   
 
 
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz',
+      appKey     : 'Xwqmsb7cDIWaQB2GG2fCnSHf',
+      placeholder: "ヾﾉ≧∀≦)o 来呀！吐槽一番吧！",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
 
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
+  }, window.Valine);
+});
+</script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":1},"log":false});</script></body>
 </html>
+<script type="text/javascript" src="/js/love-click.js"></script>
