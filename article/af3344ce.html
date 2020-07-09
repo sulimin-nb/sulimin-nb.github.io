@@ -176,7 +176,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      655 字
     </span>
   
 
@@ -186,7 +186,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      8
        分钟
     </span>
   
@@ -226,17 +226,98 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月9日 上午
+                  本文最后更新于：2020年7月9日 下午
                 
               </p>
             
             <article class="markdown-body">
-              
+              <h1 id="leetcode17-电话号码的字母组合"><a href="#leetcode17-电话号码的字母组合" class="headerlink" title="leetcode17.电话号码的字母组合"></a>leetcode17.电话号码的字母组合</h1><p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。<br>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
+<p><img src="/article/af3344ce/image-20200709112232223.png" srcset="/img/loading.gif" width="300" hight="300"></p>
+<p><strong>示例:</strong></p>
+<pre><code class="hljs python">输入：<span class="hljs-string">"23"</span>
+输出：[<span class="hljs-string">"ad"</span>, <span class="hljs-string">"ae"</span>, <span class="hljs-string">"af"</span>, <span class="hljs-string">"bd"</span>, <span class="hljs-string">"be"</span>, <span class="hljs-string">"bf"</span>, <span class="hljs-string">"cd"</span>, <span class="hljs-string">"ce"</span>, <span class="hljs-string">"cf"</span>].</code></pre>
+<p><strong>说明:</strong><br>尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。</p>
+<h2 id="方法一：回溯"><a href="#方法一：回溯" class="headerlink" title="方法一：回溯"></a>方法一：回溯</h2><p>回溯是通过穷举所有可能情况来找到所有解的算法。如果一个候选解最后被发现并不是可行解，回溯算法会舍弃它，并在前面的一些步骤做出一些修改，并重新尝试找到可行解。</p>
+<p>给出如下回溯函数<code>backtrack(combination, next_digits)</code>，它将一个目前已经产生的组合<code>combination</code>和接下来准备要输入的数字<code>next_digits</code>作为参数。</p>
+<p>如果没有更多的数字需要被输入，那意味着 当前的组合产生好了。<br>如果还有数字需要被输入：<br>遍历下一个数字所对应的所有映射的字母。<br>将当前的字母添加到组合最后，也就是<code>combination=combination+letter</code>。<br>重复这个过程，输入剩下的数字：<code>backtrack(combination + letter, next_digits[1:])</code>。</p>
+<p><strong>代码</strong></p>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">letterCombinations</span><span class="hljs-params">(self, digits)</span>:</span>
+        phone = &#123;
+            <span class="hljs-string">'2'</span>: [<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>],
+            <span class="hljs-string">'3'</span>: [<span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'f'</span>],
+            <span class="hljs-string">'4'</span>: [<span class="hljs-string">'g'</span>, <span class="hljs-string">'h'</span>, <span class="hljs-string">'i'</span>],
+            <span class="hljs-string">'5'</span>: [<span class="hljs-string">'j'</span>, <span class="hljs-string">'k'</span>, <span class="hljs-string">'l'</span>],
+            <span class="hljs-string">'6'</span>:[<span class="hljs-string">'m'</span>,<span class="hljs-string">'n'</span>,<span class="hljs-string">'o'</span>],
+            <span class="hljs-string">'7'</span>:[<span class="hljs-string">'p'</span>,<span class="hljs-string">'q'</span>,<span class="hljs-string">'r'</span>,<span class="hljs-string">'s'</span>],
+            <span class="hljs-string">'8'</span>:[<span class="hljs-string">'t'</span>,<span class="hljs-string">'u'</span>,<span class="hljs-string">'v'</span>],
+            <span class="hljs-string">'9'</span>:[<span class="hljs-string">'w'</span>,<span class="hljs-string">'x'</span>,<span class="hljs-string">'y'</span>,<span class="hljs-string">'z'</span>]
+        &#125;
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(combination, next_digits)</span>:</span>
+            <span class="hljs-keyword">if</span> len(next_digits) == <span class="hljs-number">0</span>:
+                output.append(combination)
+            <span class="hljs-keyword">else</span>:
+                print(next_digits)
+                print(next_digits[<span class="hljs-number">0</span>])
+                <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> phone[next_digits[<span class="hljs-number">0</span>]]:
+                    backtrack(combination+i, next_digits[<span class="hljs-number">1</span>:])
+
+
+        output = []
+        <span class="hljs-keyword">if</span> digits:
+            backtrack(<span class="hljs-string">""</span>, digits)
+        <span class="hljs-keyword">return</span> output</code></pre>
+<h2 id="方法二：队列"><a href="#方法二：队列" class="headerlink" title="方法二：队列"></a>方法二：队列</h2><p>我们可以利用队列的先进先出特点，再配合循环完成题目要求。<br>我们先将2对应的字符”a”,”b”,”c”依次放入队列中</p>
+<p><img src="/article/af3344ce/18b4155eb5122b9e177a29c7320de89048b74cc5553632700a45e07aa92057bc-队列-1.jpg" srcset="/img/loading.gif" alt="队列-1.jpg"></p>
+<p>之后再从队列中拿出第一个元素”a”，跟3对应的字符”d”,”e”,”f”挨个拼接</p>
+<p><img src="/article/af3344ce/5d331f111c4bc5439116bc412a57e1271f0e1997b1328009cedce5152bce292f-队列-1.jpg" srcset="/img/loading.gif" alt="队列-1.jpg"></p>
+<p>拼接结束后队列中的存储情况：</p>
+<p><img src="/article/af3344ce/89f52c9185b736edec7e980db7cf1a9897d5efbf1e80e1d19296ee48917fdfb9-队列-3.jpg" srcset="/img/loading.gif" alt="队列-3.jpg"></p>
+<p>按照同样的方式，再将”b”从队列中拿出，再跟3对应的字符”d”,”e”,”f”挨个拼接，放回队列中：</p>
+<p><img src="/article/af3344ce/7fbe1e06dc207dbc539c7f580698eaad845ae5ff913b1b048211355a72fb3bcb-队列-4.jpg" srcset="/img/loading.gif" alt="队列-4.jpg"></p>
+<p>动态演示如下：</p>
+<p><img src="/article/af3344ce/6953e7a27bff1242c37f88c9b66b524975655605d053a9f6ac6a74376582b4c5-队列-动态图.gif" srcset="/img/loading.gif" alt="队列-动态图.gif"></p>
+<p><strong>代码</strong></p>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">letterCombinations</span><span class="hljs-params">(self, digits)</span>:</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> digits:
+            <span class="hljs-keyword">return</span> []
+        d = [<span class="hljs-string">""</span>,<span class="hljs-string">""</span>,<span class="hljs-string">"abc"</span>,<span class="hljs-string">"def"</span>,<span class="hljs-string">"ghi"</span>,<span class="hljs-string">"jkl"</span>,<span class="hljs-string">"mno"</span>,<span class="hljs-string">"pqrs"</span>,<span class="hljs-string">"tuv"</span>,<span class="hljs-string">"wxyz"</span>]
+        <span class="hljs-comment"># 队列初始化，放入一个空字符</span>
+        res = [<span class="hljs-string">""</span>]
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> digits:
+            size = len(res)
+            letters = d[ord(i) - <span class="hljs-number">48</span>]
+            <span class="hljs-comment"># 计算出队列长度后，将队列中的每个元素逐个取出</span>
+            <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(size):
+                tmp = res.pop(<span class="hljs-number">0</span>)
+                <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> letters:
+                    res.append(tmp + j)
+        <span class="hljs-keyword">return</span> res</code></pre>
+<p>差不多，bfs和dfs的区别把，今日打卡完结~</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href>官方题解</a><br><a href="https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/solution/tong-su-yi-dong-dong-hua-yan-shi-17-dian-hua-hao-m/" target="_blank" rel="noopener">队列</a></p>
+
             </article>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/leetcode/">leetcode</a>
+                    
+                      <a class="hover-with-bg" href="/categories/leetcode/%E5%88%86%E6%B2%BB%E3%80%81%E5%9B%9E%E6%BA%AF/">分治、回溯</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/leetcode/">leetcode</a>
+                    
+                  </div>
                 
               </div>
               
