@@ -176,7 +176,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.1k 字
     </span>
   
 
@@ -186,7 +186,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18
+      16
        分钟
     </span>
   
@@ -232,50 +232,150 @@
             
             <article class="markdown-body">
               <h1 id="一、端午节的淘宝粽子交易"><a href="#一、端午节的淘宝粽子交易" class="headerlink" title="一、端午节的淘宝粽子交易"></a>一、端午节的淘宝粽子交易</h1><h2 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h2><p>（1）请删除最后一列为缺失值的行，并求所有在杭州发货的商品单价均值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">'端午粽子数据.csv'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">df = pd.read_csv(<span class="hljs-string">'端午粽子数据.csv'</span>)
+df.head()</code></pre>
 <p><img src="/article/67aeaf8/image-20200701220417701.png" srcset="/img/loading.gif" alt="image-20200701220417701">列名中有些包含了空格，先去除。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.columns = df.columns.str.strip()</span><br><span class="line">df.columns</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">df.columns = df.columns.str.strip()
+df.columns</code></pre>
 <p><img src="/article/67aeaf8/image-20200701220535004.png" srcset="/img/loading.gif" alt="image-20200701220535004"><br>然后将最后一列为空的行去除，使用dropna方法。再查看最后一列为空的行。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_clean = df.dropna(axis=<span class="number">0</span>,subset=[df.columns[<span class="number">-1</span>]])</span><br><span class="line">df_clean[df_clean[df_clean.columns[<span class="number">-1</span>]].isna()]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">df_clean = df.dropna(axis=<span class="hljs-number">0</span>,subset=[df.columns[<span class="hljs-number">-1</span>]])
+df_clean[df_clean[df_clean.columns[<span class="hljs-number">-1</span>]].isna()]</code></pre>
 <p><img src="/article/67aeaf8/image-20200701220754043.png" srcset="/img/loading.gif" alt="image-20200701220754043"><br>确认已删除完毕。<br>将所有在杭州交易的记录取出。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_h = df_clean[df_clean[<span class="string">'发货地址'</span>].str.contains(<span class="string">'杭州'</span>)]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">df_h = df_clean[df_clean[<span class="hljs-string">'发货地址'</span>].str.contains(<span class="hljs-string">'杭州'</span>)]</code></pre>
 <p>查看其中价格列不能转换为float的行。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_number</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        float(x)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">except</span> (SyntaxError, ValueError) <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">df_h[~df_h[<span class="string">'价格'</span>].map(is_number)]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">is_number</span><span class="hljs-params">(x)</span>:</span>
+    <span class="hljs-keyword">try</span>:
+        float(x)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+    <span class="hljs-keyword">except</span> (SyntaxError, ValueError) <span class="hljs-keyword">as</span> e:
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+df_h[~df_h[<span class="hljs-string">'价格'</span>].map(is_number)]</code></pre>
 <p><img src="/article/67aeaf8/image-20200701221103969.png" srcset="/img/loading.gif" alt="image-20200701221103969"></p>
 <p>将其价格改为45。计算价格转换为float类型并计算均值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_h.loc[<span class="number">4376</span>][<span class="string">'价格'</span>] = <span class="number">45</span></span><br><span class="line">df_h[<span class="string">'价格'</span>].astype(<span class="string">'float'</span>).mean()</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">df_h.loc[<span class="hljs-number">4376</span>][<span class="hljs-string">'价格'</span>] = <span class="hljs-number">45</span>
+df_h[<span class="hljs-string">'价格'</span>].astype(<span class="hljs-string">'float'</span>).mean()</code></pre>
 <p><img src="/article/67aeaf8/image-20200701221222671.png" srcset="/img/loading.gif" alt="image-20200701221222671"></p>
 <p>（2）商品标题带有”嘉兴”但发货地却不在嘉兴的商品有多少条记录？<br>直接使用contain方法求取即可。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_bj = df_clean[df_clean[<span class="string">'标题'</span>].str.contains(<span class="string">'嘉兴'</span>)]</span><br><span class="line">df_bj_nj =df_bj[~(df_bj[<span class="string">'发货地址'</span>].str.contains(<span class="string">'嘉兴'</span>))]</span><br><span class="line">df_bj_nj.shape</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">df_bj = df_clean[df_clean[<span class="hljs-string">'标题'</span>].str.contains(<span class="hljs-string">'嘉兴'</span>)]
+df_bj_nj =df_bj[~(df_bj[<span class="hljs-string">'发货地址'</span>].str.contains(<span class="hljs-string">'嘉兴'</span>))]
+df_bj_nj.shape</code></pre>
 <p>（3）请按照分位数将价格分为“高、较高、中、较低、低” 5个类别，再将类别结果插入到标题一列之后，最后对类别列进行降序排序。<br>查看价格列中异常值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_clean[~df_clean[<span class="string">'价格'</span>].map(is_number)]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">df_clean[~df_clean[<span class="hljs-string">'价格'</span>].map(is_number)]</code></pre>
 <p><img src="/article/67aeaf8/image-20200701221526292.png" srcset="/img/loading.gif" alt="image-20200701221526292"><br>修改为对应的正常值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_clean.loc[<span class="number">538</span>][<span class="string">'价格'</span>] = <span class="number">45.9</span></span><br><span class="line">df_clean.loc[<span class="number">4376</span>][<span class="string">'价格'</span>] = <span class="number">45</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">df_clean.loc[<span class="hljs-number">538</span>][<span class="hljs-string">'价格'</span>] = <span class="hljs-number">45.9</span>
+df_clean.loc[<span class="hljs-number">4376</span>][<span class="hljs-string">'价格'</span>] = <span class="hljs-number">45</span></code></pre>
 <p>使用qcut方法将价格按数量等分为5类。并重命名为“高、较高、中、较低、低” 5个类别。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">q_cut = pd.qcut(df_clean[<span class="string">'价格'</span>].astype(<span class="string">'float'</span>),<span class="number">5</span>)</span><br><span class="line">df_clean.loc[:,<span class="string">'类别'</span>] = q_cut.cat.rename_categories([<span class="string">'低'</span>,<span class="string">'较低'</span>,<span class="string">'中'</span>,<span class="string">'较高'</span>,<span class="string">'高'</span>])</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">q_cut = pd.qcut(df_clean[<span class="hljs-string">'价格'</span>].astype(<span class="hljs-string">'float'</span>),<span class="hljs-number">5</span>)
+df_clean.loc[:,<span class="hljs-string">'类别'</span>] = q_cut.cat.rename_categories([<span class="hljs-string">'低'</span>,<span class="hljs-string">'较低'</span>,<span class="hljs-string">'中'</span>,<span class="hljs-string">'较高'</span>,<span class="hljs-string">'高'</span>])</code></pre>
 <p>将列顺序按要求排列。并将表格按照类别进行降序排列。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_clean = df_clean[[<span class="string">'标题'</span>,<span class="string">'类别'</span>,<span class="string">'价格'</span>,<span class="string">'付款人数'</span>,<span class="string">'店铺'</span>,<span class="string">'发货地址'</span>]]</span><br><span class="line">df_clean = df_clean.sort_values(<span class="string">'类别'</span>, ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">df_clean = df_clean[[<span class="hljs-string">'标题'</span>,<span class="hljs-string">'类别'</span>,<span class="hljs-string">'价格'</span>,<span class="hljs-string">'付款人数'</span>,<span class="hljs-string">'店铺'</span>,<span class="hljs-string">'发货地址'</span>]]
+df_clean = df_clean.sort_values(<span class="hljs-string">'类别'</span>, ascending=<span class="hljs-literal">False</span>)</code></pre>
 <p><img src="/article/67aeaf8/image-20200701221901144.png" srcset="/img/loading.gif" alt="image-20200701221901144"><br>（4）付款人数一栏有缺失值吗？若有则请利用上一问的分类结果对这些缺失值进行合理估计并填充。<br>查看付款人数一栏有缺失值的行。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_clean[df_clean[<span class="string">'付款人数'</span>].isna()]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">df_clean[df_clean[<span class="hljs-string">'付款人数'</span>].isna()]</code></pre>
 <p><img src="/article/67aeaf8/image-20200701221950329.png" srcset="/img/loading.gif" alt="image-20200701221950329"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_clean[<span class="string">'价格'</span>] = df_clean[<span class="string">'价格'</span>].astype(<span class="string">'float'</span>)</span><br><span class="line">df_clean.sort_values(<span class="string">'价格'</span>, ascending=<span class="literal">False</span>)</span><br><span class="line">df_clean[<span class="string">'发货地址'</span>].value_counts()</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def replace(x):</span><br><span class="line">    try:</span><br><span class="line">        x &#x3D; str(x)</span><br><span class="line">        if &#39;万&#39; in x:</span><br><span class="line">            i &#x3D; x.index(&#39;万&#39;)</span><br><span class="line">            return float(x[:i]) * 10000</span><br><span class="line">        if &#39;+&#39; in x:</span><br><span class="line">            i &#x3D; x.index(&#39;+&#39;)</span><br><span class="line">        elif &#39;人&#39; in x:</span><br><span class="line">            i &#x3D; x.index(&#39;人&#39;)</span><br><span class="line">        else:</span><br><span class="line">            # print(x)</span><br><span class="line">            return None</span><br><span class="line">        return int(x[:i])</span><br><span class="line">    except:</span><br><span class="line">        print(x)</span><br><span class="line">        return None</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df_clean[<span class="string">'付款人数'</span>] = df_clean[<span class="string">'付款人数'</span>].map(replace)</span><br><span class="line">df_clean = df_clean.set_index(<span class="string">'价格'</span>)</span><br><span class="line">df_clean[<span class="string">'付款人数'</span>] = df_clean[<span class="string">'付款人数'</span>].interpolate(method=<span class="string">'index'</span>)</span><br><span class="line">df_clean = df_clean.reset_index()</span><br><span class="line">df_clean = df_clean[[<span class="string">'标题'</span>,<span class="string">'类别'</span>,<span class="string">'价格'</span>,<span class="string">'付款人数'</span>,<span class="string">'店铺'</span>,<span class="string">'发货地址'</span>]]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">df_clean[<span class="hljs-string">'价格'</span>] = df_clean[<span class="hljs-string">'价格'</span>].astype(<span class="hljs-string">'float'</span>)
+df_clean.sort_values(<span class="hljs-string">'价格'</span>, ascending=<span class="hljs-literal">False</span>)
+df_clean[<span class="hljs-string">'发货地址'</span>].value_counts()</code></pre>
+<pre><code class="hljs gml">def replace(<span class="hljs-symbol">x</span>):
+    try:
+        <span class="hljs-symbol">x</span> = str(<span class="hljs-symbol">x</span>)
+        <span class="hljs-keyword">if</span> <span class="hljs-string">'万'</span> in <span class="hljs-symbol">x</span>:
+            i = <span class="hljs-symbol">x</span>.index(<span class="hljs-string">'万'</span>)
+            <span class="hljs-keyword">return</span> float(<span class="hljs-symbol">x</span>[:i]) * <span class="hljs-number">10000</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-string">'+'</span> in <span class="hljs-symbol">x</span>:
+            i = <span class="hljs-symbol">x</span>.index(<span class="hljs-string">'+'</span>)
+        elif <span class="hljs-string">'人'</span> in <span class="hljs-symbol">x</span>:
+            i = <span class="hljs-symbol">x</span>.index(<span class="hljs-string">'人'</span>)
+        <span class="hljs-keyword">else</span>:
+            # print(<span class="hljs-symbol">x</span>)
+            <span class="hljs-keyword">return</span> None
+        <span class="hljs-keyword">return</span> int(<span class="hljs-symbol">x</span>[:i])
+    except:
+        print(<span class="hljs-symbol">x</span>)
+        <span class="hljs-keyword">return</span> None</code></pre>
+<pre><code class="hljs python">df_clean[<span class="hljs-string">'付款人数'</span>] = df_clean[<span class="hljs-string">'付款人数'</span>].map(replace)
+df_clean = df_clean.set_index(<span class="hljs-string">'价格'</span>)
+df_clean[<span class="hljs-string">'付款人数'</span>] = df_clean[<span class="hljs-string">'付款人数'</span>].interpolate(method=<span class="hljs-string">'index'</span>)
+df_clean = df_clean.reset_index()
+df_clean = df_clean[[<span class="hljs-string">'标题'</span>,<span class="hljs-string">'类别'</span>,<span class="hljs-string">'价格'</span>,<span class="hljs-string">'付款人数'</span>,<span class="hljs-string">'店铺'</span>,<span class="hljs-string">'发货地址'</span>]]</code></pre>
 <p>（5）请将数据后四列合并为如下格式的Series:商品发货地为xx，店铺为xx，共计xx人付款，单价为xx。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result &#x3D; &#39;商品发货地为&#39;+df_clean[&#39;发货地址&#39;]+&#39;,店铺为&#39;+df_clean[&#39;店铺&#39;] \</span><br><span class="line">                    +&#39;,共计&#39;+df_clean[&#39;付款人数&#39;].astype(&#39;str&#39;)+&#39;,单价为&#39;\</span><br><span class="line">                   + df_clean[&#39;价格&#39;].astype(&#39;str&#39;)+&#39;元&#39;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">result.str.extract(r&#39;商品发货地为(?P&lt;发货地址&gt;[\w]+),店铺为(?P&lt;店铺&gt;[\w]+) \</span><br><span class="line">                    ,共计(?P&lt;付款人数&gt;[\w]+),单价为(?P&lt;价格&gt;[?\d.\dh]+)元&#39;)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs prolog">result = <span class="hljs-string">'商品发货地为'</span>+df_clean[<span class="hljs-string">'发货地址'</span>]+<span class="hljs-string">',店铺为'</span>+df_clean[<span class="hljs-string">'店铺'</span>] \
+                    +<span class="hljs-string">',共计'</span>+df_clean[<span class="hljs-string">'付款人数'</span>].astype(<span class="hljs-string">'str'</span>)+<span class="hljs-string">',单价为'</span>\
+                   + df_clean[<span class="hljs-string">'价格'</span>].astype(<span class="hljs-string">'str'</span>)+<span class="hljs-string">'元'</span></code></pre>
+<pre><code class="hljs awk">result.str.extract(<span class="hljs-string">r'商品发货地为(?P&lt;发货地址&gt;[\w]+),店铺为(?P&lt;店铺&gt;[\w]+) \</span>
+<span class="hljs-string">                    ,共计(?P&lt;付款人数&gt;[\w]+),单价为(?P&lt;价格&gt;[?\d.\dh]+)元'</span>)</code></pre>
 <p>提取的时候失败了。。</p>
-<h2 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">df3 &#x3D; pd.read_csv(&#39;摩拜单车数据.csv&#39;)</span><br><span class="line">df3[&#39;start_time&#39;] &#x3D; pd.to_datetime(df3[&#39;start_time&#39;].values)</span><br><span class="line">df3[&#39;end_time&#39;] &#x3D; pd.to_datetime(df3[&#39;end_time&#39;].values)</span><br><span class="line">df3[&#39;run&#39;] &#x3D; df3[&#39;end_time&#39;]-df3[&#39;start_time&#39;]</span><br><span class="line">result1 &#x3D; df3[df3[&#39;start_time&#39;].dt.dayofweek.isin([5,6])]</span><br><span class="line">result2 &#x3D; df3[df3[&#39;start_time&#39;].dt.dayofweek.isin([0,1,2,3,4])]</span><br><span class="line">result1.index &#x3D; result1[&#39;start_time&#39;].dt.strftime(&#39;%Y-%m-%d&#39;)</span><br><span class="line">result2.index &#x3D; result2[&#39;start_time&#39;].dt.strftime(&#39;%Y-%m-%d&#39;)</span><br><span class="line">result1.index.name &#x3D; &#39;day&#39;</span><br><span class="line">result2.index.name &#x3D; &#39;day&#39;</span><br><span class="line">result2.head()</span><br><span class="line">group1 &#x3D; result1.groupby([&#39;day&#39;])</span><br><span class="line">num1 &#x3D; 0</span><br><span class="line">num2 &#x3D; 0</span><br><span class="line">group1.size()</span><br><span class="line"># for name, group in group1:</span><br><span class="line">for name, group in group1:</span><br><span class="line">    print(name)</span><br><span class="line">    num1 +&#x3D; 1</span><br><span class="line">    if num1 &#x3D;&#x3D;1:</span><br><span class="line">        result_1 &#x3D; group[&#39;run&#39;].sum()</span><br><span class="line">    else:</span><br><span class="line">        result_1 +&#x3D; group[&#39;run&#39;].sum()</span><br><span class="line">result_1 &#x3D; result_1 &#x2F; num1</span><br><span class="line">print(result_1)</span><br><span class="line">group2 &#x3D; result2.groupby(&#39;day&#39;)</span><br><span class="line">for name, group in group2:</span><br><span class="line">    num2 +&#x3D; 1</span><br><span class="line">    if num2 &#x3D;&#x3D;1:</span><br><span class="line">        result_2 &#x3D; group[&#39;run&#39;].sum()</span><br><span class="line">    else:</span><br><span class="line">        result_2 +&#x3D; group[&#39;run&#39;].sum()</span><br><span class="line">result_2 &#x3D; result_2 &#x2F; num2</span><br><span class="line">print(result_2)</span><br></pre></td></tr></table></figure>
+<h2 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h2><pre><code class="hljs routeros">df3 = pd.read_csv(<span class="hljs-string">'摩拜单车数据.csv'</span>)
+df3[<span class="hljs-string">'start_time'</span>] = pd.to_datetime(df3[<span class="hljs-string">'start_time'</span>].values)
+df3[<span class="hljs-string">'end_time'</span>] = pd.to_datetime(df3[<span class="hljs-string">'end_time'</span>].values)
+df3[<span class="hljs-string">'run'</span>] = df3[<span class="hljs-string">'end_time'</span>]-df3[<span class="hljs-string">'start_time'</span>]
+result1 = df3[df3[<span class="hljs-string">'start_time'</span>].dt.dayofweek.isin([5,6])]
+result2 = df3[df3[<span class="hljs-string">'start_time'</span>].dt.dayofweek.isin([0,1,2,3,4])]
+result1.index = result1[<span class="hljs-string">'start_time'</span>].dt.strftime(<span class="hljs-string">'%Y-%m-%d'</span>)
+result2.index = result2[<span class="hljs-string">'start_time'</span>].dt.strftime(<span class="hljs-string">'%Y-%m-%d'</span>)
+result1.index.name = <span class="hljs-string">'day'</span>
+result2.index.name = <span class="hljs-string">'day'</span>
+result2.head()
+group1 = result1.groupby([<span class="hljs-string">'day'</span>])
+num1 = 0
+num2 = 0
+group1.size()
+<span class="hljs-comment"># for name, group in group1:</span>
+<span class="hljs-keyword">for</span> name,<span class="hljs-built_in"> group </span><span class="hljs-keyword">in</span> group1:
+    <span class="hljs-builtin-name">print</span>(name)
+    num1 += 1
+    <span class="hljs-keyword">if</span> num1 ==1:
+        result_1 = group[<span class="hljs-string">'run'</span>].sum()
+    <span class="hljs-keyword">else</span>:
+        result_1 += group[<span class="hljs-string">'run'</span>].sum()
+result_1 = result_1 / num1
+<span class="hljs-builtin-name">print</span>(result_1)
+group2 = result2.groupby(<span class="hljs-string">'day'</span>)
+<span class="hljs-keyword">for</span> name,<span class="hljs-built_in"> group </span><span class="hljs-keyword">in</span> group2:
+    num2 += 1
+    <span class="hljs-keyword">if</span> num2 ==1:
+        result_2 = group[<span class="hljs-string">'run'</span>].sum()
+    <span class="hljs-keyword">else</span>:
+        result_2 += group[<span class="hljs-string">'run'</span>].sum()
+result_2 = result_2 / num2
+<span class="hljs-builtin-name">print</span>(result_2)</code></pre>
 <p><img src="/article/67aeaf8/image-20200701222344893.png" srcset="/img/loading.gif" alt="image-20200701222344893"></p>
 <p><img src="/article/67aeaf8/image-20200701222354535.png" srcset="/img/loading.gif" alt="image-20200701222354535"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result_1 &gt; result_2</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs nginx"><span class="hljs-attribute">result_1</span> &gt; result_2</code></pre>
 <p><img src="/article/67aeaf8/image-20200701222414991.png" srcset="/img/loading.gif" alt="image-20200701222414991"></p>
 <p>周末的工作量是比工作日当天用车量更大</p>
 <p>（2）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">result2[<span class="string">"start_hour"</span>] = result2[<span class="string">'start_time'</span>].astype(<span class="string">'str'</span>).apply(<span class="keyword">lambda</span> x: int(x.split()[<span class="number">1</span>].split\</span><br><span class="line">                                          (<span class="string">":"</span>)[<span class="number">0</span>]))</span><br><span class="line">result2[<span class="string">"end_hour"</span>] = result2[<span class="string">'end_time'</span>].astype(<span class="string">'str'</span>).apply(<span class="keyword">lambda</span> x: int(x.split()[<span class="number">1</span>].split\</span><br><span class="line">                                          (<span class="string">":"</span>)[<span class="number">0</span>]))</span><br><span class="line">result2[<span class="string">"start_min"</span>] = result2[<span class="string">'start_time'</span>].astype(<span class="string">'str'</span>).apply(<span class="keyword">lambda</span> x: int(x.split()[<span class="number">1</span>].split\</span><br><span class="line">                                          (<span class="string">":"</span>)[<span class="number">1</span>]))</span><br><span class="line">result2[<span class="string">'end_min'</span>] = result2[<span class="string">'end_time'</span>].astype(<span class="string">'str'</span>).apply(<span class="keyword">lambda</span> x: int(x.split()[<span class="number">1</span>].split\</span><br><span class="line">                                                            (<span class="string">":"</span>)[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result2_e = result2[(result2[<span class="string">'start_hour'</span>]&lt;<span class="number">9</span>) | ((result2[<span class="string">'start_hour'</span>]==<span class="number">9</span>) &amp; (result2[<span class="string">'start_min'</span>] &lt; <span class="number">30</span>))]</span><br><span class="line">result2_e = result2_e[(result2_e[<span class="string">'end_hour'</span>]&gt;<span class="number">7</span>) | ((result2_e[<span class="string">'end_hour'</span>]==<span class="number">7</span>) &amp; (result2_e[<span class="string">'end_min'</span>] &gt; <span class="number">30</span>))]</span><br><span class="line">result2_a = result2[(result2[<span class="string">'start_hour'</span>]&lt;<span class="number">19</span>) &amp; (result2[<span class="string">'end_hour'</span>]&gt;<span class="number">17</span>)]</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">result2_e.shape[<span class="number">0</span>]</span><br><span class="line">group2_e = result2_e.groupby(<span class="string">'day'</span>)</span><br><span class="line">list_e = []</span><br><span class="line">list_n = []</span><br><span class="line"><span class="keyword">for</span> name, group <span class="keyword">in</span> group2_e:</span><br><span class="line">    list_n.append(name)</span><br><span class="line">    list_e.append(group[<span class="string">'run'</span>].sum())</span><br><span class="line">group2_a = result2_a.groupby(<span class="string">'day'</span>)</span><br><span class="line">list_a = []</span><br><span class="line">list_n2 = []</span><br><span class="line"><span class="keyword">for</span> name, group <span class="keyword">in</span> group2_a:</span><br><span class="line">    list_n2.append(name)</span><br><span class="line">    list_a.append(group[<span class="string">'run'</span>].sum())</span><br><span class="line">result_day = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(list_a)):</span><br><span class="line">    <span class="keyword">if</span> list_e[i] &gt; list_a[i]:</span><br><span class="line">        result_day.append(list_n[i])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result_day</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">result2[<span class="hljs-string">"start_hour"</span>] = result2[<span class="hljs-string">'start_time'</span>].astype(<span class="hljs-string">'str'</span>).apply(<span class="hljs-keyword">lambda</span> x: int(x.split()[<span class="hljs-number">1</span>].split\
+                                          (<span class="hljs-string">":"</span>)[<span class="hljs-number">0</span>]))
+result2[<span class="hljs-string">"end_hour"</span>] = result2[<span class="hljs-string">'end_time'</span>].astype(<span class="hljs-string">'str'</span>).apply(<span class="hljs-keyword">lambda</span> x: int(x.split()[<span class="hljs-number">1</span>].split\
+                                          (<span class="hljs-string">":"</span>)[<span class="hljs-number">0</span>]))
+result2[<span class="hljs-string">"start_min"</span>] = result2[<span class="hljs-string">'start_time'</span>].astype(<span class="hljs-string">'str'</span>).apply(<span class="hljs-keyword">lambda</span> x: int(x.split()[<span class="hljs-number">1</span>].split\
+                                          (<span class="hljs-string">":"</span>)[<span class="hljs-number">1</span>]))
+result2[<span class="hljs-string">'end_min'</span>] = result2[<span class="hljs-string">'end_time'</span>].astype(<span class="hljs-string">'str'</span>).apply(<span class="hljs-keyword">lambda</span> x: int(x.split()[<span class="hljs-number">1</span>].split\
+                                                            (<span class="hljs-string">":"</span>)[<span class="hljs-number">1</span>]))</code></pre>
+<pre><code class="hljs python">result2_e = result2[(result2[<span class="hljs-string">'start_hour'</span>]&lt;<span class="hljs-number">9</span>) | ((result2[<span class="hljs-string">'start_hour'</span>]==<span class="hljs-number">9</span>) &amp; (result2[<span class="hljs-string">'start_min'</span>] &lt; <span class="hljs-number">30</span>))]
+result2_e = result2_e[(result2_e[<span class="hljs-string">'end_hour'</span>]&gt;<span class="hljs-number">7</span>) | ((result2_e[<span class="hljs-string">'end_hour'</span>]==<span class="hljs-number">7</span>) &amp; (result2_e[<span class="hljs-string">'end_min'</span>] &gt; <span class="hljs-number">30</span>))]
+result2_a = result2[(result2[<span class="hljs-string">'start_hour'</span>]&lt;<span class="hljs-number">19</span>) &amp; (result2[<span class="hljs-string">'end_hour'</span>]&gt;<span class="hljs-number">17</span>)]</code></pre>
+<pre><code class="hljs python">result2_e.shape[<span class="hljs-number">0</span>]
+group2_e = result2_e.groupby(<span class="hljs-string">'day'</span>)
+list_e = []
+list_n = []
+<span class="hljs-keyword">for</span> name, group <span class="hljs-keyword">in</span> group2_e:
+    list_n.append(name)
+    list_e.append(group[<span class="hljs-string">'run'</span>].sum())
+group2_a = result2_a.groupby(<span class="hljs-string">'day'</span>)
+list_a = []
+list_n2 = []
+<span class="hljs-keyword">for</span> name, group <span class="hljs-keyword">in</span> group2_a:
+    list_n2.append(name)
+    list_a.append(group[<span class="hljs-string">'run'</span>].sum())
+result_day = []
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(list_a)):
+    <span class="hljs-keyword">if</span> list_e[i] &gt; list_a[i]:
+        result_day.append(list_n[i])
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">pass</span></code></pre>
+<pre><code class="hljs python">result_day</code></pre>
 <p><img src="/article/67aeaf8/image-20200701223448673.png" srcset="/img/loading.gif" alt="image-20200701223448673"></p>
 
             </article>

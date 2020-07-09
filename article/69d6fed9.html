@@ -232,7 +232,20 @@
             
             <article class="markdown-body">
               <h1 id="leetcode-78-子集"><a href="#leetcode-78-子集" class="headerlink" title="leetcode 78.子集"></a>leetcode 78.子集</h1><p>给定一组<strong>不含重复元素</strong>的整数数组nums，返回该数组所有可能的子集（幂集）。<br><strong>说明：</strong>解集不能包含重复的子集。<br><strong>示例：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">输出:</span><br><span class="line">[</span><br><span class="line">  [<span class="number">3</span>],</span><br><span class="line">  [<span class="number">1</span>],</span><br><span class="line">  [<span class="number">2</span>],</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">  [<span class="number">1</span>,<span class="number">3</span>],</span><br><span class="line">  [<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">  []</span><br><span class="line">]</span><br><span class="line">全排列/组合/子集问题，比较相似，可以使用一些通用策略解决。</span><br><span class="line">首先，解空间非常大：</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">输入: nums = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]
+输出:
+[
+  [<span class="hljs-number">3</span>],
+  [<span class="hljs-number">1</span>],
+  [<span class="hljs-number">2</span>],
+  [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],
+  [<span class="hljs-number">1</span>,<span class="hljs-number">3</span>],
+  [<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],
+  [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],
+  []
+]
+全排列/组合/子集问题，比较相似，可以使用一些通用策略解决。
+首先，解空间非常大：</code></pre>
 <ul>
 <li>全排列：$N!$</li>
 <li>组合：$N!$</li>
@@ -247,7 +260,14 @@
 <p>相比前两种方法，第三种方法将每种情况都简化为二进制数，易于实现和验证。<br>此外，第三种方法具有最优的时间复杂度，可以生成按照字典顺序的输出结果。</p>
 <h2 id="方法一：递归"><a href="#方法一：递归" class="headerlink" title="方法一：递归"></a>方法一：递归</h2><p><strong>思路</strong><br>开始假设输出子集为空，每一步都向子集添加新的整数，并生成新的子集。</p>
 <p><img src="/article/69d6fed9/recursion.png" srcset="/img/loading.gif" alt="img"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">subsets</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">	n = len(nums)</span><br><span class="line">	output = [[]]</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">		output += [curr + [num] <span class="keyword">for</span> curr <span class="keyword">in</span> output]</span><br><span class="line">	<span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">subsets</span><span class="hljs-params">(self, nums)</span>:</span>
+	n = len(nums)
+	output = [[]]
+	
+	<span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> nums:
+		output += [curr + [num] <span class="hljs-keyword">for</span> curr <span class="hljs-keyword">in</span> output]
+	<span class="hljs-keyword">return</span> output</code></pre>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度：$O(N \times 2^N)$，生成所有子集，并复制到输出结果中。???</p>
@@ -277,7 +297,25 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subsets</span><span class="params">(self, nums: List[int] -&gt; List[List[int]])</span>:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(first = <span class="number">0</span>, curr = [])</span>:</span></span><br><span class="line">            <span class="comment"># if the combination is done</span></span><br><span class="line">            <span class="keyword">if</span> len(curr) == k:</span><br><span class="line">                output.append(curr[:])</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(first, n):</span><br><span class="line">                <span class="comment"># add nums[i] into the current combination</span></span><br><span class="line">                curr.append(nums[i])</span><br><span class="line">                <span class="comment"># use next integers to complete the combination</span></span><br><span class="line">                backtrack(i+<span class="number">1</span>, curr)</span><br><span class="line">                <span class="comment"># backtrack</span></span><br><span class="line">                curr.pop()</span><br><span class="line">		</span><br><span class="line">        output = []</span><br><span class="line">        n = len(nums)</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(n + <span class="number">1</span>):</span><br><span class="line">            backtrack()</span><br><span class="line">       	<span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">subsets</span><span class="hljs-params">(self, nums: List[int] -&gt; List[List[int]])</span>:</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(first = <span class="hljs-number">0</span>, curr = [])</span>:</span>
+            <span class="hljs-comment"># if the combination is done</span>
+            <span class="hljs-keyword">if</span> len(curr) == k:
+                output.append(curr[:])
+            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(first, n):
+                <span class="hljs-comment"># add nums[i] into the current combination</span>
+                curr.append(nums[i])
+                <span class="hljs-comment"># use next integers to complete the combination</span>
+                backtrack(i+<span class="hljs-number">1</span>, curr)
+                <span class="hljs-comment"># backtrack</span>
+                curr.pop()
+		
+        output = []
+        n = len(nums)
+        <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(n + <span class="hljs-number">1</span>):
+            backtrack()
+       	<span class="hljs-keyword">return</span> output</code></pre>
 <p>这里改进了一下，找到了就直接返回上一级。</p>
 <p><strong>复杂度分析</strong></p>
 <ul>
@@ -286,7 +324,16 @@
 </ul>
 <p>晚上又看到了一种回溯算法：</p>
 <p>简化了上面的写法，不用k，也是bfs类似思想，每层的结果都放入output中。但是leetcode的运行时间变长了。(#`O′)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subsets</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        res = []</span><br><span class="line">        n = len(nums)</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(i, tmp)</span>:</span></span><br><span class="line">            res.append(tmp)</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i, n):</span><br><span class="line">                backtrack(j+<span class="number">1</span>, tmp + [num[j]])</span><br><span class="line">       	backtrack(<span class="number">0</span>, [])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">subsets</span><span class="hljs-params">(self, nums)</span>:</span>
+        res = []
+        n = len(nums)
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(i, tmp)</span>:</span>
+            res.append(tmp)
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(i, n):
+                backtrack(j+<span class="hljs-number">1</span>, tmp + [num[j]])
+       	backtrack(<span class="hljs-number">0</span>, [])
+        <span class="hljs-keyword">return</span> res</code></pre>
 <ul>
 <li><p>append操作是在原List上的修改，不会返回一个新的值。</p>
 </li>
@@ -305,16 +352,31 @@
 <p>例如，位掩码 0..00（全 0）表示空子集，位掩码 1..11（全 1）表示输入数组 nums。</p>
 <p>因此要生成所有子集，只需要生成从 0..00 到 1..11 的所有 n 位掩码。</p>
 <p>生成二进制数很简单，但如何处理左边填充 0 是一个问题。因为必须生成固定长度的位掩码：例如 001，而不是 1。因此可以使用一些位操作技巧：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nth_bit = <span class="number">1</span> &lt;&lt; n</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>**n):</span><br><span class="line">    <span class="comment"># generate bitmask, from 0..00 to 1..11</span></span><br><span class="line">    bitmask = bin(i | nth_bit)[<span class="number">3</span>:]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">nth_bit = <span class="hljs-number">1</span> &lt;&lt; n
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>**n):
+    <span class="hljs-comment"># generate bitmask, from 0..00 to 1..11</span>
+    bitmask = bin(i | nth_bit)[<span class="hljs-number">3</span>:]</code></pre>
 <p>以示例为例，就是把[0,7]跟8进行或操作，目的是为了取到前面的0，然后取0b1xxx后三位。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>**n, <span class="number">2</span>**(n + <span class="number">1</span>)):</span><br><span class="line">    <span class="comment"># generate bitmask, from 0..00 to 1..11</span></span><br><span class="line">    bitmask = bin(i)[<span class="number">3</span>:]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>**n, <span class="hljs-number">2</span>**(n + <span class="hljs-number">1</span>)):
+    <span class="hljs-comment"># generate bitmask, from 0..00 to 1..11</span>
+    bitmask = bin(i)[<span class="hljs-number">3</span>:]</code></pre>
 <p>或者直接从8到16，取后三位，效果是一样的。<br><strong>算法</strong></p>
 <ul>
 <li>生成所有长度为 n 的二进制位掩码。</li>
 <li>将每个子集都映射到一个位掩码数：位掩码中第 <code>i</code> 位如果是 <code>1</code> 表示子集中存在 <code>nums[i]</code>，<code>0</code> 表示子集中不存在 <code>nums[i]</code>。</li>
 <li>返回子集列表。</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subsets</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        n = len(nums)</span><br><span class="line">        output = []</span><br><span class="line">        n_bit = <span class="number">1</span> &lt;&lt; n</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>**n):</span><br><span class="line">            <span class="comment"># generate bitmask form 0..00 to 1..11</span></span><br><span class="line">            bitmask = bin(i|n_bit)[<span class="number">3</span>:]</span><br><span class="line">            <span class="comment"># append subset corresponding to that bitmask</span></span><br><span class="line">            output.append([num[j] <span class="keyword">for</span> j <span class="keyword">in</span> range(n) <span class="keyword">if</span> bitmask[n] == <span class="string">'1'</span>])</span><br><span class="line">   		<span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">subsets</span><span class="hljs-params">(self, nums)</span>:</span>
+        n = len(nums)
+        output = []
+        n_bit = <span class="hljs-number">1</span> &lt;&lt; n
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>**n):
+            <span class="hljs-comment"># generate bitmask form 0..00 to 1..11</span>
+            bitmask = bin(i|n_bit)[<span class="hljs-number">3</span>:]
+            <span class="hljs-comment"># append subset corresponding to that bitmask</span>
+            output.append([num[j] <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(n) <span class="hljs-keyword">if</span> bitmask[n] == <span class="hljs-string">'1'</span>])
+   		<span class="hljs-keyword">return</span> output</code></pre>
 <p>结束！嗯~ o(<em>￣▽￣</em>)o，收回昨天的话，不难，就是第一次碰到是需要花时间理解，然后就是动手很重要。今日打卡get~</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/subsets/solution/zi-ji-by-leetcode/" target="_blank" rel="noopener">leetcode50官方解析</a></p>
 <p>以前觉得只写代码就好了，注释真是太麻烦了。现在的我，只写代码就是耍流氓，要让人理解理解，可读性很很很很重要。</p>

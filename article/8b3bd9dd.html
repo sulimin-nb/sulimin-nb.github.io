@@ -322,15 +322,54 @@ R = det(M)-k(trace(M))^2</script><p>其中$det(M)=\lambda_1\lambda_2$为矩阵�
 </ul>
 <p>待检测的图片：</p>
 <p><img src="/article/8b3bd9dd/image1.jpg" srcset="/img/loading.gif" alt="image1"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检测参数</span></span><br><span class="line">block_size = <span class="number">3</span></span><br><span class="line">sobel_size = <span class="number">3</span></span><br><span class="line">k = <span class="number">0.06</span></span><br><span class="line"></span><br><span class="line">image = cv.imread(<span class="string">'image1.jpg'</span>)</span><br><span class="line">print(image.shape)</span><br><span class="line">height = image.shape[<span class="number">0</span>]</span><br><span class="line">width = image.shape[<span class="number">1</span>]</span><br><span class="line">channels = image.shape[<span class="number">2</span>]</span><br><span class="line">print(<span class="string">"width: %s height: %s channel: %s"</span>%(width, height, channels))</span><br><span class="line"><span class="comment"># 将图像转换为灰度图</span></span><br><span class="line">gray_img = cv.cvtColor(image, cv.COLOR_BGR2GRAY)</span><br><span class="line"><span class="comment"># 将数据格式转换为32位浮点数</span></span><br><span class="line">gray_img = np.float32(gray_img)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用合适值作为输入参数检测角点，得到的结果图用来标出角点</span></span><br><span class="line">corners_img = cv.cornerHarris(gray_img, block_size, sobel_size, k)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2 <span class="hljs-keyword">as</span> cv
+<span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+<span class="hljs-comment"># 检测参数</span>
+block_size = <span class="hljs-number">3</span>
+sobel_size = <span class="hljs-number">3</span>
+k = <span class="hljs-number">0.06</span>
+
+image = cv.imread(<span class="hljs-string">'image1.jpg'</span>)
+print(image.shape)
+height = image.shape[<span class="hljs-number">0</span>]
+width = image.shape[<span class="hljs-number">1</span>]
+channels = image.shape[<span class="hljs-number">2</span>]
+print(<span class="hljs-string">"width: %s height: %s channel: %s"</span>%(width, height, channels))
+<span class="hljs-comment"># 将图像转换为灰度图</span>
+gray_img = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
+<span class="hljs-comment"># 将数据格式转换为32位浮点数</span>
+gray_img = np.float32(gray_img)
+
+<span class="hljs-comment"># 使用合适值作为输入参数检测角点，得到的结果图用来标出角点</span>
+corners_img = cv.cornerHarris(gray_img, block_size, sobel_size, k)</code></pre>
 <p>输出：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(225, 225, 3)</span><br><span class="line">width: 225 height: 225 channel: 3</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">kernel = cv.getStructuringElement(cv.MORPH_RECT,(<span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line">dst = cv.dilate(corners_img, kernel)</span><br><span class="line"><span class="comment"># dst = cv.dilate(corners_img,None)</span></span><br><span class="line"><span class="comment"># image[dst&gt;0.05*dst.max()] = [255,0,0]</span></span><br><span class="line"><span class="comment"># num = dst &gt; 0.05 * dst.max()</span></span><br><span class="line"><span class="comment"># count = np.sum(num)</span></span><br><span class="line"><span class="comment"># print(count)</span></span><br><span class="line">count = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> r <span class="keyword">in</span> range(height):</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> range(width):</span><br><span class="line">        pix = dst[r,c]</span><br><span class="line">        <span class="comment"># 阈值，蓝色标记角点</span></span><br><span class="line">        <span class="keyword">if</span> pix &gt; <span class="number">0.05</span> * dst.max():</span><br><span class="line">            cv.circle(image,(c,r),<span class="number">2</span>,(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>),<span class="number">-1</span>)</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">print(count)</span><br><span class="line">cv.imwrite(<span class="string">'harris_img1.jpg'</span>,image)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs tex">(225, 225, 3)
+width: 225 height: 225 channel: 3</code></pre>
+<pre><code class="hljs python">kernel = cv.getStructuringElement(cv.MORPH_RECT,(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>))
+dst = cv.dilate(corners_img, kernel)
+<span class="hljs-comment"># dst = cv.dilate(corners_img,None)</span>
+<span class="hljs-comment"># image[dst&gt;0.05*dst.max()] = [255,0,0]</span>
+<span class="hljs-comment"># num = dst &gt; 0.05 * dst.max()</span>
+<span class="hljs-comment"># count = np.sum(num)</span>
+<span class="hljs-comment"># print(count)</span>
+count = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> r <span class="hljs-keyword">in</span> range(height):
+    <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> range(width):
+        pix = dst[r,c]
+        <span class="hljs-comment"># 阈值，蓝色标记角点</span>
+        <span class="hljs-keyword">if</span> pix &gt; <span class="hljs-number">0.05</span> * dst.max():
+            cv.circle(image,(c,r),<span class="hljs-number">2</span>,(<span class="hljs-number">255</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>),<span class="hljs-number">-1</span>)
+            count += <span class="hljs-number">1</span>
+print(count)
+cv.imwrite(<span class="hljs-string">'harris_img1.jpg'</span>,image)</code></pre>
 <p>输出：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">741</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs tex">741</code></pre>
 <p>处理后图片如下：</p>
 <p><img src="/article/8b3bd9dd/harris_img1.jpg" srcset="/img/loading.gif" alt="harris_img1"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用点画图，点小一点，好看一丢丢把。。。</span></span><br><span class="line">image[dst&gt;<span class="number">0.05</span>*dst.max()] = [<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment"># 使用点画图，点小一点，好看一丢丢把。。。</span>
+image[dst&gt;<span class="hljs-number">0.05</span>*dst.max()] = [<span class="hljs-number">255</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]</code></pre>
 <p><img src="/article/8b3bd9dd/harris_img2.jpg" srcset="/img/loading.gif" alt="harris_img1"></p>
 <h2 id="2-2-Shi-Tomasi角点检测"><a href="#2-2-Shi-Tomasi角点检测" class="headerlink" title="2.2 Shi-Tomasi角点检测"></a>2.2 Shi-Tomasi角点检测</h2><p>opencv提供了实现Shi-Tomasi 角点检测函数：<strong>cv2.goodFeaturesToTrack()</strong>，下面调用该接口进行Harris特征点检测。</p>
 <p>函数：<strong>goodFeaturesToTrack(image, maxCorners, qualityLevel, minDistance[, corners[, mask[, blockSize[, useHarrisDetector[, k]]]]])</strong></p>
@@ -347,7 +386,25 @@ R = det(M)-k(trace(M))^2</script><p>其中$det(M)=\lambda_1\lambda_2$为矩阵�
 <li><strong>useHarrisDetector</strong>：用于指定角点检测的方法，如果是true则使用Harris角点检测，false则使用Shi Tomasi算法。默认为False。</li>
 <li><strong>k</strong>：默认为0.04，Harris角点检测时使用。</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">maxCorners = <span class="number">600</span></span><br><span class="line">qualityLevel = <span class="number">0.01</span></span><br><span class="line">minDistance = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">'image1.jpg'</span>)</span><br><span class="line">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line">corners = cv2.goodFeaturesToTrack(gray, maxCorners, qualityLevel, minDistance)</span><br><span class="line">corners = np.int0(corners)</span><br><span class="line">count = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> corners:</span><br><span class="line">    x,y = i.ravel()</span><br><span class="line">    cv2.circle(img,(x,y), <span class="number">2</span>, (<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>),<span class="number">-1</span>)</span><br><span class="line">    <span class="comment"># img[y,x] = [255,0,0]</span></span><br><span class="line">    count += <span class="number">1</span></span><br><span class="line">cv.imwrite(<span class="string">'Shi-Tomasi.jpg'</span>,img)</span><br><span class="line">img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line">print(count)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> cv2
+maxCorners = <span class="hljs-number">600</span>
+qualityLevel = <span class="hljs-number">0.01</span>
+minDistance = <span class="hljs-number">10</span>
+
+img = cv2.imread(<span class="hljs-string">'image1.jpg'</span>)
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+corners = cv2.goodFeaturesToTrack(gray, maxCorners, qualityLevel, minDistance)
+corners = np.int0(corners)
+count = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> corners:
+    x,y = i.ravel()
+    cv2.circle(img,(x,y), <span class="hljs-number">2</span>, (<span class="hljs-number">255</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>),<span class="hljs-number">-1</span>)
+    <span class="hljs-comment"># img[y,x] = [255,0,0]</span>
+    count += <span class="hljs-number">1</span>
+cv.imwrite(<span class="hljs-string">'Shi-Tomasi.jpg'</span>,img)
+img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+print(count)</code></pre>
 <p><img src="Task01-Harris特征点检测器-兴趣点检测//Tomasi.jpg" srcset="/img/loading.gif" alt></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Harris和Shi-Tomasi都是基于梯度计算的角点检测方式。</p>
 <p>Harris角点检测的性质：</p>

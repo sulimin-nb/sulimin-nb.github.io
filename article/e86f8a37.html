@@ -233,13 +233,18 @@
             <article class="markdown-body">
               <h1 id="169-多数元素"><a href="#169-多数元素" class="headerlink" title="169.多数元素"></a>169.多数元素</h1><p>给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数大于$\lfloor \dfrac{n}{2} \rfloor$的元素。<br>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">输出: <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">输入: [<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]
+输出: <span class="hljs-number">3</span></code></pre>
 <p><strong>示例 2:</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>]</span><br><span class="line">输出: <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">输入: [<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]
+输出: <span class="hljs-number">2</span></code></pre>
 <p><strong>说明</strong><br>本题题目没有给出数据范围，最简单的暴力方法(枚举数据中的每个元素，再遍历一遍数组统计其出现次数，时间复杂度为$O(N^2)$的算法)，会超出时间限制。<br>我首先想到的就是哈希表。</p>
 <h2 id="方法一：哈希表"><a href="#方法一：哈希表" class="headerlink" title="方法一：哈希表"></a>方法一：哈希表</h2><p><strong>思路</strong><br>已知出现次数最多的元素大于$\lfloor \dfrac{n}{2} \rfloor$次，可以用哈希表来快速统计每个元素出现的次数。<br><strong>算法</strong><br>使用哈希映射(HashMap)来存储每个元素以及出现的次数。对于哈希映射中的每个键值对，键表示一个元素，值表示该元素出现的次数。<br>用一个循环遍历数组<code>nums</code>并将数组中的每个元素加入哈希映射中。在这之后，遍历哈希映射中的所有键值对，返回值最大的键。同样也可以在遍历数组<code>nums</code>时候使用打擂台的方法，维护最大的值，这样省去了最后对哈希映射的遍历。</p>
 <p><strong>代码</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">majorityElement</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        counts = collections.Counter(nums)</span><br><span class="line">        <span class="keyword">return</span> max(counts.keys(), key=counts.get)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(self, nums)</span>:</span>
+        counts = collections.Counter(nums)
+        <span class="hljs-keyword">return</span> max(counts.keys(), key=counts.get)</code></pre>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：$O(n)$，其中 $n$是数组<code>nums</code> 的长度。我们遍历数组 <code>nums</code> 一次，对于<code>nums</code>中的每一个元素，将其插入哈希表都只需要常数时间。如果在遍历时没有维护最大值，在遍历结束后还需要对哈希表进行遍历，因为哈希表中占用的空间为$O(n)$（可参考下文的空间复杂度分析），那么遍历的时间不会超过$O(n)$。因此总时间复杂度为$O(n)$。</li>
@@ -252,7 +257,10 @@
 <p><img src="/article/e86f8a37/a70cb9316157ecd7eeffe7900d3ca83849079824964e8a0aaefbcffd4040f175-image.png" srcset="/img/loading.gif" alt="image.png"></p>
 <p>对于每种情况，数组下划线表示众数是数组最小值时覆盖的下标，数组上划线表示众数时数组最大值时覆盖的下标。其他情况，这条线会在这两种极端情况的中间，即下划线右移，上划线左移。两个极端情况会在下标为$\lfloor \dfrac{n}{2} \rfloor$的地方重叠。因此，无论众数时多少，返回$\lfloor \dfrac{n}{2} \rfloor$下标对应的值都是正确的。</p>
 <p><strong>代码</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">majorityElement</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        nums.sort()</span><br><span class="line">        <span class="keyword">return</span> nums[len(nums)//<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(self, nums)</span>:</span>
+        nums.sort()
+        <span class="hljs-keyword">return</span> nums[len(nums)//<span class="hljs-number">2</span>]</code></pre>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：$O(nlogn)$。将数组排序的时间复杂度为$O(nlogn)$。</li>
@@ -261,7 +269,15 @@
 <h2 id="方法三：随机化"><a href="#方法三：随机化" class="headerlink" title="方法三：随机化"></a>方法三：随机化</h2><p><strong>思路</strong><br>因为超过$\lfloor \dfrac{n}{2} \rfloor$的数组下标被众数占据了，这样我们随机挑选一个下标对应的元素并验证，有很大的概率能找到众数。</p>
 <p><strong>算法</strong><br>由于一个给定的下标对应的数字很有可能是众数，随机挑选一个下标，检查它是否是众数，如果是就返回，否则继续随机挑选。</p>
 <p><strong>代码</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">majorityElement</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        majority_count = len(nums)//<span class="number">2</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            candidate = random.choice(nums)</span><br><span class="line">            <span class="keyword">if</span> sum(<span class="number">1</span> <span class="keyword">for</span> elem <span class="keyword">in</span> nums <span class="keyword">if</span> elem == candidate) &gt; majority_count:</span><br><span class="line">                <span class="keyword">return</span> candidate</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> random
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(self, nums)</span>:</span>
+        majority_count = len(nums)//<span class="hljs-number">2</span>
+        <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+            candidate = random.choice(nums)
+            <span class="hljs-keyword">if</span> sum(<span class="hljs-number">1</span> <span class="hljs-keyword">for</span> elem <span class="hljs-keyword">in</span> nums <span class="hljs-keyword">if</span> elem == candidate) &gt; majority_count:
+                <span class="hljs-keyword">return</span> candidate</code></pre>
 <p>时间复杂度：理论上最坏情况下的时间复杂度为$O(\infty)$，因为如果我们的运气很差，这个算法会一直找不到众数，随机挑选无穷多次，所以最坏时间复杂度是没有上限的。然而，<strong>运行的期望时间是线性的。</strong><br>为了更简单地分析，先说服你自己：<strong>由于众数占据超过数组一半的位置，期望的随机次数会小于众数占据数组恰好一半的情况。</strong>因此，我们可以计算随机的期望次数（下标为<code>prob</code>为原问题，<code>mod</code>为众数恰好占据数组一半数目的问题）：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
@@ -276,7 +292,27 @@
 <p>说明我们可以使用分治法解决这个问题：<strong>将数组分成左右两个部分，分别求出左半部分的众数<code>a1</code>以及右半部分的众数<code>a2</code>，随后在<code>a1</code>和<code>a2</code>中选出正确的众数。</strong></p>
 <p><strong>算法</strong><br>使用经典的分治算法递归求解，知道所有的子问题都是长度为<strong>1</strong>的数组，长度为<strong>1</strong>的子数组中唯一的数显然就是众数，直接返回即可。<br>如果回溯后某区间长度大于<code>1</code>，将左右子区间的值合并。如果众数相同，这一段区间的众数就确定下来。否则，需要比较两个众数在整个区间内出现的次数来确定该区间的众数。</p>
 <p><strong>代码</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">majorityElement</span><span class="params">(self, nums, lo=<span class="number">0</span>, hi=None)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">majority_element_rec</span><span class="params">(lo, hi)</span>:</span></span><br><span class="line">	<span class="comment"># basic case;the only element in an array of size 1 is the majority element.</span></span><br><span class="line">		<span class="keyword">if</span> lo == hi:</span><br><span class="line">		<span class="keyword">return</span> nums[lo]</span><br><span class="line">		</span><br><span class="line">		<span class="comment"># recurse on left and right halves of this slice.</span></span><br><span class="line">		mid = (hi - lo) // <span class="number">2</span> + lo</span><br><span class="line">		left = majority_element_rec(lo, mid)</span><br><span class="line">		right = majority_element_rec(mid+<span class="number">1</span>， hi)</span><br><span class="line">		</span><br><span class="line">		<span class="comment"># if the two halves agree on the majority element, return it.</span></span><br><span class="line">		<span class="keyword">if</span> left == right:</span><br><span class="line">			<span class="keyword">return</span> left</span><br><span class="line">		<span class="comment"># otherwise, count each element and return the 'winner'.</span></span><br><span class="line">		left_count = sum(<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(lo, hi+<span class="number">1</span>) <span class="keyword">if</span> nums[i] == left)</span><br><span class="line">		right_count = sum(<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(lo, hi+<span class="number">1</span>) <span class="keyword">if</span> nums[i] == right)</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> left <span class="keyword">if</span> left_count &gt; right_count <span class="keyword">else</span> right</span><br><span class="line">	<span class="keyword">return</span> majority_element_rec(<span class="number">0</span>, len(nums)<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(self, nums, lo=<span class="hljs-number">0</span>, hi=None)</span>:</span>
+	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majority_element_rec</span><span class="hljs-params">(lo, hi)</span>:</span>
+	<span class="hljs-comment"># basic case;the only element in an array of size 1 is the majority element.</span>
+		<span class="hljs-keyword">if</span> lo == hi:
+		<span class="hljs-keyword">return</span> nums[lo]
+		
+		<span class="hljs-comment"># recurse on left and right halves of this slice.</span>
+		mid = (hi - lo) // <span class="hljs-number">2</span> + lo
+		left = majority_element_rec(lo, mid)
+		right = majority_element_rec(mid+<span class="hljs-number">1</span>， hi)
+		
+		<span class="hljs-comment"># if the two halves agree on the majority element, return it.</span>
+		<span class="hljs-keyword">if</span> left == right:
+			<span class="hljs-keyword">return</span> left
+		<span class="hljs-comment"># otherwise, count each element and return the 'winner'.</span>
+		left_count = sum(<span class="hljs-number">1</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(lo, hi+<span class="hljs-number">1</span>) <span class="hljs-keyword">if</span> nums[i] == left)
+		right_count = sum(<span class="hljs-number">1</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(lo, hi+<span class="hljs-number">1</span>) <span class="hljs-keyword">if</span> nums[i] == right)
+		
+		<span class="hljs-keyword">return</span> left <span class="hljs-keyword">if</span> left_count &gt; right_count <span class="hljs-keyword">else</span> right
+	<span class="hljs-keyword">return</span> majority_element_rec(<span class="hljs-number">0</span>, len(nums)<span class="hljs-number">-1</span>)</code></pre>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：$O(n\log⁡n)$。函数<code>majority_element_rec()</code>会求解 2 个长度为$\dfrac{n}{2}$的子问题，并做两遍长度为$n$的线性扫描。因此，分治算法的时间复杂度可以表示为：</li>
@@ -310,7 +346,16 @@ T(n) = 2T(\frac{n}{2}) + 2n</script><p>​        根据<a href="https://baike.b
 
 <p>在遍历到数组中的第一个元素以及每个在 <code>|</code> 之后的元素时，<code>`candidate</code> 都会因为 <code>count</code> 的值变为 <code>0</code> 而发生改变。最后一次 <code>candidate</code> 的值从 <code>5</code> 变为 <code>7</code>，也就是这个数组中的众数。<br>简单的证明见官方题解。</p>
 <p><strong>代码</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sollution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">majorityElement</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        candidate = <span class="literal">None</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> count == <span class="number">0</span>:</span><br><span class="line">                candidate = num</span><br><span class="line">            count += (<span class="number">1</span> <span class="keyword">if</span> num == candidate <span class="keyword">else</span> <span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">return</span> candidate</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sollution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(self, nums)</span>:</span>
+        count = <span class="hljs-number">0</span>
+        candidate = <span class="hljs-literal">None</span>
+        
+        <span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> nums:
+            <span class="hljs-keyword">if</span> count == <span class="hljs-number">0</span>:
+                candidate = num
+            count += (<span class="hljs-number">1</span> <span class="hljs-keyword">if</span> num == candidate <span class="hljs-keyword">else</span> <span class="hljs-number">-1</span>)
+        <span class="hljs-keyword">return</span> candidate</code></pre>
 <p>大部分借鉴了官方的解题思路，就是会简化一下，加上一点点自己的想法。如果直接扫一遍，就是从脑子里过一遍就没得了。。。记录下来印象会深刻一些。每日一题结束！</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/majority-element/solution/duo-shu-yuan-su-by-leetcode-solution/" target="_blank" rel="noopener">leetcode169官方题解</a></p>
 

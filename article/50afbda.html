@@ -366,7 +366,27 @@ U\left(G_{p}\right)=\left|s\left(g_{p_{-1}}-g_{c}\right)-s\left(g_{0}-g_{c}\righ
 <p>函数：<br>detectMultiScale(self, image, scaleFactor=None, minNeighbors=None, flags=None, minSize=None, maxSize=None)<br>参数:<br>1）scaleFactor: 图像缩放比例<br>2）minNeighbors: 每个候选矩形保留的邻居个数，值越大-&gt;精度越大<br>3）minSize：检测到的最小矩形大小<br>4）maxSize: 检测到的最大矩形大小</p>
 <p>待测人脸图像(网上随意摘取一张)：</p>
 <p><img src="/article/50afbda/image2.jpg" srcset="/img/loading.gif" alt="image2"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 利用LBP进行人脸检测</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">img = cv2.imread(<span class="string">'image2.jpg'</span>)</span><br><span class="line"><span class="comment"># cv2.imshow('test', img)</span></span><br><span class="line">face_detect = cv2.CascadeClassifier(<span class="string">'lbpcascade_frontalface_improved.xml'</span>)</span><br><span class="line"><span class="comment"># ======================检测人脸==============================</span></span><br><span class="line"><span class="comment"># 灰度处理</span></span><br><span class="line">gray = cv2.cvtColor(img, code=cv2.COLOR_BGR2GRAY)</span><br><span class="line"><span class="comment"># 检测人脸 按照1.1倍放到 周围最小像素为5</span></span><br><span class="line">face_zone = face_detect.detectMultiScale(gray, scaleFactor=<span class="number">1.1</span>, minNeighbors=<span class="number">2</span>)</span><br><span class="line">print(face_zone)</span><br><span class="line"><span class="comment"># 绘制矩形检测人脸</span></span><br><span class="line"><span class="keyword">for</span> (x, y, w, h) <span class="keyword">in</span> face_zone:</span><br><span class="line">    <span class="comment"># 绘制矩形人脸区域</span></span><br><span class="line">    print(x,y,w,h)</span><br><span class="line">    cv2.rectangle(img, pt1=(x, y), pt2=(x+w, y+h), color=[<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>], thickness=<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 显示图片</span></span><br><span class="line">cv2.imshow(<span class="string">"output"</span>, img)</span><br><span class="line"><span class="comment"># 等待显示，设置任意键退出程序</span></span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment"># 利用LBP进行人脸检测</span>
+<span class="hljs-keyword">import</span> cv2
+img = cv2.imread(<span class="hljs-string">'image2.jpg'</span>)
+<span class="hljs-comment"># cv2.imshow('test', img)</span>
+face_detect = cv2.CascadeClassifier(<span class="hljs-string">'lbpcascade_frontalface_improved.xml'</span>)
+<span class="hljs-comment"># ======================检测人脸==============================</span>
+<span class="hljs-comment"># 灰度处理</span>
+gray = cv2.cvtColor(img, code=cv2.COLOR_BGR2GRAY)
+<span class="hljs-comment"># 检测人脸 按照1.1倍放到 周围最小像素为5</span>
+face_zone = face_detect.detectMultiScale(gray, scaleFactor=<span class="hljs-number">1.1</span>, minNeighbors=<span class="hljs-number">2</span>)
+print(face_zone)
+<span class="hljs-comment"># 绘制矩形检测人脸</span>
+<span class="hljs-keyword">for</span> (x, y, w, h) <span class="hljs-keyword">in</span> face_zone:
+    <span class="hljs-comment"># 绘制矩形人脸区域</span>
+    print(x,y,w,h)
+    cv2.rectangle(img, pt1=(x, y), pt2=(x+w, y+h), color=[<span class="hljs-number">255</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>], thickness=<span class="hljs-number">2</span>)
+<span class="hljs-comment"># 显示图片</span>
+cv2.imshow(<span class="hljs-string">"output"</span>, img)
+<span class="hljs-comment"># 等待显示，设置任意键退出程序</span>
+cv2.waitKey(<span class="hljs-number">0</span>)
+cv2.destroyAllWindows()</code></pre>
 <p>检测结果：</p>
 <p><img src="/article/50afbda/output.jpg" srcset="/img/loading.gif" alt="output"></p>
 <p>简单示意例子：<a href="https://sharky93.github.io/docs/gallery/auto_examples/plot_local_binary_pattern.html" target="_blank" rel="noopener">https://sharky93.github.io/docs/gallery/auto_examples/plot_local_binary_pattern.html</a></p>
