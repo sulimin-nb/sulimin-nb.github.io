@@ -3326,7 +3326,7 @@ f[0][2] &= 0
       </tags>
   </entry>
   <entry>
-    <title>机器学习_聚类</title>
+    <title>聚类</title>
     <url>/article/c583ae2a.html</url>
     <content><![CDATA[<h2 id="层次聚类-Hierarchical-Clustering"><a href="#层次聚类-Hierarchical-Clustering" class="headerlink" title="层次聚类(Hierarchical Clustering)"></a>层次聚类(Hierarchical Clustering)</h2><p>1、聚合(agglomerative)或自下而上(bottom-up)聚类<br>2、分裂(divisive)或自上而下(top-down)聚类</p>
 <hr>
@@ -3427,7 +3427,8 @@ plt.scatter(X[:,<span class="hljs-number">0</span>], X[:,<span class="hljs-numbe
 <p><img src="/article/c583ae2a/image-20200710223122317.png" srcset="/img/loading.gif" alt="image-20200710223122317"></p>
 ]]></content>
       <categories>
-        <category>机器学习， 聚类</category>
+        <category>机器学习</category>
+        <category>聚类</category>
       </categories>
       <tags>
         <tag>机器学习</tag>
