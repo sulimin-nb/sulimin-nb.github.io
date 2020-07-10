@@ -17,7 +17,7 @@
   <meta name="description" content="向前向前向前ε=( o｀ω′)ノ">
   <meta name="author" content="sulimin">
   <meta name="keywords" content="机器学习，数据挖掘，计算机视觉">
-  <title>聚类 - 苏</title>
+  <title>机器学习-主成分分析 - 苏</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -165,8 +165,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-10 17:54">
-      2020年7月10日 下午
+    <time datetime="2020-07-11 00:06">
+      2020年7月11日 凌晨
     </time>
   </div>
 
@@ -176,7 +176,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.2k 字
+      0 字
     </span>
   
 
@@ -186,7 +186,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      35
+      1
        分钟
     </span>
   
@@ -231,283 +231,12 @@
               </p>
             
             <article class="markdown-body">
-              <h2 id="层次聚类-Hierarchical-Clustering"><a href="#层次聚类-Hierarchical-Clustering" class="headerlink" title="层次聚类(Hierarchical Clustering)"></a>层次聚类(Hierarchical Clustering)</h2><p>1、聚合(agglomerative)或自下而上(bottom-up)聚类<br>2、分裂(divisive)或自上而下(top-down)聚类</p>
-<hr>
-<p><strong>AGNES(Agglomerative Nesting)：凝聚层次聚类</strong>——<strong>自下而上</strong><br>1、构造m个类，每个类包含一个样本<br>2、计算类与类之间的距离$d_{ij}$，记做矩阵$D=[d_{ij}]_{m \times m}$<br>3、合并间距最小的两个类<br>4、若达到聚类数k则退出<br>5、重新计算类之间的距离$d_{ij}$，重复3</p>
-<p>计算类间距离<br>1、最小距离(单连接，single linkage)<br>2、最大距离(完全连接，complete linkage)<br>3、中心/均值距离（计算中心，两个类中心之间的距离）<br>4、平均距离</p>
-<center>    
-    <img src="/article/c583ae2a/image-20200710180744389.png" srcset="/img/loading.gif" width="600">
-</center>
-<center>    
-    <img src="/article/c583ae2a/image-20200710182415542.png" srcset="/img/loading.gif" width="600">
-</center>
-
-
-<p><strong>代码</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-<span class="hljs-keyword">import</span> matplotlib <span class="hljs-keyword">as</span> mpl
-<span class="hljs-keyword">import</span> scripy.io
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">from</span> sklearn.cluster <span class="hljs-keyword">import</span> AgglomerativeClustering
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">loaddata</span><span class="hljs-params">()</span>:</span>
-    data = np.loadtxt(<span class="hljs-string">'data/cluster_data.csv'</span>, delimiter=<span class="hljs-string">','</span>)
-    <span class="hljs-keyword">return</span> data
-X = loaddata()
-<span class="hljs-comment"># linkage可取值：</span>
-<span class="hljs-comment"># -ward:方差</span>
-<span class="hljs-comment"># -complete:最大距离</span>
-<span class="hljs-comment"># -average：平均距离</span>
-<span class="hljs-comment"># -single:最小距离</span>
-model = AgglomerativeClustering(n_clusters=<span class="hljs-number">3</span>, affinity=<span class="hljs-string">'euclidean'</span>,linkage=<span class="hljs-string">'complete'</span>)
-<span class="hljs-comment"># AgglomerativeClustering(affinity='euclidean', compute_full_tree='auto',</span>
-<span class="hljs-comment">#                        connectivity=None, distance_threshold=None,</span>
-<span class="hljs-comment">#                        linkage='complete', memory=None, n_clusters=3)</span>
-model.fit(X)
-pirnt(<span class="hljs-string">'每个样本所属的簇：'</span>,model.labels_)
-cm_dark = mpl.colors.ListedColormap([<span class="hljs-string">'g'</span>,<span class="hljs-string">'r'</span>,<span class="hljs-string">'b'</span>])
-plt.scatter(X[:,<span class="hljs-number">0</span>],X[:,<span class="hljs-number">1</span>], c=model.labels_, cmap=cm_dark, s=<span class="hljs-number">20</span>)
-plt.show()</code></pre>
-<p>输出：</p>
-<pre><code class="hljs tex">每个样本所属的簇: [1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
- 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
- 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2
- 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
- 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
- 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- 0 0 0 1]</code></pre>
-<p><img src="/article/c583ae2a/image-20200710211716375.png" srcset="/img/loading.gif" alt="image-20200710211716375"></p>
-<h2 id="密度聚类-Density-based-clustering"><a href="#密度聚类-Density-based-clustering" class="headerlink" title="密度聚类(Density-based clustering)"></a>密度聚类(Density-based clustering)</h2><p>DBSCAN是一种著名的密度聚类方法，给定参数$(\varepsilon,Minpts)$<br>1、$\varepsilon$领域<br>2、核心对象(Core object)<br>3、密度直达(directly density-reachable)<br>4、密度可达(density-reachable)</p>
-<center>    
-    <img src="/article/c583ae2a/image-20200710183926623.png" srcset="/img/loading.gif" width="600">
-</center>
-
-<p>若$minPts=3$，则$x_1,x_2$等都是核心对象<br>$x_2$由$x_1$密度直达，$x_3$由$x_1$密度可达</p>
-<p><strong>密度聚类算法过程：</strong><br>1、首先设置$(\varepsilon,Minpts)$参数<br>2、确定核心对象，假设为$\Omega ={x^{(3)},x^{(5)},x^{(6)},x^{(8)},x^{(9)},x^{(13)},x^{(14)},x^{(18)} ,x^{(19)} ,x^{(24)} ,x^{(25)},x^{(28)},x^{(29)}}$<br>3、从$\Omega$中随机选取一个核心对象作为种子(假设为$x^{(8)}$)，找出由它密度可达的所有样本，构成一个聚类簇，假设第一个聚类簇为$C_1 = \{ x^{(6)},x^{(7)},x^{(8)},x^{(10)},x^{(12)},x^{(18)},x^{(19)},x^{(20)},x^{(23)} \}$<br>4、从$\Omega$中去除$C_1$中包含的核心对象后，$\Omega ={x^{(3)},x^{(5)},x^{(9)},x^{(13)},x^{(14)},x^{(24)} ,x^{(25)},x^{(28)},x^{(29)}}$，重复3直至$\Omega$为空。</p>
-<p><strong>代码</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-<span class="hljs-keyword">import</span> matplotlib <span class="hljs-keyword">as</span> mpl
-<span class="hljs-keyword">import</span> scripy.io
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">from</span> sklearn.cluster <span class="hljs-keyword">import</span> DBSCAN
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">loaddata</span><span class="hljs-params">()</span>:</span>
-    data = np.loadtxt(<span class="hljs-string">'data/cluster_data.csv'</span>, delimiter=<span class="hljs-string">','</span>)
-    <span class="hljs-keyword">return</span> data
-X = loaddata()
-model = DBSCAN(eps=<span class="hljs-number">0.5</span>, min_samples=<span class="hljs-number">5</span>, metric=<span class="hljs-string">'euclidean'</span>)
-model.fit(X)
-print(<span class="hljs-string">'每个样本所属的簇：'</span>, model.labels_)
-cm_dark = mpl.colors.ListedColormap([<span class="hljs-string">'g'</span>,<span class="hljs-string">'r'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>])
-plt.scatter(X[:,<span class="hljs-number">0</span>], X[:,<span class="hljs-number">1</span>], c=model.labels_, cmap=cm_dark, s=<span class="hljs-number">20</span>)</code></pre>
-<p>输出(-1类为离群点)：</p>
-<pre><code class="hljs tex">每个样本所属的簇: [ 0 -1  1  0  0  0  0  0  0  0  0  0  0  0  0  0 -1  0  0  0  0  0  0  0
-  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 -1
-  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 -1  0  0  0  0
-  0  0  0  0  0  0  0  0  0  0  0  0 -1  0  0  0  0  0  0  0  0  0  0 -1
-  0  0  0  0  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2
-  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2
-  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2
-  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2
-  2  2  2  2 -1  2 -1  2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
-  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
-  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
-  1 -1 -1  1  1  1  1  1  1  1  1  1  1  1  1 -1  1  1  1  1  1  1  1  1
-  1  1  1  1  1  1  1  1  1  1  1  0]</code></pre>
-<p><img src="/article/c583ae2a/image-20200710214909170.png" srcset="/img/loading.gif" alt="image-20200710214909170"></p>
-<h2 id="高斯混合模型-Gaussian-Mixed-Model"><a href="#高斯混合模型-Gaussian-Mixed-Model" class="headerlink" title="高斯混合模型(Gaussian Mixed Model)"></a>高斯混合模型(Gaussian Mixed Model)</h2><p>高斯模型（$x$为单变量）：</p>
-<center>    
-    <img src="/article/c583ae2a/image-20200710215235437.png" srcset="/img/loading.gif" , width="300">
-</center>
-
-<p>均值为0，方差为1的概率密度函数：</p>
-<center>    
-    <img src="/article/c583ae2a/image-20200710215343235.png" srcset="/img/loading.gif">
-</center>
-
-<p>高斯模型（$X$为多变量，维度为$n$，$d=n$，$\sum$为$X$的协方差矩阵，大小为$n \times n$，$\overrightarrow{u}=(u_1,u_2,\ldots,u_n)$）：</p>
-<center>    
-    <img src="/article/c583ae2a/image-20200710215425497.png" srcset="/img/loading.gif" , width="500">
-</center>
-
-<center>    
-    <img src="/article/c583ae2a/image-20200710215745455.png" srcset="/img/loading.gif">
-</center>
-
-<p>为什么要用高斯混合模型：</p>
-<center class="third">    
-    <img src="/article/c583ae2a/image-20200710215954681.png" srcset="/img/loading.gif" width="250">
-    <img src="/article/c583ae2a/image-20200710220000554.png" srcset="/img/loading.gif" width="250">
-    <img src="/article/c583ae2a/image-20200710220007667.png" srcset="/img/loading.gif" width="250">
-</center>
-
-
-<p>用单变量高斯模型无法拟合上图所示分布(两类数据的分布)，用高斯混合模型可以较好拟合。</p>
-<center>    
-    <img src="/article/c583ae2a/image-20200710220356090.png" srcset="/img/loading.gif" , width="400">
-</center>
-
-<p>其中 $k$ 为类别数，$\pi_k$为第 $k$ 个高斯模型的权重，$N(x|u_k,\sum_k)$为第 $k$ 个高斯模型，$u_k,\sum_k$是第 $k$ 个高斯模型的参数（均值向量，协方差矩阵）。</p>
-<p><strong>高斯混合模型参数计算</strong><br>第 $i$ 个样本属于第k个类别的概率：</p>
-<center>    
-    <img src="/article/c583ae2a/image-20200710230813932.png" srcset="/img/loading.gif" , width="200">
-</center>
-
-<center>    
-    <img src="/article/c583ae2a/image-20200710223122317.png" srcset="/img/loading.gif" , width="300">
-</center>
-
-<p>交替更新，直至收敛稳定。</p>
-<p><strong>手工代码</strong></p>
-<p>一、生成数据进行实验</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-<span class="hljs-comment"># 生成一些数据进行实验</span>
-<span class="hljs-comment"># 1.生成均值为1.71，标准差为0.056的男生身高数据</span>
-np.random.seed(<span class="hljs-number">0</span>)
-mu_m = <span class="hljs-number">1.71</span> <span class="hljs-comment"># 期望</span>
-sigma_m = <span class="hljs-number">0.056</span> <span class="hljs-comment"># 标准差</span>
-num_m = <span class="hljs-number">10000</span> <span class="hljs-comment"># 数据个数为10000</span>
-random_data_m = np.random.normal(mu_m, sigma_m, num_m) <span class="hljs-comment">#生成数据</span>
-y_m = np.ones(num_m) <span class="hljs-comment"># 生成标签</span>
-<span class="hljs-comment"># 2.生成均值为1.58，标准差为0.051的女生身高数据</span>
-np.random.seed(<span class="hljs-number">0</span>)
-mu_w = <span class="hljs-number">1.58</span>  <span class="hljs-comment">#期望</span>
-sigma_w = <span class="hljs-number">0.051</span>  <span class="hljs-comment">#标准差数据</span>
-num_w = <span class="hljs-number">10000</span>  <span class="hljs-comment">#个数为10000</span>
-rand_data_w = np.random.normal(mu_w, sigma_w, num_w)<span class="hljs-comment">#生成数据</span>
-y_w = np.zeros(num_m)<span class="hljs-comment">#生成标签</span>
-<span class="hljs-comment"># 3.把男生数据和女生数据合在一起</span>
-data = np.append(rand_data_m,rand_data_w)
-data = data.reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)
-y = np.append(y_m,y_w)
-print(data)
-print(y)</code></pre>
-<p>输出：</p>
-<pre><code class="hljs tex">[[1.80878693]
- [1.7324088 ]
- [1.76480933]
- ...
- [1.60636048]
- [1.57832104]
- [1.64620368]]
-[1. 1. 1. ... 0. 0. 0.]</code></pre>
-<p>二、高斯混合模型拟合数据</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> multivariate_normal
-
-num_iter = <span class="hljs-number">1000</span>
-n, d = data.shape
-<span class="hljs-comment">#初始化参数</span>
-mu1 = data.min(axis=<span class="hljs-number">0</span>)
-mu2 = data.max(axis=<span class="hljs-number">0</span>)
-sigma1 = np.identity(d)
-sigma2 = np.identity(d)
-pi = <span class="hljs-number">0.5</span>
-
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(num_iter):
-    <span class="hljs-comment">#计算gamma</span>
-    norm1 = multivariate_normal(mu1, sigma1)
-    norm2 = multivariate_normal(mu2, sigma2)
-    tau1 = pi * norm1.pdf(data)
-    <span class="hljs-comment"># print('tau1', tau1)</span>
-    tau2 = (<span class="hljs-number">1</span> - pi) * norm2.pdf(data)
-    gamma = tau1 / (tau1 + tau2)
-    <span class="hljs-comment"># print('gamma',gamma)</span>
-
-    <span class="hljs-comment">#计算mu1</span>
-    mu1 = np.dot(gamma, data) / np.sum(gamma)
-    <span class="hljs-comment"># print("第%d iter: mul=%f" % (i, mu1))</span>
-    <span class="hljs-comment">#计算mu2</span>
-    mu2 = np.dot(<span class="hljs-number">1</span>-gamma, data) / np.sum(<span class="hljs-number">1</span> - gamma)
-    <span class="hljs-comment">#计算sigma1</span>
-    sigma1 = np.dot(gamma * (data-mu1).T, (data - mu1) ) / np.sum(gamma)
-    <span class="hljs-comment"># print("第%d iter: sigma1=%f" %(i,sigma1))</span>
-    <span class="hljs-comment">#计算sigmal2</span>
-    sigma2 = np.dot((<span class="hljs-number">1</span>-gamma) * (data-mu2).T, (data - mu2)) / np.sum(<span class="hljs-number">1</span> - gamma)
-    <span class="hljs-comment">#计算pi</span>
-    <span class="hljs-comment"># print("第%d iter: sigma1=%f" %(i,sigma2))</span>
-    pi = np.sum(gamma)/n
-
-print(<span class="hljs-string">u'类别概率:\t'</span>, pi)
-print(<span class="hljs-string">u'均值:\t'</span>, mu1, mu2)
-print(<span class="hljs-string">u'方差:\n'</span>, sigma1, <span class="hljs-string">'\n\n'</span>, sigma2, <span class="hljs-string">'\n'</span>)</code></pre>
-<p>输出：</p>
-<pre><code class="hljs tex">类别概率:	 0.4873884639284559
-均值:	 [1.57749047] [1.70726384]
-方差:
- [[0.00244834]] 
- [[0.00315184]]</code></pre>
-<p><strong>sklean实现高斯混合模型</strong></p>
-<p>一、生成实验数据</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-<span class="hljs-comment"># 生成一些数据进行实验</span>
-<span class="hljs-comment"># 1.生成均值为1.71，标准差为0.056的男生身高数据</span>
-np.random.seed(<span class="hljs-number">0</span>)
-mu_m = <span class="hljs-number">1.71</span> <span class="hljs-comment"># 期望</span>
-sigma_m = <span class="hljs-number">0.056</span> <span class="hljs-comment"># 标准差</span>
-num_m = <span class="hljs-number">10000</span> <span class="hljs-comment"># 数据个数为10000</span>
-random_data_m = np.random.normal(mu_m, sigma_m, num_m) <span class="hljs-comment">#生成数据</span>
-y_m = np.ones(num_m) <span class="hljs-comment"># 生成标签</span>
-<span class="hljs-comment"># 2.生成均值为1.58，标准差为0.051的女生身高数据</span>
-np.random.seed(<span class="hljs-number">0</span>)
-mu_w = <span class="hljs-number">1.58</span>  <span class="hljs-comment">#期望</span>
-sigma_w = <span class="hljs-number">0.051</span>  <span class="hljs-comment">#标准差数据</span>
-num_w = <span class="hljs-number">10000</span>  <span class="hljs-comment">#个数为10000</span>
-rand_data_w = np.random.normal(mu_w, sigma_w, num_w)<span class="hljs-comment">#生成数据</span>
-y_w = np.zeros(num_m)<span class="hljs-comment">#生成标签</span>
-<span class="hljs-comment"># 3.把男生数据和女生数据合在一起</span>
-data = np.append(rand_data_m,rand_data_w)
-data = data.reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)
-y = np.append(y_m,y_w)
-print(data)
-print(y)</code></pre>
-<p>二、sklean实现高斯混合模型拟合数据</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.mixture <span class="hljs-keyword">import</span> GaussianMixture
-<span class="hljs-comment"># n_components:类别数 max_iter:迭代次数</span>
-g = GaussianMixture(n_components=<span class="hljs-number">2</span>, covariance_type=<span class="hljs-string">'full'</span>, tol=<span class="hljs-number">1e-6</span>, max_iter=<span class="hljs-number">1000</span>)
-g.fit(data)
-print(<span class="hljs-string">u'类别概率:\t'</span>, g.weights_[<span class="hljs-number">0</span>])
-print(<span class="hljs-string">u'类别概率:\t'</span>, g.weights_[<span class="hljs-number">1</span>])
-print(<span class="hljs-string">u'均值:\n'</span>, g.means_, <span class="hljs-string">'\n'</span>)
-print(<span class="hljs-string">u'方差:\n'</span>, g.covariances_, <span class="hljs-string">'\n'</span>)</code></pre>
-<p>输出：</p>
-<pre><code class="hljs tex">类别概率:	 0.4996454306546242
-类别概率:	 0.5003545693453813
-均值:
- [[1.57895001]
- [1.70898537]] 
-
-方差:
- [[[0.00251652]]
- [[0.00306363]]]</code></pre>
-<p>测试准确率：</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> accuracy_score
-y_hat = g.predict(data)
-print(accuracy_score(y,y_hat))</code></pre>
-<p>输出（重叠区域不好判断）：</p>
-<pre><code class="hljs python"><span class="hljs-number">0.8891</span></code></pre>
+              
             </article>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%81%9A%E7%B1%BB/">聚类</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
-                    
-                  </div>
                 
               </div>
               
@@ -518,18 +247,12 @@ print(accuracy_score(y,y_hat))</code></pre>
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/article/1998c4ca.html">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">机器学习-主成分分析</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/article/bdb1f9df.html">
-                        <span class="hidden-mobile">leetcode309</span>
+                      <a href="/article/c583ae2a.html">
+                        <span class="hidden-mobile">聚类</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -811,7 +534,7 @@ print(accuracy_score(y,y_hat))</code></pre>
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/article/c583ae2a.html');
+          var target = decodeURI('/article/1998c4ca.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -905,7 +628,7 @@ print(accuracy_score(y,y_hat))</code></pre>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "聚类&nbsp;",
+        "机器学习-主成分分析&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 50,
