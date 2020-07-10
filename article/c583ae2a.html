@@ -235,12 +235,13 @@
 <hr>
 <p><strong>AGNES(Agglomerative Nesting)：凝聚层次聚类</strong>——<strong>自下而上</strong><br>1、构造m个类，每个类包含一个样本<br>2、计算类与类之间的距离$d_{ij}$，记做矩阵$D=[d_{ij}]_{m \times m}$<br>3、合并间距最小的两个类<br>4、若达到聚类数k则退出<br>5、重新计算类之间的距离$d_{ij}$，重复3</p>
 <p>计算类间距离<br>1、最小距离(单连接，single linkage)<br>2、最大距离(完全连接，complete linkage)<br>3、中心/均值距离（计算中心，两个类中心之间的距离）<br>4、平均距离</p>
-<center class="one">    
+<center>    
     <img src="/article/c583ae2a/image-20200710180744389.png" srcset="/img/loading.gif" width="600">
 </center>
-<center class="one">    
+<center>    
     <img src="/article/c583ae2a/image-20200710182415542.png" srcset="/img/loading.gif" width="600">
 </center>
+
 
 <p><strong>代码</strong></p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
@@ -278,7 +279,10 @@ plt.show()</code></pre>
  <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span>]</code></pre>
 <p><img src="/article/c583ae2a/image-20200710211716375.png" srcset="/img/loading.gif" alt="image-20200710211716375"></p>
 <h2 id="密度聚类-Density-based-clustering"><a href="#密度聚类-Density-based-clustering" class="headerlink" title="密度聚类(Density-based clustering)"></a>密度聚类(Density-based clustering)</h2><p>DBSCAN是一种著名的密度聚类方法，给定参数$(\varepsilon,Minpts)$<br>1、$\varepsilon$领域<br>2、核心对象(Core object)<br>3、密度直达(directly density-reachable)<br>4、密度可达(density-reachable)</p>
-<p><img src="/article/c583ae2a/image-20200710183926623.png" srcset="/img/loading.gif" alt="image-20200710183926623"></p>
+<center>    
+    <img src="/article/c583ae2a/image-20200710183926623.png" srcset="/img/loading.gif" width="600">
+</center>
+
 <p>若$minPts=3$，则$x_1,x_2$等都是核心对象<br>$x_2$由$x_1$密度直达，$x_3$由$x_1$密度可达</p>
 <p><strong>密度聚类算法过程：</strong><br>1、首先设置$(\varepsilon,Minpts)$参数<br>2、确定核心对象，假设为$\Omega ={x^{(3)},x^{(5)},x^{(6)},x^{(8)},x^{(9)},x^{(13)},x^{(14)},x^{(18)} ,x^{(19)} ,x^{(24)} ,x^{(25)},x^{(28)},x^{(29)}}$<br>3、从$\Omega$中随机选取一个核心对象作为种子(假设为$x^{(8)}$)，找出由它密度可达的所有样本，构成一个聚类簇，假设第一个聚类簇为$C_1 = \{ x^{(6)},x^{(7)},x^{(8)},x^{(10)},x^{(12)},x^{(18)},x^{(19)},x^{(20)},x^{(23)} \}$<br>4、从$\Omega$中去除$C_1$中包含的核心对象后，$\Omega ={x^{(3)},x^{(5)},x^{(9)},x^{(13)},x^{(14)},x^{(24)} ,x^{(25)},x^{(28)},x^{(29)}}$，重复3直至$\Omega$为空。</p>
 <p><strong>代码</strong></p>
@@ -311,24 +315,47 @@ plt.scatter(X[:,<span class="hljs-number">0</span>], X[:,<span class="hljs-numbe
   <span class="hljs-number">1</span> <span class="hljs-number">-1</span> <span class="hljs-number">-1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span> <span class="hljs-number">-1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>
   <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">1</span>  <span class="hljs-number">0</span>]</code></pre>
 <p><img src="/article/c583ae2a/image-20200710214909170.png" srcset="/img/loading.gif" alt="image-20200710214909170"></p>
-<h2 id="高斯混合模型-Gaussian-Mixed-Model"><a href="#高斯混合模型-Gaussian-Mixed-Model" class="headerlink" title="高斯混合模型(Gaussian Mixed Model)"></a>高斯混合模型(Gaussian Mixed Model)</h2><p>高斯模型（$x$为单变量）：<img src="/article/c583ae2a/image-20200710215235437.png" srcset="/img/loading.gif" alt="image-20200710215235437"></p>
-<p>均值为0，方差为1的概率密度函数：</p>
-<p><img src="/article/c583ae2a/image-20200710215343235.png" srcset="/img/loading.gif" alt="image-20200710215343235"></p>
-<p>高斯模型（$X$为多变量，维度为$n$，$d=n$，$\sum$为$X$的协方差矩阵，大小为$n \times n$，$\overrightarrow{u}=(u_1,u_2,\ldots,u_n)$）：<img src="/article/c583ae2a/image-20200710215425497.png" srcset="/img/loading.gif" alt="image-20200710215425497"></p>
-<p><img src="/article/c583ae2a/image-20200710215745455.png" srcset="/img/loading.gif" alt="image-20200710215745455"></p>
-<p>为什么要用高斯混合模型：</p>
-<center class="third">    
-    <img src="/article/c583ae2a/image-20200710215954681.png" srcset="/img/loading.gif" width="300">
-    <img src="/article/c583ae2a/image-20200710220000554.png" srcset="/img/loading.gif" width="300">
-    <img src="/article/c583ae2a/image-20200710220007667.png" srcset="/img/loading.gif" width="300">
+<h2 id="高斯混合模型-Gaussian-Mixed-Model"><a href="#高斯混合模型-Gaussian-Mixed-Model" class="headerlink" title="高斯混合模型(Gaussian Mixed Model)"></a>高斯混合模型(Gaussian Mixed Model)</h2><p>高斯模型（$x$为单变量）：</p>
+<center>    
+    <img src="/article/c583ae2a/image-20200710215235437.png" srcset="/img/loading.gif" , width="300">
 </center>
 
-<p>用单变量高斯模型无法拟合上图所示分布(两类数据的分布)，用高斯混合模型可以较好拟合。</p>
-<p><img src="/article/c583ae2a/image-20200710220356090.png" srcset="/img/loading.gif" alt="image-20200710220356090"></p>
-<p>其中 $k$ 为类别数，$\pi_k$为第 $k$ 个高斯模型的权重，$N(x|u_k,\sum_k)$为第 $k$ 个高斯模型，$u_k,\sum_k$是第 $k$ 个高斯模型的参数（均值向量，协方差矩阵）。</p>
-<p>**高斯混合模型参数计算<br>第 $i$ 个样本属于第k个类别的概率：<img src="/article/c583ae2a/image-20200710223103699.png" srcset="/img/loading.gif" alt="image-20200710223103699"></p>
-<p><img src="/article/c583ae2a/image-20200710223122317.png" srcset="/img/loading.gif" alt="image-20200710223122317"></p>
+<p>均值为0，方差为1的概率密度函数：</p>
+<center>    
+    <img src="/article/c583ae2a/image-20200710215343235.png" srcset="/img/loading.gif">
+</center>
 
+<p>高斯模型（$X$为多变量，维度为$n$，$d=n$，$\sum$为$X$的协方差矩阵，大小为$n \times n$，$\overrightarrow{u}=(u_1,u_2,\ldots,u_n)$）：</p>
+<center>    
+    <img src="/article/c583ae2a/image-20200710215425497.png" srcset="/img/loading.gif" , width="500">
+</center>
+
+<center>    
+    <img src="/article/c583ae2a/image-20200710215745455.png" srcset="/img/loading.gif">
+</center>
+
+<p>为什么要用高斯混合模型：</p>
+<center class="third">    
+    <img src="/article/c583ae2a/image-20200710215954681.png" srcset="/img/loading.gif" width="250">
+    <img src="/article/c583ae2a/image-20200710220000554.png" srcset="/img/loading.gif" width="250">
+    <img src="/article/c583ae2a/image-20200710220007667.png" srcset="/img/loading.gif" width="250">
+</center>
+
+
+<p>用单变量高斯模型无法拟合上图所示分布(两类数据的分布)，用高斯混合模型可以较好拟合。</p>
+<center>    
+    <img src="/article/c583ae2a/image-20200710220356090.png" srcset="/img/loading.gif" , width="400">
+</center>
+
+<p>其中 $k$ 为类别数，$\pi_k$为第 $k$ 个高斯模型的权重，$N(x|u_k,\sum_k)$为第 $k$ 个高斯模型，$u_k,\sum_k$是第 $k$ 个高斯模型的参数（均值向量，协方差矩阵）。</p>
+<p><strong>高斯混合模型参数计算</strong><br>第 $i$ 个样本属于第k个类别的概率：</p>
+<center>    
+    <img src="/article/c583ae2a/image-20200710230813932.png" srcset="/img/loading.gif" , width="200">
+</center>
+
+<center>    
+    <img src="/article/c583ae2a/image-20200710223122317.png" srcset="/img/loading.gif" , width="300">
+</center>
             </article>
             <hr>
             <div>
