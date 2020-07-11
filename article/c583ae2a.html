@@ -176,7 +176,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.2k 字
+      2.8k 字
     </span>
   
 
@@ -186,7 +186,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      35
+      46
        分钟
     </span>
   
@@ -226,7 +226,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月11日 凌晨
+                  本文最后更新于：2020年7月11日 下午
                 
               </p>
             
@@ -487,6 +487,116 @@ y_hat = g.predict(data)
 print(accuracy_score(y,y_hat))</code></pre>
 <p>输出（重叠区域不好判断）：</p>
 <pre><code class="hljs python"><span class="hljs-number">0.8891</span></code></pre>
+<h2 id="对亚洲足球队进行聚类分析"><a href="#对亚洲足球队进行聚类分析" class="headerlink" title="对亚洲足球队进行聚类分析"></a>对亚洲足球队进行聚类分析</h2><p><strong>代码</strong><br>导入数据</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">from</span> sklearn.cluster <span class="hljs-keyword">import</span> KMeans
+<span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> StandardScaler <span class="hljs-comment"># 标准归一化</span>
+df = pd.read_csv(<span class="hljs-string">'data/football_team_data.csv'</span>, index_col=<span class="hljs-string">'国家'</span>)
+print(df)</code></pre>
+<p>输出：</p>
+<pre><code class="hljs tex">     2019国际排名  2018世界杯  2015亚洲杯
+国家                                
+中国            73       40        7
+日本            60       15        5
+韩国            61       19        2
+伊朗            34       18        6
+沙特            67       26       10
+伊拉克           91       40        4
+卡塔尔          101       40       13
+阿联酋           81       40        6
+乌兹别克斯坦        88       40        8
+泰国           122       40       17
+越南           102       50       17
+阿曼            87       50       12
+巴林           116       50       11
+朝鲜           110       50       14
+印尼           164       50       17
+澳洲            40       30        1
+叙利亚           76       40       17
+约旦           118       50        9
+科威特          160       50       15
+巴勒斯坦          96       50       16</code></pre>
+<p>取出数字列</p>
+<pre><code class="hljs python">X = df.values
+print(X)</code></pre>
+<p>输出：</p>
+<pre><code class="hljs tex">array([[ 73,  40,   7],
+       [ 60,  15,   5],
+       [ 61,  19,   2],
+       [ 34,  18,   6],
+       [ 67,  26,  10],
+       [ 91,  40,   4],
+       [101,  40,  13],
+       [ 81,  40,   6],
+       [ 88,  40,   8],
+       [122,  40,  17],
+       [102,  50,  17],
+       [ 87,  50,  12],
+       [116,  50,  11],
+       [110,  50,  14],
+       [164,  50,  17],
+       [ 40,  30,   1],
+       [ 76,  40,  17],
+       [118,  50,   9],
+       [160,  50,  15],
+       [ 96,  50,  16]], dtype=int64)</code></pre>
+<pre><code class="hljs python">X = StandardScaler().fit_transform(X)
+X</code></pre>
+<p>输出：</p>
+<pre><code class="hljs tex">array([[-0.5842676 ,  0.05223517, -0.64677721],
+       [-0.97679881, -2.12423024, -1.03291285],
+       [-0.9466041 , -1.77599577, -1.61211632],
+       [-1.76186121, -1.86305439, -0.83984503],
+       [-0.76543585, -1.16658546, -0.06757374],
+       [-0.04076286,  0.05223517, -1.22598067],
+       [ 0.26118422,  0.05223517,  0.51162973],
+       [-0.34270994,  0.05223517, -0.83984503],
+       [-0.13134698,  0.05223517, -0.45370938],
+       [ 0.89527309,  0.05223517,  1.28390102],
+       [ 0.29137893,  0.92282133,  1.28390102],
+       [-0.16154169,  0.92282133,  0.31856191],
+       [ 0.71410485,  0.92282133,  0.12549408],
+       [ 0.5329366 ,  0.92282133,  0.70469755],
+       [ 2.16345083,  0.92282133,  1.28390102],
+       [-1.58069297, -0.81835099, -1.80518414],
+       [-0.49368348,  0.05223517,  1.28390102],
+       [ 0.77449426,  0.92282133, -0.26064156],
+       [ 2.042672  ,  0.92282133,  0.89776537],
+       [ 0.11021068,  0.92282133,  1.0908332 ]])</code></pre>
+<p>使用KMeans聚合数据</p>
+<pre><code class="hljs python">model = KMeans(n_clusters=<span class="hljs-number">3</span>, max_iter=<span class="hljs-number">10</span>)
+model.fit(X)
+<span class="hljs-comment">#KMeans(algorithm='auto', copy_x=True, init='k-means++', max_iter=10,</span>
+<span class="hljs-comment">#       n_clusters=3, n_init=10, n_jobs=None, precompute_distances='auto',</span>
+<span class="hljs-comment">#       random_state=None, tol=0.0001, verbose=0)</span>
+df[<span class="hljs-string">"聚类结果"</span>] = model.labels_
+print(df)</code></pre>
+<p>输出：</p>
+<pre><code class="hljs tex"> 2019国际排名  2018世界杯  2015亚洲杯  聚类结果
+国家                                      
+中国            73       40        7     2
+日本            60       15        5     0
+韩国            61       19        2     0
+伊朗            34       18        6     0
+沙特            67       26       10     0
+伊拉克           91       40        4     2
+卡塔尔          101       40       13     1
+阿联酋           81       40        6     2
+乌兹别克斯坦        88       40        8     2
+泰国           122       40       17     1
+越南           102       50       17     1
+阿曼            87       50       12     1
+巴林           116       50       11     1
+朝鲜           110       50       14     1
+印尼           164       50       17     1
+澳洲            40       30        1     0
+叙利亚           76       40       17     1
+约旦           118       50        9     1
+科威特          160       50       15     1
+巴勒斯坦          96       50       16     1</code></pre>
+<p>根据结果看出，这些国家分为了三类，结合数据进行分析，亚洲足球队强弱顺序依次是0，2，1.</p>
+
             </article>
             <hr>
             <div>
