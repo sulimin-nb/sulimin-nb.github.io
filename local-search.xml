@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>机器学习-集成学习</title>
+    <link href="/article/2bebfb2a.html"/>
+    <url>/article/2bebfb2a.html</url>
+    
+    <content type="html"><![CDATA[<h2 id="集成学习简介-Ensemble-Learning-introduction"><a href="#集成学习简介-Ensemble-Learning-introduction" class="headerlink" title="集成学习简介(Ensemble Learning introduction)"></a>集成学习简介(Ensemble Learning introduction)</h2><p>如果聚合一组预测器(比如分类器或回归器)的预测，得到的预测结果也比最好的单个预测器要好。这样的一组预测器，我们称为集成。这种技术，也被称为集成学习，而一个集成学习的算法则被称为集成方法。</p><ul><li>voting(投票)</li><li>Bagging<ul><li>随机森林(RandomForest)</li></ul></li><li>Boosting<ul><li>AdaBoost</li><li>提升树</li><li>XGboost</li></ul></li><li>stacking</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>机器学习</category>
+      
+      <category>集成学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>机器学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>leetcode315</title>
     <link href="/article/ad1c84b5.html"/>
     <url>/article/ad1c84b5.html</url>
