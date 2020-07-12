@@ -176,7 +176,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.6k 字
     </span>
   
 
@@ -186,7 +186,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      20
+      23
        分钟
     </span>
   
@@ -226,7 +226,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月12日 凌晨
+                  本文最后更新于：2020年7月12日 上午
                 
               </p>
             
@@ -235,13 +235,11 @@
 <li><p>是一种统计方法，通过正交变换将一组可能存在相关性的变量转换为一组线性不相关的变量，转换后的这组变量叫主成分。</p>
 </li>
 <li><p>算法本质是找一些投影方向，使得数据在这些投影方向上方差(投影过后的点到原点的平方和)最大。（投影距离小）</p>
-<p><center>    </center></p>
-<pre><code>&lt;img src=&quot;机器学习-主成分分析/image-20200711003413935.png&quot; width=&quot;600&quot;/&gt;
-</code></pre><p>&lt;/center&gt;<br><center>    </center></p>
-<pre><code>&lt;img src=&quot;机器学习-主成分分析/image-20200711003420835.png&quot; width=&quot;600&quot;/&gt;
-</code></pre><p>&lt;/center&gt;<br><center>    </center></p>
-<pre><code>&lt;img src=&quot;机器学习-主成分分析/image-20200711003436312.png&quot; width=&quot;600&quot;/&gt;
-</code></pre><p>&lt;/center&gt;<br>线性回归：点到直线的误差值(红线)最小。<br>PCA：投影距离(垂线方向：黑线)最小。</p>
+<center><img src="/article/1998c4ca/image-20200711003413935.png" srcset="/img/loading.gif" width="600"></center>
+<center><img src="/article/1998c4ca/image-20200711003420835.png" srcset="/img/loading.gif" width="600"></center>
+<center><img src="/article/1998c4ca/image-20200711003436312.png" srcset="/img/loading.gif" width="600"></center>
+
+<p>线性回归：点到直线的误差值(红线)最小。<br>PCA：投影距离(垂线方向：黑线)最小。</p>
 </li>
 </ul>
 <p><img src="/article/1998c4ca/image-20200711004725908.png" srcset="/img/loading.gif" alt="image-20200711004725908"></p>
@@ -394,8 +392,58 @@ plotData(X,X_rec)</code></pre>
 \frac{ \frac{1}{m} \sum^{m}_{i=1}{||x^{(i)} - x^{(i)}_{project}||^2} }{ \frac{1}{m} \sum^{m}_{i=1}{||x^{(i)}||^2}}</script><p>值越小越好(例如：等于0.01，表示原数据99%的信息都保留下来)，但此种计算方法耗时大。<br>（2）</p>
 <script type="math/tex; mode=display">
 \frac{ \sum^{k}_{i=1} S_{ii} }{ \sum^{m}_{i=1} S_{ii} }</script><p>$S_{ii}$是特征值矩阵对角线元素，该值越大越好(如等于0.99，表示元数据99%的信息都保留下来)，此种计算方法耗时小。<br>2、Sklearn实现PCA</p>
-<pre><code class="hljs python">
-</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> matplotlib <span class="hljs-keyword">as</span> mpl
+<span class="hljs-keyword">import</span> scipy.io
+<span class="hljs-keyword">from</span> sklearn.decomposition <span class="hljs-keyword">import</span> PCA
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">loaddata</span><span class="hljs-params">()</span>:</span>
+    data = np.loadtxt(<span class="hljs-string">'data/pca_data.csv'</span>,delimiter=<span class="hljs-string">','</span>)
+    <span class="hljs-keyword">return</span> data
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">plotData</span><span class="hljs-params">(X_orgin,X_rec)</span>:</span>
+    plt.scatter(X_orgin[:,<span class="hljs-number">0</span>],X_orgin[:,<span class="hljs-number">1</span>])
+    plt.scatter(X_rec[:, <span class="hljs-number">0</span>], X_rec[:, <span class="hljs-number">1</span>],c=<span class="hljs-string">'red'</span>)
+    plt.show()
+X = loaddata()
+model = PCA(n_components=<span class="hljs-number">1</span>) <span class="hljs-comment">#定义PCA</span>
+Z = model.fit_transform(X) <span class="hljs-comment">#生成降维后数据</span>
+print(<span class="hljs-string">"主成分个数="</span>,model.n_components)
+print(<span class="hljs-string">"贡献比="</span>,model.explained_variance_ratio_)
+print(<span class="hljs-string">"特征的方差="</span>,model.explained_variance_)
+X_rec = model.inverse_transform(Z) <span class="hljs-comment">#还原数据</span>
+plotData(X,X_rec)</code></pre>
+<p>输出：</p>
+<pre><code class="hljs tex">主成分个数= 1
+贡献比= [0.87062385]
+特征的方差= [2.10987818]</code></pre>
+<p><img src="/article/1998c4ca/输出4.png" srcset="/img/loading.gif" alt="输出4"></p>
+<h2 id="照片压缩"><a href="#照片压缩" class="headerlink" title="照片压缩"></a>照片压缩</h2><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> matplotlib.image <span class="hljs-keyword">as</span> mpimg
+<span class="hljs-keyword">from</span> sklearn.decomposition <span class="hljs-keyword">import</span> PCA
+<span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> StandardScaler
+<span class="hljs-comment"># 读取照片</span>
+img=mpimg.imread(<span class="hljs-string">"data/xxx.jpg"</span>)
+<span class="hljs-comment"># # 显示照片</span>
+<span class="hljs-comment"># plt.imshow(img)</span>
+<span class="hljs-comment"># # 查看照片维度</span>
+<span class="hljs-comment"># print(image.shape) # (800,600,3)</span>
+<span class="hljs-comment"># 把照片转换为二维数组</span>
+X = img.reshape(<span class="hljs-number">1200</span>,<span class="hljs-number">1200</span>)
+<span class="hljs-comment"># 数据标准化</span>
+X = StandardScaler().fit_transform(X) <span class="hljs-comment"># 为了算法快速收敛</span>
+<span class="hljs-comment"># 使用PCA降维</span>
+model = PCA(n_components=<span class="hljs-number">50</span>)
+Z = model.fit_transform(X)
+<span class="hljs-comment"># Z.shape (1200, 50)</span>
+print(<span class="hljs-string">"贡献比="</span>,np.sum(model.explained_variance_ratio_))
+<span class="hljs-comment"># 贡献比= 0.9837087238843197</span>
+<span class="hljs-comment"># model.explained_variance_ratio_.shape (50,)</span>
+<span class="hljs-comment"># 数据还原</span>
+X_rec = model.inverse_transform(Z)
+X_rec = X_rec.reshape(<span class="hljs-number">800</span>,<span class="hljs-number">600</span>,<span class="hljs-number">3</span>)
+<span class="hljs-comment"># 显示还原后的照片</span>
+plt.imshow(X_rec)</code></pre>
 
             </article>
             <hr>
