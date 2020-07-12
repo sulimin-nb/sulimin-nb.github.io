@@ -176,7 +176,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      154 字
+      619 字
     </span>
   
 
@@ -186,7 +186,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      9
        分钟
     </span>
   
@@ -226,7 +226,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月12日 凌晨
+                  本文最后更新于：2020年7月12日 晚上
                 
               </p>
             
@@ -240,7 +240,112 @@
 <span class="hljs-number">2</span> 的右侧仅有 <span class="hljs-number">1</span> 个更小的元素 (<span class="hljs-number">1</span>).
 <span class="hljs-number">6</span> 的右侧有 <span class="hljs-number">1</span> 个更小的元素 (<span class="hljs-number">1</span>).
 <span class="hljs-number">1</span> 的右侧有 <span class="hljs-number">0</span> 个更小的元素.</code></pre>
-<p>只想说一句牛匹，这树状数组，真的很行。</p>
+<p>代码（刚刚找到bug，题解明天写吧~先滚去睡觉）</p>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">countSmaller</span><span class="hljs-params">(self, nums: List[int])</span> -&gt; List[int]:</span>
+        <span class="hljs-comment"># 方法一：树状数组</span>
+        <span class="hljs-comment"># class FenwickTree:</span>
+        <span class="hljs-comment">#     def __init__(self, n):</span>
+        <span class="hljs-comment">#         self.size = n</span>
+        <span class="hljs-comment">#         self.tree = [0 for _ in range(n + 1)]</span>
+
+        <span class="hljs-comment">#     def __lowbit(self, index):</span>
+        <span class="hljs-comment">#         return index &amp; (-index)</span>
+
+        <span class="hljs-comment">#     # 单点更新：将 index 这个位置 + 1</span>
+        <span class="hljs-comment">#     def update(self, index, delta):</span>
+        <span class="hljs-comment">#         # 从下到上，最多到 size，可以等于 size</span>
+        <span class="hljs-comment">#         while index &lt;= self.size:</span>
+        <span class="hljs-comment">#             self.tree[index] += delta</span>
+        <span class="hljs-comment">#             index += self.__lowbit(index)</span>
+
+        <span class="hljs-comment">#     # 区间查询：查询小于等于 index 的元素个数</span>
+        <span class="hljs-comment">#     # 查询的语义是"前缀和"</span>
+        <span class="hljs-comment">#     def query(self, index):</span>
+        <span class="hljs-comment">#         res = 0</span>
+        <span class="hljs-comment">#         # 从上到下，最少到 1，可以等于 1</span>
+        <span class="hljs-comment">#         while index &gt; 0:</span>
+        <span class="hljs-comment">#             res += self.tree[index]</span>
+        <span class="hljs-comment">#             index -= self.__lowbit(index)</span>
+        <span class="hljs-comment">#         return res</span>
+
+        <span class="hljs-comment"># # 特判</span>
+        <span class="hljs-comment"># size = len(nums)</span>
+        <span class="hljs-comment"># if size == 0:</span>
+        <span class="hljs-comment">#     return []</span>
+        <span class="hljs-comment"># if size == 1:</span>
+        <span class="hljs-comment">#     return [0]</span>
+
+        <span class="hljs-comment"># # 去重，方便离散化</span>
+        <span class="hljs-comment"># s = list(set(nums))</span>
+
+        <span class="hljs-comment"># s_len = len(s)</span>
+
+        <span class="hljs-comment"># # 离散化，借助堆</span>
+        <span class="hljs-comment"># import heapq</span>
+        <span class="hljs-comment"># heapq.heapify(s)</span>
+
+        <span class="hljs-comment"># rank_map = dict()</span>
+        <span class="hljs-comment"># rank = 1</span>
+        <span class="hljs-comment"># for _ in range(s_len):</span>
+        <span class="hljs-comment">#     num = heapq.heappop(s)</span>
+        <span class="hljs-comment">#     rank_map[num] = rank</span>
+        <span class="hljs-comment">#     rank += 1</span>
+
+        <span class="hljs-comment"># fenwick_tree = FenwickTree(s_len)</span>
+
+        <span class="hljs-comment"># # 从后向前填表</span>
+        <span class="hljs-comment"># res = [None for _ in range(size)]</span>
+        <span class="hljs-comment"># # 从后向前填表</span>
+        <span class="hljs-comment"># for index in range(size - 1, -1, -1):</span>
+        <span class="hljs-comment">#     # 1、查询排名</span>
+        <span class="hljs-comment">#     rank = rank_map[nums[index]]</span>
+        <span class="hljs-comment">#     # 2、在树状数组排名的那个位置 + 1</span>
+        <span class="hljs-comment">#     fenwick_tree.update(rank, 1)</span>
+        <span class="hljs-comment">#     # 3、查询一下小于等于“当前排名 - 1”的元素有多少</span>
+        <span class="hljs-comment">#     res[index] = fenwick_tree.query(rank - 1)</span>
+        <span class="hljs-comment"># return res</span>
+        <span class="hljs-comment"># 方法二：归并排序</span>
+        n = len(nums)
+        <span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span>:
+            <span class="hljs-keyword">return</span> []
+        <span class="hljs-keyword">if</span> n == <span class="hljs-number">1</span>:
+            <span class="hljs-keyword">return</span> [<span class="hljs-number">0</span>]
+        tmp = [<span class="hljs-number">0</span>] * n
+        index = [i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n)]
+        result = [<span class="hljs-number">0</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n)]
+        self.mergeSort(nums, tmp, index, result, <span class="hljs-number">0</span>, n - <span class="hljs-number">1</span>)
+        <span class="hljs-keyword">return</span> result
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mergeSort</span><span class="hljs-params">(self, nums, tmp, index, result, l, r)</span>:</span>
+        <span class="hljs-keyword">if</span> l &gt;= r:
+            <span class="hljs-keyword">return</span>
+
+        mid = (l + r) // <span class="hljs-number">2</span>
+        self.mergeSort(nums, tmp, index, result, l, mid)
+        self.mergeSort(nums, tmp, index, result, mid + <span class="hljs-number">1</span>, r)
+        <span class="hljs-comment"># if nums[index[mid]] &lt;= nums[index[mid+1]]:</span>
+        <span class="hljs-comment">#     return</span>
+            
+        i, j, pos = l, mid + <span class="hljs-number">1</span>, l
+        <span class="hljs-keyword">while</span> i &lt;= mid <span class="hljs-keyword">and</span> j &lt;= r:
+            <span class="hljs-keyword">if</span> nums[index[i]] &lt;= nums[index[j]]:
+                tmp[pos] = index[i]
+                result[index[i]] += (j - (mid + <span class="hljs-number">1</span>))
+                i += <span class="hljs-number">1</span>
+            <span class="hljs-keyword">else</span>:
+                tmp[pos] = index[j]
+                j += <span class="hljs-number">1</span>
+            pos += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(i, mid + <span class="hljs-number">1</span>):
+            tmp[pos] = index[k]
+            result[index[k]] += (j - (mid + <span class="hljs-number">1</span>))
+            pos += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(j, r + <span class="hljs-number">1</span>):
+            tmp[pos] = index[k]
+            pos += <span class="hljs-number">1</span>
+        index[l:r+<span class="hljs-number">1</span>] = tmp[l:r+<span class="hljs-number">1</span>]
+        <span class="hljs-keyword">return</span></code></pre>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/solution/shu-zhuang-shu-zu-de-xiang-xi-fen-xi-by-yangbingji/" target="_blank" rel="noopener">简洁明了</a></p>
 
             </article>
@@ -253,7 +358,7 @@
                     
                       <a class="hover-with-bg" href="/categories/leetcode/">leetcode</a>
                     
-                      <a class="hover-with-bg" href="/categories/leetcode/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/">树状数组</a>
+                      <a class="hover-with-bg" href="/categories/leetcode/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">树状数组,归并排序</a>
                     
                   </div>
                 
