@@ -176,7 +176,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3k 字
+      4k 字
     </span>
   
 
@@ -186,7 +186,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      43
+      60
        分钟
     </span>
   
@@ -436,8 +436,7 @@ Date
 1990-12-31   NaN
 
 [3650 rows x 1 columns]</code></pre>
-<p>三、2016年8月上海市摩拜单车骑行记录</p>
-<p>（这题我吐槽我自己，写的太复杂啦。做了前2题半，用group做，是真的写的丑。时间序列那章没学好，统统删掉重写）<br>（1）平均而言，周末单天用车量比工作日单天用车量更大吗？</p>
+<h1 id="三、2016年8月上海市摩拜单车骑行记录"><a href="#三、2016年8月上海市摩拜单车骑行记录" class="headerlink" title="三、2016年8月上海市摩拜单车骑行记录"></a>三、2016年8月上海市摩拜单车骑行记录</h1><p>（这题我吐槽我自己，写的太复杂啦。做了前2题半，用group做，是真的写的丑。时间序列那章没学好，统统删掉重写）<br>（1）平均而言，周末单天用车量比工作日单天用车量更大吗？</p>
 <p>（第一题优秀题解有点问题，使用D是单天用车量。）</p>
 <pre><code class="hljs python">df3 = pd.read_csv(<span class="hljs-string">'摩拜单车数据.csv'</span>)
 df3.head()</code></pre>
@@ -473,7 +472,18 @@ df_count[df_count.index.dayofweek.isin([<span class="hljs-number">0</span>,<span
 3311.304347826087 # 工作日</code></pre>
 <p>显然，平均而言，工作日的单天用车量更大。</p>
 <p>（2）工作日每天的高峰时间段大致为上午7：30到9：30、下午17：00到19：00，请问8月里早高峰骑行记录量(以start_time为准)高于晚高峰的有几天？</p>
-<p>早高峰是上午7：30到9：30，需要满足start_time早于9:30和end_time晚于7：30。晚高峰同理。</p>
+<p>早高峰是上午7：30到9：30，需要满足start_time早于9:30和end_time晚于7：30。晚高峰同理。<br>（本来想法是start_time分成start_hour,start_min,也是可以的，优秀题解简洁啊，但有丢丢问题，这里改正了。）</p>
+<pre><code class="hljs python">days = []
+df_mobike_week = df_mobike[df_mobike.index.dayofweek.isin([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>])]
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">31</span>):
+    day = <span class="hljs-string">'2016-8-&#123;&#125;'</span>.format(i+<span class="hljs-number">1</span>)
+    morning = df_mobike_week[(df_mobike_week.index &lt;=<span class="hljs-string">'&#123;&#125; 09:30'</span>.format(day)) &amp;(df_mobike_week.end_time &gt;=<span class="hljs-string">'&#123;&#125; 07:30'</span>.format(day)).values].count()[<span class="hljs-number">0</span>]
+    afternoon = df_mobike_week[(df_mobike_week.index &lt;=<span class="hljs-string">'&#123;&#125; 19:00'</span>.format(day)) &amp;(df_mobike_week.end_time &gt;=<span class="hljs-string">'&#123;&#125; 17:00'</span>.format(day)).values].count()[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">if</span> morning &gt; afternoon:
+        days.append(day)
+print(<span class="hljs-string">'8月早高峰骑行记录量高于晚上高峰的有&#123;&#125;天，分别是&#123;&#125;'</span>.format(len(days), days))</code></pre>
+<p>输出：</p>
+<pre><code class="hljs tex">8月早高峰骑行记录量高于晚上高峰的有5天，分别是['2016-8-4', '2016-8-27', '2016-8-28', '2016-8-29', '2016-8-30']</code></pre>
 <p>（3）请给出在所有周五中(以start_time为准），记录条数最多的那个周五所在的日期，并在该天内分别按30分钟、2小时、6小时统计摩拜单车使用时间的均值。</p>
 <p>找到周五(dayofweek=4)，然后对天聚合求出orderid总和最大的当天。</p>
 <pre><code class="hljs python">max_friday = df_mobike[df_mobike.index.dayofweek==<span class="hljs-number">4</span>][<span class="hljs-string">'orderid'</span>].resample(<span class="hljs-string">'D'</span>).count().idxmax()
@@ -513,14 +523,81 @@ start_time
 2016-08-26 12:00:00   00:16:00
 2016-08-26 18:00:00   00:21:39
 Freq: 6H, Name: usetime, dtype: timedelta64[ns]</code></pre>
-<p>（4）</p>
+<p>（4）请自行搜索相关代码或调用库，计算每条记录起点到终点的球面距离。</p>
 <pre><code class="hljs python"><span class="hljs-keyword">from</span> geopy.distance <span class="hljs-keyword">import</span> geodesic
 df_mobike_dist = df_mobike.copy()
 df_mobike_dist[<span class="hljs-string">'se_dist'</span>] = df_mobike_dist.apply(<span class="hljs-keyword">lambda</span> x: geodesic((x.start_location_y,x.start_location_x),(x.end_location_y,x.end_location_x)).m,axis=<span class="hljs-number">1</span>)
 df_mobike_dist.head()</code></pre>
 <p>输出：</p>
 <p><img src="/article/67aeaf8/image-20200712123754538.png" srcset="/img/loading.gif" alt="image-20200712123754538"></p>
-<p>（5）</p>
+<p>（5）摩拜单车的骑行结束时间是以电子锁的记录时间为准，但有时候用户会忘记关锁，导致骑行时间出现异常。同时，正常人的骑行速度往往大致落在一个合理的区间，请结合上一问中的球面距离和骑行起始、结束时间、找出潜在的异常骑行记录。</p>
+<p>usetime = end_time - start_time，通过se_dist/usetime得到平均速度，当速度小于一定值(这里选取0.05的分位数)，可以认为是潜在的异常骑行记录。</p>
+<pre><code class="hljs python">df_mobike_dist[<span class="hljs-string">'usetime'</span>] = (df_mobike_dist.end_time-df_mobike_dist.index).dt.total_seconds() <span class="hljs-comment">#转换为绝对秒数</span>
+df_mobike_dist[<span class="hljs-string">'se_speed'</span>] = df_mobike_dist.apply(<span class="hljs-keyword">lambda</span> x:x.se_dist/x.usetime, axis=<span class="hljs-number">1</span>)
+print(<span class="hljs-string">'mean'</span>,df_mobike_dist.se_speed.mean())
+<span class="hljs-keyword">for</span> q <span class="hljs-keyword">in</span> [<span class="hljs-number">0.95</span>,<span class="hljs-number">0.75</span>,<span class="hljs-number">0.5</span>,<span class="hljs-number">0.25</span>,<span class="hljs-number">0.1</span>,<span class="hljs-number">0.05</span>,<span class="hljs-number">0.04</span>,<span class="hljs-number">0.03</span>,<span class="hljs-number">0.02</span>,<span class="hljs-number">0.01</span>,<span class="hljs-number">0.001</span>]:
+    print(q*<span class="hljs-number">100</span>,<span class="hljs-string">'分位数'</span>,df_mobike_dist.se_speed.quantile(q))
+<span class="hljs-comment"># 可能忘记锁车：</span>
+df_mobike_dist[df_mobike_dist.se_speed&lt;df_mobike_dist.se_speed.quantile(<span class="hljs-number">0.05</span>)].head()</code></pre>
+<p>输出：</p>
+<pre><code class="hljs tex">                     orderid  bikeid  userid  start_location_x  <span class="hljs-tag">\</span>
+start_time                                                       
+2016-08-29 09:21:00   270836   63136   11361           121.369   
+2016-08-26 22:05:00  1802934  320611    1211           121.504   
+2016-08-24 13:32:00  1630164  143066   11182           121.436   
+2016-08-27 21:52:00  1623489  151285   17526           121.478   
+2016-08-03 22:08:00   748550  136503    7423           121.483   
+
+                     start_location_y            end_time  end_location_x  <span class="hljs-tag">\</span>
+start_time                                                                  
+2016-08-29 09:21:00            31.252 2016-08-29 13:43:00         121.376   
+2016-08-26 22:05:00            31.305 2016-08-26 22:27:00         121.500   
+2016-08-24 13:32:00            31.328 2016-08-24 13:44:00         121.439   
+2016-08-27 21:52:00            31.289 2016-08-27 22:14:00         121.476   
+2016-08-03 22:08:00            31.237 2016-08-03 22:26:00         121.484   
+
+                     end_location_y  <span class="hljs-tag">\</span>
+start_time                            
+2016-08-29 09:21:00          31.233   
+2016-08-26 22:05:00          31.308   
+2016-08-24 13:32:00          31.327   
+2016-08-27 21:52:00          31.292   
+2016-08-03 22:08:00          31.234   
+
+                                                                 track  <span class="hljs-tag">\</span>
+start_time                                                               
+2016-08-29 09:21:00  121.367,31.238#121.367,31.239#121.368,31.240#1...   
+2016-08-26 22:05:00  121.499,31.308#121.500,31.308#121.501,31.308#1...   
+2016-08-24 13:32:00  121.436,31.328#121.437,31.328#121.437,31.329#1...   
+2016-08-27 21:52:00  121.476,31.292#121.477,31.289#121.477,31.290#1...   
+2016-08-03 22:08:00  121.482,31.235#121.483,31.234#121.483,31.235#1...   
+
+                         se_dist  usetime  se_speed  
+start_time                                           
+2016-08-29 09:21:00  2209.621048  15720.0  0.140561  
+2016-08-26 22:05:00   505.608255   1320.0  0.383037  
+2016-08-24 13:32:00   306.300607    720.0  0.425418  
+2016-08-27 21:52:00   383.276389   1320.0  0.290361  
+2016-08-03 22:08:00   345.995048   1080.0  0.320366</code></pre>
+<p>（6）由于路线的曲折性，起点到终点的球面距离往往不能充分反应行程的长度，请利用track列的路线坐标数据，计算估计实际骑行距离，并重新仿照上一问的方法找出可能的异常记录。</p>
+<p>getdist把各个节点之间的距离和求出来，然后也是track_dist/usetime计算平均速度。当速度小于阈值(0.05分位数)时，认为是潜在的异常数据。</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getdist</span><span class="hljs-params">(track)</span>:</span>
+    tlist = []
+    dist = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> track.split(<span class="hljs-string">'#'</span>):
+        <span class="hljs-keyword">for</span> tt <span class="hljs-keyword">in</span> t.split(<span class="hljs-string">','</span>):
+            (tlist.append(tt))
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(tlist)//<span class="hljs-number">2</span> - <span class="hljs-number">1</span>):
+        <span class="hljs-keyword">try</span>:
+            dist += geodesic((tlist[i*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>],tlist[i*<span class="hljs-number">2</span>]),(tlist[i*<span class="hljs-number">2</span>+<span class="hljs-number">3</span>],tlist[i*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>])).m
+        <span class="hljs-keyword">except</span> ValueError:
+            dist += <span class="hljs-number">0</span>
+    <span class="hljs-keyword">return</span> dist
+df_mobike_dist[<span class="hljs-string">'track_dist'</span>] = df_mobike_dist.track.apply(<span class="hljs-keyword">lambda</span> x: getdist(x))
+df_mobike_dist[<span class="hljs-string">'track_speed'</span>] = df_mobike_dist.apply(<span class="hljs-keyword">lambda</span> x: x.track_dist/x.usetime, axis=<span class="hljs-number">1</span>)
+print(<span class="hljs-string">'mean'</span>, df_mobike_dist.track_speed.mean())
+<span class="hljs-keyword">for</span> q <span class="hljs-keyword">in</span> [<span class="hljs-number">0.95</span>,<span class="hljs-number">0.75</span>,<span class="hljs-number">0.5</span>,<span class="hljs-number">0.25</span>,<span class="hljs-number">0.1</span>,<span class="hljs-number">0.05</span>,<span class="hljs-number">0.04</span>,<span class="hljs-number">0.03</span>,<span class="hljs-number">0.02</span>,<span class="hljs-number">0.01</span>,<span class="hljs-number">0.001</span>]:
+    print(q*<span class="hljs-number">100</span>,<span class="hljs-string">'分位数'</span>,df_mobike_dist.track_speed.quantile(q))</code></pre>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/fire_i_ce/article/details/107074111" target="_blank" rel="noopener">优秀的题解</a></p>
 
             </article>
