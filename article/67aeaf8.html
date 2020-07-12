@@ -176,7 +176,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.5k 字
+      3k 字
     </span>
   
 
@@ -186,7 +186,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      36
+      43
        分钟
     </span>
   
@@ -226,7 +226,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月12日 中午
+                  本文最后更新于：2020年7月12日 下午
                 
               </p>
             
@@ -235,13 +235,19 @@
 <h1 id="一、端午节的淘宝粽子交易"><a href="#一、端午节的淘宝粽子交易" class="headerlink" title="一、端午节的淘宝粽子交易"></a>一、端午节的淘宝粽子交易</h1><p>（1）请删除最后一列为缺失值的行，并求所有在杭州发货的商品单价均值。</p>
 <pre><code class="hljs python">df = pd.read_csv(<span class="hljs-string">'端午粽子数据.csv'</span>)
 df.head()</code></pre>
-<p><img src="/article/67aeaf8/image-20200701220417701.png" srcset="/img/loading.gif" alt="image-20200701220417701">列名中有些包含了空格，先去除。</p>
+<p>输出：</p>
+<p><img src="/article/67aeaf8/image-20200701220417701.png" srcset="/img/loading.gif" alt="image-20200701220417701"></p>
+<p>列名中有些包含了空格，先去除。</p>
 <pre><code class="hljs python">df.columns = df.columns.str.strip()
 df.columns</code></pre>
-<p><img src="/article/67aeaf8/image-20200701220535004.png" srcset="/img/loading.gif" alt="image-20200701220535004"><br>然后将最后一列为空的行去除，使用dropna方法。再查看最后一列为空的行。</p>
+<p>输出：</p>
+<p><img src="/article/67aeaf8/image-20200701220535004.png" srcset="/img/loading.gif" alt="image-20200701220535004"></p>
+<p>然后将最后一列为空的行去除，使用dropna方法。再查看最后一列为空的行。</p>
 <pre><code class="hljs python">df_clean = df.dropna(axis=<span class="hljs-number">0</span>,subset=[df.columns[<span class="hljs-number">-1</span>]])
 df_clean[df_clean[df_clean.columns[<span class="hljs-number">-1</span>]].isna()]</code></pre>
-<p><img src="/article/67aeaf8/image-20200701220754043.png" srcset="/img/loading.gif" alt="image-20200701220754043"><br>确认已删除完毕。<br>将所有在杭州交易的记录取出。</p>
+<p>输出：</p>
+<p><img src="/article/67aeaf8/image-20200701220754043.png" srcset="/img/loading.gif" alt="image-20200701220754043"></p>
+<p>确认已删除完毕。<br>将所有在杭州交易的记录取出。</p>
 <pre><code class="hljs python">df_h = df_clean[df_clean[<span class="hljs-string">'发货地址'</span>].str.contains(<span class="hljs-string">'杭州'</span>)]</code></pre>
 <p>查看其中价格列不能转换为float的行。</p>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">is_number</span><span class="hljs-params">(x)</span>:</span>
@@ -251,12 +257,14 @@ df_clean[df_clean[df_clean.columns[<span class="hljs-number">-1</span>]].isna()]
     <span class="hljs-keyword">except</span> (SyntaxError, ValueError) <span class="hljs-keyword">as</span> e:
         <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
 df_h[~df_h[<span class="hljs-string">'价格'</span>].map(is_number)]</code></pre>
+<p>输出：</p>
 <p><img src="/article/67aeaf8/image-20200701221103969.png" srcset="/img/loading.gif" alt="image-20200701221103969"></p>
 <p>将其价格改为45。计算价格转换为float类型并计算均值。</p>
 <pre><code class="hljs python">df_h.loc[<span class="hljs-number">4376</span>][<span class="hljs-string">'价格'</span>] = <span class="hljs-number">45</span>
 df_h[<span class="hljs-string">'价格'</span>].astype(<span class="hljs-string">'float'</span>).mean()
 <span class="hljs-comment"># to_numeric也是ok的~</span>
 <span class="hljs-comment"># pd.to_numeric(df_h['价格']).mean()</span></code></pre>
+<p>输出：</p>
 <p><img src="/article/67aeaf8/image-20200701221222671.png" srcset="/img/loading.gif" alt="image-20200701221222671"></p>
 <p>（2）商品标题带有”嘉兴”但发货地却不在嘉兴的商品有多少条记录？<br>直接使用contain方法求取即可。</p>
 <pre><code class="hljs python">df_bj = df_clean[df_clean[<span class="hljs-string">'标题'</span>].str.contains(<span class="hljs-string">'嘉兴'</span>)]
@@ -266,7 +274,9 @@ df_bj_nj.shape</code></pre>
 <pre><code class="hljs tex">(1032, 5)</code></pre>
 <p>（3）请按照分位数将价格分为“高、较高、中、较低、低” 5个类别，再将类别结果插入到标题一列之后，最后对类别列进行降序排序。<br>查看价格列中异常值。</p>
 <pre><code class="hljs python">df_clean[~df_clean[<span class="hljs-string">'价格'</span>].map(is_number)]</code></pre>
-<p><img src="/article/67aeaf8/image-20200701221526292.png" srcset="/img/loading.gif" alt="image-20200701221526292"><br>修改为对应的正常值。</p>
+<p>输出：</p>
+<p><img src="/article/67aeaf8/image-20200701221526292.png" srcset="/img/loading.gif" alt="image-20200701221526292"></p>
+<p>修改为对应的正常值。</p>
 <pre><code class="hljs python">df_clean.loc[<span class="hljs-number">538</span>][<span class="hljs-string">'价格'</span>] = <span class="hljs-number">45.9</span>
 df_clean.loc[<span class="hljs-number">4376</span>][<span class="hljs-string">'价格'</span>] = <span class="hljs-number">45</span></code></pre>
 <p>使用qcut方法将价格按数量等分为5类。并重命名为“高、较高、中、较低、低” 5个类别。</p>
@@ -278,8 +288,11 @@ df_clean.loc[:,<span class="hljs-string">'类别'</span>] = q_cut</code></pre>
 <p>将列顺序按要求排列。并将表格按照类别进行降序排列。</p>
 <pre><code class="hljs python">df_clean = df_clean[[<span class="hljs-string">'标题'</span>,<span class="hljs-string">'类别'</span>,<span class="hljs-string">'价格'</span>,<span class="hljs-string">'付款人数'</span>,<span class="hljs-string">'店铺'</span>,<span class="hljs-string">'发货地址'</span>]]
 df_clean = df_clean.sort_values(<span class="hljs-string">'类别'</span>, ascending=<span class="hljs-literal">False</span>)</code></pre>
-<p><img src="/article/67aeaf8/image-20200701221901144.png" srcset="/img/loading.gif" alt="image-20200701221901144"><br>（4）付款人数一栏有缺失值吗？若有则请利用上一问的分类结果对这些缺失值进行合理估计并填充。<br>查看付款人数一栏有缺失值的行。</p>
+<p>输出：</p>
+<p><img src="/article/67aeaf8/image-20200701221901144.png" srcset="/img/loading.gif" alt="image-20200701221901144"></p>
+<p>（4）付款人数一栏有缺失值吗？若有则请利用上一问的分类结果对这些缺失值进行合理估计并填充。<br>查看付款人数一栏有缺失值的行。</p>
 <pre><code class="hljs python">df_clean[df_clean[<span class="hljs-string">'付款人数'</span>].isna()]</code></pre>
+<p>输出：</p>
 <p><img src="/article/67aeaf8/image-20200701221950329.png" srcset="/img/loading.gif" alt="image-20200701221950329"></p>
 <p>（我想起来了，上次写到这，晚上11点多了，注释一个都不写了，直接粗暴贴代码o_o ….补上补上）<br>replace函数将付款人数一列的数字提取出来，然后根据付款人数对价格线性插值，这里线性插值需要把付款人数作为index索引。所以下一步就是把列重新排好序。</p>
 <pre><code class="hljs gml">def replace(<span class="hljs-symbol">x</span>):
@@ -306,9 +319,10 @@ df_clean = df_clean.reset_index()
 df_clean = df_clean[[<span class="hljs-string">'标题'</span>,<span class="hljs-string">'类别'</span>,<span class="hljs-string">'价格'</span>,<span class="hljs-string">'付款人数'</span>,<span class="hljs-string">'店铺'</span>,<span class="hljs-string">'发货地址'</span>]]</code></pre>
 <p>（5）请将数据后四列合并为如下格式的Series:商品发货地为xx，店铺为xx，共计xx人付款，单价为xx。</p>
 <p>列合并，把列类型转换为str类型，然后相当于对字符串进行合并。</p>
-<pre><code class="hljs prolog">result = <span class="hljs-string">'商品发货地为'</span>+df_clean[<span class="hljs-string">'发货地址'</span>]+<span class="hljs-string">',店铺为'</span>+df_clean[<span class="hljs-string">'店铺'</span>] \
-                    +<span class="hljs-string">',共计'</span>+df_clean[<span class="hljs-string">'付款人数'</span>].astype(<span class="hljs-string">'str'</span>)+<span class="hljs-string">',单价为'</span>\
+<pre><code class="hljs prolog">result = <span class="hljs-string">'商品发货地为'</span>+df_clean[<span class="hljs-string">'发货地址'</span>]+<span class="hljs-string">',店铺为'</span>+df_clean[<span class="hljs-string">'店铺'</span>]+<span class="hljs-string">',共计'</span>+df_clean[<span class="hljs-string">'付款人数'</span>].astype(<span class="hljs-string">'str'</span>)+<span class="hljs-string">',单价为'</span>\
                    + df_clean[<span class="hljs-string">'价格'</span>].astype(<span class="hljs-string">'str'</span>)+<span class="hljs-string">'元'</span></code></pre>
+<p>输出：</p>
+<p><img src="/article/67aeaf8/image-20200712121904797.png" srcset="/img/loading.gif" alt="image-20200712121904797"></p>
 <pre><code class="hljs python"><span class="hljs-comment"># 错误题解</span>
 result.str.extract(<span class="hljs-string">r'商品发货地为(?P&lt;发货地址&gt;[\w]+),店铺为(?P&lt;店铺&gt;[\w]+) \</span>
 <span class="hljs-string">                    ,共计(?P&lt;付款人数&gt;[\w]+),单价为(?P&lt;价格&gt;[?\d.\dh]+)元'</span>)</code></pre>
@@ -320,6 +334,9 @@ new_df[<span class="hljs-string">'付款人数'</span>] = result.str.extract(<sp
 new_df[<span class="hljs-string">'价格'</span>] = result.str.extract(<span class="hljs-string">r'单价为(.+)元'</span>)
 new_df.head()</code></pre>
 <p>或者下面这种一步到位。</p>
+<pre><code class="hljs python">result.str.extract(<span class="hljs-string">r'商品发货地为(?P&lt;发货地址&gt;.+),店铺为(?P&lt;店铺&gt;.+),共计(?P&lt;付款人数&gt;.+),单价为(?P&lt;价格&gt;.+)元'</span>)</code></pre>
+<p>输出：</p>
+<p><img src="/article/67aeaf8/image-20200712121822808.png" srcset="/img/loading.gif" alt="image-20200712121822808"></p>
 <h1 id="二、墨尔本每日最低温度"><a href="#二、墨尔本每日最低温度" class="headerlink" title="二、墨尔本每日最低温度"></a>二、墨尔本每日最低温度</h1><p>(1) 剔除国庆节、五一劳动节和每月第一个周一，求每月的平均最低气温。</p>
 <p>读取墨尔本每日温度数据。</p>
 <pre><code class="hljs python">df2 = pd.read_csv(<span class="hljs-string">'墨尔本温度数据.csv'</span>, parse_dates=[<span class="hljs-string">'Date'</span>])
@@ -402,8 +419,7 @@ Date
 [3650 rows x 1 columns]</code></pre>
 <p>（b）求原序列的5期与6期中心移动平均序列。</p>
 <p>跟上一题差不多的啦，就不写啦。</p>
-<pre><code class="hljs python">(melbourne.shift(<span class="hljs-number">-3</span>)/<span class="hljs-number">2</span>+melbourne.shift(<span class="hljs-number">3</span>)/<span class="hljs-number">2</span>+\
-melbourne.rolling(window=<span class="hljs-number">5</span>,min_periods=<span class="hljs-number">-5</span>).sum().shift(<span class="hljs-number">-2</span>))/<span class="hljs-number">6</span></code></pre>
+<pre><code class="hljs python">(melbourne.shift(<span class="hljs-number">-3</span>)/<span class="hljs-number">2</span>+melbourne.shift(<span class="hljs-number">3</span>)/<span class="hljs-number">2</span>+melbourne.rolling(window=<span class="hljs-number">5</span>,min_periods=<span class="hljs-number">-5</span>).sum().shift(<span class="hljs-number">-2</span>))/<span class="hljs-number">6</span></code></pre>
 <p>输出：</p>
 <pre><code class="hljs tex">Temp
 Date            
@@ -457,9 +473,54 @@ df_count[df_count.index.dayofweek.isin([<span class="hljs-number">0</span>,<span
 3311.304347826087 # 工作日</code></pre>
 <p>显然，平均而言，工作日的单天用车量更大。</p>
 <p>（2）工作日每天的高峰时间段大致为上午7：30到9：30、下午17：00到19：00，请问8月里早高峰骑行记录量(以start_time为准)高于晚高峰的有几天？</p>
-<p>早高峰是上午7：30到9：30，需要满足start_time早于9:30和end_time晚于7：30。</p>
+<p>早高峰是上午7：30到9：30，需要满足start_time早于9:30和end_time晚于7：30。晚高峰同理。</p>
 <p>（3）请给出在所有周五中(以start_time为准），记录条数最多的那个周五所在的日期，并在该天内分别按30分钟、2小时、6小时统计摩拜单车使用时间的均值。</p>
+<p>找到周五(dayofweek=4)，然后对天聚合求出orderid总和最大的当天。</p>
+<pre><code class="hljs python">max_friday = df_mobike[df_mobike.index.dayofweek==<span class="hljs-number">4</span>][<span class="hljs-string">'orderid'</span>].resample(<span class="hljs-string">'D'</span>).count().idxmax()
+print(<span class="hljs-string">"条数最多的那个周五是"</span>,max_friday.date())</code></pre>
+<p>输出：</p>
+<pre><code class="hljs tex">条数最多的那个周五是 2016-08-26</code></pre>
+<p>提取出当天的记录。重置索引。置新列usetime=start_time-end_time，并把单位换算成秒，即把时间间隔类型转换为float。</p>
+<pre><code class="hljs python">df_mobike_friday = df_mobike[str(max_friday.date())].copy()
+df_mobike_friday = df_mobike_friday.reset_index()
+df_mobike_friday[<span class="hljs-string">'usetime'</span>] = (df_mobike_friday.end_time-df_mobike_friday.start_time).dt.total_seconds() <span class="hljs-comment">#转换为秒数</span></code></pre>
+<p>再把start_time置为索引(上步重置索引是为了求出usetime)，按照30min，2h，6h聚合，统计使用时间usetime的均值。</p>
+<pre><code class="hljs python">df_mobike_friday = df_mobike_friday.set_index(<span class="hljs-string">'start_time'</span>,drop=<span class="hljs-literal">False</span>)
+<span class="hljs-comment">#print(df_mobike_friday['usetime'])</span>
+display(
+    df_mobike_friday[<span class="hljs-string">'usetime'</span>].resample(<span class="hljs-string">'30min'</span>).mean().apply(<span class="hljs-keyword">lambda</span> x: pd.Timedelta(seconds=int(x))).head(),
+    df_mobike_friday[<span class="hljs-string">'usetime'</span>].resample(<span class="hljs-string">'2h'</span>).mean().apply(<span class="hljs-keyword">lambda</span> x: pd.Timedelta(seconds=int(x))).head(),
+        df_mobike_friday[<span class="hljs-string">'usetime'</span>].resample(<span class="hljs-string">'6h'</span>).mean().apply(<span class="hljs-keyword">lambda</span> x: pd.Timedelta(seconds=int(x))).head()
+)</code></pre>
+<p>输出：</p>
+<pre><code class="hljs tex">start_time
+2016-08-26 00:00:00   00:18:56
+2016-08-26 00:30:00   00:26:42
+2016-08-26 01:00:00   00:13:27
+2016-08-26 01:30:00   00:15:30
+2016-08-26 02:00:00   00:17:17
+Freq: 30T, Name: usetime, dtype: timedelta64[ns]
+start_time
+2016-08-26 00:00:00   00:19:57
+2016-08-26 02:00:00   00:19:18
+2016-08-26 04:00:00   00:13:33
+2016-08-26 06:00:00   00:11:31
+2016-08-26 08:00:00   00:11:35
+Freq: 2H, Name: usetime, dtype: timedelta64[ns]
+start_time
+2016-08-26 00:00:00   00:17:47
+2016-08-26 06:00:00   00:11:39
+2016-08-26 12:00:00   00:16:00
+2016-08-26 18:00:00   00:21:39
+Freq: 6H, Name: usetime, dtype: timedelta64[ns]</code></pre>
 <p>（4）</p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> geopy.distance <span class="hljs-keyword">import</span> geodesic
+df_mobike_dist = df_mobike.copy()
+df_mobike_dist[<span class="hljs-string">'se_dist'</span>] = df_mobike_dist.apply(<span class="hljs-keyword">lambda</span> x: geodesic((x.start_location_y,x.start_location_x),(x.end_location_y,x.end_location_x)).m,axis=<span class="hljs-number">1</span>)
+df_mobike_dist.head()</code></pre>
+<p>输出：</p>
+<p><img src="/article/67aeaf8/image-20200712123754538.png" srcset="/img/loading.gif" alt="image-20200712123754538"></p>
+<p>（5）</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/fire_i_ce/article/details/107074111" target="_blank" rel="noopener">优秀的题解</a></p>
 
             </article>

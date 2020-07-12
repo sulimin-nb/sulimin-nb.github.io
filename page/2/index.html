@@ -410,10 +410,14 @@ $n$是32位有符号整数，其数值范</div>
 一、端午节的淘宝粽子交易（1）请删除最后一列为缺失值的行，并求所有在杭州发货的商品单价均值。
 df = pd.read_csv('端午粽子数据.csv')
 df.head()
+输出：
+
 列名中有些包含了空格，先去除。
 df.columns = df.columns.str.strip()
 df.columns
-然后将最后一列为空的行去除，使用dropna方法</div>
+输出：
+
+然后将最后一列为空的行去除，</div>
       </a>
 
       <div class="index-btm post-metas">
