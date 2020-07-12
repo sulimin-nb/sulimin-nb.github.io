@@ -176,7 +176,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4k 字
+      4.8k 字
     </span>
   
 
@@ -186,7 +186,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      60
+      76
        分钟
     </span>
   
@@ -362,13 +362,13 @@ holidays = d[mask1].append(d[mask5]).append(d[mask10]).sort_values()
 resample(<span class="hljs-string">'MS'</span>).mean()
 result.head()</code></pre>
 <p>输出：</p>
-<pre><code class="hljs tex">                 Temp
+<pre><code class="hljs angelscript">                 Temp
 Date                 
-1981-01-01  17.776667
-1981-02-01  17.637037
-1981-03-01  13.330000
-1981-04-01  12.210345
-1981-05-01   9.273077</code></pre>
+<span class="hljs-number">1981</span><span class="hljs-number">-01</span><span class="hljs-number">-01</span>  <span class="hljs-number">17.776667</span>
+<span class="hljs-number">1981</span><span class="hljs-number">-02</span><span class="hljs-number">-01</span>  <span class="hljs-number">17.637037</span>
+<span class="hljs-number">1981</span><span class="hljs-number">-03</span><span class="hljs-number">-01</span>  <span class="hljs-number">13.330000</span>
+<span class="hljs-number">1981</span><span class="hljs-number">-04</span><span class="hljs-number">-01</span>  <span class="hljs-number">12.210345</span>
+<span class="hljs-number">1981</span><span class="hljs-number">-05</span><span class="hljs-number">-01</span>   <span class="hljs-number">9.273077</span></code></pre>
 <p>（2）季节指数是一种对于周期性变化序列的特征刻画。记数据集中第k年平均最低气温为$TY_k(k=1,…,10)$，第k年第j个平均最低气温为$TY_{kj}(j=1,…,10)$，定义$S_j=\frac{ \sum_{k} TM_{kj} }{ \sum_{k} TY_k }$。请按照如上定义，计算12个月的季节指数$S_j$。</p>
 <p>就是把数据按照年Y聚合，求均值再求和得到$\sum_{k} TY_k$。把数据按照月聚合，按照月份求和得到$\sum_{k} TM_{kj}$，两者相除得到$S_j$。</p>
 <pre><code class="hljs python">melbourne = df2.set_index(<span class="hljs-string">'Date'</span>)
@@ -379,18 +379,18 @@ TM_KJ = melbourne.resample(<span class="hljs-string">'MS'</span>).mean()
     result_i = TM_KJ[TM_KJ.index.month==i].sum() / TY
     print(<span class="hljs-string">'S&#123;&#125;='</span>.format(i),result_i.values[<span class="hljs-number">0</span>].round(decimals=<span class="hljs-number">4</span>))</code></pre>
 <p>输出：</p>
-<pre><code class="hljs tex">S1= 1.3447
-S2= 1.3758
-S3= 1.3031
-S4= 1.0815
-S5= 0.8827
-S6= 0.6511
-S7= 0.5987
-S8= 0.706
-S9= 0.8031
-S10= 0.9223
-S11= 1.1165
-S12= 1.2394</code></pre>
+<pre><code class="hljs ini"><span class="hljs-attr">S1</span>= <span class="hljs-number">1.3447</span>
+<span class="hljs-attr">S2</span>= <span class="hljs-number">1.3758</span>
+<span class="hljs-attr">S3</span>= <span class="hljs-number">1.3031</span>
+<span class="hljs-attr">S4</span>= <span class="hljs-number">1.0815</span>
+<span class="hljs-attr">S5</span>= <span class="hljs-number">0.8827</span>
+<span class="hljs-attr">S6</span>= <span class="hljs-number">0.6511</span>
+<span class="hljs-attr">S7</span>= <span class="hljs-number">0.5987</span>
+<span class="hljs-attr">S8</span>= <span class="hljs-number">0.706</span>
+<span class="hljs-attr">S9</span>= <span class="hljs-number">0.8031</span>
+<span class="hljs-attr">S10</span>= <span class="hljs-number">0.9223</span>
+<span class="hljs-attr">S11</span>= <span class="hljs-number">1.1165</span>
+<span class="hljs-attr">S12</span>= <span class="hljs-number">1.2394</span></code></pre>
 <p>（3）移动平均法是一种时间序列的常见平滑方式，可分为k期移动平均和k期中心移动平均，都使用了某一时刻及其周围的数据对该时刻的数据进行平滑修正。设原序列为$x_1,\ldots,x_n$，对于$x_t$的k期移动平均修正$\tilde{x_t}$为$\frac{ \sum_{i=0}^{k-1} x_{t-i}}{k}$，对于k期中心移动平均修正为</p>
 <script type="math/tex; mode=display">
 \tilde{x_t}= 
@@ -402,40 +402,40 @@ S12= 1.2394</code></pre>
 <pre><code class="hljs python">melbourne.rolling(window=<span class="hljs-number">5</span>, min_periods=<span class="hljs-number">-5</span>).sum().shift(<span class="hljs-number">-2</span>)/<span class="hljs-number">5</span>
 <span class="hljs-comment"># window和min_periods什么关系？</span></code></pre>
 <p>输出：</p>
-<pre><code class="hljs tex"> Temp
+<pre><code class="hljs angelscript"> Temp
 Date             
-1981-01-01  11.48
-1981-01-02  14.40
-1981-01-03  17.56
-1981-01-04  16.58
-1981-01-05  16.16
+<span class="hljs-number">1981</span><span class="hljs-number">-01</span><span class="hljs-number">-01</span>  <span class="hljs-number">11.48</span>
+<span class="hljs-number">1981</span><span class="hljs-number">-01</span><span class="hljs-number">-02</span>  <span class="hljs-number">14.40</span>
+<span class="hljs-number">1981</span><span class="hljs-number">-01</span><span class="hljs-number">-03</span>  <span class="hljs-number">17.56</span>
+<span class="hljs-number">1981</span><span class="hljs-number">-01</span><span class="hljs-number">-04</span>  <span class="hljs-number">16.58</span>
+<span class="hljs-number">1981</span><span class="hljs-number">-01</span><span class="hljs-number">-05</span>  <span class="hljs-number">16.16</span>
 ...           ...
-1990-12-27  13.72
-1990-12-28  14.28
-1990-12-29  13.96
-1990-12-30    NaN
-1990-12-31    NaN
+<span class="hljs-number">1990</span><span class="hljs-number">-12</span><span class="hljs-number">-27</span>  <span class="hljs-number">13.72</span>
+<span class="hljs-number">1990</span><span class="hljs-number">-12</span><span class="hljs-number">-28</span>  <span class="hljs-number">14.28</span>
+<span class="hljs-number">1990</span><span class="hljs-number">-12</span><span class="hljs-number">-29</span>  <span class="hljs-number">13.96</span>
+<span class="hljs-number">1990</span><span class="hljs-number">-12</span><span class="hljs-number">-30</span>    NaN
+<span class="hljs-number">1990</span><span class="hljs-number">-12</span><span class="hljs-number">-31</span>    NaN
 
-[3650 rows x 1 columns]</code></pre>
+[<span class="hljs-number">3650</span> rows x <span class="hljs-number">1</span> columns]</code></pre>
 <p>（b）求原序列的5期与6期中心移动平均序列。</p>
 <p>跟上一题差不多的啦，就不写啦。</p>
 <pre><code class="hljs python">(melbourne.shift(<span class="hljs-number">-3</span>)/<span class="hljs-number">2</span>+melbourne.shift(<span class="hljs-number">3</span>)/<span class="hljs-number">2</span>+melbourne.rolling(window=<span class="hljs-number">5</span>,min_periods=<span class="hljs-number">-5</span>).sum().shift(<span class="hljs-number">-2</span>))/<span class="hljs-number">6</span></code></pre>
 <p>输出：</p>
-<pre><code class="hljs tex">Temp
+<pre><code class="hljs angelscript">Temp
 Date            
-1981-01-01  57.4
-1981-01-02  72.0
-1981-01-03  87.8
-1981-01-04  82.9
-1981-01-05  80.8
+<span class="hljs-number">1981</span><span class="hljs-number">-01</span><span class="hljs-number">-01</span>  <span class="hljs-number">57.4</span>
+<span class="hljs-number">1981</span><span class="hljs-number">-01</span><span class="hljs-number">-02</span>  <span class="hljs-number">72.0</span>
+<span class="hljs-number">1981</span><span class="hljs-number">-01</span><span class="hljs-number">-03</span>  <span class="hljs-number">87.8</span>
+<span class="hljs-number">1981</span><span class="hljs-number">-01</span><span class="hljs-number">-04</span>  <span class="hljs-number">82.9</span>
+<span class="hljs-number">1981</span><span class="hljs-number">-01</span><span class="hljs-number">-05</span>  <span class="hljs-number">80.8</span>
 ...          ...
-1990-12-27  68.6
-1990-12-28  71.4
-1990-12-29  69.8
-1990-12-30   NaN
-1990-12-31   NaN
+<span class="hljs-number">1990</span><span class="hljs-number">-12</span><span class="hljs-number">-27</span>  <span class="hljs-number">68.6</span>
+<span class="hljs-number">1990</span><span class="hljs-number">-12</span><span class="hljs-number">-28</span>  <span class="hljs-number">71.4</span>
+<span class="hljs-number">1990</span><span class="hljs-number">-12</span><span class="hljs-number">-29</span>  <span class="hljs-number">69.8</span>
+<span class="hljs-number">1990</span><span class="hljs-number">-12</span><span class="hljs-number">-30</span>   NaN
+<span class="hljs-number">1990</span><span class="hljs-number">-12</span><span class="hljs-number">-31</span>   NaN
 
-[3650 rows x 1 columns]</code></pre>
+[<span class="hljs-number">3650</span> rows x <span class="hljs-number">1</span> columns]</code></pre>
 <h1 id="三、2016年8月上海市摩拜单车骑行记录"><a href="#三、2016年8月上海市摩拜单车骑行记录" class="headerlink" title="三、2016年8月上海市摩拜单车骑行记录"></a>三、2016年8月上海市摩拜单车骑行记录</h1><p>（这题我吐槽我自己，写的太复杂啦。做了前2题半，用group做，是真的写的丑。时间序列那章没学好，统统删掉重写）<br>（1）平均而言，周末单天用车量比工作日单天用车量更大吗？</p>
 <p>（第一题优秀题解有点问题，使用D是单天用车量。）</p>
 <pre><code class="hljs python">df3 = pd.read_csv(<span class="hljs-string">'摩拜单车数据.csv'</span>)
@@ -468,8 +468,8 @@ df_mobike = df3.set_index(<span class="hljs-string">'start_time'</span>, drop=<s
 df_count[df_count.index.dayofweek.isin([<span class="hljs-number">5</span>,<span class="hljs-number">6</span>])].mean()[<span class="hljs-number">0</span>]
 df_count[df_count.index.dayofweek.isin([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>])].mean()[<span class="hljs-number">0</span>]</code></pre>
 <p>输出：</p>
-<pre><code class="hljs tex">3275.125 # 周末
-3311.304347826087 # 工作日</code></pre>
+<pre><code class="hljs yaml"><span class="hljs-number">3275.125</span> <span class="hljs-comment"># 周末</span>
+<span class="hljs-number">3311.304347826087</span> <span class="hljs-comment"># 工作日</span></code></pre>
 <p>显然，平均而言，工作日的单天用车量更大。</p>
 <p>（2）工作日每天的高峰时间段大致为上午7：30到9：30、下午17：00到19：00，请问8月里早高峰骑行记录量(以start_time为准)高于晚高峰的有几天？</p>
 <p>早高峰是上午7：30到9：30，需要满足start_time早于9:30和end_time晚于7：30。晚高峰同理。<br>（本来想法是start_time分成start_hour,start_min,也是可以的，优秀题解简洁啊，但有丢丢问题，这里改正了。）</p>
@@ -483,13 +483,13 @@ df_mobike_week = df_mobike[df_mobike.index.dayofweek.isin([<span class="hljs-num
         days.append(day)
 print(<span class="hljs-string">'8月早高峰骑行记录量高于晚上高峰的有&#123;&#125;天，分别是&#123;&#125;'</span>.format(len(days), days))</code></pre>
 <p>输出：</p>
-<pre><code class="hljs tex">8月早高峰骑行记录量高于晚上高峰的有5天，分别是['2016-8-4', '2016-8-27', '2016-8-28', '2016-8-29', '2016-8-30']</code></pre>
+<pre><code class="hljs lsl"><span class="hljs-number">8</span>月早高峰骑行记录量高于晚上高峰的有<span class="hljs-number">5</span>天，分别是['<span class="hljs-number">2016</span><span class="hljs-number">-8</span><span class="hljs-number">-4</span>', '<span class="hljs-number">2016</span><span class="hljs-number">-8</span><span class="hljs-number">-27</span>', '<span class="hljs-number">2016</span><span class="hljs-number">-8</span><span class="hljs-number">-28</span>', '<span class="hljs-number">2016</span><span class="hljs-number">-8</span><span class="hljs-number">-29</span>', '<span class="hljs-number">2016</span><span class="hljs-number">-8</span><span class="hljs-number">-30</span>']</code></pre>
 <p>（3）请给出在所有周五中(以start_time为准），记录条数最多的那个周五所在的日期，并在该天内分别按30分钟、2小时、6小时统计摩拜单车使用时间的均值。</p>
 <p>找到周五(dayofweek=4)，然后对天聚合求出orderid总和最大的当天。</p>
 <pre><code class="hljs python">max_friday = df_mobike[df_mobike.index.dayofweek==<span class="hljs-number">4</span>][<span class="hljs-string">'orderid'</span>].resample(<span class="hljs-string">'D'</span>).count().idxmax()
 print(<span class="hljs-string">"条数最多的那个周五是"</span>,max_friday.date())</code></pre>
 <p>输出：</p>
-<pre><code class="hljs tex">条数最多的那个周五是 2016-08-26</code></pre>
+<pre><code class="hljs angelscript">条数最多的那个周五是 <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span></code></pre>
 <p>提取出当天的记录。重置索引。置新列usetime=start_time-end_time，并把单位换算成秒，即把时间间隔类型转换为float。</p>
 <pre><code class="hljs python">df_mobike_friday = df_mobike[str(max_friday.date())].copy()
 df_mobike_friday = df_mobike_friday.reset_index()
@@ -503,26 +503,26 @@ display(
         df_mobike_friday[<span class="hljs-string">'usetime'</span>].resample(<span class="hljs-string">'6h'</span>).mean().apply(<span class="hljs-keyword">lambda</span> x: pd.Timedelta(seconds=int(x))).head()
 )</code></pre>
 <p>输出：</p>
-<pre><code class="hljs tex">start_time
-2016-08-26 00:00:00   00:18:56
-2016-08-26 00:30:00   00:26:42
-2016-08-26 01:00:00   00:13:27
-2016-08-26 01:30:00   00:15:30
-2016-08-26 02:00:00   00:17:17
-Freq: 30T, Name: usetime, dtype: timedelta64[ns]
+<pre><code class="hljs angelscript">start_time
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>   <span class="hljs-number">00</span>:<span class="hljs-number">18</span>:<span class="hljs-number">56</span>
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">00</span>:<span class="hljs-number">30</span>:<span class="hljs-number">00</span>   <span class="hljs-number">00</span>:<span class="hljs-number">26</span>:<span class="hljs-number">42</span>
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">01</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>   <span class="hljs-number">00</span>:<span class="hljs-number">13</span>:<span class="hljs-number">27</span>
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">01</span>:<span class="hljs-number">30</span>:<span class="hljs-number">00</span>   <span class="hljs-number">00</span>:<span class="hljs-number">15</span>:<span class="hljs-number">30</span>
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">02</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>   <span class="hljs-number">00</span>:<span class="hljs-number">17</span>:<span class="hljs-number">17</span>
+Freq: <span class="hljs-number">30</span>T, Name: usetime, dtype: timedelta64[ns]
 start_time
-2016-08-26 00:00:00   00:19:57
-2016-08-26 02:00:00   00:19:18
-2016-08-26 04:00:00   00:13:33
-2016-08-26 06:00:00   00:11:31
-2016-08-26 08:00:00   00:11:35
-Freq: 2H, Name: usetime, dtype: timedelta64[ns]
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>   <span class="hljs-number">00</span>:<span class="hljs-number">19</span>:<span class="hljs-number">57</span>
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">02</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>   <span class="hljs-number">00</span>:<span class="hljs-number">19</span>:<span class="hljs-number">18</span>
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">04</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>   <span class="hljs-number">00</span>:<span class="hljs-number">13</span>:<span class="hljs-number">33</span>
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">06</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>   <span class="hljs-number">00</span>:<span class="hljs-number">11</span>:<span class="hljs-number">31</span>
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">08</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>   <span class="hljs-number">00</span>:<span class="hljs-number">11</span>:<span class="hljs-number">35</span>
+Freq: <span class="hljs-number">2</span>H, Name: usetime, dtype: timedelta64[ns]
 start_time
-2016-08-26 00:00:00   00:17:47
-2016-08-26 06:00:00   00:11:39
-2016-08-26 12:00:00   00:16:00
-2016-08-26 18:00:00   00:21:39
-Freq: 6H, Name: usetime, dtype: timedelta64[ns]</code></pre>
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>   <span class="hljs-number">00</span>:<span class="hljs-number">17</span>:<span class="hljs-number">47</span>
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">06</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>   <span class="hljs-number">00</span>:<span class="hljs-number">11</span>:<span class="hljs-number">39</span>
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">12</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>   <span class="hljs-number">00</span>:<span class="hljs-number">16</span>:<span class="hljs-number">00</span>
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">18</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span>   <span class="hljs-number">00</span>:<span class="hljs-number">21</span>:<span class="hljs-number">39</span>
+Freq: <span class="hljs-number">6</span>H, Name: usetime, dtype: timedelta64[ns]</code></pre>
 <p>（4）请自行搜索相关代码或调用库，计算每条记录起点到终点的球面距离。</p>
 <pre><code class="hljs python"><span class="hljs-keyword">from</span> geopy.distance <span class="hljs-keyword">import</span> geodesic
 df_mobike_dist = df_mobike.copy()
@@ -540,45 +540,45 @@ print(<span class="hljs-string">'mean'</span>,df_mobike_dist.se_speed.mean())
 <span class="hljs-comment"># 可能忘记锁车：</span>
 df_mobike_dist[df_mobike_dist.se_speed&lt;df_mobike_dist.se_speed.quantile(<span class="hljs-number">0.05</span>)].head()</code></pre>
 <p>输出：</p>
-<pre><code class="hljs tex">                     orderid  bikeid  userid  start_location_x  <span class="hljs-tag">\</span>
+<pre><code class="hljs angelscript">                     orderid  bikeid  userid  start_location_x  \
 start_time                                                       
-2016-08-29 09:21:00   270836   63136   11361           121.369   
-2016-08-26 22:05:00  1802934  320611    1211           121.504   
-2016-08-24 13:32:00  1630164  143066   11182           121.436   
-2016-08-27 21:52:00  1623489  151285   17526           121.478   
-2016-08-03 22:08:00   748550  136503    7423           121.483   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">09</span>:<span class="hljs-number">21</span>:<span class="hljs-number">00</span>   <span class="hljs-number">270836</span>   <span class="hljs-number">63136</span>   <span class="hljs-number">11361</span>           <span class="hljs-number">121.369</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">22</span>:<span class="hljs-number">05</span>:<span class="hljs-number">00</span>  <span class="hljs-number">1802934</span>  <span class="hljs-number">320611</span>    <span class="hljs-number">1211</span>           <span class="hljs-number">121.504</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">13</span>:<span class="hljs-number">32</span>:<span class="hljs-number">00</span>  <span class="hljs-number">1630164</span>  <span class="hljs-number">143066</span>   <span class="hljs-number">11182</span>           <span class="hljs-number">121.436</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-27</span> <span class="hljs-number">21</span>:<span class="hljs-number">52</span>:<span class="hljs-number">00</span>  <span class="hljs-number">1623489</span>  <span class="hljs-number">151285</span>   <span class="hljs-number">17526</span>           <span class="hljs-number">121.478</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-03</span> <span class="hljs-number">22</span>:<span class="hljs-number">08</span>:<span class="hljs-number">00</span>   <span class="hljs-number">748550</span>  <span class="hljs-number">136503</span>    <span class="hljs-number">7423</span>           <span class="hljs-number">121.483</span>   
 
-                     start_location_y            end_time  end_location_x  <span class="hljs-tag">\</span>
+                     start_location_y            end_time  end_location_x  \
 start_time                                                                  
-2016-08-29 09:21:00            31.252 2016-08-29 13:43:00         121.376   
-2016-08-26 22:05:00            31.305 2016-08-26 22:27:00         121.500   
-2016-08-24 13:32:00            31.328 2016-08-24 13:44:00         121.439   
-2016-08-27 21:52:00            31.289 2016-08-27 22:14:00         121.476   
-2016-08-03 22:08:00            31.237 2016-08-03 22:26:00         121.484   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">09</span>:<span class="hljs-number">21</span>:<span class="hljs-number">00</span>            <span class="hljs-number">31.252</span> <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">13</span>:<span class="hljs-number">43</span>:<span class="hljs-number">00</span>         <span class="hljs-number">121.376</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">22</span>:<span class="hljs-number">05</span>:<span class="hljs-number">00</span>            <span class="hljs-number">31.305</span> <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">22</span>:<span class="hljs-number">27</span>:<span class="hljs-number">00</span>         <span class="hljs-number">121.500</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">13</span>:<span class="hljs-number">32</span>:<span class="hljs-number">00</span>            <span class="hljs-number">31.328</span> <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">13</span>:<span class="hljs-number">44</span>:<span class="hljs-number">00</span>         <span class="hljs-number">121.439</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-27</span> <span class="hljs-number">21</span>:<span class="hljs-number">52</span>:<span class="hljs-number">00</span>            <span class="hljs-number">31.289</span> <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-27</span> <span class="hljs-number">22</span>:<span class="hljs-number">14</span>:<span class="hljs-number">00</span>         <span class="hljs-number">121.476</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-03</span> <span class="hljs-number">22</span>:<span class="hljs-number">08</span>:<span class="hljs-number">00</span>            <span class="hljs-number">31.237</span> <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-03</span> <span class="hljs-number">22</span>:<span class="hljs-number">26</span>:<span class="hljs-number">00</span>         <span class="hljs-number">121.484</span>   
 
-                     end_location_y  <span class="hljs-tag">\</span>
+                     end_location_y  \
 start_time                            
-2016-08-29 09:21:00          31.233   
-2016-08-26 22:05:00          31.308   
-2016-08-24 13:32:00          31.327   
-2016-08-27 21:52:00          31.292   
-2016-08-03 22:08:00          31.234   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">09</span>:<span class="hljs-number">21</span>:<span class="hljs-number">00</span>          <span class="hljs-number">31.233</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">22</span>:<span class="hljs-number">05</span>:<span class="hljs-number">00</span>          <span class="hljs-number">31.308</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">13</span>:<span class="hljs-number">32</span>:<span class="hljs-number">00</span>          <span class="hljs-number">31.327</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-27</span> <span class="hljs-number">21</span>:<span class="hljs-number">52</span>:<span class="hljs-number">00</span>          <span class="hljs-number">31.292</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-03</span> <span class="hljs-number">22</span>:<span class="hljs-number">08</span>:<span class="hljs-number">00</span>          <span class="hljs-number">31.234</span>   
 
-                                                                 track  <span class="hljs-tag">\</span>
+                                                                 track  \
 start_time                                                               
-2016-08-29 09:21:00  121.367,31.238#121.367,31.239#121.368,31.240#1...   
-2016-08-26 22:05:00  121.499,31.308#121.500,31.308#121.501,31.308#1...   
-2016-08-24 13:32:00  121.436,31.328#121.437,31.328#121.437,31.329#1...   
-2016-08-27 21:52:00  121.476,31.292#121.477,31.289#121.477,31.290#1...   
-2016-08-03 22:08:00  121.482,31.235#121.483,31.234#121.483,31.235#1...   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">09</span>:<span class="hljs-number">21</span>:<span class="hljs-number">00</span>  <span class="hljs-number">121.367</span>,<span class="hljs-number">31.238</span>#<span class="hljs-number">121.367</span>,<span class="hljs-number">31.239</span>#<span class="hljs-number">121.368</span>,<span class="hljs-number">31.240</span>#<span class="hljs-number">1.</span>..   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">22</span>:<span class="hljs-number">05</span>:<span class="hljs-number">00</span>  <span class="hljs-number">121.499</span>,<span class="hljs-number">31.308</span>#<span class="hljs-number">121.500</span>,<span class="hljs-number">31.308</span>#<span class="hljs-number">121.501</span>,<span class="hljs-number">31.308</span>#<span class="hljs-number">1.</span>..   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">13</span>:<span class="hljs-number">32</span>:<span class="hljs-number">00</span>  <span class="hljs-number">121.436</span>,<span class="hljs-number">31.328</span>#<span class="hljs-number">121.437</span>,<span class="hljs-number">31.328</span>#<span class="hljs-number">121.437</span>,<span class="hljs-number">31.329</span>#<span class="hljs-number">1.</span>..   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-27</span> <span class="hljs-number">21</span>:<span class="hljs-number">52</span>:<span class="hljs-number">00</span>  <span class="hljs-number">121.476</span>,<span class="hljs-number">31.292</span>#<span class="hljs-number">121.477</span>,<span class="hljs-number">31.289</span>#<span class="hljs-number">121.477</span>,<span class="hljs-number">31.290</span>#<span class="hljs-number">1.</span>..   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-03</span> <span class="hljs-number">22</span>:<span class="hljs-number">08</span>:<span class="hljs-number">00</span>  <span class="hljs-number">121.482</span>,<span class="hljs-number">31.235</span>#<span class="hljs-number">121.483</span>,<span class="hljs-number">31.234</span>#<span class="hljs-number">121.483</span>,<span class="hljs-number">31.235</span>#<span class="hljs-number">1.</span>..   
 
                          se_dist  usetime  se_speed  
 start_time                                           
-2016-08-29 09:21:00  2209.621048  15720.0  0.140561  
-2016-08-26 22:05:00   505.608255   1320.0  0.383037  
-2016-08-24 13:32:00   306.300607    720.0  0.425418  
-2016-08-27 21:52:00   383.276389   1320.0  0.290361  
-2016-08-03 22:08:00   345.995048   1080.0  0.320366</code></pre>
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">09</span>:<span class="hljs-number">21</span>:<span class="hljs-number">00</span>  <span class="hljs-number">2209.621048</span>  <span class="hljs-number">15720.0</span>  <span class="hljs-number">0.140561</span>  
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-26</span> <span class="hljs-number">22</span>:<span class="hljs-number">05</span>:<span class="hljs-number">00</span>   <span class="hljs-number">505.608255</span>   <span class="hljs-number">1320.0</span>  <span class="hljs-number">0.383037</span>  
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">13</span>:<span class="hljs-number">32</span>:<span class="hljs-number">00</span>   <span class="hljs-number">306.300607</span>    <span class="hljs-number">720.0</span>  <span class="hljs-number">0.425418</span>  
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-27</span> <span class="hljs-number">21</span>:<span class="hljs-number">52</span>:<span class="hljs-number">00</span>   <span class="hljs-number">383.276389</span>   <span class="hljs-number">1320.0</span>  <span class="hljs-number">0.290361</span>  
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-03</span> <span class="hljs-number">22</span>:<span class="hljs-number">08</span>:<span class="hljs-number">00</span>   <span class="hljs-number">345.995048</span>   <span class="hljs-number">1080.0</span>  <span class="hljs-number">0.320366</span></code></pre>
 <p>（6）由于路线的曲折性，起点到终点的球面距离往往不能充分反应行程的长度，请利用track列的路线坐标数据，计算估计实际骑行距离，并重新仿照上一问的方法找出可能的异常记录。</p>
 <p>getdist把各个节点之间的距离和求出来，然后也是track_dist/usetime计算平均速度。当速度小于阈值(0.05分位数)时，认为是潜在的异常数据。</p>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getdist</span><span class="hljs-params">(track)</span>:</span>
@@ -597,7 +597,94 @@ df_mobike_dist[<span class="hljs-string">'track_dist'</span>] = df_mobike_dist.t
 df_mobike_dist[<span class="hljs-string">'track_speed'</span>] = df_mobike_dist.apply(<span class="hljs-keyword">lambda</span> x: x.track_dist/x.usetime, axis=<span class="hljs-number">1</span>)
 print(<span class="hljs-string">'mean'</span>, df_mobike_dist.track_speed.mean())
 <span class="hljs-keyword">for</span> q <span class="hljs-keyword">in</span> [<span class="hljs-number">0.95</span>,<span class="hljs-number">0.75</span>,<span class="hljs-number">0.5</span>,<span class="hljs-number">0.25</span>,<span class="hljs-number">0.1</span>,<span class="hljs-number">0.05</span>,<span class="hljs-number">0.04</span>,<span class="hljs-number">0.03</span>,<span class="hljs-number">0.02</span>,<span class="hljs-number">0.01</span>,<span class="hljs-number">0.001</span>]:
-    print(q*<span class="hljs-number">100</span>,<span class="hljs-string">'分位数'</span>,df_mobike_dist.track_speed.quantile(q))</code></pre>
+    print(q*<span class="hljs-number">100</span>,<span class="hljs-string">'分位数'</span>,df_mobike_dist.track_speed.quantile(q))
+<span class="hljs-comment"># 可能忘记锁车：</span>
+cut = df_mobike_dist.track_speed.quantile(<span class="hljs-number">0.05</span>)
+print(df_mobike_dist[df_mobike_dist.track_speed&lt;cut])</code></pre>
+<p>输出：</p>
+<pre><code class="hljs angelscript">mean <span class="hljs-number">4.7176424053972985</span>
+<span class="hljs-number">95.0</span> 分位数 <span class="hljs-number">11.119561310481727</span>
+<span class="hljs-number">75.0</span> 分位数 <span class="hljs-number">5.648633153477631</span>
+<span class="hljs-number">50.0</span> 分位数 <span class="hljs-number">3.8691839481829473</span>
+<span class="hljs-number">25.0</span> 分位数 <span class="hljs-number">2.6515407909180317</span>
+<span class="hljs-number">10.0</span> 分位数 <span class="hljs-number">1.377678636142472</span>
+<span class="hljs-number">5.0</span> 分位数 <span class="hljs-number">0.6461082249996972</span>
+<span class="hljs-number">4.0</span> 分位数 <span class="hljs-number">0.5022487936821581</span>
+<span class="hljs-number">3.0</span> 分位数 <span class="hljs-number">0.36700311152670406</span>
+<span class="hljs-number">2.0</span> 分位数 <span class="hljs-number">0.2489091789770581</span>
+<span class="hljs-number">1.0</span> 分位数 <span class="hljs-number">0.14214735328510836</span>
+<span class="hljs-number">0.1</span> 分位数 <span class="hljs-number">0.03553589878569083</span>
+                     orderid  bikeid  userid  start_location_x  \
+start_time                                                       
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">09</span>:<span class="hljs-number">21</span>:<span class="hljs-number">00</span>   <span class="hljs-number">270836</span>   <span class="hljs-number">63136</span>   <span class="hljs-number">11361</span>           <span class="hljs-number">121.369</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-31</span> <span class="hljs-number">18</span>:<span class="hljs-number">15</span>:<span class="hljs-number">00</span>  <span class="hljs-number">1563430</span>  <span class="hljs-number">384828</span>     <span class="hljs-number">945</span>           <span class="hljs-number">121.606</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">07</span>:<span class="hljs-number">45</span>:<span class="hljs-number">00</span>    <span class="hljs-number">80889</span>  <span class="hljs-number">335198</span>   <span class="hljs-number">12380</span>           <span class="hljs-number">121.354</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-16</span> <span class="hljs-number">19</span>:<span class="hljs-number">56</span>:<span class="hljs-number">00</span>  <span class="hljs-number">1504315</span>   <span class="hljs-number">78807</span>     <span class="hljs-number">185</span>           <span class="hljs-number">121.480</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-12</span> <span class="hljs-number">22</span>:<span class="hljs-number">02</span>:<span class="hljs-number">00</span>  <span class="hljs-number">1419609</span>  <span class="hljs-number">106895</span>   <span class="hljs-number">11697</span>           <span class="hljs-number">121.515</span>   
+...                      ...     ...     ...               ...   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-03</span> <span class="hljs-number">16</span>:<span class="hljs-number">39</span>:<span class="hljs-number">00</span>   <span class="hljs-number">373681</span>   <span class="hljs-number">85225</span>    <span class="hljs-number">7484</span>           <span class="hljs-number">121.449</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">20</span>:<span class="hljs-number">25</span>:<span class="hljs-number">00</span>  <span class="hljs-number">1777023</span>  <span class="hljs-number">313903</span>   <span class="hljs-number">13647</span>           <span class="hljs-number">121.363</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">20</span>:<span class="hljs-number">13</span>:<span class="hljs-number">00</span>  <span class="hljs-number">1774184</span>  <span class="hljs-number">103791</span>   <span class="hljs-number">15364</span>           <span class="hljs-number">121.530</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-14</span> <span class="hljs-number">20</span>:<span class="hljs-number">02</span>:<span class="hljs-number">00</span>  <span class="hljs-number">1459535</span>  <span class="hljs-number">150325</span>    <span class="hljs-number">5961</span>           <span class="hljs-number">121.359</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-31</span> <span class="hljs-number">19</span>:<span class="hljs-number">32</span>:<span class="hljs-number">00</span>  <span class="hljs-number">1678292</span>  <span class="hljs-number">172562</span>    <span class="hljs-number">2655</span>           <span class="hljs-number">121.531</span>   
+
+                     start_location_y            end_time  end_location_x  \
+start_time                                                                  
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">09</span>:<span class="hljs-number">21</span>:<span class="hljs-number">00</span>            <span class="hljs-number">31.252</span> <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">13</span>:<span class="hljs-number">43</span>:<span class="hljs-number">00</span>         <span class="hljs-number">121.376</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-31</span> <span class="hljs-number">18</span>:<span class="hljs-number">15</span>:<span class="hljs-number">00</span>            <span class="hljs-number">31.110</span> <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-31</span> <span class="hljs-number">18</span>:<span class="hljs-number">58</span>:<span class="hljs-number">00</span>         <span class="hljs-number">121.570</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">07</span>:<span class="hljs-number">45</span>:<span class="hljs-number">00</span>            <span class="hljs-number">31.226</span> <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">08</span>:<span class="hljs-number">28</span>:<span class="hljs-number">00</span>         <span class="hljs-number">121.356</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-16</span> <span class="hljs-number">19</span>:<span class="hljs-number">56</span>:<span class="hljs-number">00</span>            <span class="hljs-number">31.311</span> <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-16</span> <span class="hljs-number">20</span>:<span class="hljs-number">04</span>:<span class="hljs-number">00</span>         <span class="hljs-number">121.484</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-12</span> <span class="hljs-number">22</span>:<span class="hljs-number">02</span>:<span class="hljs-number">00</span>            <span class="hljs-number">31.291</span> <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-12</span> <span class="hljs-number">22</span>:<span class="hljs-number">17</span>:<span class="hljs-number">00</span>         <span class="hljs-number">121.537</span>   
+...                               ...                 ...             ...   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-03</span> <span class="hljs-number">16</span>:<span class="hljs-number">39</span>:<span class="hljs-number">00</span>            <span class="hljs-number">31.269</span> <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-03</span> <span class="hljs-number">16</span>:<span class="hljs-number">57</span>:<span class="hljs-number">00</span>         <span class="hljs-number">121.432</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">20</span>:<span class="hljs-number">25</span>:<span class="hljs-number">00</span>            <span class="hljs-number">31.254</span> <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">20</span>:<span class="hljs-number">41</span>:<span class="hljs-number">00</span>         <span class="hljs-number">121.364</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">20</span>:<span class="hljs-number">13</span>:<span class="hljs-number">00</span>            <span class="hljs-number">31.324</span> <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">20</span>:<span class="hljs-number">20</span>:<span class="hljs-number">00</span>         <span class="hljs-number">121.524</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-14</span> <span class="hljs-number">20</span>:<span class="hljs-number">02</span>:<span class="hljs-number">00</span>            <span class="hljs-number">31.253</span> <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-14</span> <span class="hljs-number">20</span>:<span class="hljs-number">32</span>:<span class="hljs-number">00</span>         <span class="hljs-number">121.365</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-31</span> <span class="hljs-number">19</span>:<span class="hljs-number">32</span>:<span class="hljs-number">00</span>            <span class="hljs-number">31.284</span> <span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-31</span> <span class="hljs-number">20</span>:<span class="hljs-number">01</span>:<span class="hljs-number">00</span>         <span class="hljs-number">121.543</span>   
+
+                     end_location_y  \
+start_time                            
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">09</span>:<span class="hljs-number">21</span>:<span class="hljs-number">00</span>          <span class="hljs-number">31.233</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-31</span> <span class="hljs-number">18</span>:<span class="hljs-number">15</span>:<span class="hljs-number">00</span>          <span class="hljs-number">31.115</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">07</span>:<span class="hljs-number">45</span>:<span class="hljs-number">00</span>          <span class="hljs-number">31.225</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-16</span> <span class="hljs-number">19</span>:<span class="hljs-number">56</span>:<span class="hljs-number">00</span>          <span class="hljs-number">31.305</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-12</span> <span class="hljs-number">22</span>:<span class="hljs-number">02</span>:<span class="hljs-number">00</span>          <span class="hljs-number">31.301</span>   
+...                             ...   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-03</span> <span class="hljs-number">16</span>:<span class="hljs-number">39</span>:<span class="hljs-number">00</span>          <span class="hljs-number">31.277</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">20</span>:<span class="hljs-number">25</span>:<span class="hljs-number">00</span>          <span class="hljs-number">31.255</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">20</span>:<span class="hljs-number">13</span>:<span class="hljs-number">00</span>          <span class="hljs-number">31.328</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-14</span> <span class="hljs-number">20</span>:<span class="hljs-number">02</span>:<span class="hljs-number">00</span>          <span class="hljs-number">31.252</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-31</span> <span class="hljs-number">19</span>:<span class="hljs-number">32</span>:<span class="hljs-number">00</span>          <span class="hljs-number">31.296</span>   
+
+                                                                 track  \
+start_time                                                               
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">09</span>:<span class="hljs-number">21</span>:<span class="hljs-number">00</span>  <span class="hljs-number">121.367</span>,<span class="hljs-number">31.238</span>#<span class="hljs-number">121.367</span>,<span class="hljs-number">31.239</span>#<span class="hljs-number">121.368</span>,<span class="hljs-number">31.240</span>#<span class="hljs-number">1.</span>..   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-31</span> <span class="hljs-number">18</span>:<span class="hljs-number">15</span>:<span class="hljs-number">00</span>  <span class="hljs-number">121.606</span>,<span class="hljs-number">31.111</span>#<span class="hljs-number">121.607</span>,<span class="hljs-number">31.110</span>#<span class="hljs-number">121.609</span>,<span class="hljs-number">31.110</span>#<span class="hljs-number">1.</span>..   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">07</span>:<span class="hljs-number">45</span>:<span class="hljs-number">00</span>  <span class="hljs-number">121.351</span>,<span class="hljs-number">31.223</span>#<span class="hljs-number">121.353</span>,<span class="hljs-number">31.226</span>#<span class="hljs-number">121.354</span>,<span class="hljs-number">31.223</span>#<span class="hljs-number">1.</span>..   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-16</span> <span class="hljs-number">19</span>:<span class="hljs-number">56</span>:<span class="hljs-number">00</span>                      <span class="hljs-number">121.480</span>,<span class="hljs-number">31.311</span>#<span class="hljs-number">121.482</span>,<span class="hljs-number">31.311</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-12</span> <span class="hljs-number">22</span>:<span class="hljs-number">02</span>:<span class="hljs-number">00</span>                      <span class="hljs-number">121.515</span>,<span class="hljs-number">31.290</span>#<span class="hljs-number">121.516</span>,<span class="hljs-number">31.290</span>   
+...                                                                ...   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-03</span> <span class="hljs-number">16</span>:<span class="hljs-number">39</span>:<span class="hljs-number">00</span>                      <span class="hljs-number">121.448</span>,<span class="hljs-number">31.270</span>#<span class="hljs-number">121.449</span>,<span class="hljs-number">31.269</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">20</span>:<span class="hljs-number">25</span>:<span class="hljs-number">00</span>  <span class="hljs-number">121.363</span>,<span class="hljs-number">31.254</span>#<span class="hljs-number">121.363</span>,<span class="hljs-number">31.255</span>#<span class="hljs-number">121.364</span>,<span class="hljs-number">31.255</span>#<span class="hljs-number">1.</span>..   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">20</span>:<span class="hljs-number">13</span>:<span class="hljs-number">00</span>       <span class="hljs-number">121.528</span>,<span class="hljs-number">31.324</span>#<span class="hljs-number">121.529</span>,<span class="hljs-number">31.324</span>#<span class="hljs-number">121.530</span>,<span class="hljs-number">31.324</span>   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-14</span> <span class="hljs-number">20</span>:<span class="hljs-number">02</span>:<span class="hljs-number">00</span>  <span class="hljs-number">121.359</span>,<span class="hljs-number">31.253</span>#<span class="hljs-number">121.360</span>,<span class="hljs-number">31.253</span>#<span class="hljs-number">121.361</span>,<span class="hljs-number">31.252</span>#<span class="hljs-number">1.</span>..   
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-31</span> <span class="hljs-number">19</span>:<span class="hljs-number">32</span>:<span class="hljs-number">00</span>  <span class="hljs-number">121.531</span>,<span class="hljs-number">31.284</span>#<span class="hljs-number">121.532</span>,<span class="hljs-number">31.284</span>#<span class="hljs-number">121.535</span>,<span class="hljs-number">31.285</span>#<span class="hljs-number">1.</span>..   
+
+                         se_dist  usetime  se_speed   track_dist  track_speed  
+start_time                                                                     
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">09</span>:<span class="hljs-number">21</span>:<span class="hljs-number">00</span>  <span class="hljs-number">2209.621048</span>  <span class="hljs-number">15720.0</span>  <span class="hljs-number">0.140561</span>  <span class="hljs-number">6153.382509</span>     <span class="hljs-number">0.391437</span>  
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-31</span> <span class="hljs-number">18</span>:<span class="hljs-number">15</span>:<span class="hljs-number">00</span>  <span class="hljs-number">3478.566745</span>   <span class="hljs-number">2580.0</span>  <span class="hljs-number">1.348282</span>   <span class="hljs-number">432.445014</span>     <span class="hljs-number">0.167614</span>  
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-29</span> <span class="hljs-number">07</span>:<span class="hljs-number">45</span>:<span class="hljs-number">00</span>   <span class="hljs-number">220.465615</span>   <span class="hljs-number">2580.0</span>  <span class="hljs-number">0.085452</span>  <span class="hljs-number">1205.743298</span>     <span class="hljs-number">0.467342</span>  
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-16</span> <span class="hljs-number">19</span>:<span class="hljs-number">56</span>:<span class="hljs-number">00</span>   <span class="hljs-number">766.519391</span>    <span class="hljs-number">480.0</span>  <span class="hljs-number">1.596915</span>   <span class="hljs-number">190.385816</span>     <span class="hljs-number">0.396637</span>  
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-12</span> <span class="hljs-number">22</span>:<span class="hljs-number">02</span>:<span class="hljs-number">00</span>  <span class="hljs-number">2369.929234</span>    <span class="hljs-number">900.0</span>  <span class="hljs-number">2.633255</span>    <span class="hljs-number">95.214021</span>     <span class="hljs-number">0.105793</span>  
+...                          ...      ...       ...          ...          ...  
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-03</span> <span class="hljs-number">16</span>:<span class="hljs-number">39</span>:<span class="hljs-number">00</span>  <span class="hljs-number">1845.992264</span>   <span class="hljs-number">1080.0</span>  <span class="hljs-number">1.709252</span>   <span class="hljs-number">146.159845</span>     <span class="hljs-number">0.135333</span>  
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">20</span>:<span class="hljs-number">25</span>:<span class="hljs-number">00</span>   <span class="hljs-number">146.169464</span>    <span class="hljs-number">960.0</span>  <span class="hljs-number">0.152260</span>   <span class="hljs-number">463.165717</span>     <span class="hljs-number">0.482464</span>  
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-24</span> <span class="hljs-number">20</span>:<span class="hljs-number">13</span>:<span class="hljs-number">00</span>   <span class="hljs-number">723.055998</span>    <span class="hljs-number">420.0</span>  <span class="hljs-number">1.721562</span>   <span class="hljs-number">190.359665</span>     <span class="hljs-number">0.453237</span>  
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-14</span> <span class="hljs-number">20</span>:<span class="hljs-number">02</span>:<span class="hljs-number">00</span>   <span class="hljs-number">582.165645</span>   <span class="hljs-number">1800.0</span>  <span class="hljs-number">0.323425</span>   <span class="hljs-number">886.059173</span>     <span class="hljs-number">0.492255</span>  
+<span class="hljs-number">2016</span><span class="hljs-number">-08</span><span class="hljs-number">-31</span> <span class="hljs-number">19</span>:<span class="hljs-number">32</span>:<span class="hljs-number">00</span>  <span class="hljs-number">1753.760319</span>   <span class="hljs-number">1740.0</span>  <span class="hljs-number">1.007908</span>   <span class="hljs-number">738.228978</span>     <span class="hljs-number">0.424270</span>  
+
+[<span class="hljs-number">5118</span> rows x <span class="hljs-number">14</span> columns]</code></pre>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/fire_i_ce/article/details/107074111" target="_blank" rel="noopener">优秀的题解</a></p>
 
             </article>
