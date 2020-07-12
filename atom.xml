@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sulimin-nb.github.io/"/>
-  <updated>2020-07-12T13:01:38.259Z</updated>
+  <updated>2020-07-12T16:15:03.590Z</updated>
   <id>https://sulimin-nb.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://sulimin-nb.github.io/article/a097ae97.html"/>
     <id>https://sulimin-nb.github.io/article/a097ae97.html</id>
     <published>2020-07-12T06:53:55.000Z</published>
-    <updated>2020-07-12T13:01:38.259Z</updated>
+    <updated>2020-07-12T16:15:03.590Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Latex常用语法"><a href="#Latex常用语法" class="headerlink" title="Latex常用语法"></a>Latex常用语法</h1><p>因为每次都要翻以前用过的文章，不如总结下来。</p><p>空格</p><div class="table-container"><table><thead><tr><th>两个quad空格</th><th>a \qquad b</th><th><img src="/article/a097ae97/e505263bc9c94f673c580f3a36a7f08a.png" srcset="/img/loading.gif" alt="a \qquad b"></th><th>两个<em>m</em>的宽度</th></tr></thead><tbody><tr><td>quad空格</td><td>a \quad b</td><td><img src="/article/a097ae97/da8c1d9effa4501fd80c054e59ad917d.png" srcset="/img/loading.gif" alt="a \quad b"></td><td>一个<em>m</em>的宽度</td></tr><tr><td>大空格</td><td>a\ b</td><td><img src="/article/a097ae97/692d4bffca8e84ffb45cf9d5facf31d6.png" srcset="/img/loading.gif" alt="a\ b"></td><td>1/3<em>m</em>宽度</td></tr><tr><td>中等空格</td><td>a\;b</td><td><img src="/article/a097ae97/b5ade5d5393fd7727bf77fa44ec8b564.png" srcset="/img/loading.gif" alt="a\;b"></td><td>2/7<em>m</em>宽度</td></tr><tr><td>小空格</td><td>a\,b</td><td><img src="/article/a097ae97/7bea99aed60ba5e1fe8a134ab43fa85f.png" srcset="/img/loading.gif" alt="a\,b"></td><td>1/6<em>m</em>宽度</td></tr><tr><td>没有空格</td><td>ab</td><td><img src="/article/a097ae97/b6bd9dba2ebfca24731ae6dc3913e625.png" srcset="/img/loading.gif" alt="ab\,"></td><td></td></tr><tr><td>紧贴</td><td>a!b</td><td><img src="/article/a097ae97/0fbcad5fadb912e8afa6d113a75c83e4.png" srcset="/img/loading.gif" alt="a\!b"></td><td>缩进1/6<em>m</em>宽度</td></tr></tbody></table></div><p>大括号</p><pre><code class="hljs tex"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">&#123;cases&#125;</span></span> &amp;# 条件 <span class="hljs-tag">\<span class="hljs-name">\</span></span> #换行<span class="hljs-tag">\<span class="hljs-name">end</span><span class="hljs-string">&#123;cases&#125;</span></span></code></pre><p>矩阵</p><p>工具翻新：vscode/idea/google/iterm</p><p>java内存？全局，局部，栈变量，堆变量</p><p>其他内容：cs-notes,vim / python cheat sheet</p><p>打字练习：typing.io,speedcoder.net</p><p>2/7/14/30</p><p><a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">https://github.com/CyC2018/CS-Notes</a></p><p><a href="https://github.com/labuladong/fucking-algorithm" target="_blank" rel="noopener">https://github.com/labuladong/fucking-algorithm</a></p><p><a href="https://labuladong.gitbook.io/algo/dong-tai-gui-hua-xi-lie" target="_blank" rel="noopener">https://labuladong.gitbook.io/algo/dong-tai-gui-hua-xi-lie</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Latex常用语法"><a href="#Latex常用语法" class="headerlink" title="Latex常用语法"></a>Latex常用语法</h1><p>因为每次都要翻以前用过的文章，不如总结下来。</p><p>空格</p><div class="table-container"><table><thead><tr><th>两个quad空格</th><th>a \qquad b</th><th><img src="/article/a097ae97/e505263bc9c94f673c580f3a36a7f08a.png" srcset="/img/loading.gif" alt="a \qquad b"></th><th>两个<em>m</em>的宽度</th></tr></thead><tbody><tr><td>quad空格</td><td>a \quad b</td><td><img src="/article/a097ae97/da8c1d9effa4501fd80c054e59ad917d.png" srcset="/img/loading.gif" alt="a \quad b"></td><td>一个<em>m</em>的宽度</td></tr><tr><td>大空格</td><td>a\ b</td><td><img src="/article/a097ae97/692d4bffca8e84ffb45cf9d5facf31d6.png" srcset="/img/loading.gif" alt="a\ b"></td><td>1/3<em>m</em>宽度</td></tr><tr><td>中等空格</td><td>a\;b</td><td><img src="/article/a097ae97/b5ade5d5393fd7727bf77fa44ec8b564.png" srcset="/img/loading.gif" alt="a\;b"></td><td>2/7<em>m</em>宽度</td></tr><tr><td>小空格</td><td>a\,b</td><td><img src="/article/a097ae97/7bea99aed60ba5e1fe8a134ab43fa85f.png" srcset="/img/loading.gif" alt="a\,b"></td><td>1/6<em>m</em>宽度</td></tr><tr><td>没有空格</td><td>ab</td><td><img src="/article/a097ae97/b6bd9dba2ebfca24731ae6dc3913e625.png" srcset="/img/loading.gif" alt="ab\,"></td><td></td></tr><tr><td>紧贴</td><td>a!b</td><td><img src="/article/a097ae97/0fbcad5fadb912e8afa6d113a75c83e4.png" srcset="/img/loading.gif" alt="a\!b"></td><td>缩进1/6<em>m</em>宽度</td></tr></tbody></table></div><p>大括号</p><pre><code class="hljs tex"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">&#123;cases&#125;</span></span> &amp;# 条件 <span class="hljs-tag">\<span class="hljs-name">\</span></span> #换行<span class="hljs-tag">\<span class="hljs-name">end</span><span class="hljs-string">&#123;cases&#125;</span></span></code></pre><p>矩阵</p>]]></content>
     
     <summary type="html">
     
@@ -49,9 +49,9 @@
     <link href="https://sulimin-nb.github.io/article/2bebfb2a.html"/>
     <id>https://sulimin-nb.github.io/article/2bebfb2a.html</id>
     <published>2020-07-11T17:09:10.000Z</published>
-    <updated>2020-07-12T08:17:27.155Z</updated>
+    <updated>2020-07-12T15:52:59.526Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="集成学习简介-Ensemble-Learning-introduction"><a href="#集成学习简介-Ensemble-Learning-introduction" class="headerlink" title="集成学习简介(Ensemble Learning introduction)"></a>集成学习简介(Ensemble Learning introduction)</h2><p>如果聚合一组预测器(比如分类器或回归器)的预测，得到的预测结果也比最好的单个预测器要好。这样的一组预测器，我们称为集成。这种技术，也被称为集成学习，而一个集成学习的算法则被称为集成方法。</p><ul><li>voting(投票)</li><li>Bagging<ul><li>随机森林(RandomForest)</li></ul></li><li>Boosting<ul><li>AdaBoost</li><li>提升树</li><li>XGboost</li></ul></li><li>stacking</li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="集成学习简介-Ensemble-Learning-introduction"><a href="#集成学习简介-Ensemble-Learning-introduction" class="headerlink" title="集成学习简介(Ensemble Learning introduction)"></a>集成学习简介(Ensemble Learning introduction)</h2><p>如果聚合一组预测器(比如分类器或回归器)的预测，得到的预测结果也比最好的单个预测器要好。这样的一组预测器，我们称为集成。这种技术，也被称为集成学习，而一个集成学习的算法则被称为集成方法。</p><ul><li>voting(投票)</li><li>Bagging<ul><li>随机森林(RandomForest)</li></ul></li><li>Boosting<ul><li>AdaBoost</li><li>提升树</li><li>XGboost</li></ul></li><li>stacking</li></ul><h2 id="投票-voting"><a href="#投票-voting" class="headerlink" title="投票(voting)"></a>投票(voting)</h2><p>1、硬投票分类器(Hard Voting)</p><p>2、软投票分类器()</p>]]></content>
     
     <summary type="html">
     
