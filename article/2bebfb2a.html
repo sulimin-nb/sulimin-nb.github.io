@@ -176,7 +176,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      1.4k 字
     </span>
   
 
@@ -186,7 +186,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      19
        分钟
     </span>
   
@@ -226,7 +226,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月13日 上午
+                  本文最后更新于：2020年7月13日 下午
                 
               </p>
             
@@ -310,7 +310,7 @@ voting = VotingClassifier(
 <span class="hljs-attr">DecisionTreeClassifier</span> = <span class="hljs-number">0.9994285714285714</span>
 <span class="hljs-attr">SVC</span> = <span class="hljs-number">0.9994285714285714</span>
 <span class="hljs-attr">VotingClassifier</span> = <span class="hljs-number">0.9994285714285714</span></code></pre>
-<h2 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h2><p>bagging和pasting<br>每个预测器使用的算法相同，但是在不同的训练集(随机子集)上进行训练。采样时如果将样本放回，这汇总方法叫做bagging(bootstrap aggregating，自举汇聚法)。采样时样本不放回，这种方法叫做pasting。<br>(实际应用中bagging更加常用。这里就着重介绍bagging)</p>
+<h2 id="Bagging-并行"><a href="#Bagging-并行" class="headerlink" title="Bagging(并行)"></a>Bagging(并行)</h2><p>bagging和pasting<br>每个预测器使用的算法相同，但是在不同的训练集(随机子集)上进行训练。采样时如果将样本放回，这汇总方法叫做bagging(bootstrap aggregating，自举汇聚法)。采样时样本不放回，这种方法叫做pasting。<br>(实际应用中bagging更加常用。这里就着重介绍bagging)</p>
 <p><img src="/article/2bebfb2a/image-20200713004236379.png" srcset="/img/loading.gif" alt="image-20200713004236379"></p>
 <h3 id="随机森林-Random-Forest"><a href="#随机森林-Random-Forest" class="headerlink" title="随机森林(Random Forest)"></a>随机森林(Random Forest)</h3><p>随机森林是决策树的集成，通常用bagging(有时也可能是pasting)方法训练。除了先构建一个BaggingClassifier然后将结果传输到DecisionTreeClassifier，还有一种方法就是使用RandomForestClassifier类。</p>
 <p>大概有63.2%样本会被抽到，用作训练集。未抽到的37.8%样本(out of bag简称oob)作为测试集。<br>证明：假设进行N次抽样，未抽到的概率为 $1-(1-\frac{1}{N})^N=1-[(1+\frac{1}{-N})^{-N}]^{-1}$，当N趋于无穷大时，上式趋于$1-e^{-1}=63.2\%$。</p>
@@ -359,7 +359,7 @@ rnd_clf.fit(X, y)
 print(rnd_clf.__class__.__name__, <span class="hljs-string">'='</span>, accuracy_score(y, y_hat))</code></pre>
 <p>输出：</p>
 <pre><code class="hljs ini"><span class="hljs-attr">RandomForestClassifier</span> = <span class="hljs-number">1.0</span></code></pre>
-<h2 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h2><p>将几个弱学习器结合成一个强学习器的集成方法。大多数提升法的总体思想是循环训练预测器，每一次都对其前序做出一些改正。</p>
+<h2 id="Boosting-串行"><a href="#Boosting-串行" class="headerlink" title="Boosting(串行)"></a>Boosting(串行)</h2><p>将几个弱学习器结合成一个强学习器的集成方法。大多数提升法的总体思想是循环训练预测器，每一次都对其前序做出一些改正。</p>
 <ul>
 <li>AdaBoost</li>
 <li>GBDT</li>
@@ -369,9 +369,10 @@ print(rnd_clf.__class__.__name__, <span class="hljs-string">'='</span>, accuracy
 <li><p>AdaBoost：从弱学习算法出发，反复学习得到一系列弱分类器(又称基本分类器)，然后组合这些弱分类器构成一个强分类器。</p>
 </li>
 <li><p>要解决的两个问题：</p>
-<p>1、每一轮</p>
+<p>1、每一轮如何改变训练数据的权值或概率分布：提高那些被前一轮错误分类样本的权值，降低那些被正确分类样本的权值。<br>2、如何将弱分类器组合成强分类器：加大分类误差小的弱分类器权值，减小分类误差率大的弱分类器权值。</p>
 </li>
 </ul>
+<h3 id="AdaBoost算法"><a href="#AdaBoost算法" class="headerlink" title="AdaBoost算法"></a>AdaBoost算法</h3><p>（1）初始化训练数据权值分布  $D_1=(w_{11},\ldots,w_{1i},\ldots,w_{1m}),\quad w_{1i}=\frac{1}{m}$<br>（2）对于每一轮训练t=1,2,…,T<br>        (a)使用具有权值分布<span style="color:blue">Dt</span>的训练数据集进行学习，得到基本分类器<span style="color:blue">$G_t(x)$</span><br>        (b)计算$G_t(x)$在训练数据集上的分类误差率 $e_t=\sum_{i=1}^{m}P(G_t(x^{(i)})\neq y^{(i)})=\sum_{i=1}^{m}w_{ti}I(G_t(x^{(i)}) \neq y^{(i)})$<br>        (c)计算$G_t(x)$的权重系数  $\alpha_t = \frac{1}{2}\log{\frac{1-e_t}{e_t}}$<br>        (d)更新训练数据集的权重分布  $D_{t+1}=(w_{t+1,1},\ldots,w_{t+1,i},\ldots,w_{t+1,m})$<br>（3）构建基本分类器的线性组合  $w_{t+1,i}=\frac{w_{ti}}{Z_t}\exp{(-\alpha_t y^{(i)} G_t(x^{(i)}))}$，其中$Z_t$是归一化因子<br>            $f(x)=\sum_{i=1}^{T} \alpha_i G_t(x)$</p>
 
             </article>
             <hr>
