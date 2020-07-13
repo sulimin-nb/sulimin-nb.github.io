@@ -176,7 +176,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.5k 字
     </span>
   
 
@@ -186,7 +186,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      20
        分钟
     </span>
   
@@ -372,7 +372,7 @@ print(rnd_clf.__class__.__name__, <span class="hljs-string">'='</span>, accuracy
 <p>1、每一轮如何改变训练数据的权值或概率分布：提高那些被前一轮错误分类样本的权值，降低那些被正确分类样本的权值。<br>2、如何将弱分类器组合成强分类器：加大分类误差小的弱分类器权值，减小分类误差率大的弱分类器权值。</p>
 </li>
 </ul>
-<h3 id="AdaBoost算法"><a href="#AdaBoost算法" class="headerlink" title="AdaBoost算法"></a>AdaBoost算法</h3><p>（1）初始化训练数据权值分布  $D_1=(w_{11},\ldots,w_{1i},\ldots,w_{1m}),\quad w_{1i}=\frac{1}{m}$<br>（2）对于每一轮训练t=1,2,…,T<br>        (a)使用具有权值分布<span style="color:blue">Dt</span>的训练数据集进行学习，得到基本分类器<span style="color:blue">$G_t(x)$</span><br>        (b)计算$G_t(x)$在训练数据集上的分类误差率 $e_t=\sum_{i=1}^{m}P(G_t(x^{(i)})\neq y^{(i)})=\sum_{i=1}^{m}w_{ti}I(G_t(x^{(i)}) \neq y^{(i)})$<br>        (c)计算$G_t(x)$的权重系数  $\alpha_t = \frac{1}{2}\log{\frac{1-e_t}{e_t}}$<br>        (d)更新训练数据集的权重分布  $D_{t+1}=(w_{t+1,1},\ldots,w_{t+1,i},\ldots,w_{t+1,m})$<br>（3）构建基本分类器的线性组合  $w_{t+1,i}=\frac{w_{ti}}{Z_t}\exp{(-\alpha_t y^{(i)} G_t(x^{(i)}))}$，其中$Z_t$是归一化因子<br>            $f(x)=\sum_{i=1}^{T} \alpha_i G_t(x)$</p>
+<h3 id="AdaBoost算法"><a href="#AdaBoost算法" class="headerlink" title="AdaBoost算法"></a>AdaBoost算法</h3><p>（1）初始化训练数据权值分布  $D_1=(w_{11},\ldots,w_{1i},\ldots,w_{1m}),\quad w_{1i}=\frac{1}{m}$<br>（2）对于每一轮训练t=1,2,…,T<br>        (a)使用具有权值分布<span style="color:blue">Dt</span>的训练数据集进行学习，得到基本分类器<span style="color:blue">$G_t(x)$</span><br>        (b)计算$G_t(x)$在训练数据集上的分类误差率 $e_t=\sum_{i=1}^{m}P(G_t(x^{(i)})\neq y^{(i)})=\sum_{i=1}^{m}w_{ti}I(G_t(x^{(i)}) \neq y^{(i)})$<br>        (c)计算$G_t(x)$的权重系数  $\alpha_t = \frac{1}{2}\log{\frac{1-e_t}{e_t}}$<br>        (d)更新训练数据集的权重分布  $D_{t+1}=(w_{t+1,1},\ldots,w_{t+1,i},\ldots,w_{t+1,m})$<br>（3）构建基本分类器的线性组合  $w_{t+1,i}=\frac{w_{ti}}{Z_t}\exp{(-\alpha_t y^{(i)} G_t(x^{(i)}))}$，其中$Z_t$是归一化因子，$Z_t=\sum_{i=1}^{m}w_{ti}\exp{(-\alpha_t y^{(i)}) G_t(x^{(i)})}$<br>            $f(x)=\sum_{i=1}^{T} \alpha_t G_t(x)$   得到最终分类器   $G(x)=sign(f(x))=sign(\sum_{t=1}^{T} \alpha_t G_t(x))$</p>
 
             </article>
             <hr>
