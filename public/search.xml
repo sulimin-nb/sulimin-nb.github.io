@@ -2500,7 +2500,7 @@ T(n) = 2T(\frac{n}{2}) + 2n</script><p>​        根据<a href="https://baike.b
     <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
   <div class="hbe-input-container">
   <input type="password" id="hbePass" placeholder="" />
-    <label for="hbePass">The article is available after a week or enter the password to read.</label>
+    <label for="hbePass">没写完，凌乱的很~The article is available after a week or enter the password to read.</label>
     <div class="bottom-line"></div>
   </div>
   <script id="hbeData" type="hbeData" data-hmacdigest="cb897dbac00dde259ba373973fe90816ba5e509f79873055485542945214e740">dff0aecbdb650398cd133bdee50169cd3f1aee3ece73b0ea840df87ea1e8e72931cef7398e2153f51123c7f96ba3c2fc610f07efd6940ca8184dfea191340068387d9fc22b56fbfe156690b0cc7628f42a6daca22fb7faf37efa02f26c02a2e5fbb14d09fb0fbf442ed2f90716b7bd6546f6264d8d62325811dd87f10ef388f00d0f77621b2ed4f46265b0b7b3f343833ceec43d7f42cc0c0511ca0007a7505697c72386afb28469da861356c7597571cd261ba8208851833b0baddf063cd618d127a47863fda68f95ea13c4912341e84b0e6900b5b15ad53cd93dd3f2b56aa5807af40a02e56ff21d269a4146b3790e897cfc9a6bab67b12ef816c23c6a057a05733c8bba78984f8b2e7a3bded30e9fec962e4c9349d8070f6d39c5634d9abe690ba7f96d4609565a823481acb06d6e441345dcd64d4b7b7832d7eaad8931eab724ddfcd1e47b2b2c2e2038640da7e56a961a9bd0277c2cab59230289be4a1b90dbdfad8bf153f09cfce110352bc593c36cd36eeb54c622db6e7be797c20afe1538255873605b938e1febc35cf90823f404aa418cb3df7fd13a3ef2222c69f2d3878cfe225133da5c577efaa660f08fed112a08686f7a3b16179dbf6d6dc4577aaf4e05f7f05180747d66380c4e4297c1d14ed1520c201f7015d9cfe95a0570f45e05742139065d92d03489f774bcb3999c1b26c8caa11c5f517c76dee8b1be398da38289089257c146a5a2560a63595b9ee1a9a2f62f0679e60f679cfe5aba0f5916fc414367722912571ecae6d66e3a596061e812cdcbd783ae268ba56aa12836e6e44dd9f21f72990903360e9ad732e05b58559506920c18ea78c27c39c70146dc9f8ad63b2b260fdab81eb55e6d079a7b783d7e4583ed1b94c83aee6bdebe3b03032d3bcadb406ba1a1cafb607c87c997932accaf858695b9678b92941dca2d9b2d31b20d6963b1f178e4a7bfd118a33522e228de056ed4ee8abb268c74b21fc748779fe5fb9384e736f3d6d59754a3ca09aa6a21438929fdf6b8362dd976f659427462a3da8fa5af544749b45dcd558ab9628cf2f87bf023b0b97715feaf7af4a2ecfb7a82e1f80b33f5f667331f91950cbea4e064e46b048fda2db8a8bf4b3e23f3788566a51c1bc429ede1e961e0e58ab10b413a0fa4e2b15e16a9f8f1d683a17b96ff9e90bcebd0e9d80e6768a4331e6be8150d7fbb71867591f054245be9a18a49dfeef6a019159f0c5d5f2e198684e075757bc0983624b912d1f9e9b43ae040fc7cb85eedaa6601b72d4ab14bb98ec78cec73d90d23aa22aabd4e8d90b1ab7fa6558cb3ff7bdc1f5b80225665bf74cf8212c8677ff54ee3122ea1bae3c64763598c128ab471bfe665bab5ceec193af74cd0a23eaa2d8eedd1163a1b4a5ad9d9d6cc67ae94492954173f40fcf604712e52d6c31546c83da644df43aa8adbe5ba6831ee81cd797eb495e9e089890907d04581cca1b1c85738842dc2030515c839aca2c5b32fbab9ab2c6b9e9a41506e099f36f10a39ac29d1250ca8aba5fb9d716152aedc3652576aa7cea25807936888e73489bfb3f69c7db84e7b19ab6f0a93727e86f62b25f19827546781a04606a7c78b2719a844a7ddb9c09e81d797cd3e48bbb0f45b7e6a8b6b4529751309c23bafd5ce3a58ede684f4560b693b6c1f3505af8e68772ec23faeecdbfba5876210e918399d59459393a33125c9d7cbb24bbf6e7ef561604d3f844076a2282444f0b148cfdbd33f767593c9c0ff1552791396f22a5503c6c737ad37f567ca88e2fc5f3bdf6e575e8feb05ad11d4ae51880307efae0b1eb35361dba0f72302fb235cc7c5feb013567601801f9a4226ba0f110848d940c7008d484b5ca1fb7adda999afae3a2faff82d92372846580e4cd7fef5d4ab8f41024825a4a9b5c4d814f56daf926e90f454e8b502b1cceadb6bce8cc71d66168cc84caa8af56cd6e5afc5e4860265478bf7217844d9825e0bf26618a75820ff1fda9db5bf7a1942633251058c5c03f28409f9105911667876996afe9bf1c9a60d30262b833d61afff3ade784123d947883c361a167b4eb8f3398f279f97f02ab14efe0e8f48cedab319e66fc07a970bda316e82ddf88ab36cd98732efe0909405ee1c860da86b952d760cd04c42e6fabbdf933d1a5697a687f3ec894de66249a17a844f6947d5954bc11cf40e1ca22c3ad6e14469b55a45073954dfaaf2df68da81b5b70e9b5f8bec5569b8bdf678e43387df11381f732e01f939acc5a08be9564976a7b40494c2dec06d86e0fa891908aa3b084866c5aaf06e4cfa310998a4407a380bddf9f2671ddd55f282ce6f78af945577a3f5c450fb333519abf357b1fe9e9a688ad644ff72e767b16cce5398d275efebf2233dd895d3cf1a0b1ecb2ed1ac837f58b2a377b1cdd1239688155e5899ea244e57fe257b178326dede9bcb02123688d5855ce4771b93ad542972452ee95fa14d39cf10b537d606eff942f171062bb3305b36a621165d9c006eec4c1fe90a60aa4f5b8ac18c9ffba7dc74cd9b67e46b1f45bd794f7592e855339b9d71abcad0936c1ff7ee9955f62fdbbd4c4013ba894af850bc4a3c85b7ea80c1a38e3efdaa6ea59ec8264656456e6f1fe6920efe1df12c72c12186d44ff718debc882e550874870f964e87e28444b0fe560c66f7fc8988d21df1b70d55c6a4bebfe03b866fe7cda0819d804d093a5c5b68e5423b3310159e8428162b4396f4fbfd334f5bc8847b2edfb38b42c9d63ddad0a5b71aeba72886</script>
@@ -4267,6 +4267,140 @@ print(<span class="hljs-string">"test accuarcy:"</span>, accuracy_score(y_test, 
 <p>输出：</p>
 <pre><code class="hljs subunit">train accuarcy: 1.0
 <span class="hljs-keyword">test </span>accuarcy: 0.9722222222222222</code></pre>
+<hr>
+<h3 id="梯度提升-Gradient-Boosting-Tree"><a href="#梯度提升-Gradient-Boosting-Tree" class="headerlink" title="梯度提升(Gradient Boosting Tree)"></a>梯度提升(Gradient Boosting Tree)</h3><p>与AdaBoost类似，梯度提升也是逐步在集成中添加预测器，与AdaBoost类似，梯度提升也是在继承中添加预测器，每一个都对其前序做出改正。不同之处在于，它不是像AdaBoost那样在每个迭代中调整实例权重，而是<strong>让新的预测器针对前一个预测器的残差进行拟合</strong>。</p>
+<p>提升树种每一颗树学的是之前所有树结论累积的残差。残差就是真实值和预测值的差值。如A的真实年龄是18，第一棵树预测年龄是12岁，则残差值为6.接下来在第二颗树把A的年龄当初6岁去学习，如果第二棵树能把A分到6岁的叶子节点，那累加两颗树的结论就是A的真实年龄；如果第二棵树的结论是5岁，则A仍然存在1岁的残差，第三棵树把A的年龄当成1岁，继续学。最后，所有树的累加值就是最终预测值。<br>提升树算法<br>（1）初始化$f_0(x)=0$<br>（2）对m=1,2,…,M<br>&emsp;&emsp;(a) 计算残差  $r_{mi}=y_i-f_{m-1}(x_i)$<br>&emsp;&emsp;(b) 拟合残差 $r_{mi}$ 学习一个回归树 $T(x;\Theta_m)$<br>&emsp;&emsp;(c) 更新  $f_m(x)=f_{m-1}(x)+T(x;\Theta_m)$<br>（3）得到提升树   $f_M(x)=\sum_{i=1}^{M}T(x;\Theta_m)$</p>
+<p><strong>代码(预测一维数据的结果)：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.tree <span class="hljs-keyword">import</span> DecisionTreeRegressor
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> GradientBoostingRegressor
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">loaddata</span><span class="hljs-params">()</span>:</span>
+    data = np.loadtxt(<span class="hljs-string">'data/data.txt'</span>,delimiter=<span class="hljs-string">','</span>)
+    n = data.shape[<span class="hljs-number">1</span>]<span class="hljs-number">-1</span> <span class="hljs-comment">#特征数</span>
+    X = data[:,<span class="hljs-number">0</span>:n]
+    y = data[:,<span class="hljs-number">-1</span>].reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">return</span> X,y
+X,y = loaddata()
+plt.scatter(X,y)</code></pre>
+<p><img src="/article/2bebfb2a/输出1.png" srcset="/img/loading.gif" alt="输出1"></p>
+<p>1）根据算法原理手动实现(使用决策树回归DesicionTreeRegressor)</p>
+<pre><code class="hljs python"><span class="hljs-comment"># 1、定义第一课树(最大深度设定为5)，并进行训练</span>
+tree_reg1 = DecisionTreeRegressor(max_depth=<span class="hljs-number">5</span>)
+tree_reg1.fit(X, y)
+<span class="hljs-comment">#DecisionTreeRegressor(criterion='mse', max_depth=5, max_features=None,</span>
+<span class="hljs-comment">#                      max_leaf_nodes=None, min_impurity_decrease=0.0,</span>
+<span class="hljs-comment">#                      min_impurity_split=None, min_samples_leaf=1,</span>
+<span class="hljs-comment">#                      min_samples_split=2, min_weight_fraction_leaf=0.0,</span>
+<span class="hljs-comment">#                      presort=False, random_state=None, splitter='best')</span>
+<span class="hljs-comment"># 2、计算残差，并把残差当做目标值训练第二棵树(最大深度设定为5)</span>
+y2 = y - tree_reg1.predict(X).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)
+tree_reg2 = DecisionTreeRegressor(max_depth=<span class="hljs-number">5</span>)
+tree_reg2.fit(X, y2)
+<span class="hljs-comment"># 3、继续计算残差，并把残差当做目标值训练第三棵树(最大深度设定为5)</span>
+y3 = y2 - tree_reg2.predict(X).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)
+tree_reg3 = DecisionTreeRegressor(max_depth=<span class="hljs-number">5</span>)
+tree_reg3.fit(X, y3)
+<span class="hljs-comment"># 4、测试</span>
+<span class="hljs-comment"># 取训练集前5条数据，并对前5条数据做预测</span>
+X_new = X[<span class="hljs-number">0</span>:<span class="hljs-number">5</span>,]
+y_pred = sum(tree.predict(X_new) <span class="hljs-keyword">for</span> tree <span class="hljs-keyword">in</span> (tree_reg1, tree_reg2, tree_reg3))
+print(y_pred)</code></pre>
+<p>输出;</p>
+<pre><code class="hljs angelscript">[<span class="hljs-number">17.61560196</span>  <span class="hljs-number">9.15380196</span> <span class="hljs-number">12.831</span>       <span class="hljs-number">4.57199973</span>  <span class="hljs-number">6.68971688</span>]</code></pre>
+<p>2）直接使用sklearn提供的GradientBoostingRegressor</p>
+<pre><code class="hljs python">gbrt = GradientBoostingRegressor(max_depth=<span class="hljs-number">5</span>, n_estimators=<span class="hljs-number">3</span>, learning_rate=<span class="hljs-number">1.0</span>)
+gbrt.fit(X, y)
+print(gbrt.predict(X_new))</code></pre>
+<p>输出：</p>
+<pre><code class="hljs angelscript">[<span class="hljs-number">17.61560196</span>  <span class="hljs-number">9.15380196</span> <span class="hljs-number">12.831</span>       <span class="hljs-number">4.57199973</span>  <span class="hljs-number">6.68971688</span>]</code></pre>
+<h3 id="梯度提升树-Gradient-Boosting-Tree"><a href="#梯度提升树-Gradient-Boosting-Tree" class="headerlink" title="梯度提升树(Gradient Boosting Tree)"></a>梯度提升树(Gradient Boosting Tree)</h3><p>上例中使用的平方损失：$L(y, f_t(x))=\frac{1}{2}(y-f_t(x))^2$<br>其负梯度为：$-\frac{\partial L(y,f_t(x))}{\partial f_t(x)}=y-f_t(x)$该负梯度就是残差。</p>
+<ul>
+<li>平方损失拟合残差值</li>
+<li>非平方损失拟合负梯度值</li>
+</ul>
+<p><span style="color:blue">GBDT：其关键是利用损失函数的负梯度作为提升树算法中要拟合的值。</span></p>
+<h3 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h3><p><img src="/article/2bebfb2a/image-20200713173830276.png" srcset="/img/loading.gif" alt="image-20200713173830276"></p>
+<p>q表示树结构，q把每一个样本点x映射到某一个叶子节点。<br>T是叶子节点的数量<br>w是叶子节点的权值(实际就是预测值)<br>$f_k$表示第k个树，该树的结构由q表示，预测值由w表示。<br>预测值表示为：<img src="/article/2bebfb2a/image-20200713174532589.png" srcset="/img/loading.gif" alt="image-20200713174532589"></p>
+<p>或：<img src="/article/2bebfb2a/image-20200713174835308.png" srcset="/img/loading.gif" alt="image-20200713174835308"></p>
+<h4 id="XGBoost损失函数-Loss-function-of-XGBoost"><a href="#XGBoost损失函数-Loss-function-of-XGBoost" class="headerlink" title="XGBoost损失函数(Loss function of XGBoost)"></a>XGBoost损失函数(Loss function of XGBoost)</h4><p><img src="/article/2bebfb2a/image-20200713174532589.png" srcset="/img/loading.gif" alt="image-20200713174532589"></p>
+<p>假设损失函数是平方损失，则初值可取所有样本的平均数。</p>
+<left><img src="/article/2bebfb2a/image-20200713175405736.png" srcset="/img/loading.gif" width="400" hight="450"></left>
+
+<p>因此损失函数可写为：</p>
+<center><img src="/article/2bebfb2a/image-20200713180755125.png" srcset="/img/loading.gif" width="400" hight="200"></center>
+
+<p>橙框中为正则项，C为常数项。</p>
+<center><img src="/article/2bebfb2a/image-20200713181458963.png" srcset="/img/loading.gif"></center>
+
+<p>例子：</p>
+<p><img src="/article/2bebfb2a/image-20200713181511123.png" srcset="/img/loading.gif" alt="image-20200713181511123"></p>
+<p>其中$\Omega=\gamma \times 3 + \frac{1}{2} \lambda (4+0.01 + 1)$</p>
+<h4 id="XGBoost求解-XGBoost-solution"><a href="#XGBoost求解-XGBoost-solution" class="headerlink" title="XGBoost求解(XGBoost solution)"></a>XGBoost求解(XGBoost solution)</h4><p>目标函数：</p>
+<center><img src="/article/2bebfb2a/image-20200713213336955.png" srcset="/img/loading.gif" width="400" hight="200"></center>
+
+<p>根据Taylor公式：</p>
+<center><img src="/article/2bebfb2a/image-20200713215352667.png" srcset="/img/loading.gif" width="400" hight="200"></center>
+
+<p>令：</p>
+<center><img src="/article/2bebfb2a/image-20200713215517498.png" srcset="/img/loading.gif" width="400" hight="200"></center>
+
+<p>得：</p>
+<center><img src="/article/2bebfb2a/image-20200713215547591.png" srcset="/img/loading.gif" width="500" hight="250"></center>
+
+<p>对上式求解：</p>
+<center><img src="/article/2bebfb2a/image-20200713215739357.png" srcset="/img/loading.gif" width="550" hight="300"></center>
+
+<p>对于</p>
+<center><img src="/article/2bebfb2a/image-20200713222203209.png" srcset="/img/loading.gif" width="450" hight="250"></center>
+
+<p>令：</p>
+<center><img src="/article/2bebfb2a/image-20200713222403711.png" srcset="/img/loading.gif" width="250" hight="250"></center>
+
+<p>得：</p>
+<center><img src="/article/2bebfb2a/image-20200713222517216.png" srcset="/img/loading.gif" width="350" hight="250"></center>
+
+<p>对w求偏导：</p>
+<center><img src="/article/2bebfb2a/image-20200713222611532.png" srcset="/img/loading.gif" width="400" hight="250"></center>
+
+<p>代入上一步的目标函数$J(f_t)$得：</p>
+<center><img src="/article/2bebfb2a/image-20200713222949320.png" srcset="/img/loading.gif" width="250" hight="250"></center>
+
+<h4 id="XGBoost中树结构的生成"><a href="#XGBoost中树结构的生成" class="headerlink" title="XGBoost中树结构的生成"></a>XGBoost中树结构的生成</h4><p><img src="/article/2bebfb2a/image-20200713224002458.png" srcset="/img/loading.gif" alt="image-20200713224002458"></p>
+<ul>
+<li>构造决策树的结构：枚举可行的分割点，选择增益最大的划分</li>
+</ul>
+<p><img src="/article/2bebfb2a/image-20200713224803648.png" srcset="/img/loading.gif" alt="image-20200713224803648"></p>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><p>sklearn并没有集成xgboost，使用前需安装 命令:pip install xgboost</p>
+<h6 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h6><p>XGBoost中数据形式可以是libsvm的，libsvm作用是对稀疏特征进行优化，看个例子：<br>1 101:1.2 102:0.03<br>0 1:2.1 10001:300 10002:400<br>0 2:1.2 1212:21 7777:2<br>每行表示一个样本，每行开头0，1表示标签，而后面的则是特征索引：数值，其他未表示都是0.</p>
+<p>我们以判断蘑菇是否有毒为例子来做后续的训练。数据集来自：<a href="http://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/" target="_blank" rel="noopener">http://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/</a> ，其中蘑菇有22个属性，将这些原始的特征加工后得到126维特征，并保存为libsvm格式，标签是表示蘑菇是否有毒。</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> xgboost <span class="hljs-keyword">as</span> xgb
+data_train = xgb.DMatrix(<span class="hljs-string">'data/agaricus.txt.train'</span>)
+data_test = xgb.DMatrix(<span class="hljs-string">'data/agaricus.txt.test'</span>)</code></pre>
+<h6 id="设置参数"><a href="#设置参数" class="headerlink" title="设置参数"></a>设置参数</h6><ul>
+<li><p>eta：可看成学习率learning_rate。典型值一般设置为：0.01-0.2</p>
+</li>
+<li><p>gamma：分裂节点时，损失函数减小值只有大于等于gamma才分裂，gamma值越大，算法越保守，越不容易过拟合，但性能就不一定能保证，需要平衡。</p>
+</li>
+<li><p>objective</p>
+<ul>
+<li>reg:linear：线性回归</li>
+<li>reg:logistic：逻辑回归</li>
+<li>binary:logistic 二分类的逻辑回归，返回预测的概率</li>
+<li>binary:logitraw：二分类逻辑回归，输出是逻辑为0/1的前一步的分数</li>
+<li>multi:softmax：用于Xgboost 做多分类问题，需要设置num_class（分类的个数）</li>
+<li>multi:softprob：和softmax一样，但是返回的是每个数据属于各个类别的概率。</li>
+<li>rank:pairwise：让Xgboost 做排名任务，通过最小化(Learn to rank的一种方法)</li>
+</ul>
+</li>
+<li><p>max_depth：决策树最大深度</p>
+</li>
+<li><p>silent：0 (silent), 1 (warning), 2 (info), 3 (debug)</p>
+<p>更多参数参见：<a href="https://xgboost.readthedocs.io/en/latest/parameter.html" target="_blank" rel="noopener">https://xgboost.readthedocs.io/en/latest/parameter.html</a></p>
+</li>
+</ul>
+<pre><code class="hljs plain">
+</code></pre>
 ]]></content>
       <categories>
         <category>机器学习</category>
@@ -4537,7 +4671,342 @@ result.head()</code></pre>]]></content>
 <p>大括号</p>
 <pre><code class="hljs tex"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">&#123;cases&#125;</span></span> &amp;# 条件 <span class="hljs-tag">\<span class="hljs-name">\</span></span> #换行
 <span class="hljs-tag">\<span class="hljs-name">end</span><span class="hljs-string">&#123;cases&#125;</span></span></code></pre>
-<p>矩阵</p>
+<h2 id="上标、下标及积分等"><a href="#上标、下标及积分等" class="headerlink" title="上标、下标及积分等"></a>上标、下标及<a href="http://zh.wikipedia.org/wiki/积分" target="_blank" rel="noopener">积分</a>等</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">上标</td>
+<td style="text-align:left"><code>a^2</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/f/1/d/f1d0a7eeee296f457681b906e2cdacac.png" srcset="/img/loading.gif" alt="\pagecolor{White} a^2"></td>
+</tr>
+<tr>
+<td style="text-align:left">下标</td>
+<td style="text-align:left"><code>a_2</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/8/e/2/8e2d2291a5593af94e996a65b6f726f8.png" srcset="/img/loading.gif" alt="\pagecolor{White} a_2"></td>
+</tr>
+<tr>
+<td style="text-align:left">组合</td>
+<td style="text-align:left"><code>a^{2+2}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/0/6/8/0683bba81494fa4172f1052cec9f2eed.png" srcset="/img/loading.gif" alt="\pagecolor{White} a^{2+2}"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>a_{i,j}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/b/d/9/bd93d6a6976568f768d4ef2a91bb2151.png" srcset="/img/loading.gif" alt="\pagecolor{White} a_{i,j}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">结合上下标</td>
+<td style="text-align:left"><code>x_2^3</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/f/7/f/f7ffd853543b9b2461e72eb28f8dec3c.png" srcset="/img/loading.gif" alt="\pagecolor{White} x_2^3"></td>
+</tr>
+<tr>
+<td style="text-align:left">前置上下标</td>
+<td style="text-align:left"><code>{}_1^2\!X_3^4</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/2/4/9/2491f82bb48b549a2aaf289dbb3a7bed.png" srcset="/img/loading.gif" alt="\pagecolor{White} {}_1^2\!X_3^4"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://zh.wikipedia.org/wiki/导数" target="_blank" rel="noopener">导数</a> （HTML）</td>
+<td style="text-align:left"><code>x&#39;</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/2/1/e/21ef9651f881246acc18a8b92368aabf.png" srcset="/img/loading.gif" alt="\pagecolor{White} x&#39;"></td>
+</tr>
+<tr>
+<td style="text-align:left">导数 （PNG）</td>
+<td style="text-align:left"><code>x^\prime</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/e/3/d/e3dbdd462fde1f1fb890aed48df66440.png" srcset="/img/loading.gif" alt="\pagecolor{White} x^\prime"></td>
+</tr>
+<tr>
+<td style="text-align:left">导数 （错误）</td>
+<td style="text-align:left"><code>x\prime</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/e/5/2/e5269181cb3851f57f684d621a9f1fca.png" srcset="/img/loading.gif" alt="\pagecolor{White} x\prime"></td>
+</tr>
+<tr>
+<td style="text-align:left">导数点</td>
+<td style="text-align:left"><code>\dot{x}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/7/3/3/733b0ff044f2e2cfdb524078740878b1.png" srcset="/img/loading.gif" alt="\pagecolor{White} \dot{x}"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\ddot{y}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/e/6/f/e6f6b45ec0ee15db8c4caa3f1fe88fdf.png" srcset="/img/loading.gif" alt="\pagecolor{White} \ddot{y}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://zh.wikipedia.org/wiki/向量" target="_blank" rel="noopener">向量</a></td>
+<td style="text-align:left"><code>\vec{c}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/3/1/f/31fc19819196b91156e13edc6cb3358c.png" srcset="/img/loading.gif" alt="\pagecolor{White} \vec{c}"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\overleftarrow{a b}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/d/9/4/d948738bbfeb127b134f549321c789ff.png" srcset="/img/loading.gif" alt="\pagecolor{White} \overleftarrow{a b}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\overrightarrow{c d}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/3/c/1/3c115f32f746e2c73d59f1a8cfbe36a2.png" srcset="/img/loading.gif" alt="\pagecolor{White} \overrightarrow{c d}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\widehat{e f g}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/4/c/b/4cba1e79deac23bb500a8aa203d9a111.png" srcset="/img/loading.gif" alt="\pagecolor{White} \widehat{e f g}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">上弧 (注: 正确应该用 \overarc, 但在这里行不通。要用建议的语法作为解决办法)</td>
+<td style="text-align:left"><code>\overset{\frown} {AB}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/b/4/0/b40456c21e931270a803c1d538d863f2.png" srcset="/img/loading.gif" alt="\pagecolor{White} \overset{\frown} {AB}"></td>
+</tr>
+<tr>
+<td style="text-align:left">上划线</td>
+<td style="text-align:left"><code>\overline{h i j}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/5/b/1/5b143339bea2ab5becbbb7a3bdaba555.png" srcset="/img/loading.gif" alt="\pagecolor{White} \overline{h i j}"></td>
+</tr>
+<tr>
+<td style="text-align:left">下划线</td>
+<td style="text-align:left"><code>\underline{k l m}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/1/4/7/147943fe9e7a222b850132ddd7882dce.png" srcset="/img/loading.gif" alt="\pagecolor{White} \underline{k l m}"></td>
+</tr>
+<tr>
+<td style="text-align:left">上括号</td>
+<td style="text-align:left"><code>\overbrace{1+2+\cdots+100}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/e/9/9/e997df92fcd3679c1935cd73f5fa1a73.png" srcset="/img/loading.gif" alt="\pagecolor{White} \overbrace{1+2+\cdots+100}"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\begin{matrix} 5050 \\ \overbrace{ 1+2+\cdots+100 }\end{matrix}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/7/3/c/73c0e4b49730d106b752a7c3715b0c3d.png" srcset="/img/loading.gif" alt="\pagecolor{White} \begin{matrix} 5050 \\ \overbrace{ 1+2+\cdots+100 } \end{matrix}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">下括号</td>
+<td style="text-align:left"><code>\underbrace{a+b+\cdots+z}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/d/7/9/d793da2820a7de9b0c645ac746da79ef.png" srcset="/img/loading.gif" alt="\pagecolor{White} \underbrace{a+b+\cdots+z}"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\begin{matrix} \underbrace{ a+b+\cdots+z } \\ 26\end{matrix}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/b/c/9/bc9dd69fffd702f4846f73579620c811.png" srcset="/img/loading.gif" alt="\pagecolor{White} \begin{matrix} \underbrace{ a+b+\cdots+z } \\ 26 \end{matrix}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">求和</td>
+<td style="text-align:left"><code>\sum_{k=1}^N k^2</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/6/a/4/6a4791650b77862a6d6bf83f286d9f0c.png" srcset="/img/loading.gif" alt="\pagecolor{White} \sum_{k=1}^N k^2"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\begin{matrix} \sum_{k=1}^N k^2 \end{matrix}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/3/9/c/39cf5eb70e03dff6ed87382baeca9291.png" srcset="/img/loading.gif" alt="\pagecolor{White} \begin{matrix} \sum_{k=1}^N k^2 \end{matrix}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">求积</td>
+<td style="text-align:left"><code>\prod_{i=1}^N x_i</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/0/9/f/09f3d0f277e7d0da504ca31e5f546988.png" srcset="/img/loading.gif" alt="\pagecolor{White} \prod_{i=1}^N x_i"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\begin{matrix} \prod_{i=1}^N x_i \end{matrix}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/5/f/0/5f06b9aa7b4eba60f3e886bcadde28f0.png" srcset="/img/loading.gif" alt="\pagecolor{White} \begin{matrix} \prod_{i=1}^N x_i \end{matrix}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">上积</td>
+<td style="text-align:left"><code>\coprod_{i=1}^N x_i</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/6/4/c/64c84feef576affcd4a7bdeb785a943c.png" srcset="/img/loading.gif" alt="\pagecolor{White} \coprod_{i=1}^N x_i"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\begin{matrix} \coprod_{i=1}^N x_i\end{matrix}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/e/5/6/e56db83ea5ba72537c2d85ed8f013276.png" srcset="/img/loading.gif" alt="\pagecolor{White} \begin{matrix} \coprod_{i=1}^N x_i \end{matrix}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://zh.wikipedia.org/wiki/极限" target="_blank" rel="noopener">极限</a></td>
+<td style="text-align:left"><code>\lim_{n \to \infty}x_n</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/7/9/5/7950c79f217c0a89607656e58d4296fd.png" srcset="/img/loading.gif" alt="\pagecolor{White} \lim_{n \to \infty}x_n"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\begin{matrix} \lim_{n \to \infty}x_n\end{matrix}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/e/7/c/e7ccfef303615810c06213be8a676484.png" srcset="/img/loading.gif" alt="\pagecolor{White} \begin{matrix} \lim_{n \to \infty}x_n \end{matrix}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://zh.wikipedia.org/wiki/积分" target="_blank" rel="noopener">积分</a></td>
+<td style="text-align:left"><code>\int_{-N}^{N} e^x\, dx</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/7/4/9/7491e901a36ceb13bbbe943759b14dc8.png" srcset="/img/loading.gif" alt="\pagecolor{White} \int_{-N}^{N} e^x\, dx"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\begin{matrix} \int_{-N}^{N} e^x\, dx\end{matrix}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/5/f/6/5f6531acbd059619af09d3b52039ede5.png" srcset="/img/loading.gif" alt="\pagecolor{White} \begin{matrix} \int_{-N}^{N} e^x\, dx \end{matrix}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://zh.wikipedia.org/wiki/双重积分" target="_blank" rel="noopener">双重积分</a></td>
+<td style="text-align:left"><code>\iint_{D}^{W} \, dx\,dy</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/4/4/e/44e3f99f1f29b9ee5de871e820cec5f3.png" srcset="/img/loading.gif" alt="\pagecolor{White} \iint_{D}^{W} \, dx\,dy"></td>
+</tr>
+<tr>
+<td style="text-align:left">三重积分</td>
+<td style="text-align:left"><code>\iiint_{E}^{V} \, dx\,dy\,dz</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/8/c/0/8c050c5bd1690dd42a9f175ec124cb97.png" srcset="/img/loading.gif" alt="\pagecolor{White} \iiint_{E}^{V} \, dx\,dy\,dz"></td>
+</tr>
+<tr>
+<td style="text-align:left">四重积分</td>
+<td style="text-align:left"><code>\iiiint_{F}^{U} \, dx\,dy\,dz\,dt</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/d/b/5/db51c71f79d301a689b3231927a0dfaa.png" srcset="/img/loading.gif" alt="\pagecolor{White} \iiiint_{F}^{U} \, dx\,dy\,dz\,dt"></td>
+</tr>
+<tr>
+<td style="text-align:left">闭合的<a href="http://zh.wikipedia.org/wiki/路径积分" target="_blank" rel="noopener">曲线</a>、<a href="http://zh.wikipedia.org/wiki/曲面积分" target="_blank" rel="noopener">曲面积分</a></td>
+<td style="text-align:left">\oint_{C} x^3\, dx + 4y^2\, dy</td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/e/5/7/e5791a184359ab19ff7e372b15ec0d1b.png" srcset="/img/loading.gif" alt="\pagecolor{White} \oint_{C} x^3\, dx + 4y^2\, dy"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://zh.wikipedia.org/wiki/交集" target="_blank" rel="noopener">交集</a></td>
+<td style="text-align:left"><code>\bigcap_1^{n} p</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/4/6/3/463d4e4bd315c0c6030354a540d85829.png" srcset="/img/loading.gif" alt="\pagecolor{White} \bigcap_1^{n} p"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://zh.wikipedia.org/wiki/并集" target="_blank" rel="noopener">并集</a></td>
+<td style="text-align:left"><code>\bigcup_1^{k} p</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/8/0/0/80059f454f87af13803b327c202dcec1.png" srcset="/img/loading.gif" alt="\pagecolor{White} \bigcup_1^{k} p"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="分数、矩阵和多行列式"><a href="#分数、矩阵和多行列式" class="headerlink" title="分数、矩阵和多行列式"></a><a href="http://zh.wikipedia.org/wiki/分数" target="_blank" rel="noopener">分数</a>、<a href="http://zh.wikipedia.org/wiki/矩阵" target="_blank" rel="noopener">矩阵</a>和多行列式</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">分数</td>
+<td style="text-align:left"><code>\frac{2}{4}=0.5</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/4/6/d/46dc0b34e0ab4e944a437720a4431d6c.png" srcset="/img/loading.gif" alt="\frac{2}{4}=0.5"></td>
+</tr>
+<tr>
+<td style="text-align:left">小型分数</td>
+<td style="text-align:left"><code>\tfrac{2}{4} = 0.5</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/2/8/4/284667fc4a92790093aa59b61b3667a0.png" srcset="/img/loading.gif" alt="\tfrac{2}{4} = 0.5"></td>
+</tr>
+<tr>
+<td style="text-align:left">大型分数（嵌套）</td>
+<td style="text-align:left"><code>\cfrac{2}{c + \cfrac{2}{d + \cfrac{2}{4}}} =a</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/6/d/0/6d099c02b3faf73f9320656217415906.png" srcset="/img/loading.gif" alt="\cfrac{2}{c + \cfrac{2}{d + \cfrac{2}{4}}} = a"></td>
+</tr>
+<tr>
+<td style="text-align:left">大型分数（不嵌套）</td>
+<td style="text-align:left"><code>\dfrac{2}{4} = 0.5 \qquad \dfrac{2}{c + \dfrac{2}{d +\dfrac{2}{4}}} = a</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/5/a/3/5a37ae94a95c7dd603c20cd4fbe8d9e9.png" srcset="/img/loading.gif" alt="\dfrac{2}{4} = 0.5 \qquad \dfrac{2}{c + \dfrac{2}{d + \dfrac{2}{4}}} = a"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://zh.wikipedia.org/wiki/二项式" target="_blank" rel="noopener">二项式</a>系数</td>
+<td style="text-align:left"><code>\dbinom{n}{r}=\binom{n}{n-r}=C^n_r=C^n_{n-r}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/6/a/5/6a5373cd8c6503567a3c2a69deda71f3.png" srcset="/img/loading.gif" alt="\dbinom{n}{r}=\binom{n}{n-r}=C^n_r=C^n_{n-r}"></td>
+</tr>
+<tr>
+<td style="text-align:left">小型<a href="http://zh.wikipedia.org/wiki/二项式" target="_blank" rel="noopener">二项式</a>系数</td>
+<td style="text-align:left"><code>\tbinom{n}{r}=\tbinom{n}{n-r}=C^n_r=C^n_{n-r}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/0/b/1/0b1188af9ee1a12bc62ca56cf83f268c.png" srcset="/img/loading.gif" alt="\tbinom{n}{r}=\tbinom{n}{n-r}=C^n_r=C^n_{n-r}"></td>
+</tr>
+<tr>
+<td style="text-align:left">大型<a href="http://zh.wikipedia.org/wiki/二项式" target="_blank" rel="noopener">二项式</a>系数</td>
+<td style="text-align:left"><code>\binom{n}{r}=\dbinom{n}{n-r}=C^n_r=C^n_{n-r}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/b/6/9/b69b21e3b047a91cd1127a498b3267f6.png" srcset="/img/loading.gif" alt="\binom{n}{r}=\dbinom{n}{n-r}=C^n_r=C^n_{n-r}"></td>
+</tr>
+<tr>
+<td style="text-align:left">矩阵</td>
+<td style="text-align:left"><code>\begin{matrix} x &amp; y \\ z &amp; v \end{matrix}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/b/9/9/b99890966e1b997497211428f8e3419d.png" srcset="/img/loading.gif" alt="\begin{matrix} x &amp; y \\ z &amp; v \end{matrix}"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\begin{vmatrix} x &amp; y \\ z &amp; v \end{vmatrix}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/9/2/b/92b8f0e57848a80b4babd2ba93775370.png" srcset="/img/loading.gif" alt="\begin{vmatrix} x &amp; y \\ z &amp; v \end{vmatrix}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\begin{Vmatrix} x &amp; y \\ z &amp; v \end{Vmatrix}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/b/b/a/bba5bfd11057dbb202307584eed8f2dc.png" srcset="/img/loading.gif" alt="\begin{Vmatrix} x &amp; y \\ z &amp; v \end{Vmatrix}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\begin{bmatrix} 0      &amp; \cdots &amp; 0      \\ \vdots &amp; \ddots &amp; \vdots \\ 0      &amp; \cdots &amp; 0 \end{bmatrix}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/8/1/a/81a12a09ac84853e3d25323b8643c630.png" srcset="/img/loading.gif" alt="\begin{bmatrix} 0 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; 0\end{bmatrix} "></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\begin{Bmatrix} x &amp; y \\ z &amp; v \end{Bmatrix}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/b/f/7/bf7244e2842c8a7d55892e229560d5c1.png" srcset="/img/loading.gif" alt="\begin{Bmatrix} x &amp; y \\ z &amp; v \end{Bmatrix}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\begin{pmatrix} x &amp; y \\ z &amp; v \end{pmatrix}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/4/4/4/444df88e616def4e275b4e920c7b872e.png" srcset="/img/loading.gif" alt="\begin{pmatrix} x &amp; y \\ z &amp; v \end{pmatrix}"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\bigl( \begin{smallmatrix} a&amp;b\\ c&amp;d \end{smallmatrix} \bigr)</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/c/d/4/cd49bbc188dce0f93fef57312af5a106.png" srcset="/img/loading.gif" alt=" \bigl( \begin{smallmatrix} a&amp;b\\ c&amp;d \end{smallmatrix} \bigr) "></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">条件定义</td>
+<td style="text-align:left"><code>f(n) = \begin{cases}  n/2,  &amp; \mbox{if }n\mbox{ is even} \\ 3n+1, &amp; \mbox{if }n\mbox{ is odd} \end{cases}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/e/3/a/e3aebe50364cfe498fa9ca99c0036010.png" srcset="/img/loading.gif" alt="f(n) = \begin{cases} n/2, &amp; \mbox{if }n\mbox{ is even} \ 3n+1, &amp; \mbox{if }n\mbox{ is odd} \end{cases} "></td>
+</tr>
+<tr>
+<td style="text-align:left">多行等式</td>
+<td style="text-align:left"><code>\begin{align} f(x) &amp; = (m+n)^2 \\ &amp; = m^2+2mn+n^2 \\ \end{align}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/1/d/9/1d9f576360e949d08e0fac7cacbbd25c.png" srcset="/img/loading.gif" alt=" \begin{align} f(x) &amp; = (m+n)^2 \ &amp; = m^2+2mn+n^2 \ \end{align} "></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\begin{alignat}{2} f(x) &amp; = (m-n)^2 \\ f(x) &amp; = (-m+n)^2 \\ &amp; = m^2-2mn+n^2 \\ \end{alignat}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/1/8/d/18d4bad0865b57fc1d5b383abe2da1b0.png" srcset="/img/loading.gif" alt=" \begin{alignat}{2} f(x) &amp; = (m-n)^2 \ f(x) &amp; = (-m+n)^2 \ &amp; = m^2-2mn+n^2 \ \end{alignat} "></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">多行等式（左对齐）</td>
+<td style="text-align:left"><code>\begin{array}{lcl} z        &amp; = &amp; a \\ f(x,y,z) &amp; = &amp; x + y + z  \end{array}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/9/b/f/9bf19115bb27237fa997ca93b94ad217.png" srcset="/img/loading.gif" alt="\begin{array}{lcl} z &amp; = &amp; a \ f(x,y,z) &amp; = &amp; x + y + z \end{array}"></td>
+</tr>
+<tr>
+<td style="text-align:left">多行等式（右对齐）</td>
+<td style="text-align:left"><code>\begin{array}{lcr} z        &amp; = &amp; a \\ f(x,y,z) &amp; = &amp; x + y + z     \end{array}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/0/2/a/02ae32735e1e21ba3b05984289fd2763.png" srcset="/img/loading.gif" alt="\begin{array}{lcr} z &amp; = &amp; a \ f(x,y,z) &amp; = &amp; x + y + z \end{array}"></td>
+</tr>
+<tr>
+<td style="text-align:left">长公式换行</td>
+<td style="text-align:left"><code>&lt;math&gt;f(x) \,\!&lt;/math&gt; &lt;math&gt;= \sum_{n=0}^\infty a_n x^n &lt;/math&gt; &lt;math&gt;= a_0+a_1x+a_2x^2+\cdots&lt;/math&gt;</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/8/d/f/8dfae20000a042d8e9047aad1d7e171e.png" srcset="/img/loading.gif" alt="f(x) \,\!"><img src="http://upload.wikimedia.org/wikipedia/zh/math/6/6/3/6633d51d63b35281d030755a6b0aebb1.png" srcset="/img/loading.gif" alt="= \sum_{n=0}^\infty a_n x^n "><img src="http://upload.wikimedia.org/wikipedia/zh/math/f/e/3/fe3e268382fd486e8572daf895bd4c9d.png" srcset="/img/loading.gif" alt="= a_0 +a_1x+a_2x^2+\cdots"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://zh.wikipedia.org/wiki/方程组" target="_blank" rel="noopener">方程组</a></td>
+<td style="text-align:left"><code>\begin{cases} 3x + 5y +  z \\ 7x - 2y + 4z \\ -6x + 3y + 2z \end{cases}</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/6/3/4/6349be04b3562fc215c7a4e130422a96.png" srcset="/img/loading.gif" alt="\begin{cases} 3x + 5y + z \\ 7x - 2y + 4z \\ -6x + 3y + 2z \end{cases}"></td>
+</tr>
+<tr>
+<td style="text-align:left">数组</td>
+<td style="text-align:left">`\begin{array}{</td>
+<td style="text-align:left">c</td>
+<td>c</td>
+<td></td>
+<td>c</td>
+<td>} a &amp; b &amp; S \\ \hline 0&amp;0&amp;1\\ 0&amp;1&amp;1\\ 1&amp;0&amp;1\\ 1&amp;1&amp;0\\ \end{array} `</td>
+<td>![ \begin{array}{\</td>
+<td>c\</td>
+<td>c\</td>
+<td>\</td>
+<td>c\</td>
+<td>} a &amp; b &amp; S \ \hline 0&amp;0&amp;1\ 0&amp;1&amp;1\ 1&amp;0&amp;1\ 1&amp;1&amp;0\ \end{array} ](<a href="http://upload.wikimedia.org/wikipedia/zh/math/9/1/5/9151e94ef2bb52c18176dbe4c11921ed.png" target="_blank" rel="noopener">http://upload.wikimedia.org/wikipedia/zh/math/9/1/5/9151e94ef2bb52c18176dbe4c11921ed.png</a>)</td>
+</tr>
+</tbody>
+</table>
+</div>
 ]]></content>
       <categories>
         <category>随笔</category>
