@@ -176,7 +176,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      1.7k 字
     </span>
   
 
@@ -186,7 +186,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      20
+      24
        分钟
     </span>
   
@@ -372,7 +372,56 @@ print(rnd_clf.__class__.__name__, <span class="hljs-string">'='</span>, accuracy
 <p>1、每一轮如何改变训练数据的权值或概率分布：提高那些被前一轮错误分类样本的权值，降低那些被正确分类样本的权值。<br>2、如何将弱分类器组合成强分类器：加大分类误差小的弱分类器权值，减小分类误差率大的弱分类器权值。</p>
 </li>
 </ul>
-<h3 id="AdaBoost算法"><a href="#AdaBoost算法" class="headerlink" title="AdaBoost算法"></a>AdaBoost算法</h3><p>（1）初始化训练数据权值分布  $D_1=(w_{11},\ldots,w_{1i},\ldots,w_{1m}),\quad w_{1i}=\frac{1}{m}$<br>（2）对于每一轮训练t=1,2,…,T<br>        (a)使用具有权值分布<span style="color:blue">Dt</span>的训练数据集进行学习，得到基本分类器<span style="color:blue">$G_t(x)$</span><br>        (b)计算$G_t(x)$在训练数据集上的分类误差率 $e_t=\sum_{i=1}^{m}P(G_t(x^{(i)})\neq y^{(i)})=\sum_{i=1}^{m}w_{ti}I(G_t(x^{(i)}) \neq y^{(i)})$<br>        (c)计算$G_t(x)$的权重系数  $\alpha_t = \frac{1}{2}\log{\frac{1-e_t}{e_t}}$<br>        (d)更新训练数据集的权重分布  $D_{t+1}=(w_{t+1,1},\ldots,w_{t+1,i},\ldots,w_{t+1,m})$<br>（3）构建基本分类器的线性组合  $w_{t+1,i}=\frac{w_{ti}}{Z_t}\exp{(-\alpha_t y^{(i)} G_t(x^{(i)}))}$，其中$Z_t$是归一化因子，$Z_t=\sum_{i=1}^{m}w_{ti}\exp{(-\alpha_t y^{(i)}) G_t(x^{(i)})}$<br>            $f(x)=\sum_{i=1}^{T} \alpha_t G_t(x)$   得到最终分类器   $G(x)=sign(f(x))=sign(\sum_{t=1}^{T} \alpha_t G_t(x))$</p>
+<h3 id="AdaBoost算法流程"><a href="#AdaBoost算法流程" class="headerlink" title="AdaBoost算法流程"></a>AdaBoost算法流程</h3><p>（1）初始化训练数据权值分布  $D_1=(w_{11},\ldots,w_{1i},\ldots,w_{1m}),\quad w_{1i}=\frac{1}{m}$<br>（2）对于每一轮训练t=1,2,…,T<br>        (a)使用具有权值分布<span style="color:blue">Dt</span>的训练数据集进行学习，得到基本分类器<span style="color:blue">$G_t(x)$</span><br>        (b)计算$G_t(x)$在训练数据集上的分类误差率 $e_t=\sum_{i=1}^{m}P(G_t(x^{(i)})\neq y^{(i)})=\sum_{i=1}^{m}w_{ti}I(G_t(x^{(i)}) \neq y^{(i)})$<br>        (c)计算$G_t(x)$的权重系数  $\alpha_t = \frac{1}{2}\log{\frac{1-e_t}{e_t}}$<br>        (d)更新训练数据集的权重分布  $D_{t+1}=(w_{t+1,1},\ldots,w_{t+1,i},\ldots,w_{t+1,m})$<br>（3）构建基本分类器的线性组合  $w_{t+1,i}=\frac{w_{ti}}{Z_t}\exp{(-\alpha_t y^{(i)} G_t(x^{(i)}))}$，其中$Z_t$是归一化因子，$Z_t=\sum_{i=1}^{m}w_{ti}\exp{(-\alpha_t y^{(i)}) G_t(x^{(i)})}$<br>            $f(x)=\sum_{i=1}^{T} \alpha_t G_t(x)$   得到最终分类器   $G(x)=sign(f(x))=sign(\sum_{t=1}^{T} \alpha_t G_t(x))$</p>
+<p><img src="/article/2bebfb2a/image-20200713150853956.png" srcset="/img/loading.gif" alt="image-20200713150853956"></p>
+<p><img src="/article/2bebfb2a/image-20200713153247630.png" srcset="/img/loading.gif" alt="image-20200713153247630"></p>
+<p><img src="/article/2bebfb2a/image-20200713153314897.png" srcset="/img/loading.gif" alt="image-20200713153314897"></p>
+<h3 id="AdaBoost代码-Sklearn实现"><a href="#AdaBoost代码-Sklearn实现" class="headerlink" title="AdaBoost代码(Sklearn实现)"></a>AdaBoost代码(Sklearn实现)</h3><p><strong>代码(参数明细见<a href="https://www.cnblogs.com/pinard/p/6136914.html" target="_blank" rel="noopener">scikit-learn Adaboost类库使用小结</a>)：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.tree <span class="hljs-keyword">import</span> DecisionTreeClassifier
+<span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> AdaBoostClassifier
+<span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_iris
+<span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> accuracy_score
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+data = np.loadtxt(<span class="hljs-string">'data/wine.data'</span>,delimiter=<span class="hljs-string">','</span>)
+X = data[:,<span class="hljs-number">1</span>:]
+y = data[:,<span class="hljs-number">0</span>:<span class="hljs-number">1</span>]
+
+<span class="hljs-comment"># 对于决策树而言，归一化作用不明显，对于逻辑回归而言，归一化是比较有用的~</span>
+<span class="hljs-comment"># from sklearn.preprocessing import StandardScaler</span>
+<span class="hljs-comment"># X = StandardScaler().fit_transform(X)</span>
+<span class="hljs-comment"># from sklearn.linear_model import LogisticRegression</span>
+<span class="hljs-comment"># rf = LogisticRegression()</span>
+
+X_train,X_test,y_train,y_test = train_test_split(X,y.ravel(),train_size=<span class="hljs-number">0.8</span>,random_state=<span class="hljs-number">0</span>)
+<span class="hljs-comment"># 定义弱(基)分类器</span>
+rf = DecisionTreeClassifier()
+<span class="hljs-comment"># 定义AdaBoost分类器</span>
+model = AdaBoostClassifier(base_estimator=rf,n_estimators=<span class="hljs-number">50</span>,algorithm=<span class="hljs-string">"SAMME.R"</span>, learning_rate=<span class="hljs-number">0.5</span>)
+model.fit(X_train,y_train)
+<span class="hljs-comment">#AdaBoostClassifier(algorithm='SAMME.R',</span>
+<span class="hljs-comment">#                   base_estimator=DecisionTreeClassifier(ccp_alpha=0.0,</span>
+<span class="hljs-comment">#                                                         class_weight=None,</span>
+<span class="hljs-comment">#                                                         criterion='gini',</span>
+<span class="hljs-comment">#                                                         max_depth=None,</span>
+<span class="hljs-comment">#                                                         max_features=None,</span>
+<span class="hljs-comment">#                                                         max_leaf_nodes=None,</span>
+<span class="hljs-comment">#                                                         min_impurity_decrease=0.0,</span>
+<span class="hljs-comment">#                                                         min_impurity_split=None,</span>
+<span class="hljs-comment">#                                                         min_samples_leaf=1,</span>
+<span class="hljs-comment">#                                                         min_samples_split=2,</span>
+<span class="hljs-comment">#                                                         min_weight_fraction_leaf=0.0,</span>
+<span class="hljs-comment">#                                                         presort='deprecated',</span>
+<span class="hljs-comment">#                                                         random_state=None,</span>
+<span class="hljs-comment">#                                                         splitter='best'),</span>
+<span class="hljs-comment">#                   learning_rate=0.5, n_estimators=50, random_state=None)</span>
+y_train_hat = model.predict(X_train)
+print(<span class="hljs-string">"train accuarcy:"</span>,accuracy_score(y_train,y_train_hat))
+y_test_hat = model.predict(X_test)
+print(<span class="hljs-string">"test accuarcy:"</span>, accuracy_score(y_test, y_test_hat))</code></pre>
+<p>输出：</p>
+<pre><code class="hljs subunit">train accuarcy: 1.0
+<span class="hljs-keyword">test </span>accuarcy: 0.9722222222222222</code></pre>
 
             </article>
             <hr>
