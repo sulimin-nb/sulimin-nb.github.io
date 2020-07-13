@@ -4382,7 +4382,7 @@ plt.imshow(X_rec)</code></pre>
 </li>
 <li>stacking</li>
 </ul>
-<h2 id="投票-voting"><a href="#投票-voting" class="headerlink" title="投票(voting)"></a>投票(voting)</h2><p>1、硬投票分类器(Hard Voting)</p>
+<h2 id="voting-投票"><a href="#voting-投票" class="headerlink" title="voting(投票)"></a>voting(投票)</h2><p>1、硬投票分类器(Hard Voting)</p>
 <p><img src="/article/2bebfb2a/hard_voting.png" srcset="/img/loading.gif" alt="hard_voting"></p>
 <p>分类结果是01分类，即选择一种结果(跟hard label类似)。</p>
 <p>2、软投票分类器(Soft Voting)<br>分类器能够估算出类别的概率。把概率取平均，取平均概率最高的类别作为预测标签(跟soft label类似)。被称为软投票法。通常来说比硬投票法表现更优，因为它给予那些高度自信的投票更高的权重。</p>
@@ -4451,15 +4451,13 @@ voting = VotingClassifier(
 <h3 id="随机森林-Random-Forest"><a href="#随机森林-Random-Forest" class="headerlink" title="随机森林(Random Forest)"></a>随机森林(Random Forest)</h3><p>随机森林是决策树的集成，通常用bagging(有时也可能是pasting)方法训练。除了先构建一个BaggingClassifier然后将结果传输到DecisionTreeClassifier，还有一种方法就是使用RandomForestClassifier类。</p>
 <p>大概有63.2%样本会被抽到，用作训练集。未抽到的37.8%样本(out of bag简称oob)作为测试集。<br>证明：假设进行N次抽样，未抽到的概率为 $1-(1-\frac{1}{N})^N=1-[(1+\frac{1}{-N})^{-N}]^{-1}$，当N趋于无穷大时，上式趋于$1-e^{-1}=63.2\%$。</p>
 <p><strong>代码：</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> VotingClassifier
+<pre><code class="hljs python">
 <span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestClassifier
 <span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> BaggingClassifier
-<span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LogisticRegression
 <span class="hljs-keyword">from</span> sklearn.svm <span class="hljs-keyword">import</span> SVC
 <span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_iris
 <span class="hljs-keyword">from</span> sklearn.tree <span class="hljs-keyword">import</span> DecisionTreeClassifier
 <span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> accuracy_score
-<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 iris = load_iris()
 X = iris.data
@@ -4503,7 +4501,13 @@ print(rnd_clf.__class__.__name__, <span class="hljs-string">'='</span>, accuracy
 <li>GBDT</li>
 <li>XGBoost</li>
 </ul>
-<h3 id="AdaBoost基本原理"><a href="#AdaBoost基本原理" class="headerlink" title="AdaBoost基本原理"></a>AdaBoost基本原理</h3><p>明天再来把~</p>
+<h3 id="AdaBoost基本原理"><a href="#AdaBoost基本原理" class="headerlink" title="AdaBoost基本原理"></a>AdaBoost基本原理</h3><ul>
+<li><p>AdaBoost：从弱学习算法出发，反复学习得到一系列弱分类器(又称基本分类器)，然后组合这些弱分类器构成一个强分类器。</p>
+</li>
+<li><p>要解决的两个问题：</p>
+<p>1、每一轮</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>机器学习</category>
@@ -4577,6 +4581,53 @@ print(rnd_clf.__class__.__name__, <span class="hljs-string">'='</span>, accuracy
       </categories>
       <tags>
         <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode174-地下城游戏</title>
+    <url>/article/a6c99a24.html</url>
+    <content><![CDATA[<h1 id="174-地下城游戏"><a href="#174-地下城游戏" class="headerlink" title="174.地下城游戏"></a>174.地下城游戏</h1><p>一些恶魔抓住了公主（<strong>P</strong>）并将她关在了地下城的右下角。地下城是由 M x N 个房间组成的二维网格。我们英勇的骑士（<strong>K</strong>）最初被安置在左上角的房间里，他必须穿过地下城并通过对抗恶魔来拯救公主。</p>
+<p>骑士的初始健康点数为一个正整数。如果他的健康点数在某一时刻降至 0 或以下，他会立即死亡。</p>
+<p>有些房间由恶魔守卫，因此骑士在进入这些房间时会失去健康点数（若房间里的值为负整数，则表示骑士将损失健康点数）；其他房间要么是空的（房间里的值为 0），要么包含增加骑士健康点数的魔法球（若房间里的值为正整数，则表示骑士将增加健康点数）。</p>
+<p>为了尽快到达公主，骑士决定每次只向右或向下移动一步。</p>
+<p><strong>编写一个函数来计算确保骑士能够拯救到公主所需的最低初始健康点数。</strong></p>
+<p>例如，考虑到如下布局的地下城，如果骑士遵循最佳路径 <code>右 -&gt; 右 -&gt; 下 -&gt; 下</code>，则骑士的初始健康点数至少为 <strong>7</strong>。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>-2 (K)</th>
+<th>-3</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-5</td>
+<td>-10</td>
+<td>1</td>
+</tr>
+<tr>
+<td>10</td>
+<td>30</td>
+<td>-5 (P)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>说明:</strong></p>
+<ul>
+<li>骑士的健康点数没有上限。</li>
+<li>任何房间都可能对骑士的健康点数造成威胁，也可能增加骑士的健康点数，包括骑士进入的左上角房间以及公主被监禁的右下角房间。</li>
+</ul>
+<p>官方题解写的很好，等下来copy</p>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+        <category>动态规划</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
       </tags>
   </entry>
 </search>

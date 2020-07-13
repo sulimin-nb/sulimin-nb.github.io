@@ -226,7 +226,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月13日 凌晨
+                  本文最后更新于：2020年7月13日 上午
                 
               </p>
             
@@ -246,7 +246,7 @@
 </li>
 <li>stacking</li>
 </ul>
-<h2 id="投票-voting"><a href="#投票-voting" class="headerlink" title="投票(voting)"></a>投票(voting)</h2><p>1、硬投票分类器(Hard Voting)</p>
+<h2 id="voting-投票"><a href="#voting-投票" class="headerlink" title="voting(投票)"></a>voting(投票)</h2><p>1、硬投票分类器(Hard Voting)</p>
 <p><img src="/article/2bebfb2a/hard_voting.png" srcset="/img/loading.gif" alt="hard_voting"></p>
 <p>分类结果是01分类，即选择一种结果(跟hard label类似)。</p>
 <p>2、软投票分类器(Soft Voting)<br>分类器能够估算出类别的概率。把概率取平均，取平均概率最高的类别作为预测标签(跟soft label类似)。被称为软投票法。通常来说比硬投票法表现更优，因为它给予那些高度自信的投票更高的权重。</p>
@@ -315,15 +315,13 @@ voting = VotingClassifier(
 <h3 id="随机森林-Random-Forest"><a href="#随机森林-Random-Forest" class="headerlink" title="随机森林(Random Forest)"></a>随机森林(Random Forest)</h3><p>随机森林是决策树的集成，通常用bagging(有时也可能是pasting)方法训练。除了先构建一个BaggingClassifier然后将结果传输到DecisionTreeClassifier，还有一种方法就是使用RandomForestClassifier类。</p>
 <p>大概有63.2%样本会被抽到，用作训练集。未抽到的37.8%样本(out of bag简称oob)作为测试集。<br>证明：假设进行N次抽样，未抽到的概率为 $1-(1-\frac{1}{N})^N=1-[(1+\frac{1}{-N})^{-N}]^{-1}$，当N趋于无穷大时，上式趋于$1-e^{-1}=63.2\%$。</p>
 <p><strong>代码：</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> VotingClassifier
+<pre><code class="hljs python">
 <span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestClassifier
 <span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> BaggingClassifier
-<span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LogisticRegression
 <span class="hljs-keyword">from</span> sklearn.svm <span class="hljs-keyword">import</span> SVC
 <span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_iris
 <span class="hljs-keyword">from</span> sklearn.tree <span class="hljs-keyword">import</span> DecisionTreeClassifier
 <span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> accuracy_score
-<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 iris = load_iris()
 X = iris.data
@@ -367,7 +365,13 @@ print(rnd_clf.__class__.__name__, <span class="hljs-string">'='</span>, accuracy
 <li>GBDT</li>
 <li>XGBoost</li>
 </ul>
-<h3 id="AdaBoost基本原理"><a href="#AdaBoost基本原理" class="headerlink" title="AdaBoost基本原理"></a>AdaBoost基本原理</h3><p>明天再来把~</p>
+<h3 id="AdaBoost基本原理"><a href="#AdaBoost基本原理" class="headerlink" title="AdaBoost基本原理"></a>AdaBoost基本原理</h3><ul>
+<li><p>AdaBoost：从弱学习算法出发，反复学习得到一系列弱分类器(又称基本分类器)，然后组合这些弱分类器构成一个强分类器。</p>
+</li>
+<li><p>要解决的两个问题：</p>
+<p>1、每一轮</p>
+</li>
+</ul>
 
             </article>
             <hr>
