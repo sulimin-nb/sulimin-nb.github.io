@@ -176,7 +176,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.2k 字
+      6k 字
     </span>
   
 
@@ -186,7 +186,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      42
+      96
        分钟
     </span>
   
@@ -226,7 +226,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月13日 晚上
+                  本文最后更新于：2020年7月14日 下午
                 
               </p>
             
@@ -372,7 +372,9 @@ print(rnd_clf.__class__.__name__, <span class="hljs-string">'='</span>, accuracy
 <p>1、每一轮如何改变训练数据的权值或概率分布：提高那些被前一轮错误分类样本的权值，降低那些被正确分类样本的权值。<br>2、如何将弱分类器组合成强分类器：加大分类误差小的弱分类器权值，减小分类误差率大的弱分类器权值。</p>
 </li>
 </ul>
-<h3 id="AdaBoost算法流程"><a href="#AdaBoost算法流程" class="headerlink" title="AdaBoost算法流程"></a>AdaBoost算法流程</h3><p>（1）初始化训练数据权值分布  $D_1=(w_{11},\ldots,w_{1i},\ldots,w_{1m}),\quad w_{1i}=\frac{1}{m}$<br>（2）对于每一轮训练t=1,2,…,T<br>        (a)使用具有权值分布<span style="color:blue">Dt</span>的训练数据集进行学习，得到基本分类器<span style="color:blue">$G_t(x)$</span><br>        (b)计算$G_t(x)$在训练数据集上的分类误差率 $e_t=\sum_{i=1}^{m}P(G_t(x^{(i)})\neq y^{(i)})=\sum_{i=1}^{m}w_{ti}I(G_t(x^{(i)}) \neq y^{(i)})$<br>        (c)计算$G_t(x)$的权重系数  $\alpha_t = \frac{1}{2}\log{\frac{1-e_t}{e_t}}$<br>        (d)更新训练数据集的权重分布  $D_{t+1}=(w_{t+1,1},\ldots,w_{t+1,i},\ldots,w_{t+1,m})$<br>（3）构建基本分类器的线性组合  $w_{t+1,i}=\frac{w_{ti}}{Z_t}\exp{(-\alpha_t y^{(i)} G_t(x^{(i)}))}$，其中$Z_t$是归一化因子，$Z_t=\sum_{i=1}^{m}w_{ti}\exp{(-\alpha_t y^{(i)}) G_t(x^{(i)})}$<br>            $f(x)=\sum_{i=1}^{T} \alpha_t G_t(x)$   得到最终分类器   $G(x)=sign(f(x))=sign(\sum_{t=1}^{T} \alpha_t G_t(x))$</p>
+<h3 id="AdaBoost算法流程"><a href="#AdaBoost算法流程" class="headerlink" title="AdaBoost算法流程"></a>AdaBoost算法流程</h3><p>（1）初始化训练数据权值分布  $D_1=(w_{11},\ldots,w_{1i},\ldots,w_{1m}),\quad w_{1i}=\frac{1}{m}$<br>（2）对于每一轮训练t=1,2,…,T<br>&emsp;&emsp;(a)使用具有权值分布<span style="color:blue">Dt</span>的训练数据集进行学习，得到基本分类器<span style="color:blue">$G_t(x)$</span><br>&emsp;&emsp;(b)计算$G_t(x)$在训练数据集上的分类误差率：</p>
+<script type="math/tex; mode=display">
+e_t=\sum_{i=1}^{m}P(G_t(x^{(i)})\neq y^{(i)})=\sum_{i=1}^{m}w_{ti}I(G_t(x^{(i)}) \neq y^{(i)})</script><p>&emsp;&emsp;(c)计算$G_t(x)$的权重系数  $\alpha_t = \frac{1}{2}\log{\frac{1-e_t}{e_t}}$<br>&emsp;&emsp;(d)更新训练数据集的权重分布  $D_{t+1}=(w_{t+1,1},\ldots,w_{t+1,i},\ldots,w_{t+1,m})$<br>（3）构建基本分类器的线性组合  $w_{t+1,i}=\frac{w_{ti}}{Z_t}\exp{(-\alpha_t y^{(i)} G_t(x^{(i)}))}$，其中$Z_t$是归一化因子，$Z_t=\sum_{i=1}^{m}w_{ti}\exp{(-\alpha_t y^{(i)}) G_t(x^{(i)})}$<br>&emsp;&emsp;            $f(x)=\sum_{i=1}^{T} \alpha_t G_t(x)$   得到最终分类器   $G(x)=sign(f(x))=sign(\sum_{t=1}^{T} \alpha_t G_t(x))$</p>
 <p><img src="/article/2bebfb2a/image-20200713150853956.png" srcset="/img/loading.gif" alt="image-20200713150853956"></p>
 <p><img src="/article/2bebfb2a/image-20200713153247630.png" srcset="/img/loading.gif" alt="image-20200713153247630"></p>
 <p><img src="/article/2bebfb2a/image-20200713153314897.png" srcset="/img/loading.gif" alt="image-20200713153314897"></p>
@@ -476,9 +478,16 @@ print(gbrt.predict(X_new))</code></pre>
 </ul>
 <p><span style="color:blue">GBDT：其关键是利用损失函数的负梯度作为提升树算法中要拟合的值。</span></p>
 <h3 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h3><p><img src="/article/2bebfb2a/image-20200713173830276.png" srcset="/img/loading.gif" alt="image-20200713173830276"></p>
-<p>q表示树结构，q把每一个样本点x映射到某一个叶子节点。<br>T是叶子节点的数量<br>w是叶子节点的权值(实际就是预测值)<br>$f_k$表示第k个树，该树的结构由q表示，预测值由w表示。<br>预测值表示为：<img src="/article/2bebfb2a/image-20200713174532589.png" srcset="/img/loading.gif" alt="image-20200713174532589"></p>
-<p>或：<img src="/article/2bebfb2a/image-20200713174835308.png" srcset="/img/loading.gif" alt="image-20200713174835308"></p>
-<h4 id="XGBoost损失函数-Loss-function-of-XGBoost"><a href="#XGBoost损失函数-Loss-function-of-XGBoost" class="headerlink" title="XGBoost损失函数(Loss function of XGBoost)"></a>XGBoost损失函数(Loss function of XGBoost)</h4><p><img src="/article/2bebfb2a/image-20200713174532589.png" srcset="/img/loading.gif" alt="image-20200713174532589"></p>
+<p>q表示树结构，q把每一个样本点x映射到某一个叶子节点。<br>T是叶子节点的数量<br>w是叶子节点的权值(实际就是预测值)<br>$f_k$表示第k个树，该树的结构由q表示，预测值由w表示。<br>预测值表示为：</p>
+<center><img src="/article/2bebfb2a/image-20200713174532589.png" srcset="/img/loading.gif" width="400" hight="200"></center>
+
+
+
+<p>或：</p>
+<center><img src="/article/2bebfb2a/image-20200713174835308.png" srcset="/img/loading.gif" width="400" hight="200"></center>
+
+<h4 id="XGBoost损失函数-Loss-function-of-XGBoost"><a href="#XGBoost损失函数-Loss-function-of-XGBoost" class="headerlink" title="XGBoost损失函数(Loss function of XGBoost)"></a>XGBoost损失函数(Loss function of XGBoost)</h4><center><img src="/article/2bebfb2a/image-20200713174532589.png" srcset="/img/loading.gif" width="400" hight="200"></center>
+
 <p>假设损失函数是平方损失，则初值可取所有样本的平均数。</p>
 <left><img src="/article/2bebfb2a/image-20200713175405736.png" srcset="/img/loading.gif" width="400" hight="450"></left>
 
@@ -526,7 +535,7 @@ print(gbrt.predict(X_new))</code></pre>
 <li>构造决策树的结构：枚举可行的分割点，选择增益最大的划分</li>
 </ul>
 <p><img src="/article/2bebfb2a/image-20200713224803648.png" srcset="/img/loading.gif" alt="image-20200713224803648"></p>
-<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><p>sklearn并没有集成xgboost，使用前需安装 命令:pip install xgboost</p>
+<h5 id="代码1"><a href="#代码1" class="headerlink" title="代码1"></a>代码1</h5><p>sklearn并没有集成xgboost，使用前需安装 命令:pip install xgboost</p>
 <h6 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h6><p>XGBoost中数据形式可以是libsvm的，libsvm作用是对稀疏特征进行优化，看个例子：<br>1 101:1.2 102:0.03<br>0 1:2.1 10001:300 10002:400<br>0 2:1.2 1212:21 7777:2<br>每行表示一个样本，每行开头0，1表示标签，而后面的则是特征索引：数值，其他未表示都是0.</p>
 <p>我们以判断蘑菇是否有毒为例子来做后续的训练。数据集来自：<a href="http://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/" target="_blank" rel="noopener">http://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/</a> ，其中蘑菇有22个属性，将这些原始的特征加工后得到126维特征，并保存为libsvm格式，标签是表示蘑菇是否有毒。</p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> xgboost <span class="hljs-keyword">as</span> xgb
@@ -554,9 +563,313 @@ data_test = xgb.DMatrix(<span class="hljs-string">'data/agaricus.txt.test'</span
 <p>更多参数参见：<a href="https://xgboost.readthedocs.io/en/latest/parameter.html" target="_blank" rel="noopener">https://xgboost.readthedocs.io/en/latest/parameter.html</a></p>
 </li>
 </ul>
-<pre><code class="hljs plain">
-</code></pre>
+<pre><code class="hljs python">param = &#123;<span class="hljs-string">'max_depth'</span>: <span class="hljs-number">3</span>, <span class="hljs-string">'eta'</span>: <span class="hljs-number">0.3</span>, <span class="hljs-string">'objective'</span>: <span class="hljs-string">'binary:logistic'</span>&#125;
+watchlist = [(data_test, <span class="hljs-string">'eval'</span>), (data_train, <span class="hljs-string">'train'</span>)]
+n_round = <span class="hljs-number">6</span>
+model = xgb.train(param, data_train, num_boost_round=n_round, evals=watchlist)</code></pre>
+<h6 id="计算准确率"><a href="#计算准确率" class="headerlink" title="计算准确率"></a>计算准确率</h6><pre><code class="hljs python">y_hat = model.predict(data_test)
+y_pred = y_hat.copy()
+y_pred[y_hat&gt;=<span class="hljs-number">0.5</span>]=<span class="hljs-number">1</span>
+y_pred[y_hat&lt;<span class="hljs-number">0.5</span>]=<span class="hljs-number">0</span>
+y = data_test.get_label()
+<span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> accuracy_score
+print(<span class="hljs-string">'accuracy_score='</span>,accuracy_score(y,y_pred))</code></pre>
+<p>输出：</p>
+<pre><code class="hljs ini"><span class="hljs-attr">accuracy_score</span>= <span class="hljs-number">1.0</span></code></pre>
+<h6 id="查看-0-5-颗决策树"><a href="#查看-0-5-颗决策树" class="headerlink" title="查看[0-5]颗决策树"></a>查看[0-5]颗决策树</h6><pre><code class="hljs python"><span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot
+<span class="hljs-keyword">import</span> graphviz
+xgb.to_graphviz(model, num_trees=<span class="hljs-number">1</span>) <span class="hljs-comment"># 以第二颗为例</span></code></pre>
+<p><img src="/article/2bebfb2a/输出2.png" srcset="/img/loading.gif" alt></p>
+<h5 id="代码2"><a href="#代码2" class="headerlink" title="代码2"></a>代码2</h5><p>(写法不同)</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> xgboost <span class="hljs-keyword">as</span> xgb
+<span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> accuracy_score
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-comment"># 读取数据(把libsvm格式读取成以前我们常用的二维数组形式)</span>
+<span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_svmlight_file
+<span class="hljs-comment">#data_train = xgb.DMatrix('data/agaricus.txt.train')</span>
+<span class="hljs-comment">#data_test = xgb.DMatrix('data/agaricus.txt.test')</span>
+X_train,y_train = load_svmlight_file(<span class="hljs-string">'data/agaricus.txt.train'</span>)
+X_test,y_test = load_svmlight_file(<span class="hljs-string">'data/agaricus.txt.test'</span>)
+<span class="hljs-comment"># 把稀疏数组转换为稠密数组</span>
+X_train.toarray().shape
+<span class="hljs-comment"># (6513, 126)</span>
+<span class="hljs-comment"># 设置参数</span>
+model =xgb.XGBClassifier(max_depth=<span class="hljs-number">2</span>, learning_rate=<span class="hljs-number">1</span>, n_estimators=<span class="hljs-number">6</span>, objective=<span class="hljs-string">'binary:logistic'</span>)
 
+model.fit(X_train, y_train)
+<span class="hljs-comment"># 计算准确率</span>
+<span class="hljs-comment"># 训练集上准确率</span>
+train_preds = model.predict(X_train)
+train_predictions = [round(value) <span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> train_preds]
+
+train_accuracy = accuracy_score(y_train, train_predictions)
+<span class="hljs-keyword">print</span> (<span class="hljs-string">"Train Accuary: %.2f%%"</span> % (train_accuracy * <span class="hljs-number">100.0</span>))
+<span class="hljs-comment"># 测试集上准确率</span>
+<span class="hljs-comment"># make prediction</span>
+preds = model.predict(X_test)
+predictions = [round(value) <span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> preds]
+
+test_accuracy = accuracy_score(y_test, predictions)
+print(<span class="hljs-string">"Test Accuracy: %.2f%%"</span> % (test_accuracy * <span class="hljs-number">100.0</span>))</code></pre>
+<p>输出：</p>
+<pre><code class="hljs subunit">Train Accuary: 99.88%
+<span class="hljs-keyword">Test </span>Accuracy: 100.00%</code></pre>
+<h6 id="GridSearchcv搜索最优参数"><a href="#GridSearchcv搜索最优参数" class="headerlink" title="GridSearchcv搜索最优参数"></a>GridSearchcv搜索最优参数</h6><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> GridSearchCV
+model = xgb.XGBClassifier(learning_rate=<span class="hljs-number">0.1</span>, objective=<span class="hljs-string">'binary:logistic'</span>)
+param_grid = &#123;
+ <span class="hljs-string">'n_estimators'</span>: range(<span class="hljs-number">1</span>, <span class="hljs-number">51</span>, <span class="hljs-number">1</span>),
+ <span class="hljs-string">'max_depth'</span>:range(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>,<span class="hljs-number">1</span>)
+&#125;
+clf = GridSearchCV(model, param_grid, <span class="hljs-string">"accuracy"</span>,cv=<span class="hljs-number">5</span>)
+clf.fit(X_train, y_train)
+print(clf.best_params_, clf.best_score_)</code></pre>
+<p>输出：</p>
+<pre><code class="hljs scheme">(&#123;<span class="hljs-symbol">'max_depth</span><span class="hljs-symbol">':</span> <span class="hljs-number">2</span>, <span class="hljs-symbol">'n_estimators</span><span class="hljs-symbol">':</span> <span class="hljs-number">30</span>&#125;, <span class="hljs-number">0.9841860859908541</span>)</code></pre>
+<h6 id="early-stop"><a href="#early-stop" class="headerlink" title="early-stop"></a>early-stop</h6><p>设置验证valid集，迭代过程中发现在验证集上错误率增加，则提前停止迭代。</p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+X_train_part, X_validate, y_train_part, y_validate = train_test_split(X_train, y_train, test_size=<span class="hljs-number">0.3</span>,random_state=<span class="hljs-number">0</span>)
+<span class="hljs-comment"># 设置boosting迭代计算次数</span>
+num_round = <span class="hljs-number">100</span>
+
+bst =xgb.XGBClassifier(max_depth=<span class="hljs-number">2</span>, learning_rate=<span class="hljs-number">0.1</span>, n_estimators=num_round, objective=<span class="hljs-string">'binary:logistic'</span>)
+
+eval_set =[(X_validate, y_validate)]
+<span class="hljs-comment"># early_stopping_rounds：连续x次在验证集的错误率均不变或上升时即停止。</span>
+bst.fit(X_train_part, y_train_part, early_stopping_rounds=<span class="hljs-number">10</span>, eval_metric=<span class="hljs-string">"error"</span>, eval_set=eval_set, verbose=<span class="hljs-literal">True</span>)</code></pre>
+<p>输出：</p>
+<pre><code class="hljs vbnet">[<span class="hljs-number">0</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.04862</span>
+Will train <span class="hljs-keyword">until</span> validation_0-<span class="hljs-keyword">error</span> hasn<span class="hljs-comment">'t improved in 10 rounds.</span>
+[<span class="hljs-number">1</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.04299</span>
+[<span class="hljs-number">2</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.04862</span>
+[<span class="hljs-number">3</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.04299</span>
+[<span class="hljs-number">4</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.04862</span>
+[<span class="hljs-number">5</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.04862</span>
+[<span class="hljs-number">6</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.04299</span>
+[<span class="hljs-number">7</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.04299</span>
+[<span class="hljs-number">8</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.04299</span>
+[<span class="hljs-number">9</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.04299</span>
+[<span class="hljs-number">10</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.04299</span>
+[<span class="hljs-number">11</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.02405</span>
+[<span class="hljs-number">12</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.02968</span>
+[<span class="hljs-number">13</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.01945</span>
+[<span class="hljs-number">14</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.01945</span>
+[<span class="hljs-number">15</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.01945</span>
+[<span class="hljs-number">16</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.01945</span>
+[<span class="hljs-number">17</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.01945</span>
+[<span class="hljs-number">18</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.01945</span>
+[<span class="hljs-number">19</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.01945</span>
+[<span class="hljs-number">20</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.01945</span>
+[<span class="hljs-number">21</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.02661</span>
+[<span class="hljs-number">22</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.02354</span>
+[<span class="hljs-number">23</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.02354</span>
+Stopping. Best iteration:
+[<span class="hljs-number">13</span>]	validation_0-<span class="hljs-keyword">error</span>:<span class="hljs-number">0.01945</span></code></pre>
+<p>Out[13]:</p>
+<pre><code class="hljs routeros">XGBClassifier(<span class="hljs-attribute">base_score</span>=0.5, <span class="hljs-attribute">booster</span>=<span class="hljs-string">'gbtree'</span>, <span class="hljs-attribute">colsample_bylevel</span>=1,
+              <span class="hljs-attribute">colsample_bynode</span>=1, <span class="hljs-attribute">colsample_bytree</span>=1, <span class="hljs-attribute">gamma</span>=0, <span class="hljs-attribute">gpu_id</span>=-1,
+              <span class="hljs-attribute">importance_type</span>=<span class="hljs-string">'gain'</span>, <span class="hljs-attribute">interaction_constraints</span>=<span class="hljs-string">''</span>,
+              <span class="hljs-attribute">learning_rate</span>=0.1, <span class="hljs-attribute">max_delta_step</span>=0, <span class="hljs-attribute">max_depth</span>=2,
+              <span class="hljs-attribute">min_child_weight</span>=1, <span class="hljs-attribute">missing</span>=nan, <span class="hljs-attribute">monotone_constraints</span>=<span class="hljs-string">'()'</span>,
+              <span class="hljs-attribute">n_estimators</span>=100, <span class="hljs-attribute">n_jobs</span>=0, <span class="hljs-attribute">num_parallel_tree</span>=1,
+              <span class="hljs-attribute">objective</span>=<span class="hljs-string">'binary:logistic'</span>, <span class="hljs-attribute">random_state</span>=0, <span class="hljs-attribute">reg_alpha</span>=0,
+              <span class="hljs-attribute">reg_lambda</span>=1, <span class="hljs-attribute">scale_pos_weight</span>=1, <span class="hljs-attribute">subsample</span>=1,
+              <span class="hljs-attribute">tree_method</span>=<span class="hljs-string">'exact'</span>, <span class="hljs-attribute">validate_parameters</span>=1, <span class="hljs-attribute">verbosity</span>=None)</code></pre>
+<p>将错误率可视化，进行更直观的观察。</p>
+<pre><code class="hljs markdown">results = bst.evals_result()
+epochs = len(results[<span class="hljs-string">'validation_0'</span>][<span class="hljs-symbol">'error'</span>])
+x_axis = range(0, epochs)
+
+<span class="hljs-section"># plot log loss</span>
+plt.plot(x<span class="hljs-emphasis">_axis, results['validation_</span>0']['error'], label='Test')
+
+plt.ylabel('Error')
+plt.xlabel('Round')
+plt.title('XGBoost Early Stop')
+plt.show()</code></pre>
+<p><img src="/article/2bebfb2a/输出3.png" srcset="/img/loading.gif" alt="输出3"></p>
+<h6 id="可视化学习曲线"><a href="#可视化学习曲线" class="headerlink" title="可视化学习曲线"></a>可视化学习曲线</h6><p>训练</p>
+<pre><code class="hljs python"><span class="hljs-comment"># 设置boosting迭代计算次数</span>
+num_round = <span class="hljs-number">100</span>
+
+<span class="hljs-comment"># 没有 eraly_stop</span>
+bst =xgb.XGBClassifier(max_depth=<span class="hljs-number">2</span>, learning_rate=<span class="hljs-number">0.1</span>, n_estimators=num_round, silent=<span class="hljs-literal">True</span>, objective=<span class="hljs-string">'binary:logistic'</span>)
+ 
+eval_set = [(X_train_part, y_train_part), (X_validate, y_validate)]
+bst.fit(X_train_part, y_train_part, eval_metric=[<span class="hljs-string">"error"</span>, <span class="hljs-string">"logloss"</span>], eval_set=eval_set, verbose=<span class="hljs-literal">True</span>)</code></pre>
+<p>输出：</p>
+<pre><code class="hljs angelscript">[<span class="hljs-number">0</span>]	validation_0-error:<span class="hljs-number">0.04562</span>	validation_0-logloss:<span class="hljs-number">0.61466</span>	validation_1-error:<span class="hljs-number">0.04862</span>	validation_1-logloss:<span class="hljs-number">0.61509</span>
+[<span class="hljs-number">1</span>]	validation_0-error:<span class="hljs-number">0.04102</span>	validation_0-logloss:<span class="hljs-number">0.55002</span>	validation_1-error:<span class="hljs-number">0.04299</span>	validation_1-logloss:<span class="hljs-number">0.55021</span>
+[<span class="hljs-number">2</span>]	validation_0-error:<span class="hljs-number">0.04562</span>	validation_0-logloss:<span class="hljs-number">0.49553</span>	validation_1-error:<span class="hljs-number">0.04862</span>	validation_1-logloss:<span class="hljs-number">0.49615</span>
+[<span class="hljs-number">3</span>]	validation_0-error:<span class="hljs-number">0.04102</span>	validation_0-logloss:<span class="hljs-number">0.44924</span>	validation_1-error:<span class="hljs-number">0.04299</span>	validation_1-logloss:<span class="hljs-number">0.44970</span>
+[<span class="hljs-number">4</span>]	validation_0-error:<span class="hljs-number">0.04562</span>	validation_0-logloss:<span class="hljs-number">0.40965</span>	validation_1-error:<span class="hljs-number">0.04862</span>	validation_1-logloss:<span class="hljs-number">0.41051</span>
+[<span class="hljs-number">5</span>]	validation_0-error:<span class="hljs-number">0.04562</span>	validation_0-logloss:<span class="hljs-number">0.37502</span>	validation_1-error:<span class="hljs-number">0.04862</span>	validation_1-logloss:<span class="hljs-number">0.37527</span>
+[<span class="hljs-number">6</span>]	validation_0-error:<span class="hljs-number">0.04102</span>	validation_0-logloss:<span class="hljs-number">0.34374</span>	validation_1-error:<span class="hljs-number">0.04299</span>	validation_1-logloss:<span class="hljs-number">0.34409</span>
+[<span class="hljs-number">7</span>]	validation_0-error:<span class="hljs-number">0.04102</span>	validation_0-logloss:<span class="hljs-number">0.31648</span>	validation_1-error:<span class="hljs-number">0.04299</span>	validation_1-logloss:<span class="hljs-number">0.31680</span>
+[<span class="hljs-number">8</span>]	validation_0-error:<span class="hljs-number">0.04102</span>	validation_0-logloss:<span class="hljs-number">0.29229</span>	validation_1-error:<span class="hljs-number">0.04299</span>	validation_1-logloss:<span class="hljs-number">0.29217</span>
+[<span class="hljs-number">9</span>]	validation_0-error:<span class="hljs-number">0.04102</span>	validation_0-logloss:<span class="hljs-number">0.27028</span>	validation_1-error:<span class="hljs-number">0.04299</span>	validation_1-logloss:<span class="hljs-number">0.27031</span>
+[<span class="hljs-number">10</span>]	validation_0-error:<span class="hljs-number">0.04102</span>	validation_0-logloss:<span class="hljs-number">0.25084</span>	validation_1-error:<span class="hljs-number">0.04299</span>	validation_1-logloss:<span class="hljs-number">0.25075</span>
+[<span class="hljs-number">11</span>]	validation_0-error:<span class="hljs-number">0.02303</span>	validation_0-logloss:<span class="hljs-number">0.23349</span>	validation_1-error:<span class="hljs-number">0.02405</span>	validation_1-logloss:<span class="hljs-number">0.23322</span>
+[<span class="hljs-number">12</span>]	validation_0-error:<span class="hljs-number">0.02895</span>	validation_0-logloss:<span class="hljs-number">0.21413</span>	validation_1-error:<span class="hljs-number">0.02968</span>	validation_1-logloss:<span class="hljs-number">0.21411</span>
+[<span class="hljs-number">13</span>]	validation_0-error:<span class="hljs-number">0.01645</span>	validation_0-logloss:<span class="hljs-number">0.19726</span>	validation_1-error:<span class="hljs-number">0.01945</span>	validation_1-logloss:<span class="hljs-number">0.19747</span>
+[<span class="hljs-number">14</span>]	validation_0-error:<span class="hljs-number">0.01645</span>	validation_0-logloss:<span class="hljs-number">0.18254</span>	validation_1-error:<span class="hljs-number">0.01945</span>	validation_1-logloss:<span class="hljs-number">0.18296</span>
+[<span class="hljs-number">15</span>]	validation_0-error:<span class="hljs-number">0.01645</span>	validation_0-logloss:<span class="hljs-number">0.16969</span>	validation_1-error:<span class="hljs-number">0.01945</span>	validation_1-logloss:<span class="hljs-number">0.17029</span>
+[<span class="hljs-number">16</span>]	validation_0-error:<span class="hljs-number">0.01645</span>	validation_0-logloss:<span class="hljs-number">0.15845</span>	validation_1-error:<span class="hljs-number">0.01945</span>	validation_1-logloss:<span class="hljs-number">0.15923</span>
+[<span class="hljs-number">17</span>]	validation_0-error:<span class="hljs-number">0.01645</span>	validation_0-logloss:<span class="hljs-number">0.14999</span>	validation_1-error:<span class="hljs-number">0.01945</span>	validation_1-logloss:<span class="hljs-number">0.15106</span>
+[<span class="hljs-number">18</span>]	validation_0-error:<span class="hljs-number">0.01645</span>	validation_0-logloss:<span class="hljs-number">0.14108</span>	validation_1-error:<span class="hljs-number">0.01945</span>	validation_1-logloss:<span class="hljs-number">0.14227</span>
+[<span class="hljs-number">19</span>]	validation_0-error:<span class="hljs-number">0.01645</span>	validation_0-logloss:<span class="hljs-number">0.13417</span>	validation_1-error:<span class="hljs-number">0.01945</span>	validation_1-logloss:<span class="hljs-number">0.13544</span>
+[<span class="hljs-number">20</span>]	validation_0-error:<span class="hljs-number">0.01645</span>	validation_0-logloss:<span class="hljs-number">0.12691</span>	validation_1-error:<span class="hljs-number">0.01945</span>	validation_1-logloss:<span class="hljs-number">0.12827</span>
+[<span class="hljs-number">21</span>]	validation_0-error:<span class="hljs-number">0.02500</span>	validation_0-logloss:<span class="hljs-number">0.12055</span>	validation_1-error:<span class="hljs-number">0.02661</span>	validation_1-logloss:<span class="hljs-number">0.12199</span>
+[<span class="hljs-number">22</span>]	validation_0-error:<span class="hljs-number">0.02062</span>	validation_0-logloss:<span class="hljs-number">0.11535</span>	validation_1-error:<span class="hljs-number">0.02354</span>	validation_1-logloss:<span class="hljs-number">0.11683</span>
+[<span class="hljs-number">23</span>]	validation_0-error:<span class="hljs-number">0.02062</span>	validation_0-logloss:<span class="hljs-number">0.11015</span>	validation_1-error:<span class="hljs-number">0.02354</span>	validation_1-logloss:<span class="hljs-number">0.11169</span>
+[<span class="hljs-number">24</span>]	validation_0-error:<span class="hljs-number">0.02062</span>	validation_0-logloss:<span class="hljs-number">0.10586</span>	validation_1-error:<span class="hljs-number">0.02354</span>	validation_1-logloss:<span class="hljs-number">0.10725</span>
+[<span class="hljs-number">25</span>]	validation_0-error:<span class="hljs-number">0.02062</span>	validation_0-logloss:<span class="hljs-number">0.10196</span>	validation_1-error:<span class="hljs-number">0.02354</span>	validation_1-logloss:<span class="hljs-number">0.10337</span>
+[<span class="hljs-number">26</span>]	validation_0-error:<span class="hljs-number">0.02062</span>	validation_0-logloss:<span class="hljs-number">0.09799</span>	validation_1-error:<span class="hljs-number">0.02354</span>	validation_1-logloss:<span class="hljs-number">0.09945</span>
+[<span class="hljs-number">27</span>]	validation_0-error:<span class="hljs-number">0.02062</span>	validation_0-logloss:<span class="hljs-number">0.09453</span>	validation_1-error:<span class="hljs-number">0.02354</span>	validation_1-logloss:<span class="hljs-number">0.09620</span>
+[<span class="hljs-number">28</span>]	validation_0-error:<span class="hljs-number">0.02062</span>	validation_0-logloss:<span class="hljs-number">0.09112</span>	validation_1-error:<span class="hljs-number">0.02354</span>	validation_1-logloss:<span class="hljs-number">0.09283</span>
+[<span class="hljs-number">29</span>]	validation_0-error:<span class="hljs-number">0.02062</span>	validation_0-logloss:<span class="hljs-number">0.08809</span>	validation_1-error:<span class="hljs-number">0.02354</span>	validation_1-logloss:<span class="hljs-number">0.08991</span>
+[<span class="hljs-number">30</span>]	validation_0-error:<span class="hljs-number">0.02062</span>	validation_0-logloss:<span class="hljs-number">0.08521</span>	validation_1-error:<span class="hljs-number">0.02354</span>	validation_1-logloss:<span class="hljs-number">0.08693</span>
+[<span class="hljs-number">31</span>]	validation_0-error:<span class="hljs-number">0.02062</span>	validation_0-logloss:<span class="hljs-number">0.08188</span>	validation_1-error:<span class="hljs-number">0.02354</span>	validation_1-logloss:<span class="hljs-number">0.08324</span>
+[<span class="hljs-number">32</span>]	validation_0-error:<span class="hljs-number">0.02062</span>	validation_0-logloss:<span class="hljs-number">0.07883</span>	validation_1-error:<span class="hljs-number">0.02354</span>	validation_1-logloss:<span class="hljs-number">0.08027</span>
+[<span class="hljs-number">33</span>]	validation_0-error:<span class="hljs-number">0.02062</span>	validation_0-logloss:<span class="hljs-number">0.07606</span>	validation_1-error:<span class="hljs-number">0.02354</span>	validation_1-logloss:<span class="hljs-number">0.07722</span>
+[<span class="hljs-number">34</span>]	validation_0-error:<span class="hljs-number">0.02062</span>	validation_0-logloss:<span class="hljs-number">0.07349</span>	validation_1-error:<span class="hljs-number">0.02354</span>	validation_1-logloss:<span class="hljs-number">0.07491</span>
+[<span class="hljs-number">35</span>]	validation_0-error:<span class="hljs-number">0.02062</span>	validation_0-logloss:<span class="hljs-number">0.07078</span>	validation_1-error:<span class="hljs-number">0.02354</span>	validation_1-logloss:<span class="hljs-number">0.07213</span>
+[<span class="hljs-number">36</span>]	validation_0-error:<span class="hljs-number">0.01470</span>	validation_0-logloss:<span class="hljs-number">0.06844</span>	validation_1-error:<span class="hljs-number">0.01791</span>	validation_1-logloss:<span class="hljs-number">0.06985</span>
+[<span class="hljs-number">37</span>]	validation_0-error:<span class="hljs-number">0.01009</span>	validation_0-logloss:<span class="hljs-number">0.06620</span>	validation_1-error:<span class="hljs-number">0.01023</span>	validation_1-logloss:<span class="hljs-number">0.06742</span>
+[<span class="hljs-number">38</span>]	validation_0-error:<span class="hljs-number">0.01470</span>	validation_0-logloss:<span class="hljs-number">0.06400</span>	validation_1-error:<span class="hljs-number">0.01791</span>	validation_1-logloss:<span class="hljs-number">0.06544</span>
+[<span class="hljs-number">39</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.06188</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.06349</span>
+[<span class="hljs-number">40</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.05988</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.06132</span>
+[<span class="hljs-number">41</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.05798</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.05936</span>
+[<span class="hljs-number">42</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.05621</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.05774</span>
+[<span class="hljs-number">43</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.05441</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.05600</span>
+[<span class="hljs-number">44</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.05274</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.05426</span>
+[<span class="hljs-number">45</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.05121</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.05266</span>
+[<span class="hljs-number">46</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.04972</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.05131</span>
+[<span class="hljs-number">47</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.04820</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.04985</span>
+[<span class="hljs-number">48</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.04680</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.04838</span>
+[<span class="hljs-number">49</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.04552</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.04715</span>
+[<span class="hljs-number">50</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.04423</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.04583</span>
+[<span class="hljs-number">51</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.04302</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.04456</span>
+[<span class="hljs-number">52</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.04190</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.04358</span>
+[<span class="hljs-number">53</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.04072</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.04234</span>
+[<span class="hljs-number">54</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.03967</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.04134</span>
+[<span class="hljs-number">55</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.03866</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.04027</span>
+[<span class="hljs-number">56</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.03766</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.03940</span>
+[<span class="hljs-number">57</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.03663</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.03849</span>
+[<span class="hljs-number">58</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.03569</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.03751</span>
+[<span class="hljs-number">59</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.03482</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.03658</span>
+[<span class="hljs-number">60</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.03393</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.03581</span>
+[<span class="hljs-number">61</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.03272</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.03450</span>
+[<span class="hljs-number">62</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.03192</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.03367</span>
+[<span class="hljs-number">63</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.03116</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.03295</span>
+[<span class="hljs-number">64</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.03041</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.03216</span>
+[<span class="hljs-number">65</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02968</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.03140</span>
+[<span class="hljs-number">66</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02901</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.03079</span>
+[<span class="hljs-number">67</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02834</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.03017</span>
+[<span class="hljs-number">68</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02771</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02948</span>
+[<span class="hljs-number">69</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02708</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02896</span>
+[<span class="hljs-number">70</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02646</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02834</span>
+[<span class="hljs-number">71</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02589</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02773</span>
+[<span class="hljs-number">72</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02533</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02712</span>
+[<span class="hljs-number">73</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02479</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02663</span>
+[<span class="hljs-number">74</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02427</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02600</span>
+[<span class="hljs-number">75</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02376</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02553</span>
+[<span class="hljs-number">76</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02327</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02512</span>
+[<span class="hljs-number">77</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02278</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02461</span>
+[<span class="hljs-number">78</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02233</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02421</span>
+[<span class="hljs-number">79</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02186</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02378</span>
+[<span class="hljs-number">80</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02143</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02330</span>
+[<span class="hljs-number">81</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02090</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02271</span>
+[<span class="hljs-number">82</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02050</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02239</span>
+[<span class="hljs-number">83</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.02009</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02206</span>
+[<span class="hljs-number">84</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01969</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02159</span>
+[<span class="hljs-number">85</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01931</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02126</span>
+[<span class="hljs-number">86</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01895</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02088</span>
+[<span class="hljs-number">87</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01837</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.02021</span>
+[<span class="hljs-number">88</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01804</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.01992</span>
+[<span class="hljs-number">89</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01772</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.01956</span>
+[<span class="hljs-number">90</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01741</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.01929</span>
+[<span class="hljs-number">91</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01710</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.01897</span>
+[<span class="hljs-number">92</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01660</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.01839</span>
+[<span class="hljs-number">93</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01602</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.01748</span>
+[<span class="hljs-number">94</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01576</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.01721</span>
+[<span class="hljs-number">95</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01547</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.01692</span>
+[<span class="hljs-number">96</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01520</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.01672</span>
+[<span class="hljs-number">97</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01492</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.01640</span>
+[<span class="hljs-number">98</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01444</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.01570</span>
+[<span class="hljs-number">99</span>]	validation_0-error:<span class="hljs-number">0.00153</span>	validation_0-logloss:<span class="hljs-number">0.01422</span>	validation_1-error:<span class="hljs-number">0.00307</span>	validation_1-logloss:<span class="hljs-number">0.01543</span>
+XGBClassifier(base_score=<span class="hljs-number">0.5</span>, booster=<span class="hljs-string">'gbtree'</span>, colsample_bylevel=<span class="hljs-number">1</span>,
+              colsample_bynode=<span class="hljs-number">1</span>, colsample_bytree=<span class="hljs-number">1</span>, gamma=<span class="hljs-number">0</span>, gpu_id=<span class="hljs-number">-1</span>,
+              importance_type=<span class="hljs-string">'gain'</span>, <span class="hljs-built_in">int</span>eraction_constraints=<span class="hljs-string">''</span>,
+              learning_rate=<span class="hljs-number">0.1</span>, max_delta_step=<span class="hljs-number">0</span>, max_depth=<span class="hljs-number">2</span>,
+              min_child_weight=<span class="hljs-number">1</span>, missing=nan, monotone_constraints=<span class="hljs-string">'()'</span>,
+              n_estimators=<span class="hljs-number">100</span>, n_jobs=<span class="hljs-number">0</span>, num_parallel_tree=<span class="hljs-number">1</span>,
+              objective=<span class="hljs-string">'binary:logistic'</span>, random_state=<span class="hljs-number">0</span>, reg_alpha=<span class="hljs-number">0</span>,
+              reg_lambda=<span class="hljs-number">1</span>, scale_pos_weight=<span class="hljs-number">1</span>, silent=True, subsample=<span class="hljs-number">1</span>,
+              tree_method=<span class="hljs-string">'exact'</span>, validate_parameters=<span class="hljs-number">1</span>, verbosity=None)</code></pre>
+<p>可视化</p>
+<pre><code class="hljs python"><span class="hljs-comment"># retrieve performance metrics</span>
+results = bst.evals_result()
+<span class="hljs-comment">#print(results)</span>
+
+
+epochs = len(results[<span class="hljs-string">'validation_0'</span>][<span class="hljs-string">'error'</span>])
+x_axis = range(<span class="hljs-number">0</span>, epochs)
+
+<span class="hljs-comment"># plot log loss</span>
+fig, ax = plt.subplots()
+ax.plot(x_axis, results[<span class="hljs-string">'validation_0'</span>][<span class="hljs-string">'logloss'</span>], label=<span class="hljs-string">'Train'</span>)
+ax.plot(x_axis, results[<span class="hljs-string">'validation_1'</span>][<span class="hljs-string">'logloss'</span>], label=<span class="hljs-string">'Test'</span>)
+ax.legend()
+plt.ylabel(<span class="hljs-string">'Log Loss'</span>)
+plt.title(<span class="hljs-string">'XGBoost Log Loss'</span>)
+plt.show()
+
+<span class="hljs-comment"># plot classification error</span>
+fig, ax = plt.subplots()
+ax.plot(x_axis, results[<span class="hljs-string">'validation_0'</span>][<span class="hljs-string">'error'</span>], label=<span class="hljs-string">'Train'</span>)
+ax.plot(x_axis, results[<span class="hljs-string">'validation_1'</span>][<span class="hljs-string">'error'</span>], label=<span class="hljs-string">'Test'</span>)
+ax.legend() <span class="hljs-comment"># 显示标签label</span>
+plt.ylabel(<span class="hljs-string">'Classification Error'</span>)
+plt.title(<span class="hljs-string">'XGBoost Classification Error'</span>)
+plt.show()</code></pre>
+<center class="half">
+    <img src="/article/2bebfb2a/输出4.png" srcset="/img/loading.gif" width="350" hight="300">
+    <img src="/article/2bebfb2a/输出5.png" srcset="/img/loading.gif" width="350" hight="300">
+</center>
+
+<h2 id="Stacking-堆叠"><a href="#Stacking-堆叠" class="headerlink" title="Stacking(堆叠)"></a>Stacking(堆叠)</h2><h3 id="Stacking原理"><a href="#Stacking原理" class="headerlink" title="Stacking原理"></a>Stacking原理</h3><p><img src="/article/2bebfb2a/image-20200713231126836.png" srcset="/img/loading.gif" alt="image-20200713231126836"></p>
+<h3 id="Stacking代码"><a href="#Stacking代码" class="headerlink" title="Stacking代码"></a>Stacking代码</h3><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LogisticRegression
+<span class="hljs-keyword">from</span> sklearn.neighbors <span class="hljs-keyword">import</span> KNeighborsClassifier
+<span class="hljs-keyword">from</span> sklearn.naive_bayes <span class="hljs-keyword">import</span> GaussianNB
+<span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestClassifier
+<span class="hljs-keyword">from</span> mlxtend.classifier <span class="hljs-keyword">import</span> StackingClassifier
+<span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> accuracy_score
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+data = np.loadtxt(<span class="hljs-string">'data/wine.data'</span>, delimiter=<span class="hljs-string">','</span>)
+X = data[:, <span class="hljs-number">1</span>:]
+y = data[:, <span class="hljs-number">0</span>:<span class="hljs-number">1</span>]
+X_train, X_test, y_train, y_test = train_test_split(X, y.ravel(), train_size=<span class="hljs-number">0.8</span>, random_state=<span class="hljs-number">0</span>)
+<span class="hljs-comment"># 定义基分类器</span>
+clf1 = KNeighborsClassifier(n_neighbors=<span class="hljs-number">5</span>)
+clf2 = RandomForestClassifier(random_state=<span class="hljs-number">1</span>)
+clf3 = GaussianNB()
+<span class="hljs-comment"># 定义最终使用的逻辑回归分类器</span>
+lr = LogisticRegression()
+<span class="hljs-comment"># 使用stacking分类器</span>
+sclf = StackingClassifier(classifiers=[clf1, clf2, clf3],
+                          meta_classifier=lr,use_probas=<span class="hljs-literal">True</span>)
+<span class="hljs-comment"># 对每一个模型分别进行评价</span>
+<span class="hljs-keyword">for</span> model <span class="hljs-keyword">in</span> [clf1,clf2,clf3,lr,sclf]:
+    model.fit(X_train,y_train)
+    y_test_hat = model.predict(X_test)
+    print(model.__class__.__name__,<span class="hljs-string">',test accuarcy:'</span>,accuracy_score(y_test,y_test_hat))</code></pre>
+<p>输出：</p>
+<pre><code class="hljs yaml"><span class="hljs-string">KNeighborsClassifier</span> <span class="hljs-string">,test</span> <span class="hljs-attr">accuarcy:</span> <span class="hljs-number">0.8055555555555556</span>
+<span class="hljs-string">RandomForestClassifier</span> <span class="hljs-string">,test</span> <span class="hljs-attr">accuarcy:</span> <span class="hljs-number">0.9444444444444444</span>
+<span class="hljs-string">GaussianNB</span> <span class="hljs-string">,test</span> <span class="hljs-attr">accuarcy:</span> <span class="hljs-number">0.9166666666666666</span>
+<span class="hljs-string">LogisticRegression</span> <span class="hljs-string">,test</span> <span class="hljs-attr">accuarcy:</span> <span class="hljs-number">0.9444444444444444</span>
+<span class="hljs-string">StackingClassifier</span> <span class="hljs-string">,test</span> <span class="hljs-attr">accuarcy:</span> <span class="hljs-number">0.9722222222222222</span></code></pre>
             </article>
             <hr>
             <div>
