@@ -4930,46 +4930,6 @@ df[<span class="hljs-string">'col1'</span>].str.extract(<span class="hljs-string
     <title>latex常用语法</title>
     <url>/article/a097ae97.html</url>
     <content><![CDATA[<h1 id="Latex常用语法"><a href="#Latex常用语法" class="headerlink" title="Latex常用语法"></a>Latex常用语法</h1><p>因为每次都要找，不如总结下来。网页端又显示不正常了，哎，有空闲再调把~</p>
-<h3 id="声调"><a href="#声调" class="headerlink" title="声调"></a>声调</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">语法</th>
-<th style="text-align:left">效果</th>
-<th style="text-align:left">语法</th>
-<th style="text-align:left">效果</th>
-<th style="text-align:left">语法</th>
-<th style="text-align:left">效果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">{x}</td>
-<td style="text-align:left"><a href="http://upload.wikimedia.org/wikipedia/zh/math/c/9/4/c947a5bcc06592f37f6b1c4f2ed57dea.png" target="_blank" rel="noopener"><img src="http://upload.wikimedia.org/wikipedia/zh/math/c/9/4/c947a5bcc06592f37f6b1c4f2ed57dea.png" srcset="/img/loading.gif" alt="{x}"></a></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><a href="http://upload.wikimedia.org/wikipedia/zh/math/8/f/f/8ff055145396a2ffefacea0b18ec3fda.png" target="_blank" rel="noopener"><img src="http://upload.wikimedia.org/wikipedia/zh/math/8/f/f/8ff055145396a2ffefacea0b18ec3fda.png" srcset="/img/loading.gif" alt="img"></a></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><a href="http://upload.wikimedia.org/wikipedia/zh/math/a/c/4/ac4a31ee5874dc5044590eedae7a48c4.png" target="_blank" rel="noopener"><img src="http://upload.wikimedia.org/wikipedia/zh/math/a/c/4/ac4a31ee5874dc5044590eedae7a48c4.png" srcset="/img/loading.gif" alt="img"></a></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left"><a href="http://upload.wikimedia.org/wikipedia/zh/math/9/1/f/91f1cf98709ee5bd4380b05d04ce260a.png" target="_blank" rel="noopener"><img src="http://upload.wikimedia.org/wikipedia/zh/math/9/1/f/91f1cf98709ee5bd4380b05d04ce260a.png" srcset="/img/loading.gif" alt="img"></a></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><a href="http://upload.wikimedia.org/wikipedia/zh/math/5/8/5/58565c69fa6e895ea11e57ffdbe7d4cd.png" target="_blank" rel="noopener"><img src="http://upload.wikimedia.org/wikipedia/zh/math/5/8/5/58565c69fa6e895ea11e57ffdbe7d4cd.png" srcset="/img/loading.gif" alt="img"></a></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><a href="http://upload.wikimedia.org/wikipedia/zh/math/5/8/7/58779ff5e3932c43545a8d8114384dd6.png" target="_blank" rel="noopener"><img src="http://upload.wikimedia.org/wikipedia/zh/math/5/8/7/58779ff5e3932c43545a8d8114384dd6.png" srcset="/img/loading.gif" alt="img"></a></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left"><a href="http://upload.wikimedia.org/wikipedia/zh/math/5/8/4/584bdd6bbf3b22901631c94c12f09332.png" target="_blank" rel="noopener"><img src="http://upload.wikimedia.org/wikipedia/zh/math/5/8/4/584bdd6bbf3b22901631c94c12f09332.png" srcset="/img/loading.gif" alt="img"></a></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><a href="http://upload.wikimedia.org/wikipedia/zh/math/3/f/e/3fe9b211473065676e1b8048e21b9743.png" target="_blank" rel="noopener"><img src="http://upload.wikimedia.org/wikipedia/zh/math/3/f/e/3fe9b211473065676e1b8048e21b9743.png" srcset="/img/loading.gif" alt="img"></a></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"><a href="http://upload.wikimedia.org/wikipedia/zh/math/5/d/b/5db129ecac03423d19e453d9ada8a0e8.png" target="_blank" rel="noopener"><img src="http://upload.wikimedia.org/wikipedia/zh/math/5/d/b/5db129ecac03423d19e453d9ada8a0e8.png" srcset="/img/loading.gif" alt="img"></a></td>
-</tr>
-</tbody>
-</table>
-</div>
 <h2 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h2><div class="table-container">
 <table>
 <thead>
@@ -4985,25 +4945,25 @@ df[<span class="hljs-string">'col1'</span>].str.extract(<span class="hljs-string
 <td>quad空格</td>
 <td>a \quad b</td>
 <td><img src="/article/a097ae97/da8c1d9effa4501fd80c054e59ad917d.png" srcset="/img/loading.gif" alt="a \quad b"></td>
-<td>一个<em>m</em>的宽度</td>
+<td>一个<strong>m</strong>的宽度</td>
 </tr>
 <tr>
 <td>大空格</td>
 <td>a\ b</td>
 <td><img src="/article/a097ae97/692d4bffca8e84ffb45cf9d5facf31d6.png" srcset="/img/loading.gif" alt="a\ b"></td>
-<td>1/3<em>m</em>宽度</td>
+<td>1/3<strong>m</strong>宽度</td>
 </tr>
 <tr>
 <td>中等空格</td>
 <td>a\;b</td>
 <td><img src="/article/a097ae97/b5ade5d5393fd7727bf77fa44ec8b564.png" srcset="/img/loading.gif" alt="a\;b"></td>
-<td>2/7<em>m</em>宽度</td>
+<td>2/7<strong>m</strong>宽度</td>
 </tr>
 <tr>
 <td>小空格</td>
 <td>a\,b</td>
 <td><img src="/article/a097ae97/7bea99aed60ba5e1fe8a134ab43fa85f.png" srcset="/img/loading.gif" alt="a\,b"></td>
-<td>1/6<em>m</em>宽度</td>
+<td>1/6<strong>m</strong>宽度</td>
 </tr>
 <tr>
 <td>没有空格</td>
@@ -5015,12 +4975,69 @@ df[<span class="hljs-string">'col1'</span>].str.extract(<span class="hljs-string
 <td>紧贴</td>
 <td>a!b</td>
 <td><img src="/article/a097ae97/0fbcad5fadb912e8afa6d113a75c83e4.png" srcset="/img/loading.gif" alt="a\!b"></td>
-<td>缩进1/6<em>m</em>宽度</td>
+<td>缩进1/6<em>m*</em>宽度</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h2 id="声调-1"><a href="#声调-1" class="headerlink" title="声调"></a>声调</h2><div class="table-container">
+<h2 id="空格-1"><a href="#空格-1" class="headerlink" title="空格"></a>空格</h2><p>注意<em>T<strong>E</strong>X</em>能够自动处理大多数的空格，但是您有时候需要自己来控制。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">显示</th>
+<th style="text-align:left">宽度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">2个quad空格</td>
+<td style="text-align:left"><code>\alpha\qquad\beta</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/4/3/b/43ba5910626e8cdd1e7c87f87457bc68.png" srcset="/img/loading.gif" alt="\alpha\qquad\beta"></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/d/8/a/d8a3700be4ced531e5618e8bebfece25.png" srcset="/img/loading.gif" alt="2m\ "></td>
+</tr>
+<tr>
+<td style="text-align:left">quad空格</td>
+<td style="text-align:left"><code>\alpha\quad\beta</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/b/d/b/bdbaa56ab92dbec191da654efcf15f31.png" srcset="/img/loading.gif" alt="\alpha\quad\beta"></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/d/4/8/d482d61667a2a8f3a40b25f2626b6d16.png" srcset="/img/loading.gif" alt="m\ "></td>
+</tr>
+<tr>
+<td style="text-align:left">大空格</td>
+<td style="text-align:left"><code>\alpha\ \beta</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/8/c/c/8cc37fcc9fc3729b33095484307b65e9.png" srcset="/img/loading.gif" alt="\alpha\ \beta"></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/8/b/d/8bd0331723b650fa4e57c0c97ea74bdb.png" srcset="/img/loading.gif" alt="\frac{m}{3}"></td>
+</tr>
+<tr>
+<td style="text-align:left">中等空格</td>
+<td style="text-align:left"><code>\alpha\;\beta</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/1/9/a/19aad8cbec4cda349710592cddcbae8a.png" srcset="/img/loading.gif" alt="\alpha\;\beta"></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/d/8/6/d86c7e706d3844153628c5344a0d43c3.png" srcset="/img/loading.gif" alt="\frac{2m}{7}"></td>
+</tr>
+<tr>
+<td style="text-align:left">小空格</td>
+<td style="text-align:left"><code>\alpha\,\beta</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/5/8/0/580e640ac8bd1b0b421e62a48f9d4815.png" srcset="/img/loading.gif" alt="\alpha\,\beta"></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/2/b/2/2b25f9317e1ebccefa69c899bb87f655.png" srcset="/img/loading.gif" alt="\frac{m}{6}"></td>
+</tr>
+<tr>
+<td style="text-align:left">没有空格</td>
+<td style="text-align:left"><code>\alpha\beta</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/c/7/6/c761464c4ea7b0a18e7bd830bc80fc62.png" srcset="/img/loading.gif" alt="\alpha\beta\ "></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/5/7/1/571e19a3fb35a2f712cd608e89b85dc5.png" srcset="/img/loading.gif" alt="0\ "></td>
+</tr>
+<tr>
+<td style="text-align:left">紧贴</td>
+<td style="text-align:left"><code>\alpha\!\beta</code></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/6/d/3/6d331458bfd8a10d0639514187a1eb42.png" srcset="/img/loading.gif" alt="\alpha\!\beta"></td>
+<td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/1/a/4/1a40f481cfa743830b2c80b87a4acccc.png" srcset="/img/loading.gif" alt="-\frac{m}{6}"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="声调"><a href="#声调" class="headerlink" title="声调"></a>声调</h2><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -5060,7 +5077,7 @@ df[<span class="hljs-string">'col1'</span>].str.extract(<span class="hljs-string
 </tbody>
 </table>
 </div>
-<h3 id="微分"><a href="#微分" class="headerlink" title="微分"></a>微分</h3><div class="table-container">
+<h2 id="微分"><a href="#微分" class="headerlink" title="微分"></a>微分</h2><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -5127,92 +5144,175 @@ df[<span class="hljs-string">'col1'</span>].str.extract(<span class="hljs-string
 <tbody>
 <tr>
 <td style="text-align:left">圆括号，小括号</td>
-<td style="text-align:left">\left( \frac{a}{b} \right)</td>
+<td style="text-align:left"><code>\left( \frac{a}{b} \right)</code></td>
 <td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/2/9/0/2905969500b40b2f2c7078206e7e0e81.png" srcset="/img/loading.gif" alt="\left( \frac{a}{b} \right)"></td>
 </tr>
 <tr>
 <td style="text-align:left">方括号，中括号</td>
-<td style="text-align:left">\left[ \frac{a}{b} \right]</td>
+<td style="text-align:left"><code>\left[ \frac{a}{b} \right]</code></td>
 <td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/8/5/8/8585c96f355f7e301fd5143bea32efaf.png" srcset="/img/loading.gif" alt="\left[ \frac{a}{b} \right]"></td>
 </tr>
 <tr>
 <td style="text-align:left">花括号，大括号</td>
-<td style="text-align:left">\left\{ \frac{a}{b} \right\}</td>
+<td style="text-align:left"><code>\left\{ \frac{a}{b} \right\}</code></td>
 <td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/c/4/d/c4d4af6bab9a0e6532dddd50e7d27158.png" srcset="/img/loading.gif" alt="\left\{ \frac{a}{b} \right\}"></td>
 </tr>
 <tr>
 <td style="text-align:left">角括号</td>
-<td style="text-align:left">\left \langle \frac{a}{b} \right \rangle</td>
+<td style="text-align:left"><code>\left \langle \frac{a}{b} \right \rangle</code></td>
 <td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/d/0/6/d06e733ce705ed26a7e048dbd2945371.png" srcset="/img/loading.gif" alt="\left\langle \frac{a}{b} \right \rangle"></td>
 </tr>
 <tr>
 <td style="text-align:left">单竖线，绝对值</td>
-<td style="text-align:left">\left\</td>
+<td style="text-align:left">`\left\</td>
 <td style="text-align:left">\frac{a}{b} \right\</td>
-<td></td>
+<td>`</td>
 <td>![\left\</td>
 <td>\frac{a}{b} \right\</td>
 <td>](<a href="http://upload.wikimedia.org/wikipedia/zh/math/4/0/d/40d6c8253b08e8801a01b3f6e5069a62.png" target="_blank" rel="noopener">http://upload.wikimedia.org/wikipedia/zh/math/4/0/d/40d6c8253b08e8801a01b3f6e5069a62.png</a>)</td>
 </tr>
 <tr>
 <td style="text-align:left">双竖线，范</td>
-<td style="text-align:left">\left \</td>
+<td style="text-align:left">`\left \</td>
 <td style="text-align:left">\frac{a}{b} \right \</td>
-<td></td>
+<td>`</td>
 <td>![\left \</td>
 <td>\frac{a}{b} \right \</td>
 <td>](<a href="http://upload.wikimedia.org/wikipedia/zh/math/f/3/0/f30a5c412d1e4b4e7c6195ff5d47e947.png" target="_blank" rel="noopener">http://upload.wikimedia.org/wikipedia/zh/math/f/3/0/f30a5c412d1e4b4e7c6195ff5d47e947.png</a>)</td>
 </tr>
 <tr>
 <td style="text-align:left">取整函数 （Floor function）</td>
-<td style="text-align:left">\left \lfloor \frac{a}{b} \right \rfloor</td>
+<td style="text-align:left"><code>\left \lfloor \frac{a}{b} \right \rfloor</code></td>
 <td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/c/0/7/c07e1fc7c0150828e55da4efe37e8a3f.png" srcset="/img/loading.gif" alt="\left \lfloor \frac{a}{b} \right \rfloor"></td>
 </tr>
 <tr>
 <td style="text-align:left">取顶函数 （Ceiling function)</td>
-<td style="text-align:left">\left \lceil \frac{c}{d} \right \rceil</td>
+<td style="text-align:left"><code>\left \lceil \frac{c}{d} \right \rceil</code></td>
 <td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/8/6/8/868c1e52c339e01204aa1a77d44e3c71.png" srcset="/img/loading.gif" alt="\left \lceil \frac{c}{d} \right \rceil"></td>
 </tr>
 <tr>
 <td style="text-align:left">斜线与反斜线</td>
-<td style="text-align:left">\left / \frac{a}{b} \right \backslash</td>
+<td style="text-align:left"><code>\left / \frac{a}{b} \right \backslash</code></td>
 <td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/2/f/3/2f3c5907c0a4fc4fda69eb71890ce952.png" srcset="/img/loading.gif" alt="\left / \frac{a}{b} \right \backslash "></td>
 </tr>
 <tr>
 <td style="text-align:left"><span style="color:blue">上下箭头</span></td>
-<td style="text-align:left">\left \uparrow \frac{a}{b} \right \downarrow</td>
+<td style="text-align:left"><code>\left \uparrow \frac{a}{b} \right \downarrow</code></td>
 <td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/b/f/8/bf8dd6b753cb6aeb801ea23de51ad5bc.png" srcset="/img/loading.gif" alt="\pagecolor{White}\left \uparrow \frac{a}{b} \right \downarrow "></td>
 </tr>
 <tr>
 <td style="text-align:left"><span style="color:blue">上下箭头</span></td>
-<td style="text-align:left">\left \Uparrow \frac{a}{b} \right \Downarrow</td>
+<td style="text-align:left"><code>\left \Uparrow \frac{a}{b} \right \Downarrow</code></td>
 <td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/3/d/e/3de7822465115ade10b47634c22b6b7d.png" srcset="/img/loading.gif" alt="\pagecolor{White}\left \Uparrow \frac{a}{b} \right \Downarrow "></td>
 </tr>
 <tr>
 <td style="text-align:left"><span style="color:blue">上下箭头</span></td>
-<td style="text-align:left">\left \updownarrow \frac{a}{b} \right\Updownarrow</td>
+<td style="text-align:left"><code>\left \updownarrow \frac{a}{b} \right\Updownarrow</code></td>
 <td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/0/6/b/06b15cbba4d935fe84a1a503603e4eb0.png" srcset="/img/loading.gif" alt="\pagecolor{White}\left \updownarrow \frac{a}{b} \right \Updownarrow"></td>
 </tr>
 <tr>
 <td style="text-align:left">混合括号</td>
-<td style="text-align:left">\left [ 0,1 \right ) \left \langle \psi \right \</td>
-<td style="text-align:left"></td>
+<td style="text-align:left">`\left [ 0,1 \right ) \left \langle \psi \right \</td>
+<td style="text-align:left">`</td>
 <td><img src="http://upload.wikimedia.org/wikipedia/zh/math/a/3/8/a38771eae1778d0e214f6596a8dc1337.png" srcset="/img/loading.gif" alt="混合括号"> ![\left \langle \psi \right \</td>
 <td>](<a href="http://upload.wikimedia.org/wikipedia/zh/math/d/a/2/da25fc177fd4c53a2c3399c25685dd4c.png" target="_blank" rel="noopener">http://upload.wikimedia.org/wikipedia/zh/math/d/a/2/da25fc177fd4c53a2c3399c25685dd4c.png</a>)</td>
 </tr>
 <tr>
 <td style="text-align:left">单左括号</td>
-<td style="text-align:left">\left \{ \frac{a}{b} \right .</td>
+<td style="text-align:left"><code>\left \{ \frac{a}{b} \right .</code></td>
 <td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/c/e/d/ced2a2fb558fe49fa56018b9f8fd69d5.png" srcset="/img/loading.gif" alt="\left \{ \frac{a}{b} \right ."></td>
 </tr>
 <tr>
 <td style="text-align:left">单右括号</td>
-<td style="text-align:left">\left . \frac{a}{b} \right \}</td>
+<td style="text-align:left"><code>\left . \frac{a}{b} \right \}</code></td>
 <td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/9/a/c/9ac9b3c6d21c56f5b2b474b0ea1c4b8a.png" srcset="/img/loading.gif" alt="\left . \frac{a}{b} \right \}"></td>
 </tr>
 </tbody>
 </table>
 </div>
+<table>
+    <tr>
+        <td>功能</td>
+        <td>语法</td>
+        <td>显示</td>
+    </tr>
+    <tr>
+        <td>圆括号，小括号</td>
+        <td>\left( \frac{a}{b} \right)</td>
+        <td><img src="http://upload.wikimedia.org/wikipedia/zh/math/2/9/0/2905969500b40b2f2c7078206e7e0e81.png" srcset="/img/loading.gif" < td>
+    </td></tr>
+    <tr>
+        <td>方括号，中括号</td>
+        <td>`\left[ \frac{a}{b} \right]`</td>
+        <td>![\left[ \frac{a}{b} \right]](http://upload.wikimedia.org/wikipedia/zh/math/8/5/8/8585c96f355f7e301fd5143bea32efaf.png)</td>
+    </tr>
+    <tr>
+        <td>花括号，大括号</td>
+        <td>`\left\{ \frac{a}{b} \right\}`</td>
+        <td>![\left\{ \frac{a}{b} \right\}](http://upload.wikimedia.org/wikipedia/zh/math/c/4/d/c4d4af6bab9a0e6532dddd50e7d27158.png)</td>
+    </tr>
+    <tr>
+        <td>角括号</td>
+        <td>`\left \langle \frac{a}{b} \right \rangle`</td>
+        <td>![\left\langle \frac{a}{b} \right \rangle](http://upload.wikimedia.org/wikipedia/zh/math/d/0/6/d06e733ce705ed26a7e048dbd2945371.png)</td>
+    </tr>
+    <tr>
+        <td>单竖线，绝对值</td>
+        <td>`\left\| \frac{a}{b} \right\|`</td>
+        <td>![\left\| \frac{a}{b} \right\|](http://upload.wikimedia.org/wikipedia/zh/math/4/0/d/40d6c8253b08e8801a01b3f6e5069a62.png)</td>
+    </tr>
+    <tr>
+        <td>双竖线，范</td>
+        <td>`\left \| \frac{a}{b} \right \|`</td>
+        <td>![\left \| \frac{a}{b} \right \|](http://upload.wikimedia.org/wikipedia/zh/math/f/3/0/f30a5c412d1e4b4e7c6195ff5d47e947.png)</td>
+    </tr>
+    <tr>
+        <td>取整函数 （Floor function）</td>
+        <td>`\left \lfloor \frac{a}{b} \right \rfloor`</td>
+        <td>![\left \lfloor \frac{a}{b} \right \rfloor](http://upload.wikimedia.org/wikipedia/zh/math/c/0/7/c07e1fc7c0150828e55da4efe37e8a3f.png)</td>
+    </tr>
+    <tr>
+        <td>取顶函数 （Ceiling function)</td>
+        <td>`\left \lceil \frac{c}{d} \right \rceil`</td>
+        <td>![\left \lceil \frac{c}{d} \right \rceil](http://upload.wikimedia.org/wikipedia/zh/math/8/6/8/868c1e52c339e01204aa1a77d44e3c71.png)</td>
+    </tr>
+    <tr>
+        <td>斜线与反斜线</td>
+        <td>`\left / \frac{a}{b} \right \backslash`</td>
+        <td>![\left / \frac{a}{b} \right \backslash ](http://upload.wikimedia.org/wikipedia/zh/math/2/f/3/2f3c5907c0a4fc4fda69eb71890ce952.png)</td>
+    </tr>
+    <tr>
+        <td>&lt;span style='color:blue'&gt;上下箭头&lt;/span&gt;</td>
+        <td>`\left \uparrow \frac{a}{b} \right \downarrow`</td>
+        <td>![\pagecolor{White}\left \uparrow \frac{a}{b} \right \downarrow ](http://upload.wikimedia.org/wikipedia/zh/math/b/f/8/bf8dd6b753cb6aeb801ea23de51ad5bc.png)</td>
+    </tr>
+    <tr>
+        <td>&lt;span style='color:blue'&gt;上下箭头&lt;/span&gt;</td>
+        <td>`\left \Uparrow \frac{a}{b} \right \Downarrow`</td>
+        <td>![\pagecolor{White}\left \Uparrow \frac{a}{b} \right \Downarrow ](http://upload.wikimedia.org/wikipedia/zh/math/3/d/e/3de7822465115ade10b47634c22b6b7d.png)</td>
+    </tr>
+    <tr>
+        <td>&lt;span style='color:blue'&gt;上下箭头&lt;/span&gt;</td>
+        <td>`\left \updownarrow \frac{a}{b} \right\Updownarrow`</td>
+        <td>![\pagecolor{White}\left \updownarrow \frac{a}{b} \right \Updownarrow](http://upload.wikimedia.org/wikipedia/zh/math/0/6/b/06b15cbba4d935fe84a1a503603e4eb0.png)</td>
+    </tr>
+    <tr>
+        <td>混合括号</td>
+        <td>`\left [ 0,1 \right ) \left \langle \psi \right \|`</td>
+        <td>![混合括号](http://upload.wikimedia.org/wikipedia/zh/math/a/3/8/a38771eae1778d0e214f6596a8dc1337.png) ![\left \langle \psi \right \|](http://upload.wikimedia.org/wikipedia/zh/math/d/a/2/da25fc177fd4c53a2c3399c25685dd4c.png)</td>
+    </tr>
+    <tr>
+        <td>单左括号</td>
+        <td>`\left \{ \frac{a}{b} \right .`</td>
+        <td>![\left \{ \frac{a}{b} \right .](http://upload.wikimedia.org/wikipedia/zh/math/c/e/d/ced2a2fb558fe49fa56018b9f8fd69d5.png)</td>
+    </tr>
+    <tr>
+        <td>单右括号</td>
+        <td>`\left . \frac{a}{b} \right \}`</td>
+        <td>![\left . \frac{a}{b} \right \}](http://upload.wikimedia.org/wikipedia/zh/math/9/a/c/9ac9b3c6d21c56f5b2b474b0ea1c4b8a.png)</td>
+    </tr>
+</table>
+
 <h2 id="上标、下标及积分等"><a href="#上标、下标及积分等" class="headerlink" title="上标、下标及积分等"></a>上标、下标及<a href="http://zh.wikipedia.org/wiki/积分" target="_blank" rel="noopener">积分</a>等</h2><div class="table-container">
 <table>
 <thead>
@@ -5299,7 +5399,7 @@ df[<span class="hljs-string">'col1'</span>].str.extract(<span class="hljs-string
 <td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/4/c/b/4cba1e79deac23bb500a8aa203d9a111.png" srcset="/img/loading.gif" alt="\pagecolor{White} \widehat{e f g}"></td>
 </tr>
 <tr>
-<td style="text-align:left">上弧 (注: 正确应该用 \overarc, 但在这里行不通。要用建议的语法作为解决办法)</td>
+<td style="text-align:left">上弧</td>
 <td style="text-align:left"><code>\overset{\frown} {AB}</code></td>
 <td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/b/4/0/b40456c21e931270a803c1d538d863f2.png" srcset="/img/loading.gif" alt="\pagecolor{White} \overset{\frown} {AB}"></td>
 </tr>
@@ -5400,7 +5500,7 @@ df[<span class="hljs-string">'col1'</span>].str.extract(<span class="hljs-string
 </tr>
 <tr>
 <td style="text-align:left">闭合的<a href="http://zh.wikipedia.org/wiki/路径积分" target="_blank" rel="noopener">曲线</a>、<a href="http://zh.wikipedia.org/wiki/曲面积分" target="_blank" rel="noopener">曲面积分</a></td>
-<td style="text-align:left">\oint_{C} x^3\, dx + 4y^2\, dy</td>
+<td style="text-align:left"><code>\oint_{C} x^3\, dx + 4y^2\, dy</code></td>
 <td style="text-align:left"><img src="http://upload.wikimedia.org/wikipedia/zh/math/e/5/7/e5791a184359ab19ff7e372b15ec0d1b.png" srcset="/img/loading.gif" alt="\pagecolor{White} \oint_{C} x^3\, dx + 4y^2\, dy"></td>
 </tr>
 <tr>
@@ -5416,6 +5516,7 @@ df[<span class="hljs-string">'col1'</span>].str.extract(<span class="hljs-string
 </tbody>
 </table>
 </div>
+<p><span style="color:red">上弧 (注: 正确应该用 \overarc, 但在这里行不通。要用建议的语法作为解决办法)</span></p>
 <h2 id="分数、矩阵和多行列式"><a href="#分数、矩阵和多行列式" class="headerlink" title="分数、矩阵和多行列式"></a><a href="http://zh.wikipedia.org/wiki/分数" target="_blank" rel="noopener">分数</a>、<a href="http://zh.wikipedia.org/wiki/矩阵" target="_blank" rel="noopener">矩阵</a>和多行列式</h2><div class="table-container">
 <table>
 <thead>
@@ -5549,7 +5650,7 @@ df[<span class="hljs-string">'col1'</span>].str.extract(<span class="hljs-string
 </tbody>
 </table>
 </div>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.tablesgenerator.com/html_tables" target="_blank" rel="noopener">自动生成表格(latex, html…(单个表格插入很方便)</a></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.tablesgenerator.com/html_tables" target="_blank" rel="noopener">自动生成latex, html…类型表格(单个表格插入很方便)</a></p>
 <p><a href="https://blog.csdn.net/garfielder007/article/details/51646604" target="_blank" rel="noopener">latex公式非常非常全面</a></p>
 ]]></content>
       <categories>
