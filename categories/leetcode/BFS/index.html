@@ -19,7 +19,7 @@
   <meta name="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
   <meta name="author" content="sulimin">
   <meta name="keywords" content="机器学习，数据挖掘，计算机视觉">
-  <title>苏</title>
+  <title>分类 - BFS - 苏</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -45,7 +45,7 @@
 
 
 <body>
-  <header style="height: 100vh;">
+  <header style="height: 60vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -145,7 +145,7 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/IMG_5257.PNG') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -158,10 +158,6 @@
           </div>
 
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
-          
         </div>
       </div>
     </div>
@@ -171,455 +167,27 @@
     
       <div class="container nopadding-md">
         <div class="py-5" id="board"
-          style=margin-top:0>
+          >
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/3b406ffc.html">LSTM_Elmo</a>
-
-      <a href="/article/3b406ffc.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>一、词的表示one-hot编码：稀疏，向量之间均是正交关系，不能表示语义。word class：将相同属性的词归为一类，但分类标准过意单一、片面。如cat、dag、bird都属于动物，但是dog、cat属于爬行动物，而bird属于飞行动物，难以区分。word embedding：使用词向量表示词特征，相似的词、向量接近，在空间较近。但无法解决一词多义问题，即每个word只有一个词向量。contex</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-03
-          </div>
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/ad28cab2.html">Task03-Haar特征描述算子-人脸监测</a>
-
-      <a href="/article/ad28cab2.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>3.1 算法由来&emsp;&emsp;Haar-like特征最早是由Papageorgiou等应用于人脸表示，2001年，Viola和Jones两位大牛发表了今典的《Rapid Object Detection using a Boosted Cascade of Simple Features》和《Robust Real-Time Face Detection》，在AdaBoost算法基础上，</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-02
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B8%8B/">图像处理下</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/67aeaf8.html">pandas下综合练习</a>
-
-      <a href="/article/67aeaf8.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>看了优秀的题解，还是把我的辣鸡题解更新一下好了~
-一、端午节的淘宝粽子交易（1）请删除最后一列为缺失值的行，并求所有在杭州发货的商品单价均值。
-df = pd.read_csv('端午粽子数据.csv')
-df.head()
-输出：
-
-列名中有些包含了空格，先去除。
-df.columns = df.columns.str.strip()
-df.columns
-输出：
-
-然后将最后一列为空的行去除，</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-01
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/pandas%E4%B8%8B/">pandas下</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/python/">python</a>
-            
-              <a href="/tags/pandas/">pandas</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/2ad44fb9.html">4方差分析</a>
-
-      <a href="/article/2ad44fb9.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>方差分析1 概要方差分析(Analysis of variance, ANOVA) 主要研究分类变量作为自变量时，对因变量的影响是否是显著的。
-方差分析的方法是由20世纪的统计学家Ronald Aylmer Fisher在1918年到1925年之间提出并陆续完善起来的，该方法刚开始是用于解决田间实验的数据分析问题，因此，方差分析的学习是和实验设计、实验数据的分析密不可分的。
-实验设计和方差分析都有</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-30
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/">概率统计</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/">概率统计</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/32af8df.html">第九章-时序数据</a>
-
-      <a href="/article/32af8df.html" class="index-excerpt">
-        
-        
-          
-        
-        <div></div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-29
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/pandas%E4%B8%8B/">pandas下</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/python/">python</a>
-            
-              <a href="/tags/pandas/">pandas</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/7c20a36d.html">3常见分布与假设检验</a>
-
-      <a href="/article/7c20a36d.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>1 一般随机变量1.1 随机变量的两种类型根据随机变量可能取值的个数分为离散型（取值有限）和连续型（取值无限）两类。
-1.2 离散型随机变量对于离散型随机变量，使用概率质量函数（probability mass function），简称PMF，来描述其分布律。
-假定离散型随机变量X，共有n个取值，$X_1$, $X_2$, ……, $X_n$, 那么
-
-P(X=X_n) \geq 0
-\Sigma</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-27
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/">概率统计</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/">概率统计</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/28c12c7e.html">第八章-分类数据</a>
-
-      <a href="/article/28c12c7e.html" class="index-excerpt">
-        
-        
-          
-        
-        <div></div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-27
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/pandas%E4%B8%8B/">pandas下</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/python/">python</a>
-            
-              <a href="/tags/pandas/">pandas</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/88685a55.html">第7章 文本数据</a>
-
-      <a href="/article/88685a55.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>
-六、问题与练习1.问题【问题一】 str对象方法和df/Series对象方法有什么区别?
-
-str对象方法有很多针对字符串的方法
-
-在replace方法上，二者有较大差异：
-1）str.replace针对object类型或string类型，默认操作：正则表达式
-​      replace针对任意类型的序列或数据框，正则表达式替换：regex=True。使用字典可以支持      多列替换。
-2</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-26
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/pandas%E4%B8%8B/">pandas下</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/python/">python</a>
-            
-              <a href="/tags/pandas/">pandas</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/50afbda.html">Task02-LBP特征描述算子-人脸检测</a>
-
-      <a href="/article/50afbda.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>学习任务：
-本文主要包含以下两部分：
-
-理论部分：掌握LBP特征描述算子原理
-练习部分：使用OpenCV的LBP检测器完成人脸检测任务
-
-LBP是指局部二值模式(Local Binary Pattern)，是一种用来描述图像局部特征的算子，具有灰度不变性和旋转不变性等显著优点。</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-25
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B8%8B/">图像处理下</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/8b3bd9dd.html">Task01 Harris特征点检测器-兴趣点检测</a>
-
-      <a href="/article/8b3bd9dd.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>Harris特征点检测器-兴趣点检测特则点又称为兴趣点或角点，通常具有旋转不变性和光照不变性和视角不变性等优点，是图像的重要特征之一，常被应用到目标匹配、目标跟踪、三维重建等应用中。
-点特征主要是指图像中的明显点，如突出的角点、边缘端点、权值点等等。
-兴趣点提取(检测)算子是用于点特征提取的算子</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-24
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B8%8B/">图像处理下</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
+<div class="list-group">
+  <p class="h4">共计 1 篇文章</p>
+  <hr>
   
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
+    
+      
+      <p class="h5">2020</p>
+    
+    <a href="/article/e784d9f0.html" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">leetcode102-二叉树的层序遍历</span>
+      <span style="float: right;">07-15</span>
+    </a>
+  
+</div>
 
 
 
@@ -848,7 +416,7 @@ LBP是指局部二值模式(Local Binary Pattern)，是一种用来描述图像�
       if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/page/3/index.html');
+          var target = decodeURI('/categories/leetcode/BFS/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -917,7 +485,7 @@ LBP是指局部二值模式(Local Binary Pattern)，是一种用来描述图像�
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "come on ε=( o｀ω′)ノ要做写博客如喝汤的汤达人，最近有丢丢慢，要加速！&nbsp;",
+        "分类 - BFS&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 50,
