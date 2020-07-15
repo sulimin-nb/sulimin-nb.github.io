@@ -228,7 +228,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月14日 晚上
+                  本文最后更新于：2020年7月15日 中午
                 
               </p>
             
@@ -3816,14 +3816,14 @@ preprocess_bank.head(<span class="hljs-number">5</span>)</code></pre>
 </table>
 </div>
 <h2 id="4-2-模型构建"><a href="#4-2-模型构建" class="headerlink" title="4.2 模型构建"></a>4.2 模型构建</h2><p>t_diff=[]</p>
-<h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>log_reg = LogisticRegression()<br>t_start = time.clock()#通过time记录<br>log_scores = cross_val_score(log_reg, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>log_reg_mean = log_scores.mean()</p>
-<h1 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h1><p>svc_clf = SVC()<br>t_start = time.clock()<br>svc_scores = cross_val_score(svc_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>svc_mean = svc_scores.mean()</p>
-<h1 id="k邻近"><a href="#k邻近" class="headerlink" title="k邻近"></a>k邻近</h1><p>knn_clf = KNeighborsClassifier()<br>t_start = time.clock()<br>knn_scores = cross_val_score(knn_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>knn_mean = knn_scores.mean()</p>
-<h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><p>tree_clf = tree.DecisionTreeClassifier()<br>t_start = time.clock()<br>tree_scores = cross_val_score(tree_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>tree_mean = tree_scores.mean()</p>
-<h1 id="梯度提升树"><a href="#梯度提升树" class="headerlink" title="梯度提升树"></a>梯度提升树</h1><p>grad_clf = GradientBoostingClassifier()<br>t_start = time.clock()<br>grad_scores = cross_val_score(grad_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>grad_mean = grad_scores.mean()</p>
-<h1 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h1><p>rand_clf = RandomForestClassifier()<br>t_start = time.clock()<br>rand_scores = cross_val_score(rand_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>rand_mean = rand_scores.mean()</p>
-<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><p>neural_clf = MLPClassifier(alpha=0.01)<br>t_start = time.clock()<br>neural_scores = cross_val_score(neural_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>neural_mean = neural_scores.mean()</p>
-<h1 id="朴素贝叶斯"><a href="#朴素贝叶斯" class="headerlink" title="朴素贝叶斯"></a>朴素贝叶斯</h1><pre><code class="hljs python">nav_clf = GaussianNB()
+<h3 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h3><p>log_reg = LogisticRegression()<br>t_start = time.clock()#通过time记录<br>log_scores = cross_val_score(log_reg, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>log_reg_mean = log_scores.mean()</p>
+<h3 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h3><p>svc_clf = SVC()<br>t_start = time.clock()<br>svc_scores = cross_val_score(svc_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>svc_mean = svc_scores.mean()</p>
+<h3 id="k邻近"><a href="#k邻近" class="headerlink" title="k邻近"></a>k邻近</h3><p>knn_clf = KNeighborsClassifier()<br>t_start = time.clock()<br>knn_scores = cross_val_score(knn_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>knn_mean = knn_scores.mean()</p>
+<h3 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h3><p>tree_clf = tree.DecisionTreeClassifier()<br>t_start = time.clock()<br>tree_scores = cross_val_score(tree_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>tree_mean = tree_scores.mean()</p>
+<h3 id="梯度提升树"><a href="#梯度提升树" class="headerlink" title="梯度提升树"></a>梯度提升树</h3><p>grad_clf = GradientBoostingClassifier()<br>t_start = time.clock()<br>grad_scores = cross_val_score(grad_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>grad_mean = grad_scores.mean()</p>
+<h3 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h3><p>rand_clf = RandomForestClassifier()<br>t_start = time.clock()<br>rand_scores = cross_val_score(rand_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>rand_mean = rand_scores.mean()</p>
+<h3 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h3><p>neural_clf = MLPClassifier(alpha=0.01)<br>t_start = time.clock()<br>neural_scores = cross_val_score(neural_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>neural_mean = neural_scores.mean()</p>
+<h3 id="朴素贝叶斯"><a href="#朴素贝叶斯" class="headerlink" title="朴素贝叶斯"></a>朴素贝叶斯</h3><pre><code class="hljs python">nav_clf = GaussianNB()
 t_start = time.clock()
 nav_scores = cross_val_score(nav_clf, X_train, y_train, cv=<span class="hljs-number">3</span>, scoring=<span class="hljs-string">'roc_auc'</span>)
 t_end = time.clock()

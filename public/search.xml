@@ -7738,14 +7738,14 @@ preprocess_bank.head(<span class="hljs-number">5</span>)</code></pre>
 </table>
 </div>
 <h2 id="4-2-模型构建"><a href="#4-2-模型构建" class="headerlink" title="4.2 模型构建"></a>4.2 模型构建</h2><p>t_diff=[]</p>
-<h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>log_reg = LogisticRegression()<br>t_start = time.clock()#通过time记录<br>log_scores = cross_val_score(log_reg, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>log_reg_mean = log_scores.mean()</p>
-<h1 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h1><p>svc_clf = SVC()<br>t_start = time.clock()<br>svc_scores = cross_val_score(svc_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>svc_mean = svc_scores.mean()</p>
-<h1 id="k邻近"><a href="#k邻近" class="headerlink" title="k邻近"></a>k邻近</h1><p>knn_clf = KNeighborsClassifier()<br>t_start = time.clock()<br>knn_scores = cross_val_score(knn_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>knn_mean = knn_scores.mean()</p>
-<h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><p>tree_clf = tree.DecisionTreeClassifier()<br>t_start = time.clock()<br>tree_scores = cross_val_score(tree_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>tree_mean = tree_scores.mean()</p>
-<h1 id="梯度提升树"><a href="#梯度提升树" class="headerlink" title="梯度提升树"></a>梯度提升树</h1><p>grad_clf = GradientBoostingClassifier()<br>t_start = time.clock()<br>grad_scores = cross_val_score(grad_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>grad_mean = grad_scores.mean()</p>
-<h1 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h1><p>rand_clf = RandomForestClassifier()<br>t_start = time.clock()<br>rand_scores = cross_val_score(rand_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>rand_mean = rand_scores.mean()</p>
-<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><p>neural_clf = MLPClassifier(alpha=0.01)<br>t_start = time.clock()<br>neural_scores = cross_val_score(neural_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>neural_mean = neural_scores.mean()</p>
-<h1 id="朴素贝叶斯"><a href="#朴素贝叶斯" class="headerlink" title="朴素贝叶斯"></a>朴素贝叶斯</h1><pre><code class="hljs python">nav_clf = GaussianNB()
+<h3 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h3><p>log_reg = LogisticRegression()<br>t_start = time.clock()#通过time记录<br>log_scores = cross_val_score(log_reg, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>log_reg_mean = log_scores.mean()</p>
+<h3 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h3><p>svc_clf = SVC()<br>t_start = time.clock()<br>svc_scores = cross_val_score(svc_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>svc_mean = svc_scores.mean()</p>
+<h3 id="k邻近"><a href="#k邻近" class="headerlink" title="k邻近"></a>k邻近</h3><p>knn_clf = KNeighborsClassifier()<br>t_start = time.clock()<br>knn_scores = cross_val_score(knn_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>knn_mean = knn_scores.mean()</p>
+<h3 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h3><p>tree_clf = tree.DecisionTreeClassifier()<br>t_start = time.clock()<br>tree_scores = cross_val_score(tree_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>tree_mean = tree_scores.mean()</p>
+<h3 id="梯度提升树"><a href="#梯度提升树" class="headerlink" title="梯度提升树"></a>梯度提升树</h3><p>grad_clf = GradientBoostingClassifier()<br>t_start = time.clock()<br>grad_scores = cross_val_score(grad_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>grad_mean = grad_scores.mean()</p>
+<h3 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h3><p>rand_clf = RandomForestClassifier()<br>t_start = time.clock()<br>rand_scores = cross_val_score(rand_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>rand_mean = rand_scores.mean()</p>
+<h3 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h3><p>neural_clf = MLPClassifier(alpha=0.01)<br>t_start = time.clock()<br>neural_scores = cross_val_score(neural_clf, X_train, y_train, cv=3, scoring=’roc_auc’)<br>t_end = time.clock()<br>t_diff.append((t_end - t_start))<br>neural_mean = neural_scores.mean()</p>
+<h3 id="朴素贝叶斯"><a href="#朴素贝叶斯" class="headerlink" title="朴素贝叶斯"></a>朴素贝叶斯</h3><pre><code class="hljs python">nav_clf = GaussianNB()
 t_start = time.clock()
 nav_scores = cross_val_score(nav_clf, X_train, y_train, cv=<span class="hljs-number">3</span>, scoring=<span class="hljs-string">'roc_auc'</span>)
 t_end = time.clock()
@@ -8571,7 +8571,31 @@ Enter same passphrase again:
 Your identification has been saved with the new passphrase.</code></pre>
 <h2 id="使用HTML插入表格"><a href="#使用HTML插入表格" class="headerlink" title="使用HTML插入表格"></a>使用HTML插入表格</h2><p>参考博客：<a href="https://3nice.cc/2018/10/01/markdowntable/" target="_blank" rel="noopener">解决在Markdown中的表格单元格合并的问题</a></p>
 <h2 id="论博客的颜值问题"><a href="#论博客的颜值问题" class="headerlink" title="论博客的颜值问题"></a>论博客的颜值问题</h2><!--刚开始用的next，优化做了一两天，偶然看到fluid，页面显示的很美观。加上next有些优化，我还没做完善，就果断换了。换了之后呢，前一两周美滋滋，真的漂亮，然后这周各种不顺，它太年轻了，好多修改都查无此法。sad(；′⌒`)。而且我发现我被颜值绑架了。为了好看的颜值，一篇博客里调整杂七杂八的图片，公式大小，又要浪费一小时，太太太可惜了（刷b站不香嘛）。博客分享还是更注重质量（也没几个人看O(∩_∩)O），颜值什么的等我变强了再说把(秃头警告)。-->
-<!--总之，还是要基本功打扎实，别整天净整些有的没的。（丑丑的next，我又肥来啦~）-->]]></content>
+<!--总之，还是要基本功打扎实，别整天净整些有的没的。（丑丑的next，我又肥来啦~）-->
+<p>博客的颜值就像外貌，我的要求就是整洁，小清新~(然而并不是，整天整些花里胡哨的)。so我立flag！这两个月就内容输出就好了，排版整整就好了，优化这两个月积累一下，有重要的优化再搜再改，不然不碰(花太多时间了，（T_T）orz..)。</p>
+<h2 id="更改jupyter-notebook的主题颜色-theme"><a href="#更改jupyter-notebook的主题颜色-theme" class="headerlink" title="更改jupyter notebook的主题颜色(theme)"></a>更改jupyter notebook的主题颜色(theme)</h2><p>白色看久了，确实有丢丢疲劳。改黑色。</p>
+<p>jupyter-themes里包含了一些样式。安装如下：<br>在控制台(cmd/shell)下用pip安装jupyter-themes</p>
+<pre><code class="hljs shell">pip install --upgrade jupyterthemes</code></pre>
+<p>查看所有可用的主题：</p>
+<pre><code class="hljs groovy"><span class="hljs-string">C:</span>\Users\susu&gt;jt -l
+Available <span class="hljs-string">Themes:</span>
+   chesterish
+   grade3
+   gruvboxd
+   gruvboxl
+   monokai
+   oceans16
+   onedork
+   solarizedd
+   solarizedl</code></pre>
+<p>以下命令选择要用的主题：</p>
+<pre><code class="hljs shell">jt -t 主题名称</code></pre>
+<p><span style="color:blue">注意：如果选择暗背景，输出图表的时候字体可能还是黑色的。</span><br>使用如下命令(以oceans16为例)，可以把图表背景设置为白色，解决字体黑色在暗色背景下显示不明显问题。</p>
+<pre><code class="hljs shell">jt -t oceans16 -T -N</code></pre>
+<p>恢复默认：</p>
+<pre><code class="hljs shell">jt -r</code></pre>
+<p>参考链接：<a href="https://blog.csdn.net/Jinlong_Xu/article/details/79221943?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.edu_weight&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.edu_weight" target="_blank" rel="noopener">jupyter notebook更换主题 步骤详解</a>里面还有其他一些参数详解。</p>
+]]></content>
       <categories>
         <category>随笔</category>
       </categories>
