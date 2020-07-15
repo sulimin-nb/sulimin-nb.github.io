@@ -178,7 +178,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      598 字
+      751 字
     </span>
   
 
@@ -188,7 +188,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      9
        分钟
     </span>
   
@@ -228,7 +228,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月15日 中午
+                  本文最后更新于：2020年7月15日 晚上
                 
               </p>
             
@@ -270,6 +270,12 @@ Available <span class="hljs-string">Themes:</span>
 <p>恢复默认：</p>
 <pre><code class="hljs shell">jt -r</code></pre>
 <p>参考链接：<a href="https://blog.csdn.net/Jinlong_Xu/article/details/79221943?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.edu_weight&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.edu_weight" target="_blank" rel="noopener">jupyter notebook更换主题 步骤详解</a>里面还有其他一些参数详解。</p>
+<h2 id="Hexo-Git部署警告”warning：-LF-will-be-replaced-by-CRLF”"><a href="#Hexo-Git部署警告”warning：-LF-will-be-replaced-by-CRLF”" class="headerlink" title="Hexo Git部署警告”warning： LF will be replaced by CRLF”"></a>Hexo Git部署警告”warning： LF will be replaced by CRLF”</h2><p>Windows下在使用<code>hexo d</code>命令部署博客时，会出现下面这个警告：</p>
+<pre><code class="hljs shell">The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in index.html.</code></pre>
+<p>这个警告的意思很直接，就是Git会把<code>LF</code>替换为<code>CRLF</code>，不过这是无关紧要的，完全可以禁用此功能，这样还可以避免这个警告信息刷屏。<br>设置禁用：在MinGW窗口中输入以下命令即可</p>
+<pre><code class="hljs shell">git config --global core.autocrlf false</code></pre>
+<p>参考链接：<a href="https://gaomf.cn/2017/01/13/Hexo_Git_CRLF/" target="_blank" rel="noopener">Hexo Git部署警告”warning： LF will be replaced by CRLF”的去除方法</a></p>
 
             </article>
             <hr>
