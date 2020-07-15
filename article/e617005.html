@@ -19,7 +19,7 @@
   <meta name="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
   <meta name="author" content="sulimin">
   <meta name="keywords" content="机器学习，数据挖掘，计算机视觉">
-  <title>深度优先搜索和广度优先搜索 - 苏</title>
+  <title>leetcode96-不同的二叉搜索树 - 苏</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -167,8 +167,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-15 19:04">
-      2020年7月15日 晚上
+    <time datetime="2020-07-15 13:16">
+      2020年7月15日 下午
     </time>
   </div>
 
@@ -178,7 +178,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      393 字
+      1.1k 字
     </span>
   
 
@@ -188,7 +188,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      14
        分钟
     </span>
   
@@ -233,104 +233,61 @@
               </p>
             
             <article class="markdown-body">
-              <h1 id="遍历搜索"><a href="#遍历搜索" class="headerlink" title="遍历搜索"></a>遍历搜索</h1><p>在树（图/状态集）中寻找特定结点(Node)</p>
-<p><img src="/article/9fa9df3c/image-20200715200703764.png" srcset="/img/loading.gif" alt="image-20200715200703764"></p>
-<h2 id="Node节点示例代码"><a href="#Node节点示例代码" class="headerlink" title="Node节点示例代码"></a>Node节点示例代码</h2><p><strong>Python</strong></p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TreeNode</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, val)</span>:</span>
-        self.val = val
-        self.left, self.right = <span class="hljs-literal">None</span>, <span class="hljs-literal">None</span></code></pre>
-<p><strong>C++</strong></p>
-<pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>&#123;</span>
-    <span class="hljs-keyword">int</span> val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(<span class="hljs-keyword">int</span> x): val(x), left(<span class="hljs-literal">NULL</span>),right(<span class="hljs-literal">NULL</span>)&#123;&#125;
-&#125;</code></pre>
-<p><strong>Java</strong></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TreeNode</span></span>&#123;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> val;
-    <span class="hljs-keyword">public</span> TreeNode left, right;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TreeNode</span><span class="hljs-params">(<span class="hljs-keyword">int</span> val)</span></span>&#123;
-        <span class="hljs-keyword">this</span>.val = val;
-        <span class="hljs-keyword">this</span>.left = <span class="hljs-keyword">null</span>;
-        <span class="hljs-keyword">this</span>.right = <span class="hljs-keyword">null</span>;
-    &#125;
-&#125;</code></pre>
-<h1 id="搜索-遍历"><a href="#搜索-遍历" class="headerlink" title="搜索-遍历"></a>搜索-遍历</h1><ul>
-<li>每个节点都要访问一次</li>
-<li>每个节点仅仅要访问一次</li>
-<li>对于节点访问顺序不限<ul>
-<li>深度优先：depth first search</li>
-<li>广度优先：breadth first search</li>
+              <h1 id="96-不同的二叉搜索树"><a href="#96-不同的二叉搜索树" class="headerlink" title="96.不同的二叉搜索树"></a>96.不同的二叉搜索树</h1><p>给定一个整数 <em>n</em>，求以 1 … <em>n</em> 为节点组成的二叉搜索树有多少种？</p>
+<p><strong>示例:</strong></p>
+<pre><code class="hljs angelscript">输入: <span class="hljs-number">3</span> 
+输出: <span class="hljs-number">5</span> 
+解释:
+给定 n = <span class="hljs-number">3</span>, 一共有 <span class="hljs-number">5</span> 种不同结构的二叉搜索树:
+   <span class="hljs-number">1</span>         <span class="hljs-number">3</span>     <span class="hljs-number">3</span>      <span class="hljs-number">2</span>      <span class="hljs-number">1</span>
+    \       /     /      / \      \
+     <span class="hljs-number">3</span>     <span class="hljs-number">2</span>     <span class="hljs-number">1</span>      <span class="hljs-number">1</span>   <span class="hljs-number">3</span>      <span class="hljs-number">2</span>
+    /     /       \                 \
+   <span class="hljs-number">2</span>     <span class="hljs-number">1</span>         <span class="hljs-number">2</span>                 <span class="hljs-number">3</span></code></pre>
+<h2 id="方法一：动态规划"><a href="#方法一：动态规划" class="headerlink" title="方法一：动态规划"></a>方法一：动态规划</h2><p><strong>思路</strong><br>给定一个有序序列 $1 \cdots n$，为了构建出一颗二叉搜索树，遍历每个数字 $i$，将 $1 \cdots (i-1)$ 序列作为左子树，将 $(i+1) \cdots n$序列作为右子树，按照同样的方式递归构建左子树和右子树。<br><span style="color:blue">在上述构建的过程中，由于根的值不同，因此我们能保证每棵二叉搜索树是唯一的。</span><br>由此可见，原问题可以分解成规模较小的两个子问题，且子问题的解可以复用。动态规划很适合啦~<br><strong>算法</strong><br>题目要求是计算不同二叉搜索树的个数。为此，我们可以定义两个函数：</p>
+<p><span style="color:blue">$G(n)$: 长度为 $n$ 的序列能构成的不同二叉搜索树的个数。</span><br><span style="color:blue">$F(i, n)$: 以 $i$ 为根、序列长度为 $n$ 的不同二叉搜索树个数 $(1 \leq i \leq n)$。</span></p>
+<p>可见，$G(n)$ 是我们求解需要的函数。<br>$G(n)$可以从 $F(i, n)$ 得到，而 $F(i, n)$ 又会递归地依赖于 $G(n)$。<br><strong>首先，不同的二叉搜索树的总数 $G(n)$，是对遍历所有 $ i (1 \le i \le n)$ 的 $F(i, n)$ 之和</strong>。换言之：</p>
+<script type="math/tex; mode=display">
+G(n) = \sum_{i=1}^{n} F(i, n)\qquad \qquad (1)</script><p>对于边界情况，当序列长度为 $1$（只有根）或为 $0$（空树）时，只有一种情况，即：</p>
+<script type="math/tex; mode=display">
+G(0) = 1, \qquad G(1) = 1</script><p><strong>给定序列 $1 \cdots n$，我们选择数字 $i$ 作为根，则根为 $i$ 的所有二叉搜索树的集合是左子树集合和右子树集合的</strong><span style="color:blue">笛卡尔积(其实就是左子树的种类数乘以右子树的种类数，列举所有的可能性)</span>，对于笛卡尔积中的每个元素，加上根节点之后形成完整的二叉搜索树，如下图所示：</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/96/96_fig1.png" srcset="/img/loading.gif" alt="fig1"></p>
+<p>举例而言，创建以 3 为根、长度为 7 的不同二叉搜索树，整个序列是 [1,2,3,4,5,6,7]，我们需要从左子序列 [1,2] 构建左子树，从右子序列 [4,5,6,7] 构建右子树，然后将它们组合（即笛卡尔积）。<br><strong>公式化：</strong>不同二叉搜索树的个数表示为 $F(3, 7)$。我们将 $[1,2]$ 构建不同左子树的数量表示为 $G(2)$, 从 $[4,5,6,7]$ 构建不同右子树的数量表示为 $G(4)$，<span style="color:blue">注意： $G(n)$ 和序列的内容无关，只和序列的长度有关。</span>于是，$F(3,7) = G(2) \cdot G(4)$。 因此，我们可以得到以下公式：</p>
+<script type="math/tex; mode=display">
+F(i, n) = G(i-1) \cdot G(n-i) \qquad  \qquad (2)</script><p>将公式 $(1)$，$(2)$ 结合，可以得到 $G(n)$ 的递归表达式：</p>
+<script type="math/tex; mode=display">
+G(n) = \sum_{i=1}^{n}G(i-1) \cdot G(n-i) \qquad  \qquad (3)</script><p>至此，我们从小到大计算 $G$ 函数即可，因为 $G(n)$ 的值依赖于 $G(0) \cdots G(n-1)$。</p>
+<p><strong>代码</strong></p>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">numTrees</span><span class="hljs-params">(self, n)</span>:</span>
+        <span class="hljs-string">"""</span>
+<span class="hljs-string">        :type n: int</span>
+<span class="hljs-string">        :rtype: int</span>
+<span class="hljs-string">        """</span>
+        G = [<span class="hljs-number">0</span>] * (n+<span class="hljs-number">1</span>)
+        G[<span class="hljs-number">0</span>], G[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>, <span class="hljs-number">1</span>
+
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>, n+<span class="hljs-number">1</span>):
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, i+<span class="hljs-number">1</span>):
+                G[i] += G[j<span class="hljs-number">-1</span>] * G[i-j]
+		<span class="hljs-keyword">return</span> G[n]</code></pre>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 : $O(n^2)$，其中 $n$ 表示二叉搜索树的节点个数。$G(n)$ 函数一共有 $n$ 个值需要求解，每次求解需要 $O(n)$ 的时间复杂度，因此总时间复杂度为 $O(n^2)$。</li>
 </ul>
-</li>
-</ul>
-<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dfs</span><span class="hljs-params">(node)</span>:</span>
-	<span class="hljs-keyword">if</span> node <span class="hljs-keyword">in</span> visited:
-        <span class="hljs-comment"># already visited</span>
-        <span class="hljs-keyword">return</span>
-    visited.add(node)
-    
-    <span class="hljs-comment"># process current node</span>
-    <span class="hljs-comment"># ... # logic here</span>
-    dfs(node.left)
-    dfs(node.right)</code></pre>
-<h1 id="深度优先搜索-Depth-First-Search"><a href="#深度优先搜索-Depth-First-Search" class="headerlink" title="深度优先搜索(Depth-First-Search)"></a>深度优先搜索(Depth-First-Search)</h1><p><strong>遍历顺序</strong></p>
-<p><img src="/article/9fa9df3c/image-20200715203020928.png" srcset="/img/loading.gif" alt="image-20200715203020928"></p>
-<p><img src="/article/9fa9df3c/image-20200715203054856.png" srcset="/img/loading.gif" alt="image-20200715203054856"></p>
-<p><strong>DFS代码-递归写法</strong></p>
-<pre><code class="hljs python">visited = set()
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dfs</span><span class="hljs-params">(node, visited)</span>:</span>
-    <span class="hljs-keyword">if</span> node <span class="hljs-keyword">in</span> visited: <span class="hljs-comment"># terminator</span>
-        <span class="hljs-comment"># already visited</span>
-        <span class="hljs-keyword">return</span>
-    
-    visited.add(node)
-    
-    <span class="hljs-comment"># process current node here.</span>
-    ...
-    <span class="hljs-keyword">for</span> next_node <span class="hljs-keyword">in</span> node.children():
-        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> next_node <span class="hljs-keyword">in</span> visited:
-            dfs(next_node, visited)</code></pre>
-<p><strong>DFS代码-非递归写法</strong></p>
-<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">DFS</span><span class="hljs-params">(self, tree)</span>:</span>
-    <span class="hljs-keyword">if</span> tree.root <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
-        <span class="hljs-keyword">return</span> []
-    
-    visited, stack = [], [tree.root]
-    
-    <span class="hljs-keyword">while</span> stack:
-        node = stack.pop()
-        visited.add(node)
-        
-        process(node)
-        nodes = generate_related_nodes(node)
-        stack.push(nodes)
-    <span class="hljs-comment"># other processing work</span>
-    ...</code></pre>
-<p><span style="color:blue">栈：[根节点]-&gt;[子节点1，子节点2]-&gt;[子节点1，子节点21，子节点22]</span></p>
-<h1 id="广度优先搜索-Breadth-First-Search"><a href="#广度优先搜索-Breadth-First-Search" class="headerlink" title="广度优先搜索(Breadth-First-Search)"></a>广度优先搜索(Breadth-First-Search)</h1><p><strong>遍历顺序</strong></p>
-<p><img src="/article/9fa9df3c/image-20200715204551937.png" srcset="/img/loading.gif" alt="image-20200715204551937"></p>
-<p><strong>DFS和BFS遍历对比</strong></p>
-<p><img src="/article/9fa9df3c/image-20200715204646407.png" srcset="/img/loading.gif" alt="image-20200715204646407"></p>
-<p><strong>BFS代码</strong></p>
-<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">BFS</span><span class="hljs-params">(graph, start, end)</span>:</span>
-	queue = []
-    queue.append([start])
-    visited.add(start)
-    
-    <span class="hljs-keyword">while</span> queue:
-        node = queue.pop()
-        visited.add(node)
-        
-        process(node)
-        nodes = generate_related_nodes(node)
-        queue.push(nodes)
-        
-    <span class="hljs-comment">#other processing work</span>
-    ...</code></pre>
-<p><span style="color:blue">递归遍历代码比非递归代码简洁。这是因为递归的方式隐含地使用了系统的 栈，所以此时我们不需要自己维护一个数据结构。</span></p>
+<p>空间复杂度 : $O(n)$。我们需要 $O(n)$ 的空间存储 $G$ 数组。</p>
+<h2 id="方法二：数学"><a href="#方法二：数学" class="headerlink" title="方法二：数学"></a>方法二：数学</h2><p><strong>思路与算法</strong><br>事实上我们在方法一中推导出的 G(n)函数的值在数学上被称为<a href="https://baike.baidu.com/item/catalan/7605685?fr=aladdin" target="_blank" rel="noopener">卡塔兰数</a> C_n。卡塔兰数更便于计算的定义如下:<br>C_0 = 1, \qquad C_{n+1} = \frac{2(2n+1)}{n+2}C_n<br>C0=1,Cn+1=n+22(2n+1)Cn<br>证明过程可以参考上述文献，此处不再赘述。</p>
+<p><strong>代码</strong></p>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">numTrees</span><span class="hljs-params">(self, n)</span>:</span>
+        C = <span class="hljs-number">1</span>
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, n):
+            C = C * <span class="hljs-number">2</span> * (<span class="hljs-number">2</span> * i + <span class="hljs-number">1</span>)/(i+<span class="hljs-number">2</span>)
+        <span class="hljs-keyword">return</span> int(C)</code></pre>
+<p><strong>复杂度分析</strong></p>
+<p>时间复杂度 : $O(n)$，其中 $n$ 表示二叉搜索树的节点个数。我们只需要循环遍历一次即可。<br>空间复杂度 : $O(1)$。我们只需要常数空间存放若干变量。</p>
+<p>今天的小菜鸡喝到汤啦~</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/unique-binary-search-trees/solution/bu-tong-de-er-cha-sou-suo-shu-by-leetcode-solution/" target="_blank" rel="noopener">官方题解</a></p>
 
             </article>
             <hr>
@@ -340,7 +297,9 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/categories/leetcode/">leetcode</a>
+                    
+                      <a class="hover-with-bg" href="/categories/leetcode/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
                     
                   </div>
                 
@@ -348,7 +307,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>
+                    
+                      <a class="hover-with-bg" href="/tags/leetcode/">leetcode</a>
                     
                   </div>
                 
@@ -361,9 +322,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/article/e784d9f0.html">
+                      <a href="/article/9fa9df3c.html">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">leetcode102-二叉树的层序遍历</span>
+                        <span class="hidden-mobile">深度优先搜索和广度优先搜索</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -371,8 +332,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/article/e617005.html">
-                        <span class="hidden-mobile">leetcode96-不同的二叉搜索树</span>
+                      <a href="/article/a0f63eb7.html">
+                        <span class="hidden-mobile">银行营销策略分析</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -654,7 +615,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/article/9fa9df3c.html');
+          var target = decodeURI('/article/e617005.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -748,7 +709,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "深度优先搜索和广度优先搜索&nbsp;",
+        "leetcode96-不同的二叉搜索树&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 50,
