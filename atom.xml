@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sulimin-nb.github.io/"/>
-  <updated>2020-07-17T08:01:22.372Z</updated>
+  <updated>2020-07-17T14:13:41.599Z</updated>
   <id>https://sulimin-nb.github.io/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>贪心-自然语言训练营</title>
+    <link href="https://sulimin-nb.github.io/article/6b3bc2e7.html"/>
+    <id>https://sulimin-nb.github.io/article/6b3bc2e7.html</id>
+    <published>2020-07-17T08:14:00.000Z</published>
+    <updated>2020-07-17T14:13:41.599Z</updated>
+    
+    <content type="html"><![CDATA[<p>毕业条件</p><ul><li>完成9个课程项目</li><li>完成聊天机器人项目</li><li>完成Capstone项目</li><li>完成至少6篇技术博客的写作</li><li><p>个人github项目满足学院的要求</p></li><li><p>期中，期末考试，一周一次quize</p></li><li>论文的阅读要求</li><li>满足要求的简历</li></ul><p><img src="/article/6b3bc2e7/image-20200717164038773.png" srcset="/img/loading.gif" alt="image-20200717164038773"></p><p><img src="/article/6b3bc2e7/image-20200717164325731.png" srcset="/img/loading.gif" alt="image-20200717164325731"></p><p><img src="/article/6b3bc2e7/image-20200717164920531.png" srcset="/img/loading.gif" alt="image-20200717164920531"></p><p><strong>What is NLP? NLP=NLU+NLG</strong></p><ul><li>NLU(natural language understanding)：语音/文本-&gt;意思</li><li>NLG(natural language generator)：意思-&gt;文本/语音</li></ul><p>Why NLP is Harder(i.e. than Computer Vision)</p><p><strong>The Chllenge1：Multiple Ways to Express(多种表达方式)</strong></p><ul><li>贪心科技开设了NLP训练营</li><li>贪心科技新出了NLP训练营</li><li>新出的NLP训练营是贪心科技出的</li><li>…</li></ul><p><strong>The Challenge2：Ambiguity(一词多义)</strong></p><ul><li>今天参观了苹果公司</li><li>现在正好是苹果季节</li></ul><p>How to Solve Ambiguity?</p><p>词的概率分布，上下文(context)-update</p><p><img src="/article/6b3bc2e7/image-20200717172011293.png" srcset="/img/loading.gif" alt="image-20200717172011293"></p><p><img src="/article/6b3bc2e7/image-20200717172715409.png" srcset="/img/loading.gif" alt="image-20200717172715409"></p><p>两步走：排列组合的计算量巨大（NP Hard级别）</p><p><img src="/article/6b3bc2e7/image-20200717173959228.png" srcset="/img/loading.gif" alt="image-20200717173959228"></p><p><img src="/article/6b3bc2e7/image-20200717180339514.png" srcset="/img/loading.gif" alt="image-20200717180339514"></p><p><img src="/article/6b3bc2e7/image-20200717180957801.png" srcset="/img/loading.gif" alt="image-20200717180957801"></p><p>pp问题，np问题，np complete问题</p><p><strong>knowledge graph embedding by translating on hyperplanes</strong></p><p><strong>graph convolutional networks(thomas)</strong></p><p><strong>node2vec stanford(scalable feature learning for networks)</strong></p><p>时间复杂度，空间复杂度</p><p>Sorting:merge sort(归并)</p><p>a=[3,4,1,6,7,2,5,9]</p><p>Sorting：Merge Sorting(归并排序)<br>-Divide and Conquer(category)</p><script type="math/tex; mode=display">T(n) = 2 * T(\frac{n}{2})+n</script><p>Master Theorem(主定理)</p><p><img src="/article/6b3bc2e7/image-20200717215816733.png" srcset="/img/loading.gif" alt="image-20200717215816733"></p><p><img src="/article/6b3bc2e7/image-20200717220624313.png" srcset="/img/loading.gif" alt="image-20200717220624313"></p><p>复杂度：$O(nlogn)$</p><p><img src="/article/6b3bc2e7/image-20200717220547127.png" srcset="/img/loading.gif" alt="image-20200717220547127"></p><p><img src="/article/6b3bc2e7/master_theory_e.png" srcset="/img/loading.gif" alt></p><p>练习：$n^nlogn$</p><p><img src="/article/6b3bc2e7/image-20200717221009783.png" srcset="/img/loading.gif" alt="image-20200717221009783"></p><p><img src="/article/6b3bc2e7/image-20200717221339162.png" srcset="/img/loading.gif" alt="image-20200717221339162"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;毕业条件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;完成9个课程项目&lt;/li&gt;
+&lt;li&gt;完成聊天机器人项目&lt;/li&gt;
+&lt;li&gt;完成Capstone项目&lt;/li&gt;
+&lt;li&gt;完成至少6篇技术博客的写作&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;个人github项目满足学院的要求&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p
+      
+    
+    </summary>
+    
+    
+      <category term="自然语言处理" scheme="https://sulimin-nb.github.io/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
+    
+    
+      <category term="自然语言处理" scheme="https://sulimin-nb.github.io/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>算法-卡特兰数</title>
@@ -521,33 +555,6 @@
     
       <category term="分治、回溯" scheme="https://sulimin-nb.github.io/categories/leetcode/%E5%88%86%E6%B2%BB%E3%80%81%E5%9B%9E%E6%BA%AF/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>git教程</title>
-    <link href="https://sulimin-nb.github.io/article/a022e3d6.html"/>
-    <id>https://sulimin-nb.github.io/article/a022e3d6.html</id>
-    <published>2020-07-07T16:52:41.000Z</published>
-    <updated>2020-07-08T05:09:59.817Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前学过了git，然后懒得用，but学了不用=白学，所以写这篇文章有两个目的，首先是总结git的用法，其次是督促自己用起来。<br>本周更~</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;之前学过了git，然后懒得用，but学了不用=白学，所以写这篇文章有两个目的，首先是总结git的用法，其次是督促自己用起来。&lt;br&gt;本周更~&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="git" scheme="https://sulimin-nb.github.io/categories/git/"/>
-    
-    
-      <category term="git" scheme="https://sulimin-nb.github.io/tags/git/"/>
     
   </entry>
   

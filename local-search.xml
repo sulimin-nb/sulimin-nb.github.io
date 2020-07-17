@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>贪心-自然语言训练营</title>
+    <link href="/article/6b3bc2e7.html"/>
+    <url>/article/6b3bc2e7.html</url>
+    
+    <content type="html"><![CDATA[<p>毕业条件</p><ul><li>完成9个课程项目</li><li>完成聊天机器人项目</li><li>完成Capstone项目</li><li>完成至少6篇技术博客的写作</li><li><p>个人github项目满足学院的要求</p></li><li><p>期中，期末考试，一周一次quize</p></li><li>论文的阅读要求</li><li>满足要求的简历</li></ul><p><img src="/article/6b3bc2e7/image-20200717164038773.png" srcset="/img/loading.gif" alt="image-20200717164038773"></p><p><img src="/article/6b3bc2e7/image-20200717164325731.png" srcset="/img/loading.gif" alt="image-20200717164325731"></p><p><img src="/article/6b3bc2e7/image-20200717164920531.png" srcset="/img/loading.gif" alt="image-20200717164920531"></p><p><strong>What is NLP? NLP=NLU+NLG</strong></p><ul><li>NLU(natural language understanding)：语音/文本-&gt;意思</li><li>NLG(natural language generator)：意思-&gt;文本/语音</li></ul><p>Why NLP is Harder(i.e. than Computer Vision)</p><p><strong>The Chllenge1：Multiple Ways to Express(多种表达方式)</strong></p><ul><li>贪心科技开设了NLP训练营</li><li>贪心科技新出了NLP训练营</li><li>新出的NLP训练营是贪心科技出的</li><li>…</li></ul><p><strong>The Challenge2：Ambiguity(一词多义)</strong></p><ul><li>今天参观了苹果公司</li><li>现在正好是苹果季节</li></ul><p>How to Solve Ambiguity?</p><p>词的概率分布，上下文(context)-update</p><p><img src="/article/6b3bc2e7/image-20200717172011293.png" srcset="/img/loading.gif" alt="image-20200717172011293"></p><p><img src="/article/6b3bc2e7/image-20200717172715409.png" srcset="/img/loading.gif" alt="image-20200717172715409"></p><p>两步走：排列组合的计算量巨大（NP Hard级别）</p><p><img src="/article/6b3bc2e7/image-20200717173959228.png" srcset="/img/loading.gif" alt="image-20200717173959228"></p><p><img src="/article/6b3bc2e7/image-20200717180339514.png" srcset="/img/loading.gif" alt="image-20200717180339514"></p><p><img src="/article/6b3bc2e7/image-20200717180957801.png" srcset="/img/loading.gif" alt="image-20200717180957801"></p><p>pp问题，np问题，np complete问题</p><p><strong>knowledge graph embedding by translating on hyperplanes</strong></p><p><strong>graph convolutional networks(thomas)</strong></p><p><strong>node2vec stanford(scalable feature learning for networks)</strong></p><p>时间复杂度，空间复杂度</p><p>Sorting:merge sort(归并)</p><p>a=[3,4,1,6,7,2,5,9]</p><p>Sorting：Merge Sorting(归并排序)<br>-Divide and Conquer(category)</p><script type="math/tex; mode=display">T(n) = 2 * T(\frac{n}{2})+n</script><p>Master Theorem(主定理)</p><p><img src="/article/6b3bc2e7/image-20200717215816733.png" srcset="/img/loading.gif" alt="image-20200717215816733"></p><p><img src="/article/6b3bc2e7/image-20200717220624313.png" srcset="/img/loading.gif" alt="image-20200717220624313"></p><p>复杂度：$O(nlogn)$</p><p><img src="/article/6b3bc2e7/image-20200717220547127.png" srcset="/img/loading.gif" alt="image-20200717220547127"></p><p><img src="/article/6b3bc2e7/master_theory_e.png" srcset="/img/loading.gif" alt></p><p>练习：$n^nlogn$</p><p><img src="/article/6b3bc2e7/image-20200717221009783.png" srcset="/img/loading.gif" alt="image-20200717221009783"></p><p><img src="/article/6b3bc2e7/image-20200717221339162.png" srcset="/img/loading.gif" alt="image-20200717221339162"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>自然语言处理</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>自然语言处理</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>算法-卡特兰数</title>
     <link href="/article/f37649e5.html"/>
     <url>/article/f37649e5.html</url>
