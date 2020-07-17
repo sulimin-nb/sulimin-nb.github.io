@@ -2497,7 +2497,7 @@ T(n) = 2T(\frac{n}{2}) + 2n</script><p>​        根据<a href="https://baike.b
 ]]></content>
       <categories>
         <category>leetcode</category>
-        <category>BFS</category>
+        <category>深度优先搜索，广度优先搜索</category>
       </categories>
       <tags>
         <tag>每日一题</tag>
@@ -9929,6 +9929,14 @@ G(n) = \sum_{i=1}^{n}G(i-1) \cdot G(n-i) \qquad  \qquad (3)</script><p>至此，
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/is-graph-bipartite/solution/pan-duan-er-fen-tu-by-leetcode-solution/" target="_blank" rel="noopener">官方题解</a></p>
 <p><a href="https://leetcode-cn.com/problems/is-graph-bipartite/solution/bfs-dfs-bing-cha-ji-san-chong-fang-fa-pan-duan-er-/" target="_blank" rel="noopener">BFS+DFS+并查集</a></p>
 ]]></content>
+      <categories>
+        <category>leetcode</category>
+        <category>深度优先搜索，广度优先搜索</category>
+      </categories>
+      <tags>
+        <tag>每日一题</tag>
+        <tag>leetcode</tag>
+      </tags>
   </entry>
   <entry>
     <title>算法-卡特兰数</title>
