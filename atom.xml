@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sulimin-nb.github.io/"/>
-  <updated>2020-07-19T09:49:55.617Z</updated>
+  <updated>2020-07-19T10:31:50.514Z</updated>
   <id>https://sulimin-nb.github.io/</id>
   
   <author>
@@ -21,9 +21,16 @@
     <link href="https://sulimin-nb.github.io/article/1d82fc97.html"/>
     <id>https://sulimin-nb.github.io/article/1d82fc97.html</id>
     <published>2020-07-19T09:49:00.000Z</published>
-    <updated>2020-07-19T09:49:55.617Z</updated>
+    <updated>2020-07-19T10:31:50.514Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Prototypical-Networks-for-Few-shot-Learning"><a href="#Prototypical-Networks-for-Few-shot-Learning" class="headerlink" title="Prototypical Networks for Few-shot Learning"></a>Prototypical Networks for Few-shot Learning</h1><p><img src="/article/1d82fc97/image-20200719181649169.png" srcset="/img/loading.gif" alt="image-20200719181649169"></p><p><img src="/article/1d82fc97/image-20200719181614391.png" srcset="/img/loading.gif" alt="image-20200719181614391"></p><h1 id="Transferrable-Prototypical-Networks-for-Unsupervised-Domain-Adaptation"><a href="#Transferrable-Prototypical-Networks-for-Unsupervised-Domain-Adaptation" class="headerlink" title="Transferrable Prototypical Networks for Unsupervised Domain Adaptation"></a>Transferrable Prototypical Networks for Unsupervised Domain Adaptation</h1>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Prototypical-Networks-for-Few-shot-Learning&quot;&gt;&lt;a href=&quot;#Prototypical-Networks-for-Few-shot-Learning&quot; class=&quot;headerlink&quot; title=&quot;Protot
+      
     
     </summary>
     
@@ -40,13 +47,19 @@
     <link href="https://sulimin-nb.github.io/article/708439c3.html"/>
     <id>https://sulimin-nb.github.io/article/708439c3.html</id>
     <published>2020-07-19T07:21:17.000Z</published>
-    <updated>2020-07-19T07:39:42.189Z</updated>
+    <updated>2020-07-19T10:33:46.369Z</updated>
     
     <summary type="html">
     
     </summary>
     
     
+      <category term="leetcode" scheme="https://sulimin-nb.github.io/categories/leetcode/"/>
+    
+      <category term="深度优先搜索，广度优先搜索" scheme="https://sulimin-nb.github.io/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/"/>
+    
+    
+      <category term="leetcode" scheme="https://sulimin-nb.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -55,13 +68,19 @@
     <link href="https://sulimin-nb.github.io/article/1c7950e9.html"/>
     <id>https://sulimin-nb.github.io/article/1c7950e9.html</id>
     <published>2020-07-19T07:20:13.000Z</published>
-    <updated>2020-07-19T07:20:13.797Z</updated>
+    <updated>2020-07-19T10:33:53.742Z</updated>
     
     <summary type="html">
     
     </summary>
     
     
+      <category term="leetcode" scheme="https://sulimin-nb.github.io/categories/leetcode/"/>
+    
+      <category term="深度优先搜索，广度优先搜索" scheme="https://sulimin-nb.github.io/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/"/>
+    
+    
+      <category term="leetcode" scheme="https://sulimin-nb.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -70,13 +89,19 @@
     <link href="https://sulimin-nb.github.io/article/25dd8b3e.html"/>
     <id>https://sulimin-nb.github.io/article/25dd8b3e.html</id>
     <published>2020-07-19T07:19:28.000Z</published>
-    <updated>2020-07-19T07:19:28.090Z</updated>
+    <updated>2020-07-19T10:33:41.584Z</updated>
     
     <summary type="html">
     
     </summary>
     
     
+      <category term="leetcode" scheme="https://sulimin-nb.github.io/categories/leetcode/"/>
+    
+      <category term="深度优先搜索，广度优先搜索" scheme="https://sulimin-nb.github.io/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/"/>
+    
+    
+      <category term="leetcode" scheme="https://sulimin-nb.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -85,7 +110,7 @@
     <link href="https://sulimin-nb.github.io/article/68fd8ba2.html"/>
     <id>https://sulimin-nb.github.io/article/68fd8ba2.html</id>
     <published>2020-07-19T06:34:03.000Z</published>
-    <updated>2020-07-19T07:16:14.747Z</updated>
+    <updated>2020-07-19T09:50:09.454Z</updated>
     
     <content type="html"><![CDATA[<h1 id="leetcode20-括号生成"><a href="#leetcode20-括号生成" class="headerlink" title="leetcode20.括号生成"></a>leetcode20.括号生成</h1><p>数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 <strong>有效的</strong> 括号组合。</p><p><strong>示例：</strong></p><pre><code class="hljs excel">输入：<span class="hljs-built_in">n</span> = <span class="hljs-number">3</span>输出：[       <span class="hljs-string">"((()))"</span>,       <span class="hljs-string">"(()())"</span>,       <span class="hljs-string">"(())()"</span>,       <span class="hljs-string">"()(())"</span>,       <span class="hljs-string">"()()()"</span>     ]</code></pre><h2 id="一：暴力法"><a href="#一：暴力法" class="headerlink" title="一：暴力法"></a>一：暴力法</h2><p><strong>思路</strong></p><p>我们可以生成所有 $2^{2n}$ 个 <code>&#39;(&#39;</code> 和 <code>&#39;)&#39;</code> 字符构成的序列，然后我们检查每一个是否有效即可。</p><p><strong>算法</strong></p><p>为了生成所有序列，我们可以使用递归。长度为 <code>n</code> 的序列就是在长度为 <code>n-1</code> 的序列前加一个 <code>&#39;(&#39;</code> 或 <code>&#39;)&#39;</code>。</p><p>为了检查序列是否有效，我们遍历这个序列，并使用一个变量 <code>balance</code> 表示左括号的数量减去右括号的数量。如果在遍历过程中 <code>balance</code> 的值小于零，或者结束时 <code>balance</code> 的值不为零，那么该序列就是无效的，否则它是有效的。</p><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generateParenthesis</span><span class="hljs-params">(self, n: int)</span> -&gt; List[str]:</span>        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate</span><span class="hljs-params">(A)</span>:</span>            <span class="hljs-keyword">if</span> len(A) == <span class="hljs-number">2</span>*n:                <span class="hljs-keyword">if</span> valid(A):                    ans.append(<span class="hljs-string">""</span>.join(A))            <span class="hljs-keyword">else</span>:                A.append(<span class="hljs-string">'('</span>)                generate(A)                A.pop()                A.append(<span class="hljs-string">')'</span>)                generate(A)                A.pop()        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">valid</span><span class="hljs-params">(A)</span>:</span>            bal = <span class="hljs-number">0</span>            <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> A:                <span class="hljs-keyword">if</span> c == <span class="hljs-string">'('</span>: bal += <span class="hljs-number">1</span>                <span class="hljs-keyword">else</span>: bal -= <span class="hljs-number">1</span>                <span class="hljs-keyword">if</span> bal &lt; <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>            <span class="hljs-keyword">return</span> bal == <span class="hljs-number">0</span>        ans = []        generate([])        <span class="hljs-keyword">return</span> ans</code></pre><p><strong>复杂度分析</strong></p><ul><li>时间复杂度：$O(2^{2n}n)$，对于 $2^{2n}$ 个序列中的每一个，我们用于建立和验证该序列的复杂度为 $O(n)$。</li></ul><p>空间复杂度：$O(n)$，除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要 $O(1)$ 的空间，最多递归 $2n$ 层，因此空间复杂度为 $O(n)$。</p><h2 id="方法二：回溯法"><a href="#方法二：回溯法" class="headerlink" title="方法二：回溯法"></a>方法二：回溯法</h2><p><strong>思路和算法</strong></p><p>方法一还有改进的余地，可以只在序列仍然保持有效时添加 <code>&#39;(&#39;</code> or <code>&#39;)&#39;</code>，而不是像 <a href="#方法一：暴力法">方法一</a> 那样每次添加。我们可以通过跟踪到目前为止放置的左括号和右括号的数目来做到这一点。<br>如果左括号数量不大于 $n$，可以放一个左括号。如果右括号数量小于左括号的数量，我们可以放一个右括号。</p><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generateParenthesis</span><span class="hljs-params">(self, n)</span>:</span>        ans = []        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(S, left, right)</span>:</span>            <span class="hljs-keyword">if</span> len(S) == <span class="hljs-number">2</span> * n:                ans.append(<span class="hljs-string">''</span>.join(S))                <span class="hljs-keyword">return</span>            <span class="hljs-keyword">if</span> left &lt; n:                S.append(<span class="hljs-string">'('</span>)                backtrack(S, left+<span class="hljs-number">1</span>, right)                S.pop()            <span class="hljs-keyword">if</span> right &lt; left:                S.append(<span class="hljs-string">')'</span>)                backtrack(S, left, right+<span class="hljs-number">1</span>)                S.pop()        backtrack([], <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)        <span class="hljs-keyword">return</span> ans</code></pre><p><strong>复杂度分析</strong></p><p>复杂度分析依赖于理解 <code>generateParenthesis(n)</code> 中有多少个元素。事实证明这是第 $n$ 个卡特兰数 $\dfrac{1}{n+1}\dbinom{2n}{n}$ ，这是由 $\dfrac{4^n}{n\sqrt{n}}$ 渐近界定的。</p><ul><li>时间复杂度：时间复杂度：$O(\dfrac{4^n}{\sqrt{n}})$，在回溯过程中，每个答案需要 $O(n)$ 的时间复制到答案数组中。</li><li>空间复杂度：$O(n)$，除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要 $O(1)$ 的空间，最多递归 $2n$ 层，因此空间复杂度为 $O(n)$。</li></ul><h2 id="方法三：按括号序列的长度递归"><a href="#方法三：按括号序列的长度递归" class="headerlink" title="方法三：按括号序列的长度递归"></a>方法三：按括号序列的长度递归</h2><p><strong>思路与算法</strong></p><p>任何一个括号序列都一定是由 <code>(</code> 开头，并且第一个 <code>(</code> 一定有一个唯一与之对应的 <code>)</code>。这样一来，每一个括号序列可以用 <code>(a)b</code> 来表示，其中 <code>a</code> 与 <code>b</code> 分别是一个合法的括号序列（可以为空）。</p><p>那么，要生成所有长度为 <code>2 * n</code> 的括号序列，我们定义一个函数 <code>generate(n)</code> 来返回所有可能的括号序列。那么在函数 <code>generate(n)</code> 的过程中：</p><p>我们需要枚举与第一个 <code>(</code> 对应的 ) 的位置 <code>2 * i + 1</code>；<br>递归调用 <code>generate(i)</code> 即可计算 a 的所有可能性；<br>递归调用 <code>generate(n - i - 1)</code> 即可计算 b 的所有可能性；<br>遍历 <code>a</code> 与 <code>b</code> 的所有可能性并拼接，即可得到所有长度为 <code>2 * n</code> 的括号序列。<br>为了节省计算时间，我们在每次 <code>generate(i)</code> 函数返回之前，把返回值存储起来，下次再调用 <code>generate(i)</code> 时可以直接返回，不需要再递归计算。</p><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><span class="hljs-meta">    @lru_cache(None)</span>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generateParenthesis</span><span class="hljs-params">(self, n: int)</span> -&gt; List[str]:</span>        <span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span>:            <span class="hljs-keyword">return</span> [<span class="hljs-string">''</span>]        ans = []        <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> range(n):            <span class="hljs-keyword">for</span> left <span class="hljs-keyword">in</span> self.generateParenthesis(c):                <span class="hljs-keyword">for</span> right <span class="hljs-keyword">in</span> self.generateParenthesis(n<span class="hljs-number">-1</span>-c):                    ans.append(<span class="hljs-string">'(&#123;&#125;)&#123;&#125;'</span>.format(left, right))        <span class="hljs-keyword">return</span> ans</code></pre><p><strong>复杂度分析</strong></p><ul><li><p>时间复杂度：$O(\dfrac{4^n}{\sqrt{n}})$，该分析与 方法二 类似。</p></li><li><p>空间复杂度：$O(\dfrac{4^n}{\sqrt{n}})$，此方法除答案数组外，中间过程中会存储与答案数组同样数量级的临时数组，是我们所需要的空间复杂度。</p></li></ul>]]></content>
     
@@ -113,7 +138,7 @@
     <link href="https://sulimin-nb.github.io/article/e3f6d653.html"/>
     <id>https://sulimin-nb.github.io/article/e3f6d653.html</id>
     <published>2020-07-19T05:21:24.000Z</published>
-    <updated>2020-07-19T07:39:55.544Z</updated>
+    <updated>2020-07-19T09:50:09.457Z</updated>
     
     <summary type="html">
     
