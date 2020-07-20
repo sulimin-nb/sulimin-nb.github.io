@@ -10113,7 +10113,16 @@ warning: LF will be replaced by CRLF in index.html.</code></pre>
 <p><img src="/article/1d82fc97/image-20200720140545581.png" srcset="/img/loading.gif" alt="image-20200720140545581"></p>
 <p><strong>Method：</strong></p>
 <p><img src="/article/1d82fc97/image-20200720141255925.png" srcset="/img/loading.gif" alt="image-20200720141255925"></p>
+<p><strong>(1) 类内散度最小化(Source Domain)：</strong></p>
 <p><img src="/article/1d82fc97/image-20200720141722664.png" srcset="/img/loading.gif" alt="image-20200720141722664"></p>
+<p><img src="/article/1d82fc97/image-20200720142301426.png" srcset="/img/loading.gif" alt="image-20200720142301426"></p>
+<p><strong>类内散度最小化(Target Domain)：</strong></p>
+<p><img src="/article/1d82fc97/image-20200720142652395.png" srcset="/img/loading.gif" alt="image-20200720142652395"></p>
+<p>目标域不存在标签，采用最近邻中心的分类器，同时force Target类中心和对应的Source类中心靠近。<br>就是把Source类中心加上一个偏移量视为Target类中心，同时最小化此偏移量。<br><strong>总体目标如下：</strong></p>
+<p><img src="/article/1d82fc97/image-20200720143112960.png" srcset="/img/loading.gif" alt="image-20200720143112960"></p>
+<p><img src="/article/1d82fc97/image-20200720145649943.png" srcset="/img/loading.gif" alt="image-20200720145649943"></p>
+<p><strong>relaxed trace-ratio objective：</strong></p>
+<p><img src="/article/1d82fc97/image-20200720150033777.png" srcset="/img/loading.gif" alt="image-20200720150033777"></p>
 <h1 id="4-Adaptive-Cross-Modal-Few-shot-Learning"><a href="#4-Adaptive-Cross-Modal-Few-shot-Learning" class="headerlink" title="4. Adaptive Cross-Modal Few-shot Learning"></a>4. Adaptive Cross-Modal Few-shot Learning</h1><p>word embedding<br>香蕉+苹果=香蕉苹果</p>
 ]]></content>
       <categories>
