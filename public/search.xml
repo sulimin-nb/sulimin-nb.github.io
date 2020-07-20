@@ -10131,7 +10131,15 @@ warning: LF will be replaced by CRLF in index.html.</code></pre>
 <p><img src="/article/1d82fc97/image-20200720180603912.png" srcset="/img/loading.gif" alt="image-20200720180603912"></p>
 <p><img src="/article/1d82fc97/image-20200720180940704.png" srcset="/img/loading.gif" alt="image-20200720180940704"></p>
 <p><img src="/article/1d82fc97/image-20200720181003000.png" srcset="/img/loading.gif" alt="image-20200720181003000"></p>
-<h1 id="4-Adaptive-Cross-Modal-Few-shot-Learning"><a href="#4-Adaptive-Cross-Modal-Few-shot-Learning" class="headerlink" title="4. Adaptive Cross-Modal Few-shot Learning"></a>4. Adaptive Cross-Modal Few-shot Learning</h1><p>word embedding<br>香蕉+苹果=香蕉苹果</p>
+<h1 id="4-Adaptive-Cross-Modal-Few-shot-Learning"><a href="#4-Adaptive-Cross-Modal-Few-shot-Learning" class="headerlink" title="4. Adaptive Cross-Modal Few-shot Learning"></a>4. Adaptive Cross-Modal Few-shot Learning</h1><p><strong>背景知识：</strong></p>
+<p><img src="/article/1d82fc97/image-20200720235811934.png" srcset="/img/loading.gif" alt="image-20200720235811934"></p>
+<p><a href="# 1.Prototypical Networks for Few-shot Learning">第一篇</a>写了，这里就不赘述了。</p>
+<p><img src="/article/1d82fc97/image-20200720235846044.png" srcset="/img/loading.gif" alt="image-20200720235846044"></p>
+<p><strong>motivation:</strong></p>
+<p><img src="/article/1d82fc97/tempsnip3.png" srcset="/img/loading.gif" alt="tempsnip3"></p>
+<p><img src="/article/1d82fc97/image-20200720235727709.png" srcset="/img/loading.gif" alt="image-20200720235727709"></p>
+<p><strong>方法Formulation：</strong></p>
+<p><img src="/article/1d82fc97/image-20200721001159311.png" srcset="/img/loading.gif" alt="image-20200721001159311"></p>
 ]]></content>
       <categories>
         <category>linc实验室</category>
