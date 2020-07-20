@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sulimin-nb.github.io/"/>
-  <updated>2020-07-20T02:26:19.055Z</updated>
+  <updated>2020-07-20T02:37:13.780Z</updated>
   <id>https://sulimin-nb.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://sulimin-nb.github.io/article/1d82fc97.html"/>
     <id>https://sulimin-nb.github.io/article/1d82fc97.html</id>
     <published>2020-07-19T09:49:00.000Z</published>
-    <updated>2020-07-20T02:26:19.055Z</updated>
+    <updated>2020-07-20T02:37:13.780Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Prototypical-Networks-for-Few-shot-Learning"><a href="#Prototypical-Networks-for-Few-shot-Learning" class="headerlink" title="Prototypical Networks for Few-shot Learning"></a>Prototypical Networks for Few-shot Learning</h1><p><img src="/article/1d82fc97/image-20200719181649169.png" srcset="/img/loading.gif" alt="image-20200719181649169"></p><p><img src="/article/1d82fc97/image-20200719181614391.png" srcset="/img/loading.gif" alt="image-20200719181614391"></p><h1 id="Transferrable-Prototypical-Networks-for-Unsupervised-Domain-Adaptation"><a href="#Transferrable-Prototypical-Networks-for-Unsupervised-Domain-Adaptation" class="headerlink" title="Transferrable Prototypical Networks for Unsupervised Domain Adaptation"></a>Transferrable Prototypical Networks for Unsupervised Domain Adaptation</h1><p><img src="/article/1d82fc97/tempsnip.png" srcset="/img/loading.gif" alt="tempsnip"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Prototypical-Networks-for-Few-shot-Learning"><a href="#Prototypical-Networks-for-Few-shot-Learning" class="headerlink" title="Prototypical Networks for Few-shot Learning"></a>Prototypical Networks for Few-shot Learning</h1><p><img src="/article/1d82fc97/image-20200719181649169.png" srcset="/img/loading.gif" alt="image-20200719181649169"></p><p><img src="/article/1d82fc97/image-20200719181614391.png" srcset="/img/loading.gif" alt="image-20200719181614391"></p><h1 id="Transferrable-Prototypical-Networks-for-Unsupervised-Domain-Adaptation"><a href="#Transferrable-Prototypical-Networks-for-Unsupervised-Domain-Adaptation" class="headerlink" title="Transferrable Prototypical Networks for Unsupervised Domain Adaptation"></a>Transferrable Prototypical Networks for Unsupervised Domain Adaptation</h1><p><img src="/article/1d82fc97/tempsnip.png" srcset="/img/loading.gif" alt="tempsnip"></p><p><img src="/article/1d82fc97/image-20200720103101415.png" srcset="/img/loading.gif" alt="image-20200720103101415"></p><p><img src="/article/1d82fc97/image-20200720103210812.png" srcset="/img/loading.gif" alt="image-20200720103210812"></p><p><img src="/article/1d82fc97/image-20200720103352834.png" srcset="/img/loading.gif" alt="image-20200720103352834"></p><p><img src="/article/1d82fc97/image-20200720103521702.png" srcset="/img/loading.gif" alt="image-20200720103521702"></p><p>相较于域级别而言，类级别的MMD更加地细粒度(fine-grained更细致)。</p>]]></content>
     
     <summary type="html">
     
