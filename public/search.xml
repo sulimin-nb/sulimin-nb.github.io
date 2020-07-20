@@ -10084,9 +10084,9 @@ warning: LF will be replaced by CRLF in index.html.</code></pre>
   <entry>
     <title>论文阅读2</title>
     <url>/article/1d82fc97.html</url>
-    <content><![CDATA[<h1 id="Prototypical-Networks-for-Few-shot-Learning"><a href="#Prototypical-Networks-for-Few-shot-Learning" class="headerlink" title="Prototypical Networks for Few-shot Learning"></a>Prototypical Networks for Few-shot Learning</h1><p><img src="/article/1d82fc97/image-20200719181649169.png" srcset="/img/loading.gif" alt="image-20200719181649169"></p>
+    <content><![CDATA[<h1 id="1-Prototypical-Networks-for-Few-shot-Learning"><a href="#1-Prototypical-Networks-for-Few-shot-Learning" class="headerlink" title="1.Prototypical Networks for Few-shot Learning"></a>1.Prototypical Networks for Few-shot Learning</h1><p><img src="/article/1d82fc97/image-20200719181649169.png" srcset="/img/loading.gif" alt="image-20200719181649169"></p>
 <p><img src="/article/1d82fc97/image-20200719181614391.png" srcset="/img/loading.gif" alt="image-20200719181614391"></p>
-<h1 id="Transferrable-Prototypical-Networks-for-Unsupervised-Domain-Adaptation"><a href="#Transferrable-Prototypical-Networks-for-Unsupervised-Domain-Adaptation" class="headerlink" title="Transferrable Prototypical Networks for Unsupervised Domain Adaptation"></a>Transferrable Prototypical Networks for Unsupervised Domain Adaptation</h1><p><img src="/article/1d82fc97/tempsnip.png" srcset="/img/loading.gif" alt="tempsnip"></p>
+<h1 id="2-Transferrable-Prototypical-Networks-for-Unsupervised-Domain-Adaptation"><a href="#2-Transferrable-Prototypical-Networks-for-Unsupervised-Domain-Adaptation" class="headerlink" title="2.Transferrable Prototypical Networks for Unsupervised Domain Adaptation"></a>2.Transferrable Prototypical Networks for Unsupervised Domain Adaptation</h1><p><img src="/article/1d82fc97/tempsnip.png" srcset="/img/loading.gif" alt="tempsnip"></p>
 <p><strong>motivation:</strong></p>
 <p><img src="/article/1d82fc97/image-20200720103101415.png" srcset="/img/loading.gif" alt="image-20200720103101415"></p>
 <p><strong>design:</strong></p>
@@ -10109,6 +10109,12 @@ warning: LF will be replaced by CRLF in index.html.</code></pre>
 <p><img src="/article/1d82fc97/image-20200720105706495.png" srcset="/img/loading.gif" alt="image-20200720105706495"></p>
 <p><strong>推理阶段(测试阶段)：</strong></p>
 <p><img src="/article/1d82fc97/image-20200720110755325.png" srcset="/img/loading.gif" alt="image-20200720110755325"></p>
+<h1 id="3-Distant-Supervised-Centroid-Shift-A-Sample-and-Efficient-Approach-to-Visual-Domain-Adaptation"><a href="#3-Distant-Supervised-Centroid-Shift-A-Sample-and-Efficient-Approach-to-Visual-Domain-Adaptation" class="headerlink" title="3.Distant Supervised Centroid Shift: A Sample and Efficient Approach to Visual Domain Adaptation"></a>3.Distant Supervised Centroid Shift: A Sample and Efficient Approach to Visual Domain Adaptation</h1><p><strong>问题定义：</strong></p>
+<p><img src="/article/1d82fc97/image-20200720140545581.png" srcset="/img/loading.gif" alt="image-20200720140545581"></p>
+<p><strong>Method：</strong></p>
+<p><img src="/article/1d82fc97/image-20200720141255925.png" srcset="/img/loading.gif" alt="image-20200720141255925"></p>
+<p><img src="/article/1d82fc97/image-20200720141722664.png" srcset="/img/loading.gif" alt="image-20200720141722664"></p>
+<h1 id="4-Adaptive-Cross-Modal-Few-shot-Learning"><a href="#4-Adaptive-Cross-Modal-Few-shot-Learning" class="headerlink" title="4. Adaptive Cross-Modal Few-shot Learning"></a>4. Adaptive Cross-Modal Few-shot Learning</h1><p>word embedding<br>香蕉+苹果=香蕉苹果</p>
 ]]></content>
       <categories>
         <category>linc实验室</category>
