@@ -1,1736 +1,908 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
+
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=EB Garamond:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"sulimin-nb.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
-  </script>
-
-  <meta name="description" content="向前向前向前ε&#x3D;( o｀ω′)ノ写博客如喝汤的汤达人">
-<meta property="og:type" content="website">
-<meta property="og:title" content="苏">
-<meta property="og:url" content="https://sulimin-nb.github.io/index.html">
-<meta property="og:site_name" content="苏">
-<meta property="og:description" content="向前向前向前ε&#x3D;( o｀ω′)ノ写博客如喝汤的汤达人">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="sulimin">
-<meta property="article:tag" content="机器学习，数据挖掘，计算机视觉">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://sulimin-nb.github.io/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>苏</title>
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
+  <meta name="author" content="sulimin">
+  <meta name="keywords" content="机器学习，数据挖掘，计算机视觉">
+  <title>苏</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
 
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+<link  rel="stylesheet" href="/css/main.css" />
 
-<link rel="alternate" href="/atom.xml" title="苏" type="application/atom+xml">
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="苏" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Sulimin</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/target/">
+                <i class="iconfont icon-clipcheck"></i>
+                每日目标
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">苏</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
 </nav>
 
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/IMG_5257.PNG') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
 
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content index posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/1d82fc97.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/1d82fc97.html" class="post-title-link" itemprop="url">论文阅读2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-19 17:49:00" itemprop="dateCreated datePublished" datetime="2020-07-19T17:49:00+08:00">2020-07-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-21 00:12:02" itemprop="dateModified" datetime="2020-07-21T00:12:02+08:00">2020-07-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linc%E5%AE%9E%E9%AA%8C%E5%AE%A4/" itemprop="url" rel="index"><span itemprop="name">linc实验室</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/1d82fc97.html" class="post-meta-item leancloud_visitors" data-flag-title="论文阅读2" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/1d82fc97.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/1d82fc97.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>722</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1-Prototypical-Networks-for-Few-shot-Learning"><a href="#1-Prototypical-Networks-for-Few-shot-Learning" class="headerlink" title="1.Prototypical Networks for Few-shot Learning"></a>1.Prototypical Networks for Few-shot Learning</h1><p><img src="/article/1d82fc97/image-20200719181649169.png" srcset="/img/loading.gif" alt="image-20200719181649169"></p>
-<p><img src="/article/1d82fc97/image-20200719181614391.png" srcset="/img/loading.gif" alt="image-20200719181614391"></p>
-<h1 id="2-Transferrable-Prototypical-Networks-for-Unsupervised-Domain-Adaptation"><a href="#2-Transferrable-Prototypical-Networks-for-Unsupervised-Domain-Adaptation" class="headerlink" title="2.Transferrable Prototypical Networks for Unsupervised Domain Adaptation"></a>2.Transferrable Prototypical Networks for Unsupervised Domain Adaptation</h1><p><img src="/article/1d82fc97/tempsnip.png" srcset="/img/loading.gif" alt="tempsnip"></p>
-<p><strong>motivation:</strong></p>
-<p><img src="/article/1d82fc97/image-20200720103101415.png" srcset="/img/loading.gif" alt="image-20200720103101415"></p>
-<p><strong>design:</strong></p>
-<p><img src="/article/1d82fc97/image-20200720103210812.png" srcset="/img/loading.gif" alt="image-20200720103210812"></p>
-<p><img src="/article/1d82fc97/image-20200720103352834.png" srcset="/img/loading.gif" alt="image-20200720103352834"></p>
-<p><img src="/article/1d82fc97/image-20200720103521702.png" srcset="/img/loading.gif" alt="image-20200720103521702"></p>
-<p>相较于域级别而言，类级别的MMD更加地细粒度(fine-grained更细致)。</p>
-<p><img src="/article/1d82fc97/image-20200720104021744.png" srcset="/img/loading.gif" alt="image-20200720104021744"></p>
-<p><strong>motivation:</strong></p>
-<p><img src="/article/1d82fc97/image-20200720104121465.png" srcset="/img/loading.gif" alt="image-20200720104121465"></p>
-<p><strong>design:</strong></p>
-<p><img src="/article/1d82fc97/image-20200720104403499.png" srcset="/img/loading.gif" alt="image-20200720104403499"></p>
-<p><img src="/article/1d82fc97/image-20200720104647122.png" srcset="/img/loading.gif" alt="image-20200720104647122"></p>
-<p>不同于单独匹配不同域之间的每个类的prototype，task-specific adaptation同时匹配所有类的prototypes。力求每个样本的类分布的score distributions相似.</p>
-<p><img src="/article/1d82fc97/image-20200720105117126.png" srcset="/img/loading.gif" alt="image-20200720105117126"></p>
-<p><strong>Optimization:</strong><br>源域上的监督学习</p>
-<p><img src="/article/1d82fc97/image-20200720105431189.png" srcset="/img/loading.gif" alt="image-20200720105431189"></p>
-<p><img src="/article/1d82fc97/image-20200720105531478.png" srcset="/img/loading.gif" alt="image-20200720105531478"></p>
-<p><strong>Training Procedure:</strong></p>
-<p><img src="/article/1d82fc97/image-20200720105706495.png" srcset="/img/loading.gif" alt="image-20200720105706495"></p>
-<p><strong>推理阶段(测试阶段)：</strong></p>
-<p><img src="/article/1d82fc97/image-20200720110755325.png" srcset="/img/loading.gif" alt="image-20200720110755325"></p>
-<h1 id="3-Distant-Supervised-Centroid-Shift-A-Sample-and-Efficient-Approach-to-Visual-Domain-Adaptation"><a href="#3-Distant-Supervised-Centroid-Shift-A-Sample-and-Efficient-Approach-to-Visual-Domain-Adaptation" class="headerlink" title="3.Distant Supervised Centroid Shift: A Sample and Efficient Approach to Visual Domain Adaptation"></a>3.Distant Supervised Centroid Shift: A Sample and Efficient Approach to Visual Domain Adaptation</h1><p><strong>问题定义：</strong></p>
-<p><img src="/article/1d82fc97/image-20200720140545581.png" srcset="/img/loading.gif" alt="image-20200720140545581"></p>
-<p><strong>Method：</strong></p>
-<p><img src="/article/1d82fc97/image-20200720141255925.png" srcset="/img/loading.gif" alt="image-20200720141255925"></p>
-<p><strong>(1) 类内散度最小化(Source Domain)：</strong></p>
-<p><img src="/article/1d82fc97/image-20200720141722664.png" srcset="/img/loading.gif" alt="image-20200720141722664"></p>
-<p><img src="/article/1d82fc97/image-20200720142301426.png" srcset="/img/loading.gif" alt="image-20200720142301426"></p>
-<p><strong>类内散度最小化(Target Domain)：</strong></p>
-<p><img src="/article/1d82fc97/image-20200720142652395.png" srcset="/img/loading.gif" alt="image-20200720142652395"></p>
-<p>目标域不存在标签，采用最近邻中心的分类器，同时force Target类中心和对应的Source类中心靠近。<br>就是把Source类中心加上一个偏移量视为Target类中心，同时最小化此偏移量。<br><strong>总体目标如下：</strong></p>
-<p><img src="/article/1d82fc97/image-20200720143112960.png" srcset="/img/loading.gif" alt="image-20200720143112960"></p>
-<p><img src="/article/1d82fc97/image-20200720145649943.png" srcset="/img/loading.gif" alt="image-20200720145649943"></p>
-<p><strong>relaxed trace-ratio objective：</strong></p>
-<p><img src="/article/1d82fc97/image-20200720150033777.png" srcset="/img/loading.gif" alt="image-20200720150033777"></p>
-<p><img src="/article/1d82fc97/image-20200720171415765.png" srcset="/img/loading.gif" alt="image-20200720171415765"></p>
-<p><strong>Optimization(具体流程)：</strong><br>利用GEVD求解：</p>
-<p><img src="/article/1d82fc97/image-20200720173504331.png" srcset="/img/loading.gif" alt="image-20200720173504331"></p>
-<p><span style="color:red">这里需要再看看</span></p>
-<p><img src="/article/1d82fc97/tempsnip2.png" srcset="/img/loading.gif" alt="tempsnip2"></p>
-<p><img src="/article/1d82fc97/image-20200720180603912.png" srcset="/img/loading.gif" alt="image-20200720180603912"></p>
-<p><img src="/article/1d82fc97/image-20200720180940704.png" srcset="/img/loading.gif" alt="image-20200720180940704"></p>
-<p><img src="/article/1d82fc97/image-20200720181003000.png" srcset="/img/loading.gif" alt="image-20200720181003000"></p>
-<h1 id="4-Adaptive-Cross-Modal-Few-shot-Learning"><a href="#4-Adaptive-Cross-Modal-Few-shot-Learning" class="headerlink" title="4. Adaptive Cross-Modal Few-shot Learning"></a>4. Adaptive Cross-Modal Few-shot Learning</h1><p><strong>背景知识：</strong></p>
-<p><img src="/article/1d82fc97/image-20200720235811934.png" srcset="/img/loading.gif" alt="image-20200720235811934"></p>
-<p><a href="# 1.Prototypical Networks for Few-shot Learning">第一篇</a>写了，这里就不赘述了。</p>
-<p><img src="/article/1d82fc97/image-20200720235846044.png" srcset="/img/loading.gif" alt="image-20200720235846044"></p>
-<p><strong>motivation:</strong></p>
-<p><img src="/article/1d82fc97/tempsnip3.png" srcset="/img/loading.gif" alt="tempsnip3"></p>
-<p><img src="/article/1d82fc97/image-20200720235727709.png" srcset="/img/loading.gif" alt="image-20200720235727709"></p>
-<p><strong>方法Formulation：</strong></p>
-<p><img src="/article/1d82fc97/image-20200721001159311.png" srcset="/img/loading.gif" alt="image-20200721001159311"></p>
-
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/708439c3.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/708439c3.html" class="post-title-link" itemprop="url">leetcode200-岛屿数量</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-19 15:21:17 / 修改时间：18:33:46" itemprop="dateCreated datePublished" datetime="2020-07-19T15:21:17+08:00">2020-07-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" itemprop="url" rel="index"><span itemprop="name">深度优先搜索，广度优先搜索</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/708439c3.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode200-岛屿数量" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/708439c3.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/708439c3.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/1c7950e9.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/1c7950e9.html" class="post-title-link" itemprop="url">leetcode127-单词接龙</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-19 15:20:13 / 修改时间：18:33:53" itemprop="dateCreated datePublished" datetime="2020-07-19T15:20:13+08:00">2020-07-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" itemprop="url" rel="index"><span itemprop="name">深度优先搜索，广度优先搜索</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/1c7950e9.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode127-单词接龙" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/1c7950e9.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/1c7950e9.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/25dd8b3e.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/25dd8b3e.html" class="post-title-link" itemprop="url">leetcode126-单词接龙II</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-19 15:19:28 / 修改时间：18:33:41" itemprop="dateCreated datePublished" datetime="2020-07-19T15:19:28+08:00">2020-07-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" itemprop="url" rel="index"><span itemprop="name">深度优先搜索，广度优先搜索</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/25dd8b3e.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode126-单词接龙II" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/25dd8b3e.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/25dd8b3e.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/68fd8ba2.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/68fd8ba2.html" class="post-title-link" itemprop="url">leetcode22-括号生成</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-19 14:34:03 / 修改时间：17:50:09" itemprop="dateCreated datePublished" datetime="2020-07-19T14:34:03+08:00">2020-07-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" itemprop="url" rel="index"><span itemprop="name">深度优先搜索，广度优先搜索</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/68fd8ba2.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode22-括号生成" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/68fd8ba2.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/68fd8ba2.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="leetcode20-括号生成"><a href="#leetcode20-括号生成" class="headerlink" title="leetcode20.括号生成"></a>leetcode20.括号生成</h1><p>数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 <strong>有效的</strong> 括号组合。</p>
-<p><strong>示例：</strong></p>
-<pre><code class="hljs excel">输入：<span class="hljs-built_in">n</span> = <span class="hljs-number">3</span>
-输出：[
-       <span class="hljs-string">"((()))"</span>,
-       <span class="hljs-string">"(()())"</span>,
-       <span class="hljs-string">"(())()"</span>,
-       <span class="hljs-string">"()(())"</span>,
-       <span class="hljs-string">"()()()"</span>
-     ]</code></pre>
-<h2 id="一：暴力法"><a href="#一：暴力法" class="headerlink" title="一：暴力法"></a>一：暴力法</h2><p><strong>思路</strong></p>
-<p>我们可以生成所有 $2^{2n}$ 个 <code>&#39;(&#39;</code> 和 <code>&#39;)&#39;</code> 字符构成的序列，然后我们检查每一个是否有效即可。</p>
-<p><strong>算法</strong></p>
-<p>为了生成所有序列，我们可以使用递归。长度为 <code>n</code> 的序列就是在长度为 <code>n-1</code> 的序列前加一个 <code>&#39;(&#39;</code> 或 <code>&#39;)&#39;</code>。</p>
-<p>为了检查序列是否有效，我们遍历这个序列，并使用一个变量 <code>balance</code> 表示左括号的数量减去右括号的数量。如果在遍历过程中 <code>balance</code> 的值小于零，或者结束时 <code>balance</code> 的值不为零，那么该序列就是无效的，否则它是有效的。</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generateParenthesis</span><span class="hljs-params">(self, n: int)</span> -&gt; List[str]:</span>
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate</span><span class="hljs-params">(A)</span>:</span>
-            <span class="hljs-keyword">if</span> len(A) == <span class="hljs-number">2</span>*n:
-                <span class="hljs-keyword">if</span> valid(A):
-                    ans.append(<span class="hljs-string">""</span>.join(A))
-            <span class="hljs-keyword">else</span>:
-                A.append(<span class="hljs-string">'('</span>)
-                generate(A)
-                A.pop()
-                A.append(<span class="hljs-string">')'</span>)
-                generate(A)
-                A.pop()
-
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">valid</span><span class="hljs-params">(A)</span>:</span>
-            bal = <span class="hljs-number">0</span>
-            <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> A:
-                <span class="hljs-keyword">if</span> c == <span class="hljs-string">'('</span>: bal += <span class="hljs-number">1</span>
-                <span class="hljs-keyword">else</span>: bal -= <span class="hljs-number">1</span>
-                <span class="hljs-keyword">if</span> bal &lt; <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
-            <span class="hljs-keyword">return</span> bal == <span class="hljs-number">0</span>
-
-        ans = []
-        generate([])
-        <span class="hljs-keyword">return</span> ans</code></pre>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：$O(2^{2n}n)$，对于 $2^{2n}$ 个序列中的每一个，我们用于建立和验证该序列的复杂度为 $O(n)$。</li>
-</ul>
-<p>空间复杂度：$O(n)$，除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要 $O(1)$ 的空间，最多递归 $2n$ 层，因此空间复杂度为 $O(n)$。</p>
-<h2 id="方法二：回溯法"><a href="#方法二：回溯法" class="headerlink" title="方法二：回溯法"></a>方法二：回溯法</h2><p><strong>思路和算法</strong></p>
-<p>方法一还有改进的余地，可以只在序列仍然保持有效时添加 <code>&#39;(&#39;</code> or <code>&#39;)&#39;</code>，而不是像 <a href="#方法一：暴力法">方法一</a> 那样每次添加。我们可以通过跟踪到目前为止放置的左括号和右括号的数目来做到这一点。<br>如果左括号数量不大于 $n$，可以放一个左括号。如果右括号数量小于左括号的数量，我们可以放一个右括号。</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generateParenthesis</span><span class="hljs-params">(self, n)</span>:</span>
-        ans = []
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(S, left, right)</span>:</span>
-            <span class="hljs-keyword">if</span> len(S) == <span class="hljs-number">2</span> * n:
-                ans.append(<span class="hljs-string">''</span>.join(S))
-                <span class="hljs-keyword">return</span>
-            <span class="hljs-keyword">if</span> left &lt; n:
-                S.append(<span class="hljs-string">'('</span>)
-                backtrack(S, left+<span class="hljs-number">1</span>, right)
-                S.pop()
-            <span class="hljs-keyword">if</span> right &lt; left:
-                S.append(<span class="hljs-string">')'</span>)
-                backtrack(S, left, right+<span class="hljs-number">1</span>)
-                S.pop()
-        backtrack([], <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
-        <span class="hljs-keyword">return</span> ans</code></pre>
-<p><strong>复杂度分析</strong></p>
-<p>复杂度分析依赖于理解 <code>generateParenthesis(n)</code> 中有多少个元素。事实证明这是第 $n$ 个卡特兰数 $\dfrac{1}{n+1}\dbinom{2n}{n}$ ，这是由 $\dfrac{4^n}{n\sqrt{n}}$ 渐近界定的。</p>
-<ul>
-<li>时间复杂度：时间复杂度：$O(\dfrac{4^n}{\sqrt{n}})$，在回溯过程中，每个答案需要 $O(n)$ 的时间复制到答案数组中。</li>
-<li>空间复杂度：$O(n)$，除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要 $O(1)$ 的空间，最多递归 $2n$ 层，因此空间复杂度为 $O(n)$。</li>
-</ul>
-<h2 id="方法三：按括号序列的长度递归"><a href="#方法三：按括号序列的长度递归" class="headerlink" title="方法三：按括号序列的长度递归"></a>方法三：按括号序列的长度递归</h2><p><strong>思路与算法</strong></p>
-<p>任何一个括号序列都一定是由 <code>(</code> 开头，并且第一个 <code>(</code> 一定有一个唯一与之对应的 <code>)</code>。这样一来，每一个括号序列可以用 <code>(a)b</code> 来表示，其中 <code>a</code> 与 <code>b</code> 分别是一个合法的括号序列（可以为空）。</p>
-<p>那么，要生成所有长度为 <code>2 * n</code> 的括号序列，我们定义一个函数 <code>generate(n)</code> 来返回所有可能的括号序列。那么在函数 <code>generate(n)</code> 的过程中：</p>
-<p>我们需要枚举与第一个 <code>(</code> 对应的 ) 的位置 <code>2 * i + 1</code>；<br>递归调用 <code>generate(i)</code> 即可计算 a 的所有可能性；<br>递归调用 <code>generate(n - i - 1)</code> 即可计算 b 的所有可能性；<br>遍历 <code>a</code> 与 <code>b</code> 的所有可能性并拼接，即可得到所有长度为 <code>2 * n</code> 的括号序列。<br>为了节省计算时间，我们在每次 <code>generate(i)</code> 函数返回之前，把返回值存储起来，下次再调用 <code>generate(i)</code> 时可以直接返回，不需要再递归计算。</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-<span class="hljs-meta">    @lru_cache(None)</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generateParenthesis</span><span class="hljs-params">(self, n: int)</span> -&gt; List[str]:</span>
-        <span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span>:
-            <span class="hljs-keyword">return</span> [<span class="hljs-string">''</span>]
-        ans = []
-        <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> range(n):
-            <span class="hljs-keyword">for</span> left <span class="hljs-keyword">in</span> self.generateParenthesis(c):
-                <span class="hljs-keyword">for</span> right <span class="hljs-keyword">in</span> self.generateParenthesis(n<span class="hljs-number">-1</span>-c):
-                    ans.append(<span class="hljs-string">'(&#123;&#125;)&#123;&#125;'</span>.format(left, right))
-        <span class="hljs-keyword">return</span> ans</code></pre>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：$O(\dfrac{4^n}{\sqrt{n}})$，该分析与 方法二 类似。</p>
-</li>
-<li><p>空间复杂度：$O(\dfrac{4^n}{\sqrt{n}})$，此方法除答案数组外，中间过程中会存储与答案数组同样数量级的临时数组，是我们所需要的空间复杂度。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/e3f6d653.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/e3f6d653.html" class="post-title-link" itemprop="url">leetcode433-最小基因变化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-19 13:21:24 / 修改时间：17:50:09" itemprop="dateCreated datePublished" datetime="2020-07-19T13:21:24+08:00">2020-07-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" itemprop="url" rel="index"><span itemprop="name">深度优先搜索，广度优先搜索</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/e3f6d653.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode433-最小基因变化" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/e3f6d653.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/e3f6d653.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/6b3bc2e7.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/6b3bc2e7.html" class="post-title-link" itemprop="url">nlp</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-17 16:14:00" itemprop="dateCreated datePublished" datetime="2020-07-17T16:14:00+08:00">2020-07-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 23:37:26" itemprop="dateModified" datetime="2020-07-19T23:37:26+08:00">2020-07-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">自然语言处理</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/6b3bc2e7.html" class="post-meta-item leancloud_visitors" data-flag-title="nlp" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/6b3bc2e7.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/6b3bc2e7.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          This blog is encrypted.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/article/6b3bc2e7.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/f37649e5.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/f37649e5.html" class="post-title-link" itemprop="url">算法-卡特兰数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-17 02:21:11 / 修改时间：16:01:22" itemprop="dateCreated datePublished" datetime="2020-07-17T02:21:11+08:00">2020-07-17</time>
-            </span>
-
-          
-            <span id="/article/f37649e5.html" class="post-meta-item leancloud_visitors" data-flag-title="算法-卡特兰数" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/f37649e5.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/f37649e5.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/fba1bed.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/fba1bed.html" class="post-title-link" itemprop="url">leetcode785-判断二分图</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-16 18:01:30" itemprop="dateCreated datePublished" datetime="2020-07-16T18:01:30+08:00">2020-07-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-17 16:04:10" itemprop="dateModified" datetime="2020-07-17T16:04:10+08:00">2020-07-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" itemprop="url" rel="index"><span itemprop="name">深度优先搜索，广度优先搜索</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/fba1bed.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode785-判断二分图" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/fba1bed.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/fba1bed.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="785-判断二分图"><a href="#785-判断二分图" class="headerlink" title="785.判断二分图"></a>785.判断二分图</h1><p>给定一个无向图<code>graph</code>，当这个图为二分图时返回<code>true</code>。</p>
-<p>如果我们能将一个图的节点集合分割成两个独立的子集A和B，并使图中的每一条边的两个节点一个来自A集合，一个来自B集合，我们就将这个图称为二分图。</p>
-<p><code>graph</code>将会以邻接表方式给出，<code>graph[i]</code>表示图中与节点i相连的所有节点。每个节点都是一个在<code>0</code>到<code>graph.length-1</code>之间的整数。这图中没有自环和平行边： <code>graph[i]</code>中不存在<code>i</code>，并且<code>graph[i]</code>中没有重复的值。</p>
-<pre><code class="hljs angelscript">示例 <span class="hljs-number">1</span>:
-输入: [[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>], [<span class="hljs-number">0</span>,<span class="hljs-number">2</span>], [<span class="hljs-number">1</span>,<span class="hljs-number">3</span>], [<span class="hljs-number">0</span>,<span class="hljs-number">2</span>]]
-输出: <span class="hljs-literal">true</span>
-解释: 
-无向图如下:
-<span class="hljs-number">0</span>---<span class="hljs-number">-1</span>
-|    |
-|    |
-<span class="hljs-number">3</span>---<span class="hljs-number">-2</span>
-我们可以将节点分成两组: &#123;<span class="hljs-number">0</span>, <span class="hljs-number">2</span>&#125; 和 &#123;<span class="hljs-number">1</span>, <span class="hljs-number">3</span>&#125;。</code></pre>
-<pre><code class="hljs angelscript">示例 <span class="hljs-number">2</span>:
-输入: [[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], [<span class="hljs-number">0</span>,<span class="hljs-number">2</span>], [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>], [<span class="hljs-number">0</span>,<span class="hljs-number">2</span>]]
-输出: <span class="hljs-literal">false</span>
-解释: 
-无向图如下:
-<span class="hljs-number">0</span>---<span class="hljs-number">-1</span>
-| \  |
-|  \ |
-<span class="hljs-number">3</span>---<span class="hljs-number">-2</span>
-我们不能将节点分割成两个独立的子集。</code></pre>
-<p><strong>注意:</strong></p>
-<ul>
-<li><code>graph</code> 的长度范围为 <code>[1, 100]</code>。</li>
-<li><code>graph[i]</code> 中的元素的范围为 <code>[0, graph.length - 1]</code>。</li>
-<li><code>graph[i]</code> 不会包含 <code>i</code> 或者有重复的值。</li>
-<li>图是无向的: 如果<code>j</code> 在 <code>graph[i]</code>里边, 那么 <code>i</code> 也会在 <code>graph[j]</code>里边。</li>
-</ul>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>对于图中的任意两个节点 $u$ 和 $v$，如果它们之间有一条边直接相连，那么 $u$ 和 $v$ 必须属于不同的集合。</p>
-<p>如果给定的无向图连通，那么我们就可以任选一个节点开始，给它染成红色。随后将该节点直接相连的所有节点染成绿色，表示这些节点不能与起始节点属于同一个集合。我们再将这些绿色节点直接相连的所有节点染成红色，以此类推，直到无向图中的每个节点均被染色。</p>
-<p>如果我们能够成功染色，那么红色和绿色的节点各属于一个集合，这个无向图就是一个二分图；如果我们未能成功染色，即在染色的过程中，某一时刻访问到了一个已经染色的节点，并且它的颜色与我们将要给它染上的颜色不相同(即一条边上两个节点同色)，也就说明这个无向图不是一个二分图。</p>
-<h2 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h2><ul>
-<li><p>我们任选一个节点开始，将其染成红色，并从该节点开始对整个无向图进行遍历；</p>
-</li>
-<li><p>在遍历的过程中，如果我们通过节点 u 遍历到了节点 v（即 u 和 v 在图中有一条边直接相连），那么会有两种情况：</p>
-<ul>
-<li>如果 v 未被染色，那么我们将其染成与 u 不同的颜色，并对 v 直接相连的节点进行遍历；</li>
-<li>如果 v 被染色，并且颜色与 u 相同，那么说明给定的无向图不是二分图。我们可以直接退出遍历并返回 $\text{False}$ 作为答案。</li>
-</ul>
-</li>
-</ul>
-<p>当遍历结束时，说明给定的无向图是二分图，返回 $\text{True}$ 作为答案。</p>
-<p>注意：题目中给定的无向图不一定保证连通，因此我们需要遍历每个节点，直至每一个节点都被染色，或确定答案为False为止。每次遍历开始时，任选一个未被染色的节点，将所有与该节点直接或间接相连的节点进行染色。</p>
-<p>我们可以使用「深度优先搜索」或「广度优先搜索」对无向图进行遍历。</p>
-<h2 id="方法一：深度优先搜索"><a href="#方法一：深度优先搜索" class="headerlink" title="方法一：深度优先搜索"></a>方法一：深度优先搜索</h2><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isBipartite</span><span class="hljs-params">(self, graph: List[List[int]])</span> -&gt; bool:</span>
-        <span class="hljs-comment"># 方法一 深度优先搜索</span>
-        n = len(graph)
-        uncolored, red, green = <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>
-        color = [<span class="hljs-number">0</span>] * n
-        valid = <span class="hljs-literal">True</span>
-
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dfs</span><span class="hljs-params">(curr, c)</span>:</span>
-            <span class="hljs-keyword">nonlocal</span> valid
-            color[curr] = c
-            ncolor = green <span class="hljs-keyword">if</span> color[curr] == red <span class="hljs-keyword">else</span> red
-            <span class="hljs-keyword">for</span> neighbor <span class="hljs-keyword">in</span> graph[curr]:
-                <span class="hljs-keyword">if</span> color[neighbor] == uncolored:
-                    dfs(neighbor, ncolor)
-                    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> valid:
-                        <span class="hljs-keyword">return</span>
-                <span class="hljs-keyword">elif</span> color[neighbor] != ncolor:
-                    valid = <span class="hljs-literal">False</span>
-                    <span class="hljs-keyword">return</span>
-            <span class="hljs-keyword">return</span>
-
-        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n):
-            <span class="hljs-keyword">if</span> color[i] == uncolored:
-                dfs(i, red)
-                <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> valid:
-                    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span></code></pre>
-<h2 id="方法二：广度优先搜索"><a href="#方法二：广度优先搜索" class="headerlink" title="方法二：广度优先搜索"></a>方法二：广度优先搜索</h2><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isBipartite</span><span class="hljs-params">(self, graph: List[List[int]])</span> -&gt; bool:</span>
-        <span class="hljs-comment"># 方法二 广度优先搜索        </span>
-        n = len(graph)
-        uncolored, red, green = <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>
-        color = [<span class="hljs-number">0</span>] * n
-        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n):
-            <span class="hljs-keyword">if</span> color[i] == uncolored:
-                color[i] = red
-                queue = collections.deque([i])
-                <span class="hljs-keyword">while</span> queue:
-                    curr = queue.popleft()
-                    ncolor = green <span class="hljs-keyword">if</span> color[curr] == red <span class="hljs-keyword">else</span> red
-                    <span class="hljs-keyword">for</span> neighbor <span class="hljs-keyword">in</span> graph[curr]:
-                        <span class="hljs-keyword">if</span> color[neighbor] == uncolored:
-                            color[neighbor] = ncolor
-                            queue.append(neighbor)
-                        <span class="hljs-keyword">elif</span> color[neighbor] != ncolor:
-                            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
-        <span class="hljs-keyword">return</span>  <span class="hljs-literal">True</span></code></pre>
-<h2 id="方法三：并查集"><a href="#方法三：并查集" class="headerlink" title="方法三：并查集"></a>方法三：并查集</h2><p>二分图中，每个顶点的所有邻接点都应该属于同一个集合，且捕鱼顶点处于同一个集合，所以可以使用并查集解决这个问题。遍历图中每个顶点，将当前顶点的所有邻接点进行合并，并判断这些邻接点中是否存在某一邻接点意见与当前顶点处于同一个集合中，若是，则说明此无向图不是二分图。</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UFS</span>:</span>
-    <span class="hljs-comment"># 初始化p数组记录父节点，rank数组记录节点深度</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, length)</span>:</span>
-        self.p = [i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(length)]
-        self.rank = [<span class="hljs-number">0</span>] * length
-    <span class="hljs-comment"># 查找根节点</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">find</span><span class="hljs-params">(self, x)</span>:</span>
-        <span class="hljs-keyword">if</span> self.p[x] != x:
-            self.p[x] = self.find(self.p[x])
-        <span class="hljs-keyword">return</span> self.p[x]
-    
-    <span class="hljs-comment"># 合并两个节点</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">union</span><span class="hljs-params">(self, x, y)</span>:</span>
-        rx, ry = self.find(x), self.finx(y)
-        <span class="hljs-keyword">if</span> self.rank[rx] &lt; self.rank[ry]:
-            self.p[rx] = ry
-        <span class="hljs-keyword">elif</span> self.rank[rx] &gt; self.rank[ry]:
-            self.p[ry] = rx
-        <span class="hljs-keyword">else</span>:
-            self.p[rx] = ry
-            self.rank[ry] += <span class="hljs-number">1</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isBipartite</span><span class="hljs-params">(self, graph)</span>:</span>
-        ufs = UFS(len(graph))
-        <span class="hljs-keyword">for</span> i, g <span class="hljs-keyword">in</span> enumerate(graph):
-            root = ufs.find(i)
-            <span class="hljs-comment"># 若对面节点的根节点和当前节点根节点相同，返回False</span>
-            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(len(g)):
-                <span class="hljs-keyword">if</span> root == ufs.find(g[j]):
-                    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
-            <span class="hljs-comment"># 否则就把对面节点都合并起来</span>
-            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(g)):
-                ufs.union(g[j<span class="hljs-number">-1</span>],g[j])
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span></code></pre>
-<p>无rank版本</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isBipartite</span><span class="hljs-params">(self, graph)</span>:</span>
-		<span class="hljs-comment"># 第二种并查集</span>
-        n=len(graph)
-        boss=[i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n)]
-
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">find</span><span class="hljs-params">(x)</span>:</span>
-            <span class="hljs-keyword">nonlocal</span> boss
-            <span class="hljs-keyword">if</span> boss[x]!=x:
-                boss[x]=find(boss[x])
-            <span class="hljs-keyword">return</span> boss[x]
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">merge</span><span class="hljs-params">(x,y)</span>:</span>
-            bx=find(x)
-            by=find(y)
-            boss[bx]=by
-
-        <span class="hljs-keyword">for</span> i, e <span class="hljs-keyword">in</span> enumerate(graph):
-            fi=find(i)
-            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> e:
-                <span class="hljs-keyword">if</span> find(j)==fi:
-                    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
-            <span class="hljs-keyword">if</span> e:
-                b=e[<span class="hljs-number">0</span>]
-                <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> e[<span class="hljs-number">1</span>:]:
-                    merge(b,j)
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span></code></pre>
-<p><strong>补充：</strong><br><span style="color:blue">非局部变量用于未定义局部作用域的嵌套函数。这意味着变量(nonlocal x)既不能在局部作用域内，也不能在全局作用域内(就是说只能在嵌套函数里使用)。<br>我们使用非局部关键字(nonlocal)来创建非局部变量。</span></p>
-<blockquote>
-<p><strong>Note</strong> : If we change the value of a nonlocal variable, the changes appear in the local variable.<br>注意:如果我们改变一个非局部变量的值，这些改变会出现在局部变量中。（nonlocal 表示将变量声明为外层变量（外层函数的局部变量，而且不能是全局变量）。）</p>
-</blockquote>
-<p>详细内容参考<a href="https://blog.csdn.net/HappyRocking/article/details/80115241" target="_blank" rel="noopener">python中global,nonlocal的区别</a></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/is-graph-bipartite/solution/pan-duan-er-fen-tu-by-leetcode-solution/" target="_blank" rel="noopener">官方题解</a></p>
-<p><a href="https://leetcode-cn.com/problems/is-graph-bipartite/solution/bfs-dfs-bing-cha-ji-san-chong-fang-fa-pan-duan-er-/" target="_blank" rel="noopener">BFS+DFS+并查集</a></p>
-
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/359b1a5e.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/359b1a5e.html" class="post-title-link" itemprop="url">linc-论文阅读1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-16 16:35:13" itemprop="dateCreated datePublished" datetime="2020-07-16T16:35:13+08:00">2020-07-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-18 00:26:45" itemprop="dateModified" datetime="2020-07-18T00:26:45+08:00">2020-07-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linc%E5%AE%9E%E9%AA%8C%E5%AE%A4/" itemprop="url" rel="index"><span itemprop="name">linc实验室</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/359b1a5e.html" class="post-meta-item leancloud_visitors" data-flag-title="linc-论文阅读1" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/359b1a5e.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/359b1a5e.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          This blog is encrypted.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/article/359b1a5e.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
-
           </div>
-          
 
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/1d82fc97.html">论文阅读2</a>
+
+      <a href="/article/1d82fc97.html" class="index-excerpt">
+        
+        
+          
+        
+        <div>1.Prototypical Networks for Few-shot Learning
+
+2.Transferrable Prototypical Networks for Unsupervised Domain Adaptation
+motivation:
+
+design:
+
+
+
+相较于域级别而言，类级别的MMD更加地细粒度(fine-grained更细致)。
+
+motivation:
+
+d</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-19
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/linc%E5%AE%9E%E9%AA%8C%E5%AE%A4/">linc实验室</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/708439c3.html">leetcode200-岛屿数量</a>
+
+      <a href="/article/708439c3.html" class="index-excerpt">
+        
+        
+          
+        
+        <div></div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-19
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/leetcode/">leetcode</a>
+            
+              <a href="/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">深度优先搜索，广度优先搜索</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/leetcode/">leetcode</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/1c7950e9.html">leetcode127-单词接龙</a>
+
+      <a href="/article/1c7950e9.html" class="index-excerpt">
+        
+        
+          
+        
+        <div></div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-19
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/leetcode/">leetcode</a>
+            
+              <a href="/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">深度优先搜索，广度优先搜索</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/leetcode/">leetcode</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/25dd8b3e.html">leetcode126-单词接龙II</a>
+
+      <a href="/article/25dd8b3e.html" class="index-excerpt">
+        
+        
+          
+        
+        <div></div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-19
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/leetcode/">leetcode</a>
+            
+              <a href="/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">深度优先搜索，广度优先搜索</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/leetcode/">leetcode</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/68fd8ba2.html">leetcode22-括号生成</a>
+
+      <a href="/article/68fd8ba2.html" class="index-excerpt">
+        
+        
+          
+        
+        <div>leetcode20.括号生成数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
+示例：
+输入：n = 3
+输出：[
+       "((()))",
+       "(()())",
+       "(())()",
+       "()(())",
+       "()()()"
+     ]
+一：暴力法思路
+我们可以生成所有 $2^{2n}$ 个 </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-19
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/leetcode/">leetcode</a>
+            
+              <a href="/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">深度优先搜索，广度优先搜索</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/leetcode/">leetcode</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/e3f6d653.html">leetcode433-最小基因变化</a>
+
+      <a href="/article/e3f6d653.html" class="index-excerpt">
+        
+        
+          
+        
+        <div></div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-19
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/leetcode/">leetcode</a>
+            
+              <a href="/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">深度优先搜索，广度优先搜索</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/leetcode/">leetcode</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/6b3bc2e7.html">nlp</a>
+
+      <a href="/article/6b3bc2e7.html" class="index-excerpt">
+        
+        
+          
+        
+        <div>This blog is encrypted.</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-17
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">自然语言处理</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">自然语言处理</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/f37649e5.html">算法-卡特兰数</a>
+
+      <a href="/article/f37649e5.html" class="index-excerpt">
+        
+        
+          
+        
+        <div></div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-17
+          </div>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/fba1bed.html">leetcode785-判断二分图</a>
+
+      <a href="/article/fba1bed.html" class="index-excerpt">
+        
+        
+          
+        
+        <div>785.判断二分图给定一个无向图graph，当这个图为二分图时返回true。
+如果我们能将一个图的节点集合分割成两个独立的子集A和B，并使图中的每一条边的两个节点一个来自A集合，一个来自B集合，我们就将这个图称为二分图。
+graph将会以邻接表方式给出，graph[i]表示图中与节点i相连的所有节点。每个节点都是一个在0到graph.length-1之间的整数。这图中没有自环和平行边： graph</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-16
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/leetcode/">leetcode</a>
+            
+              <a href="/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">深度优先搜索，广度优先搜索</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>
+            
+              <a href="/tags/leetcode/">leetcode</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/359b1a5e.html">linc-论文阅读1</a>
+
+      <a href="/article/359b1a5e.html" class="index-excerpt">
+        
+        
+          
+        
+        <div>This blog is encrypted.</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-16
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/linc%E5%AE%9E%E9%AA%8C%E5%AE%A4/">linc实验室</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
     }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
       }
     }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('false' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/index.html');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz'
+    var app_key = 'Xwqmsb7cDIWaQB2GG2fCnSHf'
+    var server_url = ''
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="sulimin"
-      src="/images/su1.JPG">
-  <p class="site-author-name" itemprop="name">sulimin</p>
-  <div class="site-description" itemprop="description">向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">42</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">16</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">13</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/sulimin-nb" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sulimin-nb" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:15210376096@163.com" title="E-Mail → mailto:15210376096@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">sulimin</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
-    </span>
-    <span title="站点总字数">站点共173k字</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    <span title="站点阅读时长">阅读需2:37</span>
-</div>
-
-        
 
 
 
@@ -1738,85 +910,121 @@
 
 
 
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "come on ε=( o｀ω′)ノ要做写博客如喝汤的汤达人~&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 50,
+      loop: false,
     });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : true,
-      appId      : 'gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz',
-      appKey     : 'Xwqmsb7cDIWaQB2GG2fCnSHf',
-      placeholder: "ヾﾉ≧∀≦)o 来呀！吐槽一番吧！",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : true,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
     });
+  </script>
 
-  }, window.Valine);
-});
-</script>
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":1},"log":false});</script></body>
 </html>
-<script type="text/javascript" src="/js/love-click.js"></script>

@@ -1,2856 +1,946 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
+
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=EB Garamond:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"sulimin-nb.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
-  </script>
-
-  <meta name="description" content="向前向前向前ε&#x3D;( o｀ω′)ノ写博客如喝汤的汤达人">
-<meta property="og:type" content="website">
-<meta property="og:title" content="苏">
-<meta property="og:url" content="https://sulimin-nb.github.io/page/3/index.html">
-<meta property="og:site_name" content="苏">
-<meta property="og:description" content="向前向前向前ε&#x3D;( o｀ω′)ノ写博客如喝汤的汤达人">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="sulimin">
-<meta property="article:tag" content="机器学习，数据挖掘，计算机视觉">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://sulimin-nb.github.io/page/3/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>苏</title>
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
+  <meta name="author" content="sulimin">
+  <meta name="keywords" content="机器学习，数据挖掘，计算机视觉">
+  <title>苏</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
 
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+<link  rel="stylesheet" href="/css/main.css" />
 
-<link rel="alternate" href="/atom.xml" title="苏" type="application/atom+xml">
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="苏" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Sulimin</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/target/">
+                <i class="iconfont icon-clipcheck"></i>
+                每日目标
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">苏</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
 </nav>
 
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/IMG_5257.PNG') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
 
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content index posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/c583ae2a.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/c583ae2a.html" class="post-title-link" itemprop="url">机器学习-聚类</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-10 17:54:32" itemprop="dateCreated datePublished" datetime="2020-07-10T17:54:32+08:00">2020-07-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-12 16:32:18" itemprop="dateModified" datetime="2020-07-12T16:32:18+08:00">2020-07-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
-                </span>
-            </span>
+          </div>
 
           
-            <span id="/article/c583ae2a.html" class="post-meta-item leancloud_visitors" data-flag-title="机器学习-聚类" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/c583ae2a.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/c583ae2a.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>7.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="层次聚类-Hierarchical-Clustering"><a href="#层次聚类-Hierarchical-Clustering" class="headerlink" title="层次聚类(Hierarchical Clustering)"></a>层次聚类(Hierarchical Clustering)</h2><p>1、聚合(agglomerative)或自下而上(bottom-up)聚类<br>2、分裂(divisive)或自上而下(top-down)聚类</p>
-<hr>
-<p><strong>AGNES(Agglomerative Nesting)：凝聚层次聚类</strong>——<strong>自下而上</strong><br>1、构造m个类，每个类包含一个样本<br>2、计算类与类之间的距离$d_{ij}$，记做矩阵$D=[d_{ij}]_{m \times m}$<br>3、合并间距最小的两个类<br>4、若达到聚类数k则退出<br>5、重新计算类之间的距离$d_{ij}$，重复3</p>
-<p>计算类间距离<br>1、最小距离(单连接，single linkage)<br>2、最大距离(完全连接，complete linkage)<br>3、中心/均值距离（计算中心，两个类中心之间的距离）<br>4、平均距离</p>
-<center>    
-    <img src="/article/c583ae2a/image-20200710180744389.png" srcset="/img/loading.gif" width="600">
-</center>
-<center>    
-    <img src="/article/c583ae2a/image-20200710182415542.png" srcset="/img/loading.gif" width="600">
-</center>
-
-
-<p><strong>代码</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-<span class="hljs-keyword">import</span> matplotlib <span class="hljs-keyword">as</span> mpl
-<span class="hljs-keyword">import</span> scripy.io
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">from</span> sklearn.cluster <span class="hljs-keyword">import</span> AgglomerativeClustering
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">loaddata</span><span class="hljs-params">()</span>:</span>
-    data = np.loadtxt(<span class="hljs-string">'data/cluster_data.csv'</span>, delimiter=<span class="hljs-string">','</span>)
-    <span class="hljs-keyword">return</span> data
-X = loaddata()
-<span class="hljs-comment"># linkage可取值：</span>
-<span class="hljs-comment"># -ward:方差</span>
-<span class="hljs-comment"># -complete:最大距离</span>
-<span class="hljs-comment"># -average：平均距离</span>
-<span class="hljs-comment"># -single:最小距离</span>
-model = AgglomerativeClustering(n_clusters=<span class="hljs-number">3</span>, affinity=<span class="hljs-string">'euclidean'</span>,linkage=<span class="hljs-string">'complete'</span>)
-<span class="hljs-comment"># AgglomerativeClustering(affinity='euclidean', compute_full_tree='auto',</span>
-<span class="hljs-comment">#                        connectivity=None, distance_threshold=None,</span>
-<span class="hljs-comment">#                        linkage='complete', memory=None, n_clusters=3)</span>
-model.fit(X)
-pirnt(<span class="hljs-string">'每个样本所属的簇：'</span>,model.labels_)
-cm_dark = mpl.colors.ListedColormap([<span class="hljs-string">'g'</span>,<span class="hljs-string">'r'</span>,<span class="hljs-string">'b'</span>])
-plt.scatter(X[:,<span class="hljs-number">0</span>],X[:,<span class="hljs-number">1</span>], c=model.labels_, cmap=cm_dark, s=<span class="hljs-number">20</span>)
-plt.show()</code></pre>
-<p>输出：</p>
-<pre><code class="hljs tex">每个样本所属的簇: [1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
- 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
- 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2
- 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
- 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
- 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- 0 0 0 1]</code></pre>
-<p><img src="/article/c583ae2a/image-20200710211716375.png" srcset="/img/loading.gif" alt="image-20200710211716375"></p>
-<h2 id="密度聚类-Density-based-clustering"><a href="#密度聚类-Density-based-clustering" class="headerlink" title="密度聚类(Density-based clustering)"></a>密度聚类(Density-based clustering)</h2><p>DBSCAN是一种著名的密度聚类方法，给定参数$(\varepsilon,Minpts)$<br>1、$\varepsilon$领域<br>2、核心对象(Core object)<br>3、密度直达(directly density-reachable)<br>4、密度可达(density-reachable)</p>
-<center>    
-    <img src="/article/c583ae2a/image-20200710183926623.png" srcset="/img/loading.gif" width="600">
-</center>
-
-<p>若$minPts=3$，则$x_1,x_2$等都是核心对象<br>$x_2$由$x_1$密度直达，$x_3$由$x_1$密度可达</p>
-<p><strong>密度聚类算法过程：</strong><br>1、首先设置$(\varepsilon,Minpts)$参数<br>2、确定核心对象，假设为$\Omega ={x^{(3)},x^{(5)},x^{(6)},x^{(8)},x^{(9)},x^{(13)},x^{(14)},x^{(18)} ,x^{(19)} ,x^{(24)} ,x^{(25)},x^{(28)},x^{(29)}}$<br>3、从$\Omega$中随机选取一个核心对象作为种子(假设为$x^{(8)}$)，找出由它密度可达的所有样本，构成一个聚类簇，假设第一个聚类簇为$C_1 = \{ x^{(6)},x^{(7)},x^{(8)},x^{(10)},x^{(12)},x^{(18)},x^{(19)},x^{(20)},x^{(23)} \}$<br>4、从$\Omega$中去除$C_1$中包含的核心对象后，$\Omega ={x^{(3)},x^{(5)},x^{(9)},x^{(13)},x^{(14)},x^{(24)} ,x^{(25)},x^{(28)},x^{(29)}}$，重复3直至$\Omega$为空。</p>
-<p><strong>代码</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-<span class="hljs-keyword">import</span> matplotlib <span class="hljs-keyword">as</span> mpl
-<span class="hljs-keyword">import</span> scripy.io
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">from</span> sklearn.cluster <span class="hljs-keyword">import</span> DBSCAN
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">loaddata</span><span class="hljs-params">()</span>:</span>
-    data = np.loadtxt(<span class="hljs-string">'data/cluster_data.csv'</span>, delimiter=<span class="hljs-string">','</span>)
-    <span class="hljs-keyword">return</span> data
-X = loaddata()
-model = DBSCAN(eps=<span class="hljs-number">0.5</span>, min_samples=<span class="hljs-number">5</span>, metric=<span class="hljs-string">'euclidean'</span>)
-model.fit(X)
-print(<span class="hljs-string">'每个样本所属的簇：'</span>, model.labels_)
-cm_dark = mpl.colors.ListedColormap([<span class="hljs-string">'g'</span>,<span class="hljs-string">'r'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>])
-plt.scatter(X[:,<span class="hljs-number">0</span>], X[:,<span class="hljs-number">1</span>], c=model.labels_, cmap=cm_dark, s=<span class="hljs-number">20</span>)</code></pre>
-<p>输出(-1类为离群点)：</p>
-<pre><code class="hljs tex">每个样本所属的簇: [ 0 -1  1  0  0  0  0  0  0  0  0  0  0  0  0  0 -1  0  0  0  0  0  0  0
-  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 -1
-  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 -1  0  0  0  0
-  0  0  0  0  0  0  0  0  0  0  0  0 -1  0  0  0  0  0  0  0  0  0  0 -1
-  0  0  0  0  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2
-  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2
-  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2
-  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2
-  2  2  2  2 -1  2 -1  2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
-  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
-  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
-  1 -1 -1  1  1  1  1  1  1  1  1  1  1  1  1 -1  1  1  1  1  1  1  1  1
-  1  1  1  1  1  1  1  1  1  1  1  0]</code></pre>
-<p><img src="/article/c583ae2a/image-20200710214909170.png" srcset="/img/loading.gif" alt="image-20200710214909170"></p>
-<h2 id="高斯混合模型-Gaussian-Mixed-Model"><a href="#高斯混合模型-Gaussian-Mixed-Model" class="headerlink" title="高斯混合模型(Gaussian Mixed Model)"></a>高斯混合模型(Gaussian Mixed Model)</h2><p>高斯模型（$x$为单变量）：</p>
-<center>    
-    <img src="/article/c583ae2a/image-20200710215235437.png" srcset="/img/loading.gif" , width="300">
-</center>
-
-<p>均值为0，方差为1的概率密度函数：</p>
-<center>    
-    <img src="/article/c583ae2a/image-20200710215343235.png" srcset="/img/loading.gif">
-</center>
-
-<p>高斯模型（$X$为多变量，维度为$n$，$d=n$，$\sum$为$X$的协方差矩阵，大小为$n \times n$，$\overrightarrow{u}=(u_1,u_2,\ldots,u_n)$）：</p>
-<center>    
-    <img src="/article/c583ae2a/image-20200710215425497.png" srcset="/img/loading.gif" , width="500">
-</center>
-
-<center>    
-    <img src="/article/c583ae2a/image-20200710215745455.png" srcset="/img/loading.gif">
-</center>
-
-<p>为什么要用高斯混合模型：</p>
-<center class="third">    
-    <img src="/article/c583ae2a/image-20200710215954681.png" srcset="/img/loading.gif" width="250">
-    <img src="/article/c583ae2a/image-20200710220000554.png" srcset="/img/loading.gif" width="250">
-    <img src="/article/c583ae2a/image-20200710220007667.png" srcset="/img/loading.gif" width="250">
-</center>
-
-
-<p>用单变量高斯模型无法拟合上图所示分布(两类数据的分布)，用高斯混合模型可以较好拟合。</p>
-<center>    
-    <img src="/article/c583ae2a/image-20200710220356090.png" srcset="/img/loading.gif" , width="400">
-</center>
-
-<p>其中 $k$ 为类别数，$\pi_k$为第 $k$ 个高斯模型的权重，$N(x|u_k,\sum_k)$为第 $k$ 个高斯模型，$u_k,\sum_k$是第 $k$ 个高斯模型的参数（均值向量，协方差矩阵）。</p>
-<p><strong>高斯混合模型参数计算</strong><br>第 $i$ 个样本属于第k个类别的概率：</p>
-<center>    
-    <img src="/article/c583ae2a/image-20200710230813932.png" srcset="/img/loading.gif" , width="200">
-</center>
-
-<center>    
-    <img src="/article/c583ae2a/image-20200710223122317.png" srcset="/img/loading.gif" , width="300">
-</center>
-
-<p>交替更新，直至收敛稳定。</p>
-<p><strong>手工代码</strong></p>
-<p>一、生成数据进行实验</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-<span class="hljs-comment"># 生成一些数据进行实验</span>
-<span class="hljs-comment"># 1.生成均值为1.71，标准差为0.056的男生身高数据</span>
-np.random.seed(<span class="hljs-number">0</span>)
-mu_m = <span class="hljs-number">1.71</span> <span class="hljs-comment"># 期望</span>
-sigma_m = <span class="hljs-number">0.056</span> <span class="hljs-comment"># 标准差</span>
-num_m = <span class="hljs-number">10000</span> <span class="hljs-comment"># 数据个数为10000</span>
-random_data_m = np.random.normal(mu_m, sigma_m, num_m) <span class="hljs-comment">#生成数据</span>
-y_m = np.ones(num_m) <span class="hljs-comment"># 生成标签</span>
-<span class="hljs-comment"># 2.生成均值为1.58，标准差为0.051的女生身高数据</span>
-np.random.seed(<span class="hljs-number">0</span>)
-mu_w = <span class="hljs-number">1.58</span>  <span class="hljs-comment">#期望</span>
-sigma_w = <span class="hljs-number">0.051</span>  <span class="hljs-comment">#标准差数据</span>
-num_w = <span class="hljs-number">10000</span>  <span class="hljs-comment">#个数为10000</span>
-rand_data_w = np.random.normal(mu_w, sigma_w, num_w)<span class="hljs-comment">#生成数据</span>
-y_w = np.zeros(num_m)<span class="hljs-comment">#生成标签</span>
-<span class="hljs-comment"># 3.把男生数据和女生数据合在一起</span>
-data = np.append(rand_data_m,rand_data_w)
-data = data.reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)
-y = np.append(y_m,y_w)
-print(data)
-print(y)</code></pre>
-<p>输出：</p>
-<pre><code class="hljs tex">[[1.80878693]
- [1.7324088 ]
- [1.76480933]
- ...
- [1.60636048]
- [1.57832104]
- [1.64620368]]
-[1. 1. 1. ... 0. 0. 0.]</code></pre>
-<p>二、高斯混合模型拟合数据</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> multivariate_normal
-
-num_iter = <span class="hljs-number">1000</span>
-n, d = data.shape
-<span class="hljs-comment">#初始化参数</span>
-mu1 = data.min(axis=<span class="hljs-number">0</span>)
-mu2 = data.max(axis=<span class="hljs-number">0</span>)
-sigma1 = np.identity(d)
-sigma2 = np.identity(d)
-pi = <span class="hljs-number">0.5</span>
-
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(num_iter):
-    <span class="hljs-comment">#计算gamma</span>
-    norm1 = multivariate_normal(mu1, sigma1)
-    norm2 = multivariate_normal(mu2, sigma2)
-    tau1 = pi * norm1.pdf(data)
-    <span class="hljs-comment"># print('tau1', tau1)</span>
-    tau2 = (<span class="hljs-number">1</span> - pi) * norm2.pdf(data)
-    gamma = tau1 / (tau1 + tau2)
-    <span class="hljs-comment"># print('gamma',gamma)</span>
-
-    <span class="hljs-comment">#计算mu1</span>
-    mu1 = np.dot(gamma, data) / np.sum(gamma)
-    <span class="hljs-comment"># print("第%d iter: mul=%f" % (i, mu1))</span>
-    <span class="hljs-comment">#计算mu2</span>
-    mu2 = np.dot(<span class="hljs-number">1</span>-gamma, data) / np.sum(<span class="hljs-number">1</span> - gamma)
-    <span class="hljs-comment">#计算sigma1</span>
-    sigma1 = np.dot(gamma * (data-mu1).T, (data - mu1) ) / np.sum(gamma)
-    <span class="hljs-comment"># print("第%d iter: sigma1=%f" %(i,sigma1))</span>
-    <span class="hljs-comment">#计算sigmal2</span>
-    sigma2 = np.dot((<span class="hljs-number">1</span>-gamma) * (data-mu2).T, (data - mu2)) / np.sum(<span class="hljs-number">1</span> - gamma)
-    <span class="hljs-comment">#计算pi</span>
-    <span class="hljs-comment"># print("第%d iter: sigma1=%f" %(i,sigma2))</span>
-    pi = np.sum(gamma)/n
-
-print(<span class="hljs-string">u'类别概率:\t'</span>, pi)
-print(<span class="hljs-string">u'均值:\t'</span>, mu1, mu2)
-print(<span class="hljs-string">u'方差:\n'</span>, sigma1, <span class="hljs-string">'\n\n'</span>, sigma2, <span class="hljs-string">'\n'</span>)</code></pre>
-<p>输出：</p>
-<pre><code class="hljs tex">类别概率:	 0.4873884639284559
-均值:	 [1.57749047] [1.70726384]
-方差:
- [[0.00244834]] 
- [[0.00315184]]</code></pre>
-<p><strong>sklean实现高斯混合模型</strong></p>
-<p>一、生成实验数据</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-<span class="hljs-comment"># 生成一些数据进行实验</span>
-<span class="hljs-comment"># 1.生成均值为1.71，标准差为0.056的男生身高数据</span>
-np.random.seed(<span class="hljs-number">0</span>)
-mu_m = <span class="hljs-number">1.71</span> <span class="hljs-comment"># 期望</span>
-sigma_m = <span class="hljs-number">0.056</span> <span class="hljs-comment"># 标准差</span>
-num_m = <span class="hljs-number">10000</span> <span class="hljs-comment"># 数据个数为10000</span>
-random_data_m = np.random.normal(mu_m, sigma_m, num_m) <span class="hljs-comment">#生成数据</span>
-y_m = np.ones(num_m) <span class="hljs-comment"># 生成标签</span>
-<span class="hljs-comment"># 2.生成均值为1.58，标准差为0.051的女生身高数据</span>
-np.random.seed(<span class="hljs-number">0</span>)
-mu_w = <span class="hljs-number">1.58</span>  <span class="hljs-comment">#期望</span>
-sigma_w = <span class="hljs-number">0.051</span>  <span class="hljs-comment">#标准差数据</span>
-num_w = <span class="hljs-number">10000</span>  <span class="hljs-comment">#个数为10000</span>
-rand_data_w = np.random.normal(mu_w, sigma_w, num_w)<span class="hljs-comment">#生成数据</span>
-y_w = np.zeros(num_m)<span class="hljs-comment">#生成标签</span>
-<span class="hljs-comment"># 3.把男生数据和女生数据合在一起</span>
-data = np.append(rand_data_m,rand_data_w)
-data = data.reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)
-y = np.append(y_m,y_w)
-print(data)
-print(y)</code></pre>
-<p>二、sklean实现高斯混合模型拟合数据</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.mixture <span class="hljs-keyword">import</span> GaussianMixture
-<span class="hljs-comment"># n_components:类别数 max_iter:迭代次数</span>
-g = GaussianMixture(n_components=<span class="hljs-number">2</span>, covariance_type=<span class="hljs-string">'full'</span>, tol=<span class="hljs-number">1e-6</span>, max_iter=<span class="hljs-number">1000</span>)
-g.fit(data)
-print(<span class="hljs-string">u'类别概率:\t'</span>, g.weights_[<span class="hljs-number">0</span>])
-print(<span class="hljs-string">u'类别概率:\t'</span>, g.weights_[<span class="hljs-number">1</span>])
-print(<span class="hljs-string">u'均值:\n'</span>, g.means_, <span class="hljs-string">'\n'</span>)
-print(<span class="hljs-string">u'方差:\n'</span>, g.covariances_, <span class="hljs-string">'\n'</span>)</code></pre>
-<p>输出：</p>
-<pre><code class="hljs tex">类别概率:	 0.4996454306546242
-类别概率:	 0.5003545693453813
-均值:
- [[1.57895001]
- [1.70898537]] 
-
-方差:
- [[[0.00251652]]
- [[0.00306363]]]</code></pre>
-<p>测试准确率：</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> accuracy_score
-y_hat = g.predict(data)
-print(accuracy_score(y,y_hat))</code></pre>
-<p>输出（重叠区域不好判断）：</p>
-<pre><code class="hljs python"><span class="hljs-number">0.8891</span></code></pre>
-<h2 id="对亚洲足球队进行聚类分析"><a href="#对亚洲足球队进行聚类分析" class="headerlink" title="对亚洲足球队进行聚类分析"></a>对亚洲足球队进行聚类分析</h2><p><strong>代码</strong><br>导入数据</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
-<span class="hljs-keyword">from</span> sklearn.cluster <span class="hljs-keyword">import</span> KMeans
-<span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> StandardScaler <span class="hljs-comment"># 标准归一化</span>
-df = pd.read_csv(<span class="hljs-string">'data/football_team_data.csv'</span>, index_col=<span class="hljs-string">'国家'</span>)
-print(df)</code></pre>
-<p>输出：</p>
-<pre><code class="hljs tex">     2019国际排名  2018世界杯  2015亚洲杯
-国家                                
-中国            73       40        7
-日本            60       15        5
-韩国            61       19        2
-伊朗            34       18        6
-沙特            67       26       10
-伊拉克           91       40        4
-卡塔尔          101       40       13
-阿联酋           81       40        6
-乌兹别克斯坦        88       40        8
-泰国           122       40       17
-越南           102       50       17
-阿曼            87       50       12
-巴林           116       50       11
-朝鲜           110       50       14
-印尼           164       50       17
-澳洲            40       30        1
-叙利亚           76       40       17
-约旦           118       50        9
-科威特          160       50       15
-巴勒斯坦          96       50       16</code></pre>
-<p>取出数字列</p>
-<pre><code class="hljs python">X = df.values
-print(X)</code></pre>
-<p>输出：</p>
-<pre><code class="hljs tex">array([[ 73,  40,   7],
-       [ 60,  15,   5],
-       [ 61,  19,   2],
-       [ 34,  18,   6],
-       [ 67,  26,  10],
-       [ 91,  40,   4],
-       [101,  40,  13],
-       [ 81,  40,   6],
-       [ 88,  40,   8],
-       [122,  40,  17],
-       [102,  50,  17],
-       [ 87,  50,  12],
-       [116,  50,  11],
-       [110,  50,  14],
-       [164,  50,  17],
-       [ 40,  30,   1],
-       [ 76,  40,  17],
-       [118,  50,   9],
-       [160,  50,  15],
-       [ 96,  50,  16]], dtype=int64)</code></pre>
-<pre><code class="hljs python">X = StandardScaler().fit_transform(X)
-X</code></pre>
-<p>输出：</p>
-<pre><code class="hljs tex">array([[-0.5842676 ,  0.05223517, -0.64677721],
-       [-0.97679881, -2.12423024, -1.03291285],
-       [-0.9466041 , -1.77599577, -1.61211632],
-       [-1.76186121, -1.86305439, -0.83984503],
-       [-0.76543585, -1.16658546, -0.06757374],
-       [-0.04076286,  0.05223517, -1.22598067],
-       [ 0.26118422,  0.05223517,  0.51162973],
-       [-0.34270994,  0.05223517, -0.83984503],
-       [-0.13134698,  0.05223517, -0.45370938],
-       [ 0.89527309,  0.05223517,  1.28390102],
-       [ 0.29137893,  0.92282133,  1.28390102],
-       [-0.16154169,  0.92282133,  0.31856191],
-       [ 0.71410485,  0.92282133,  0.12549408],
-       [ 0.5329366 ,  0.92282133,  0.70469755],
-       [ 2.16345083,  0.92282133,  1.28390102],
-       [-1.58069297, -0.81835099, -1.80518414],
-       [-0.49368348,  0.05223517,  1.28390102],
-       [ 0.77449426,  0.92282133, -0.26064156],
-       [ 2.042672  ,  0.92282133,  0.89776537],
-       [ 0.11021068,  0.92282133,  1.0908332 ]])</code></pre>
-<p>使用KMeans聚合数据</p>
-<pre><code class="hljs python">model = KMeans(n_clusters=<span class="hljs-number">3</span>, max_iter=<span class="hljs-number">10</span>)
-model.fit(X)
-<span class="hljs-comment">#KMeans(algorithm='auto', copy_x=True, init='k-means++', max_iter=10,</span>
-<span class="hljs-comment">#       n_clusters=3, n_init=10, n_jobs=None, precompute_distances='auto',</span>
-<span class="hljs-comment">#       random_state=None, tol=0.0001, verbose=0)</span>
-df[<span class="hljs-string">"聚类结果"</span>] = model.labels_
-print(df)</code></pre>
-<p>输出：</p>
-<pre><code class="hljs tex"> 2019国际排名  2018世界杯  2015亚洲杯  聚类结果
-国家                                      
-中国            73       40        7     2
-日本            60       15        5     0
-韩国            61       19        2     0
-伊朗            34       18        6     0
-沙特            67       26       10     0
-伊拉克           91       40        4     2
-卡塔尔          101       40       13     1
-阿联酋           81       40        6     2
-乌兹别克斯坦        88       40        8     2
-泰国           122       40       17     1
-越南           102       50       17     1
-阿曼            87       50       12     1
-巴林           116       50       11     1
-朝鲜           110       50       14     1
-印尼           164       50       17     1
-澳洲            40       30        1     0
-叙利亚           76       40       17     1
-约旦           118       50        9     1
-科威特          160       50       15     1
-巴勒斯坦          96       50       16     1</code></pre>
-<p>根据结果看出，这些国家分为了三类，结合数据进行分析，亚洲足球队强弱顺序依次是0，2，1.</p>
-
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/bdb1f9df.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/bdb1f9df.html" class="post-title-link" itemprop="url">leetcode309</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-10 06:27:46 / 修改时间：08:05:26" itemprop="dateCreated datePublished" datetime="2020-07-10T06:27:46+08:00">2020-07-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index"><span itemprop="name">动态规划</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/bdb1f9df.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode309" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/bdb1f9df.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/bdb1f9df.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="309-最佳买卖股票时机含冷冻期"><a href="#309-最佳买卖股票时机含冷冻期" class="headerlink" title="309.最佳买卖股票时机含冷冻期"></a>309.最佳买卖股票时机含冷冻期</h1><p>给定一个整数数组，其中第 i 个元素代表了第 i 天的股票价格 。<br>设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:<br>你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。<br>卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)。</p>
-<p><strong>示例:</strong></p>
-<pre><code class="hljs python">输入: [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>]
-输出: <span class="hljs-number">3</span> 
-解释: 对应的交易状态为: [买入, 卖出, 冷冻期, 买入, 卖出]</code></pre>
-<p>一种常用的方法是将「买入」和「卖出」分开进行考虑：「买入」为负收益，而「卖出」为正收益。在初入股市时，你只有「买入」的权利，只能获得负收益。而当你「买入」之后，你就有了「卖出」的权利，可以获得正收益。显然，我们的目标总是将收益值最大化。因此，我们可以使用动态规划的方法，维护在股市中每一天结束后每种状态可以获得的「累计最大收益」，并以此进行状态转移，得到最终的答案。</p>
-<h2 id="方法一：动态规划"><a href="#方法一：动态规划" class="headerlink" title="方法一：动态规划"></a>方法一：动态规划</h2><p><strong>思路与算法</strong><br>我们用 $f[i]$ 表示<strong>第 $i$ 天结束之后</strong>的「累计最大收益」。根据题目描述，由于我们<strong>最多只能同时买入（持有）一支股票</strong>，并且卖出股票后有冷冻期的限制，因此我们会有三种不同的状态：</p>
-<ul>
-<li><p>我们目前持有一支股票，对应的「累计最大收益」记为 $f[i][0]$；</p>
-</li>
-<li><p>我们目前不持有任何股票，并且处于冷冻期中，对应的「累计最大收益」记为 $f[i][1]$；</p>
-</li>
-<li><p>我们目前不持有任何股票，并且不处于冷冻期中，对应的「累计最大收益」记为 $f[i][2]$。</p>
-</li>
-</ul>
-<blockquote>
-<p>这里的「处于冷冻期」指的是在第 $i$ 天结束之后的状态。也就是说：如果第 $i$ 天结束之后处于冷冻期，那么第 $i+1$ 天无法买入股票。</p>
-</blockquote>
-<p>从第 $i-1$ 天到第 $i$ 天的状态转移：</p>
-<ul>
-<li><p>对于 $f[i][0]$，我们目前持有的这一支股票可以是在第 $i-1$ 天就已经持有的，对应的状态为 $f[i-1][0]$；或者是第 $i$ 天买入的，那么第 $i-1$ 天就不能持有股票并且不处于冷冻期中，对应的状态为 $f[i-1][2]$ 加上买入股票的负收益 ${\it prices}[i]$。因此状态转移方程为：</p>
-<script type="math/tex; mode=display">
-f[i][0] = \max(f[i-1][0], f[i-1][2] - {\it prices}[i])</script></li>
-<li><p>对于 $f[i][1]$，我们在第 $i$ 天结束之后处于冷冻期的原因是在当天卖出了股票，那么说明在第 i-1i−1 天时我们必须持有一支股票，对应的状态为 $f[i-1][0]$ 加上卖出股票的正收益 ${\it prices}[i]$。因此状态转移方程为：</p>
-<script type="math/tex; mode=display">
-f[i][1] = f[i-1][0] + {\it prices}[i]</script></li>
-<li><p>对于 $f[i][2]$，我们在第 $i$ 天结束之后不持有任何股票并且不处于冷冻期，说明当天没有进行任何操作，即第 $i-1$ 天时不持有任何股票：如果处于冷冻期，对应的状态为 $f[i-1][1]$；如果不处于冷冻期，对应的状态为 $f[i-1][2]$。因此状态转移方程为：</p>
-<script type="math/tex; mode=display">
-f[i][2] = \max(f[i-1][1], f[i-1][2])</script></li>
-</ul>
-<p><span style="color:blue">第i天持有股票：前一天持有/今天买股票</span><br><span style="color:blue">第i天冷冻：前一天持有股票，今天卖掉这支股票</span><br><span style="color:blue">第i天空闲：前一天处于冷冻期/前一天空闲</span></p>
-<h3 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h3><pre><code class="hljs mermaid">graph LR
-A[f0] --休息--&gt; A[f0]
-A[f0] --卖出--&gt; B[f1]
-B[f1] --解冻--&gt; C[f2]
-C[f2] --休息--&gt; C[f2]</code></pre>
-<p>最终答案：$\max(f[n-1][0], f[n-1][1], f[n-1][2])$</p>
-<blockquote>
-<p>如果最后一天（第 $n-1$ 天）结束后，持有股票这种状态是无意义的而且肯定不是最优解（毕竟$-{\it prices}[i]$）。</p>
-</blockquote>
-<p>所以最终答案是$f[n-1][1]$和$f[n-1][2]$中的最大值，即$\max(f[n-1][1], f[n-1][2])$。</p>
-<p>动态规划中的边界条件——第 $0$ 天的情况：</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-f[0][0] &= -{\it prices}[0] \\
-f[0][1] &= 0 \\
-f[0][2] &= 0
-\end{cases}</script><p>在第 $0$ 天时，如果持有股票，那么只能是在第 $0$ 天买入的，对应负收益 $-{\it prices}[0]$；如果不持有股票，那么收益为零。注意到第 $0$ 天实际上是不存在处于冷冻期的情况的，但我们仍然可以将对应的状态 $f[0][1]$ 置为零，官方：这其中的原因留给读者进行思考(我：不然勒，还能置成啥)。</p>
-<p><strong>代码</strong></p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(self, prices: List[int])</span> -&gt; int:</span>
-        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> prices:
-            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
-        
-        n = len(prices)
-        <span class="hljs-comment"># f[i][0]: 手上持有股票的最大收益</span>
-        <span class="hljs-comment"># f[i][1]: 手上不持有股票，并且处于冷冻期中的累计最大收益</span>
-        <span class="hljs-comment"># f[i][2]: 手上不持有股票，并且不在冷冻期中的累计最大收益</span>
-        f = [[-prices[<span class="hljs-number">0</span>], <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]] + [[<span class="hljs-number">0</span>] * <span class="hljs-number">3</span> <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(n - <span class="hljs-number">1</span>)]
-        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, n):
-            f[i][<span class="hljs-number">0</span>] = max(f[i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>], f[i - <span class="hljs-number">1</span>][<span class="hljs-number">2</span>] - prices[i])
-            f[i][<span class="hljs-number">1</span>] = f[i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>] + prices[i]
-            f[i][<span class="hljs-number">2</span>] = max(f[i - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>], f[i - <span class="hljs-number">1</span>][<span class="hljs-number">2</span>])
-        
-        <span class="hljs-keyword">return</span> max(f[n - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>], f[n - <span class="hljs-number">1</span>][<span class="hljs-number">2</span>])</code></pre>
-<p>空间优化：只需要存储前一天的三个状态即可，不必把每一天的状态都存储下来。</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(self, prices: List[int])</span> -&gt; int:</span>
-        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> prices:
-            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
-        
-        n = len(prices)
-        f0, f1, f2 = -prices[<span class="hljs-number">0</span>], <span class="hljs-number">0</span>, <span class="hljs-number">0</span>
-        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, n):
-            newf0 = max(f0, f2 - prices[i])
-            newf1 = f0 + prices[i]
-            newf2 = max(f1, f2)
-            f0, f1, f2 = newf0, newf1, newf2
-        
-        <span class="hljs-keyword">return</span> max(f1, f2)</code></pre>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：$O(n)$，其中 $n$ 为数组 ${\it prices}$ 的长度。</li>
-<li>空间复杂度：$O(n)$。我们需要$3n$的空间存储动态规划中的所有状态，对应的空间复杂度为$O(n)$。如果使用空间优化，空间复杂度优化为$O(1)$。</li>
-</ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/solution/zui-jia-mai-mai-gu-piao-shi-ji-han-leng-dong-qi-4/" target="_blank" rel="noopener">官方题解</a></p>
-
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/223c24ff.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/223c24ff.html" class="post-title-link" itemprop="url">leetcode51</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-09 18:33:05" itemprop="dateCreated datePublished" datetime="2020-07-09T18:33:05+08:00">2020-07-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-10 01:01:21" itemprop="dateModified" datetime="2020-07-10T01:01:21+08:00">2020-07-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/%E5%88%86%E6%B2%BB%E3%80%81%E5%9B%9E%E6%BA%AF/" itemprop="url" rel="index"><span itemprop="name">分治、回溯</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/223c24ff.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode51" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/223c24ff.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/223c24ff.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="leetcode51-N皇后"><a href="#leetcode51-N皇后" class="headerlink" title="leetcode51.N皇后"></a>leetcode51.N皇后</h1><p>n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
-<p><img src="/article/223c24ff/8-queens.png" srcset="/img/loading.gif" alt="img"></p>
-<p>上图为 8 皇后问题的一种解法。<br>给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。<br>每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 ‘Q’ 和 ‘.’ 分别代表了皇后和空位。</p>
-<p><strong>示例:</strong></p>
-<pre><code class="hljs python">输入: <span class="hljs-number">4</span>
-输出: [
- [<span class="hljs-string">".Q.."</span>,  // 解法 <span class="hljs-number">1</span>
-  <span class="hljs-string">"...Q"</span>,
-  <span class="hljs-string">"Q..."</span>,
-  <span class="hljs-string">"..Q."</span>],
-
- [<span class="hljs-string">"..Q."</span>,  // 解法 <span class="hljs-number">2</span>
-  <span class="hljs-string">"Q..."</span>,
-  <span class="hljs-string">"...Q"</span>,
-  <span class="hljs-string">".Q.."</span>]
-]
-解释: <span class="hljs-number">4</span> 皇后问题存在两个不同的解法。</code></pre>
-<p><strong>提示：</strong></p>
-<ul>
-<li>皇后，是国际象棋中的棋子，意味着国王的妻子。皇后只做一件事，那就是“吃子”。当她遇见可以吃的棋子时，就迅速冲上去吃掉棋子。当然，她横、竖、斜都可走一到七步，可进可退。（引用自<a href="https://baike.baidu.com/item/%E7%9A%87%E5%90%8E/15860305?fr=aladdin" target="_blank" rel="noopener">百度百科 - 皇后</a>）</li>
-</ul>
-<blockquote>
-<p>约束编程</p>
-</blockquote>
-<p>基本含义是在放置每个皇后以后增加限制。当在棋盘上放置了一个皇后时，立即排除当前行，列和对应的两个对角线。该过程传递了约束从而有助于减少需要考虑情况数。<br><img src="/article/223c24ff/e67ed217a00038ed292ae8cb89c1a8492c7a49e33ec17f633f41c4ece77d6c2c-51_pic.png" srcset="/img/loading.gif" alt="51_pic.png"></p>
-<blockquote>
-<p>第二种方法叫做回溯法</p>
-</blockquote>
-<p>当在棋盘上放置了几个皇后且不会相互攻击。但是选择的方案不是最优的，因为无法放置下一个皇后。此时我们该怎么做？<strong>回溯。</strong>意思就是回退一步，来改变最后放置皇后的位置并且接着往下放置。如果还是不行，再回溯。</p>
-<p><img src="/article/223c24ff/610377e670ee1d4184c0475edee789139d8fe9ebeb07df267e9c54fbd31c449e-51_backtracking_.png" srcset="/img/loading.gif" alt="51_backtracking_.png"></p>
-<h2 id="方法1：回溯"><a href="#方法1：回溯" class="headerlink" title="方法1：回溯"></a>方法1：回溯</h2><p>在建立算法之前，我们来考虑两个有用的细节。</p>
-<blockquote>
-<p>一行只可能有一个皇后且一列也只可能有一个皇后。</p>
-</blockquote>
-<p>这意味着没有必要在棋盘上考虑所有的方格。只需要按列循环即可。</p>
-<blockquote>
-<p>对于所有的主对角线(蓝线)有<code>行号-列号=常数</code>（一条线上是同一个常数），对于所有的次对角线(红线)有<code>行号+列号=常数</code>（一条线上是同一个常数）。</p>
-</blockquote>
-<p>这可以让我们标记已经在攻击范围下的对角线并且检查一个方格<code>(行号，列号)</code>是否处于攻击位置。</p>
-<p><img src="/article/223c24ff/332b878ebcd261a71f5f85cb4e23685d42b37685112f562e2844079748e63cd0-51_diagonals.png" srcset="/img/loading.gif" alt="51_diagonals.png"></p>
-<p>回溯函数<code>backtrack(row=0)</code>。</p>
-<ul>
-<li>从第一个<code>row=0</code>开始。</li>
-<li>循环列并且试图在每个<code>column</code>中放置皇后。<ul>
-<li>如果方格<code>(row, column)</code>不在攻击范围内<ul>
-<li>在<code>(row, column)</code>方格上放置皇后。</li>
-<li>排除对应行，列和两个对角线的位置</li>
-<li>if 所有的行被考虑过，<code>row == N</code><ul>
-<li>意味着我们找到了一个解</li>
-</ul>
-</li>
-<li>Else<ul>
-<li>继续考虑接下来的皇后放置<code>backtrack(row + 1)</code>。</li>
-</ul>
-</li>
-<li>回溯：将在<code>(row, column)</code>方格的皇后移除。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="/article/223c24ff/847f5a2861010344bf28836f051c46a5c62bc0f164a02ad152ef98a93e07e208-image.png" srcset="/img/loading.gif" alt="img"></p>
-<p><strong>代码</strong></p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">solveNQueens</span><span class="hljs-params">(self, n)</span>:</span>
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">remove_queen</span><span class="hljs-params">(row, col)</span>:</span>
-            queens.remove((row, col))
-            cols[col] = <span class="hljs-number">0</span>
-            print(<span class="hljs-string">'remove'</span>, row - col + n - <span class="hljs-number">1</span>)
-            hile_diagonal[row - col + n - <span class="hljs-number">1</span>] = <span class="hljs-number">0</span>
-            dale_diagonal[row + col] = <span class="hljs-number">0</span>
-        
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">could_place</span><span class="hljs-params">(row, col)</span>:</span>
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">not</span> (cols[col] + hile_diagonal[row - col + n - <span class="hljs-number">1</span>] + dale_diagonal[row + col])
-        
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">place_queen</span><span class="hljs-params">(row, col)</span>:</span>
-            queens.add((row, col))
-            cols[col] = <span class="hljs-number">1</span>
-            print(<span class="hljs-string">'hile'</span>, row - col + n - <span class="hljs-number">1</span>)
-            print(<span class="hljs-string">'dale'</span>, row + col)
-            hile_diagonal[row - col + n - <span class="hljs-number">1</span>] = <span class="hljs-number">1</span>
-            dale_diagonal[row + col] = <span class="hljs-number">1</span>
-    
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add_solution</span><span class="hljs-params">()</span>:</span>
-            solution = []
-            <span class="hljs-keyword">for</span> _, col <span class="hljs-keyword">in</span> sorted(queens):
-                solution.append(<span class="hljs-string">'.'</span> * col + <span class="hljs-string">'Q'</span> + (n<span class="hljs-number">-1</span>-col) * <span class="hljs-string">'.'</span> )
-            output.append(solution)
-
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(row)</span>:</span>
-            <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> range(n):
-                <span class="hljs-keyword">if</span> could_place(row, col):
-                    place_queen(row, col)
-                    <span class="hljs-keyword">if</span> row == n - <span class="hljs-number">1</span>:
-                        add_solution()
-                    <span class="hljs-keyword">else</span>:
-                        backtrack(row+<span class="hljs-number">1</span>)
-                    remove_queen(row, col)
-        output = []
-        cols = [<span class="hljs-number">0</span>] * n
-        hile_diagonal = [<span class="hljs-number">0</span>] * (<span class="hljs-number">2</span> * n - <span class="hljs-number">1</span>)
-        dale_diagonal = [<span class="hljs-number">0</span>] * (<span class="hljs-number">2</span> * n - <span class="hljs-number">1</span>)
-        queens = set()
-        backtrack(row=<span class="hljs-number">0</span>)
-        <span class="hljs-keyword">return</span> output</code></pre>
-<p>也可以用之前的回溯板子：</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">solveNQueens</span><span class="hljs-params">(self, n: int)</span> -&gt; List[List[str]]:</span>
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(row)</span>:</span>
-            <span class="hljs-keyword">if</span> row == n:
-                output.append([<span class="hljs-string">'.'</span> * col + <span class="hljs-string">'Q'</span> + <span class="hljs-string">'.'</span> * (n - <span class="hljs-number">1</span> - col) <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> queens])
-                <span class="hljs-keyword">return</span>
-            <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> range(n):
-                <span class="hljs-keyword">if</span> cols[col] <span class="hljs-keyword">and</span> hill_diagonal[row - col + n - <span class="hljs-number">1</span>] <span class="hljs-keyword">and</span> dale_diagonal[row + col]:
-                    queens.append(col)
-                    cols[col] = <span class="hljs-number">0</span>
-                    hill_diagonal[row - col + n - <span class="hljs-number">1</span>] = <span class="hljs-number">0</span>
-                    dale_diagonal[row + col] = <span class="hljs-number">0</span>
-                    backtrack(row + <span class="hljs-number">1</span>)
-                    cols[col] = <span class="hljs-number">1</span>
-                    hill_diagonal[row - col + n - <span class="hljs-number">1</span>] = <span class="hljs-number">1</span>
-                    dale_diagonal[row + col] = <span class="hljs-number">1</span>
-                    queens.pop()
-        output = []
-        queens = []
-        cols = [<span class="hljs-number">1</span>] * n
-        hill_diagonal = [<span class="hljs-number">1</span>] * (<span class="hljs-number">2</span> * n - <span class="hljs-number">1</span>)
-        dale_diagonal = [<span class="hljs-number">1</span>] * (<span class="hljs-number">2</span> * n - <span class="hljs-number">1</span>)
-        backtrack(row = <span class="hljs-number">0</span>)
-        <span class="hljs-keyword">return</span> output</code></pre>
-<p>道理是一样的，时间更快了~</p>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：$\mathcal{O}(N!)$. 放置第 1 个皇后有 $N$ 种可能的方法，放置两个皇后的方法不超过 $N(N - 2)$，放置 3 个皇后的方法不超过 $N(N - 2)(N - 4) $，以此类推。总体上，时间复杂度为 $\mathcal{O}(N!)$ .</li>
-<li>空间复杂度：$\mathcal{O}(N)$ . 需要保存对角线和行的信息。</li>
-</ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/n-queens/solution/nhuang-hou-by-leetcode/" target="_blank" rel="noopener">官方题解</a></p>
-
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/af3344ce.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/af3344ce.html" class="post-title-link" itemprop="url">leetcode17</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-09 10:52:01 / 修改时间：14:57:25" itemprop="dateCreated datePublished" datetime="2020-07-09T10:52:01+08:00">2020-07-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/%E5%88%86%E6%B2%BB%E3%80%81%E5%9B%9E%E6%BA%AF/" itemprop="url" rel="index"><span itemprop="name">分治、回溯</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/af3344ce.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode17" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/af3344ce.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/af3344ce.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="leetcode17-电话号码的字母组合"><a href="#leetcode17-电话号码的字母组合" class="headerlink" title="leetcode17.电话号码的字母组合"></a>leetcode17.电话号码的字母组合</h1><p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。<br>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
-<p><img src="/article/af3344ce/image-20200709112232223.png" srcset="/img/loading.gif" width="300" hight="300"></p>
-<p><strong>示例:</strong></p>
-<pre><code class="hljs python">输入：<span class="hljs-string">"23"</span>
-输出：[<span class="hljs-string">"ad"</span>, <span class="hljs-string">"ae"</span>, <span class="hljs-string">"af"</span>, <span class="hljs-string">"bd"</span>, <span class="hljs-string">"be"</span>, <span class="hljs-string">"bf"</span>, <span class="hljs-string">"cd"</span>, <span class="hljs-string">"ce"</span>, <span class="hljs-string">"cf"</span>].</code></pre>
-<p><strong>说明:</strong><br>尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。</p>
-<h2 id="方法一：回溯"><a href="#方法一：回溯" class="headerlink" title="方法一：回溯"></a>方法一：回溯</h2><p>回溯是通过穷举所有可能情况来找到所有解的算法。如果一个候选解最后被发现并不是可行解，回溯算法会舍弃它，并在前面的一些步骤做出一些修改，并重新尝试找到可行解。</p>
-<p>给出如下回溯函数<code>backtrack(combination, next_digits)</code>，它将一个目前已经产生的组合<code>combination</code>和接下来准备要输入的数字<code>next_digits</code>作为参数。</p>
-<p>如果没有更多的数字需要被输入，那意味着 当前的组合产生好了。<br>如果还有数字需要被输入：<br>遍历下一个数字所对应的所有映射的字母。<br>将当前的字母添加到组合最后，也就是<code>combination=combination+letter</code>。<br>重复这个过程，输入剩下的数字：<code>backtrack(combination + letter, next_digits[1:])</code>。</p>
-<p><strong>代码</strong></p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">letterCombinations</span><span class="hljs-params">(self, digits)</span>:</span>
-        phone = &#123;
-            <span class="hljs-string">'2'</span>: [<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>],
-            <span class="hljs-string">'3'</span>: [<span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'f'</span>],
-            <span class="hljs-string">'4'</span>: [<span class="hljs-string">'g'</span>, <span class="hljs-string">'h'</span>, <span class="hljs-string">'i'</span>],
-            <span class="hljs-string">'5'</span>: [<span class="hljs-string">'j'</span>, <span class="hljs-string">'k'</span>, <span class="hljs-string">'l'</span>],
-            <span class="hljs-string">'6'</span>:[<span class="hljs-string">'m'</span>,<span class="hljs-string">'n'</span>,<span class="hljs-string">'o'</span>],
-            <span class="hljs-string">'7'</span>:[<span class="hljs-string">'p'</span>,<span class="hljs-string">'q'</span>,<span class="hljs-string">'r'</span>,<span class="hljs-string">'s'</span>],
-            <span class="hljs-string">'8'</span>:[<span class="hljs-string">'t'</span>,<span class="hljs-string">'u'</span>,<span class="hljs-string">'v'</span>],
-            <span class="hljs-string">'9'</span>:[<span class="hljs-string">'w'</span>,<span class="hljs-string">'x'</span>,<span class="hljs-string">'y'</span>,<span class="hljs-string">'z'</span>]
-        &#125;
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(combination, next_digits)</span>:</span>
-            <span class="hljs-keyword">if</span> len(next_digits) == <span class="hljs-number">0</span>:
-                output.append(combination)
-            <span class="hljs-keyword">else</span>:
-                print(next_digits)
-                print(next_digits[<span class="hljs-number">0</span>])
-                <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> phone[next_digits[<span class="hljs-number">0</span>]]:
-                    backtrack(combination+i, next_digits[<span class="hljs-number">1</span>:])
-
-
-        output = []
-        <span class="hljs-keyword">if</span> digits:
-            backtrack(<span class="hljs-string">""</span>, digits)
-        <span class="hljs-keyword">return</span> output</code></pre>
-<h2 id="方法二：队列"><a href="#方法二：队列" class="headerlink" title="方法二：队列"></a>方法二：队列</h2><p>我们可以利用队列的先进先出特点，再配合循环完成题目要求。<br>我们先将2对应的字符”a”,”b”,”c”依次放入队列中</p>
-<p><img src="/article/af3344ce/18b4155eb5122b9e177a29c7320de89048b74cc5553632700a45e07aa92057bc-队列-1.jpg" srcset="/img/loading.gif" alt="队列-1.jpg"></p>
-<p>之后再从队列中拿出第一个元素”a”，跟3对应的字符”d”,”e”,”f”挨个拼接</p>
-<p><img src="/article/af3344ce/5d331f111c4bc5439116bc412a57e1271f0e1997b1328009cedce5152bce292f-队列-1.jpg" srcset="/img/loading.gif" alt="队列-1.jpg"></p>
-<p>拼接结束后队列中的存储情况：</p>
-<p><img src="/article/af3344ce/89f52c9185b736edec7e980db7cf1a9897d5efbf1e80e1d19296ee48917fdfb9-队列-3.jpg" srcset="/img/loading.gif" alt="队列-3.jpg"></p>
-<p>按照同样的方式，再将”b”从队列中拿出，再跟3对应的字符”d”,”e”,”f”挨个拼接，放回队列中：</p>
-<p><img src="/article/af3344ce/7fbe1e06dc207dbc539c7f580698eaad845ae5ff913b1b048211355a72fb3bcb-队列-4.jpg" srcset="/img/loading.gif" alt="队列-4.jpg"></p>
-<p>动态演示如下：</p>
-<p><img src="/article/af3344ce/6953e7a27bff1242c37f88c9b66b524975655605d053a9f6ac6a74376582b4c5-队列-动态图.gif" srcset="/img/loading.gif" alt="队列-动态图.gif"></p>
-<p><strong>代码</strong></p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">letterCombinations</span><span class="hljs-params">(self, digits)</span>:</span>
-        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> digits:
-            <span class="hljs-keyword">return</span> []
-        d = [<span class="hljs-string">""</span>,<span class="hljs-string">""</span>,<span class="hljs-string">"abc"</span>,<span class="hljs-string">"def"</span>,<span class="hljs-string">"ghi"</span>,<span class="hljs-string">"jkl"</span>,<span class="hljs-string">"mno"</span>,<span class="hljs-string">"pqrs"</span>,<span class="hljs-string">"tuv"</span>,<span class="hljs-string">"wxyz"</span>]
-        <span class="hljs-comment"># 队列初始化，放入一个空字符</span>
-        res = [<span class="hljs-string">""</span>]
-        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> digits:
-            size = len(res)
-            letters = d[ord(i) - <span class="hljs-number">48</span>]
-            <span class="hljs-comment"># 计算出队列长度后，将队列中的每个元素逐个取出</span>
-            <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(size):
-                tmp = res.pop(<span class="hljs-number">0</span>)
-                <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> letters:
-                    res.append(tmp + j)
-        <span class="hljs-keyword">return</span> res</code></pre>
-<p>差不多，bfs和dfs的区别把，今日打卡完结~</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href>官方题解</a><br><a href="https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/solution/tong-su-yi-dong-dong-hua-yan-shi-17-dian-hua-hao-m/" target="_blank" rel="noopener">队列</a></p>
-
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/5a3811fb.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/5a3811fb.html" class="post-title-link" itemprop="url">schedule</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-08 17:54:53" itemprop="dateCreated datePublished" datetime="2020-07-08T17:54:53+08:00">2020-07-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-15 01:19:39" itemprop="dateModified" datetime="2020-07-15T01:19:39+08:00">2020-07-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">日程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E7%A8%8B/7%E6%9C%88/" itemprop="url" rel="index"><span itemprop="name">7月</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/5a3811fb.html" class="post-meta-item leancloud_visitors" data-flag-title="schedule" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/5a3811fb.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/5a3811fb.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>880</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          This blog is encrypted.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/article/5a3811fb.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
             </div>
-          <!--/noindex-->
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/c583ae2a.html">机器学习-聚类</a>
+
+      <a href="/article/c583ae2a.html" class="index-excerpt">
         
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/e86f8a37.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/e86f8a37.html" class="post-title-link" itemprop="url">leetcode169</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-08 11:16:41 / 修改时间：17:46:04" itemprop="dateCreated datePublished" datetime="2020-07-08T11:16:41+08:00">2020-07-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/%E5%88%86%E6%B2%BB%E3%80%81%E5%9B%9E%E6%BA%AF/" itemprop="url" rel="index"><span itemprop="name">分治、回溯</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/e86f8a37.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode169" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/e86f8a37.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/e86f8a37.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="169-多数元素"><a href="#169-多数元素" class="headerlink" title="169.多数元素"></a>169.多数元素</h1><p>给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数大于$\lfloor \dfrac{n}{2} \rfloor$的元素。<br>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
-<p><strong>示例 1:</strong></p>
-<pre><code class="hljs python">输入: [<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]
-输出: <span class="hljs-number">3</span></code></pre>
-<p><strong>示例 2:</strong></p>
-<pre><code class="hljs python">输入: [<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]
-输出: <span class="hljs-number">2</span></code></pre>
-<p><strong>说明</strong><br>本题题目没有给出数据范围，最简单的暴力方法(枚举数据中的每个元素，再遍历一遍数组统计其出现次数，时间复杂度为$O(N^2)$的算法)，会超出时间限制。<br>我首先想到的就是哈希表。</p>
-<h2 id="方法一：哈希表"><a href="#方法一：哈希表" class="headerlink" title="方法一：哈希表"></a>方法一：哈希表</h2><p><strong>思路</strong><br>已知出现次数最多的元素大于$\lfloor \dfrac{n}{2} \rfloor$次，可以用哈希表来快速统计每个元素出现的次数。<br><strong>算法</strong><br>使用哈希映射(HashMap)来存储每个元素以及出现的次数。对于哈希映射中的每个键值对，键表示一个元素，值表示该元素出现的次数。<br>用一个循环遍历数组<code>nums</code>并将数组中的每个元素加入哈希映射中。在这之后，遍历哈希映射中的所有键值对，返回值最大的键。同样也可以在遍历数组<code>nums</code>时候使用打擂台的方法，维护最大的值，这样省去了最后对哈希映射的遍历。</p>
-<p><strong>代码</strong></p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(self, nums)</span>:</span>
-        counts = collections.Counter(nums)
-        <span class="hljs-keyword">return</span> max(counts.keys(), key=counts.get)</code></pre>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：$O(n)$，其中 $n$是数组<code>nums</code> 的长度。我们遍历数组 <code>nums</code> 一次，对于<code>nums</code>中的每一个元素，将其插入哈希表都只需要常数时间。如果在遍历时没有维护最大值，在遍历结束后还需要对哈希表进行遍历，因为哈希表中占用的空间为$O(n)$（可参考下文的空间复杂度分析），那么遍历的时间不会超过$O(n)$。因此总时间复杂度为$O(n)$。</li>
-</ul>
-<ul>
-<li>空间复杂度：$O(n)$。哈希表最多包含$n - \lfloor \dfrac{n}{2} \rfloor$个键值对，所以占用的空间为$O(n)$。这是因为任意一个长度为$n$的数组最多只能包含$n$个不同的值，但题中保证<code>nums</code>一定有一个众数，会占用（最少）$\lfloor \dfrac{n}{2} \rfloor + 1$个数字。因此最多有$n - (\lfloor \dfrac{n}{2} \rfloor + 1)$个不同的其他数字，所以最多有$n - \lfloor \dfrac{n}{2} \rfloor$个不同的元素。</li>
-</ul>
-<h2 id="方法二：排序"><a href="#方法二：排序" class="headerlink" title="方法二：排序"></a>方法二：排序</h2><p><strong>思路</strong><br>如果将数组如果将数组<code>nums</code>中的所有元素按照单调递增或单调递减的顺序排序，那么下标为 $\lfloor \dfrac{n}{2} \rfloor$的元素（下标从 0 开始）一定是众数。</p>
-<p><strong>算法</strong><br>先将<code>nums</code>数组排序，返回$\lfloor \dfrac{n}{2} \rfloor$下标对应的元素。下图解释了这种策略有效的原因，第一个例子是$n$为奇数的情况，第二个例子是$n$为偶数的情况。</p>
-<p><img src="/article/e86f8a37/a70cb9316157ecd7eeffe7900d3ca83849079824964e8a0aaefbcffd4040f175-image.png" srcset="/img/loading.gif" alt="image.png"></p>
-<p>对于每种情况，数组下划线表示众数是数组最小值时覆盖的下标，数组上划线表示众数时数组最大值时覆盖的下标。其他情况，这条线会在这两种极端情况的中间，即下划线右移，上划线左移。两个极端情况会在下标为$\lfloor \dfrac{n}{2} \rfloor$的地方重叠。因此，无论众数时多少，返回$\lfloor \dfrac{n}{2} \rfloor$下标对应的值都是正确的。</p>
-<p><strong>代码</strong></p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(self, nums)</span>:</span>
-        nums.sort()
-        <span class="hljs-keyword">return</span> nums[len(nums)//<span class="hljs-number">2</span>]</code></pre>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：$O(nlogn)$。将数组排序的时间复杂度为$O(nlogn)$。</li>
-<li>空间复杂度：$O(nlogn)$。雨果使用语言自带的排序算法，需要使用$O(nlogn)$的栈空间，如果自己编写堆排序，则只需要$O(1)$的额外空间。</li>
-</ul>
-<h2 id="方法三：随机化"><a href="#方法三：随机化" class="headerlink" title="方法三：随机化"></a>方法三：随机化</h2><p><strong>思路</strong><br>因为超过$\lfloor \dfrac{n}{2} \rfloor$的数组下标被众数占据了，这样我们随机挑选一个下标对应的元素并验证，有很大的概率能找到众数。</p>
-<p><strong>算法</strong><br>由于一个给定的下标对应的数字很有可能是众数，随机挑选一个下标，检查它是否是众数，如果是就返回，否则继续随机挑选。</p>
-<p><strong>代码</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> random
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(self, nums)</span>:</span>
-        majority_count = len(nums)//<span class="hljs-number">2</span>
-        <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
-            candidate = random.choice(nums)
-            <span class="hljs-keyword">if</span> sum(<span class="hljs-number">1</span> <span class="hljs-keyword">for</span> elem <span class="hljs-keyword">in</span> nums <span class="hljs-keyword">if</span> elem == candidate) &gt; majority_count:
-                <span class="hljs-keyword">return</span> candidate</code></pre>
-<p>时间复杂度：理论上最坏情况下的时间复杂度为$O(\infty)$，因为如果我们的运气很差，这个算法会一直找不到众数，随机挑选无穷多次，所以最坏时间复杂度是没有上限的。然而，<strong>运行的期望时间是线性的。</strong><br>为了更简单地分析，先说服你自己：<strong>由于众数占据超过数组一半的位置，期望的随机次数会小于众数占据数组恰好一半的情况。</strong>因此，我们可以计算随机的期望次数（下标为<code>prob</code>为原问题，<code>mod</code>为众数恰好占据数组一半数目的问题）：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-    E(\textit{iters}_{prob}) &\leq E(\textit{iters}_{mod}) \\
-                    &= \lim_{n\to\infty} \sum_{i=1}^{n} i \cdot \frac{1}{2^i} \\
-                    &= 2
-\end{aligned}</script><p>计算方法为：当众数恰好占据数组的一半时，第一次随机我们有$\frac{1}{2}$的概率找到众数，如果没有找到，则第二次随机时，也就是第二次找到众数的概率为$\frac{1}{4}$，以此类推。因此期望的次数为$i <em> \frac{1}{2^i}$的和，可以计算出这个和为2，说明<em>*期望的随机次数是常数</em></em>。每一次随机后，我们需要$O(n)$的时间判断这个数是否为众数，因此期望的时间复杂度为$O(n)$。</p>
-<p>计算方法为：当众数恰好占据数组的一半时，第一次随机我们有$\frac{1}{2}$的概率找到众数，如果没有找到，则第二次随机时，也就是第二次找到众数的概率为$\frac{1}{4}$，以此类推。因此期望的次数为$i * \frac{1}{2^i}$的和，可以计算出这个和为2，说明期望的随机次数是常数。每一次随机后，我们需要$O(n)$的时间判断这个数是否为众数，因此期望的时间复杂度为$O(n)$。</p>
-<p>空间复杂度：$O(1)$。随机方法只需要常数级别的额外空间。</p>
-<h2 id="方法四：分治"><a href="#方法四：分治" class="headerlink" title="方法四：分治"></a>方法四：分治</h2><p><strong>思路</strong><br>如果数<code>a</code>是数组<code>nums</code>的众数，如果将<code>nums</code>分为两部分，那么<code>a</code>必定是至少一部分的众数。</p>
-<p>可以用反证法证明这个结论。假设<code>a</code>既不是左半部分的众数，也不是右半部分的众数，那么<code>a</code>出现的次数少于<code>l/2+r/2</code>次，其中<code>l</code>和<code>r</code>分别是左半部分和右半部分的长度。由于<code>l/2+r/2&lt;=(l+r)/2</code>，说明a不是数组<code>nums</code>的众数，因此出现了矛盾。所以这个结论时正确的。</p>
-<p>说明我们可以使用分治法解决这个问题：<strong>将数组分成左右两个部分，分别求出左半部分的众数<code>a1</code>以及右半部分的众数<code>a2</code>，随后在<code>a1</code>和<code>a2</code>中选出正确的众数。</strong></p>
-<p><strong>算法</strong><br>使用经典的分治算法递归求解，知道所有的子问题都是长度为<strong>1</strong>的数组，长度为<strong>1</strong>的子数组中唯一的数显然就是众数，直接返回即可。<br>如果回溯后某区间长度大于<code>1</code>，将左右子区间的值合并。如果众数相同，这一段区间的众数就确定下来。否则，需要比较两个众数在整个区间内出现的次数来确定该区间的众数。</p>
-<p><strong>代码</strong></p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(self, nums, lo=<span class="hljs-number">0</span>, hi=None)</span>:</span>
-	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majority_element_rec</span><span class="hljs-params">(lo, hi)</span>:</span>
-	<span class="hljs-comment"># basic case;the only element in an array of size 1 is the majority element.</span>
-		<span class="hljs-keyword">if</span> lo == hi:
-		<span class="hljs-keyword">return</span> nums[lo]
-		
-		<span class="hljs-comment"># recurse on left and right halves of this slice.</span>
-		mid = (hi - lo) // <span class="hljs-number">2</span> + lo
-		left = majority_element_rec(lo, mid)
-		right = majority_element_rec(mid+<span class="hljs-number">1</span>， hi)
-		
-		<span class="hljs-comment"># if the two halves agree on the majority element, return it.</span>
-		<span class="hljs-keyword">if</span> left == right:
-			<span class="hljs-keyword">return</span> left
-		<span class="hljs-comment"># otherwise, count each element and return the 'winner'.</span>
-		left_count = sum(<span class="hljs-number">1</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(lo, hi+<span class="hljs-number">1</span>) <span class="hljs-keyword">if</span> nums[i] == left)
-		right_count = sum(<span class="hljs-number">1</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(lo, hi+<span class="hljs-number">1</span>) <span class="hljs-keyword">if</span> nums[i] == right)
-		
-		<span class="hljs-keyword">return</span> left <span class="hljs-keyword">if</span> left_count &gt; right_count <span class="hljs-keyword">else</span> right
-	<span class="hljs-keyword">return</span> majority_element_rec(<span class="hljs-number">0</span>, len(nums)<span class="hljs-number">-1</span>)</code></pre>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：$O(n\log⁡n)$。函数<code>majority_element_rec()</code>会求解 2 个长度为$\dfrac{n}{2}$的子问题，并做两遍长度为$n$的线性扫描。因此，分治算法的时间复杂度可以表示为：</li>
-</ul>
-<script type="math/tex; mode=display">
-T(n) = 2T(\frac{n}{2}) + 2n</script><p>​        根据<a href="https://baike.baidu.com/item/%E4%B8%BB%E5%AE%9A%E7%90%86/3463232?fr=aladdin" target="_blank" rel="noopener">主定理(百度百科，有条件去看wiki)</a>，本题满足第二种情况，所以时间复杂度可以表示为：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-    T(n) &= \Theta(n^{log_{b}a}\log n) \\
-         &= \Theta(n^{log_{2}2}\log n) \\
-         &= \Theta(n \log n) \\
-\end{aligned}</script><ul>
-<li>空间复杂度：$O(\log n)$。尽管分治算法没有直接分配额外的数组空间，但在递归的过程中使用了额外的栈空间。算法每次将数组从中间分成两部分，所以数组长度变为<code>1</code>之前需要进行$O(\log n)$次递归，即空间复杂度为$O(\log n)$。</li>
-</ul>
-<h2 id="方法五：Boyer-Moore投票算法"><a href="#方法五：Boyer-Moore投票算法" class="headerlink" title="方法五：Boyer-Moore投票算法"></a>方法五：Boyer-Moore投票算法</h2><p><strong>思路</strong><br>如果我们把众数记为$+1$，把其他数记为$−1$，将它们全部加起来，显然和大于<code>0</code>，从结果本身我们可以看出众数比其他数多。</p>
-<p><strong>算法</strong><br>Boyer-Moore 算法的本质和方法四中的分治十分类似。我们首先给出 Boyer-Moore 算法的详细步骤：</p>
-<ul>
-<li><p>我们维护一个候选众数<code>candidate</code>和它出现的次数<code>count</code>。初始时<code>candidate</code>可以为任意值，<code>count</code>为 0；</p>
-</li>
-<li><p>我们遍历数组 <code>nums</code> 中的所有元素，对于每个元素 <code>x</code>，在判断 <code>x</code> 之前，如果 <code>count</code> 的值为 <code>0</code>，我们先将 <code>x</code> 的值赋予 <code>candidate</code>，随后我们判断 <code>x</code>：</p>
-<ul>
-<li>如果 <code>x</code> 与 <code>candidate</code> 相等，那么计数器 <code>count</code> 的值增加 1；</li>
-<li>如果 <code>x</code> 与 <code>candidate</code> 不等，那么计数器 <code>count</code> 的值减少 1。</li>
-</ul>
-</li>
-<li><p>在遍历完成后，<code>candidate</code> 即为整个数组的众数。</p>
-</li>
-</ul>
-<p>我们举一个具体的例子，例如下面的这个数组：</p>
-<p class="note note-info">[7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]</p>
-
-<p>在遍历到数组中的第一个元素以及每个在 <code>|</code> 之后的元素时，<code>`candidate</code> 都会因为 <code>count</code> 的值变为 <code>0</code> 而发生改变。最后一次 <code>candidate</code> 的值从 <code>5</code> 变为 <code>7</code>，也就是这个数组中的众数。<br>简单的证明见官方题解。</p>
-<p><strong>代码</strong></p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sollution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(self, nums)</span>:</span>
-        count = <span class="hljs-number">0</span>
-        candidate = <span class="hljs-literal">None</span>
         
-        <span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> nums:
-            <span class="hljs-keyword">if</span> count == <span class="hljs-number">0</span>:
-                candidate = num
-            count += (<span class="hljs-number">1</span> <span class="hljs-keyword">if</span> num == candidate <span class="hljs-keyword">else</span> <span class="hljs-number">-1</span>)
-        <span class="hljs-keyword">return</span> candidate</code></pre>
-<p>大部分借鉴了官方的解题思路，就是会简化一下，加上一点点自己的想法。如果直接扫一遍，就是从脑子里过一遍就没得了。。。记录下来印象会深刻一些。每日一题结束！</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/majority-element/solution/duo-shu-yuan-su-by-leetcode-solution/" target="_blank" rel="noopener">leetcode169官方题解</a></p>
+          
+        
+        <div>层次聚类(Hierarchical Clustering)1、聚合(agglomerative)或自下而上(bottom-up)聚类2、分裂(divisive)或自上而下(top-down)聚类
 
-      
+AGNES(Agglomerative Nesting)：凝聚层次聚类——自下而上1、构造m个类，每个类包含一个样本2、计算类与类之间的距离$d_{ij}$，记做矩阵$D=[d_{ij}]_{m \ti</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-10
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+            
+          </div>
+        
+      </div>
     </div>
+  </div>
 
+  <div class="row mx-auto index-card">
     
     
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/bdb1f9df.html">leetcode309</a>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/a022e3d6.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+      <a href="/article/bdb1f9df.html" class="index-excerpt">
+        
+        
           
-            <a href="/article/a022e3d6.html" class="post-title-link" itemprop="url">git教程</a>
-        </h2>
+        
+        <div>309.最佳买卖股票时机含冷冻期给定一个整数数组，其中第 i 个元素代表了第 i 天的股票价格 。设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)。
+示例:
+输入: [1,2,3,0,2]
+输出: 3 
+解释: 对应的交易状态为</div>
+      </a>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-08 00:52:41 / 修改时间：13:09:59" itemprop="dateCreated datePublished" datetime="2020-07-08T00:52:41+08:00">2020-07-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/a022e3d6.html" class="post-meta-item leancloud_visitors" data-flag-title="git教程" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/a022e3d6.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/a022e3d6.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>66</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>之前学过了git，然后懒得用，but学了不用=白学，所以写这篇文章有两个目的，首先是总结git的用法，其次是督促自己用起来。<br>本周更~</p>
-
-      
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-10
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/leetcode/">leetcode</a>
+            
+              <a href="/categories/leetcode/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>
+            
+              <a href="/tags/leetcode/">leetcode</a>
+            
+          </div>
+        
+      </div>
     </div>
+  </div>
 
+  <div class="row mx-auto index-card">
     
     
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/223c24ff.html">leetcode51</a>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/69d6fed9.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+      <a href="/article/223c24ff.html" class="index-excerpt">
+        
+        
           
-            <a href="/article/69d6fed9.html" class="post-title-link" itemprop="url">leetcode78</a>
-        </h2>
+        
+        <div>leetcode51.N皇后n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+上图为 8 皇后问题的一种解法。给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 ‘Q’ 和 ‘.’ 分别代表了皇后和空位。
+示例:
+输入: 4
+输出: [
+ [".Q..",  // 解法 1
+  </div>
+      </a>
 
-              <time title="创建时间：2020-07-07 15:59:36" itemprop="dateCreated datePublished" datetime="2020-07-07T15:59:36+08:00">2020-07-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-08 11:18:44" itemprop="dateModified" datetime="2020-07-08T11:18:44+08:00">2020-07-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/%E5%88%86%E6%B2%BB%E3%80%81%E5%9B%9E%E6%BA%AF/" itemprop="url" rel="index"><span itemprop="name">分治、回溯</span></a>
-                </span>
-            </span>
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-09
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/leetcode/">leetcode</a>
+            
+              <a href="/categories/leetcode/%E5%88%86%E6%B2%BB%E3%80%81%E5%9B%9E%E6%BA%AF/">分治、回溯</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/leetcode/">leetcode</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
 
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/af3344ce.html">leetcode17</a>
+
+      <a href="/article/af3344ce.html" class="index-excerpt">
+        
+        
           
-            <span id="/article/69d6fed9.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode78" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/69d6fed9.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/69d6fed9.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
+        
+        <div>leetcode17.电话号码的字母组合给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
 
-        </div>
-      </header>
+示例:
+输入："23"
+输出：["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+说明:尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。
+方法</div>
+      </a>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-09
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/leetcode/">leetcode</a>
+            
+              <a href="/categories/leetcode/%E5%88%86%E6%B2%BB%E3%80%81%E5%9B%9E%E6%BA%AF/">分治、回溯</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/leetcode/">leetcode</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
 
-      
-          <h1 id="leetcode-78-子集"><a href="#leetcode-78-子集" class="headerlink" title="leetcode 78.子集"></a>leetcode 78.子集</h1><p>给定一组<strong>不含重复元素</strong>的整数数组nums，返回该数组所有可能的子集（幂集）。<br><strong>说明：</strong>解集不能包含重复的子集。<br><strong>示例：</strong></p>
-<pre><code class="hljs python">输入: nums = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/5a3811fb.html">schedule</a>
+
+      <a href="/article/5a3811fb.html" class="index-excerpt">
+        
+        
+          
+        
+        <div>This blog is encrypted.</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%97%A5%E7%A8%8B/">日程</a>
+            
+              <a href="/categories/%E6%97%A5%E7%A8%8B/7%E6%9C%88/">7月</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%97%A5%E7%A8%8B/">日程</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/e86f8a37.html">leetcode169</a>
+
+      <a href="/article/e86f8a37.html" class="index-excerpt">
+        
+        
+          
+        
+        <div>169.多数元素给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数大于$\lfloor \dfrac{n}{2} \rfloor$的元素。你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+示例 1:
+输入: [3,2,3]
+输出: 3
+示例 2:
+输入: [2,2,1,1,1,2,2]
+输出: 2
+说明本题题目没有给出数据范围，最简单的暴力方法(枚举数据中的每个元</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/leetcode/">leetcode</a>
+            
+              <a href="/categories/leetcode/%E5%88%86%E6%B2%BB%E3%80%81%E5%9B%9E%E6%BA%AF/">分治、回溯</a>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/a022e3d6.html">git教程</a>
+
+      <a href="/article/a022e3d6.html" class="index-excerpt">
+        
+        
+          
+        
+        <div>之前学过了git，然后懒得用，but学了不用=白学，所以写这篇文章有两个目的，首先是总结git的用法，其次是督促自己用起来。本周更~
+</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/git/">git</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/git/">git</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/69d6fed9.html">leetcode78</a>
+
+      <a href="/article/69d6fed9.html" class="index-excerpt">
+        
+        
+          
+        
+        <div>leetcode 78.子集给定一组不含重复元素的整数数组nums，返回该数组所有可能的子集（幂集）。说明：解集不能包含重复的子集。示例：
+输入: nums = [1,2,3]
 输出:
 [
-  [<span class="hljs-number">3</span>],
-  [<span class="hljs-number">1</span>],
-  [<span class="hljs-number">2</span>],
-  [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],
-  [<span class="hljs-number">1</span>,<span class="hljs-number">3</span>],
-  [<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],
-  [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],
+  [3],
+  [1],
+  [2],
+  [1,2,3],
+  [1,3],
+  [2,3],
+  [1,2],
   []
 ]
 全排列/组合/子集问题，比较相似，可以使用一些通用策略解决。
-首先，解空间非常大：</code></pre>
-<ul>
-<li>全排列：$N!$</li>
-<li>组合：$N!$</li>
-<li>子集：$2^N$，每个元素都可能存在或不存在。</li>
-</ul>
-<p>在它们的指数级解法中，要确保生成的结果 <strong><em>完整</em></strong> 且 <strong><em>无冗余</em></strong>，有三种常用的方法：</p>
-<ul>
-<li>递归</li>
-<li>回溯</li>
-<li>基于二进制位掩码和对应位掩码之间的映射字典生成排列/组合/子集</li>
-</ul>
-<p>相比前两种方法，第三种方法将每种情况都简化为二进制数，易于实现和验证。<br>此外，第三种方法具有最优的时间复杂度，可以生成按照字典顺序的输出结果。</p>
-<h2 id="方法一：递归"><a href="#方法一：递归" class="headerlink" title="方法一：递归"></a>方法一：递归</h2><p><strong>思路</strong><br>开始假设输出子集为空，每一步都向子集添加新的整数，并生成新的子集。</p>
-<p><img src="/article/69d6fed9/recursion.png" srcset="/img/loading.gif" alt="img"></p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">subsets</span><span class="hljs-params">(self, nums)</span>:</span>
-	n = len(nums)
-	output = [[]]
-	
-	<span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> nums:
-		output += [curr + [num] <span class="hljs-keyword">for</span> curr <span class="hljs-keyword">in</span> output]
-	<span class="hljs-keyword">return</span> output</code></pre>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：$O(N \times 2^N)$，生成所有子集，并复制到输出结果中。???</p>
-</li>
-<li><p>空间复杂度：$O(N \times 2^N)$，这是子集的数量。???</p>
-<ul>
-<li>对于给定的任意元素，它在子集中有两种情况，存在或者不存在（对应二进制中的 0 和 1）。因此，<em>N</em> 个数字共有$2^N$个子集。</li>
-</ul>
-</li>
-</ul>
-<h2 id="方法二：回溯"><a href="#方法二：回溯" class="headerlink" title="方法二：回溯"></a>方法二：回溯</h2><p><strong>算法</strong></p>
-<blockquote>
-<p>幂集是所有长度从0到n所有子集的组合。</p>
-</blockquote>
-<p>根据定义，该问题可以看作是从序列中生成幂集。<br>遍历子集长度，通过回溯生成所有给定长度的子集。<br><img src="/article/69d6fed9/combinations.png" srcset="/img/loading.gif" alt="img"></p>
-<blockquote>
-<p>回溯法是一种探索所有潜在可能性找到解决方案的算法。如果当前方案不是正确的解决方案，或者不是最后一个正确的解决方案，则回溯法通过修改上一步的值，则回溯法通过修改上一步的值继续寻找解决方案。</p>
-</blockquote>
-<p><img src="/article/69d6fed9/backtracking.png" srcset="/img/loading.gif" alt="img"></p>
-<p><strong>算法</strong><br>定义一个回溯方法<code>backtrack(first, curr)</code>，第一个参数为索引 <code>first</code>，第二个参数为当前子集 <code>curr</code>。</p>
-<ul>
-<li>如果当前子集构造完成，将它添加到输出集合中。</li>
-<li>否则，从 <code>first</code> 到 <code>n</code> 遍历索引 <code>i</code>。<ul>
-<li>将整数 <code>nums[i]</code> 添加到当前子集 <code>curr</code>。</li>
-<li>继续向子集中添加整数：<code>backtrack(i + 1, curr)</code></li>
-<li>从 <code>curr</code> 中删除 <code>nums[i]</code> 进行回溯。</li>
-</ul>
-</li>
-</ul>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">subsets</span><span class="hljs-params">(self, nums: List[int] -&gt; List[List[int]])</span>:</span>
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(first = <span class="hljs-number">0</span>, curr = [])</span>:</span>
-            <span class="hljs-comment"># if the combination is done</span>
-            <span class="hljs-keyword">if</span> len(curr) == k:
-                output.append(curr[:])
-            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(first, n):
-                <span class="hljs-comment"># add nums[i] into the current combination</span>
-                curr.append(nums[i])
-                <span class="hljs-comment"># use next integers to complete the combination</span>
-                backtrack(i+<span class="hljs-number">1</span>, curr)
-                <span class="hljs-comment"># backtrack</span>
-                curr.pop()
-		
-        output = []
-        n = len(nums)
-        <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(n + <span class="hljs-number">1</span>):
-            backtrack()
-       	<span class="hljs-keyword">return</span> output</code></pre>
-<p>这里改进了一下，找到了就直接返回上一级。</p>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：$O(N \times 2^N)$，生成所有子集，并复制到输出集合中。</li>
-<li>空间复杂度：$O(N \times 2^N)$，存储所有子集，共n个元素，每个元素都有可能存在或者不存在。</li>
-</ul>
-<p>晚上又看到了一种回溯算法：</p>
-<p>简化了上面的写法，不用k，也是bfs类似思想，每层的结果都放入output中。但是leetcode的运行时间变长了。(#`O′)</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">subsets</span><span class="hljs-params">(self, nums)</span>:</span>
-        res = []
-        n = len(nums)
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(i, tmp)</span>:</span>
-            res.append(tmp)
-            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(i, n):
-                backtrack(j+<span class="hljs-number">1</span>, tmp + [num[j]])
-       	backtrack(<span class="hljs-number">0</span>, [])
-        <span class="hljs-keyword">return</span> res</code></pre>
-<ul>
-<li><p>append操作是在原List上的修改，不会返回一个新的值。</p>
-</li>
-<li><p>+运算是对于两个类型相同的变量之间的运算，不改变原有的变量，并返回一个新的值，是内容之间的拼接。</p>
-</li>
-<li>extend 也是在原有List上进行修改，没有返回值，可以扩展不同类型的变量，并将其内容以List变量的形式加入到原List中。<br>例子：从输出中可见如果extend的是字符串，则字符串会被拆分成字符数组，如果extend的是字典，则字典的key会被加入到List中。</li>
-</ul>
-<p><strong>所以这里的tmp+[]不能用tmp.append()替换！</strong>哎，猛男落泪，我验证了半天。</p>
-<p><strong>本题中回溯类似于bfs，当然用dfs也是可以做的。</strong></p>
-<h2 id="方法三：字典排序（二进制排序）子集"><a href="#方法三：字典排序（二进制排序）子集" class="headerlink" title="方法三：字典排序（二进制排序）子集"></a>方法三：字典排序（二进制排序）子集</h2><p><strong>思路</strong></p>
-<p>该方法思路来自于Donald E. Knuth。</p>
-<blockquote>
-<p>将每个子集映射到长度为 n 的位掩码中，其中第 i 位掩码 nums[i] 为 1，表示第 i 个元素在子集中；如果第 i 位掩码 nums[i] 为 0，表示第 i 个元素不在子集中。</p>
-</blockquote>
-<p><img src="/article/69d6fed9/bitmask4.png" srcset="/img/loading.gif" alt="img"></p>
-<p>例如，位掩码 0..00（全 0）表示空子集，位掩码 1..11（全 1）表示输入数组 nums。</p>
-<p>因此要生成所有子集，只需要生成从 0..00 到 1..11 的所有 n 位掩码。</p>
-<p>生成二进制数很简单，但如何处理左边填充 0 是一个问题。因为必须生成固定长度的位掩码：例如 001，而不是 1。因此可以使用一些位操作技巧：</p>
-<pre><code class="hljs python">nth_bit = <span class="hljs-number">1</span> &lt;&lt; n
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>**n):
-    <span class="hljs-comment"># generate bitmask, from 0..00 to 1..11</span>
-    bitmask = bin(i | nth_bit)[<span class="hljs-number">3</span>:]</code></pre>
-<p>以示例为例，就是把[0,7]跟8进行或操作，目的是为了取到前面的0，然后取0b1xxx后三位。</p>
-<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>**n, <span class="hljs-number">2</span>**(n + <span class="hljs-number">1</span>)):
-    <span class="hljs-comment"># generate bitmask, from 0..00 to 1..11</span>
-    bitmask = bin(i)[<span class="hljs-number">3</span>:]</code></pre>
-<p>或者直接从8到16，取后三位，效果是一样的。<br><strong>算法</strong></p>
-<ul>
-<li>生成所有长度为 n 的二进制位掩码。</li>
-<li>将每个子集都映射到一个位掩码数：位掩码中第 <code>i</code> 位如果是 <code>1</code> 表示子集中存在 <code>nums[i]</code>，<code>0</code> 表示子集中不存在 <code>nums[i]</code>。</li>
-<li>返回子集列表。</li>
-</ul>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">subsets</span><span class="hljs-params">(self, nums)</span>:</span>
-        n = len(nums)
-        output = []
-        n_bit = <span class="hljs-number">1</span> &lt;&lt; n
-        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>**n):
-            <span class="hljs-comment"># generate bitmask form 0..00 to 1..11</span>
-            bitmask = bin(i|n_bit)[<span class="hljs-number">3</span>:]
-            <span class="hljs-comment"># append subset corresponding to that bitmask</span>
-            output.append([num[j] <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(n) <span class="hljs-keyword">if</span> bitmask[n] == <span class="hljs-string">'1'</span>])
-   		<span class="hljs-keyword">return</span> output</code></pre>
-<p>结束！嗯~ o(<em>￣▽￣</em>)o，收回昨天的话，不难，就是第一次碰到是需要花时间理解，然后就是动手很重要。今日打卡get~</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/subsets/solution/zi-ji-by-leetcode/" target="_blank" rel="noopener">leetcode50官方解析</a></p>
-<p>以前觉得只写代码就好了，注释真是太麻烦了。现在的我，只写代码就是耍流氓，要让人理解理解，可读性很很很很重要。</p>
+首先，解空间非常</div>
+      </a>
 
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/760e3967.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/760e3967.html" class="post-title-link" itemprop="url">Task04-HOG特征描述算子-行人检测</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-06 10:03:41" itemprop="dateCreated datePublished" datetime="2020-07-06T10:03:41+08:00">2020-07-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-09 00:03:14" itemprop="dateModified" datetime="2020-07-09T00:03:14+08:00">2020-07-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B8%8B/" itemprop="url" rel="index"><span itemprop="name">图像处理下</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/760e3967.html" class="post-meta-item leancloud_visitors" data-flag-title="Task04-HOG特征描述算子-行人检测" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/760e3967.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/760e3967.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>15k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>14 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>HOG（Histogram of Oriented Gradients）HOG特征在对象检测与模式匹配中是一种常见的特征提取技术（深度学习之前），是基于本地像素块进行特征直方图提取的一种算法，对象局部的变形与光照影响有很好的稳定性，最初是用HOG特征来来识别人像，通过HOG特征提取+SVM训练，可以得到很好的效果，OpenCV已经有相应的接口。</p>
-<p>HOG特征实在2005年CVPR的会议发表，在图像手工特征提取方面具有里程碑式的意义，当时在行人检测领域获得了极大成功。</p>
-<h1 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h1><h2 id="1-HOG特征描述符"><a href="#1-HOG特征描述符" class="headerlink" title="1. HOG特征描述符"></a>1. HOG特征描述符</h2><h3 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h3><p>&emsp;&emsp;局部目标的外表和形状可以被局部梯度的分布很好的描述，即使我们不知道对应的梯度和边缘的位置。(本质：梯度的统计信息，梯度主要存在于边缘edge或角落corner的地方)<!--局部目标的外表和形状可以被局部梯度或边缘方向的分布很好的描述，即使我们不知道对应的梯度和边缘的位置。(本质：梯度的统计信息，梯度主要存在于边缘edge或角落corner的地方)--></p>
-<h3 id="宏观"><a href="#宏观" class="headerlink" title="宏观"></a>宏观</h3><p>&emsp;&emsp;特征描述符就是通过提取图像的有用信息，并且丢弃无关信息来简化图像的表示。</p>
-<p>&emsp;&emsp;HOG特征描述符可以将3通道的彩色图像转换成一定长度的特征向量。</p>
-<p>&emsp;&emsp;那么我们就需要定义什么是“有用的”，什么是“无关的”。这里的“有用”，是指对于什么目的有用，显然特征向量对于观察图像是没有用的，但是它对于像图像识别和目标检测这样的任务非常有用。当将这些特征向量输入到类似支持向量机（SVM）这样的图像分类算法中时，会得到较好的结果。</p>
-<p>&emsp;&emsp;那什么样的“特征”对分类任务是有用，比如我们想检测出马路上的车道线，那么我们可以通过边缘检测来找到这些车道线，在这种情况下，边缘信息就是“有用的”，而颜色信息是无关的。</p>
-<p>&emsp;&emsp;方向梯度直方图(HOG)特征描述符常和线性支持向量机(SVM)配合使用，用于训练高精度的目标分类器。</p>
-<h3 id="微观（硬核）"><a href="#微观（硬核）" class="headerlink" title="微观（硬核）"></a>微观（硬核）</h3><p>在HOG特征描述符中，梯度方向的分布，也就是梯度方向的直方图被视作特征。图像的梯度(x和y导数)非常有用，因为边缘和拐角(强度突变的区域)周围的梯度幅度很大，并且边缘和拐角比平坦区域包含更多关于物体形状的信息。</p>
-<p>HOG特征是一种图像局部特征，基本思路是将图像划分为很多小的连通区域，即细胞单元Cell，然后对Cell的<strong>梯度幅值和方向</strong>进行投票统计，形成基于梯度特性的直方图。把直方图在图像更大的范围内(又名区间或者Block)进行归一化。<strong>归一化的块描述符叫做HOG描述子feature descriptor。</strong>将检测窗口中的所有块的HOG描述子组合成最终的特征向量。然后使用SVM分类器进行目标和非目标的二分类（检测）。</p>
-<p>HOG+SVM的工作流程如下：</p>
-<p><img src="/article/760e3967/1328274-20180917143312309-1232187669.png" srcset="/img/loading.gif" alt="img"></p>
-<p>首先对输入的图片进行预处理，然后计算像素点的梯度特性，包括梯度幅值和梯度方向。然后投票统计形成梯度直方图，然后对blocks进行normalize，最后收集到检测窗口的HOG feature(一行多维的vector)放入SVM里进行监督学习，实现行人的检测。接下来对上述HOG的主要步骤进行学习。（车轱辘话又来了一遍┗|｀O′|┛ 嗷~~）</p>
-<p><font color="red">检测窗口在整个图像的所有位置和尺度进行扫描，并对输出的金字塔进行非极大值抑制来检测目标</font>（检测窗口的大小一般为128x64）</p>
-<h2 id="2-HOG特征的原理"><a href="#2-HOG特征的原理" class="headerlink" title="2. HOG特征的原理"></a>2. HOG特征的原理</h2><p>接下来让我们进入到计算图像的HOG特征描述符的具体步骤。<br>以下面这张图片为例（宽高为100x200）:</p>
-<p><img src="/article/760e3967/v2-2ccc671e60031942dca8a129410a0383_720w.jpg" srcset="/img/loading.gif" alt="img"></p>
-<h3 id="图形预处理"><a href="#图形预处理" class="headerlink" title="图形预处理"></a>图形预处理</h3><p>预处理包括灰度化和Gamma变换。</p>
-<p>灰度处理是可选操作，因为灰度图像和彩色图像都可以用于计算梯度图。对于彩色图像，先对三通道颜色值分别计算梯度，然后取梯度值最大的那个作为该像素的梯度。</p>
-<p>然后进行伽马矫正，调节图像对比度，减少光照对图像的影响（包括光照不均和局部阴影），使过曝或者欠曝的图像恢复正常，更接近人眼看到的图像。更详细的内容参考<a href="https://www.cnblogs.com/qiqibaby/p/5325193.html" target="_blank" rel="noopener">图像处理之gamma矫正</a>。</p>
-<p>Gamma矫正公式：$f(I) = I^{\gamma}$，其中$I$表示图像，$\gamma$表示幂指数。($\gamma$越大，图像越暗；为1时，表示没有变化。)<br>如图，当$\gamma$取不同的值时对应的输入输出曲线( $\gamma$=1时输入输出保持一致) ：<br>1） 当$\gamma$&lt;1时，输入图像的低灰度值区域动态范围变大，进而图像低灰度值区域对比度得以增强；在高灰度值区域，动态范围变小，进而图像高灰度值区域对比度得以降低。 最终，图像整体的灰度变亮。</p>
-<p>2） 当$\gamma$&gt;1时，输入图像的低灰度值区域动态范围变小，进而图像低灰度值区域对比度得以降低；在高灰度值区域，动态范围变大，进而图像高灰度值区域对比度得以增强。 最终，图像整体的灰度变暗。</p>
-<p><img src="/article/760e3967/image-1.jpg" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<p>代码：</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt
-img = cv2.imread(<span class="hljs-string">'*.png'</span>, <span class="hljs-number">0</span>)
-img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-img2 = np.power(img/float(np.max(img)),<span class="hljs-number">1</span>/<span class="hljs-number">2.2</span>)
-plt.imshow(img2)
-plt.axis(<span class="hljs-string">'off'</span>)
-plt.show()</code></pre>
-<p>放图，左图是$\gamma=0.5$，中图是$\gamma=1$，右图是$\gamma=1.5$：</p>
-<center class="half">    <img src="/article/760e3967/0_5_hog.jpg" srcset="/img/loading.gif" width="200" hight="400"><img src="/article/760e3967/1_hog.jpg" srcset="/img/loading.gif" width="200" hight="400"><img src="/article/760e3967/1_5_hog.jpg" srcset="/img/loading.gif" width="200" hight="400"></center>
-
-<p>作者在他的博士论文里有提到，对于涉及大量的类内颜色变化，如猫，狗和马等动物，没标准化的RGB图效果更好，而牛，羊的图做gamma颜色校正后效果更好。是否用gamma校正分情况把。(●ˇ∀ˇ●)</p>
-<h3 id="计算图像梯度"><a href="#计算图像梯度" class="headerlink" title="计算图像梯度"></a>计算图像梯度</h3><p>为了得到梯度直方图，那么首先需要计算图像水平方向和垂直方向梯度。可以通过使用以下内核过滤图像实现，分别用于计算水平梯度和垂直梯度。</p>
-<script type="math/tex; mode=display">
-\begin{equation}
-\begin{aligned}
-d_x = I(x+1, y) - I(x-1,y) \\
-d_y = I(x, y+1) - I(x,y-1)
-\end{aligned}
-\end{equation}</script><p><img src="/article/760e3967/gradient-kernels.jpg" srcset="/img/loading.gif" alt="Gradient Kernels"></p>
-<p>一般使用特定的卷积核对图像滤波实现，可选用的卷积模板有：sobel算子、Prewitt算子、Roberts模板等等。<br> 可以使用内核大小为1的sobel算子获取相同结果，OpenCV也是如此。<br>利用sobel水平和垂直算子与输入图像卷积计算$dx$、$dy$：</p>
-<script type="math/tex; mode=display">
-\begin{equation}
-\begin{aligned}
-Sobel_{X} &= \begin{bmatrix}1 \\ 0 \\ -1\end{bmatrix} *
-             \begin{bmatrix}1 & 2 &  1\end{bmatrix} 
-           =  \begin{bmatrix}1 & 2 & 1\\
-                             0 & 0 & 0\\
-                             -1 & -2 & -1\end{bmatrix} \\
-Sobel_{Y} &= \begin{bmatrix}1 \\ 2 \\  1\end{bmatrix} *
-             \begin{bmatrix}1 & 0 & -1\end{bmatrix} 
-           =  \begin{bmatrix}1 & 0 & -1\\
-                             2 & 0 & -2\\
-                             1 & 0 & -1\end{bmatrix} \\
-\end{aligned}
-\end{equation}</script><script type="math/tex; mode=display">
-\begin{equation}
-\begin{aligned}
-d_x = f(x, y)*Sobel_x(x,y) \\
-d_y = f(x, y)*Sobel_y(x,y)
-\end{aligned}
-\end{equation}</script><p>进一步得到图像梯度的幅值：$M(x,y) = \sqrt{d^{2}_{x}(x,y)+d^{2}_{y}(x,y)}$<br>（简化计算，幅值也可以做近似：$M(x,y) = |d_{x}(x,y)|+|d_{y}(x,y)|$）<br>图像梯度的方向：$\theta_{M} = \arctan(d_y/d_x)$</p>
-<p>这里需要注意的是：梯度方向和图像边缘方向是互相正交的。</p>
-<p><img src="/article/760e3967/20160511100108955" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<p>代码：</p>
-<pre><code class="hljs python">mport cv2
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-
-<span class="hljs-comment"># Read image</span>
-img = cv2.imread(<span class="hljs-string">'*.jpg'</span>)
-img = np.float32(img) / <span class="hljs-number">255.0</span>  <span class="hljs-comment"># 归一化</span>
-
-<span class="hljs-comment"># 计算x和y方向的梯度</span>
-gx = cv2.Sobel(img, cv2.CV_32F, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, ksize=<span class="hljs-number">1</span>)
-gy = cv2.Sobel(img, cv2.CV_32F, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, ksize=<span class="hljs-number">1</span>)
-
-<span class="hljs-comment"># 计算合梯度的幅值和方向（角度）</span>
-mag, angle = cv2.cartToPolar(gx, gy, angleInDegrees=<span class="hljs-literal">True</span>)</code></pre>
-<p>下图展示了梯度：</p>
-<center class="half">    <img src="/article/760e3967/x_hog.jpg" srcset="/img/loading.gif" width="150" hight="300"><img src="/article/760e3967/y_hog.jpg" srcset="/img/loading.gif" width="150" hight="300"><img src="/article/760e3967/mag_hog.jpg" srcset="/img/loading.gif" width="150" hight="300"><img src="/article/760e3967/angle_hog.jpg" srcset="/img/loading.gif" width="150" hight="300"></center>
-
-<p>第一个图：x-梯度的绝对值，第二个图：y梯度的绝对值 ，第三个图：梯度的幅值，第四个图：角度。<br>注意到，x-梯度在垂直线触发，y-梯度在水平线触发。梯度的幅值在有密集的剧烈改变时触发。当区域很平缓时，梯度没有明显变化。梯度图除去了很多不必要的信息（例如有颜色的背景），强调凸显线条。当你看到梯度图像，很容易想到这张图片有一个人。<br>在每个像素点，梯度有一个幅值和方向。对于有颜色的图像，计算三通道的梯度（如上图所示）。一个像素点的梯度的幅值是三通道中梯度幅值最大的值，角度也是最大梯度对应的角度。</p>
-<h3 id="计算梯度直方图"><a href="#计算梯度直方图" class="headerlink" title="计算梯度直方图"></a>计算梯度直方图</h3><p>&emsp;&emsp; 此时，每一个像素点具有两个值：梯度幅值和梯度方向。<br>&emsp;&emsp; 在这一步中，图像被分成若干个8×8的Cell，如下图所示，例如我们将图像resize至64x128的大小，那么这幅图像就被划分为8x16个8x8的Cell单元，并为每个8×8的Cell计算梯度直方图。当然，Cell的划分也可以是其他值：16x16，8x16等，根据具体的场景确定。</p>
-<p><img src="/article/760e3967/hog-cells.png" srcset="/img/loading.gif" alt="8x8 Cells of HOG"></p>
-<p>计算梯度直方图之前，先了解一下为什么要把图像分为若干个Cell?<br>这是因为如果对一整张梯度图逐像素计算，其中的有效特征是非常稀疏的，不但运算量大，而且会受到一些噪声干扰。使用特征描述符便提供了紧凑的表示。一个8x8的图像块包含8x8x3=192个像素值。一个8x8的Cell包含了8x8x2 = 128个值（每个像素包括梯度的大小和方向）。128个值将由9-bin的直方图（存储9个值的向量，想想坐标应该就明白了）。同时，计算Cell上的梯度直方图更具鲁棒性。逐像素计算梯度会产生噪音，直方图表示对噪音更不敏感。</p>
-<p>&emsp;&emsp; 好，回到主题。<br>&emsp;&emsp; 在HOG中，每个8x8的Cell的梯度直方图本质是一个由9个数值组成的向量， 对应于0、20、40、60…160的梯度方向(角度)。那么原本Cell中8x8x2 = 128个值就由长度为9的向量来表示，用这种梯度直方图的表示方法，大大降低了计算量，同时又对光照等环境变化更加地鲁棒。<br>如下图所示，左图是衣服64x128的图像，被划分为8x16个8x8的Cell；中间的图像表示一个Cell中的梯度矢量，箭头朝向代表梯度方向，箭头长度代表梯度大小。<br>右图是 8×8 的Cell中表示梯度的原始数值，注意角度的范围介于0到180度之间，而不是0到360度， 这被称为“无符号”梯度，因为两个完全相反的方向被认为是相同的。0$^\circ$和180$^\circ$是相同的。（经验表明这样处理对于行人检测效果更好。）</p>
-<p><img src="/article/760e3967/20200613153022928.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<p>接下来，计算Cell中像素的梯度直方图，将0-180度分成9等份，称为9个bins，分别是0，20，40…160。然后对每个bin中梯度的贡献进行统计：</p>
-<p><img src="/article/760e3967/hog-histogram-1.png" srcset="/img/loading.gif" alt="Histogram computation in HOG"></p>
-<p>&emsp;&emsp;这里采用加权投票统计，比如上面方向图中蓝圈包围的像素，角度为80度，这个像素对应的幅值为2，所以在直方图80度对应的bin加上2。红圈包围的像素，角度为10度，介于0度和20度之间，其幅值为4，那么这个梯度值就被按比例分给0度和20度对应的bin，也就是各加上2。</p>
-<p><img src="/article/760e3967/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xMzA1NjcxMy1mMDgzNzBkZGVmMmVhYzE1LnBuZw" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<p>&emsp;&emsp;再比如：（如上图所示）某像素的梯度幅值为13.6，方向为36，36度两侧的角度bin分别为20度和40度，那么按一定加权比例分别在20度和40度对应的bin加上梯度值，加权公式为：<br>20度对应的bin：(（40-36）/20) x13.6，<strong>分母的20表示20等份，其中4份给20度对应的bin</strong>；<br>40度对应的bin：(（36-20）/20) x13.6，<strong>分母的20表示20等份,其中16份给20度对应的bin</strong>；<br>&emsp;&emsp;还有一个细节需要注意，如果某个像素的梯度角度大于160度，也就是在160度到180度之间，那么把这个像素对应的梯度值按比例分给0度和160度对应的bin。如左下图绿色圆圈中的角度为165度，幅值为85，则按照同样的加权方式将85分别加到0度和160度对应的bin中。</p>
-<p><img src="/article/760e3967/20200613160337781.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<p>&emsp;&emsp;对整个Cell进行投票统计，最终得到9-bin直方图：</p>
-<p><img src="/article/760e3967/20200613161947892.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<p>&emsp;&emsp;可以看到直方图中，0度和160附近有很大的权重，说明了大多数像素的梯度向上或者向下，也就是这个Cell是个横向边缘。</p>
-<h3 id="Block归一化"><a href="#Block归一化" class="headerlink" title="Block归一化"></a>Block归一化</h3><p>&emsp;&emsp;HOG特征将8×8的一个局部区域作为一个Cell，再以2×2个Cell作为一组，称为一个block，也就是说一个block表示16x16的区域。<br>&emsp;&emsp;由于每个Cell有9个值，一个block（2×2个Cell）则有36个值，HOG是通过滑动窗口的方式来得到block的，如下图所示：</p>
-<p><img src="/article/760e3967/aHR0cHM6Ly9waWM0LnpoaW1nLmNvbS92Mi0yMzI0MTc3NDIwYzBhNzlkNDhkODQ0YjVlMTI0ZjFmM19iLndlYnA" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<p>为什么需要分Block呢？<br>我们已经为图像的8×8单元构造了基于梯度的直方图，但是图像的梯度对整体光照很敏感。这意味着对于特定的图像，图像的某些部分与其他部分相比会非常明亮。虽然不能从图像中完全消除，但是可以通过使用16×16个块来对梯度进行归一化来减少这种光照变化的影响。比如通过将所有像素值除以2来使图像变暗，那么梯度幅值将减小一半，因此直方图中的值也将减小一半。 </p>
-<p>&emsp;&emsp;接下来对Block进行归一化。（再再再一次强调，归一化的目的是为了降低光照/迁移的影响）：<br>&emsp;&emsp;归一化的方法有很多：L1-norm、L2-norm、max/min等等，一般选择L2-norm。</p>
-<script type="math/tex; mode=display">
-v←\frac{v}{\sqrt{\|v\|_2^2+\xi^2}} \quad (\xi是一个很小的数，主要是为了防止分母为0)；</script><p>&emsp;&emsp;例如对于一个[128，64，32]的三维向量来说，模长是$\sqrt{128^2+64^2+32^2}=146.64$，这叫做向量的L2范数。将这个向量的每个元素除以146.64就得到了归一化向量 [0.87, 0.43, 0.22]。<br>&emsp;&emsp;现在有一个新向量，是第一个向量的2倍 [128x2, 64x2, 32x2]，也就是 <code>[256, 128, 64]</code>，我们将这个向量进行归一化，你可以看到归一化后的结果与第一个向量归一化后的结果相同。所以，对向量进行归一化可以消除整体光照的影响。<br>&emsp;&emsp;知道了如何归一化，现在来对block的梯度直方图进行归一化（注意不是Cell），一个block有4个直方图，将这4个直方图拼接成长度为36的向量，然后对这个向量进行归一化。<br>&emsp;&emsp;因为使用的是滑动窗口，滑动步长为8个像素，一个Cell大小，每滑动一次，就在这个窗口上进行归一化计算得到长度为36的向量，并重复这个过程。如上图所示。</p>
-<h3 id="获得HOG描述子"><a href="#获得HOG描述子" class="headerlink" title="获得HOG描述子"></a>获得HOG描述子</h3><p>每一个16x16大小的block将会得到一个长度为36x1的特征向量，并进行归一化。 那会得到多大的特征向量呢？<br>对于上图被划分8 x16个Cell ，每个block有2x2个Cell的话，那么Cell的个数为：(8-1)x(16-1)=105。<br>每个16x16 block由36x1维向量，合并所有105个block的特征，最终得到由36 x105=3780维向量表示的特征描述符。<br>获得HOG特征向量，就可以用来可视化和分类了。对于多维的HOG特征，SVM就可以排上用场了。</p>
-<p>介绍以下Dalal等人的训练方法：</p>
-<ol>
-<li>提取正负样本的HOG特征；</li>
-<li>用正负样本训练一个初始的分类器，然后由分类器生产检测器；</li>
-<li>然后用初始分类器在负样本原图上进行行人检测，检测出来的矩形区域自然都是分类错误的负样本，这就是所谓的难例(hard examples)；</li>
-<li>提取难例的HOG特征并结合第一步中的特征，重新训练，生成最终的检测器 ；</li>
-</ol>
-<p>这种二次训练的处理过程显著提高了每个检测器的表现，一般可以使得每个窗口的误报率(FPPW False Positives Per Window)下降5%。</p>
-<h3 id="使用HOG特征数据"><a href="#使用HOG特征数据" class="headerlink" title="使用HOG特征数据"></a>使用HOG特征数据</h3><p>HOG特征本身是不支持旋转不变性与多尺度检测的，但是通过构建高斯金字塔实现多尺度的开窗检测就会得到不同分辨率的多尺度检测支持，如下图所示。详细内容可参考<a href="https://www.cnblogs.com/ronny/p/3886013.html" target="_blank" rel="noopener">尺度空间理论</a></p>
-<p><img src="/article/760e3967/1328274-20180924221334307-1701938273.png" srcset="/img/loading.gif" alt="img"></p>
-<p>OpenCV中HOG多尺度对象检测API如下：</p>
-<pre><code class="hljs python">virtual void cv::HOGDescriptor::detectMultiScale(
-    InputArray  img,
-    std::vector&lt; Rect &gt; &amp;   foundLocations,
-    double  hitThreshold = <span class="hljs-number">0</span>,
-    Size    winStride = Size(),
-    Size    padding = Size(),
-    double  scale = <span class="hljs-number">1.05</span>,
-    double  finalThreshold = <span class="hljs-number">2.0</span>,
-    bool    useMeanshiftGrouping = false 
-)
-Img-表示输入图像
-foundLocations-表示发现对象矩形框
-hitThreshold-表示SVM距离度量，默认<span class="hljs-number">0</span>表示，表示特征与SVM分类超平面之间
-winStride-表示窗口步长
-padding-表示填充
-scale-表示尺度空间
-finalThreshold-最终阈值，默认为<span class="hljs-number">2.0</span>
-useMeanshiftGrouping-不建议使用，速度太慢拉</code></pre>
-<p>在<a href="https://sulimin-nb.github.io/article/ad28cab2.html">人脸检测之Haar分类器</a>这一节我们利用haar特征和级联分类器Adaboost检测人脸时我们使用过detectMultiScale()函数，级联分类器对象尝试在输入图像的不同尺度下检测对象，该函数有一个比较重要的参数scaleFactor(一般设置为1.3)，表示一个比率：即在每层金字塔中所获得的图像与上一层图像的比率，scaleFactor越小，金字塔的层数就越多，计算就越慢，计算量也会更大，但是计算结果相对更精确。</p>
-<h1 id="基于OpenCV的简单实现"><a href="#基于OpenCV的简单实现" class="headerlink" title="基于OpenCV的简单实现"></a>基于OpenCV的简单实现</h1><h2 id="行人检测"><a href="#行人检测" class="headerlink" title="行人检测"></a>行人检测</h2><p>代码：</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2 <span class="hljs-keyword">as</span> cv
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt
-
-<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
-    src = cv.imread(<span class="hljs-string">"*.jpg"</span>)
-    cv.imshow(<span class="hljs-string">"input"</span>, src)
-    
-    hog = cv.HOGDescriptor()
-    hog.setSVMDetector(cv.HOGDescriptor_getDefaultPeopleDetector())
-    <span class="hljs-comment"># Detect people in the image</span>
-    (rects, weights) = hog.detectMultiScale(src,
-                                            winStride=(<span class="hljs-number">2</span>,<span class="hljs-number">4</span>),
-                                            padding=(<span class="hljs-number">8</span>, <span class="hljs-number">8</span>),
-                                            scale=<span class="hljs-number">1.2</span>,
-                                            useMeanshiftGrouping=<span class="hljs-literal">False</span>)
-    <span class="hljs-keyword">for</span> (x, y, w, h) <span class="hljs-keyword">in</span> rects:
-        cv.rectangle(src, (x, y), (x + w, y + h), (<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>), <span class="hljs-number">2</span>)
-
-    cv.imshow(<span class="hljs-string">"hog-detector"</span>, src)
-    cv.imwrite(<span class="hljs-string">"hog-detector.jpg"</span>,src)
-    cv.waitKey(<span class="hljs-number">0</span>)
-    cv.destroyAllWindows()</code></pre>
-<p>待检测图片：</p>
-<p><img src="/article/760e3967/v2-2ccc671e60031942dca8a129410a0383_720w.jpg" srcset="/img/loading.gif" alt="v2-2ccc671e60031942dca8a129410a0383_720w"></p>
-<p>检测图片(有点不完美，调参调不动了，先酱~)：</p>
-<p><img src="/article/760e3967/hog-detector.jpg" srcset="/img/loading.gif" alt="hog-detector"></p>
-<h2 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h2><p><strong>feature.log函数：</strong></p>
-<ul>
-<li><code>image</code>：可以是灰度图或者彩色图；</li>
-<li><code>orientations</code>：就是把180度分成几份，也就是bin的数量；</li>
-<li><code>pixels_per_Cell</code>：一个Cell里包含的像素个数；</li>
-<li><code>Cells_per_block</code>：一个block包含的Cell个数；</li>
-<li><code>visualize</code>：是否返回一个hog图像用于显示，下面会显示这张图；</li>
-</ul>
-<p>为了显示效果，把Cell的尺寸改为(16, 16)，对于每一个Cell，画出它归一化后的梯度直方图。如下图所示，我们可以很明显的看出一个人的轮廓。</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> skimage <span class="hljs-keyword">import</span> feature, exposure
-<span class="hljs-keyword">import</span> cv2
-image = cv2.imread(<span class="hljs-string">'hog.jpg'</span>)
-fd, hog_image = feature.hog(image, orientations=<span class="hljs-number">9</span>, pixels_per_Cell=(<span class="hljs-number">16</span>, <span class="hljs-number">16</span>),
-                    Cells_per_block=(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), visualize=<span class="hljs-literal">True</span>)
-<span class="hljs-comment"># Rescale histogram for better display</span>
-hog_image_rescaled = exposure.rescale_intensity(hog_image, in_range=(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>))
-cv2.imshow(<span class="hljs-string">'img'</span>, image)
-cv2.imshow(<span class="hljs-string">'hog'</span>, hog_image_rescaled)
-hog_image_rescaled = <span class="hljs-number">255.0</span> * hog_image_rescaled
-cv2.imwrite(<span class="hljs-string">'edge_hog.jpg'</span>, hog_image_rescaled)
-cv2.waitKey(<span class="hljs-number">0</span>)==ord(<span class="hljs-string">'q'</span>)</code></pre>
-<p><img src="/article/760e3967/edge_hog.jpg" srcset="/img/loading.gif" alt="edge_hog"></p>
-<h2 id="手动实现HOG特征"><a href="#手动实现HOG特征" class="headerlink" title="手动实现HOG特征"></a>手动实现HOG特征</h2><p>虽然opencv已经实现了HOG算法，但是手动实现的目的是为了加深我们对HOG的理解。参考了博客<a href="https://www.cnblogs.com/zyly/p/9651261.html" target="_blank" rel="noopener">基于传统图像处理的目标检测与识别</a><br>代码主要包括以下步骤：</p>
-<ol>
-<li>图像灰度化，归一化处理；</li>
-<li>首先计算图像每一个像素点的梯度幅值和角度；</li>
-<li>计算输入图像的每个Cell单元的梯度直方图(注意，我们在实现梯度直方图的时候，使用到的是双线性插值，这和上面介绍的理论略微有区别)，形成每个Cell的descriptor，比如输入图像为128×64 可以得到16×8个Cell，每个Cell由9个bin组成；</li>
-<li>将2×2个Cell组成一个block，一个block内所有Cell的特征串联起来得到该block的HOG特征descriptor，并进行归一化处理，将图像内所有block的HOG特征descriptor串联起来得到该图像的HOG特征descriptor，这就是最终分类的特征向量；</li>
-</ol>
-<pre><code class="hljs python"><span class="hljs-comment">#代码来源GitHub:https://github.com/PENGZhaoqing/Hog-feature</span>
-<span class="hljs-comment">#https://blog.csdn.net/ppp8300885/article/details/71078555</span>
-<span class="hljs-comment">#https://www.leiphone.com/news/201708/ZKsGd2JRKr766wEd.html</span>
-
-<span class="hljs-keyword">import</span> cv2
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> math
-<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hog_descriptor</span><span class="hljs-params">()</span>:</span>
-    <span class="hljs-string">'''</span>
-<span class="hljs-string">    HOG描述符的实现</span>
-<span class="hljs-string">    '''</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, img, Cell_size=<span class="hljs-number">8</span>, bin_size=<span class="hljs-number">9</span>)</span>:</span>
-        <span class="hljs-string">'''</span>
-<span class="hljs-string">        构造函数</span>
-<span class="hljs-string">            默认参数，一个block由2x2个Cell组成，步长为1个Cell大小 </span>
-<span class="hljs-string">        args:</span>
-<span class="hljs-string">            img：输入图像(更准确的说是检测窗口)，这里要求为灰度图像  对于行人检测图像大小一般为128x64 即是输入图像上的一小块裁切区域</span>
-<span class="hljs-string">            Cell_size：细胞单元的大小 如8，表示8x8个像素</span>
-<span class="hljs-string">            bin_size：直方图的bin个数</span>
-<span class="hljs-string">        '''</span>
-        self.img = img
-        <span class="hljs-string">'''</span>
-<span class="hljs-string">        采用Gamma校正法对输入图像进行颜色空间的标准化（归一化），目的是调节图像的对比度，降低图像局部</span>
-<span class="hljs-string">        的阴影和光照变化所造成的影响，同时可以抑制噪音。采用的gamma值为0.5。 f(I)=I^γ</span>
-<span class="hljs-string">        '''</span>
-        self.img = np.sqrt(img*<span class="hljs-number">1.0</span> / float(np.max(img)))
-        self.img = self.img * <span class="hljs-number">255</span>
-        <span class="hljs-comment">#print('img',self.img.dtype)   #float64</span>
-        <span class="hljs-comment">#参数初始化</span>
-        self.Cell_size = Cell_size
-        self.bin_size = bin_size
-        self.angle_unit = <span class="hljs-number">180</span> / self.bin_size  <span class="hljs-comment">#这里采用180°</span>
-        <span class="hljs-keyword">assert</span> type(self.bin_size) == int, <span class="hljs-string">"bin_size should be integer,"</span>
-        <span class="hljs-keyword">assert</span> type(self.Cell_size) == int, <span class="hljs-string">"Cell_size should be integer,"</span>
-        <span class="hljs-keyword">assert</span> <span class="hljs-number">180</span> % self.bin_size == <span class="hljs-number">0</span>, <span class="hljs-string">"bin_size should be divisible by 180"</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">extract</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-string">'''</span>
-<span class="hljs-string">        计算图像的HOG描述符，以及HOG-image特征图</span>
-<span class="hljs-string">        '''</span>
-        height, width = self.img.shape
-        <span class="hljs-string">'''</span>
-<span class="hljs-string">        1、计算图像每一个像素点的梯度幅值和角度</span>
-<span class="hljs-string">        '''</span>
-        gradient_magnitude, gradient_angle = self.global_gradient()
-        gradient_magnitude = abs(gradient_magnitude)
-        <span class="hljs-string">'''</span>
-<span class="hljs-string">        2、计算输入图像的每个Cell单元的梯度直方图，形成每个Cell的descriptor 比如输入图像为128x64 可以得到16x8个Cell，每个Cell由9个bin组成</span>
-<span class="hljs-string">        '''</span>
-        Cell_gradient_vector = np.zeros((int(height / self.Cell_size), int(width / self.Cell_size), self.bin_size))
-        <span class="hljs-comment">#遍历每一行、每一列</span>
-        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(Cell_gradient_vector.shape[<span class="hljs-number">0</span>]):
-            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(Cell_gradient_vector.shape[<span class="hljs-number">1</span>]):
-                <span class="hljs-comment">#计算第[i][j]个Cell的特征向量</span>
-                Cell_magnitude = gradient_magnitude[i * self.Cell_size:(i + <span class="hljs-number">1</span>) * self.Cell_size,
-                                 j * self.Cell_size:(j + <span class="hljs-number">1</span>) * self.Cell_size]
-                Cell_angle = gradient_angle[i * self.Cell_size:(i + <span class="hljs-number">1</span>) * self.Cell_size,
-                             j * self.Cell_size:(j + <span class="hljs-number">1</span>) * self.Cell_size]
-                Cell_gradient_vector[i][j] = self.Cell_gradient(Cell_magnitude, Cell_angle)
-
-        <span class="hljs-comment">#将得到的每个Cell的梯度方向直方图绘出，得到特征图</span>
-        hog_image = self.render_gradient(np.zeros([height, width]), Cell_gradient_vector)
+      <div class="index-btm post-metas">
         
-        <span class="hljs-string">'''</span>
-<span class="hljs-string">        3、将2x2个Cell组成一个block，一个block内所有Cell的特征串联起来得到该block的HOG特征descriptor</span>
-<span class="hljs-string">           将图像image内所有block的HOG特征descriptor串联起来得到该image（检测目标）的HOG特征descriptor，</span>
-<span class="hljs-string">           这就是最终分类的特征向量</span>
-<span class="hljs-string">        '''</span>
-        hog_vector = []
-        <span class="hljs-comment">#默认步长为一个Cell大小，一个block由2x2个Cell组成，遍历每一个block</span>
-        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(Cell_gradient_vector.shape[<span class="hljs-number">0</span>] - <span class="hljs-number">1</span>):
-            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(Cell_gradient_vector.shape[<span class="hljs-number">1</span>] - <span class="hljs-number">1</span>):
-                <span class="hljs-comment">#提取第[i][j]个block的特征向量</span>
-                block_vector = []
-                block_vector.extend(Cell_gradient_vector[i][j])
-                block_vector.extend(Cell_gradient_vector[i][j + <span class="hljs-number">1</span>])
-                block_vector.extend(Cell_gradient_vector[i + <span class="hljs-number">1</span>][j])
-                block_vector.extend(Cell_gradient_vector[i + <span class="hljs-number">1</span>][j + <span class="hljs-number">1</span>])
-                <span class="hljs-string">'''块内归一化梯度直方图，去除光照、阴影等变化，增加鲁棒性'''</span>
-                <span class="hljs-comment">#计算l2范数</span>
-                mag = <span class="hljs-keyword">lambda</span> vector: math.sqrt(sum(i ** <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> vector))   
-                magnitude = mag(block_vector) + <span class="hljs-number">1e-5</span>
-                <span class="hljs-comment">#归一化</span>
-                <span class="hljs-keyword">if</span> magnitude != <span class="hljs-number">0</span>:
-                    normalize = <span class="hljs-keyword">lambda</span> block_vector, magnitude: [element / magnitude <span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> block_vector]
-                    block_vector = normalize(block_vector, magnitude)
-                hog_vector.append(block_vector)           
-        <span class="hljs-keyword">return</span> np.asarray(hog_vector), hog_image
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">global_gradient</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-string">'''</span>
-<span class="hljs-string">        分别计算图像沿x轴和y轴的梯度</span>
-<span class="hljs-string">        '''</span>
-        gradient_values_x = cv2.Sobel(self.img, cv2.CV_64F, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, ksize=<span class="hljs-number">5</span>)
-        gradient_values_y = cv2.Sobel(self.img, cv2.CV_64F, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, ksize=<span class="hljs-number">5</span>)
-        <span class="hljs-comment">#计算梯度幅值 这个计算的是0.5*gradient_values_x + 0.5*gradient_values_y</span>
-        <span class="hljs-comment">#gradient_magnitude = cv2.addWeighted(gradient_values_x, 0.5, gradient_values_y, 0.5, 0)</span>
-        <span class="hljs-comment">#计算梯度方向</span>
-        <span class="hljs-comment">#gradient_angle = cv2.phase(gradient_values_x, gradient_values_y, angleInDegrees=True)</span>
-        gradient_magnitude, gradient_angle = cv2.cartToPolar(gradient_values_x,gradient_values_y,angleInDegrees=<span class="hljs-literal">True</span>)        
-        <span class="hljs-comment">#角度大于180°的，减去180度</span>
-        gradient_angle[gradient_angle&gt;<span class="hljs-number">180.0</span>] -= <span class="hljs-number">180</span> 
-        <span class="hljs-comment">#print('gradient',gradient_magnitude.shape,gradient_angle.shape,np.min(gradient_angle),np.max(gradient_angle))</span>
-        <span class="hljs-keyword">return</span> gradient_magnitude, gradient_angle
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Cell_gradient</span><span class="hljs-params">(self, Cell_magnitude, Cell_angle)</span>:</span>
-        <span class="hljs-string">'''</span>
-<span class="hljs-string">        为每个细胞单元构建梯度方向直方图</span>
-<span class="hljs-string">        </span>
-<span class="hljs-string">        args:</span>
-<span class="hljs-string">            Cell_magnitude：Cell中每个像素点的梯度幅值</span>
-<span class="hljs-string">            Cell_angle：Cell中每个像素点的梯度方向</span>
-<span class="hljs-string">        return：</span>
-<span class="hljs-string">            返回该Cell对应的梯度直方图，长度为bin_size</span>
-<span class="hljs-string">        '''</span>
-        orientation_centers = [<span class="hljs-number">0</span>] * self.bin_size
-        <span class="hljs-comment">#遍历Cell中的每一个像素点</span>
-        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(Cell_magnitude.shape[<span class="hljs-number">0</span>]):
-            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(Cell_magnitude.shape[<span class="hljs-number">1</span>]):
-                <span class="hljs-comment">#梯度幅值</span>
-                gradient_strength = Cell_magnitude[i][j]
-                <span class="hljs-comment">#梯度方向</span>
-                gradient_angle = Cell_angle[i][j]
-                <span class="hljs-comment">#双线性插值</span>
-                min_angle, max_angle, weight = self.get_closest_bins(gradient_angle)
-                orientation_centers[min_angle] += (gradient_strength * (<span class="hljs-number">1</span> - weight))
-                orientation_centers[max_angle] += (gradient_strength *weight)
-        <span class="hljs-keyword">return</span> orientation_centers
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_closest_bins</span><span class="hljs-params">(self, gradient_angle)</span>:</span>
-        <span class="hljs-string">'''</span>
-<span class="hljs-string">        计算梯度方向gradient_angle位于哪一个bin中，这里采用的计算方式为双线性插值</span>
-<span class="hljs-string">        具体参考：https://www.leiphone.com/news/201708/ZKsGd2JRKr766wEd.html</span>
-<span class="hljs-string">        例如：当我们把180°划分为9个bin的时候，分别对应对应0,20,40,...160这些角度。</span>
-<span class="hljs-string">              角度是10，副值是4，因为角度10介于0-20度的中间(正好一半)，所以把幅值</span>
-<span class="hljs-string">              一分为二地放到0和20两个bin里面去。</span>
-<span class="hljs-string">        args:</span>
-<span class="hljs-string">            gradient_angle:角度</span>
-<span class="hljs-string">        return：</span>
-<span class="hljs-string">            start,end,weight：起始bin索引，终止bin的索引，end索引对应bin所占权重</span>
-<span class="hljs-string">        '''</span>
-        idx = int(gradient_angle / self.angle_unit)
-        mod = gradient_angle % self.angle_unit
-        <span class="hljs-keyword">return</span> idx % self.bin_size, (idx + <span class="hljs-number">1</span>) % self.bin_size, mod / self.angle_unit
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">render_gradient</span><span class="hljs-params">(self, image, Cell_gradient)</span>:</span>
-        <span class="hljs-string">'''</span>
-<span class="hljs-string">        将得到的每个Cell的梯度方向直方图绘出，得到特征图</span>
-<span class="hljs-string">        args：</span>
-<span class="hljs-string">            image：画布,和输入图像一样大 [h,w]</span>
-<span class="hljs-string">            Cell_gradient：输入图像的每个Cell单元的梯度直方图,形状为[h/Cell_size,w/Cell_size,bin_size]</span>
-<span class="hljs-string">        return：</span>
-<span class="hljs-string">            image：特征图</span>
-<span class="hljs-string">        '''</span>
-        Cell_width = self.Cell_size / <span class="hljs-number">2</span>
-        max_mag = np.array(Cell_gradient).max()
-        <span class="hljs-comment">#遍历每一个Cell</span>
-        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(Cell_gradient.shape[<span class="hljs-number">0</span>]):
-            <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> range(Cell_gradient.shape[<span class="hljs-number">1</span>]):
-                <span class="hljs-comment">#获取第[i][j]个Cell的梯度直方图</span>
-                Cell_grad = Cell_gradient[x][y]
-                <span class="hljs-comment">#归一化</span>
-                Cell_grad /= max_mag
-                angle = <span class="hljs-number">0</span>
-                angle_gap = self.angle_unit
-                <span class="hljs-comment">#遍历每一个bin区间</span>
-                <span class="hljs-keyword">for</span> magnitude <span class="hljs-keyword">in</span> Cell_grad:
-                    <span class="hljs-comment">#转换为弧度</span>
-                    angle_radian = math.radians(angle)
-                    <span class="hljs-comment">#计算起始坐标和终点坐标，长度为幅值(归一化),幅值越大、绘制的线条越长、越亮</span>
-                    x1 = int(x * self.Cell_size + Cell_width + magnitude * Cell_width * math.cos(angle_radian))
-                    y1 = int(y * self.Cell_size + Cell_width + magnitude * Cell_width * math.sin(angle_radian))
-                    x2 = int(x * self.Cell_size + Cell_width - magnitude * Cell_width * math.cos(angle_radian))
-                    y2 = int(y * self.Cell_size + Cell_width - magnitude * Cell_width * math.sin(angle_radian))
-                    cv2.line(image, (y1, x1), (y2, x2), int(<span class="hljs-number">255</span> * math.sqrt(magnitude)))
-                    angle += angle_gap
-        <span class="hljs-keyword">return</span> image
-
-        
-<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
-    <span class="hljs-comment">#加载图像</span>
-    img = cv2.imread(<span class="hljs-string">'./image/person.jpg'</span>)        
-    width = <span class="hljs-number">64</span>
-    height = <span class="hljs-number">128</span>
-    img_copy = img[<span class="hljs-number">320</span>:<span class="hljs-number">320</span>+height,<span class="hljs-number">570</span>:<span class="hljs-number">570</span>+width][:,:,::<span class="hljs-number">-1</span>]    
-    gray_copy = cv2.cvtColor(img_copy,cv2.COLOR_BGR2GRAY)
-    
-    <span class="hljs-comment">#显示原图像</span>
-    plt.figure(figsize=(<span class="hljs-number">6.4</span>,<span class="hljs-number">2.0</span>*<span class="hljs-number">3.2</span>))
-    plt.subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)
-    plt.imshow(img_copy)
-    
-    <span class="hljs-comment">#HOG特征提取</span>
-    hog = Hog_descriptor(gray_copy, Cell_size=<span class="hljs-number">8</span>, bin_size=<span class="hljs-number">9</span>)    
-    hog_vector, hog_image = hog.extract()
-    print(<span class="hljs-string">'hog_vector'</span>,hog_vector.shape)
-    print(<span class="hljs-string">'hog_image'</span>,hog_image.shape)
-    
-    <span class="hljs-comment">#绘制特征图</span>
-    plt.subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)
-    plt.imshow(hog_image, cmap=plt.cm.gray)    
-    plt.show()</code></pre>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>HOG算法具有以下优点：                            </p>
-<ul>
-<li>核心思想是所检测的局部物体外形能够被梯度或边缘方向的分布所描述，HOG能较好地捕捉局部形状信息，对几何和光学变化都有很好的不变性；             </li>
-<li>HOG是在密集采样的图像块中求取的，在计算得到的HOG特征向量中隐含了该块与检测窗口之间的空间位置关系。                           </li>
-</ul>
-<p>HOG算法具有以下缺点：                 </p>
-<ul>
-<li>特征描述子获取过程复杂，维数较高，导致实时性差；                </li>
-<li>很难处理遮挡问题，人体姿势动作幅度过大或物体方向改变也不易检测（这个问题后来在<a href="http://blog.csdn.net/masibuaa/article/details/17924671" target="_blank" rel="noopener">DPM</a>中采用可变形部件模型的方法得到了改善）；                  </li>
-<li>跟SIFT相比，HOG没有选取主方向，也没有旋转梯度方向直方图，因而本身不具有旋转不变性（较大的方向变化），其旋转不变性是通过采用不同旋转方向的训练样本来实现的；</li>
-<li>跟SIFT相比，HOG本身不具有尺度不变性，其尺度不变性是通过缩放检测窗口图像的大小来实现的；</li>
-<li>此外，由于梯度的性质，HOG对噪点相当敏感，在实际应用中，在block和Cell划分之后，对于得到各个区域，有时候还会做一次高斯平滑去除噪点。               </li>
-</ul>
-<p><em>Q : How do you eat an elephant ?</em><br><em>A : One bite at a time!</em></p>
-<p>参考链接：</p>
-<p><a href="https://www.learnopencv.com/histogram-of-oriented-gradients/" target="_blank" rel="noopener">Histogram of Oriented Gradients(强烈推荐)</a><br><a href="https://cloud.tencent.com/developer/article/1419615" target="_blank" rel="noopener">HOG特征详解与行人检测</a><br><a href="https://www.cnblogs.com/zyly/p/9651261.html" target="_blank" rel="noopener">基于传统图像处理的目标检测与识别(很全面)</a><br><a href="https://zhuanlan.zhihu.com/p/85829145" target="_blank" rel="noopener">一文讲解方向梯度直方图HOG</a></p>
-
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sulimin-nb.github.io/article/553b1469.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/su1.JPG">
-      <meta itemprop="name" content="sulimin">
-      <meta itemprop="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="苏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/article/553b1469.html" class="post-title-link" itemprop="url">leetcode50</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-05 15:31:16" itemprop="dateCreated datePublished" datetime="2020-07-05T15:31:16+08:00">2020-07-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-08 00:41:49" itemprop="dateModified" datetime="2020-07-08T00:41:49+08:00">2020-07-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/%E5%88%86%E6%B2%BB%E3%80%81%E5%9B%9E%E6%BA%AF/" itemprop="url" rel="index"><span itemprop="name">分治、回溯</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/article/553b1469.html" class="post-meta-item leancloud_visitors" data-flag-title="leetcode50" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/article/553b1469.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/article/553b1469.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="实现power-x-n-，即计算x的n次幂函数。"><a href="#实现power-x-n-，即计算x的n次幂函数。" class="headerlink" title="实现power(x,n)，即计算x的n次幂函数。"></a>实现power(x,n)，即计算x的n次幂函数。</h1><p>示例1：</p>
-<pre><code class="hljs python">输入: <span class="hljs-number">2.00000</span>, <span class="hljs-number">10</span>
-输出: <span class="hljs-number">1024.00000</span></code></pre>
-<p>示例2：</p>
-<pre><code class="hljs python">输入: <span class="hljs-number">2.10000</span>, <span class="hljs-number">3</span>
-输出: <span class="hljs-number">9.26100</span></code></pre>
-<p>示例3：</p>
-<pre><code class="hljs python">输入: <span class="hljs-number">2.00000</span>, <span class="hljs-number">-2</span>
-输出: <span class="hljs-number">0.25000</span>
-解释: <span class="hljs-number">2</span><span class="hljs-number">-2</span> = <span class="hljs-number">1</span>/<span class="hljs-number">22</span> = <span class="hljs-number">1</span>/<span class="hljs-number">4</span> = <span class="hljs-number">0.25</span></code></pre>
-<p>说明：</p>
-<ul>
-<li>-100.0 &lt; x &lt; 100.0</li>
-<li>$n$是32位有符号整数，其数值范围是$[-2^{31},2^{31}-1]$。</li>
-</ul>
-<p><strong>快速幂算法</strong>：递归和迭代两个版本。<br>当指数$n$为负数时，可以通过计算$x^{-n}$取倒数得到结果，因此只需要考虑$n$为自然数的情况。</p>
-<h2 id="方法一：快速幂-递归-从右到左"><a href="#方法一：快速幂-递归-从右到左" class="headerlink" title="方法一：快速幂+递归(从右到左)"></a>方法一：快速幂+递归(从右到左)</h2><p>快速幂算法的本质是分治算法。<br>例子：</p>
-<script type="math/tex; mode=display">
-x \rightarrow x^2 \rightarrow x^4 \rightarrow x^8 \rightarrow x^{16} \rightarrow x^{32} \rightarrow x^{64}</script><script type="math/tex; mode=display">
-x \rightarrow x^2 \rightarrow x^4 \rightarrow x^9 \rightarrow x^{19} \rightarrow x^{38} \rightarrow x^{77}</script><p>第一个直接把上一次的结果平方，第二个把上一个结果平方后，额外乘一个$x$。</p>
-<ul>
-<li><p>计算$x^n$时，递归计算出$y=x^{\lfloor n/2 \rfloor}$</p>
-</li>
-<li><p>根据递归计算的结果，如果$n$为偶数，那么$x^n=y^2$；如果$n$为奇数，那么$x^n=y^2*x$；</p>
-</li>
-<li>递归的边界为$n=0$，任意数的0次方均为1。</li>
-</ul>
-<p>由于每次递归都会使得指数减少一半，因此递归的层数为$O(logn)$，算法可以在很快的时间内得到结果。</p>
-<p>复杂度分析：</p>
-<ul>
-<li>时间复杂度：$O(logn)$，即为递归的层数。</li>
-<li>空间复杂度：$O(logn)$，即为递归的层数，这是由于递归的函数调用会使用栈空间。</li>
-</ul>
-<p>上代码，目前只会python（猛男落泪，等以后会了别的再加上）：</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">myPow</span><span class="hljs-params">(self, x, n)</span>:</span>
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">quickMul</span><span class="hljs-params">(N)</span>:</span>
-            <span class="hljs-keyword">if</span> N == <span class="hljs-number">0</span>:
-                <span class="hljs-keyword">return</span> <span class="hljs-number">1.0</span>
-            y = quickMul(N // <span class="hljs-number">2</span>)
-            <span class="hljs-keyword">return</span> y * y <span class="hljs-keyword">if</span> N % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> y * y * x
-        <span class="hljs-keyword">return</span> quickMul(n) <span class="hljs-keyword">if</span> n &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-number">1.0</span> / quickMul(-n)</code></pre>
-<h2 id="方法二：快速幂-迭代-从左到右"><a href="#方法二：快速幂-迭代-从左到右" class="headerlink" title="方法二：快速幂 + 迭代(从左到右)"></a>方法二：快速幂 + 迭代(从左到右)</h2><p>递归需要使用额外的栈空间。递归-&gt;迭代。<br>如果整数$n$的二进制拆分为 $n = 2^{i_0} + 2^{i_1} + \ldots + 2^{i_k}$<br>借助整数的二进制拆分，得到迭代计算的方法，一般地，如果整数$n$的二进制拆分为：</p>
-<script type="math/tex; mode=display">
-n = 2^{i_0} + 2^{i_1} + \ldots + 2^{i_k}</script><p>那么</p>
-<script type="math/tex; mode=display">
-x^n = x^{2^{i_0}} * x^{2^{i_1}} * \ldots * x^{2^{i_k}}</script><p>从$x$不断地进行平方，得到$x^2,x^4,x^8,x^{16},\ldots,$如果$n$的第$k$个（从右往左，从0开始计数）二进制位为1，那么我们就将对应的贡献$x^{2^k}$计入答案。<br>上代码：</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">myPow</span><span class="hljs-params">(self, x, n)</span>:</span>
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">quickMul</span><span class="hljs-params">(N)</span>:</span>
-            ans = <span class="hljs-number">1.0</span>
-            <span class="hljs-comment"># 贡献的初始值为x</span>
-            x_contribute = x
-            <span class="hljs-comment"># 在对N进行二进制拆分的同时计算答案</span>
-            <span class="hljs-keyword">while</span> N &gt; <span class="hljs-number">0</span>:
-                <span class="hljs-keyword">if</span> N % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>:
-                    <span class="hljs-comment"># 如果N二进制表示的最低位为1，那么需要计入贡献</span>
-                    ans *= x_contribute
-                <span class="hljs-comment"># 将贡献不断地平方</span>
-                x_contribute *= x_contribute
-                <span class="hljs-comment"># 舍弃N二进制表示的最低位，这样每次只要判断最低位即可</span>
-                N // = <span class="hljs-number">2</span>
-            <span class="hljs-keyword">return</span> ans
-        <span class="hljs-keyword">return</span> quickMul(n) <span class="hljs-keyword">if</span> n &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-number">1.0</span> / quickMul(-n)</code></pre>
-<h2 id="牛顿迭代法"><a href="#牛顿迭代法" class="headerlink" title="牛顿迭代法"></a>牛顿迭代法</h2><p>思路参考链接<a href="http://www.matrix67.com/blog/archives/361" target="_blank" rel="noopener">牛顿迭代法快速寻找平方根</a><br>代码参考链接<a href="http://www.voidcn.com/article/p-eudisdmk-zm.html" target="_blank" rel="noopener">leetcode sqrt(x):牛顿迭代法和Quake-III中的神奇方法</a></p>
-<p><img src="/article/553b1469/200711241.gif" srcset="/img/loading.gif" alt="img"></p>
-<p>具体求解：<a href="https://leetcode-cn.com/problems/powx-n/solution/niu-dun-die-dai-fa-by-cuo-mie-zong/" target="_blank" rel="noopener">牛顿迭代法求解</a><br>看了思路，数学真是一个全新的角度~</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/powx-n/solution/50-powx-n-kuai-su-mi-qing-xi-tu-jie-by-jyd/" target="_blank" rel="noopener">优秀题解(推荐)</a>看了这个大佬的几个题解了，高手，思路很清晰，个人账号里面有一系列套题，剑指Offer之类的，非常具有参考价值。</p>
-<p><font color="blue">第一次写，不是很流畅，思路和手都不太行。下周再做一遍，做完就把这行删掉，冲鸭</font><br>如此一来，每天水一篇，居然成为了日更博主，哈哈哈哈哈<br>不足的博文在后期有时间都会进行修改，做一个有质量(没人气)的博主，奥里给O(∩_∩)O。</p>
-
-      
-    </div>
-
-    
-    
-    
-	
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
-
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-07
           </div>
-          
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/leetcode/">leetcode</a>
+            
+              <a href="/categories/leetcode/%E5%88%86%E6%B2%BB%E3%80%81%E5%9B%9E%E6%BA%AF/">分治、回溯</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/leetcode/">leetcode</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
 
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/760e3967.html">Task04-HOG特征描述算子-行人检测</a>
+
+      <a href="/article/760e3967.html" class="index-excerpt">
+        
+        
+          
+        
+        <div>HOG（Histogram of Oriented Gradients）HOG特征在对象检测与模式匹配中是一种常见的特征提取技术（深度学习之前），是基于本地像素块进行特征直方图提取的一种算法，对象局部的变形与光照影响有很好的稳定性，最初是用HOG特征来来识别人像，通过HOG特征提取+SVM训练，可以得到很好的效果，OpenCV已经有相应的接口。
+HOG特征实在2005年CVPR的会议发表，在图像手</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-06
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B8%8B/">图像处理下</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/553b1469.html">leetcode50</a>
+
+      <a href="/article/553b1469.html" class="index-excerpt">
+        
+        
+          
+        
+        <div>实现power(x,n)，即计算x的n次幂函数。示例1：
+输入: 2.00000, 10
+输出: 1024.00000
+示例2：
+输入: 2.10000, 3
+输出: 9.26100
+示例3：
+输入: 2.00000, -2
+输出: 0.25000
+解释: 2-2 = 1/22 = 1/4 = 0.25
+说明：
+
+-100.0 &lt; x &lt; 100.0
+$n$是32位有符号整数，其数值范</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-05
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/leetcode/">leetcode</a>
+            
+              <a href="/categories/leetcode/%E5%88%86%E6%B2%BB%E3%80%81%E5%9B%9E%E6%BA%AF/">分治、回溯</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/leetcode/">leetcode</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
     }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
       }
     }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('false' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/page/3/index.html');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz'
+    var app_key = 'Xwqmsb7cDIWaQB2GG2fCnSHf'
+    var server_url = ''
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="sulimin"
-      src="/images/su1.JPG">
-  <p class="site-author-name" itemprop="name">sulimin</p>
-  <div class="site-description" itemprop="description">向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">42</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">16</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">13</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/sulimin-nb" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sulimin-nb" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:15210376096@163.com" title="E-Mail → mailto:15210376096@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">sulimin</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
-    </span>
-    <span title="站点总字数">站点共173k字</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    <span title="站点阅读时长">阅读需2:37</span>
-</div>
-
-        
 
 
 
@@ -2858,85 +948,121 @@ x^n = x^{2^{i_0}} * x^{2^{i_1}} * \ldots * x^{2^{i_k}}</script><p>从$x$不断�
 
 
 
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "come on ε=( o｀ω′)ノ要做写博客如喝汤的汤达人~&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 50,
+      loop: false,
     });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : true,
-      appId      : 'gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz',
-      appKey     : 'Xwqmsb7cDIWaQB2GG2fCnSHf',
-      placeholder: "ヾﾉ≧∀≦)o 来呀！吐槽一番吧！",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : true,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
     });
+  </script>
 
-  }, window.Valine);
-});
-</script>
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":1},"log":false});</script></body>
 </html>
-<script type="text/javascript" src="/js/love-click.js"></script>
