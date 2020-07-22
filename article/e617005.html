@@ -228,7 +228,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月16日 凌晨
+                  本文最后更新于：2020年7月22日 上午
                 
               </p>
             
@@ -251,7 +251,7 @@
 G(n) = \sum_{i=1}^{n} F(i, n)\qquad \qquad (1)</script><p>对于边界情况，当序列长度为 $1$（只有根）或为 $0$（空树）时，只有一种情况，即：</p>
 <script type="math/tex; mode=display">
 G(0) = 1, \qquad G(1) = 1</script><p><strong>给定序列 $1 \cdots n$，我们选择数字 $i$ 作为根，则根为 $i$ 的所有二叉搜索树的集合是左子树集合和右子树集合的</strong><span style="color:blue">笛卡尔积(其实就是左子树的种类数乘以右子树的种类数，列举所有的可能性)</span>，对于笛卡尔积中的每个元素，加上根节点之后形成完整的二叉搜索树，如下图所示：</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/96/96_fig1.png" srcset="/img/loading.gif" alt="fig1"></p>
+<p><img src="/article/e617005/96_fig1.png" srcset="/img/loading.gif" alt="fig1"></p>
 <p>举例而言，创建以 3 为根、长度为 7 的不同二叉搜索树，整个序列是 [1,2,3,4,5,6,7]，我们需要从左子序列 [1,2] 构建左子树，从右子序列 [4,5,6,7] 构建右子树，然后将它们组合（即笛卡尔积）。<br><strong>公式化：</strong>不同二叉搜索树的个数表示为 $F(3, 7)$。我们将 $[1,2]$ 构建不同左子树的数量表示为 $G(2)$, 从 $[4,5,6,7]$ 构建不同右子树的数量表示为 $G(4)$，<span style="color:blue">注意： $G(n)$ 和序列的内容无关，只和序列的长度有关。</span>于是，$F(3,7) = G(2) \cdot G(4)$。 因此，我们可以得到以下公式：</p>
 <script type="math/tex; mode=display">
 F(i, n) = G(i-1) \cdot G(n-i) \qquad  \qquad (2)</script><p>将公式 $(1)$，$(2)$ 结合，可以得到 $G(n)$ 的递归表达式：</p>
