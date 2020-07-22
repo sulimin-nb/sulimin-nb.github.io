@@ -178,7 +178,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      495 字
+      1.8k 字
     </span>
   
 
@@ -188,7 +188,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      21
        分钟
     </span>
   
@@ -259,6 +259,102 @@
 <p>在数据集中标签的对应的关系如下：{‘科技’: 0, ‘股票’: 1, ‘体育’: 2, ‘娱乐’: 3, ‘时政’: 4, ‘社会’: 5, ‘教育’: 6, ‘财经’: 7, ‘家居’: 8, ‘游戏’: 9, ‘房产’: 10, ‘时尚’: 11, ‘彩票’: 12, ‘星座’: 13}</p>
 <h3 id="评测指标"><a href="#评测指标" class="headerlink" title="评测指标"></a>评测指标</h3><p>评价标准为类别<code>f1_score</code>的均值，选手提交结果与实际测试集的类别进行对比，结果越大越好。</p>
 <h3 id="数据读取"><a href="#数据读取" class="headerlink" title="数据读取"></a>数据读取</h3><p>使用<code>Pandas</code>库完成数据读取操作，并对赛题数据进行分析。</p>
+<h2 id="数据读取与数据分析"><a href="#数据读取与数据分析" class="headerlink" title="数据读取与数据分析"></a>数据读取与数据分析</h2><p>本章主要内容为数据读取和数据分析，具体使用<code>Pandas</code>库完成数据读取操作，并对赛题数据进行分析构成。</p>
+<h3 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h3><ul>
+<li>学习使用<code>Pandas</code>读取赛题数据</li>
+<li>分析赛题数据的分布规律</li>
+</ul>
+<h3 id="数据读取-1"><a href="#数据读取-1" class="headerlink" title="数据读取"></a>数据读取</h3><p>赛题数据虽然是文本数据，每个新闻是不定长的，但任然使用csv格式进行存储。因此可以直接用<code>Pandas</code>完成数据读取的操作。</p>
+<pre><code class="hljs reasonml">import pandas <span class="hljs-keyword">as</span> pd
+train_df = pd.read<span class="hljs-constructor">_csv('..<span class="hljs-operator">/</span><span class="hljs-params">input</span><span class="hljs-operator">/</span><span class="hljs-params">train_set</span>.<span class="hljs-params">csv</span>', <span class="hljs-params">sep</span>='\<span class="hljs-params">t</span>', <span class="hljs-params">nrows</span>=100)</span></code></pre>
+<p>这里的<code>read_csv</code>由三部分构成：</p>
+<ul>
+<li>读取的文件路径，这里需要根据改成你本地的路径，可以使用相对路径或绝对路径；</li>
+<li>分隔符<code>sep</code>，为每列分割的字符，设置为<code>\t</code>即可；</li>
+<li>读取行数<code>nrows</code>，为此次读取文件的函数，是数值类型（由于数据集比较大，建议先设置为100）；</li>
+</ul>
+<p><a href="https://camo.githubusercontent.com/3cfb75e212d4e8259de4c4151e52b405dbe256de/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303230303731343230333733303733392e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/3cfb75e212d4e8259de4c4151e52b405dbe256de/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303230303731343230333733303733392e706e67" srcset="/img/loading.gif" alt="task2_train_head"></a></p>
+<p>上图是读取好的数据，是表格的形式。第一列为新闻的类别，第二列为新闻的字符。</p>
+<h3 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h3><p>在读取完成数据集后，我们还可以对数据集进行数据分析的操作。虽然对于非结构数据并不需要做很多的数据分析，但通过数据分析还是可以找出一些规律的。</p>
+<p>此步骤我们读取了所有的训练集数据，在此我们通过数据分析希望得出以下结论：</p>
+<ul>
+<li>赛题数据中，新闻文本的长度是多少？</li>
+<li>赛题数据的类别分布是怎么样的，哪些类别比较多？</li>
+<li>赛题数据中，字符分布是怎么样的？</li>
+</ul>
+<h4 id="句子长度分析"><a href="#句子长度分析" class="headerlink" title="句子长度分析"></a>句子长度分析</h4><p>在赛题数据中每行句子的字符使用空格进行隔开，所以可以直接统计单词的个数来得到每个句子的长度。统计并如下：</p>
+<pre><code class="hljs sas"><span class="hljs-name">%pylab</span> inline
+train_df[<span class="hljs-string">'text_len'</span>] = train_df[<span class="hljs-string">'text'</span>].apply(lambda <span class="hljs-meta">x</span>: l<span class="hljs-meta">en(</span><span class="hljs-meta">x</span>.split(<span class="hljs-string">' '</span>)))
+p<span class="hljs-meta">rint(</span>train_df[<span class="hljs-string">'text_len'</span>].<span class="hljs-meta">describe</span>())</code></pre>
+<p>输出结果为：</p>
+<pre><code class="hljs yaml"><span class="hljs-string">Populating</span> <span class="hljs-string">the</span> <span class="hljs-string">interactive</span> <span class="hljs-string">namespace</span> <span class="hljs-string">from</span> <span class="hljs-string">numpy</span> <span class="hljs-string">and</span> <span class="hljs-string">matplotlib</span>
+<span class="hljs-string">count</span>    <span class="hljs-number">200000.000000</span>
+<span class="hljs-string">mean</span>        <span class="hljs-number">907.207110</span>
+<span class="hljs-string">std</span>         <span class="hljs-number">996.029036</span>
+<span class="hljs-string">min</span>           <span class="hljs-number">2.000000</span>
+<span class="hljs-number">25</span><span class="hljs-string">%</span>         <span class="hljs-number">374.000000</span>
+<span class="hljs-number">50</span><span class="hljs-string">%</span>         <span class="hljs-number">676.000000</span>
+<span class="hljs-number">75</span><span class="hljs-string">%</span>        <span class="hljs-number">1131.000000</span>
+<span class="hljs-string">max</span>       <span class="hljs-number">57921.000000</span>
+<span class="hljs-attr">Name:</span> <span class="hljs-string">text_len,</span> <span class="hljs-attr">dtype:</span> <span class="hljs-string">float64</span></code></pre>
+<p>对新闻句子的统计可以得出，本次赛题给定的文本比较长，每个句子平均由907个字符构成，最短的句子长度为2，最长的句子长度为57921。</p>
+<p>下图将句子长度绘制了直方图，可见大部分句子的长度都几种在2000以内。</p>
+<pre><code class="hljs routeros">_ = plt.hist(train_df[<span class="hljs-string">'text_len'</span>], <span class="hljs-attribute">bins</span>=200)
+plt.xlabel(<span class="hljs-string">'Text char count'</span>)
+plt.title(<span class="hljs-string">"Histogram of char count"</span>)</code></pre>
+<p><a href="https://camo.githubusercontent.com/656471f35c5df332c6ca027756cfd048324e5727/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303230303731343230333833363930352e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/656471f35c5df332c6ca027756cfd048324e5727/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303230303731343230333833363930352e706e67" srcset="/img/loading.gif" alt="task2_char_hist"></a></p>
+<h4 id="新闻类别分布"><a href="#新闻类别分布" class="headerlink" title="新闻类别分布"></a>新闻类别分布</h4><p>接下来可以对数据集的类别进行分布统计，具体统计每类新闻的样本个数。</p>
+<pre><code class="hljs less"><span class="hljs-selector-tag">train_df</span><span class="hljs-selector-attr">['label']</span><span class="hljs-selector-class">.value_counts</span>()<span class="hljs-selector-class">.plot</span>(kind=<span class="hljs-string">'bar'</span>)
+<span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.title</span>(<span class="hljs-string">'News class count'</span>)
+<span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.xlabel</span>(<span class="hljs-string">"category"</span>)</code></pre>
+<p><a href="https://camo.githubusercontent.com/ea8ab6a105f74fa197f29cb09e5dfd97ae6a573e/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303230303731343230333932393239362e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/ea8ab6a105f74fa197f29cb09e5dfd97ae6a573e/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303230303731343230333932393239362e706e67" srcset="/img/loading.gif" alt="task2_class_hist"></a></p>
+<p>在数据集中标签的对应的关系如下：{‘科技’: 0, ‘股票’: 1, ‘体育’: 2, ‘娱乐’: 3, ‘时政’: 4, ‘社会’: 5, ‘教育’: 6, ‘财经’: 7, ‘家居’: 8, ‘游戏’: 9, ‘房产’: 10, ‘时尚’: 11, ‘彩票’: 12, ‘星座’: 13}</p>
+<p>从统计结果可以看出，赛题的数据集类别分布存在较为不均匀的情况。在训练集中科技类新闻最多，其次是股票类新闻，最少的新闻是星座新闻。</p>
+<h4 id="字符分布统计"><a href="#字符分布统计" class="headerlink" title="字符分布统计"></a>字符分布统计</h4><p>接下来可以统计每个字符出现的次数，首先可以将训练集中所有的句子进行拼接进而划分为字符，并统计每个字符的个数。</p>
+<pre><code class="hljs routeros"><span class="hljs-keyword">from</span> collections import Counter
+all_lines = <span class="hljs-string">' '</span>.join(list(train_df[<span class="hljs-string">'text'</span>]))
+word_count = Counter(all_lines.split(<span class="hljs-string">" "</span>))
+word_count = sorted(word_count.items(), <span class="hljs-attribute">key</span>=lambda d:d[1], reverse = <span class="hljs-literal">True</span>)
+
+<span class="hljs-builtin-name">print</span>(len(word_count))
+<span class="hljs-comment"># 6869</span>
+
+<span class="hljs-builtin-name">print</span>(word_count[0])
+<span class="hljs-comment"># ('3750', 7482224)</span>
+
+<span class="hljs-builtin-name">print</span>(word_count[-1])
+<span class="hljs-comment"># ('3133', 1)</span></code></pre>
+<p>从统计结果中可以看出，在训练集中总共包括6869个字，其中编号3750的字出现的次数最多，编号3133的字出现的次数最少。</p>
+<p>这里还可以根据字在每个句子的出现情况，反推出标点符号。下面代码统计了不同字符在句子中出现的次数，其中字符3750，字符900和字符648在20w新闻的覆盖率接近99%，很有可能是标点符号。</p>
+<pre><code class="hljs vim">train_df[<span class="hljs-string">'text_unique'</span>] = train_df[<span class="hljs-string">'text'</span>].apply(lambda <span class="hljs-keyword">x</span>: <span class="hljs-string">' '</span>.<span class="hljs-keyword">join</span>(<span class="hljs-keyword">list</span>(<span class="hljs-keyword">set</span>(<span class="hljs-keyword">x</span>.<span class="hljs-keyword">split</span>(<span class="hljs-string">' '</span>)))))
+all_lines = <span class="hljs-string">' '</span>.<span class="hljs-keyword">join</span>(<span class="hljs-keyword">list</span>(train_df[<span class="hljs-string">'text_unique'</span>]))
+word_count = Counter(all_lines.<span class="hljs-keyword">split</span>(<span class="hljs-string">" "</span>))
+word_count = sorted(word_count.<span class="hljs-built_in">items</span>(), key=lambda d:<span class="hljs-keyword">int</span>(d[<span class="hljs-number">1</span>]), <span class="hljs-built_in">reverse</span> = True)
+
+<span class="hljs-keyword">print</span>(word_count[<span class="hljs-number">0</span>])
+# (<span class="hljs-string">'3750'</span>, <span class="hljs-number">197997</span>)
+
+<span class="hljs-keyword">print</span>(word_count[<span class="hljs-number">1</span>])
+# (<span class="hljs-string">'900'</span>, <span class="hljs-number">197653</span>)
+
+<span class="hljs-keyword">print</span>(word_count[<span class="hljs-number">2</span>])
+# (<span class="hljs-string">'648'</span>, <span class="hljs-number">191975</span>)</code></pre>
+<h3 id="数据分析的结论"><a href="#数据分析的结论" class="headerlink" title="数据分析的结论"></a>数据分析的结论</h3><p>通过上述分析我们可以得出以下结论：</p>
+<ol>
+<li>赛题中每个新闻包含的字符个数平均为1000个，还有一些新闻字符较长；</li>
+<li>赛题中新闻类别分布不均匀，科技类新闻样本量接近4w，星座类新闻样本量不到1k；</li>
+<li>赛题总共包括7000-8000个字符；</li>
+</ol>
+<p>通过数据分析，我们还可以得出以下结论：</p>
+<ol>
+<li>每个新闻平均字符个数较多，可能需要截断；</li>
+<li>由于类别不均衡，会严重影响模型的精度；</li>
+</ol>
+<h3 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h3><p>本章对赛题数据进行读取，并新闻句子长度、类别和字符进行了可视化分析。</p>
+<h3 id="本章作业"><a href="#本章作业" class="headerlink" title="本章作业"></a>本章作业</h3><ol>
+<li>假设字符3750，字符900和字符648是句子的标点符号，请分析赛题每篇新闻平均由多少个句子构成？</li>
+<li>统计每类新闻中出现次数对多的字符</li>
+</ol>
 
             </article>
             <hr>
