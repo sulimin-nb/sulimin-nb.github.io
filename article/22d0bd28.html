@@ -19,10 +19,19 @@
   <meta name="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
   <meta name="author" content="sulimin">
   <meta name="keywords" content="机器学习，数据挖掘，计算机视觉">
-  <title>归档 - 苏</title>
+  <title>python03-条件语句 - 苏</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -155,6 +164,48 @@
             </span>
 
             
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-23 23:14">
+      2020年7月23日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      610 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      7
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
           
@@ -165,85 +216,195 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 46 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/article/a022e3d6.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">git教程</span>
-      <span style="float: right;">07-08</span>
-    </a>
-  
-    
-    <a href="/article/69d6fed9.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">leetcode78</span>
-      <span style="float: right;">07-07</span>
-    </a>
-  
-    
-    <a href="/article/760e3967.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Task04-HOG特征描述算子-行人检测</span>
-      <span style="float: right;">07-06</span>
-    </a>
-  
-    
-    <a href="/article/553b1469.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">leetcode50</span>
-      <span style="float: right;">07-05</span>
-    </a>
-  
-    
-    <a href="/article/3b406ffc.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">LSTM_Elmo</span>
-      <span style="float: right;">07-03</span>
-    </a>
-  
-    
-    <a href="/article/ad28cab2.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Task03-Haar特征描述算子-人脸监测</span>
-      <span style="float: right;">07-02</span>
-    </a>
-  
-    
-    <a href="/article/67aeaf8.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">pandas下综合练习</span>
-      <span style="float: right;">07-01</span>
-    </a>
-  
-</div>
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/2020/07/page/3/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/2020/07/">1</a><a class="page-number" href="/archives/2020/07/page/2/">2</a><a class="page-number" href="/archives/2020/07/page/3/">3</a><span class="page-number current">4</span>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年7月23日 晚上
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h1 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h1><h2 id="1-if-语句"><a href="#1-if-语句" class="headerlink" title="1. if 语句"></a>1. if 语句</h2><pre><code class="hljs python"><span class="hljs-keyword">if</span> expression:
+    expr_true_suite</code></pre>
+<ul>
+<li>if 语句的 <code>expr_true_suite</code> 代码块只有当条件表达式 <code>expression</code> 结果为真时才执行，否则将继续执行紧跟在该代码块后面的语句。</li>
+<li>单个 if 语句中的 <code>expression</code> 条件表达式可以通过布尔操作符 <code>and</code>，<code>or</code>和<code>not</code> 实现多重条件判断。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python"><span class="hljs-keyword">if</span> <span class="hljs-number">2</span> &gt; <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> <span class="hljs-number">2</span> &gt; <span class="hljs-number">3</span>:
+    print(<span class="hljs-string">'Correct Judgement!'</span>)
+
+<span class="hljs-comment"># Correct Judgement!</span></code></pre>
+<h2 id="2-if-else-语句"><a href="#2-if-else-语句" class="headerlink" title="2. if - else 语句"></a>2. if - else 语句</h2><pre><code class="hljs python"><span class="hljs-keyword">if</span> expression:
+    expr_true_suite
+<span class="hljs-keyword">else</span>
+    expr_false_suite</code></pre>
+<ul>
+<li>Python 提供与 if 搭配使用的 else，如果 if 语句的条件表达式结果布尔值为假，那么程序将执行 else 语句后的代码。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">temp = input(<span class="hljs-string">"猜一猜小姐姐想的是哪个数字？"</span>)
+guess = int(temp) <span class="hljs-comment"># input 函数将接收的任何数据类型都默认为 str。</span>
+<span class="hljs-keyword">if</span> guess == <span class="hljs-number">666</span>:
+    print(<span class="hljs-string">"你太了解小姐姐的心思了！"</span>)
+    print(<span class="hljs-string">"哼，猜对也没有奖励！"</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"猜错了，小姐姐现在心里想的是666！"</span>)
+print(<span class="hljs-string">"游戏结束，不玩儿啦！"</span>)</code></pre>
+<p><code>if</code>语句支持嵌套，即在一个<code>if</code>语句中嵌入另一个<code>if</code>语句，从而构成不同层次的选择结构。Python 使用缩进而不是大括号来标记代码块边界，因此要特别注意<code>else</code>的悬挂问题。</p>
+<p>【例子】</p>
+<pre><code class="hljs python">hi = <span class="hljs-number">6</span>
+<span class="hljs-keyword">if</span> hi &gt; <span class="hljs-number">2</span>:
+    <span class="hljs-keyword">if</span> hi &gt; <span class="hljs-number">7</span>:
+        print(<span class="hljs-string">'好棒!好棒!'</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">'切~'</span>)</code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">temp = input(<span class="hljs-string">"不妨猜一下小哥哥现在心里想的是那个数字："</span>)
+guess = int(temp)
+<span class="hljs-keyword">if</span> guess &gt; <span class="hljs-number">8</span>:
+    print(<span class="hljs-string">"大了，大了"</span>)
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">if</span> guess == <span class="hljs-number">8</span>:
+        print(<span class="hljs-string">"你这么懂小哥哥的心思吗？"</span>)
+        print(<span class="hljs-string">"哼，猜对也没有奖励！"</span>)
+    <span class="hljs-keyword">else</span>:
+        print(<span class="hljs-string">"小了，小了"</span>)
+print(<span class="hljs-string">"游戏结束，不玩儿啦！"</span>)</code></pre>
+<h2 id="3-if-elif-else-语句"><a href="#3-if-elif-else-语句" class="headerlink" title="3. if - elif - else 语句"></a>3. if - elif - else 语句</h2><pre><code class="hljs python"><span class="hljs-keyword">if</span> expression1:
+    expr1_true_suite
+<span class="hljs-keyword">elif</span> expression2:
+    expr2_true_suite
+    .
+    .
+<span class="hljs-keyword">elif</span> expressionN:
+    exprN_true_suite
+<span class="hljs-keyword">else</span>:
+    expr_false_suite</code></pre>
+<ul>
+<li>elif 语句即为 else if，用来检查多个表达式是否为真，并在为真时执行特定代码块中的代码。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">temp = input(<span class="hljs-string">'请输入成绩:'</span>)
+source = int(temp)
+<span class="hljs-keyword">if</span> <span class="hljs-number">100</span> &gt;= source &gt;= <span class="hljs-number">90</span>:
+    print(<span class="hljs-string">'A'</span>)
+<span class="hljs-keyword">elif</span> <span class="hljs-number">90</span> &gt; source &gt;= <span class="hljs-number">80</span>:
+    print(<span class="hljs-string">'B'</span>)
+<span class="hljs-keyword">elif</span> <span class="hljs-number">80</span> &gt; source &gt;= <span class="hljs-number">60</span>:
+    print(<span class="hljs-string">'C'</span>)
+<span class="hljs-keyword">elif</span> <span class="hljs-number">60</span> &gt; source &gt;= <span class="hljs-number">0</span>:
+    print(<span class="hljs-string">'D'</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">'输入错误！'</span>)</code></pre>
+<h2 id="4-assert-关键词"><a href="#4-assert-关键词" class="headerlink" title="4. assert 关键词"></a>4. assert 关键词</h2><ul>
+<li><code>assert</code>这个关键词我们称之为“断言”，当这个关键词后边的条件为 False 时，程序自动崩溃并抛出<code>AssertionError</code>的异常。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">my_list = [<span class="hljs-string">'lsgogroup'</span>]
+my_list.pop(<span class="hljs-number">0</span>)
+<span class="hljs-keyword">assert</span> len(my_list) &gt; <span class="hljs-number">0</span>
+
+<span class="hljs-comment"># AssertionError</span></code></pre>
+<ul>
+<li>在进行单元测试时，可以用来在程序中置入检查点，只有条件为 True 才能让程序正常工作。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python"><span class="hljs-keyword">assert</span> <span class="hljs-number">3</span> &gt; <span class="hljs-number">7</span>
+
+<span class="hljs-comment"># AssertionError</span></code></pre>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/article/392be851.html">
+                        <span class="hidden-mobile">python02-位运算</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz",
+          app_key: "Xwqmsb7cDIWaQB2GG2fCnSHf",
+          placeholder: "ヾﾉ≧∀≦)o 来呀！吐槽一番吧！",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "",
+        });
+      });
     }
+    createObserver(loadValine, 'vcomments');
   </script>
-
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
 
 
               </div>
-            </div>
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -461,10 +622,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/2020/07/page/4/index.html');
+          var target = decodeURI('/article/22d0bd28.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -526,6 +687,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -533,7 +719,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "python03-条件语句&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 50,
@@ -547,6 +733,21 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
 
 
 
@@ -562,9 +763,62 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 
