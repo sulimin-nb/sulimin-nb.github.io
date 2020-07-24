@@ -10878,6 +10878,12 @@ print(<span class="hljs-string">"This is printed with 'sep='&amp;''."</span>)
 <li><a href="https://zhuanlan.zhihu.com/p/105849984" target="_blank" rel="noopener">【译】Python中的 !=与is not不同</a></li>
 </ul>
 ]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
   </entry>
   <entry>
     <title>python02-位运算</title>
@@ -11071,7 +11077,7 @@ print(<span class="hljs-number">0xfffffffd</span>)  <span class="hljs-comment">#
 <span class="hljs-comment"># Correct Judgement!</span></code></pre>
 <h2 id="2-if-else-语句"><a href="#2-if-else-语句" class="headerlink" title="2. if - else 语句"></a>2. if - else 语句</h2><pre><code class="hljs python"><span class="hljs-keyword">if</span> expression:
     expr_true_suite
-<span class="hljs-keyword">else</span>
+<span class="hljs-keyword">else</span>:
     expr_false_suite</code></pre>
 <ul>
 <li>Python 提供与 if 搭配使用的 else，如果 if 语句的条件表达式结果布尔值为假，那么程序将执行 else 语句后的代码。</li>
@@ -11085,7 +11091,7 @@ guess = int(temp) <span class="hljs-comment"># input 函数将接收的任何数
 <span class="hljs-keyword">else</span>:
     print(<span class="hljs-string">"猜错了，小姐姐现在心里想的是666！"</span>)
 print(<span class="hljs-string">"游戏结束，不玩儿啦！"</span>)</code></pre>
-<p><code>if</code>语句支持嵌套，即在一个<code>if</code>语句中嵌入另一个<code>if</code>语句，从而构成不同层次的选择结构。Python 使用缩进而不是大括号来标记代码块边界，因此要特别注意<code>else</code>的悬挂问题。</p>
+<p><code>if</code>语句支持嵌套，即在一个<code>if</code>语句中嵌入另一个<code>if</code>语句，从而构成不同层次的选择结构。<strong>Python 使用缩进而不是大括号来标记代码块边界</strong>，因此要特别注意<code>else</code>的悬挂问题。</p>
 <p>【例子】</p>
 <pre><code class="hljs python">hi = <span class="hljs-number">6</span>
 <span class="hljs-keyword">if</span> hi &gt; <span class="hljs-number">2</span>:
@@ -11147,6 +11153,390 @@ my_list.pop(<span class="hljs-number">0</span>)
 <pre><code class="hljs python"><span class="hljs-keyword">assert</span> <span class="hljs-number">3</span> &gt; <span class="hljs-number">7</span>
 
 <span class="hljs-comment"># AssertionError</span></code></pre>
+<h1 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h1><h2 id="1-while-循环"><a href="#1-while-循环" class="headerlink" title="1. while 循环"></a>1. while 循环</h2><p><code>while</code>语句最基本的形式包括一个位于顶部的布尔表达式，一个或多个属于<code>while</code>代码块的缩进语句。</p>
+<pre><code class="hljs python"><span class="hljs-keyword">while</span> 布尔表达式:
+    代码块</code></pre>
+<p><code>while</code>循环的代码块会一直循环执行，直到布尔表达式的值为布尔假。</p>
+<p>如果布尔表达式不带有<code>&lt;、&gt;、==、！=、in、not in</code>等运算符，仅仅给出数值之类的条件，也是可以的。当<code>while</code>后写入一个非零整数时，视为真值，执行循环体；写入<code>0</code>时，视为假值，不执行循环体。也可以写入<code>str、list</code>或任何序列，长度非零则视为真值，执行循环体；否则视为假值，不执行循环体。</p>
+<p>【例子】</p>
+<pre><code class="hljs python">count = <span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> count &lt; <span class="hljs-number">3</span>:
+    temp = input(<span class="hljs-string">"不妨猜一下小哥哥现在心里想的是那个数字："</span>)
+    guess = int(temp)
+    <span class="hljs-keyword">if</span> guess &gt; <span class="hljs-number">8</span>:
+        print(<span class="hljs-string">"大了，大了"</span>)
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">if</span> guess == <span class="hljs-number">8</span>:
+            print(<span class="hljs-string">"你是小哥哥心里的蛔虫吗？"</span>)
+            print(<span class="hljs-string">"哼，猜对也没有奖励！"</span>)
+            count = <span class="hljs-number">3</span>
+        <span class="hljs-keyword">else</span>:
+            print(<span class="hljs-string">"小了，小了"</span>)
+    count = count + <span class="hljs-number">1</span>
+print(<span class="hljs-string">"游戏结束，不玩儿啦！"</span>)</code></pre>
+<p>【例子】布尔表达式返回0，循环终止。</p>
+<pre><code class="hljs python">string = <span class="hljs-string">'abcd'</span>
+<span class="hljs-keyword">while</span> string:
+    print(string)
+    string = string[<span class="hljs-number">1</span>:]
+
+<span class="hljs-comment"># abcd</span>
+<span class="hljs-comment"># bcd</span>
+<span class="hljs-comment"># cd</span>
+<span class="hljs-comment"># d</span></code></pre>
+<hr>
+<h2 id="2-while-else-循环"><a href="#2-while-else-循环" class="headerlink" title="2. while - else 循环"></a>2. while - else 循环</h2><pre><code class="hljs python"><span class="hljs-keyword">while</span> 布尔表达式:
+    代码块
+<span class="hljs-keyword">else</span>:
+    代码块</code></pre>
+<p><strong>当<code>while</code>循环正常执行完的情况下，执行<code>else</code>输出，如果<code>while</code>循环中执行了跳出循环的语句，比如 <code>break</code>，将不执行<code>else</code>代码块的内容。</strong>    </p>
+<p>【例子】</p>
+<pre><code class="hljs python">count = <span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> count &lt; <span class="hljs-number">5</span>:
+    print(<span class="hljs-string">"%d is  less than 5"</span> % count)
+    count = count + <span class="hljs-number">1</span>
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"%d is not less than 5"</span> % count)
+    
+<span class="hljs-comment"># 0 is  less than 5</span>
+<span class="hljs-comment"># 1 is  less than 5</span>
+<span class="hljs-comment"># 2 is  less than 5</span>
+<span class="hljs-comment"># 3 is  less than 5</span>
+<span class="hljs-comment"># 4 is  less than 5</span>
+<span class="hljs-comment"># 5 is not less than 5</span></code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">count = <span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> count &lt; <span class="hljs-number">5</span>:
+    print(<span class="hljs-string">"%d is  less than 5"</span> % count)
+    count = <span class="hljs-number">6</span>
+    <span class="hljs-keyword">break</span>
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"%d is not less than 5"</span> % count)
+
+<span class="hljs-comment"># 0 is  less than 5</span></code></pre>
+<hr>
+<h2 id="3-for-循环"><a href="#3-for-循环" class="headerlink" title="3. for 循环"></a>3. for 循环</h2><p><code>for</code>循环是迭代循环，在Python中相当于一个通用的序列迭代器，可以遍历任何有序序列，如<code>str、list、tuple</code>等，也可以遍历任何可迭代对象，如<code>dict</code>。</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> 迭代变量 <span class="hljs-keyword">in</span> 可迭代对象:
+    代码块</code></pre>
+<p>每次循环，迭代变量被设置为可迭代对象的当前元素，提供给代码块使用。</p>
+<p>【例子】</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-string">'ILoveLSGO'</span>:
+    print(i, end=<span class="hljs-string">' '</span>)  <span class="hljs-comment"># 不换行输出</span>
+
+<span class="hljs-comment"># I L o v e L S G O</span></code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">member = [<span class="hljs-string">'张三'</span>, <span class="hljs-string">'李四'</span>, <span class="hljs-string">'刘德华'</span>, <span class="hljs-string">'刘六'</span>, <span class="hljs-string">'周润发'</span>]
+<span class="hljs-keyword">for</span> each <span class="hljs-keyword">in</span> member:
+    print(each)
+
+<span class="hljs-comment"># 张三</span>
+<span class="hljs-comment"># 李四</span>
+<span class="hljs-comment"># 刘德华</span>
+<span class="hljs-comment"># 刘六</span>
+<span class="hljs-comment"># 周润发</span>
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(member)):
+    print(member[i])
+
+<span class="hljs-comment"># 张三</span>
+<span class="hljs-comment"># 李四</span>
+<span class="hljs-comment"># 刘德华</span>
+<span class="hljs-comment"># 刘六</span>
+<span class="hljs-comment"># 周润发</span></code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">dic = &#123;<span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>, <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>, <span class="hljs-string">'d'</span>: <span class="hljs-number">4</span>&#125;
+
+<span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">in</span> dic.items():
+    print(key, value, sep=<span class="hljs-string">':'</span>, end=<span class="hljs-string">' '</span>)
+    
+<span class="hljs-comment"># a:1 b:2 c:3 d:4</span></code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">dic = &#123;<span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>, <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>, <span class="hljs-string">'d'</span>: <span class="hljs-number">4</span>&#125;
+
+<span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> dic.keys():
+    print(key, end=<span class="hljs-string">' '</span>)
+    
+<span class="hljs-comment"># a b c d</span></code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">dic = &#123;<span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>, <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>, <span class="hljs-string">'d'</span>: <span class="hljs-number">4</span>&#125;
+
+<span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> dic.values():
+    print(value, end=<span class="hljs-string">' '</span>)
+    
+<span class="hljs-comment"># 1 2 3 4</span></code></pre>
+<hr>
+<h2 id="4-for-else-循环"><a href="#4-for-else-循环" class="headerlink" title="4. for - else 循环"></a>4. for - else 循环</h2><pre><code class="hljs python"><span class="hljs-keyword">for</span> 迭代变量 <span class="hljs-keyword">in</span> 可迭代对象:
+    代码块
+<span class="hljs-keyword">else</span>:
+    代码块</code></pre>
+<p>当<code>for</code>循环正常执行完的情况下，执行<code>else</code>输出，如果<code>for</code>循环中执行了跳出循环的语句，比如 <code>break</code>，将不执行<code>else</code>代码块的内容，与<code>while - else</code>语句一样。</p>
+<p>【例子】</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>):  <span class="hljs-comment"># 迭代 10 到 20 之间的数字</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>, num):  <span class="hljs-comment"># 根据因子迭代</span>
+        <span class="hljs-keyword">if</span> num % i == <span class="hljs-number">0</span>:  <span class="hljs-comment"># 确定第一个因子</span>
+            j = num / i  <span class="hljs-comment"># 计算第二个因子</span>
+            print(<span class="hljs-string">'%d 等于 %d * %d'</span> % (num, i, j))
+            <span class="hljs-keyword">break</span>  <span class="hljs-comment"># 跳出当前循环</span>
+    <span class="hljs-keyword">else</span>:  <span class="hljs-comment"># 循环的 else 部分</span>
+        print(num, <span class="hljs-string">'是一个质数'</span>)
+
+<span class="hljs-comment"># 10 等于 2 * 5</span>
+<span class="hljs-comment"># 11 是一个质数</span>
+<span class="hljs-comment"># 12 等于 2 * 6</span>
+<span class="hljs-comment"># 13 是一个质数</span>
+<span class="hljs-comment"># 14 等于 2 * 7</span>
+<span class="hljs-comment"># 15 等于 3 * 5</span>
+<span class="hljs-comment"># 16 等于 2 * 8</span>
+<span class="hljs-comment"># 17 是一个质数</span>
+<span class="hljs-comment"># 18 等于 2 * 9</span>
+<span class="hljs-comment"># 19 是一个质数</span></code></pre>
+<hr>
+<h2 id="5-range-函数"><a href="#5-range-函数" class="headerlink" title="5. range() 函数"></a>5. range() 函数</h2><pre><code class="hljs python">range([start,] stop[, step=<span class="hljs-number">1</span>])</code></pre>
+<ul>
+<li>这个BIF（Built-in functions）有三个参数，其中用中括号括起来的两个表示这两个参数是可选的。</li>
+<li><code>step=1</code> 表示第三个参数的默认值是1。</li>
+<li><code>range</code> 这个BIF的作用是生成一个从<code>start</code>参数的值开始到<code>stop</code>参数的值结束的数字序列，该序列包含<code>start</code>的值但不包含<code>stop</code>的值。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>, <span class="hljs-number">9</span>):  <span class="hljs-comment"># 不包含9</span>
+    print(i)
+
+<span class="hljs-comment"># 2</span>
+<span class="hljs-comment"># 3</span>
+<span class="hljs-comment"># 4</span>
+<span class="hljs-comment"># 5</span>
+<span class="hljs-comment"># 6</span>
+<span class="hljs-comment"># 7</span>
+<span class="hljs-comment"># 8</span></code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>):
+    print(i)
+
+<span class="hljs-comment"># 1</span>
+<span class="hljs-comment"># 3</span>
+<span class="hljs-comment"># 5</span>
+<span class="hljs-comment"># 7</span>
+<span class="hljs-comment"># 9</span></code></pre>
+<hr>
+<h2 id="6-enumerate-函数"><a href="#6-enumerate-函数" class="headerlink" title="6. enumerate()函数"></a>6. enumerate()函数</h2><pre><code class="hljs python">enumerate(sequence, [start=<span class="hljs-number">0</span>])</code></pre>
+<ul>
+<li>sequence — 一个序列、迭代器或其他支持迭代对象。</li>
+<li>start — 下标起始位置。</li>
+<li>返回 enumerate(枚举) 对象</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">seasons = [<span class="hljs-string">'Spring'</span>, <span class="hljs-string">'Summer'</span>, <span class="hljs-string">'Fall'</span>, <span class="hljs-string">'Winter'</span>]
+lst = list(enumerate(seasons))
+print(lst)
+<span class="hljs-comment"># [(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]</span>
+lst = list(enumerate(seasons, start=<span class="hljs-number">1</span>))  <span class="hljs-comment"># 下标从 1 开始</span>
+print(lst)
+<span class="hljs-comment"># [(1, 'Spring'), (2, 'Summer'), (3, 'Fall'), (4, 'Winter')]</span></code></pre>
+<p><code>enumerate()</code>与 for 循环的结合使用</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i, a <span class="hljs-keyword">in</span> enumerate(A)
+    do something <span class="hljs-keyword">with</span> a</code></pre>
+<p>用 <code>enumerate(A)</code> 不仅返回了 <code>A</code> 中的元素，还顺便给该元素一个索引值 (默认从 0 开始)。此外，用 <code>enumerate(A, j)</code> 还可以确定索引起始值为 <code>j</code>。</p>
+<p>【例子】</p>
+<pre><code class="hljs python">languages = [<span class="hljs-string">'Python'</span>, <span class="hljs-string">'R'</span>, <span class="hljs-string">'Matlab'</span>, <span class="hljs-string">'C++'</span>]
+<span class="hljs-keyword">for</span> language <span class="hljs-keyword">in</span> languages:
+    print(<span class="hljs-string">'I love'</span>, language)
+print(<span class="hljs-string">'Done!'</span>)
+
+<span class="hljs-string">'''</span>
+<span class="hljs-string">I love Python</span>
+<span class="hljs-string">I love R</span>
+<span class="hljs-string">I love Matlab</span>
+<span class="hljs-string">I love C++</span>
+<span class="hljs-string">Done!</span>
+<span class="hljs-string">'''</span>
+
+<span class="hljs-keyword">for</span> i, language <span class="hljs-keyword">in</span> enumerate(languages, <span class="hljs-number">2</span>):
+    print(i, <span class="hljs-string">'I love'</span>, language)
+print(<span class="hljs-string">'Done!'</span>)
+
+<span class="hljs-string">'''</span>
+<span class="hljs-string">2 I love Python</span>
+<span class="hljs-string">3 I love R</span>
+<span class="hljs-string">4 I love Matlab</span>
+<span class="hljs-string">5 I love C++</span>
+<span class="hljs-string">Done!</span>
+<span class="hljs-string">'''</span></code></pre>
+<hr>
+<h2 id="7-break-语句"><a href="#7-break-语句" class="headerlink" title="7. break 语句"></a>7. break 语句</h2><p><code>break</code>语句可以跳出当前所在层的循环。</p>
+<p>【例子】</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> random
+secret = random.randint(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>) <span class="hljs-comment">#[1,10]之间的随机数</span>
+
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    temp = input(<span class="hljs-string">"不妨猜一下小哥哥现在心里想的是那个数字："</span>)
+    guess = int(temp)
+    <span class="hljs-keyword">if</span> guess &gt; secret:
+        print(<span class="hljs-string">"大了，大了"</span>)
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">if</span> guess == secret:
+            print(<span class="hljs-string">"你这样懂小哥哥的心思啊？"</span>)
+            print(<span class="hljs-string">"哼，猜对也没有奖励！"</span>)
+            <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">else</span>:
+            print(<span class="hljs-string">"小了，小了"</span>)
+print(<span class="hljs-string">"游戏结束，不玩儿啦！"</span>)</code></pre>
+<hr>
+<h2 id="8-continue-语句"><a href="#8-continue-语句" class="headerlink" title="8. continue 语句"></a>8. continue 语句</h2><p><code>continue</code>终止本轮循环并开始下一轮循环。</p>
+<p>【例子】</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>):
+    <span class="hljs-keyword">if</span> i % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>:
+        print(i)
+        <span class="hljs-keyword">continue</span>
+    i += <span class="hljs-number">2</span>
+    print(i)
+
+<span class="hljs-comment"># 2</span>
+<span class="hljs-comment"># 1</span>
+<span class="hljs-comment"># 4</span>
+<span class="hljs-comment"># 3</span>
+<span class="hljs-comment"># 6</span>
+<span class="hljs-comment"># 5</span>
+<span class="hljs-comment"># 8</span>
+<span class="hljs-comment"># 7</span>
+<span class="hljs-comment"># 10</span>
+<span class="hljs-comment"># 9</span></code></pre>
+<hr>
+<h2 id="9-pass-语句"><a href="#9-pass-语句" class="headerlink" title="9. pass 语句"></a>9. pass 语句</h2><p><code>pass</code> 语句的意思是“不做任何事”，如果你在需要有语句的地方不写任何语句，那么解释器会提示出错，而 <code>pass</code> 语句就是用来解决这些问题的。</p>
+<p>【例子】</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">a_func</span><span class="hljs-params">()</span>:</span>
+
+<span class="hljs-comment"># SyntaxError: unexpected EOF while parsing</span></code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">a_func</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">pass</span></code></pre>
+<p><code>pass</code>是空语句，不做任何操作，只起到占位的作用，其作用是为了保持程序结构的完整性。尽管<code>pass</code>语句不做任何操作，但如果暂时不确定要在一个位置放上什么样的代码，可以先放置一个<code>pass</code>语句，让代码可以正常运行。</p>
+<hr>
+<h2 id="10-推导式"><a href="#10-推导式" class="headerlink" title="10. 推导式"></a>10. 推导式</h2><p><strong>列表推导式</strong></p>
+<pre><code class="hljs python">[ expr <span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> collection [<span class="hljs-keyword">if</span> condition] ]</code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">x = [<span class="hljs-number">-4</span>, <span class="hljs-number">-2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>]
+y = [a * <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> a <span class="hljs-keyword">in</span> x]
+print(y)
+<span class="hljs-comment"># [-8, -4, 0, 4, 8]</span></code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">x = [i ** <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>)]
+print(x)
+<span class="hljs-comment"># [1, 4, 9, 16, 25, 36, 49, 64, 81]</span></code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">x = [(i, i ** <span class="hljs-number">2</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">6</span>)]
+print(x)
+
+<span class="hljs-comment"># [(0, 0), (1, 1), (2, 4), (3, 9), (4, 16), (5, 25)]</span></code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">x = [i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">100</span>) <span class="hljs-keyword">if</span> (i % <span class="hljs-number">2</span>) != <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> (i % <span class="hljs-number">3</span>) == <span class="hljs-number">0</span>]
+print(x)
+
+<span class="hljs-comment"># [3, 9, 15, 21, 27, 33, 39, 45, 51, 57, 63, 69, 75, 81, 87, 93, 99]</span></code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">a = [(i, j) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>) <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>)]
+print(a)
+
+<span class="hljs-comment"># [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]</span></code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">x = [[i, j] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>) <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>)]
+print(x)
+<span class="hljs-comment"># [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]]</span>
+
+x[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">10</span>
+print(x)
+<span class="hljs-comment"># [[10, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]]</span></code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">a = [(i, j) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>) <span class="hljs-keyword">if</span> i &lt; <span class="hljs-number">1</span> <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>) <span class="hljs-keyword">if</span> j &gt; <span class="hljs-number">1</span>]
+print(a)
+
+<span class="hljs-comment"># [(0, 2)]</span></code></pre>
+<p><strong>元组推导式</strong></p>
+<pre><code class="hljs python">( expr <span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> collection [<span class="hljs-keyword">if</span> condition] )</code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">a = (x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>))
+print(a)
+
+<span class="hljs-comment"># &lt;generator object &lt;genexpr&gt; at 0x0000025BE511CC48&gt;</span>
+
+print(tuple(a))
+
+<span class="hljs-comment"># (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)</span></code></pre>
+<p><strong>字典推导式</strong></p>
+<pre><code class="hljs python">&#123; key_expr: value_expr <span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> collection [<span class="hljs-keyword">if</span> condition] &#125;</code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">b = &#123;i: i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>) <span class="hljs-keyword">if</span> i % <span class="hljs-number">3</span> == <span class="hljs-number">0</span>&#125;
+print(b)
+<span class="hljs-comment"># &#123;0: True, 3: False, 6: True, 9: False&#125;</span></code></pre>
+<p><strong>集合推导式</strong></p>
+<pre><code class="hljs clojure">&#123; expr for value in collection [if condition] &#125;</code></pre>
+<p>【例子】</p>
+<pre><code class="hljs python">c = &#123;i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>]&#125;
+print(c)
+<span class="hljs-comment"># &#123;1, 2, 3, 4, 5, 6&#125;</span></code></pre>
+<p><strong>其它</strong></p>
+<pre><code class="hljs python">d = <span class="hljs-string">'i for i in "I Love Lsgogroup"'</span>
+print(d)
+<span class="hljs-comment"># i for i in "I Love Lsgogroup"</span>
+
+e = (i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>))
+print(e)
+<span class="hljs-comment"># &lt;generator object &lt;genexpr&gt; at 0x0000007A0B8D01B0&gt;</span>
+
+print(next(e))  <span class="hljs-comment"># 0</span>
+print(next(e))  <span class="hljs-comment"># 1</span>
+
+<span class="hljs-keyword">for</span> each <span class="hljs-keyword">in</span> e:
+    print(each, end=<span class="hljs-string">' '</span>)
+
+<span class="hljs-comment"># 2 3 4 5 6 7 8 9</span>
+
+s = sum([i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">101</span>)])
+print(s)  <span class="hljs-comment"># 5050</span>
+s = sum((i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">101</span>)))
+print(s)  <span class="hljs-comment"># 5050</span></code></pre>
+<hr>
+<h2 id="11-综合例子"><a href="#11-综合例子" class="headerlink" title="11. 综合例子"></a>11. 综合例子</h2><pre><code class="hljs python">passwdList = [<span class="hljs-string">'123'</span>, <span class="hljs-string">'345'</span>, <span class="hljs-string">'890'</span>]
+valid = <span class="hljs-literal">False</span>
+count = <span class="hljs-number">3</span>
+<span class="hljs-keyword">while</span> count &gt; <span class="hljs-number">0</span>:
+    password = input(<span class="hljs-string">'enter password:'</span>)
+    <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> passwdList:
+        <span class="hljs-keyword">if</span> password == item:
+            valid = <span class="hljs-literal">True</span>
+            <span class="hljs-keyword">break</span>
+            
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> valid:
+        print(<span class="hljs-string">'invalid input'</span>)
+        count -= <span class="hljs-number">1</span>
+        <span class="hljs-keyword">continue</span>
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">break</span></code></pre>
+<hr>
+<p><strong>参考文献</strong>：</p>
+<ul>
+<li><a href="https://www.runoob.com/python3/python3-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/python3/python3-tutorial.html</a></li>
+<li><a href="https://www.bilibili.com/video/av4050443" target="_blank" rel="noopener">https://www.bilibili.com/video/av4050443</a></li>
+<li><a href="https://mp.weixin.qq.com/s/DZ589xEbOQ2QLtiq8mP1qQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/DZ589xEbOQ2QLtiq8mP1qQ</a></li>
+</ul>
+<hr>
+<p><strong>练习题</strong>：</p>
+<p>1、编写一个Python程序来查找那些可以被7除以5的整数的数字，介于1500和2700之间。</p>
+<pre><code class="hljs python"><span class="hljs-comment"># your code here</span></code></pre>
+<p>2、龟兔赛跑游戏</p>
+<p>题目描述：</p>
+<p>话说这个世界上有各种各样的兔子和乌龟，但是研究发现，所有的兔子和乌龟都有一个共同的特点——喜欢赛跑。于是世界上各个角落都不断在发生着乌龟和兔子的比赛，小华对此很感兴趣，于是决定研究不同兔  子和乌龟的赛跑。他发现，兔子虽然跑比乌龟快，但它们有众所周知的毛病——骄傲且懒惰，于是在与乌龟的比赛中，一旦任一秒结束后兔子发现自己领先t米或以  上，它们就会停下来休息s秒。对于不同的兔子，t，s的数值是不同的，但是所有的乌龟却是一致——它们不到终点决不停止。 </p>
+<p>然而有些比赛相当漫长，全程观看会耗费大量时间，而小华发现只要在每场比赛开始后记录下兔子和乌龟的数据——兔子的速度v1（表示每秒兔子能跑v1  米），乌龟的速度v2，以及兔子对应的t，s值，以及赛道的长度l——就能预测出比赛的结果。但是小华很懒，不想通过手工计算推测出比赛的结果，于是他找 到了你——清华大学计算机系的高才生——请求帮助，请你写一个程序，对于输入的一场比赛的数据v1，v2，t，s，l，预测该场比赛的结果。</p>
+<p>输入:</p>
+<p>输入只有一行，包含用空格隔开的五个正整数v1，v2，t，s，l，其中(v1,v2&lt; =100;t&lt; =300;s&lt; =10;l&lt; =10000且为v1,v2的公倍数) </p>
+<p>输出:</p>
+<p>输出包含两行，第一行输出比赛结果——一个大写字母“T”或“R”或“D”，分别表示乌龟获胜，兔子获胜，或者两者同时到达终点。 </p>
+<p>第二行输出一个正整数，表示获胜者（或者双方同时）到达终点所耗费的时间（秒数）。 </p>
+<hr>
+<p>样例输入：</p>
+<p>10  5  5  2  20 </p>
+<p>样例输出</p>
+<p>D<br><br>4</p>
+<pre><code class="hljs python"><span class="hljs-comment"># your code here</span></code></pre>
 ]]></content>
       <categories>
         <category>python</category>
