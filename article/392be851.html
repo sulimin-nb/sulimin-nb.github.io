@@ -178,7 +178,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      1.4k 字
     </span>
   
 
@@ -188,7 +188,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      19
        分钟
     </span>
   
@@ -228,7 +228,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月23日 晚上
+                  本文最后更新于：2020年7月24日 早上
                 
               </p>
             
@@ -296,28 +296,29 @@ B^A: <span class="hljs-number">00</span> <span class="hljs-number">00</span> <sp
 A^A: <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span>
 A^<span class="hljs-number">0</span>: <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">11</span> <span class="hljs-number">00</span>
 
-A^B^A: = A^A^B = B = <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">01</span> <span class="hljs-number">11</span></code></pre>
+A^B^A: = A^A^B = <span class="hljs-number">0</span>^B = <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">01</span> <span class="hljs-number">11</span></code></pre>
 <h2 id="6-按位左移操作-lt-lt"><a href="#6-按位左移操作-lt-lt" class="headerlink" title="6. 按位左移操作 &lt;&lt;"></a>6. 按位左移操作 &lt;&lt;</h2><p><code>num &lt;&lt; i</code> 将<code>num</code>的二进制表示向左移动<code>i</code>位所得的值。</p>
 <pre><code class="hljs python">00 00 10 11 -&gt; 11
 <span class="hljs-number">11</span> &lt;&lt; <span class="hljs-number">3</span>
 ---
-01 01 10 00 -&gt; 88</code></pre>
+01 01 10 00 -&gt; 88 = 11 x 8</code></pre>
 <h2 id="7-按位右移操作-gt-gt"><a href="#7-按位右移操作-gt-gt" class="headerlink" title="7. 按位右移操作 &gt;&gt;"></a>7. 按位右移操作 &gt;&gt;</h2><p><code>num &gt;&gt; i</code> 将<code>num</code>的二进制表示向右移动<code>i</code>位所得的值。</p>
 <pre><code class="hljs python">00 00 10 11 -&gt; 11
 <span class="hljs-number">11</span> &gt;&gt; <span class="hljs-number">2</span>
 ---
-00 00 00 10 -&gt; 2</code></pre>
+00 00 00 10 -&gt; 2 = 11 // 4</code></pre>
 <h2 id="8-利用位运算实现快速计算"><a href="#8-利用位运算实现快速计算" class="headerlink" title="8. 利用位运算实现快速计算"></a>8. 利用位运算实现快速计算</h2><p>通过 <code>&lt;&lt;</code>，<code>&gt;&gt;</code> 快速计算2的倍数问题。</p>
-<pre><code class="hljs angelscript">n &lt;&lt; <span class="hljs-number">1</span> -&gt; 计算 n*<span class="hljs-number">2</span>
-n &gt;&gt; <span class="hljs-number">1</span> -&gt; 计算 n/<span class="hljs-number">2</span>，负奇数的运算不可用
-n &lt;&lt; m -&gt; 计算 n*(<span class="hljs-number">2</span>^m)，即乘以 <span class="hljs-number">2</span> 的 m 次方
-n &gt;&gt; m -&gt; 计算 n/(<span class="hljs-number">2</span>^m)，即除以 <span class="hljs-number">2</span> 的 m 次方
-<span class="hljs-number">1</span> &lt;&lt; n -&gt; <span class="hljs-number">2</span>^n</code></pre>
+<pre><code class="hljs excel"><span class="hljs-built_in">n</span> &lt;&lt; <span class="hljs-number">1</span> -&gt; 计算 <span class="hljs-built_in">n</span>*<span class="hljs-number">2</span>
+<span class="hljs-built_in">n</span> &gt;&gt; <span class="hljs-number">1</span> -&gt; 计算 <span class="hljs-built_in">n</span>//<span class="hljs-number">2</span>，负奇数的运算不可用
+<span class="hljs-built_in">n</span> &lt;&lt; m -&gt; 计算 <span class="hljs-built_in">n</span>*(<span class="hljs-number">2</span>^m)，即乘以 <span class="hljs-number">2</span> 的 m 次方
+<span class="hljs-built_in">n</span> &gt;&gt; m -&gt; 计算 <span class="hljs-built_in">n</span>//(<span class="hljs-number">2</span>^m)，即除以 <span class="hljs-number">2</span> 的 m 次方
+<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-built_in">n</span> -&gt; <span class="hljs-number">2</span>^<span class="hljs-built_in">n</span></code></pre>
 <p>通过 <code>^</code> 快速交换两个整数。</p>
 <pre><code class="hljs c">a ^= b
 b ^= a
 a ^= b</code></pre>
 <p>通过 <code>a &amp; (-a)</code> 快速获取<code>a</code>的最后为 1 位置的整数。</p>
+<p><span style="color:blue">(-a) = a的补码+1，最后一个1之后的0全变为1，+1后为0，进一000位后，原先的最后一个1保持不变。</span></p>
 <pre><code class="hljs c"><span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">01</span> <span class="hljs-number">01</span> -&gt; <span class="hljs-number">5</span>
 &amp;
 <span class="hljs-number">11</span> <span class="hljs-number">11</span> <span class="hljs-number">10</span> <span class="hljs-number">11</span> -&gt; <span class="hljs-number">-5</span>
@@ -330,11 +331,11 @@ a ^= b</code></pre>
 ---
 <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">10</span> -&gt; <span class="hljs-number">2</span></code></pre>
 <h2 id="9-利用位运算实现整数集合"><a href="#9-利用位运算实现整数集合" class="headerlink" title="9. 利用位运算实现整数集合"></a>9. 利用位运算实现整数集合</h2><p>一个数的二进制表示可以看作是一个集合（0 表示不在集合中，1 表示在集合中）。</p>
-<p>比如集合 <code>{1, 3, 4, 8}</code>，可以表示成 <code>01 00 01 10 10</code> 而对应的位运算也就可以看作是对集合进行的操作。</p>
+<p>比如集合 <code>{1, 3, 4, 8}</code>，可以表示成 <code>01 00 01 10 10(876543210,1表示在集合中,0表示不在集合中)</code> 而对应的位运算也就可以看作是对集合进行的操作。</p>
 <p>元素与集合的操作：</p>
 <pre><code class="hljs livescript">a | <span class="hljs-function"><span class="hljs-params">(<span class="hljs-number">1</span>&lt;&lt;i)</span>  -&gt;</span> 把 i 插入到集合中
 a &amp; ~<span class="hljs-function"><span class="hljs-params">(<span class="hljs-number">1</span>&lt;&lt;i)</span> -&gt;</span> 把 i 从集合中删除
-a &amp; <span class="hljs-function"><span class="hljs-params">(<span class="hljs-number">1</span>&lt;&lt;i)</span>  -&gt;</span> 判断 i 是否属于该集合（零不属于，非零属于）</code></pre>
+a &amp; <span class="hljs-function"><span class="hljs-params">(<span class="hljs-number">1</span>&lt;&lt;i)</span>  -&gt;</span> 判断 i 是否属于该集合（<span class="hljs-number">0</span>:不属于，<span class="hljs-number">1</span>:属于）</code></pre>
 <p>集合之间的操作：</p>
 <pre><code class="hljs c">a 补   -&gt; ~a
 a 交 b -&gt; a &amp; b
@@ -393,8 +394,10 @@ print(<span class="hljs-number">0xfffffffd</span>)  <span class="hljs-comment">#
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">singleNumber</span><span class="hljs-params">(self, nums: List[int])</span> -&gt; int:</span>
-        
-     <span class="hljs-comment"># your code here</span></code></pre>
+        <span class="hljs-comment"># your code here</span>
+        <span class="hljs-keyword">return</span> reduce(<span class="hljs-keyword">lambda</span> x,y: x^y, nums)</code></pre>
+<p>思路：</p>
+<p>$a \bigoplus a = 0$, $0 \bigoplus a=a$,$0 \bigoplus 0=0$,所以把所有数字做异或操作，得到$(a_1 \bigoplus a_1) \bigoplus (a_2 \bigoplus a_2) \bigoplus \ldots (a_n) = a_n$</p>
 
             </article>
             <hr>
