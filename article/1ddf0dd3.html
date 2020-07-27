@@ -178,7 +178,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.3k 字
+      4.4k 字
     </span>
   
 
@@ -188,7 +188,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      39
+      52
        分钟
     </span>
   
@@ -228,7 +228,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月25日 晚上
+                  本文最后更新于：2020年7月27日 晚上
                 
               </p>
             
@@ -447,6 +447,84 @@ clf.fit(train_test<span class="hljs-literal">[:<span class="hljs-number">10000</
 val_pred = clf.predict(train_test<span class="hljs-literal">[<span class="hljs-number">10000</span>:]</span>)
 print(f1<span class="hljs-constructor">_score(<span class="hljs-params">train_df</span>['<span class="hljs-params">label</span>'].<span class="hljs-params">values</span>[10000:], <span class="hljs-params">val_pred</span>, <span class="hljs-params">average</span>='<span class="hljs-params">macro</span>')</span>)
 # <span class="hljs-number">0.87</span></code></pre>
+<h2 id="基于深度学习的文本分类"><a href="#基于深度学习的文本分类" class="headerlink" title="基于深度学习的文本分类"></a>基于深度学习的文本分类</h2><p>与传统机器学习不同，深度学习既提供特征提取功能，也可以完成分类的功能。从本章开始我们将学习如何使用深度学习来完成文本表示。</p>
+<h3 id="学习目标-2"><a href="#学习目标-2" class="headerlink" title="学习目标"></a>学习目标</h3><ul>
+<li>学习FastText的使用和基础原理</li>
+<li>学会使用验证集进行调参</li>
+</ul>
+<h3 id="文本表示方法-Part2"><a href="#文本表示方法-Part2" class="headerlink" title="文本表示方法 Part2"></a>文本表示方法 Part2</h3><h4 id="现有文本表示方法的缺陷"><a href="#现有文本表示方法的缺陷" class="headerlink" title="现有文本表示方法的缺陷"></a>现有文本表示方法的缺陷</h4><p>在上一章节，我们介绍几种文本表示方法：</p>
+<ul>
+<li>One-hot</li>
+<li>Bag of Words</li>
+<li>N-gram</li>
+<li>TF-IDF</li>
+</ul>
+<p>也通过sklean进行了相应的实践，相信你也有了初步的认知。但上述方法都或多或少存在一定的问题：转换得到的向量维度很高，需要较长的训练实践；没有考虑单词与单词之间的关系，只是进行了统计。</p>
+<p>与这些表示方法不同，深度学习也可以用于文本表示，还可以将其映射到一个低纬空间。其中比较典型的例子有：FastText、Word2Vec和Bert。在本章我们将介绍FastText，将在后面的内容介绍Word2Vec和Bert。</p>
+<h4 id="FastText"><a href="#FastText" class="headerlink" title="FastText"></a>FastText</h4><p>FastText是一种典型的深度学习词向量的表示方法，它非常简单通过Embedding层将单词映射到稠密空间，然后将句子中所有的单词在Embedding空间中进行平均，进而完成分类操作。</p>
+<p>所以FastText是一个三层的神经网络，输入层、隐含层和输出层。</p>
+<p><a href="https://camo.githubusercontent.com/4e01004146c81db5ee15df1b373374b3ff145bfa/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303230303731343230343835363538392e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/4e01004146c81db5ee15df1b373374b3ff145bfa/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303230303731343230343835363538392e706e67" srcset="/img/loading.gif" alt="fast_text"></a></p>
+<p>下图是使用keras实现的FastText网络结构：</p>
+<p><a href="https://camo.githubusercontent.com/d4f33365b75bdddd0c80a857dc1a9e99789f1600/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303230303731343230343234393436332e6a7067" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/d4f33365b75bdddd0c80a857dc1a9e99789f1600/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303230303731343230343234393436332e6a7067" srcset="/img/loading.gif" alt="keras_fasttext"></a></p>
+<p>FastText在文本分类任务上，是优于TF-IDF的：</p>
+<ul>
+<li>FastText用单词的Embedding叠加获得的文档向量，将相似的句子分为一类</li>
+<li>FastText学习到的Embedding空间维度比较低，可以快速进行训练</li>
+</ul>
+<p>如果想深度学习，可以参考论文：</p>
+<p>Bag of Tricks for Efficient Text Classification, <a href="https://arxiv.org/abs/1607.01759" target="_blank" rel="noopener">https://arxiv.org/abs/1607.01759</a></p>
+<h3 id="基于FastText的文本分类"><a href="#基于FastText的文本分类" class="headerlink" title="基于FastText的文本分类"></a>基于FastText的文本分类</h3><p>FastText可以快速的在CPU上进行训练，最好的实践方法就是官方开源的版本： <a href="https://github.com/facebookresearch/fastText/tree/master/python" target="_blank" rel="noopener">https://github.com/facebookresearch/fastText/tree/master/python</a></p>
+<ul>
+<li>pip安装</li>
+</ul>
+<pre><code class="hljs cmake">pip <span class="hljs-keyword">install</span> fasttext</code></pre>
+<ul>
+<li>源码安装</li>
+</ul>
+<pre><code class="hljs crmsh">git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://github.com/facebookresearch/fastText.git
+cd fastText
+sudo pip install .</code></pre>
+<p>两种安装方法都可以安装，如果你是初学者可以优先考虑使用pip安装。</p>
+<ul>
+<li>分类模型</li>
+</ul>
+<pre><code class="hljs routeros">import pandas as pd
+<span class="hljs-keyword">from</span> sklearn.metrics import f1_score
+
+<span class="hljs-comment"># 转换为FastText需要的格式</span>
+train_df = pd.read_csv(<span class="hljs-string">'../input/train_set.csv'</span>, <span class="hljs-attribute">sep</span>=<span class="hljs-string">'\t'</span>, <span class="hljs-attribute">nrows</span>=15000)
+train_df[<span class="hljs-string">'label_ft'</span>] = <span class="hljs-string">'__label__'</span> + train_df[<span class="hljs-string">'label'</span>].astype(str)
+train_df[[<span class="hljs-string">'text'</span>,<span class="hljs-string">'label_ft'</span>]].iloc[:-5000].to_csv(<span class="hljs-string">'train.csv'</span>, <span class="hljs-attribute">index</span>=None, <span class="hljs-attribute">header</span>=None, <span class="hljs-attribute">sep</span>=<span class="hljs-string">'\t'</span>)
+
+import fasttext
+model = fasttext.train_supervised(<span class="hljs-string">'train.csv'</span>, <span class="hljs-attribute">lr</span>=1.0, <span class="hljs-attribute">wordNgrams</span>=2, 
+                                  <span class="hljs-attribute">verbose</span>=2, <span class="hljs-attribute">minCount</span>=1, <span class="hljs-attribute">epoch</span>=25, <span class="hljs-attribute">loss</span>=<span class="hljs-string">"hs"</span>)
+
+val_pred = [model.predict(x)[0][0].split(<span class="hljs-string">'__'</span>)[-1] <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> train_df.iloc[-5000:][<span class="hljs-string">'text'</span>]]
+<span class="hljs-builtin-name">print</span>(f1_score(train_df[<span class="hljs-string">'label'</span>].values[-5000:].astype(str), val_pred, <span class="hljs-attribute">average</span>=<span class="hljs-string">'macro'</span>))
+<span class="hljs-comment"># 0.82</span></code></pre>
+<p>此时数据量比较小得分为0.82，当不断增加训练集数量时，FastText的精度也会不断增加5w条训练样本时，验证集得分可以到0.89-0.90左右。</p>
+<h3 id="如何使用验证集调参"><a href="#如何使用验证集调参" class="headerlink" title="如何使用验证集调参"></a>如何使用验证集调参</h3><p>在使用TF-IDF和FastText中，有一些模型的参数需要选择，这些参数会在一定程度上影响模型的精度，那么如何选择这些参数呢？</p>
+<ul>
+<li>通过阅读文档，要弄清楚这些参数的大致含义，那些参数会增加模型的复杂度</li>
+<li>通过在验证集上进行验证模型精度，找到模型在是否过拟合还是欠拟合</li>
+</ul>
+<p><a href="https://camo.githubusercontent.com/3c19cda9d91954875be0b59abe99fad024552d29/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303230303731343230343430333834342e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/3c19cda9d91954875be0b59abe99fad024552d29/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303230303731343230343430333834342e706e67" srcset="/img/loading.gif" alt="train_val"></a></p>
+<p>这里我们使用10折交叉验证，每折使用9/10的数据进行训练，剩余1/10作为验证集检验模型的效果。这里需要注意每折的划分必须保证标签的分布与整个数据集的分布一致。</p>
+<pre><code class="hljs dockerfile">label2id = &#123;&#125;
+for i in range(total):
+    <span class="hljs-keyword">label</span><span class="bash"> = str(all_labels[i])</span>
+    if <span class="hljs-keyword">label</span><span class="bash"> not <span class="hljs-keyword">in</span> label2id:</span>
+        label2id[<span class="hljs-keyword">label</span><span class="bash">] = [i]</span>
+    else:
+        label2id[<span class="hljs-keyword">label</span><span class="bash">].append(i)</span></code></pre>
+<p>通过10折划分，我们一共得到了10份分布一致的数据，索引分别为0到9，每次通过将一份数据作为验证集，剩余数据作为训练集，获得了所有数据的10种分割。不失一般性，我们选择最后一份完成剩余的实验，即索引为9的一份做为验证集，索引为1-8的作为训练集，然后基于验证集的结果调整超参数，使得模型性能更优。</p>
+<h3 id="本章小结-1"><a href="#本章小结-1" class="headerlink" title="本章小结"></a>本章小结</h3><p>本章介绍了FastText的原理和基础使用，并进行相应的实践。然后介绍了通过10折交叉验证划分数据集。</p>
+<h3 id="本章作业-1"><a href="#本章作业-1" class="headerlink" title="本章作业"></a>本章作业</h3><ul>
+<li>阅读FastText的文档，尝试修改参数，得到更好的分数</li>
+<li>基于验证集的结果调整超参数，使得模型性能更优</li>
+</ul>
+
             </article>
             <hr>
             <div>
