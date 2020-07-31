@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/pocket%20watch.ico">
+  <link rel="icon" type="image/png" href="/img/pocket%20watch.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
+  <meta name="author" content="sulimin">
+  <meta name="keywords" content="机器学习，数据挖掘，计算机视觉">
+  <title>python06-字典、集合和序列 - 苏</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="苏" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Sulimin</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/target/">
+                <i class="iconfont icon-clipcheck"></i>
+                每日目标
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-31 23:55">
+      2020年7月31日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      32
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年7月31日 晚上
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><h2 id="1-可变类型与不可变类型"><a href="#1-可变类型与不可变类型" class="headerlink" title="1. 可变类型与不可变类型"></a>1. 可变类型与不可变类型</h2><ul>
+<li>序列是以连续的整数为索引，与此不同的是，字典以”关键字”为索引，关键字可以是任意不可变类型，通常用字符串或数值。</li>
+<li>字典是 Python 唯一的一个 <u>映射类型</u>，字符串、元组、列表属于<u>序列类型</u>。</li>
+</ul>
+<p>那么如何快速判断一个数据类型 <code>X</code> 是不是可变类型的呢？两种方法：</p>
+<ul>
+<li>麻烦方法：用 <code>id(X)</code> 函数，对 X 进行某种操作，比较操作前后的 <code>id</code>，如果不一样，则 <code>X</code> 不可变，如果一样，则 <code>X</code> 可变。</li>
+<li>便捷方法：用 <code>hash(X)</code>，只要不报错，证明 <code>X</code> 可被哈希，即不可变，反过来不可被哈希，即可变。</li>
+</ul>
+<pre><code class="hljs python">i = <span class="hljs-number">1</span>
+print(id(i))  <span class="hljs-comment"># 140732167000896</span>
+i = i + <span class="hljs-number">2</span>
+print(id(i))  <span class="hljs-comment"># 140732167000960</span>
+
+l = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
+print(id(l))  <span class="hljs-comment"># 4300825160</span>
+l.append(<span class="hljs-string">'Python'</span>)
+print(id(l))  <span class="hljs-comment"># 4300825160</span></code></pre>
+<ul>
+<li>整数 <code>i</code> 在加 1 之后的 <code>id</code> 和之前不一样，因此加完之后的这个 <code>i</code> (虽然名字没变)，但不是加之前的那个 <code>i</code> 了，因此整数是不可变类型。</li>
+<li>列表 <code>l</code> 在附加 <code>&#39;Python&#39;</code> 之后的 <code>id</code> 和之前一样，因此列表是可变类型。</li>
+</ul>
+<pre><code class="hljs python">print(hash(<span class="hljs-string">'Name'</span>))  <span class="hljs-comment"># -9215951442099718823</span>
+
+print(hash((<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">'Python'</span>)))  <span class="hljs-comment"># 823362308207799471</span>
+
+print(hash([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">'Python'</span>]))
+<span class="hljs-comment"># TypeError: unhashable type: 'list'</span>
+
+print(hash(&#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>&#125;))
+<span class="hljs-comment"># TypeError: unhashable type: 'set'</span></code></pre>
+<ul>
+<li>数值、字符和元组 都能被哈希，因此它们是不可变类型。</li>
+<li>列表、集合、字典不能被哈希，因此它是可变类型。</li>
+</ul>
+<h2 id="2-字典的定义"><a href="#2-字典的定义" class="headerlink" title="2. 字典的定义"></a>2. 字典的定义</h2><p>字典 是无序的 键:值（<code>key:value</code>）对集合，键必须是互不相同的（在同一个字典之内）。</p>
+<ul>
+<li><code>dict</code> 内部存放的顺序和 <code>key</code> 放入的顺序是没有关系的。</li>
+<li><code>dict</code> 查找和插入的速度极快，不会随着 <code>key</code> 的增加而增加，但是需要占用大量的内存。</li>
+</ul>
+<p>字典 定义语法为 <code>{元素1, 元素2, ..., 元素n}</code></p>
+<ul>
+<li>其中每一个元素是一个「键值对」— 键:值 (<code>key:value</code>)</li>
+<li>关键点是「大括号 {}」,「逗号 ,」和「冒号 :」</li>
+<li>大括号 — 把所有元素绑在一起</li>
+<li>逗号 — 将每个键值对分开</li>
+<li>冒号 — 将键和值分开</li>
+</ul>
+<h2 id="3-创建和访问字典"><a href="#3-创建和访问字典" class="headerlink" title="3. 创建和访问字典"></a>3. 创建和访问字典</h2><p>【例子】</p>
+<pre><code class="hljs python">brand = [<span class="hljs-string">'李宁'</span>, <span class="hljs-string">'耐克'</span>, <span class="hljs-string">'阿迪达斯'</span>]
+slogan = [<span class="hljs-string">'一切皆有可能'</span>, <span class="hljs-string">'Just do it'</span>, <span class="hljs-string">'Impossible is nothing'</span>]
+print(<span class="hljs-string">'耐克的口号是:'</span>, slogan[brand.index(<span class="hljs-string">'耐克'</span>)])  
+<span class="hljs-comment"># 耐克的口号是: Just do it</span>
+
+dic = &#123;<span class="hljs-string">'李宁'</span>: <span class="hljs-string">'一切皆有可能'</span>, <span class="hljs-string">'耐克'</span>: <span class="hljs-string">'Just do it'</span>, <span class="hljs-string">'阿迪达斯'</span>: <span class="hljs-string">'Impossible is nothing'</span>&#125;
+print(<span class="hljs-string">'耐克的口号是:'</span>, dic[<span class="hljs-string">'耐克'</span>])  
+<span class="hljs-comment"># 耐克的口号是: Just do it</span></code></pre>
+<p>通过字符串或数值作为<code>key</code>来创建字典。</p>
+<p>注意：如果我们取的键在字典中不存在，会直接报错<code>KeyError</code>。</p>
+<p>【例子】</p>
+<pre><code class="hljs python">dic1 = &#123;<span class="hljs-number">1</span>: <span class="hljs-string">'one'</span>, <span class="hljs-number">2</span>: <span class="hljs-string">'two'</span>, <span class="hljs-number">3</span>: <span class="hljs-string">'three'</span>&#125;
+print(dic1)  <span class="hljs-comment"># &#123;1: 'one', 2: 'two', 3: 'three'&#125;</span>
+print(dic1[<span class="hljs-number">1</span>])  <span class="hljs-comment"># one</span>
+print(dic1[<span class="hljs-number">4</span>])  <span class="hljs-comment"># KeyError: 4</span>
+
+dic2 = &#123;<span class="hljs-string">'rice'</span>: <span class="hljs-number">35</span>, <span class="hljs-string">'wheat'</span>: <span class="hljs-number">101</span>, <span class="hljs-string">'corn'</span>: <span class="hljs-number">67</span>&#125;
+print(dic2)  <span class="hljs-comment"># &#123;'wheat': 101, 'corn': 67, 'rice': 35&#125;</span>
+print(dic2[<span class="hljs-string">'rice'</span>])  <span class="hljs-comment"># 35</span></code></pre>
+<p>【例子】通过元组作为<code>key</code>来创建字典，但一般不这样使用。</p>
+<pre><code class="hljs python">dic = &#123;(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>): <span class="hljs-string">"Tom"</span>, <span class="hljs-string">"Age"</span>: <span class="hljs-number">12</span>, <span class="hljs-number">3</span>: [<span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>]&#125;
+print(dic)  <span class="hljs-comment"># &#123;(1, 2, 3): 'Tom', 'Age': 12, 3: [3, 5, 7]&#125;</span>
+print(type(dic))  <span class="hljs-comment"># &lt;class 'dict'&gt;</span></code></pre>
+<p>通过构造函数<code>dict</code>来创建字典。</p>
+<ul>
+<li><code>dict()</code> -&gt; 创建一个空的字典。</li>
+</ul>
+<p>【例子】通过<code>key</code>直接把数据放入字典中，但一个<code>key</code>只能对应一个<code>value</code>，多次对一个<code>key</code>放入 <code>value</code>，后面的值会把前面的值冲掉。</p>
+<pre><code class="hljs python">dic = dict()
+dic[<span class="hljs-string">'a'</span>] = <span class="hljs-number">1</span>
+dic[<span class="hljs-string">'b'</span>] = <span class="hljs-number">2</span>
+dic[<span class="hljs-string">'c'</span>] = <span class="hljs-number">3</span>
+
+print(dic)
+<span class="hljs-comment"># &#123;'a': 1, 'b': 2, 'c': 3&#125;</span>
+
+dic[<span class="hljs-string">'a'</span>] = <span class="hljs-number">11</span>
+print(dic)
+<span class="hljs-comment"># &#123;'a': 11, 'b': 2, 'c': 3&#125;</span>
+
+dic[<span class="hljs-string">'d'</span>] = <span class="hljs-number">4</span>
+print(dic)
+<span class="hljs-comment"># &#123;'a': 11, 'b': 2, 'c': 3, 'd': 4&#125;</span></code></pre>
+<ul>
+<li><code>dict(mapping)</code> -&gt; new dictionary initialized from a mapping object’s (key, value) pairs</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">dic1 = dict([(<span class="hljs-string">'apple'</span>, <span class="hljs-number">4139</span>), (<span class="hljs-string">'peach'</span>, <span class="hljs-number">4127</span>), (<span class="hljs-string">'cherry'</span>, <span class="hljs-number">4098</span>)])
+print(dic1)  <span class="hljs-comment"># &#123;'cherry': 4098, 'apple': 4139, 'peach': 4127&#125;</span>
+
+dic2 = dict(((<span class="hljs-string">'apple'</span>, <span class="hljs-number">4139</span>), (<span class="hljs-string">'peach'</span>, <span class="hljs-number">4127</span>), (<span class="hljs-string">'cherry'</span>, <span class="hljs-number">4098</span>)))
+print(dic2)  <span class="hljs-comment"># &#123;'peach': 4127, 'cherry': 4098, 'apple': 4139&#125;</span></code></pre>
+<ul>
+<li><code>dict(**kwargs)</code> -&gt; new dictionary initialized with the name=value pairs in the keyword argument list.  For example:  dict(one=1, two=2)</li>
+</ul>
+<p>【例子】这种情况下，键只能为字符串类型，并且创建的时候字符串不能加引号，加上就会直接报语法错误。</p>
+<pre><code class="hljs python">dic = dict(name=<span class="hljs-string">'Tom'</span>, age=<span class="hljs-number">10</span>)
+print(dic)  <span class="hljs-comment"># &#123;'name': 'Tom', 'age': 10&#125;</span>
+print(type(dic))  <span class="hljs-comment"># &lt;class 'dict'&gt;</span></code></pre>
+<h2 id="4-字典的内置方法"><a href="#4-字典的内置方法" class="headerlink" title="4. 字典的内置方法"></a>4. 字典的内置方法</h2><ul>
+<li><code>dict.fromkeys(seq[, value])</code> 用于创建一个新字典，以序列 <code>seq</code> 中元素做字典的键，<code>value</code> 为字典所有键对应的初始值。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">seq = (<span class="hljs-string">'name'</span>, <span class="hljs-string">'age'</span>, <span class="hljs-string">'sex'</span>)
+dic1 = dict.fromkeys(seq)
+print(<span class="hljs-string">"新的字典为 : %s"</span> % str(dic1))  
+<span class="hljs-comment"># 新的字典为 : &#123;'name': None, 'age': None, 'sex': None&#125;</span>
+
+dic2 = dict.fromkeys(seq, <span class="hljs-number">10</span>)
+print(<span class="hljs-string">"新的字典为 : %s"</span> % str(dic2))  
+<span class="hljs-comment"># 新的字典为 : &#123;'name': 10, 'age': 10, 'sex': 10&#125;</span>
+
+dic3 = dict.fromkeys(seq, (<span class="hljs-string">'小马'</span>, <span class="hljs-string">'8'</span>, <span class="hljs-string">'男'</span>))
+print(<span class="hljs-string">"新的字典为 : %s"</span> % str(dic3))  
+<span class="hljs-comment"># 新的字典为 : &#123;'name': ('小马', '8', '男'), 'age': ('小马', '8', '男'), 'sex': ('小马', '8', '男')&#125;</span></code></pre>
+<ul>
+<li><code>dict.keys()</code>返回一个可迭代对象，可以使用 <code>list()</code> 来转换为列表，列表为字典中的所有键。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">dic = &#123;<span class="hljs-string">'Name'</span>: <span class="hljs-string">'lsgogroup'</span>, <span class="hljs-string">'Age'</span>: <span class="hljs-number">7</span>&#125;
+print(dic.keys())  <span class="hljs-comment"># dict_keys(['Name', 'Age'])</span>
+lst = list(dic.keys())  <span class="hljs-comment"># 转换为列表</span>
+print(lst)  <span class="hljs-comment"># ['Name', 'Age']</span></code></pre>
+<ul>
+<li><code>dict.values()</code>返回一个迭代器，可以使用 <code>list()</code> 来转换为列表，列表为字典中的所有值。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">dic = &#123;<span class="hljs-string">'Sex'</span>: <span class="hljs-string">'female'</span>, <span class="hljs-string">'Age'</span>: <span class="hljs-number">7</span>, <span class="hljs-string">'Name'</span>: <span class="hljs-string">'Zara'</span>&#125;
+print(<span class="hljs-string">"字典所有值为 : "</span>, list(dic.values()))  
+<span class="hljs-comment"># 字典所有值为 :  [7, 'female', 'Zara']</span></code></pre>
+<ul>
+<li><code>dict.items()</code>以列表返回可遍历的 (键, 值) 元组数组。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">dic = &#123;<span class="hljs-string">'Name'</span>: <span class="hljs-string">'Lsgogroup'</span>, <span class="hljs-string">'Age'</span>: <span class="hljs-number">7</span>&#125;
+print(<span class="hljs-string">"Value : %s"</span> % dic.items())  
+<span class="hljs-comment"># Value : dict_items([('Name', 'Lsgogroup'), ('Age', 7)])</span>
+
+print(tuple(dic.items()))  
+<span class="hljs-comment"># (('Name', 'Lsgogroup'), ('Age', 7))</span></code></pre>
+<ul>
+<li><code>dict.get(key, default=None)</code>返回指定键的值，如果值不在字典中返回默认值。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">dic = &#123;<span class="hljs-string">'Name'</span>: <span class="hljs-string">'Lsgogroup'</span>, <span class="hljs-string">'Age'</span>: <span class="hljs-number">27</span>&#125;
+print(<span class="hljs-string">"Age 值为 : %s"</span> % dic.get(<span class="hljs-string">'Age'</span>))  <span class="hljs-comment"># Age 值为 : 27</span>
+print(<span class="hljs-string">"Sex 值为 : %s"</span> % dic.get(<span class="hljs-string">'Sex'</span>, <span class="hljs-string">"NA"</span>))  <span class="hljs-comment"># Sex 值为 : NA</span></code></pre>
+<ul>
+<li><code>dict.setdefault(key, default=None)</code>和<code>get()</code>方法 类似, 如果键不存在于字典中，将会添加键并将值设为默认值。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">dic = &#123;<span class="hljs-string">'Name'</span>: <span class="hljs-string">'Lsgogroup'</span>, <span class="hljs-string">'Age'</span>: <span class="hljs-number">7</span>&#125;
+print(<span class="hljs-string">"Age 键的值为 : %s"</span> % dic.setdefault(<span class="hljs-string">'Age'</span>, <span class="hljs-literal">None</span>))  <span class="hljs-comment"># Age 键的值为 : 7</span>
+print(<span class="hljs-string">"Sex 键的值为 : %s"</span> % dic.setdefault(<span class="hljs-string">'Sex'</span>, <span class="hljs-literal">None</span>))  <span class="hljs-comment"># Sex 键的值为 : None</span>
+print(<span class="hljs-string">"新字典为："</span>, dic)  
+<span class="hljs-comment"># 新字典为： &#123;'Age': 7, 'Name': 'Lsgogroup', 'Sex': None&#125;</span></code></pre>
+<ul>
+<li><code>key in dict</code> <code>in</code> 操作符用于判断键是否存在于字典中，如果键在字典 dict 里返回<code>true</code>，否则返回<code>false</code>。而<code>not in</code>操作符刚好相反，如果键在字典 dict 里返回<code>false</code>，否则返回<code>true</code>。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">dic = &#123;<span class="hljs-string">'Name'</span>: <span class="hljs-string">'Lsgogroup'</span>, <span class="hljs-string">'Age'</span>: <span class="hljs-number">7</span>&#125;
+
+<span class="hljs-comment"># in 检测键 Age 是否存在</span>
+<span class="hljs-keyword">if</span> <span class="hljs-string">'Age'</span> <span class="hljs-keyword">in</span> dic:
+    print(<span class="hljs-string">"键 Age 存在"</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"键 Age 不存在"</span>)
+
+<span class="hljs-comment"># 检测键 Sex 是否存在</span>
+<span class="hljs-keyword">if</span> <span class="hljs-string">'Sex'</span> <span class="hljs-keyword">in</span> dic:
+    print(<span class="hljs-string">"键 Sex 存在"</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"键 Sex 不存在"</span>)
+
+<span class="hljs-comment"># not in 检测键 Age 是否存在</span>
+<span class="hljs-keyword">if</span> <span class="hljs-string">'Age'</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> dic:
+    print(<span class="hljs-string">"键 Age 不存在"</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"键 Age 存在"</span>)
+
+<span class="hljs-comment"># 键 Age 存在</span>
+<span class="hljs-comment"># 键 Sex 不存在</span>
+<span class="hljs-comment"># 键 Age 存在</span></code></pre>
+<ul>
+<li><code>dict.pop(key[,default])</code>删除字典给定键 <code>key</code> 所对应的值，返回值为被删除的值。<code>key</code> 值必须给出。若<code>key</code>不存在，则返回 <code>default</code> 值。</li>
+<li><code>del dict[key]</code> 删除字典给定键 <code>key</code> 所对应的值。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">dic1 = &#123;<span class="hljs-number">1</span>: <span class="hljs-string">"a"</span>, <span class="hljs-number">2</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]&#125;
+print(dic1.pop(<span class="hljs-number">1</span>), dic1)  <span class="hljs-comment"># a &#123;2: [1, 2]&#125;</span>
+
+<span class="hljs-comment"># 设置默认值，必须添加，否则报错</span>
+print(dic1.pop(<span class="hljs-number">3</span>, <span class="hljs-string">"nokey"</span>), dic1)  <span class="hljs-comment"># nokey &#123;2: [1, 2]&#125;</span>
+
+<span class="hljs-keyword">del</span> dic1[<span class="hljs-number">2</span>]
+print(dic1)  <span class="hljs-comment"># &#123;&#125;</span></code></pre>
+<ul>
+<li><code>dict.popitem()</code>随机返回并删除字典中的一对键和值，如果字典已经为空，却调用了此方法，就报出KeyError异常。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">dic1 = &#123;<span class="hljs-number">1</span>: <span class="hljs-string">"a"</span>, <span class="hljs-number">2</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]&#125;
+print(dic1.popitem())  <span class="hljs-comment"># (1, 'a')</span>
+print(dic1)  <span class="hljs-comment"># &#123;2: [1, 2]&#125;</span></code></pre>
+<ul>
+<li><code>dict.clear()</code>用于删除字典内所有元素。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">dic = &#123;<span class="hljs-string">'Name'</span>: <span class="hljs-string">'Zara'</span>, <span class="hljs-string">'Age'</span>: <span class="hljs-number">7</span>&#125;
+print(<span class="hljs-string">"字典长度 : %d"</span> % len(dic))  <span class="hljs-comment"># 字典长度 : 2</span>
+dict.clear()
+print(<span class="hljs-string">"字典删除后长度 : %d"</span> % len(dic))  <span class="hljs-comment"># 字典删除后长度 : 0</span></code></pre>
+<ul>
+<li><code>dict.copy()</code>返回一个字典的浅复制。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">dic1 = &#123;<span class="hljs-string">'Name'</span>: <span class="hljs-string">'Lsgogroup'</span>, <span class="hljs-string">'Age'</span>: <span class="hljs-number">7</span>, <span class="hljs-string">'Class'</span>: <span class="hljs-string">'First'</span>&#125;
+dic2 = dic1.copy()
+print(<span class="hljs-string">"新复制的字典为 : "</span>, dic2)  
+<span class="hljs-comment"># 新复制的字典为 :  &#123;'Age': 7, 'Name': 'Lsgogroup', 'Class': 'First'&#125;</span></code></pre>
+<p>【例子】直接赋值和 copy 的区别</p>
+<pre><code class="hljs python">dic1 = &#123;<span class="hljs-string">'user'</span>: <span class="hljs-string">'lsgogroup'</span>, <span class="hljs-string">'num'</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]&#125;
+
+<span class="hljs-comment"># 引用对象</span>
+dic2 = dic1  
+<span class="hljs-comment"># 深拷贝父对象（一级目录），子对象（二级目录）不拷贝，还是引用</span>
+dic3 = dic1.copy()  
+
+print(id(dic1))  <span class="hljs-comment"># 148635574728</span>
+print(id(dic2))  <span class="hljs-comment"># 148635574728</span>
+print(id(dic3))  <span class="hljs-comment"># 148635574344</span>
+
+<span class="hljs-comment"># 修改 data 数据</span>
+dic1[<span class="hljs-string">'user'</span>] = <span class="hljs-string">'root'</span>
+dic1[<span class="hljs-string">'num'</span>].remove(<span class="hljs-number">1</span>)
+
+<span class="hljs-comment"># 输出结果</span>
+print(dic1)  <span class="hljs-comment"># &#123;'user': 'root', 'num': [2, 3]&#125;</span>
+print(dic2)  <span class="hljs-comment"># &#123;'user': 'root', 'num': [2, 3]&#125;</span>
+print(dic3)  <span class="hljs-comment"># &#123;'user': 'runoob', 'num': [2, 3]&#125;</span></code></pre>
+<ul>
+<li><code>dict.update(dict2)</code>把字典参数 <code>dict2</code> 的 <code>key:value</code>对 更新到字典 <code>dict</code> 里。</li>
+</ul>
+<p>【例子】</p>
+<pre><code class="hljs python">dic = &#123;<span class="hljs-string">'Name'</span>: <span class="hljs-string">'Lsgogroup'</span>, <span class="hljs-string">'Age'</span>: <span class="hljs-number">7</span>&#125;
+dic2 = &#123;<span class="hljs-string">'Sex'</span>: <span class="hljs-string">'female'</span>, <span class="hljs-string">'Age'</span>: <span class="hljs-number">8</span>&#125;
+dic.update(dic2)
+print(<span class="hljs-string">"更新字典 dict : "</span>, dic)  
+<span class="hljs-comment"># 更新字典 dict :  &#123;'Sex': 'female', 'Age': 8, 'Name': 'Lsgogroup'&#125;</span></code></pre>
+<hr>
+<p><strong>练习题</strong>：</p>
+<p>1、字典基本操作</p>
+<p>字典内容如下:</p>
+<pre><code class="hljs python">dic = &#123;
+    <span class="hljs-string">'python'</span>: <span class="hljs-number">95</span>,
+    <span class="hljs-string">'java'</span>: <span class="hljs-number">99</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-number">100</span>
+    &#125;</code></pre>
+<p>用程序解答下面的题目</p>
+<ul>
+<li>字典的长度是多少</li>
+<li>请修改’java’ 这个key对应的value值为98</li>
+<li>删除 c 这个key</li>
+<li>增加一个key-value对，key值为 php, value是90</li>
+<li>获取所有的key值，存储在列表里</li>
+<li>获取所有的value值，存储在列表里</li>
+<li>判断 javascript 是否在字典中</li>
+<li>获得字典里所有value 的和</li>
+<li>获取字典里最大的value</li>
+<li>获取字典里最小的value</li>
+<li>字典 dic1 = {‘php’: 97}， 将dic1的数据更新到dic中</li>
+</ul>
+<p>2、字典中的value</p>
+<p>有一个字典，保存的是学生各个编程语言的成绩，内容如下</p>
+<pre><code class="hljs prolog">data = &#123;
+        <span class="hljs-string">'python'</span>: &#123;<span class="hljs-string">'上学期'</span>: <span class="hljs-string">'90'</span>, <span class="hljs-string">'下学期'</span>: <span class="hljs-string">'95'</span>&#125;,
+        <span class="hljs-string">'c++'</span>: [<span class="hljs-string">'95'</span>, <span class="hljs-string">'96'</span>, <span class="hljs-string">'97'</span>],
+        <span class="hljs-string">'java'</span>: [&#123;<span class="hljs-string">'月考'</span>:<span class="hljs-string">'90'</span>, <span class="hljs-string">'期中考试'</span>: <span class="hljs-string">'94'</span>, <span class="hljs-string">'期末考试'</span>: <span class="hljs-string">'98'</span>&#125;]
+        &#125;</code></pre>
+<p>各门课程的考试成绩存储方式并不相同，有的用字典，有的用列表，但是分数都是字符串类型，请实现函数<code>transfer_score(score_dict)</code>，将分数修改成int类型</p>
+<pre><code class="hljs python">   
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">transfer_score</span><span class="hljs-params">(data)</span>:</span>
+    <span class="hljs-comment"># your code here</span></code></pre>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/python/">python</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/python/">python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/article/a112c8e7.html">
+                        <span class="hidden-mobile">python05-列表、字典和字符串</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz",
+          app_key: "Xwqmsb7cDIWaQB2GG2fCnSHf",
+          placeholder: "ヾﾉ≧∀≦)o 来呀！吐槽一番吧！",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/article/8b342fda.html');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz'
+    var app_key = 'Xwqmsb7cDIWaQB2GG2fCnSHf'
+    var server_url = ''
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "python06-字典、集合和序列&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 50,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
