@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sulimin-nb.github.io/"/>
-  <updated>2020-08-19T15:19:39.377Z</updated>
+  <updated>2020-08-19T16:09:46.930Z</updated>
   <id>https://sulimin-nb.github.io/</id>
   
   <author>
@@ -21,9 +21,17 @@
     <link href="https://sulimin-nb.github.io/article/459dda96.html"/>
     <id>https://sulimin-nb.github.io/article/459dda96.html</id>
     <published>2020-08-19T15:19:39.000Z</published>
-    <updated>2020-08-19T15:19:39.377Z</updated>
+    <updated>2020-08-19T16:09:46.930Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-数据载入及观察"><a href="#1-数据载入及观察" class="headerlink" title="1. 数据载入及观察"></a>1. 数据载入及观察</h2><p>在数据处理中，第一步通常都需要导入数据，并进行对数据的初步预览</p><ol><li><strong>导入库</strong> 导入所需数据库:import numpy as np; import pandas as pd</li><li><strong>载入数据</strong> pd.read_csv(‘filename’), csv为文件格式，可替换为其他格式：tsv;xlsx</li><li><strong>逐块读取</strong> 有时数据库过大，为了节约内存需要分批次读取：pd.read_csv(‘filename’, chunksize=int)</li><li><strong>修改column索引名称</strong> pd.read_csv(‘names=[‘a’,‘b’,…],index_col=‘乘客ID’,header=0)</li><li><strong>初步观察</strong> 前(n+1)个数据：head(n),后（n+1)个数据tail(n), 判断数据是否为空isnull()</li><li><strong>保存数据</strong> to_csv(‘filename’)</li></ol><h2 id="2-pandas基础"><a href="#2-pandas基础" class="headerlink" title="2. pandas基础"></a>2. pandas基础</h2><ol><li><strong>数据类型</strong> pandas中有两个数据类型DataFrame, Series; Series比较适合一个属性对应一个数据， DataFrame则适用于一个实例具有多种属性，很符合数据挖掘所需要的数据模式</li><li><strong>查看DataFrame数据的每列的项</strong> 根据数据的列索引可以很容易实现 data[‘Column_name’]</li><li><strong>将多余的列的删除</strong> del data[‘Column_name’]</li><li><strong>将某些列暂时隐藏</strong> data.drop([‘Columb_name’],axis=1)<br>若想完全删除 data.drop([‘Columb_name’]，axis=1, inplace = True)</li><li><strong>显示满足某条件的数据</strong><br>criteria = data[‘Column_name’]&gt; x<br>此时criteria所含元素数据类型皆为bool<br>显示满足条件的数据(bool=True): Desired = data[criteria]</li></ol><p>但此时index为old index, 若想得到此数据集某一行的值，需要重新设置index: Desird.reset_index(drop=True); drop=True将old index隐藏<br>\6. <strong>显示数据集中某行某列的值</strong> data.loc[[index_x,index_y, index_z…],[’Column_x‘,‘Columb_name_y’…]]</p><p>也可以都用索引值 函数：iloc<br>midage.iloc[[100,105,108],[2,3,4]]</p><h2 id="3-探索性数据分析"><a href="#3-探索性数据分析" class="headerlink" title="3. 探索性数据分析"></a>3. 探索性数据分析</h2><ol><li><strong>对数据值进行排序</strong> 一组数据DataFrame.sort_<strong>values</strong>(by=‘column_name’, ascending=False)<br>默认 ascending = True 升序， False 降序<br>两组数据排序(先对第一个排序)<br>DataFrame.sort_<strong>values</strong>(by=[‘column_name1’,‘column_name2’], ascending=False)</li><li><strong>索引排序</strong> 行索引升序排序：DataFrame.sort_<strong>index</strong>()<br>列索引升序排序 DataFrame.sort_<strong>index</strong>(axis = 1)</li><li><strong>算术计算</strong>两个DataFrame运算后，会返回一个新的DataFrame，对应的行和列的值会相加，没有对应的会变成空值NaN</li><li><strong>查看DataFrame数据信息</strong><br>函数：DataFrame.describe()<br>输出:<br>count : 样本数据大小<br>mean : 样本数据的平均值<br>std : 样本数据的标准差<br>min : 样本数据的最小值<br>25% : 样本数据25%的时候的值<br>50% : 样本数据50%的时候的值<br>75% : 样本数据75%的时候的值<br>max : 样本数据的最大值</li></ol>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1-数据载入及观察&quot;&gt;&lt;a href=&quot;#1-数据载入及观察&quot; class=&quot;headerlink&quot; title=&quot;1. 数据载入及观察&quot;&gt;&lt;/a&gt;1. 数据载入及观察&lt;/h2&gt;&lt;p&gt;在数据处理中，第一步通常都需要导入数据，并进行对数据的初步预览&lt;/p&gt;
+&lt;ol&gt;
+      
     
     </summary>
     
