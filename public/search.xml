@@ -14476,4 +14476,47 @@ where the largest sum among the two subarrays <span class="hljs-keyword">is</spa
         <tag>算法</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetcode530-二叉搜索树的最小绝对差</title>
+    <url>/article/d3786335.html</url>
+    <content><![CDATA[<h1 id="二叉搜索树的最小绝对差"><a href="#二叉搜索树的最小绝对差" class="headerlink" title="二叉搜索树的最小绝对差"></a>二叉搜索树的最小绝对差</h1><p>给你一棵所有节点为非负值的二叉搜索树，请你计算树中任意两节点的差的绝对值的最小值。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>对升序数组$a$求任意两个元素之差的绝对值的最小值，答案一定为相邻两个元素之差的最小值，即</p>
+<script type="math/tex; mode=display">
+ans = min^{n-2}_{i=0}\{a[i+1] - a[i]\}</script><p>其中$n$为数组$a$的长度。<br>二叉搜索树的性质：<strong>二叉搜索树中序遍历得到的值序列是递增有序的。</strong>因此只要得到中序遍历后的值序列就能使用上述方法求解。<br>朴素的方法：经过一次中序遍历后将值保存在一个数组中进行遍历求解。简易：在中序遍历的过程中用$pre$变量保存前驱节点的值，这样能边遍历边更新答案，一次遍历即可得到答案(无需保存数组和再次遍历)。需要注意 的是$pre$的初始值需要设置为任意负数标记开头，代码中设置为1。<br>二叉树的中序遍历有多种方式，包括递归、栈、Morris遍历等。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code class="hljs python"><span class="hljs-comment"># Definition for a binary tree node.</span>
+<span class="hljs-comment"># class TreeNode:</span>
+<span class="hljs-comment">#     def __init__(self, x):</span>
+<span class="hljs-comment">#         self.val = x</span>
+<span class="hljs-comment">#         self.left = None</span>
+<span class="hljs-comment">#         self.right = None</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    ans = <span class="hljs-number">999</span>
+    pre = <span class="hljs-number">-1</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getMinimumDifference</span><span class="hljs-params">(self, root: TreeNode)</span> -&gt; int:</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dfs</span><span class="hljs-params">(root)</span>:</span>
+            <span class="hljs-keyword">if</span> root == <span class="hljs-literal">None</span>:
+                <span class="hljs-keyword">return</span>
+            dfs(root.left)
+            <span class="hljs-keyword">if</span> self.pre == <span class="hljs-number">-1</span>:
+                self.pre = root.val
+            <span class="hljs-keyword">else</span>:
+                self.ans = min(self.ans, abs(root.val - self.pre))
+                self.pre = root.val
+            dfs(root.right)
+        dfs(root)
+        <span class="hljs-keyword">return</span> self.ans</code></pre>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
+<li>时间复杂度：$O(n)$，其中$n$为二叉搜索树节点的个数。每个节点在中序遍历中都会访问一次且只会被访问一次，因此总时间复杂度为$O(n)$。</li>
+<li>空间复杂度：$O(n)$。递归函数的空间复杂度取决于递归的栈深度，而栈深度在二叉搜索树为一条链的情况下会达到$O(n)$的级别。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>每日一题</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
 </search>
