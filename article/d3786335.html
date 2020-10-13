@@ -178,7 +178,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      496 字
+      511 字
     </span>
   
 
@@ -228,13 +228,14 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年10月12日 晚上
+                  本文最后更新于：2020年10月13日 上午
                 
               </p>
             
             <article class="markdown-body">
               <h1 id="二叉搜索树的最小绝对差"><a href="#二叉搜索树的最小绝对差" class="headerlink" title="二叉搜索树的最小绝对差"></a>二叉搜索树的最小绝对差</h1><p>给你一棵所有节点为非负值的二叉搜索树，请你计算树中任意两节点的差的绝对值的最小值。</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>对升序数组$a$求任意两个元素之差的绝对值的最小值，答案一定为相邻两个元素之差的最小值，即</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>  git config —global user.email “you@example.com”<br>  git config —global user.name “Your Name”</p>
+<p>对升序数组$a$求任意两个元素之差的绝对值的最小值，答案一定为相邻两个元素之差的最小值，即</p>
 <script type="math/tex; mode=display">
 ans = min^{n-2}_{i=0}\{a[i+1] - a[i]\}</script><p>其中$n$为数组$a$的长度。<br>二叉搜索树的性质：<strong>二叉搜索树中序遍历得到的值序列是递增有序的。</strong>因此只要得到中序遍历后的值序列就能使用上述方法求解。<br>朴素的方法：经过一次中序遍历后将值保存在一个数组中进行遍历求解。简易：在中序遍历的过程中用$pre$变量保存前驱节点的值，这样能边遍历边更新答案，一次遍历即可得到答案(无需保存数组和再次遍历)。需要注意 的是$pre$的初始值需要设置为任意负数标记开头，代码中设置为1。<br>二叉树的中序遍历有多种方式，包括递归、栈、Morris遍历等。</p>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code class="hljs python"><span class="hljs-comment"># Definition for a binary tree node.</span>
