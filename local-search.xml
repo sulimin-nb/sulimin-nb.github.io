@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>leetcode24-两两交换链表中的节点</title>
+    <link href="/article/76a9321a.html"/>
+    <url>/article/76a9321a.html</url>
+    
+    <content type="html"><![CDATA[<h1 id="24-两两交换链表中的节点"><a href="#24-两两交换链表中的节点" class="headerlink" title="24.两两交换链表中的节点"></a>24.两两交换链表中的节点</h1><p>给定一个链表，两两交换其中的相邻的节点，并返回交换后的链表。<br><strong>你不能只是单纯的改变节点内部的值</strong>，而是需要实际的进行节点交换。<br><strong>示例1：</strong></p><p><img src="/article/76a9321a/swap_ex1.jpg" srcset="/img/loading.gif" alt="swap_ex1"></p><pre><code class="hljs angelscript">输入：head = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]输出：[<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>]</code></pre><p><strong>示例2：</strong></p><pre><code class="hljs inform7">输入：head = <span class="hljs-comment">[]</span>输出：<span class="hljs-comment">[]</span></code></pre><p><strong>示例3：</strong></p><pre><code class="hljs angelscript">输入：head = [<span class="hljs-number">1</span>]输出：[<span class="hljs-number">1</span>]</code></pre><p><strong>提示：</strong></p><ul><li><p>链表中节点的数目在范围[0, 100]内</p></li><li><p>0 &lt;= Node.val &lt;= 100</p></li></ul><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><h2 id="方法一：递归"><a href="#方法一：递归" class="headerlink" title="方法一：递归"></a>方法一：递归</h2><p>通过递归的方式实现两两交换链表中的节点。<br>递归的终止条件是链表中没有节点或者链表中只有一个节点，此时无法进行交换。<br>如果链表中至少存在两个节点，则在两两交换链表中的节点之后，原始链表的头节点变成新链表的第二个节点，原始链表的第二个节点变成新链表的头节点。链表中的其余节点的两两交换可以通过递归实现。在对链表中的其余节点递归地两两交换之后，更新节点之间的指针关系，即可完成整个链表的两两交换。</p><p>用head表示原始链表的头节点，newhead表示新链表的头节点，原始链表的第二个节点，则原始链表的其余节点的头节点是newhead.next。令head.next=swapPairs(newhead.next)，表示将其余节点进行两两交换，交换后的新的头节点为head的下一个节点。然后令newhead.next=head，即完成了所有节点的交换。最后返回新的链表的头节点newhead。</p><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">swapPairs</span><span class="hljs-params">(self, head: ListNode)</span>-&gt; ListNode:</span>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> head <span class="hljs-keyword">or</span> <span class="hljs-keyword">not</span> head.next:            <span class="hljs-keyword">return</span> head        newhead = head.next        head.next = self.swapPairs(newhead.next)        newhead.next = head        <span class="hljs-keyword">return</span> newhead</code></pre><h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul><li>时间复杂度：$O(n)$，其中$n$是链表的节点数量。需要对每个节点进行更新指针的操作。</li><li>空间复杂度：$O(n)$，其中$n$是链表中的节点数量。空间复杂度主要取决于递归调用的栈空间。</li></ul><h2 id="方法二：迭代"><a href="#方法二：迭代" class="headerlink" title="方法二：迭代"></a>方法二：迭代</h2><p>通过迭代的方式实现两两交换链表中的节点。</p><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">swapPairs</span><span class="hljs-params">(self, head)</span>:</span>dummyhead = ListNode(<span class="hljs-number">0</span>)dummpyhead.next = headtemp = dummpyhead<span class="hljs-keyword">while</span> temp.next <span class="hljs-keyword">and</span> temp.next.next:        node1 = temp.next        node2 = temp.next.next        temp.next = node2        node1.next = node2.next        node2.next = node1        temp = node1   <span class="hljs-keyword">return</span> dummpyhead.next</code></pre><h3 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul><li>时间复杂度： $O(n)$，其中$n$是链表的节点数量。需要对每个节点进行更新指针的操作。</li><li>空间复杂度： $O(1)$。</li></ul><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://leetcode-cn.com/problems/swap-nodes-in-pairs/solution/liang-liang-jiao-huan-lian-biao-zhong-de-jie-di-91/" target="_blank" rel="noopener">官方题解(动图好评)</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>leetcode</tag>
+      
+      <tag>每日一题</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>随笔-近来杂谈</title>
     <link href="/article/426de11c.html"/>
     <url>/article/426de11c.html</url>
