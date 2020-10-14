@@ -19,10 +19,19 @@
   <meta name="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
   <meta name="author" content="sulimin">
   <meta name="keywords" content="机器学习，数据挖掘，计算机视觉">
-  <title>苏</title>
+  <title>leetcode1002-查找常用字符 - 苏</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -45,7 +54,7 @@
 
 
 <body>
-  <header style="height: 100vh;">
+  <header style="height: 40vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -145,7 +154,7 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/IMG_1.png') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -155,12 +164,50 @@
             </span>
 
             
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-10-14 20:30">
+      2020年10月14日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      675 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      8
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
-          
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
           
         </div>
       </div>
@@ -169,470 +216,164 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
                 
-
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/31eedc7b.html">leetcode1002-查找常用字符</a>
-
-      <a href="/article/31eedc7b.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>1002. 查找常用字符给定仅有小写字母组成的字符串数组A，返回列表中的每个字符串中都显示的全部字符(包括重复字符)组成的列表。例如，如果一个字符在每个字符串中出现3次，但不是4次，则需要在最终答案中包含该字符3次。
-你可以按任意顺序返回答案。
-示例1：
-输入：["bella", "label", "roller"]
-输出：["e", "l", "l"]
-提示：
-
-$1 &lt;= A.lengt</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-10-14
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
+                  本文最后更新于：2020年10月14日 晚上
+                
+              </p>
             
-              <a href="/categories/leetcode/">leetcode</a>
+            <article class="markdown-body">
+              <h1 id="1002-查找常用字符"><a href="#1002-查找常用字符" class="headerlink" title="1002. 查找常用字符"></a>1002. 查找常用字符</h1><p>给定仅有小写字母组成的字符串数组A，返回列表中的每个字符串中都显示的全部字符(包括重复字符)组成的列表。例如，如果一个字符在每个字符串中出现3次，但不是4次，则需要在最终答案中包含该字符3次。</p>
+<p>你可以按任意顺序返回答案。</p>
+<p>示例1：</p>
+<pre><code class="hljs css">输入：<span class="hljs-selector-attr">[<span class="hljs-string">"bella"</span>, <span class="hljs-string">"label"</span>, <span class="hljs-string">"roller"</span>]</span>
+输出：<span class="hljs-selector-attr">[<span class="hljs-string">"e"</span>, <span class="hljs-string">"l"</span>, <span class="hljs-string">"l"</span>]</span></code></pre>
+<p>提示：</p>
+<ol>
+<li>$1 &lt;= A.length &lt;= 100$</li>
+<li>$1&lt;= A[i].length &lt;= 100$</li>
+<li>$A[i][j]$是小写字母</li>
+</ol>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><h3 id="方法一：计数"><a href="#方法一：计数" class="headerlink" title="方法一：计数"></a>方法一：计数</h3><p>根据题目的要求，如果字符$c$在所有字符串中均出现了k次以上，那么最终答案中需要包含$k$个$c$。因此，我们可以使用$minfreq[c]$存储字符$c$在所有字符串中出现次数的最小值。</p>
+<p>我们可以依次遍历每一个字符串。当我们遍历到字符串$s$时，我们使用$freq[c]$统计$s$中每一个字符$c$出现的次数。在统计完成之后，我们再将每一个$minfreq[c]$更新为其本身与$freq[c]$的较小值。这样一来，当我们遍历完所有字符串后，$minfreq[c]$就存储了字符$c$在所有字符串出现次数的最小值。</p>
+<p>由于题目保证了所有的字符均为小写字母，因此我们可以用长度为26的数组分别表示$minfreq$以及$freq$。</p>
+<p>在构造最终的答案时，我们遍历所有的小写字母，并将$minfreq[c]$个$c$添加进答案数组即可。</p>
+<h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">commonChars</span><span class="hljs-params">(self, A: List[str])</span> -&gt; List[str]:</span>
+        minfreq = [float(<span class="hljs-string">"inf"</span>)] * <span class="hljs-number">26</span>
+        <span class="hljs-comment"># print(minfreq)</span>
+        <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> A:
+            freq = [<span class="hljs-number">0</span>] * <span class="hljs-number">26</span>
+            <span class="hljs-keyword">for</span> ch <span class="hljs-keyword">in</span> word:
+                freq[ord(ch) - ord(<span class="hljs-string">"a"</span>)] += <span class="hljs-number">1</span>
+            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">26</span>):
+                minfreq[i] = min(minfreq[i], freq[i])
+                <span class="hljs-comment"># print(minfreq[i])</span>
+        ans = []
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">26</span>):
+            <span class="hljs-keyword">if</span> minfreq:
+                ans.extend([chr(ord(<span class="hljs-string">"a"</span>)+ i)] * minfreq[i])
+        <span class="hljs-keyword">return</span> ans</code></pre>
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
+<li><p>时间复杂度：$O(n(m+|\sum|))$，其中$n$是数组$A$的长度(即字符串的数目)，$m$是字符串的平均长度，$\sum$为字符集，在本题中字符集为所有小写字母，$|\sum|=26$。</p>
+</li>
+<li><ul>
+<li>遍历所有字符串并计算$freq$的时间复杂度为$O(nm)$;</li>
+<li>使用$freq$更新$minfreq$的时间复杂度为$O(n|\sum|)$;</li>
+<li>由于最终答案包含的字符个数不会超过最短的字符串长度，因此构造最终答案的时间复杂度为$O(m+|\sum|)$。这一项在渐进意义上小于前二者，可以忽略。</li>
+</ul>
+</li>
+<li>空间复杂度：$O(|\sum|)$，这里只计算存储答案之外的空间，我们使用了数组$freq$和$minfreq$，它们的长度均为$|\sum|$。</li>
+</ul>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/leetcode/">leetcode</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/leetcode/">leetcode</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/article/76a9321a.html">
+                        <span class="hidden-mobile">leetcode24-两两交换链表中的节点</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
             
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/leetcode/">leetcode</a>
-            
-              <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/76a9321a.html">leetcode24-两两交换链表中的节点</a>
-
-      <a href="/article/76a9321a.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>24.两两交换链表中的节点给定一个链表，两两交换其中的相邻的节点，并返回交换后的链表。你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。示例1：
-
-输入：head = [1,2,3,4]
-输出：[2,1,4,3]
-示例2：
-输入：head = []
-输出：[]
-示例3：
-输入：head = [1]
-输出：[1]
-提示：
-
-链表中节点的数目在范围[0, 100]内
-
-0 &lt;= No</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-10-13
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/leetcode/">leetcode</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/leetcode/">leetcode</a>
-            
-              <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/426de11c.html">随笔-近来杂谈</a>
-
-      <a href="/article/426de11c.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>This blog is encrypted.</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-10-12
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/d3786335.html">leetcode530-二叉搜索树的最小绝对差</a>
-
-      <a href="/article/d3786335.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>二叉搜索树的最小绝对差给你一棵所有节点为非负值的二叉搜索树，请你计算树中任意两节点的差的绝对值的最小值。
-思路  git config —global user.email “you@example.com”  git config —global user.name “Your Name”
-对升序数组$a$求任意两个元素之差的绝对值的最小值，答案一定为相邻两个元素之差的最小值，即
-
-ans = </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-10-12
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/leetcode/">leetcode</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/leetcode/">leetcode</a>
-            
-              <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/bd63ef17.html">算法-查找</a>
-
-      <a href="/article/bd63ef17.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>[TOC]
-一.查找表考虑的基本数据结构第一类： 查找有无—set
-元素’a’是否存在，通常用set：集合
-set只存储键，而不需要对应其相应的值。 
-set中的键不允许重复
-第二类： 查找对应关系(键值对应)—dict
-元素’a’出现了几次：dict—&gt;字典
-dict中的键不允许重复
-第三类： 改变映射关系—map
-通过将原有序列的关系映射统一表示为其他
-算法应用LeetCode 349 </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-08-26
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/e57c001c.html">算法-动态规划</a>
-
-      <a href="/article/e57c001c.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>动态规划动态规划常常适用于有重叠子问题和最优子结构性质的问题，动态规划方法所耗时间往往远少于朴素解法。
-主要思想若要解一个给定问题，我们需要解其不同部分（即子问题），再根据子问题的解以得出原问题的解。动态规划往往用于优化递归问题，例如斐波那契数列，如果运用递归的方式来求解会重复计算很多相同的子问题，利用动态规划的思想可以减少计算量。
-动态规划法仅仅解决每个子问题一次，具有天然剪枝的功能，从而减少计</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-08-24
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/dc948b2c.html">动手学数据分析-2</a>
-
-      <a href="/article/dc948b2c.html" class="index-excerpt">
-        
-        
-          
-        
-        <div></div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-08-22
-          </div>
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/459dda96.html">动手学数据分析-1</a>
-
-      <a href="/article/459dda96.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>1. 数据载入及观察在数据处理中，第一步通常都需要导入数据，并进行对数据的初步预览
-
-导入库 导入所需数据库:import numpy as np; import pandas as pd
-载入数据 pd.read_csv(‘filename’), csv为文件格式，可替换为其他格式：tsv;xlsx
-逐块读取 有时数据库过大，为了节约内存需要分批次读取：pd.read_csv(‘filename</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-08-19
-          </div>
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/1768cd4c.html">算法-分治</a>
-
-      <a href="/article/1768cd4c.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>主要思想分治算法的主要思想是将原问题递归地分成若干个子问题，直到子问题满足边界条件，停止递归。将子问题逐个击破(一般是同种方法)，将已经解决的子问题合并，最后，算法会层层合并得到原问题的答案。
-分治算法的步骤
-分：递归地将问题分解为各个的子问题(性质相同的、相互独立的子问题)；
-治：将这些规模更小的子问题逐个击破；
-合：将已解决的子问题逐层合并，最终得出原问题的解；
-
-
-分治法适用的情况
-原问题的</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-08-19
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/8b342fda.html">python06-字典、集合和序列</a>
-
-      <a href="/article/8b342fda.html" class="index-excerpt">
-        
-        
-          
-        
-        <div>字典1. 可变类型与不可变类型
-序列是以连续的整数为索引，与此不同的是，字典以”关键字”为索引，关键字可以是任意不可变类型，通常用字符串或数值。
-字典是 Python 唯一的一个 映射类型，字符串、元组、列表属于序列类型。
-
-那么如何快速判断一个数据类型 X 是不是可变类型的呢？两种方法：
-
-麻烦方法：用 id(X) 函数，对 X 进行某种操作，比较操作前后的 id，如果不一样，则 X 不可变，如</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-31
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/python/">python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/python/">python</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz",
+          app_key: "Xwqmsb7cDIWaQB2GG2fCnSHf",
+          placeholder: "ヾﾉ≧∀≦)o 来呀！吐槽一番吧！",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "",
+        });
+      });
     }
+    createObserver(loadValine, 'vcomments');
   </script>
-
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
 
 
               </div>
-            </div>
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -850,10 +591,10 @@ dict中的键不允许重复
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/index.html');
+          var target = decodeURI('/article/31eedc7b.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -915,6 +656,31 @@ dict中的键不允许重复
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -922,7 +688,7 @@ dict中的键不允许重复
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "ε=( o｀ω′)ノ苏大大又回来啦！！！&nbsp;",
+        "leetcode1002-查找常用字符&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 50,
@@ -936,6 +702,21 @@ dict中的键不允许重复
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
 
 
 
@@ -951,9 +732,62 @@ dict中的键不允许重复
 
 
 
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 
