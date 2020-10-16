@@ -19,7 +19,7 @@
   <meta name="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
   <meta name="author" content="sulimin">
   <meta name="keywords" content="机器学习，数据挖掘，计算机视觉">
-  <title>leetcode1002-查找常用字符 - 苏</title>
+  <title>leetcode116-填充每个节点的下一个右侧节点指针 - 苏</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -167,8 +167,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-10-14 20:30">
-      2020年10月14日 晚上
+    <time datetime="2020-10-16 10:01">
+      2020年10月16日 上午
     </time>
   </div>
 
@@ -178,7 +178,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      675 字
+      1.2k 字
     </span>
   
 
@@ -188,7 +188,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      15
        分钟
     </span>
   
@@ -228,52 +228,109 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年10月14日 晚上
+                  本文最后更新于：2020年10月16日 上午
                 
               </p>
             
             <article class="markdown-body">
-              <h1 id="1002-查找常用字符"><a href="#1002-查找常用字符" class="headerlink" title="1002. 查找常用字符"></a>1002. 查找常用字符</h1><p>给定仅有小写字母组成的字符串数组A，返回列表中的每个字符串中都显示的全部字符(包括重复字符)组成的列表。例如，如果一个字符在每个字符串中出现3次，但不是4次，则需要在最终答案中包含该字符3次。</p>
-<p>你可以按任意顺序返回答案。</p>
-<p>示例1：</p>
-<pre><code class="hljs css">输入：<span class="hljs-selector-attr">[<span class="hljs-string">"bella"</span>, <span class="hljs-string">"label"</span>, <span class="hljs-string">"roller"</span>]</span>
-输出：<span class="hljs-selector-attr">[<span class="hljs-string">"e"</span>, <span class="hljs-string">"l"</span>, <span class="hljs-string">"l"</span>]</span></code></pre>
-<p>提示：</p>
-<ol>
-<li>$1 &lt;= A.length &lt;= 100$</li>
-<li>$1&lt;= A[i].length &lt;= 100$</li>
-<li>$A[i][j]$是小写字母</li>
-</ol>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><h3 id="方法一：计数"><a href="#方法一：计数" class="headerlink" title="方法一：计数"></a>方法一：计数</h3><p>根据题目的要求，如果字符$c$在所有字符串中均出现了k次以上，那么最终答案中需要包含$k$个$c$。因此，我们可以使用$minfreq[c]$存储字符$c$在所有字符串中出现次数的最小值。</p>
-<p>我们可以依次遍历每一个字符串。当我们遍历到字符串$s$时，我们使用$freq[c]$统计$s$中每一个字符$c$出现的次数。在统计完成之后，我们再将每一个$minfreq[c]$更新为其本身与$freq[c]$的较小值。这样一来，当我们遍历完所有字符串后，$minfreq[c]$就存储了字符$c$在所有字符串出现次数的最小值。</p>
-<p>由于题目保证了所有的字符均为小写字母，因此我们可以用长度为26的数组分别表示$minfreq$以及$freq$。</p>
-<p>在构造最终的答案时，我们遍历所有的小写字母，并将$minfreq[c]$个$c$添加进答案数组即可。</p>
-<h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">commonChars</span><span class="hljs-params">(self, A: List[str])</span> -&gt; List[str]:</span>
-        minfreq = [float(<span class="hljs-string">"inf"</span>)] * <span class="hljs-number">26</span>
-        <span class="hljs-comment"># print(minfreq)</span>
-        <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> A:
-            freq = [<span class="hljs-number">0</span>] * <span class="hljs-number">26</span>
-            <span class="hljs-keyword">for</span> ch <span class="hljs-keyword">in</span> word:
-                freq[ord(ch) - ord(<span class="hljs-string">"a"</span>)] += <span class="hljs-number">1</span>
-            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">26</span>):
-                minfreq[i] = min(minfreq[i], freq[i])
-                <span class="hljs-comment"># print(minfreq[i])</span>
-        ans = []
-        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">26</span>):
-            <span class="hljs-keyword">if</span> minfreq:
-                ans.extend([chr(ord(<span class="hljs-string">"a"</span>)+ i)] * minfreq[i])
-        <span class="hljs-keyword">return</span> ans</code></pre>
-<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
-<li><p>时间复杂度：$O(n(m+|\sum|))$，其中$n$是数组$A$的长度(即字符串的数目)，$m$是字符串的平均长度，$\sum$为字符集，在本题中字符集为所有小写字母，$|\sum|=26$。</p>
-</li>
-<li><ul>
-<li>遍历所有字符串并计算$freq$的时间复杂度为$O(nm)$;</li>
-<li>使用$freq$更新$minfreq$的时间复杂度为$O(n|\sum|)$;</li>
-<li>由于最终答案包含的字符个数不会超过最短的字符串长度，因此构造最终答案的时间复杂度为$O(m+|\sum|)$。这一项在渐进意义上小于前二者，可以忽略。</li>
+              <h1 id="116-填充每个节点的下一个右侧节点指针"><a href="#116-填充每个节点的下一个右侧节点指针" class="headerlink" title="116. 填充每个节点的下一个右侧节点指针"></a>116. 填充每个节点的下一个右侧节点指针</h1><p>给定一个<strong>完美二叉树</strong>，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
+<pre><code class="hljs crmsh">struct <span class="hljs-keyword">Node</span> <span class="hljs-title">&#123;</span>
+<span class="hljs-title">	int</span> val;
+	<span class="hljs-keyword">Node</span> <span class="hljs-title">*left</span>;
+	<span class="hljs-keyword">Node</span> <span class="hljs-title">*right</span>;
+	<span class="hljs-keyword">Node</span> <span class="hljs-title">*next</span>;
+&#125;</code></pre>
+<p>填充它的每个next指针，让这个指针指向下一个右侧节点，如果找不到下一个右侧节点，则将next指针设置为NULL。</p>
+<p>初始状态下，所有next指针都被设置为NULL。</p>
+<p><strong>示例：</strong></p>
+<p><img src="/article/703b70fd/116_sample.png" srcset="/img/loading.gif" alt="img"></p>
+<pre><code class="hljs dart">输入：&#123;<span class="hljs-string">"<span class="hljs-subst">$id</span>"</span>:<span class="hljs-string">"1"</span>,<span class="hljs-string">"left"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$id</span>"</span>:<span class="hljs-string">"2"</span>,<span class="hljs-string">"left"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$id</span>"</span>:<span class="hljs-string">"3"</span>,<span class="hljs-string">"left"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"next"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"right"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"val"</span>:<span class="hljs-number">4</span>&#125;,<span class="hljs-string">"next"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"right"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$id</span>"</span>:<span class="hljs-string">"4"</span>,<span class="hljs-string">"left"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"next"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"right"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"val"</span>:<span class="hljs-number">5</span>&#125;,<span class="hljs-string">"val"</span>:<span class="hljs-number">2</span>&#125;,<span class="hljs-string">"next"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"right"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$id</span>"</span>:<span class="hljs-string">"5"</span>,<span class="hljs-string">"left"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$id</span>"</span>:<span class="hljs-string">"6"</span>,<span class="hljs-string">"left"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"next"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"right"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"val"</span>:<span class="hljs-number">6</span>&#125;,<span class="hljs-string">"next"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"right"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$id</span>"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"left"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"next"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"right"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"val"</span>:<span class="hljs-number">7</span>&#125;,<span class="hljs-string">"val"</span>:<span class="hljs-number">3</span>&#125;,<span class="hljs-string">"val"</span>:<span class="hljs-number">1</span>&#125;
+
+输出：&#123;<span class="hljs-string">"<span class="hljs-subst">$id</span>"</span>:<span class="hljs-string">"1"</span>,<span class="hljs-string">"left"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$id</span>"</span>:<span class="hljs-string">"2"</span>,<span class="hljs-string">"left"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$id</span>"</span>:<span class="hljs-string">"3"</span>,<span class="hljs-string">"left"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"next"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$id</span>"</span>:<span class="hljs-string">"4"</span>,<span class="hljs-string">"left"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"next"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$id</span>"</span>:<span class="hljs-string">"5"</span>,<span class="hljs-string">"left"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"next"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$id</span>"</span>:<span class="hljs-string">"6"</span>,<span class="hljs-string">"left"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"next"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"right"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"val"</span>:<span class="hljs-number">7</span>&#125;,<span class="hljs-string">"right"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"val"</span>:<span class="hljs-number">6</span>&#125;,<span class="hljs-string">"right"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"val"</span>:<span class="hljs-number">5</span>&#125;,<span class="hljs-string">"right"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"val"</span>:<span class="hljs-number">4</span>&#125;,<span class="hljs-string">"next"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$id</span>"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"left"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$ref</span>"</span>:<span class="hljs-string">"5"</span>&#125;,<span class="hljs-string">"next"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"right"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$ref</span>"</span>:<span class="hljs-string">"6"</span>&#125;,<span class="hljs-string">"val"</span>:<span class="hljs-number">3</span>&#125;,<span class="hljs-string">"right"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$ref</span>"</span>:<span class="hljs-string">"4"</span>&#125;,<span class="hljs-string">"val"</span>:<span class="hljs-number">2</span>&#125;,<span class="hljs-string">"next"</span>:<span class="hljs-keyword">null</span>,<span class="hljs-string">"right"</span>:&#123;<span class="hljs-string">"<span class="hljs-subst">$ref</span>"</span>:<span class="hljs-string">"7"</span>&#125;,<span class="hljs-string">"val"</span>:<span class="hljs-number">1</span>&#125;
+
+解释：给定二叉树如图 A 所示，你的函数应该填充它的每个 next 指针，以指向其下一个右侧节点，如图 B 所示。</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li>你只能使用常量级额外空间。</li>
+<li>使用递归解题也符合要求，本题中递归程序占用的栈空间不算做额外的空间复杂度。</li>
 </ul>
+<h2 id="思路与算法"><a href="#思路与算法" class="headerlink" title="思路与算法"></a>思路与算法</h2><h3 id="方法一：层次遍历"><a href="#方法一：层次遍历" class="headerlink" title="方法一：层次遍历"></a>方法一：层次遍历</h3><p>题目要求: 将二叉树的每一层节点都连接起来形成一个链表。<br>直观做法：对二叉树进行层次遍历，遍历过程中，遍历并连接二叉树每一层节点。</p>
+<p>层次遍历：每次将队列中的所有元素进行拓展。保证每次从队列中拿出来遍历的元素属于同一层。遍历过程中修改每个节点的next指针，并拓展下一层的新队列。</p>
+<p>广度优先搜素：每次只取出一个节点拓展。</p>
+<p><strong>代码</strong>：</p>
+<pre><code class="hljs python"><span class="hljs-string">"""</span>
+<span class="hljs-string"># Definition for a Node.</span>
+<span class="hljs-string">class Node:</span>
+<span class="hljs-string">    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):</span>
+<span class="hljs-string">        self.val = val</span>
+<span class="hljs-string">        self.left = left</span>
+<span class="hljs-string">        self.right = right</span>
+<span class="hljs-string">        self.next = next</span>
+<span class="hljs-string">"""</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">connect</span><span class="hljs-params">(self, root: <span class="hljs-string">'Node'</span>)</span> -&gt; 'Node':</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> root:
+            <span class="hljs-keyword">return</span> root
+        
+        Q = collections.deque([root])
+
+        <span class="hljs-keyword">while</span> Q:
+            size = len(Q)
+            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(size):
+                curr = Q.popleft()
+                <span class="hljs-keyword">if</span> i == size - <span class="hljs-number">1</span>:
+                    <span class="hljs-keyword">pass</span>
+                <span class="hljs-keyword">else</span>:
+                    curr.next = Q[<span class="hljs-number">0</span>]
+                <span class="hljs-keyword">if</span> curr.left:
+                    Q.append(curr.left)
+                <span class="hljs-keyword">if</span> curr.right:
+                    Q.append(curr.right)
+        <span class="hljs-keyword">return</span> root</code></pre>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：$O(N)$。每个节点都被访问一次且只会被访问一次。即从队列中弹出并建立next指针。</li>
+<li>空间复杂度：$O(N)$。完美二叉树的最后一个层级包含N/2个节点。广度优先遍历的复杂度取决与一个层级上的最大元素数量。这种情况下空间复杂度为$O(N)$。</li>
+</ul>
+<h3 id="方法二：使用已建立的next指针"><a href="#方法二：使用已建立的next指针" class="headerlink" title="方法二：使用已建立的next指针"></a>方法二：使用已建立的next指针</h3><p>一颗树中，存在两种类型的next指针。</p>
+<ol>
+<li><p>第一种情况是连接同一个父节点的两个子节点。通过同一个节点直接访问。执行以下操作即可完成连接。</p>
+<pre><code class="hljs python">node.left.next = node.right</code></pre>
 </li>
-<li>空间复杂度：$O(|\sum|)$，这里只计算存储答案之外的空间，我们使用了数组$freq$和$minfreq$，它们的长度均为$|\sum|$。</li>
+<li><p>第二种情况在不同父亲的子节点之间建立连接，这种情况下无法直接连接。<br>如果每个节点有指向父节点的指针，可以通过该指针找到next节点。如果不存在该指针，则按照以下思路建立连接：</p>
+</li>
+</ol>
+<p>第N层节点之间建立next指针后，建立第N+1层节点的next指针时，可以通过next指针访问同一层的所有节点。因此可以使用第N层的next指针，为第N+1层节点建立next指针。</p>
+<pre><code class="hljs python">node.right.next = node.next.left</code></pre>
+<p>​        完成当前层的连接后，进入下一层重复操作，直到所有的节点全部连接。进入下一层时，需要更新最左节点，然后从新的最左节点开始遍历该层的所有节点。在完美二叉树的设定下，最左节点一定是当前层最左节点的左孩子。如果当前最左节点的左孩子不存在，说明已经达到该树的最后一层，完成了所有节点的连接。</p>
+<p><strong>代码</strong>：</p>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">connect</span><span class="hljs-params">(self, root)</span>:</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> root:
+            <span class="hljs-keyword">return</span> root
+        <span class="hljs-comment"># 从根节点开始</span>
+        leftmost = root
+        <span class="hljs-keyword">while</span> leftmost.left:
+            <span class="hljs-comment"># 遍历这一层节点组织成的链表，为下一层的节点更新next指针</span>
+            head = leftmost
+            <span class="hljs-keyword">while</span> head:
+                <span class="hljs-comment"># connection 1</span>
+                head.left.next = head.right
+                
+                <span class="hljs-comment"># connection 2</span>
+                <span class="hljs-keyword">if</span> head.next:
+                    head.right.next = head.next.left
+                
+                <span class="hljs-comment"># 指针后移</span>
+                head = head.next
+            <span class="hljs-comment"># 去下一层的最左节点</span>
+            leftmost = leftmost.left
+        <span class="hljs-keyword">return</span> root</code></pre>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：$O(N)$，每个节点只访问一次。</li>
+<li>空间复杂度：$O(1)$，不需要存储额外的节点。</li>
 </ul>
 
             </article>
@@ -307,18 +364,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/article/a9a5f398.html">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">leetocde116-填充每个节点的下一个右侧节点指针</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/article/76a9321a.html">
-                        <span class="hidden-mobile">leetcode24-两两交换链表中的节点</span>
+                      <a href="/article/a9a5f398.html">
+                        <span class="hidden-mobile">leetocde116-填充每个节点的下一个右侧节点指针</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -600,7 +651,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/article/31eedc7b.html');
+          var target = decodeURI('/article/703b70fd.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -694,7 +745,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "leetcode1002-查找常用字符&nbsp;",
+        "leetcode116-填充每个节点的下一个右侧节点指针&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 50,
