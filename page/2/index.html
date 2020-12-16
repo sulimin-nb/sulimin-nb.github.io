@@ -183,43 +183,37 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/8b342fda.html">python06-字典、集合和序列</a>
+      <a class="index-header" href="/article/139a697c.html">剑指Offer15-位运算-二进制中1的个数</a>
 
-      <a href="/article/8b342fda.html" class="index-excerpt">
+      <a href="/article/139a697c.html" class="index-excerpt">
         
         
           
         
-        <div>字典1. 可变类型与不可变类型
-序列是以连续的整数为索引，与此不同的是，字典以”关键字”为索引，关键字可以是任意不可变类型，通常用字符串或数值。
-字典是 Python 唯一的一个 映射类型，字符串、元组、列表属于序列类型。
+        <div>q请实现一个函数，输入一个整数(以二进制串形式)，输出该数二进制表示中1的个数。例如，把9表示成二进制是1001，有2位是1。因此，如果输入9，则该函数输出2。
+示例1：
 
-那么如何快速判断一个数据类型 X 是不是可变类型的呢？两种方法：
 
-麻烦方法：用 id(X) 函数，对 X 进行某种操作，比较操作前后的 id，如果不一样，则 X 不可变，如</div>
+提示：
+
+输入必须是长度为32的二进制串。
+
+class Solution:
+	def hummingWeight(self, n):
+方法一：逐位判断
+
+根据与运算定义，设二进制数字$n$，则有：
+
+若n&amp;1=0，</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-31
+            <i class="iconfont icon-date"></i>&nbsp;2020-11-17
           </div>
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/python/">python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/python/">python</a>
-            
-          </div>
         
       </div>
     </div>
@@ -229,47 +223,29 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/a112c8e7.html">python05-列表、字典和字符串</a>
+      <a class="index-header" href="/article/af05aca5.html">剑指Offer58-双指针-I翻转单词顺序</a>
 
-      <a href="/article/a112c8e7.html" class="index-excerpt">
+      <a href="/article/af05aca5.html" class="index-excerpt">
         
         
           
         
-        <div>列表简单数据类型
-
-整型&lt;class &#39;int&#39;&gt;
-浮点型&lt;class &#39;float&#39;&gt;
-布尔型&lt;class &#39;bool&#39;&gt;
-
-容器数据类型
-
-列表&lt;class &#39;list&#39;&gt;
-元组&lt;class &#39;tuple&#39;&gt;
-字典&lt;class &#39;dict&#</div>
+        <div>输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串”I am a student.”，则输出”student. a am I”。
+示例1：
+输入："the sky is blue"
+输出："blue is sky the"
+注意：本题与主站151题相同
+class Solution:
+	def reverseWords(self,</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-29
+            <i class="iconfont icon-date"></i>&nbsp;2020-11-17
           </div>
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/python/">python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/python/">python</a>
-            
-          </div>
         
       </div>
     </div>
@@ -279,43 +255,32 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/60fd2cd8.html">python04-异常处理</a>
+      <a class="index-header" href="/article/82284efe.html">剑指Offer57-双指针-和为s的两个数字</a>
 
-      <a href="/article/60fd2cd8.html" class="index-excerpt">
+      <a href="/article/82284efe.html" class="index-excerpt">
         
         
           
         
-        <div>异常处理异常就是运行期检测到的错误。计算机语言针对可能出现的错误定义了异常类型，某种错误引发对应的异常时，异常处理程序将被启动，从而恢复程序的正常运行。
-1. Python 标准异常总结
-BaseException：所有异常的 基类
-Exception：常规异常的 基类
-StandardError：所有的内建标准异常的基类
-ArithmeticError：所有数值计算异常的基类
-FloatingP</div>
+        <div>输入一个递增排序的数组和一个数字s，在数组中查找两个数，使得它们的和正好是s。如果有多对数字的和等于s，则输出任意一对即可。
+限制：
+
+1 &lt;= nums.length &lt;= 10^5
+1 &lt;= nums[i] &lt;= 10^6
+
+复杂度分析：
+
+时间复杂度$O(N)$：$N$为数组$nums$的长度；双指针共同线性遍历整个数组。
+空间复杂度$O(1)$：变量$i,j$使用常</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-25
+            <i class="iconfont icon-date"></i>&nbsp;2020-11-17
           </div>
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/python/">python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/python/">python</a>
-            
-          </div>
         
       </div>
     </div>
@@ -325,44 +290,31 @@ FloatingP</div>
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/22d0bd28.html">python03-条件语句</a>
+      <a class="index-header" href="/article/5c4f5294.html">剑指Offer25-双指针-合并两个排序的链表</a>
 
-      <a href="/article/22d0bd28.html" class="index-excerpt">
+      <a href="/article/5c4f5294.html" class="index-excerpt">
         
         
           
         
-        <div>条件语句1. if 语句if expression:
-    expr_true_suite
-
-if 语句的 expr_true_suite 代码块只有当条件表达式 expression 结果为真时才执行，否则将继续执行紧跟在该代码块后面的语句。
-单个 if 语句中的 expression 条件表达式可以通过布尔操作符 and，or和not 实现多重条件判断。
-
-【例子】
-if 2 &gt; 1 </div>
+        <div>输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。
+示例1：
+输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4
+输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4
+限制：
+0 &lt;= 链表长度 &lt;= 1000
+注意：本题与主站21题相同。
+# Definition for singly-linked list.
+# class Li</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-23
+            <i class="iconfont icon-date"></i>&nbsp;2020-11-17
           </div>
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/python/">python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/python/">python</a>
-            
-          </div>
         
       </div>
     </div>
@@ -372,44 +324,27 @@ if 2 &gt; 1 </div>
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/392be851.html">python02-位运算</a>
+      <a class="index-header" href="/article/5bbaf6b8.html">剑指Offer22-双指针-链表中倒数第k个节点</a>
 
-      <a href="/article/392be851.html" class="index-excerpt">
+      <a href="/article/5bbaf6b8.html" class="index-excerpt">
         
         
           
         
-        <div>位运算1. 原码、反码和补码二进制有三种不同的表示形式：原码、反码和补码，计算机内部使用补码来表示。
-原码：就是其二进制表示（注意，有一位符号位）。
-00 00 00 11 -&gt; 3
-10 00 00 11 -&gt; -3
-反码：正数的反码就是原码，负数的反码是符号位不变，其余位取反（对应正数按位取反）。
-00 00 00 11 -&gt; 3
-11 11 11 00 -&gt; -3
-补</div>
+        <div>输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。例如，一个链表有6个节点，从头节点开始，它们的值依次是1、2、3、4、5、6。这个链表的倒数第3个节点是值为4的节点。
+示例：
+给定一个链表：1-&gt;2-&gt;3-&gt;4-&gt;5，和k=2.
+返回链表 4-&gt;5.
+# Definition for singly-l</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-23
+            <i class="iconfont icon-date"></i>&nbsp;2020-11-17
           </div>
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/python/">python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/python/">python</a>
-            
-          </div>
         
       </div>
     </div>
@@ -419,48 +354,34 @@ if 2 &gt; 1 </div>
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/fcab5e80.html">python01-变量、运算符与数据类型</a>
+      <a class="index-header" href="/article/b61b3feb.html">剑指Offer21-双指针-调整数组顺序使奇数位于偶数前面</a>
 
-      <a href="/article/fcab5e80.html" class="index-excerpt">
+      <a href="/article/b61b3feb.html" class="index-excerpt">
         
         
           
         
-        <div>变量、运算符与数据类型1. 注释
-在 Python 中，# 表示注释，作用于整行。
+        <div>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有奇数位于数组的前半部分，所有偶数位于数组的后半部分。
+示例：
+输入：nums = [1,2,3,4]
+输出：[1,3,2,4]
+注：[3,1,2,4]也是正确答案
+提示：
 
-【例子】单行注释
-# 这是一个注释
-print("Hello world")
+1 &lt;= nums.length &lt;= 50000
+1 &lt;= nums[i] &lt;= 10000
 
-# Hello world
-
-&#39;&#39;&#39; &#39;&#39;&#39; 或者 &quot;&quot;&quot; &quot;&quot;&quot; 表示区间注释，在三引号之间的所有内容被注释
-
-【例子】多行</div>
+class Solution:
+	def</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-22
+            <i class="iconfont icon-date"></i>&nbsp;2020-11-17
           </div>
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/python/">python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/python/">python</a>
-            
-          </div>
         
       </div>
     </div>
@@ -470,42 +391,33 @@ print("Hello world")
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/1ddf0dd3.html">自然语言处理-新闻文本分类</a>
+      <a class="index-header" href="/article/477ccd40.html">剑指Offer18-双指针-删除链表的节点</a>
 
-      <a href="/article/1ddf0dd3.html" class="index-excerpt">
+      <a href="/article/477ccd40.html" class="index-excerpt">
         
         
           
         
-        <div>赛题理解
-赛题名称：零基础入门NLP之新闻文本分类
-赛题任务：赛题以自然语言处理为背景，要求选手对新闻文本进行分类，这是一个典型的字符识别问题。
-
-赛题数据赛题以匿名处理后的新闻数据为赛题数据，数据集报名后可见并可下载。赛题数据为新闻文本，并按照字符级别进行匿名处理。整合划分出14个候选分类类别：财经、彩票、房产、股票、家居、教育、科技、社会、时尚、时政、体育、星座、游戏、娱乐的文本数据。
-赛题数</div>
+        <div>给定单向链表的头指针和一个要删除的节点的值，定义一个函数删除该节点。
+返回删除后的链表的头节点。
+注意：此题对比原题有改动。
+示例1：
+输入：head = [4,5,1,9], val = 5
+输出：[4,1,9]
+解释：给定链表中值为5的第二个节点，那么在调用了函数之后，该链表应变为4-&gt;10-&gt;9.
+示例2：
+输入：[4,5,1,9],val=1
+输出：[4,5,9]
+解释：给定链</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-21
+            <i class="iconfont icon-date"></i>&nbsp;2020-11-17
           </div>
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">自然语言处理</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">自然语言处理</a>
-            
-          </div>
         
       </div>
     </div>
@@ -515,134 +427,104 @@ print("Hello world")
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/1d82fc97.html">论文阅读2</a>
+      <a class="index-header" href="/article/d47daa0e.html">剑指Offer61-排序-扑克牌中的顺子</a>
 
-      <a href="/article/1d82fc97.html" class="index-excerpt">
+      <a href="/article/d47daa0e.html" class="index-excerpt">
         
         
           
         
-        <div>1.Prototypical Networks for Few-shot Learning
+        <div>从扑克牌中随机抽5张牌，判断是不是一个顺子，即这5张拍是不是连续的。2~10为数字本身，A为1，J为11，Q为12，K为13，而大、小王为0，可以看成任意数字。A不能视为14。
+限制：
+数组长度为5
+数组的数取值为[0,13]。
+class Solution:
+	def isStraight(self, nums):
+解题思路：
+根据题意，此5张牌是顺子的充分条件如下：
 
-2.Transferrable Prototypical Networks for Unsupervised Domain Adaptation
-motivation:
+除大小王外，所有牌无重复</div>
+      </a>
 
-design:
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-11-17
+          </div>
+        
+        
+        
+      </div>
+    </div>
+  </div>
 
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/9d5f0517.html">剑指Offer45-排序-将数组排成最小的数</a>
 
+      <a href="/article/9d5f0517.html" class="index-excerpt">
+        
+        
+          
+        
+        <div>s输入一个非负整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。
+示例1：
+输入：[10,2]
+输出："102"
+示例2：
+输入：[3,30,34,5,9]
+输出："3033459"
+提示：
 
-相较于域级别而言，类级别的MMD更加地细粒度(fine-grained更细致)。
+0 &lt; nums.length &lt;= 100
 
-motivation:
+说明：
 
+输出结果可能非常大，所以你需要返回一个字符串而不是整数
+拼接起来的数字可能会有前导0，最后结果不需要去掉</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-11-17
+          </div>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/article/bfabc09a.html">剑指Offer41-排序-数据流中的中位数</a>
+
+      <a href="/article/bfabc09a.html" class="index-excerpt">
+        
+        
+          
+        
+        <div>如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。
+例如：
+[2,3,4]的中位数是3[2,3]的中位数是(2+3) / 2 = 2.5
+设计一个支持以下两种操作的数据结构：
+
+void addNum(int num) - 从数据流中添加一个整数到数据结构中。
 d</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-19
+            <i class="iconfont icon-date"></i>&nbsp;2020-11-16
           </div>
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/linc%E5%AE%9E%E9%AA%8C%E5%AE%A4/">linc实验室</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/708439c3.html">leetcode200-岛屿数量</a>
-
-      <a href="/article/708439c3.html" class="index-excerpt">
-        
-        
-          
-        
-        <div></div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-19
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/leetcode/">leetcode</a>
-            
-              <a href="/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">深度优先搜索，广度优先搜索</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/leetcode/">leetcode</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/article/1c7950e9.html">leetcode127-单词接龙</a>
-
-      <a href="/article/1c7950e9.html" class="index-excerpt">
-        
-        
-          
-        
-        <div></div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-19
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/leetcode/">leetcode</a>
-            
-              <a href="/categories/leetcode/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">深度优先搜索，广度优先搜索</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/leetcode/">leetcode</a>
-            
-          </div>
         
       </div>
     </div>
@@ -652,7 +534,7 @@ d</div>
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   

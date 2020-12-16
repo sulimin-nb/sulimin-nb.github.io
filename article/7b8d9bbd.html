@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/pocket%20watch.ico">
+  <link rel="icon" type="image/png" href="/img/pocket%20watch.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="向前向前向前ε=( o｀ω′)ノ写博客如喝汤的汤达人">
+  <meta name="author" content="sulimin">
+  <meta name="keywords" content="机器学习，数据挖掘，计算机视觉">
+  <title>pandas-第一章 - 苏</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="苏" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Sulimin</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/target/">
+                <i class="iconfont icon-clipcheck"></i>
+                每日目标
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-12-16 22:37">
+      2020年12月16日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      71
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年12月16日 晚上
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h1 id="第一章-预备知识"><a href="#第一章-预备知识" class="headerlink" title="第一章 预备知识"></a>第一章 预备知识</h1><h2 id="一、Python基础"><a href="#一、Python基础" class="headerlink" title="一、Python基础"></a>一、Python基础</h2><h3 id="1-列表推导式与条件赋值"><a href="#1-列表推导式与条件赋值" class="headerlink" title="1. 列表推导式与条件赋值"></a>1. 列表推导式与条件赋值</h3><p>在生成一个数字序列的时候，在 <code>Python</code> 中可以如下写出：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">1</span>]: L = []
+
+In [<span class="hljs-number">2</span>]: def my_func(x):
+   ...:     <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>*x
+   ...: 
+
+In [<span class="hljs-number">3</span>]: <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>):
+   ...:     L.append(my_func(i))
+   ...: 
+
+In [<span class="hljs-number">4</span>]: L
+Out[<span class="hljs-number">4</span>]: [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>]</code></pre>
+<p>事实上可以利用列表推导式进行写法上的简化： <code>[* for i in *]</code> 。其中，第一个 <code>*</code> 为映射函数，其输入为后面 <code>i</code> 指代的内容，第二个 <code>*</code> 表示迭代的对象。</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">5</span>]: [my_func(i) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>)]
+Out[<span class="hljs-number">5</span>]: [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>]</code></pre>
+<p>列表表达式还支持多层嵌套，如下面的例子中第一个 <code>for</code> 为外层循环，第二个为内层循环：</p>
+<pre><code class="hljs prolog"><span class="hljs-symbol">In</span> [<span class="hljs-number">6</span>]: [m+<span class="hljs-string">'_'</span>+n for m in [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>] for n in [<span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>]]
+<span class="hljs-symbol">Out</span>[<span class="hljs-number">6</span>]: [<span class="hljs-string">'a_c'</span>, <span class="hljs-string">'a_d'</span>, <span class="hljs-string">'b_c'</span>, <span class="hljs-string">'b_d'</span>]</code></pre>
+<p>除了列表推导式，另一个实用的语法糖是带有 <code>if</code> 选择的条件赋值，其形式为 <code>value = a if condition else b</code> ：</p>
+<pre><code class="hljs pgsql"><span class="hljs-keyword">In</span> [<span class="hljs-number">7</span>]: <span class="hljs-keyword">value</span> = <span class="hljs-string">'cat'</span> <span class="hljs-keyword">if</span> <span class="hljs-number">2</span>&gt;<span class="hljs-number">1</span> <span class="hljs-keyword">else</span> <span class="hljs-string">'dog'</span>
+
+<span class="hljs-keyword">In</span> [<span class="hljs-number">8</span>]: <span class="hljs-keyword">value</span>
+<span class="hljs-keyword">Out</span>[<span class="hljs-number">8</span>]: <span class="hljs-string">'cat'</span></code></pre>
+<p>等价于如下的写法：</p>
+<pre><code class="hljs livecodeserver"><span class="hljs-keyword">a</span>, b = <span class="hljs-string">'cat'</span>, <span class="hljs-string">'dog'</span>
+condition = <span class="hljs-number">2</span> &gt; <span class="hljs-number">1</span> <span class="hljs-comment"># 此时为True</span>
+<span class="hljs-keyword">if</span> condition:
+    <span class="hljs-built_in">value</span> = <span class="hljs-keyword">a</span>
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-built_in">value</span> = b</code></pre>
+<p>下面举一个例子，截断列表中超过5的元素，即超过5的用5代替，小于5的保留原来的值：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">9</span>]: L = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>]
+
+In [<span class="hljs-number">10</span>]: [i <span class="hljs-keyword">if</span> i &lt;= <span class="hljs-number">5</span> <span class="hljs-keyword">else</span> <span class="hljs-number">5</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> L]
+Out[<span class="hljs-number">10</span>]: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>]</code></pre>
+<h3 id="2-匿名函数与map方法"><a href="#2-匿名函数与map方法" class="headerlink" title="2. 匿名函数与map方法"></a>2. 匿名函数与map方法</h3><p>有一些函数的定义具有清晰简单的映射关系，例如上面的 <code>my_func</code> 函数，这时候可以用匿名函数的方法简洁地表示：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">11</span>]: my_func = lambda x: <span class="hljs-number">2</span>*x
+
+In [<span class="hljs-number">12</span>]: my_func(<span class="hljs-number">3</span>)
+Out[<span class="hljs-number">12</span>]: <span class="hljs-number">6</span>
+
+In [<span class="hljs-number">13</span>]: multi_para_func = lambda a, b: a + b
+
+In [<span class="hljs-number">14</span>]: multi_para_func(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+Out[<span class="hljs-number">14</span>]: <span class="hljs-number">3</span></code></pre>
+<p>但上面的用法其实违背了“匿名”的含义，事实上它往往在无需多处调用的场合进行使用，例如上面列表推导式中的例子，用户不关心函数的名字，只关心这种映射的关系：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">15</span>]: [(lambda x: <span class="hljs-number">2</span>*x)(i) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>)]
+Out[<span class="hljs-number">15</span>]: [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>]</code></pre>
+<p>对于上述的这种列表推导式的匿名函数映射， <code>Python</code> 中提供了 <code>map</code> 函数来完成，它返回的是一个 <code>map</code> 对象，需要通过 <code>list</code> 转为列表：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">16</span>]: list(map(lambda x: <span class="hljs-number">2</span>*x, range(<span class="hljs-number">5</span>)))
+Out[<span class="hljs-number">16</span>]: [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>]</code></pre>
+<p>对于多个输入值的函数映射，可以通过追加迭代对象实现：</p>
+<pre><code class="hljs sas"><span class="hljs-meta">In</span> [17]: <span class="hljs-meta">list</span>(map(lambda <span class="hljs-meta">x</span>, y: str(<span class="hljs-meta">x</span>)+<span class="hljs-string">'_'</span>+y,<span class="hljs-meta"> range(</span>5), <span class="hljs-meta">list</span>(<span class="hljs-string">'abcde'</span>)))
+<span class="hljs-meta">Out</span>[17]: [<span class="hljs-string">'0_a'</span>, <span class="hljs-string">'1_b'</span>, <span class="hljs-string">'2_c'</span>, <span class="hljs-string">'3_d'</span>, <span class="hljs-string">'4_e'</span>]</code></pre>
+<h3 id="3-zip对象与enumerate方法"><a href="#3-zip对象与enumerate方法" class="headerlink" title="3. zip对象与enumerate方法"></a>3. zip对象与enumerate方法</h3><p>zip函数能够把多个可迭代对象打包成一个元组构成的可迭代对象，它返回了一个 <code>zip</code> 对象，通过 <code>tuple, list</code> 可以得到相应的打包结果：</p>
+<pre><code class="hljs prolog"><span class="hljs-symbol">In</span> [<span class="hljs-number">18</span>]: <span class="hljs-symbol">L1</span>, <span class="hljs-symbol">L2</span>, <span class="hljs-symbol">L3</span> = list(<span class="hljs-string">'abc'</span>), list(<span class="hljs-string">'def'</span>), list(<span class="hljs-string">'hij'</span>)
+
+<span class="hljs-symbol">In</span> [<span class="hljs-number">19</span>]: list(zip(<span class="hljs-symbol">L1</span>, <span class="hljs-symbol">L2</span>, <span class="hljs-symbol">L3</span>))
+<span class="hljs-symbol">Out</span>[<span class="hljs-number">19</span>]: [(<span class="hljs-string">'a'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'h'</span>), (<span class="hljs-string">'b'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'i'</span>), (<span class="hljs-string">'c'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'j'</span>)]
+
+<span class="hljs-symbol">In</span> [<span class="hljs-number">20</span>]: tuple(zip(<span class="hljs-symbol">L1</span>, <span class="hljs-symbol">L2</span>, <span class="hljs-symbol">L3</span>))
+<span class="hljs-symbol">Out</span>[<span class="hljs-number">20</span>]: ((<span class="hljs-string">'a'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'h'</span>), (<span class="hljs-string">'b'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'i'</span>), (<span class="hljs-string">'c'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'j'</span>))</code></pre>
+<p>往往会在循环迭代的时候使用到 <code>zip</code> 函数：</p>
+<pre><code class="hljs matlab">In [<span class="hljs-number">21</span>]: <span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>, <span class="hljs-built_in">j</span>, k in zip(L1, L2, L3):
+   ....:     print(<span class="hljs-built_in">i</span>, <span class="hljs-built_in">j</span>, k)
+   ....: 
+a d h
+b e <span class="hljs-built_in">i</span>
+c f <span class="hljs-built_in">j</span></code></pre>
+<p><code>enumerate</code> 是一种特殊的打包，它可以在迭代时绑定迭代元素的遍历序号：</p>
+<pre><code class="hljs routeros"><span class="hljs-keyword">In</span> [22]: L = list(<span class="hljs-string">'abcd'</span>)
+
+<span class="hljs-keyword">In</span> [23]: <span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> enumerate(L):
+   <span class="hljs-built_in">..</span><span class="hljs-built_in">..</span>:     <span class="hljs-builtin-name">print</span>(index, value)
+   <span class="hljs-built_in">..</span><span class="hljs-built_in">..</span>: 
+0 a
+1 b
+2 c
+3 d</code></pre>
+<p>用 <code>zip</code> 对象也能够简单地实现这个功能：</p>
+<pre><code class="hljs fortran"><span class="hljs-keyword">In</span> [<span class="hljs-number">24</span>]: for <span class="hljs-built_in">index</span>, <span class="hljs-keyword">value</span> <span class="hljs-keyword">in</span> zip(<span class="hljs-built_in">range</span>(len(L)), L):
+   ....:     <span class="hljs-built_in">print</span>(<span class="hljs-built_in">index</span>, <span class="hljs-keyword">value</span>)
+   ....: 
+<span class="hljs-number">0</span> a
+<span class="hljs-number">1</span> b
+<span class="hljs-number">2</span> c
+<span class="hljs-number">3</span> d</code></pre>
+<p>当需要对两个列表建立字典映射时，可以利用 <code>zip</code> 对象：</p>
+<pre><code class="hljs prolog"><span class="hljs-symbol">In</span> [<span class="hljs-number">25</span>]: dict(zip(<span class="hljs-symbol">L1</span>, <span class="hljs-symbol">L2</span>))
+<span class="hljs-symbol">Out</span>[<span class="hljs-number">25</span>]: &#123;<span class="hljs-string">'a'</span>: <span class="hljs-string">'d'</span>, <span class="hljs-string">'b'</span>: <span class="hljs-string">'e'</span>, <span class="hljs-string">'c'</span>: <span class="hljs-string">'f'</span>&#125;</code></pre>
+<p>既然有了压缩函数，那么 <code>Python</code> 也提供了 <code>*</code> 操作符和 <code>zip</code> 联合使用来进行解压操作：</p>
+<pre><code class="hljs prolog"><span class="hljs-symbol">In</span> [<span class="hljs-number">26</span>]: zipped = list(zip(<span class="hljs-symbol">L1</span>, <span class="hljs-symbol">L2</span>, <span class="hljs-symbol">L3</span>))
+
+<span class="hljs-symbol">In</span> [<span class="hljs-number">27</span>]: zipped
+<span class="hljs-symbol">Out</span>[<span class="hljs-number">27</span>]: [(<span class="hljs-string">'a'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'h'</span>), (<span class="hljs-string">'b'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'i'</span>), (<span class="hljs-string">'c'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'j'</span>)]
+
+<span class="hljs-symbol">In</span> [<span class="hljs-number">28</span>]: list(zip(*zipped)) # 三个元组分别对应原来的列表
+<span class="hljs-symbol">Out</span>[<span class="hljs-number">28</span>]: [(<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>), (<span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'f'</span>), (<span class="hljs-string">'h'</span>, <span class="hljs-string">'i'</span>, <span class="hljs-string">'j'</span>)]</code></pre>
+<h2 id="二、Numpy基础"><a href="#二、Numpy基础" class="headerlink" title="二、Numpy基础"></a>二、Numpy基础</h2><h3 id="1-np数组的构造"><a href="#1-np数组的构造" class="headerlink" title="1. np数组的构造"></a>1. np数组的构造</h3><p>最一般的方法是通过 <code>array</code> 来构造：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">29</span>]: <span class="hljs-keyword">import</span> numpy as np
+
+In [<span class="hljs-number">30</span>]: np.<span class="hljs-built_in">array</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])
+Out[<span class="hljs-number">30</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])</code></pre>
+<p>下面讨论一些特殊数组的生成方式：</p>
+<p>【a】等差序列： <code>np.linspace, np.arange</code></p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">31</span>]: np.linspace(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">11</span>) # 起始、终止（包含）、样本个数
+Out[<span class="hljs-number">31</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">1.</span> , <span class="hljs-number">1.4</span>, <span class="hljs-number">1.8</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.</span> , <span class="hljs-number">3.4</span>, <span class="hljs-number">3.8</span>, <span class="hljs-number">4.2</span>, <span class="hljs-number">4.6</span>, <span class="hljs-number">5.</span> ])
+
+In [<span class="hljs-number">32</span>]: np.arange(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">2</span>) # 起始、终止（不包含）、步长
+Out[<span class="hljs-number">32</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>])</code></pre>
+<p>【b】特殊矩阵： <code>zeros, eye, full</code></p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">33</span>]: np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)) # 传入元组表示各维度大小
+Out[<span class="hljs-number">33</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])
+
+In [<span class="hljs-number">34</span>]: np.eye(<span class="hljs-number">3</span>) # <span class="hljs-number">3</span>*<span class="hljs-number">3</span>的单位矩阵
+Out[<span class="hljs-number">34</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">1.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>]])
+
+In [<span class="hljs-number">35</span>]: np.eye(<span class="hljs-number">3</span>, k=<span class="hljs-number">1</span>) # 偏移主对角线<span class="hljs-number">1</span>个单位的伪单位矩阵
+Out[<span class="hljs-number">35</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])
+
+In [<span class="hljs-number">36</span>]: np.full((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>), <span class="hljs-number">10</span>) # 元组传入大小，<span class="hljs-number">10</span>表示填充数值
+Out[<span class="hljs-number">36</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>],
+       [<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>]])
+
+In [<span class="hljs-number">37</span>]: np.full((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>), [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]) # 通过传入列表填充每列的值
+Out[<span class="hljs-number">37</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
+       [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]])</code></pre>
+<p>【c】随机矩阵： <code>np.random</code></p>
+<p>最常用的随机生成函数为 <code>rand, randn, randint, choice</code> ，它们分别表示0-1均匀分布的随机数组、标准正态的随机数组、随机整数组和随机列表抽样：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">38</span>]: np.random.rand(<span class="hljs-number">3</span>) # 生成服从<span class="hljs-number">0</span><span class="hljs-number">-1</span>均匀分布的三个随机数
+Out[<span class="hljs-number">38</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">0.33475955</span>, <span class="hljs-number">0.95078732</span>, <span class="hljs-number">0.05285509</span>])
+
+In [<span class="hljs-number">39</span>]: np.random.rand(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>) # 注意这里传入的不是元组，每个维度大小分开输入
+Out[<span class="hljs-number">39</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0.1188322</span> , <span class="hljs-number">0.51993935</span>, <span class="hljs-number">0.73054809</span>],
+       [<span class="hljs-number">0.97169376</span>, <span class="hljs-number">0.72724319</span>, <span class="hljs-number">0.84687781</span>],
+       [<span class="hljs-number">0.18001319</span>, <span class="hljs-number">0.8011098</span> , <span class="hljs-number">0.05113275</span>]])</code></pre>
+<p>对于服从区间 aa 到 bb 上的均匀分布可以如下生成：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">40</span>]: a, b = <span class="hljs-number">5</span>, <span class="hljs-number">15</span>
+
+In [<span class="hljs-number">41</span>]: (b - a) * np.random.rand(<span class="hljs-number">3</span>) + a
+Out[<span class="hljs-number">41</span>]: <span class="hljs-built_in">array</span>([ <span class="hljs-number">9.67438882</span>, <span class="hljs-number">12.49445466</span>,  <span class="hljs-number">6.51381903</span>])</code></pre>
+<p><code>randn</code> 生成了 N(0,I)N(0,I) 的标准正态分布：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">42</span>]: np.random.randn(<span class="hljs-number">3</span>)
+Out[<span class="hljs-number">42</span>]: <span class="hljs-built_in">array</span>([ <span class="hljs-number">0.91321097</span>, <span class="hljs-number">-0.02203455</span>,  <span class="hljs-number">0.44235296</span>])
+
+In [<span class="hljs-number">43</span>]: np.random.randn(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)
+Out[<span class="hljs-number">43</span>]: 
+<span class="hljs-built_in">array</span>([[ <span class="hljs-number">0.49897634</span>, <span class="hljs-number">-1.57842429</span>],
+       [<span class="hljs-number">-0.09213398</span>,  <span class="hljs-number">0.00613158</span>]])</code></pre>
+<p>对于服从方差为 σ2σ2 均值为 μμ 的一元正态分布可以如下生成：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">44</span>]: sigma, mu = <span class="hljs-number">2.5</span>, <span class="hljs-number">3</span>
+
+In [<span class="hljs-number">45</span>]: mu + np.random.randn(<span class="hljs-number">3</span>) * sigma
+Out[<span class="hljs-number">45</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">5.89540275</span>, <span class="hljs-number">2.56563403</span>, <span class="hljs-number">1.56208693</span>])</code></pre>
+<p><code>randint</code> 可以指定生成随机整数的最小值最大值（不包含）和维度大小：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">46</span>]: low, high, size = <span class="hljs-number">5</span>, <span class="hljs-number">15</span>, (<span class="hljs-number">2</span>,<span class="hljs-number">2</span>) # 生成<span class="hljs-number">5</span>到<span class="hljs-number">14</span>的随机整数
+
+In [<span class="hljs-number">47</span>]: np.random.randint(low, high, size)
+Out[<span class="hljs-number">47</span>]: 
+<span class="hljs-built_in">array</span>([[ <span class="hljs-number">7</span>,  <span class="hljs-number">9</span>],
+       [<span class="hljs-number">13</span>,  <span class="hljs-number">7</span>]])</code></pre>
+<p><code>choice</code> 可以从给定的列表中，以一定概率和方式抽取结果，当不指定概率时为均匀采样，默认抽取方式为有放回抽样：</p>
+<pre><code class="hljs prolog"><span class="hljs-symbol">In</span> [<span class="hljs-number">48</span>]: my_list = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>]
+
+<span class="hljs-symbol">In</span> [<span class="hljs-number">49</span>]: np.random.choice(my_list, <span class="hljs-number">2</span>, replace=<span class="hljs-symbol">False</span>, p=[<span class="hljs-number">0.1</span>, <span class="hljs-number">0.7</span>, <span class="hljs-number">0.1</span> ,<span class="hljs-number">0.1</span>])
+<span class="hljs-symbol">Out</span>[<span class="hljs-number">49</span>]: array([<span class="hljs-string">'b'</span>, <span class="hljs-string">'d'</span>], dtype=<span class="hljs-string">'&lt;U1'</span>)
+
+<span class="hljs-symbol">In</span> [<span class="hljs-number">50</span>]: np.random.choice(my_list, (<span class="hljs-number">3</span>,<span class="hljs-number">3</span>))
+<span class="hljs-symbol">Out</span>[<span class="hljs-number">50</span>]: 
+array([[<span class="hljs-string">'a'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>],
+       [<span class="hljs-string">'d'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>],
+       [<span class="hljs-string">'d'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'a'</span>]], dtype=<span class="hljs-string">'&lt;U1'</span>)</code></pre>
+<p>当返回的元素个数与原列表相同时，等价于使用 <code>permutation</code> 函数，即打散原列表：</p>
+<pre><code class="hljs less"><span class="hljs-selector-tag">In</span> <span class="hljs-selector-attr">[51]</span>: <span class="hljs-selector-tag">np</span><span class="hljs-selector-class">.random</span><span class="hljs-selector-class">.permutation</span>(my_list)
+<span class="hljs-selector-tag">Out</span><span class="hljs-selector-attr">[51]</span>: <span class="hljs-selector-tag">array</span>([<span class="hljs-string">'d'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>], dtype=<span class="hljs-string">'&lt;U1'</span>)</code></pre>
+<p>最后，需要提到的是随机种子，它能够固定随机数的输出结果：</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">In</span> <span class="hljs-selector-attr">[52]</span>: <span class="hljs-selector-tag">np</span><span class="hljs-selector-class">.random</span><span class="hljs-selector-class">.seed</span>(0)
+
+<span class="hljs-selector-tag">In</span> <span class="hljs-selector-attr">[53]</span>: <span class="hljs-selector-tag">np</span><span class="hljs-selector-class">.random</span><span class="hljs-selector-class">.rand</span>()
+<span class="hljs-selector-tag">Out</span><span class="hljs-selector-attr">[53]</span>: 0<span class="hljs-selector-class">.5488135039273248</span>
+
+<span class="hljs-selector-tag">In</span> <span class="hljs-selector-attr">[54]</span>: <span class="hljs-selector-tag">np</span><span class="hljs-selector-class">.random</span><span class="hljs-selector-class">.seed</span>(0)
+
+<span class="hljs-selector-tag">In</span> <span class="hljs-selector-attr">[55]</span>: <span class="hljs-selector-tag">np</span><span class="hljs-selector-class">.random</span><span class="hljs-selector-class">.rand</span>()
+<span class="hljs-selector-tag">Out</span><span class="hljs-selector-attr">[55]</span>: 0<span class="hljs-selector-class">.5488135039273248</span></code></pre>
+<h3 id="2-np数组的变形与合并"><a href="#2-np数组的变形与合并" class="headerlink" title="2. np数组的变形与合并"></a>2. np数组的变形与合并</h3><p>【a】转置： <code>T</code></p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">56</span>]: np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)).T
+Out[<span class="hljs-number">56</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])</code></pre>
+<p>【b】合并操作： <code>r_, c_</code></p>
+<p>对于二维数组而言， <code>r_</code> 和 <code>c_</code> 分别表示上下合并和左右合并：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">57</span>]: np.r_[np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)),np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))]
+Out[<span class="hljs-number">57</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])
+
+In [<span class="hljs-number">58</span>]: np.c_[np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)),np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))]
+Out[<span class="hljs-number">58</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])</code></pre>
+<p>一维数组和二维数组进行合并时，应当把其视作列向量，在长度匹配的情况下只能够使用左右合并的 <code>c_</code> 操作：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">59</span>]: <span class="hljs-keyword">try</span>:
+   ....:     np.r_[np.<span class="hljs-built_in">array</span>([<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]),np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">1</span>))]
+   ....: except Exception as e:
+   ....:     Err_Msg = e
+   ....: 
+
+In [<span class="hljs-number">60</span>]: Err_Msg
+Out[<span class="hljs-number">60</span>]: ValueError(<span class="hljs-string">'all the input arrays must have same number of dimensions, but the array at index 0 has 1 dimension(s) and the array at index 1 has 2 dimension(s)'</span>)
+
+In [<span class="hljs-number">61</span>]: np.r_[np.<span class="hljs-built_in">array</span>([<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]),np.zeros(<span class="hljs-number">2</span>)]
+Out[<span class="hljs-number">61</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>])
+
+In [<span class="hljs-number">62</span>]: np.c_[np.<span class="hljs-built_in">array</span>([<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]),np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))]
+Out[<span class="hljs-number">62</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])</code></pre>
+<p>【c】维度变换： <code>reshape</code></p>
+<p><code>reshape</code> 能够帮助用户把原数组按照新的维度重新排列。在使用时有两种模式，分别为 <code>C</code> 模式和 <code>F</code> 模式，分别以逐行和逐列的顺序进行填充读取。</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">63</span>]: target = np.arange(<span class="hljs-number">8</span>).reshape(<span class="hljs-number">2</span>,<span class="hljs-number">4</span>)
+
+In [<span class="hljs-number">64</span>]: target
+Out[<span class="hljs-number">64</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
+       [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>]])
+
+In [<span class="hljs-number">65</span>]: target.reshape((<span class="hljs-number">4</span>,<span class="hljs-number">2</span>), order=<span class="hljs-string">'C'</span>) # 按照行读取和填充
+Out[<span class="hljs-number">65</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>],
+       [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
+       [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>],
+       [<span class="hljs-number">6</span>, <span class="hljs-number">7</span>]])
+
+In [<span class="hljs-number">66</span>]: target.reshape((<span class="hljs-number">4</span>,<span class="hljs-number">2</span>), order=<span class="hljs-string">'F'</span>) # 按照列读取和填充
+Out[<span class="hljs-number">66</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>, <span class="hljs-number">2</span>],
+       [<span class="hljs-number">4</span>, <span class="hljs-number">6</span>],
+       [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>],
+       [<span class="hljs-number">5</span>, <span class="hljs-number">7</span>]])</code></pre>
+<p>特别地，由于被调用数组的大小是确定的， reshape 允许有一个维度存在空缺，此时只需填充-1即可：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">67</span>]: target.reshape((<span class="hljs-number">4</span>,<span class="hljs-number">-1</span>))
+Out[<span class="hljs-number">67</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>],
+       [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
+       [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>],
+       [<span class="hljs-number">6</span>, <span class="hljs-number">7</span>]])</code></pre>
+<p>下面将 <code>n*1</code> 大小的数组转为1维数组的操作是经常使用的：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">68</span>]: target = np.ones((<span class="hljs-number">3</span>,<span class="hljs-number">1</span>))
+
+In [<span class="hljs-number">69</span>]: target
+Out[<span class="hljs-number">69</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">1.</span>],
+       [<span class="hljs-number">1.</span>],
+       [<span class="hljs-number">1.</span>]])
+
+In [<span class="hljs-number">70</span>]: target.reshape(<span class="hljs-number">-1</span>)
+Out[<span class="hljs-number">70</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>])</code></pre>
+<h3 id="3-np数组的切片与索引"><a href="#3-np数组的切片与索引" class="headerlink" title="3. np数组的切片与索引"></a>3. np数组的切片与索引</h3><p>数组的切片模式支持使用 <code>slice</code> 类型的 <code>start:end:step</code> 切片，还可以直接传入列表指定某个维度的索引进行切片：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">71</span>]: target = np.arange(<span class="hljs-number">9</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>)
+
+In [<span class="hljs-number">72</span>]: target
+Out[<span class="hljs-number">72</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>],
+       [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>],
+       [<span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>]])
+
+In [<span class="hljs-number">73</span>]: target[:<span class="hljs-number">-1</span>, [<span class="hljs-number">0</span>,<span class="hljs-number">2</span>]]
+Out[<span class="hljs-number">73</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>, <span class="hljs-number">2</span>],
+       [<span class="hljs-number">3</span>, <span class="hljs-number">5</span>]])</code></pre>
+<p>此外，还可以利用 <code>np.ix_</code> 在对应的维度上使用布尔索引，但此时不能使用 <code>slice</code> 切片：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">74</span>]: target[np.ix_([True, False, True], [True, False, True])]
+Out[<span class="hljs-number">74</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>, <span class="hljs-number">2</span>],
+       [<span class="hljs-number">6</span>, <span class="hljs-number">8</span>]])
+
+In [<span class="hljs-number">75</span>]: target[np.ix_([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>], [True, False, True])]
+Out[<span class="hljs-number">75</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">3</span>, <span class="hljs-number">5</span>],
+       [<span class="hljs-number">6</span>, <span class="hljs-number">8</span>]])</code></pre>
+<p>当数组维度为1维时，可以直接进行布尔索引，而无需 <code>np.ix_</code> ：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">76</span>]: new = target.reshape(<span class="hljs-number">-1</span>)
+
+In [<span class="hljs-number">77</span>]: new[new%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>]
+Out[<span class="hljs-number">77</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>])</code></pre>
+<h3 id="4-常用函数"><a href="#4-常用函数" class="headerlink" title="4. 常用函数"></a>4. 常用函数</h3><p>为了简单起见，这里假设下述函数输入的数组都是一维的。</p>
+<p>【a】 <code>where</code></p>
+<p><code>where</code> 是一种条件函数，可以指定满足条件与不满足条件位置对应的填充值：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">78</span>]: a = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>])
+
+In [<span class="hljs-number">79</span>]: np.where(a&gt;<span class="hljs-number">0</span>, a, <span class="hljs-number">5</span>) # 对应位置为True时填充a对应元素，否则填充<span class="hljs-number">5</span>
+Out[<span class="hljs-number">79</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">5</span>, <span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>])</code></pre>
+<p>【b】 <code>nonzero, argmax, argmin</code></p>
+<p>这三个函数返回的都是索引， <code>nonzero</code> 返回非零数的索引， <code>argmax, argmin</code> 分别返回最大和最小数的索引：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">80</span>]: a = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">-2</span>,<span class="hljs-number">-5</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">-1</span>])
+
+In [<span class="hljs-number">81</span>]: np.nonzero(a)
+Out[<span class="hljs-number">81</span>]: (<span class="hljs-built_in">array</span>([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], dtype=<span class="hljs-built_in">int</span>64),)
+
+In [<span class="hljs-number">82</span>]: a.argmax()
+Out[<span class="hljs-number">82</span>]: <span class="hljs-number">4</span>
+
+In [<span class="hljs-number">83</span>]: a.argmin()
+Out[<span class="hljs-number">83</span>]: <span class="hljs-number">1</span></code></pre>
+<p>【c】 <code>any, all</code></p>
+<pre><code class="hljs pgsql"><span class="hljs-keyword">any</span>` 指当序列至少 存在一个 `<span class="hljs-keyword">True</span>` 或非零元素时返回 `<span class="hljs-keyword">True</span>` ，否则返回 `<span class="hljs-keyword">False</span>
+<span class="hljs-keyword">all</span>` 指当序列元素 全为 `<span class="hljs-keyword">True</span>` 或非零元素时返回 `<span class="hljs-keyword">True</span>` ，否则返回 `<span class="hljs-keyword">False</span>
+<span class="hljs-keyword">In</span> [<span class="hljs-number">84</span>]: a = np.<span class="hljs-keyword">array</span>([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>])
+
+<span class="hljs-keyword">In</span> [<span class="hljs-number">85</span>]: a.<span class="hljs-keyword">any</span>()
+<span class="hljs-keyword">Out</span>[<span class="hljs-number">85</span>]: <span class="hljs-keyword">True</span>
+
+<span class="hljs-keyword">In</span> [<span class="hljs-number">86</span>]: a.<span class="hljs-keyword">all</span>()
+<span class="hljs-keyword">Out</span>[<span class="hljs-number">86</span>]: <span class="hljs-keyword">False</span></code></pre>
+<p>【d】 <code>cumprod, cumsum, diff</code></p>
+<p><code>cumprod, cumsum</code> 分别表示累乘和累加函数，返回同长度的数组， <code>diff</code> 表示和前一个元素做差，由于第一个元素为缺失值，因此在默认参数情况下，返回长度是原数组减1</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">87</span>]: a = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])
+
+In [<span class="hljs-number">88</span>]: a.cumprod()
+Out[<span class="hljs-number">88</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span>], dtype=<span class="hljs-built_in">int</span>32)
+
+In [<span class="hljs-number">89</span>]: a.cumsum()
+Out[<span class="hljs-number">89</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">6</span>], dtype=<span class="hljs-built_in">int</span>32)
+
+In [<span class="hljs-number">90</span>]: np.diff(a)
+Out[<span class="hljs-number">90</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>])</code></pre>
+<p>【e】 统计函数</p>
+<p>常用的统计函数包括 <code>max, min, mean, median, std, var, sum, quantile</code> ，其中分位数计算是全局方法，因此不能通过 <code>array.quantile</code> 的方法调用：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">91</span>]: target = np.arange(<span class="hljs-number">5</span>)
+
+In [<span class="hljs-number">92</span>]: target
+Out[<span class="hljs-number">92</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+
+In [<span class="hljs-number">93</span>]: target.max()
+Out[<span class="hljs-number">93</span>]: <span class="hljs-number">4</span>
+
+In [<span class="hljs-number">94</span>]: np.quantile(target, <span class="hljs-number">0.5</span>) # <span class="hljs-number">0.5</span>分位数
+Out[<span class="hljs-number">94</span>]: <span class="hljs-number">2.0</span></code></pre>
+<p>但是对于含有缺失值的数组，它们返回的结果也是缺失值，如果需要略过缺失值，必须使用 <code>nan*</code> 类型的函数，上述的几个统计函数都有对应的 <code>nan*</code> 函数。</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">95</span>]: target = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, np.nan])
+
+In [<span class="hljs-number">96</span>]: target
+Out[<span class="hljs-number">96</span>]: <span class="hljs-built_in">array</span>([ <span class="hljs-number">1.</span>,  <span class="hljs-number">2.</span>, nan])
+
+In [<span class="hljs-number">97</span>]: target.max()
+Out[<span class="hljs-number">97</span>]: nan
+
+In [<span class="hljs-number">98</span>]: np.nanmax(target)
+Out[<span class="hljs-number">98</span>]: <span class="hljs-number">2.0</span>
+
+In [<span class="hljs-number">99</span>]: np.nanquantile(target, <span class="hljs-number">0.5</span>)
+Out[<span class="hljs-number">99</span>]: <span class="hljs-number">1.5</span></code></pre>
+<p>对于协方差和相关系数分别可以利用 <code>cov, corrcoef</code> 如下计算：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">100</span>]: target1 = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">9</span>])
+
+In [<span class="hljs-number">101</span>]: target2 = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">3</span>,<span class="hljs-number">-9</span>])
+
+In [<span class="hljs-number">102</span>]: np.cov(target1, target2)
+Out[<span class="hljs-number">102</span>]: 
+<span class="hljs-built_in">array</span>([[ <span class="hljs-number">11.66666667</span>, <span class="hljs-number">-16.66666667</span>],
+       [<span class="hljs-number">-16.66666667</span>,  <span class="hljs-number">38.66666667</span>]])
+
+In [<span class="hljs-number">103</span>]: np.corrcoef(target1, target2)
+Out[<span class="hljs-number">103</span>]: 
+<span class="hljs-built_in">array</span>([[ <span class="hljs-number">1.</span>        , <span class="hljs-number">-0.78470603</span>],
+       [<span class="hljs-number">-0.78470603</span>,  <span class="hljs-number">1.</span>        ]])</code></pre>
+<p>最后，需要说明二维 <code>Numpy</code> 数组中统计函数的 <code>axis</code> 参数，它能够进行某一个维度下的统计特征计算，当 <code>axis=0</code> 时结果为列的统计指标，当 <code>axis=1</code> 时结果为行的统计指标：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">104</span>]: target = np.arange(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">-1</span>)
+
+In [<span class="hljs-number">105</span>]: target
+Out[<span class="hljs-number">105</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
+       [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>],
+       [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>]])
+
+In [<span class="hljs-number">106</span>]: target.sum(<span class="hljs-number">0</span>)
+Out[<span class="hljs-number">106</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">12</span>, <span class="hljs-number">15</span>, <span class="hljs-number">18</span>])
+
+In [<span class="hljs-number">107</span>]: target.sum(<span class="hljs-number">1</span>)
+Out[<span class="hljs-number">107</span>]: <span class="hljs-built_in">array</span>([ <span class="hljs-number">6</span>, <span class="hljs-number">15</span>, <span class="hljs-number">24</span>])</code></pre>
+<h3 id="5-广播机制"><a href="#5-广播机制" class="headerlink" title="5. 广播机制"></a>5. 广播机制</h3><p>广播机制用于处理两个不同维度数组之间的操作，这里只讨论不超过两维的数组广播机制。</p>
+<p>【a】标量和数组的操作</p>
+<p>当一个标量和数组进行运算时，标量会自动把大小扩充为数组大小，之后进行逐元素操作：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">108</span>]: res = <span class="hljs-number">3</span> * np.ones((<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)) + <span class="hljs-number">1</span>
+
+In [<span class="hljs-number">109</span>]: res
+Out[<span class="hljs-number">109</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>],
+       [<span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>]])
+
+In [<span class="hljs-number">110</span>]: res = <span class="hljs-number">1</span> / res
+
+In [<span class="hljs-number">111</span>]: res
+Out[<span class="hljs-number">111</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0.25</span>, <span class="hljs-number">0.25</span>],
+       [<span class="hljs-number">0.25</span>, <span class="hljs-number">0.25</span>]])</code></pre>
+<p>【b】二维数组之间的操作</p>
+<p>当两个数组维度完全一致时，使用对应元素的操作，否则会报错，除非其中的某个数组的维度是 m×1m×1 或者 1×n1×n ，那么会扩充其具有 11 的维度为另一个数组对应维度的大小。例如， 1×21×2 数组和 3×23×2 数组做逐元素运算时会把第一个数组扩充为 3×23×2 ，扩充时的对应数值进行赋值。但是，需要注意的是，如果第一个数组的维度是 1×31×3 ，那么由于在第二维上的大小不匹配且不为 11 ，此时报错。</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">112</span>]: res = np.ones((<span class="hljs-number">3</span>,<span class="hljs-number">2</span>))
+
+In [<span class="hljs-number">113</span>]: res
+Out[<span class="hljs-number">113</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
+       [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
+       [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>]])
+
+In [<span class="hljs-number">114</span>]: res * np.<span class="hljs-built_in">array</span>([[<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]]) # 扩充第一维度为<span class="hljs-number">3</span>
+Out[<span class="hljs-number">114</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">2.</span>, <span class="hljs-number">3.</span>],
+       [<span class="hljs-number">2.</span>, <span class="hljs-number">3.</span>],
+       [<span class="hljs-number">2.</span>, <span class="hljs-number">3.</span>]])
+
+In [<span class="hljs-number">115</span>]: res * np.<span class="hljs-built_in">array</span>([[<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>]]) # 扩充第二维度为<span class="hljs-number">2</span>
+Out[<span class="hljs-number">115</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>],
+       [<span class="hljs-number">3.</span>, <span class="hljs-number">3.</span>],
+       [<span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>]])
+
+In [<span class="hljs-number">116</span>]: res * np.<span class="hljs-built_in">array</span>([[<span class="hljs-number">2</span>]]) # 等价于两次扩充
+Out[<span class="hljs-number">116</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>],
+       [<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>],
+       [<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>]])</code></pre>
+<p>【c】一维数组与二维数组的操作</p>
+<p>当一维数组 AkAk 与二维数组 Bm,nBm,n 操作时，等价于把一维数组视作 A1,kA1,k 的二维数组，使用的广播法则与【b】中一致，当 k!=nk!=n 且 k,nk,n 都不是 11 时报错。</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">117</span>]: np.ones(<span class="hljs-number">3</span>) + np.ones((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))
+Out[<span class="hljs-number">117</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>],
+       [<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>]])
+
+In [<span class="hljs-number">118</span>]: np.ones(<span class="hljs-number">3</span>) + np.ones((<span class="hljs-number">2</span>,<span class="hljs-number">1</span>))
+Out[<span class="hljs-number">118</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>],
+       [<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>]])
+
+In [<span class="hljs-number">119</span>]: np.ones(<span class="hljs-number">1</span>) + np.ones((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))
+Out[<span class="hljs-number">119</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>],
+       [<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>]])</code></pre>
+<h3 id="6-向量与矩阵的计算"><a href="#6-向量与矩阵的计算" class="headerlink" title="6. 向量与矩阵的计算"></a>6. 向量与矩阵的计算</h3><p>【a】向量内积： <code>dot</code></p>
+<p>a⋅b=∑iaibia⋅b=∑iaibi</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">120</span>]: a = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])
+
+In [<span class="hljs-number">121</span>]: b = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>])
+
+In [<span class="hljs-number">122</span>]: a.dot(b)
+Out[<span class="hljs-number">122</span>]: <span class="hljs-number">22</span></code></pre>
+<p>【b】向量范数和矩阵范数： <code>np.linalg.norm</code></p>
+<p>在矩阵范数的计算中，最重要的是 <code>ord</code> 参数，可选值如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ord</th>
+<th style="text-align:left">norm for matrices</th>
+<th style="text-align:left">norm for vectors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">None</td>
+<td style="text-align:left">Frobenius norm</td>
+<td style="text-align:left">2-norm</td>
+</tr>
+<tr>
+<td style="text-align:left">‘fro’</td>
+<td style="text-align:left">Frobenius norm</td>
+<td style="text-align:left">–</td>
+</tr>
+<tr>
+<td style="text-align:left">‘nuc’</td>
+<td style="text-align:left">nuclear norm</td>
+<td style="text-align:left">–</td>
+</tr>
+<tr>
+<td style="text-align:left">inf</td>
+<td style="text-align:left">max(sum(abs(x), axis=1))</td>
+<td style="text-align:left">max(abs(x))</td>
+</tr>
+<tr>
+<td style="text-align:left">-inf</td>
+<td style="text-align:left">min(sum(abs(x), axis=1))</td>
+<td style="text-align:left">min(abs(x))</td>
+</tr>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">–</td>
+<td style="text-align:left">sum(x != 0)</td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">max(sum(abs(x), axis=0))</td>
+<td style="text-align:left">as below</td>
+</tr>
+<tr>
+<td style="text-align:left">-1</td>
+<td style="text-align:left">min(sum(abs(x), axis=0))</td>
+<td style="text-align:left">as below</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2-norm (largest sing. value)</td>
+<td style="text-align:left">as below</td>
+</tr>
+<tr>
+<td style="text-align:left">-2</td>
+<td style="text-align:left">smallest singular value</td>
+<td style="text-align:left">as below</td>
+</tr>
+<tr>
+<td style="text-align:left">other</td>
+<td style="text-align:left">–</td>
+<td style="text-align:left">sum(abs(x)<strong>ord)</strong>(1./ord)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">123</span>]: martix_target =  np.arange(<span class="hljs-number">4</span>).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">2</span>)
+
+In [<span class="hljs-number">124</span>]: martix_target
+Out[<span class="hljs-number">124</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>],
+       [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>]])
+
+In [<span class="hljs-number">125</span>]: np.linalg.norm(martix_target, <span class="hljs-string">'fro'</span>)
+Out[<span class="hljs-number">125</span>]: <span class="hljs-number">3.7416573867739413</span>
+
+In [<span class="hljs-number">126</span>]: np.linalg.norm(martix_target, np.inf)
+Out[<span class="hljs-number">126</span>]: <span class="hljs-number">5.0</span>
+
+In [<span class="hljs-number">127</span>]: np.linalg.norm(martix_target, <span class="hljs-number">2</span>)
+Out[<span class="hljs-number">127</span>]: <span class="hljs-number">3.702459173643833</span>
+In [<span class="hljs-number">128</span>]: vector_target =  np.arange(<span class="hljs-number">4</span>)
+
+In [<span class="hljs-number">129</span>]: vector_target
+Out[<span class="hljs-number">129</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+
+In [<span class="hljs-number">130</span>]: np.linalg.norm(vector_target, np.inf)
+Out[<span class="hljs-number">130</span>]: <span class="hljs-number">3.0</span>
+
+In [<span class="hljs-number">131</span>]: np.linalg.norm(vector_target, <span class="hljs-number">2</span>)
+Out[<span class="hljs-number">131</span>]: <span class="hljs-number">3.7416573867739413</span>
+
+In [<span class="hljs-number">132</span>]: np.linalg.norm(vector_target, <span class="hljs-number">3</span>)
+Out[<span class="hljs-number">132</span>]: <span class="hljs-number">3.3019272488946263</span></code></pre>
+<p>【c】矩阵乘法： <code>@</code></p>
+<p>[Am×pBp×n]ij=∑k=1pAikBkj[Am×pBp×n]ij=∑k=1pAikBkj</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">133</span>]: a = np.arange(<span class="hljs-number">4</span>).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">2</span>)
+
+In [<span class="hljs-number">134</span>]: a
+Out[<span class="hljs-number">134</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>],
+       [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>]])
+
+In [<span class="hljs-number">135</span>]: b = np.arange(<span class="hljs-number">-4</span>,<span class="hljs-number">0</span>).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">2</span>)
+
+In [<span class="hljs-number">136</span>]: b
+Out[<span class="hljs-number">136</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">-4</span>, <span class="hljs-number">-3</span>],
+       [<span class="hljs-number">-2</span>, <span class="hljs-number">-1</span>]])
+
+In [<span class="hljs-number">137</span>]: <span class="hljs-symbol">a@</span>b
+Out[<span class="hljs-number">137</span>]: 
+<span class="hljs-built_in">array</span>([[ <span class="hljs-number">-2</span>,  <span class="hljs-number">-1</span>],
+       [<span class="hljs-number">-14</span>,  <span class="hljs-number">-9</span>]])</code></pre>
+<h2 id="三、练习"><a href="#三、练习" class="headerlink" title="三、练习"></a>三、练习</h2><h3 id="Ex1：利用列表推导式写矩阵乘法"><a href="#Ex1：利用列表推导式写矩阵乘法" class="headerlink" title="Ex1：利用列表推导式写矩阵乘法"></a>Ex1：利用列表推导式写矩阵乘法</h3><p>一般的矩阵乘法根据公式，可以由三重循环写出：</p>
+<pre><code class="hljs markdown">In [138]: M1 = np.random.rand(2,3)
+
+In [139]: M2 = np.random.rand(3,4)
+
+In [140]: res = np.empty((M1.shape[0],M2.shape[1]))
+
+In [141]: for i in range(M1.shape[0]):
+   .....:     for j in range(M2.shape[1]):
+   .....:         item = 0
+   .....:         for k in range(M1.shape[1]):
+   .....:             item += M1[<span class="hljs-string">i</span>][<span class="hljs-symbol">k</span>] * M2[<span class="hljs-string">k</span>][<span class="hljs-symbol">j</span>]
+   .....:         res[<span class="hljs-string">i</span>][<span class="hljs-symbol">j</span>] = item
+   .....: 
+
+In [142]: ((M1@M2 - res) <span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">1e-15</span>)<span class="hljs-attr">.all</span>() # 排除数值误差</span></span>
+<span class="xml">Out[142]: True</span></code></pre>
+<p>请将其改写为列表推导式的形式。</p>
+<h3 id="Ex2：更新矩阵"><a href="#Ex2：更新矩阵" class="headerlink" title="Ex2：更新矩阵"></a>Ex2：更新矩阵</h3><p>设矩阵 Am×nAm×n ，现在对 AA 中的每一个元素进行更新生成矩阵 BB ，更新方法是 Bij=Aij∑k=1n1AikBij=Aij∑k=1n1Aik ，例如下面的矩阵为 AA ，则 B2,2=5×(14+15+16)=3712B2,2=5×(14+15+16)=3712 ，请利用 <code>Numpy</code> 高效实现。</p>
+<p>A=⎡⎣⎢147258369⎤⎦⎥A=[123456789]</p>
+<h3 id="Ex3：卡方统计量"><a href="#Ex3：卡方统计量" class="headerlink" title="Ex3：卡方统计量"></a>Ex3：卡方统计量</h3><p>设矩阵 Am×nAm×n ，记 Bij=(∑mi=1Aij)×(∑nj=1Aij)∑mi=1∑nj=1AijBij=(∑i=1mAij)×(∑j=1nAij)∑i=1m∑j=1nAij ，定义卡方值如下：</p>
+<p>χ2=∑i=1m∑j=1n(Aij−Bij)2Bijχ2=∑i=1m∑j=1n(Aij−Bij)2Bij</p>
+<p>请利用 <code>Numpy</code> 对给定的矩阵 AA 计算 χ2χ2 。</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">143</span>]: np.random.seed(<span class="hljs-number">0</span>)
+
+In [<span class="hljs-number">144</span>]: A = np.random.randint(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, (<span class="hljs-number">8</span>, <span class="hljs-number">5</span>))</code></pre>
+<h3 id="Ex4：改进矩阵计算的性能"><a href="#Ex4：改进矩阵计算的性能" class="headerlink" title="Ex4：改进矩阵计算的性能"></a>Ex4：改进矩阵计算的性能</h3><p>设 ZZ 为 m×nm×n 的矩阵， BB 和 UU 分别是 m×pm×p 和 p×np×n 的矩阵， BiBi 为 BB 的第 ii 行， UjUj 为 UU 的第 jj 列，下面定义 R=∑i=1m∑j=1n∥Bi−Uj∥22ZijR=∑i=1m∑j=1n‖Bi−Uj‖22Zij ，其中 ∥a∥22‖a‖22 表示向量 aa 的分量平方和 ∑ia2i∑iai2 。</p>
+<p>现有某人根据如下给定的样例数据计算 RR 的值，请充分利用 <code>Numpy</code> 中的函数，基于此问题改进这段代码的性能。</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">145</span>]: np.random.seed(<span class="hljs-number">0</span>)
+
+In [<span class="hljs-number">146</span>]: m, n, p = <span class="hljs-number">100</span>, <span class="hljs-number">80</span>, <span class="hljs-number">50</span>
+
+In [<span class="hljs-number">147</span>]: B = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, (m, p))
+
+In [<span class="hljs-number">148</span>]: U = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, (p, n))
+
+In [<span class="hljs-number">149</span>]: Z = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, (m, n))
+In [<span class="hljs-number">150</span>]: def solution(B=B, U=U, Z=Z):
+   .....:     L_res = []
+   .....:     <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(m):
+   .....:         <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(n):
+   .....:             norm_value = ((B[i]-U[:,j])**<span class="hljs-number">2</span>).sum()
+   .....:             L_res.append(norm_value*Z[i][j])
+   .....:     <span class="hljs-keyword">return</span> sum(L_res)
+   .....: 
+
+In [<span class="hljs-number">151</span>]: solution(B, U, Z)
+Out[<span class="hljs-number">151</span>]: <span class="hljs-number">100566</span></code></pre>
+<h3 id="Ex5：连续整数的最大长度"><a href="#Ex5：连续整数的最大长度" class="headerlink" title="Ex5：连续整数的最大长度"></a>Ex5：连续整数的最大长度</h3><p>输入一个整数的 <code>Numpy</code> 数组，返回其中递增连续整数子数组的最大长度。例如，输入 [1,2,5,6,7]，[5,6,7]为具有最大长度的递增连续整数子数组，因此输出3；输入[3,2,1,2,3,4,6]，[1,2,3,4]为具有最大长度的递增连续整数子数组，因此输出4。请充分利用 <code>Numpy</code> 的内置函数完成。（提示：考虑使用 <code>nonzero, diff</code> 函数）</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/pandas/">pandas</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/pandas/">pandas</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/article/5da0ddee.html">
+                        <span class="hidden-mobile">剑指Offer17-分治算法-打印从1到最大的n位数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz",
+          app_key: "Xwqmsb7cDIWaQB2GG2fCnSHf",
+          placeholder: "ヾﾉ≧∀≦)o 来呀！吐槽一番吧！",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/article/7b8d9bbd.html');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'gIlJLkkEOolcxea5daBOIYB5-gzGzoHsz'
+    var app_key = 'Xwqmsb7cDIWaQB2GG2fCnSHf'
+    var server_url = ''
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "pandas-第一章&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 50,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

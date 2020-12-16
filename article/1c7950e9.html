@@ -178,7 +178,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      1.5k 字
     </span>
   
 
@@ -188,7 +188,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      20
        分钟
     </span>
   
@@ -228,12 +228,167 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月19日 晚上
+                  本文最后更新于：2020年11月5日 晚上
                 
               </p>
             
             <article class="markdown-body">
-              
+              <h1 id="127-单词接龙"><a href="#127-单词接龙" class="headerlink" title="127. 单词接龙"></a>127. 单词接龙</h1><p>给定两个单词(beginWord和endWord)和一个字典，找到从beginWord到endWord的最短长度，转换需遵循如下规则：</p>
+<ol>
+<li>每次转换只能改变一个字母。</li>
+<li>转换过程中的中间单词必须是字典中的单词。</li>
+</ol>
+<p>说明：</p>
+<ul>
+<li>如果不存在这样的转换序列，返回9.</li>
+<li>所有单词具有相同的长度。</li>
+<li>所有的单词只由小写字母组成。</li>
+<li>字典中不存在重复的单词。</li>
+<li>你可以假设beginWord和endWord是非空的，且二者不相同。</li>
+</ul>
+<p><strong>示例1</strong>：</p>
+<pre><code class="hljs routeros">输入：
+<span class="hljs-attribute">beginWord</span>=<span class="hljs-string">'hit'</span>,
+<span class="hljs-attribute">endWord</span>=<span class="hljs-string">'cog'</span>,
+wordList=[<span class="hljs-string">'hot'</span>,<span class="hljs-string">'dot'</span>,<span class="hljs-string">'dog'</span>,<span class="hljs-string">'lot'</span>,<span class="hljs-string">'log'</span>,<span class="hljs-string">'cog'</span>]
+输出：5
+解释：一个最短转换序列是<span class="hljs-string">'hit'</span>-&gt;<span class="hljs-string">'hot'</span>-&gt;<span class="hljs-string">'dog'</span>-&gt;<span class="hljs-string">'cog'</span>,返回它的长度5.</code></pre>
+<p><strong>示例2</strong>：</p>
+<pre><code class="hljs routeros">输入：
+<span class="hljs-attribute">beginWord</span>=<span class="hljs-string">'hit'</span>
+<span class="hljs-attribute">endWord</span>=<span class="hljs-string">'cog'</span>
+wordList=[<span class="hljs-string">'hot'</span>,<span class="hljs-string">'dot'</span>.<span class="hljs-string">'dog'</span>,<span class="hljs-string">'lot'</span>,<span class="hljs-string">'log'</span>]
+输出：0
+解释：endWord <span class="hljs-string">'cog'</span>不在字典中，所以无法进行转换。</code></pre>
+<h2 id="方法一：广度优先搜素-优化建图"><a href="#方法一：广度优先搜素-优化建图" class="headerlink" title="方法一：广度优先搜素+优化建图"></a>方法一：广度优先搜素+优化建图</h2><p><strong>思路:</strong></p>
+<p>本题要求的是<strong>最短转换序列</strong>的长度。<strong>广度优先搜索</strong>。抽象为<strong>图的模型</strong>。</p>
+<p>每个单词抽象为一个点，如果两个单词可以只改变一个字母进行转换，那么说明它们之间有一条双向边，因此我们只需要把满足转换条件的点相连，就形成了一张图。<br>基于该图，我们以beginWord为图的起点，以endWord为终点进行广度优先搜索，寻找beginWord和endWord的最短路径。</p>
+<p>具体地，我们可以创建虚拟节点。对于单词hit，我们创建三个虚拟节*it、h*t、hi*，并让hit向这三个虚拟节点分别连一条边即可。如果一个单词能够转换为hit，那么该单词必然会连接到这三个虚拟节点之一。对于每一个单词，我们枚举它连接到的虚拟节点，把该单词对应的id与这些虚拟节点对应的id相连即可。</p>
+<p>最后我们将起点加入队列开始广度优先搜索，当搜索到终点时，我们就找到了最短路径的长度。注意因为添加了虚拟节点，我们得到的距离为实际最短路径长度的两倍。同时我们并未计算起点对答案的贡献，所以我们应当返回距离的一半加一的结果。</p>
+<p><strong>代码</strong>:</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> collections
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ladderLength</span><span class="hljs-params">(self, beginWord, endWord,wordList)</span>:</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">addWord</span><span class="hljs-params">(word)</span>:</span>
+            <span class="hljs-keyword">if</span> word <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> wordId:
+                <span class="hljs-keyword">nonlocal</span> wordnum
+                wordId[word] = wordnum
+                wordnum += <span class="hljs-number">1</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">addEdge</span><span class="hljs-params">(word)</span>:</span>
+            addWord(word)
+            id1 = wordId[word]
+            chars = list(word)
+            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(chars)):
+                tmp = chars[i]
+                chars[i] = <span class="hljs-string">'*'</span>
+                newword = <span class="hljs-string">''</span>.join(chars)
+                addWord(newword)
+                id2 = wordId[newword]
+                edge[id1].append(id2)
+                edge[id2].append(id1)
+                chars[i] = tmp
+        
+        wordId = dict()
+        edge = collections.defaultdict(list)
+        wordnum = <span class="hljs-number">0</span>
+        <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> wordList:
+            addEdge(word)
+        addEdge(beginWord)
+        dis = [float(<span class="hljs-string">"inf"</span>)] * wordnum
+        <span class="hljs-keyword">if</span> endWord <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> wordId:
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+        beginId, endId  = wordId[beginWord], wordId[endWord]
+        dis[beginId] = <span class="hljs-number">0</span>
+        que = collections.deque([beginId])
+        <span class="hljs-keyword">while</span> que:
+            x = que.popleft()
+            <span class="hljs-keyword">if</span> x == endId:
+                <span class="hljs-keyword">return</span> dis[endId] // <span class="hljs-number">2</span> + <span class="hljs-number">1</span>
+            <span class="hljs-keyword">for</span> nextnode <span class="hljs-keyword">in</span> edge[x]:
+                <span class="hljs-keyword">if</span> dis[nextnode] == float(<span class="hljs-string">"inf"</span>):
+                    dis[nextnode] = dis[x] + <span class="hljs-number">1</span>
+                    que.append(nextnode)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span></code></pre>
+<p><strong>复杂度分析</strong>:</p>
+<ul>
+<li>时间复杂度：$O(N \times C^2)$？？？？。其中$N$为wordList的长度，$C$为列表中单词的平均长度。</li>
+<li><ul>
+<li>建图过程中，对于每一个单词，我们需要枚举它连接到的所有虚拟节点，时间复杂度为$O(C)$，将这些单词加入到哈希表中，时间复杂度为$O(N \times C)$，因此总时间复杂度为$O(N \times C)$。</li>
+<li>广度优先搜索的时间复杂度最坏情况下是$O(N \times C)$。</li>
+</ul>
+</li>
+<li>空间复杂度：$O(N \times C^2)$。其中$N$为wordList的长度，$C$为列表中单词的平均长度。哈希表中包含$O(N \times C)$个节点，每个节点占用空间$O(C)$，因此总的空间复杂度为$O(N \times C)$。</li>
+</ul>
+<h2 id="方法二：双向广度优先搜索"><a href="#方法二：双向广度优先搜索" class="headerlink" title="方法二：双向广度优先搜索"></a>方法二：双向广度优先搜索</h2><p><strong>思路</strong>:</p>
+<p>根据给定字典构造的图可能会很大，而广度优先搜索的搜索空间大小依赖于每层节点的分支数量。假如每个节点的分支数量相同，搜索空间会随着层数的增长指数级的增加。</p>
+<p>如果使用两个同时进行的广搜可以有效地减少搜索空间。一边从beginWord开始，另一边从endWord开始。我们每次从两个各扩展一层节点，当发现某一时刻两边都访问过同一顶点时就停止搜索。这就是双向广度优先搜索，它可以可观地减少搜索空间，从而提高代码运行效率。</p>
+<p><strong>代码</strong>:</p>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ladderLength</span><span class="hljs-params">(self, beginWord, endWord, wordList)</span>:</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">addWord</span><span class="hljs-params">(word)</span>:</span>
+            <span class="hljs-keyword">if</span> word <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> wordId:
+                <span class="hljs-keyword">nonlocal</span> wordnum
+                wordId[word] = wordnum
+                wordnum += <span class="hljs-number">1</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">addEdge</span><span class="hljs-params">(word)</span>:</span>
+            addWord(word)
+            id1 = wordId[word]
+            chars = list(word)
+            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(chars)):
+                tmp = chars[i]
+                chars[i] = <span class="hljs-string">'*'</span>
+                newword = <span class="hljs-string">''</span>.join(chars)
+                addWord(newword)
+                id2 = wordId[newword]
+                edge[id1].append(id2)
+                edge[id2].append(id1)
+                chars[i] = tmp
+        wordnum = <span class="hljs-number">0</span>
+        wordId = dict()
+        edge = collections.defaultdict(list)
+        <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> wordList:
+            addEdge(word)
+        addEdge(beginWord)
+        <span class="hljs-keyword">if</span> endWord <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> wordId:
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+        beginId, endId = wordId[beginWord], wordId[endWord]
+        quebegin = collections.deque([beginId])
+        disbegin = [float(<span class="hljs-string">'inf'</span>)] * wordnum
+        disbegin[beginId] = <span class="hljs-number">0</span>
+        queend = collections.deque([endId])
+        disend = [float(<span class="hljs-string">'inf'</span>)] * wordnum
+        disend[endId] = <span class="hljs-number">0</span>
+        <span class="hljs-keyword">while</span> quebegin <span class="hljs-keyword">or</span> queend:
+            quebeginsize = len(quebegin)
+            <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(quebeginsize):
+                nodebegin = quebegin.popleft()
+                <span class="hljs-keyword">if</span> disend[nodebegin] != float(<span class="hljs-string">'inf'</span>):
+                    <span class="hljs-keyword">return</span> (disbegin[nodebegin] + disend[nodebegin]) // <span class="hljs-number">2</span> + <span class="hljs-number">1</span>
+                <span class="hljs-keyword">for</span> nextnode <span class="hljs-keyword">in</span> edge[nodebegin]:
+                    <span class="hljs-keyword">if</span> disbegin[nextnode] == float(<span class="hljs-string">'inf'</span>):
+                        disbegin[nextnode] = disbegin[nodebegin] + <span class="hljs-number">1</span>
+                        quebegin.append(nextnode)
+            queendsize = len(queend)
+            <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(queendsize):
+                nodeend = queend.popleft()
+                <span class="hljs-keyword">if</span> disbegin[nodeend] != float(<span class="hljs-string">'inf'</span>):
+                    <span class="hljs-keyword">return</span> (disbegin[nodeend] + disend[nodeend]) // <span class="hljs-number">2</span> + <span class="hljs-number">1</span>
+                <span class="hljs-keyword">for</span> nextnode <span class="hljs-keyword">in</span> edge[nodeend]:
+                    <span class="hljs-keyword">if</span> disend[nextnode] == float(<span class="hljs-string">'inf'</span>):
+                        disend[nextnode] = disend[nodeend] + <span class="hljs-number">1</span>
+                        queend.append(nextnode)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span></code></pre>
+<p><strong>复杂度分析</strong>:</p>
+<ul>
+<li>时间复杂度：$O(N \times C^2)$。其中$N$为wordList的长度，$C$为列表中单词的平均长度。</li>
+<li><ul>
+<li>建图过程中，对于每一个单词，我们需要枚举它连接到的所有虚拟节点，时间复杂度为$O(C)$，将这些单词加入哈希表中，时间复杂度为$O(N \times C)$，因此总时间复杂度为$O(N \times C)$。</li>
+<li>双向广度优先搜索的时间复杂度最坏情况下是$O(N \times C)$，因此总时间复杂度为$O(N \times C^2)$。</li>
+</ul>
+</li>
+<li>空间复杂度：$O(N \times C^2)$。其中$N$为wordList的长度，$C$为列表中单词的平均长度，哈希表中包含$O(N \times C)$个节点，每个节点占用空间$O(C)$。因此总的空间复杂度为$O(N \times C^2)$。</li>
+</ul>
+
             </article>
             <hr>
             <div>
